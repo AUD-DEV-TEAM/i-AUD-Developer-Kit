@@ -5,9 +5,9 @@
 export enum enFoldedDirectionType{
 
   /** Left */
-  Left = "Left",
+  "Left" = "Left",
 
   /** Right */
-  Right = "Right",
+  "Right" = "Right",
 
 }

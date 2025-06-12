@@ -5,9 +5,9 @@
 export enum enColumnTotalLocation{
 
   /** Right */
-  Right = 0,
+  "Right" = 0,
 
   /** Left */
-  Left = 1,
+  "Left" = 1,
 
 }

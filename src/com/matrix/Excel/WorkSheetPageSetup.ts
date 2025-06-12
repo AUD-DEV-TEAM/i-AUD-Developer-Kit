@@ -19,6 +19,16 @@ export interface WorkSheetPageSetup{
   CenterHeader: string;
 
   /**
+   * 인쇄 자동 맞춤 용지 페이지 높이 개수
+  */
+  FitToHeight: number;
+
+  /**
+   * 인쇄 자동 맞춤 용지 페이지 너비 개수
+  */
+  FitToWidth: number;
+
+  /**
    * 바닥글 여백
   */
   FooterMargin: number;
@@ -27,6 +37,11 @@ export interface WorkSheetPageSetup{
    * 머리글 여백
   */
   HeaderMargin: number;
+
+  /**
+   * 인쇄 자동 맞춤이 비율인지 여부.
+  */
+  IsPercentScale: boolean;
 
   /**
    * 바닥글 왼쪽 구역

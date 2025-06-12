@@ -5,33 +5,33 @@
 export enum enExportImageObject{
 
   /**   */
-  fileType = "number",
+  "fileType" = "number",
 
   /**   */
-  fileName = "string",
+  "fileName" = "string",
 
   /**   */
-  controlNames = "string[]",
+  "controlNames" = "string[]",
 
   /**   */
-  usedClipSize = "boolean",
+  "usedClipSize" = "boolean",
 
   /**   */
-  usedDownload = "boolean",
+  "usedDownload" = "boolean",
 
   /**   */
-  usedUpload = "boolean",
+  "usedUpload" = "boolean",
 
   /**   */
-  debug = "boolean",
+  "debug" = "boolean",
 
   /**   */
-  usedTimeStamp = "boolean",
+  "usedTimeStamp" = "boolean",
 
   /**   */
-  debugMillisecond = "number",
+  "debugMillisecond" = "number",
 
   /**   */
-  callbackFunc = "function",
+  "callbackFunc" = "function",
 
 }

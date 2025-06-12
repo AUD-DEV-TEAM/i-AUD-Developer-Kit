@@ -5,9 +5,9 @@
 export enum enOlapFilterKind{
 
   /**   */
-  Dimension = 0,
+  "Dimension" = 0,
 
   /**   */
-  Measure = 1,
+  "Measure" = 1,
 
 }

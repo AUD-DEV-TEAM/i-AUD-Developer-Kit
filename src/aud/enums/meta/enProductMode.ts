@@ -5,18 +5,18 @@
 export enum enProductMode{
 
   /**  */
-  Canvas = 0,
+  "Canvas" = 0,
 
   /**  */
-  Matrix = 1,
+  "Matrix" = 1,
 
   /**  */
-  MetaDesigner = 2,
+  "MetaDesigner" = 2,
 
   /**  */
-  Stream = 3,
+  "Stream" = 3,
 
   /**  */
-  QueryBuilder = 4,
+  "QueryBuilder" = 4,
 
 }

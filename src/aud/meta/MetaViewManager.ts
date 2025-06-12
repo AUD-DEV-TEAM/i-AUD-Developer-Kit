@@ -47,6 +47,12 @@ export interface MetaViewManager{
   ChangeReportType(reportType: enReportType): void;
 
   /** 
+   * 배치된 항목을 삭제하는 메소드
+   *
+  */
+  ClearLayout(): void;
+
+  /** 
    * DrillToDetail일 경우 배치된 항목들의 컬럼명(캡션)을 모두 반환해주는 메소드
    *
    * @example

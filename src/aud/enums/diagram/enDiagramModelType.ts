@@ -5,9 +5,9 @@
 export enum enDiagramModelType{
 
   /**  */
-  MetaDiagram = "MetaDiagram",
+  "MetaDiagram" = "MetaDiagram",
 
   /**  */
-  WorkFlow = "WorkFlow",
+  "WorkFlow" = "WorkFlow",
 
 }

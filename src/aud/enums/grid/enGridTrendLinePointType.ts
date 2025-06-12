@@ -5,15 +5,15 @@
 export enum enGridTrendLinePointType{
 
   /**   */
-  None = 0,
+  "None" = 0,
 
   /**   */
-  MinMax = 1,
+  "MinMax" = 1,
 
   /**   */
-  All = 2,
+  "All" = 2,
 
   /**   */
-  BigMinMax = 3,
+  "BigMinMax" = 3,
 
 }

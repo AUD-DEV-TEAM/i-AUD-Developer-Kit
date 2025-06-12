@@ -1,4 +1,4 @@
-import { MetaItemDragManager } from "../../aud/meta/MetaItemDragManager";
+import { enMergeViewTreeSortLevel } from "../../aud/enums/meta/enMergeViewTreeSortLevel";
 import { MetaItemImageManager } from "../../aud/meta/MetaItemImageManager";
 import { enMetaMode } from "../../aud/enums/meta/enMetaMode";
 import { MetaManagerModel } from "../../aud/meta/MetaManagerModel";
@@ -11,6 +11,8 @@ import { enMetaConditionFilterType } from "../../aud/enums/meta/enMetaConditionF
 import { enMetaConditionPromptValidate } from "../../aud/enums/meta/enMetaConditionPromptValidate";
 import { enMetaReportControlType } from "../../aud/enums/meta/enMetaReportControlType";
 import { enMetaFieldGroupFunction } from "../../aud/enums/meta/enMetaFieldGroupFunction";
+import { PeriodAnalysis } from "../../aud/meta/PeriodAnalysis";
+import { DataRow } from "../../aud/data/DataRow";
 /**
 * 
 * @hidden
@@ -18,10 +20,16 @@ import { enMetaFieldGroupFunction } from "../../aud/enums/meta/enMetaFieldGroupF
 export interface MetaManager{
 
   /**
-   * i-META Viewer 항목 drag 관리 객체
+   * 뷰어가 오픈된 상태인지 여부
    * @hidden
   */
-  MetaItemDragManager: MetaItemDragManager;
+  IsViewerOpen: boolean;
+
+  /**
+   * 병합뷰의 항목 순서를 각 서브뷰에 배치된 항목 순으로 처리할 건지 여부
+   * @hidden
+  */
+  MergeViewTreeSortLevel: enMergeViewTreeSortLevel;
 
   /**
    * MetaView Image 관리 객체
@@ -81,17 +89,76 @@ export interface MetaManager{
   * @param viewName 뷰이름
   * @param formula 계산 수식
   * @param caption 화면 표시명
+  * @param periodAnalysis 기간별 비교 분석 정보
    * @hidden
   */
-  AddItemEx(position: enMetaReportControlType, itemCode: string, groupFunction: enMetaFieldGroupFunction, viewName: string, formula: string, caption: string): void;
+  AddItemEx(position: enMetaReportControlType, itemCode: string, groupFunction?: enMetaFieldGroupFunction, viewName?: string, formula?: string, caption?: string, periodAnalysis?: PeriodAnalysis): void;
+
+  /** 
+   * layout 정보를 만들어주는 메소드
+   *
+  * @param resultCallbackFunc 
+   * @hidden
+  */
+  ApplyMeta(resultCallbackFunc?: Function): void;
+
+  /** 
+   * 레포트 유형을 변경하는 메소드
+   *
+  * @param reportType 레포트 유형(1: Analysis, 3: List)
+   * @hidden
+  */
+  ChangeReportType(reportType: enReportType): void;
+
+  /** 
+   * 병합 폴더를 생성해주는 메소드
+   *
+  * @param targetNodeList 병합할 항목
+  * @param folderName 폴더명
+  * @param folderCode 폴더코드
+   * @hidden
+  */
+  CreateMergeFolder(targetNodeList: DataRow[], folderName?: string, folderCode?: string): DataRow;
+
+  /** 
+   * 병합 폴더를 삭제해주는 메소드
+   *
+  * @param targetNodeList 삭제할 폴더
+  */
+  DeleteMergeList(targetNodeList: DataRow[]): void;
+
+  /** 
+   * 배치된 항목 갯수 구하는 메소드
+   *
+   * @hidden
+  */
+  GetItemCount(): number;
+
+  /** 
+   * SQLText 요청하는 메소드
+   *
+  * @param callback 콜백 함수
+   * @hidden
+  */
+  MakeSQL(callback: Function): void;
+
+  /** 
+   * 메타 보고서를 병합하는 메소드
+   *
+  * @param reportCode 메타 보고서 코드
+  * @param callback 메타 보고서 오픈 콜백 함수
+   * @hidden
+  */
+  MergeMeta(reportCode: string, callback: Function): void;
 
   /** 
    * 메타 보고서 오픈 메소드
    *
   * @param reportCode 메타 보고서 코드
-  * @param moduleCode 메타 보고서 모듈코드(M0, MV, SX)
+  * @param isMerge 병합인지 여부
+  * @param callback 메타 보고서 오픈 콜백 함수
    * @hidden
   */
-  OpenMeta(reportCode: string, moduleCode: string): Promise<any>;
+  OpenMeta(reportCode: string, isMerge: boolean, callback?: Function): Promise<any>;
 
 }

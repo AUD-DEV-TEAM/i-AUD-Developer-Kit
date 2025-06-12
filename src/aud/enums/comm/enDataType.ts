@@ -5,18 +5,18 @@
 export enum enDataType{
 
   /**  */
-  Numeric = 0,
+  "Numeric" = 0,
 
   /**  */
-  String = 1,
+  "String" = 1,
 
   /**  */
-  DateTime8 = 2,
+  "DateTime8" = 2,
 
   /**  */
-  DateTimeNow = 3,
+  "DateTimeNow" = 3,
 
   /**  */
-  UserCode = 4,
+  "UserCode" = 4,
 
 }

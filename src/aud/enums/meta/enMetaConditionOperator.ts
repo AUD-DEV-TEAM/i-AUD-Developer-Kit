@@ -5,63 +5,63 @@
 export enum enMetaConditionOperator{
 
   /**  */
-  opEqual = 0,
+  "opEqual" = 0,
 
   /**  */
-  opLessthen = 1,
+  "opLessthen" = 1,
 
   /**  */
-  opGreaterthen = 2,
+  "opGreaterthen" = 2,
 
   /**  */
-  opLessEqual = 3,
+  "opLessEqual" = 3,
 
   /**  */
-  opGreaterEqual = 4,
+  "opGreaterEqual" = 4,
 
   /**  */
-  opNot = 5,
+  "opNot" = 5,
 
   /**  */
-  opLike = 6,
+  "opLike" = 6,
 
   /**  */
-  opNotLike = 7,
+  "opNotLike" = 7,
 
   /**  */
-  opIn = 8,
+  "opIn" = 8,
 
   /**  */
-  opNotIn = 9,
+  "opNotIn" = 9,
 
   /**  */
-  opIsNull = 10,
+  "opIsNull" = 10,
 
   /**  */
-  opIsNotNull = 11,
+  "opIsNotNull" = 11,
 
   /**  */
-  opBetween = 12,
+  "opBetween" = 12,
 
   /**  */
-  opAnd = 13,
+  "opAnd" = 13,
 
   /**  */
-  opOr = 14,
+  "opOr" = 14,
 
   /**  */
-  opNotBetween = 15,
+  "opNotBetween" = 15,
 
   /**  */
-  opStartWith = 16,
+  "opStartWith" = 16,
 
   /**  */
-  opEndWith = 17,
+  "opEndWith" = 17,
 
   /**  */
-  opContains = 18,
+  "opContains" = 18,
 
   /**  */
-  opNotContains = 19,
+  "opNotContains" = 19,
 
 }

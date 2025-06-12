@@ -5,54 +5,54 @@
 export enum enSummaryVariation{
 
   /** None */
-  None = 0,
+  "None" = 0,
 
   /** Absolute */
-  Absolute = 1,
+  "Absolute" = 1,
 
   /** Percent */
-  Percent = 2,
+  "Percent" = 2,
 
   /** PercentOfColumn */
-  PercentOfColumn = 3,
+  "PercentOfColumn" = 3,
 
   /** PercentOfRow */
-  PercentOfRow = 4,
+  "PercentOfRow" = 4,
 
   /** SubTotalPercentOfColumn */
-  SubTotalPercentOfColumn = 5,
+  "SubTotalPercentOfColumn" = 5,
 
   /** SubTotalPercentOfRow */
-  SubTotalPercentOfRow = 6,
+  "SubTotalPercentOfRow" = 6,
 
   /** RunningAverage */
-  RunningAverage = 7,
+  "RunningAverage" = 7,
 
   /** RunningCount */
-  RunningCount = 8,
+  "RunningCount" = 8,
 
   /** RunningMax */
-  RunningMax = 9,
+  "RunningMax" = 9,
 
   /** RunningMin */
-  RunningMin = 10,
+  "RunningMin" = 10,
 
   /** RunningProduct */
-  RunningProduct = 11,
+  "RunningProduct" = 11,
 
   /** RunningSum */
-  RunningSum = 12,
+  "RunningSum" = 12,
 
   /** FirstPeriod */
-  FirstPeriod = 15,
+  "FirstPeriod" = 15,
 
   /** LastPeriod */
-  LastPeriod = 16,
+  "LastPeriod" = 16,
 
   /** PeriodIncrease */
-  PeriodIncrease = 17,
+  "PeriodIncrease" = 17,
 
   /** PeriodIncreaseRate */
-  PeriodIncreaseRate = 18,
+  "PeriodIncreaseRate" = 18,
 
 }

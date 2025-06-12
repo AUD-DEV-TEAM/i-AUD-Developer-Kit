@@ -5,15 +5,15 @@
 export enum enHorizontalPositionType{
 
   /**   */
-  Stretch = 0,
+  "Stretch" = 0,
 
   /**   */
-  Left = 1,
+  "Left" = 1,
 
   /**   */
-  Center = 2,
+  "Center" = 2,
 
   /**   */
-  Right = 3,
+  "Right" = 3,
 
 }

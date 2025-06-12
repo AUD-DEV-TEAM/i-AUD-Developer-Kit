@@ -5,24 +5,24 @@
 export enum enMessageType{
 
   /**   */
-  Default = 0,
+  "Default" = 0,
 
   /**   */
-  Information = 1,
+  "Information" = 1,
 
   /**   */
-  Warning = 2,
+  "Warning" = 2,
 
   /**   */
-  Confirm = 3,
+  "Confirm" = 3,
 
   /**   */
-  Error = 4,
+  "Error" = 4,
 
   /**   */
-  Clear = 5,
+  "Clear" = 5,
 
   /**   */
-  WarningConfirm = 6,
+  "WarningConfirm" = 6,
 
 }

@@ -5,12 +5,12 @@
 export enum enDataLoadType{
 
   /**  */
-  None = 0,
+  "None" = 0,
 
   /**   */
-  Used = 1,
+  "Used" = 1,
 
   /**   */
-  NotUsed = 2,
+  "NotUsed" = 2,
 
 }

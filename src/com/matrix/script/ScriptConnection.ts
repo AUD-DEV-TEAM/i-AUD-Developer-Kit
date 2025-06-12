@@ -182,16 +182,16 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    * JDBC의 PreparedStatement 객체를 생성 후 반환합니다.
    *
   * @param sql 실행 쿼리
-  * @param useName 쿼리 변수명 사용 여부
   */
-  PreparedStatement(sql: string, useName: boolean): ScriptPreparedStatement;
+  PreparedStatement(sql: string): ScriptPreparedStatement;
 
   /** 
    * JDBC의 PreparedStatement 객체를 생성 후 반환합니다.
    *
   * @param sql 실행 쿼리
+  * @param useName 쿼리 변수명 사용 여부
   */
-  PreparedStatement(sql: string): ScriptPreparedStatement;
+  PreparedStatement(sql: string, useName: boolean): ScriptPreparedStatement;
 
   /** 
    * 트랜잭션을 롤 백 합니다.

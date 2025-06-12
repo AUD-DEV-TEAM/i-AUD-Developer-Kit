@@ -5,9 +5,9 @@
 export enum enTotalRowType{
 
   /**   */
-  GrandTotal = "GrandTotal",
+  "GrandTotal" = "GrandTotal",
 
   /**   */
-  SubTotal = "SubTotal",
+  "SubTotal" = "SubTotal",
 
 }

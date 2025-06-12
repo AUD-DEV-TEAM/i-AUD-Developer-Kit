@@ -5,18 +5,18 @@
 export enum enArea{
 
   /** Hidden area */
-  Hidden = 0,
+  "Hidden" = 0,
 
   /** Row area */
-  Row = 1,
+  "Row" = 1,
 
   /** Column area */
-  Column = 2,
+  "Column" = 2,
 
   /** Filter area */
-  Filter = 3,
+  "Filter" = 3,
 
   /** Data area */
-  Data = 4,
+  "Data" = 4,
 
 }

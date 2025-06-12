@@ -5,12 +5,12 @@
 export enum enViewerMode{
 
   /** 편집 */
-  Edit = 0,
+  "Edit" = 0,
 
   /** 미리보기 */
-  Preview = 1,
+  "Preview" = 1,
 
   /** 보기 */
-  View = 2,
+  "View" = 2,
 
 }

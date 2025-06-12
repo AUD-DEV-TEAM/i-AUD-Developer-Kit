@@ -83,23 +83,6 @@ export interface ScriptFileSystemObject{
    *
    * @example
    * ```js
-   *   
-   *   var fso = Matrix.getFileSystemObject();
-   *   //주어진 경로를 조합한 경로를 반환 합니다.
-   *   //경로 문자열은 OS에 따라 자동으로 치환 됩니다.
-   *   var path = fso.PathCombine(["DATA","TEMP","FILENAME.xlsx"]);
-   *   // WINDOW : path = DATA\TEMP\FILENAME.xlsx
-   *   // LINUX  : path = DATA/TEMP/FILENAME.xlsx
-   * ```
-  * @param pathList 경로 목록
-  */
-  PathCombine(pathList: string[]): string;
-
-  /** 
-   * 파일 경로를 반환합니다.
-   *
-   * @example
-   * ```js
    *   var fso = Matrix.getFileSystemObject();
    *   //주어진 경로를 조합한 경로를 반환 합니다.
    *   //경로 문자열은 OS에 따라 자동으로 치환 됩니다.
@@ -111,6 +94,23 @@ export interface ScriptFileSystemObject{
   * @param path2 경로2
   */
   PathCombine(path1: string, path2: string): string;
+
+  /** 
+   * 파일 경로를 반환합니다.
+   *
+   * @example
+   * ```js
+   *   
+   *   var fso = Matrix.getFileSystemObject();
+   *   //주어진 경로를 조합한 경로를 반환 합니다.
+   *   //경로 문자열은 OS에 따라 자동으로 치환 됩니다.
+   *   var path = fso.PathCombine(["DATA","TEMP","FILENAME.xlsx"]);
+   *   // WINDOW : path = DATA\TEMP\FILENAME.xlsx
+   *   // LINUX  : path = DATA/TEMP/FILENAME.xlsx
+   * ```
+  * @param pathList 경로 목록
+  */
+  PathCombine(pathList: string[]): string;
 
   /** 
    * 텍스트 파일의 내용을 반환합니다.
@@ -181,17 +181,17 @@ export interface ScriptFileSystemObject{
    *
   * @param folderPath 압축 대상 폴더명
   * @param zipPath 압축 생성할 파일 경로
+  * @param containFolderName 폴더 이름을 포함할 지 여부
   */
-  ZipFolder(folderPath: string, zipPath: string): boolean;
-  
+  ZipFolder(folderPath: string, zipPath: string, containFolderName: boolean): boolean;
+
   /** 
    * 폴더를 압축합니다.
    *
   * @param folderPath 압축 대상 폴더명
   * @param zipPath 압축 생성할 파일 경로
-  * @param containFolderName 폴더 이름을 포함할 지 여부
   */
-  ZipFolder(folderPath: string, zipPath: string, containFolderName: boolean): boolean;
+  ZipFolder(folderPath: string, zipPath: string): boolean;
 
   /** 
    * 파일 정보를 반환 합니다.

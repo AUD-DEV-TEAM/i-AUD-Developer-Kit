@@ -78,6 +78,6 @@ export interface TreeViewNode{
   * @param value 
    * @hidden
   */
-  SetValue(key: string, value: any): void;
+  SetValue(key?: string, value?: any): void;
 
 }

@@ -1,6 +1,6 @@
+import { ScriptWorkSheet } from "../../../../com/matrix/script/excel/ScriptWorkSheet";
 import { ScriptFontSettingList } from "../../../../com/matrix/script/excel/ScriptFontSettingList";
 import { ScriptCellStyle } from "../../../../com/matrix/script/excel/ScriptCellStyle";
-import { ScriptWorkSheet } from "./ScriptWorkSheet";
 /**
 * 엑셀 셀에 대한 접근을 제공합니다.
 */
@@ -17,6 +17,19 @@ export interface ScriptCellRange{
    *
   */
   getBoolean(): boolean;
+
+  /** 
+   * 셀 데이터 특성을 나타내는 문자열을 반환 합니다.
+   *
+  */
+  getCellType(): string;
+
+  /** 
+   * 셀 데이터 특성을 나타내는 문자열을 반환 합니다.
+   *
+  * @param ws 
+  */
+  getCellType(ws: ScriptWorkSheet): string;
 
   /** 
    * 열의 인덱스를 반환 합니다.
@@ -118,6 +131,28 @@ export interface ScriptCellRange{
   setBoolean(value: boolean): void;
 
   /** 
+   * 셀 데이터 특성을 설정합니다.
+   *
+  * @param typeName 셀 타입 
+
+  Empty    
+, String   
+, Number   
+, DivideZero
+, RefError
+, NotAvaliable
+, NotSupportFunction
+, NotValue
+, NotNumber
+, Boolean  
+, DateTime  
+, CircularError
+, NotName
+, NullError  
+  */
+  setCellType(typeName: string): void;
+
+  /** 
    * 셀에 날짜 값으로 수정 합니다.
    *
   * @param year year
@@ -196,39 +231,5 @@ export interface ScriptCellRange{
   * @param value 값
   */
   setValue(value: object): void;
-
-
-  
-  /**
-   * 셀 데이터 특성을 나타내는 문자열을 반환 합니다.
-   */
-  getCellType():string;
-
-  /**
-   * 셀 데이터 특성을 나타내는 문자열을 반환 합니다.
-   * @param ws 
-   */
-  getCellType(ws:ScriptWorkSheet):string;
-  
-  /**
-   * 셀 데이터 특성을 설정합니다.
-   *   
-   * @param type 셀 타입 
-                  Empty    
-                , String   
-                , Number   
-                , DivideZero
-                , RefError
-                , NotAvaliable
-                , NotSupportFunction
-                , NotValue
-                , NotNumber
-                , Boolean  
-                , DateTime  
-                , CircularError
-                , NotName
-                , NullError  
-   */
-  setCellType(type:string):void;
 
 }

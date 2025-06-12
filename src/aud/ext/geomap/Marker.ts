@@ -21,22 +21,16 @@ export interface Marker{
   getId(): Marker;
 
   /** 
-   * id에 해당하는 marker를 제거합니다. id가 undefined일 경우, 모든 marker를 제거합니다.
+   * Marker 를 숨깁니다.
    *
-   * @example
-   * ```js
-   * // marker 객체 생성 //
-   * var markerLocation = [[x, y]];    // 위치 정보 전달
-   * var marker = map.addMarker(markerLocation);
-   * 
-   * Button.OnClick = function(s, e) {
-   *     var busan = [129.03555, 35.1838];
-   *     marker.removeMarkers(busan);
-   * }
-   * ```
-  * @param id 제거를 원하는 marker 정보를 입력합니다. 빈 값을 입력하면 모든 marker가 삭제됩니다.
   */
-  removeMarkers(id: string[]): void;
+  hide(): void;
+
+  /** 
+   * Marker 를 삭제합니다.
+   *
+  */
+  remove(): Marker | void;
 
   /** 
    * 설정한 이미지를 scale에 맞게 제공합니다.
@@ -55,5 +49,11 @@ export interface Marker{
   * @param imgScale 빈 값이 입력되면 기본 스케일로 1이 적용됩니다.
   */
   setImg(imgUrl: string, imgScale?: number): void;
+
+  /** 
+   * Marker 를 보여줍니다.
+   *
+  */
+  show(): void;
 
 }

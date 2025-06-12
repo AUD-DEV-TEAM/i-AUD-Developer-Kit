@@ -5,12 +5,12 @@
 export enum enScrollBarVisibilityType{
 
   /**   */
-  Auto = 0,
+  "Auto" = 0,
 
   /**   */
-  Visible = 1,
+  "Visible" = 1,
 
   /**   */
-  Hidden = 2,
+  "Hidden" = 2,
 
 }

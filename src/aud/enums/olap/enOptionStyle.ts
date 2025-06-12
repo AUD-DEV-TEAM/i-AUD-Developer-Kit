@@ -5,69 +5,69 @@
 export enum enOptionStyle{
 
   /**  */
-  DataCell = "DataCell",
+  "DataCell" = "DataCell",
 
   /**  */
-  TotalDataCell = "TotalDataCell",
+  "TotalDataCell" = "TotalDataCell",
 
   /**  */
-  GrandTotalDataCell = "GrandTotalDataCell",
+  "GrandTotalDataCell" = "GrandTotalDataCell",
 
   /**  */
-  RowHeaderCell = "RowHeaderCell",
+  "RowHeaderCell" = "RowHeaderCell",
 
   /**  */
-  RowTotalHeaderCell = "RowTotalHeaderCell",
+  "RowTotalHeaderCell" = "RowTotalHeaderCell",
 
   /**  */
-  RowGrandTotalHeaderCell = "RowGrandTotalHeaderCell",
+  "RowGrandTotalHeaderCell" = "RowGrandTotalHeaderCell",
 
   /**  */
-  ColumnHeaderCell = "ColumnHeaderCell",
+  "ColumnHeaderCell" = "ColumnHeaderCell",
 
   /**  */
-  ColumnTotalHeaderCell = "ColumnTotalHeaderCell",
+  "ColumnTotalHeaderCell" = "ColumnTotalHeaderCell",
 
   /**  */
-  ColumnGrandTotalHeaderCell = "ColumnGrandTotalHeaderCell",
+  "ColumnGrandTotalHeaderCell" = "ColumnGrandTotalHeaderCell",
 
   /**  */
-  DimensionField = "DimensionField",
+  "DimensionField" = "DimensionField",
 
   /**  */
-  MeasureField = "MeasureField",
+  "MeasureField" = "MeasureField",
 
   /**  */
-  AttributeField = "AttributeField",
+  "AttributeField" = "AttributeField",
 
   /**  */
-  PeriodField = "PeriodField",
+  "PeriodField" = "PeriodField",
 
   /**  */
-  DatasField = "DatasField",
+  "DatasField" = "DatasField",
 
   /**  */
-  FilterFieldArea = "FilterFieldArea",
+  "FilterFieldArea" = "FilterFieldArea",
 
   /**  */
-  DataFieldArea = "DataFieldArea",
+  "DataFieldArea" = "DataFieldArea",
 
   /**  */
-  ColumnFieldArea = "ColumnFieldArea",
+  "ColumnFieldArea" = "ColumnFieldArea",
 
   /**  */
-  RowFieldArea = "RowFieldArea",
+  "RowFieldArea" = "RowFieldArea",
 
   /**  */
-  Selection = "Selection",
+  "Selection" = "Selection",
 
   /**  */
-  LockedStyle = "LockedStyle",
+  "LockedStyle" = "LockedStyle",
 
   /**  */
-  EditedStyle = "EditedStyle",
+  "EditedStyle" = "EditedStyle",
 
   /**  */
-  ModifiedStyle = "ModifiedStyle",
+  "ModifiedStyle" = "ModifiedStyle",
 
 }

@@ -5,12 +5,12 @@
 export enum enVertical{
 
   /** top */
-  Top = 0,
+  "Top" = 0,
 
   /** center */
-  Center = 1,
+  "Center" = 1,
 
   /** bottom */
-  Bottom = 2,
+  "Bottom" = 2,
 
 }

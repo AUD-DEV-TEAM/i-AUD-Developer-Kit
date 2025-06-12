@@ -55,13 +55,13 @@ export interface Cell{
    *
   * @param name 속성명
   */
-  getProperty(name: string): object;
+  getProperty(name: string): any;
 
   /** 
    * 셀의 스타일을 반환 합니다.
    *
   */
-  getStyle(): object;
+  getStyle(): any;
 
   /** 
    * 셀의 텍스트를 반환 합니다.
@@ -73,7 +73,7 @@ export interface Cell{
    * 셀의 값을 반환 합니다. 값은 문자열 또는 수치형 데이터 입니다.
    *
   */
-  getValue(): object;
+  getValue(): any;
 
   /** 
    * 셀의 서식을 설정 합니다.
@@ -86,16 +86,16 @@ export interface Cell{
    * 셀의 특정 속성을 설정 합니다.
    *
   * @param name 속성명
-  * @param object 속성 값
+  * @param value 속성 값
   */
-  setProperty(name: string, object: object): void;
+  setProperty(name: string, value: any): void;
 
   /** 
    * 셀의 스타일을 설정 합니다.
    *
   * @param style 스타일 객체
   */
-  setStyle(style: object): void;
+  setStyle(style: any): void;
 
   /** 
    * 셀의 텍스트를 설정 합니다.

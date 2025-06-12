@@ -118,6 +118,7 @@ export interface MultiComboBox extends Control{
 
   /**
    * 팝업 컨테이너 객체
+   * @hidden
   */
   PopUpCtl: string;
 

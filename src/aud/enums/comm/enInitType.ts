@@ -5,12 +5,12 @@
 export enum enInitType{
 
   /** ㅇㅇ */
-  CurrentValue = 0,
+  "CurrentValue" = 0,
 
   /**   */
-  InitValue = 1,
+  "InitValue" = 1,
 
   /**   */
-  None = 2,
+  "None" = 2,
 
 }

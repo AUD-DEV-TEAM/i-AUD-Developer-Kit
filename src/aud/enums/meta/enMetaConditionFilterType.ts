@@ -5,36 +5,36 @@
 export enum enMetaConditionFilterType{
 
   /**  */
-  vldNullable = 0,
+  "vldNullable" = 0,
 
   /**  */
-  vldNotNull = 1,
+  "vldNotNull" = 1,
 
   /**  */
-  vldOptional = 2,
+  "vldOptional" = 2,
 
   /**  */
-  fltConst = 0,
+  "fltConst" = 0,
 
   /**  */
-  fltList = 1,
+  "fltList" = 1,
 
   /**  */
-  fltPrompt = 2,
+  "fltPrompt" = 2,
 
   /**  */
-  fltPicklist = 3,
+  "fltPicklist" = 3,
 
   /**  */
-  fltDataset = 4,
+  "fltDataset" = 4,
 
   /**  */
-  fltDatasetPrompt = 5,
+  "fltDatasetPrompt" = 5,
 
   /**  */
-  fltvariable = 6,
+  "fltvariable" = 6,
 
   /**  */
-  fltDatasetControl = 7,
+  "fltDatasetControl" = 7,
 
 }

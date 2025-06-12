@@ -29,27 +29,11 @@ export interface DataTable{
    * 컬럼을 추가합니다.
    *
   * @param name 컬럼명
-  * @param isNumber 숫자인지 아닌지 여부
-  */
-  AddColumn(name: string, isNumber: boolean): void;
-
-  /** 
-   * 컬럼을 추가합니다.
-   *
-  * @param name 컬럼명
   * @param caption 컬럼 캡션
   * @param keyType 키 유형
   * @param dataType 데이터 유형
   */
   AddColumn(name: string, caption: string, keyType: enKeyType, dataType: enDataType): void;
-
-  /** 
-   * 컬럼을 추가합니다.
-   *
-  * @param name 컬럼명
-  * @param caption 컬럼 캡션
-  */
-  AddColumn(name: string, caption: string): void;
 
   /** 
    * 컬럼을 추가합니다.
@@ -64,8 +48,30 @@ export interface DataTable{
    * 컬럼을 추가합니다.
    *
   * @param name 컬럼명
+  * @param isNumber 숫자인지 아닌지 여부
+  */
+  AddColumn(name: string, isNumber: boolean): void;
+
+  /** 
+   * 컬럼을 추가합니다.
+   *
+  * @param name 컬럼명
+  * @param caption 컬럼 캡션
+  */
+  AddColumn(name: string, caption: string): void;
+
+  /** 
+   * 컬럼을 추가합니다.
+   *
+  * @param name 컬럼명
   */
   AddColumn(name: string): void;
+
+  /** 
+   * 레코드를 하나 추가하고 추가된 행 번호를 반환합니다.
+   *
+  */
+  AppendRow(): number;
 
   /** 
    * 레코드를 하나 추가하고 추가된 행 번호를 반환합니다.
@@ -77,8 +83,9 @@ export interface DataTable{
   /** 
    * 레코드를 하나 추가하고 추가된 행 번호를 반환합니다.
    *
+  * @param array 레코드 데이터를 가지는 array
   */
-  AppendRow(): number;
+  AppendRow(array: Array<any>): number;
 
   /** 
    * 레코드를 하나 추가하고 추가된 행 번호를 반환합니다.
@@ -87,13 +94,6 @@ export interface DataTable{
   * @param delimeter 필드 구분자 (default: ','}
   */
   AppendRow(rowdata: string, delimeter: string): number;
-
-  /** 
-   * 레코드를 하나 추가하고 추가된 행 번호를 반환합니다.
-   *
-  * @param array 레코드 데이터를 가지는 array
-  */
-  AppendRow(array: Array<any>): number;
 
   /** 
    * 레코드들의 상태 수정(U)/삭제(D)/신규(D) 값들을 초기화 시킵니다.
@@ -185,15 +185,6 @@ export interface DataTable{
   * @param areaIndex 삽입할 위치
   * @param name 컬럼명
   * @param caption 컬럼 캡션
-  */
-  InsertColumn(areaIndex: number, name: string, caption: string): void;
-
-  /** 
-   * 컬럼을 삽입합니다.
-   *
-  * @param areaIndex 삽입할 위치
-  * @param name 컬럼명
-  * @param caption 컬럼 캡션
   * @param keyType 키 유형
   * @param dataType 데이터 유형
   */
@@ -214,9 +205,8 @@ export interface DataTable{
   * @param areaIndex 삽입할 위치
   * @param name 컬럼명
   * @param caption 컬럼 캡션
-  * @param keyType 키 유형
   */
-  InsertColumn(areaIndex: number, name: string, caption: string, keyType: enKeyType): void;
+  InsertColumn(areaIndex: number, name: string, caption: string): void;
 
   /** 
    * 컬럼을 삽입합니다.
@@ -225,6 +215,16 @@ export interface DataTable{
   * @param name 컬럼명
   */
   InsertColumn(areaIndex: number, name: string): void;
+
+  /** 
+   * 컬럼을 삽입합니다.
+   *
+  * @param areaIndex 삽입할 위치
+  * @param name 컬럼명
+  * @param caption 컬럼 캡션
+  * @param keyType 키 유형
+  */
+  InsertColumn(areaIndex: number, name: string, caption: string, keyType: enKeyType): void;
 
   /** 
    * 특정 위치의 레코드를 삭제합니다.
@@ -292,6 +292,6 @@ export interface DataTable{
   * @param fieldName 특정 컬럼의 이름
   * @param val 설정하고자 하는 값
   */
-  setRowValue(rowIdx: number, fieldName: string, val: string | number|object): void;
+  setRowValue(rowIdx: number, fieldName: string, val: any): void;
 
 }

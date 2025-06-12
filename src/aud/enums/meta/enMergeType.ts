@@ -5,21 +5,21 @@
 export enum enMergeType{
 
   /**  */
-  enNone = "enNone",
+  "enNone" = "enNone",
 
   /**  */
-  enInnerJoin = "enInnerJoin",
+  "enInnerJoin" = "enInnerJoin",
 
   /**  */
-  enOuterJoin = "enOuterJoin",
+  "enOuterJoin" = "enOuterJoin",
 
   /**  */
-  enFullOuter = "enFullOuter",
+  "enFullOuter" = "enFullOuter",
 
   /**  */
-  enUnion = "enUnion",
+  "enUnion" = "enUnion",
 
   /**  */
-  enUnionAll = "enUnionAll",
+  "enUnionAll" = "enUnionAll",
 
 }

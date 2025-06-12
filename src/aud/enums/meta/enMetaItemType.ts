@@ -5,39 +5,39 @@
 export enum enMetaItemType{
 
   /**  */
-  Folder = 0,
+  "Folder" = 0,
 
   /**  */
-  Field = 1,
+  "Field" = 1,
 
   /**  */
-  CalcField = 2,
+  "CalcField" = 2,
 
   /**  */
-  filterOperator = 3,
+  "filterOperator" = 3,
 
   /**  */
-  CalculatedTable = 4,
+  "CalculatedTable" = 4,
 
   /**  */
-  Invalidate = 5,
+  "Invalidate" = 5,
 
   /**  */
-  MergedField = 6,
+  "MergedField" = 6,
 
   /**  */
-  SQLHintField = 7,
+  "SQLHintField" = 7,
 
   /**  */
-  Func = 8,
+  "Func" = 8,
 
   /**  */
-  Omitted = 9,
+  "Omitted" = 9,
 
   /**  */
-  Variable = 10,
+  "Variable" = 10,
 
   /**  */
-  FolderOpen = 11,
+  "FolderOpen" = 11,
 
 }

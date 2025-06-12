@@ -55,15 +55,15 @@ export interface ScriptPreparedStatement{
   /** 
    * PreparedStatement의 batch에 파라미터 셋을 추가합니다.
    *
+  * @param sql SQL
   */
-  addBatch(): void;
+  addBatch(sql: string): void;
 
   /** 
    * PreparedStatement의 batch에 파라미터 셋을 추가합니다.
    *
-  * @param sql SQL
   */
-  addBatch(sql: string): void;
+  addBatch(): void;
 
   /** 
    * PreparedStatement의 batch실행 파라미터셋을 모두 제거합니다.
@@ -191,12 +191,6 @@ export interface ScriptPreparedStatement{
   /** 
    * PreparedStatement에 속한 쿼리 실행 후, 쿼리에 의해 생성된 ScriptDataTable 객체를 반환합니다.
    *
-  */
-  executeQuery(): ScriptDataTable;
-
-  /** 
-   * PreparedStatement에 속한 쿼리 실행 후, 쿼리에 의해 생성된 ScriptDataTable 객체를 반환합니다.
-   *
   * @param callbackRow 파일의 Row 단위 데이터 처리 함수
   * ```
   * 
@@ -209,6 +203,12 @@ export interface ScriptPreparedStatement{
   * ```
   */
   executeQuery(callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
+
+  /** 
+   * PreparedStatement에 속한 쿼리 실행 후, 쿼리에 의해 생성된 ScriptDataTable 객체를 반환합니다.
+   *
+  */
+  executeQuery(): ScriptDataTable;
 
   /** 
    * PreparedStatement에 속한 쿼리 중 입력(Insert), 수정(Update), 또는 삭제(Delete)와 같은 DML 쿼리 또는 DDL 쿼리 실행
@@ -348,26 +348,18 @@ export interface ScriptPreparedStatement{
   /** 
    *  지정된 파라미터를 CharacterStream(문자 스트림) 유형의 값으로 설정합니다.
    *
-  * @param name 변수명
-  * @param value 값
-  */
-  setCharacterStream(name: string, value: string): ScriptPreparedStatement;
-
-  /** 
-   *  지정된 파라미터를 CharacterStream(문자 스트림) 유형의 값으로 설정합니다.
-   *
   * @param idx 파라미터 인덱스
   * @param value 값
   */
   setCharacterStream(idx: number, value: string): ScriptPreparedStatement;
 
   /** 
-   * 지정된 파라미터에 Date 값을 설정합니다.
+   *  지정된 파라미터를 CharacterStream(문자 스트림) 유형의 값으로 설정합니다.
    *
-  * @param name 파라미터 명
-  * @param date Date
+  * @param name 변수명
+  * @param value 값
   */
-  setDate(name: string, date: object): ScriptPreparedStatement;
+  setCharacterStream(name: string, value: string): ScriptPreparedStatement;
 
   /** 
    * 지정된 파라미터에 Date 값을 설정합니다.
@@ -376,6 +368,14 @@ export interface ScriptPreparedStatement{
   * @param date Date
   */
   setDate(idx: number, date: object): ScriptPreparedStatement;
+
+  /** 
+   * 지정된 파라미터에 Date 값을 설정합니다.
+   *
+  * @param name 파라미터 명
+  * @param date Date
+  */
+  setDate(name: string, date: object): ScriptPreparedStatement;
 
   /** 
    * 지정된 파라미터를 Double 유형의 값으로 설정합니다.
@@ -403,18 +403,18 @@ export interface ScriptPreparedStatement{
   /** 
    * 지정된 파라미터를 Float 유형의 값으로 설정합니다.
    *
-  * @param name 변수명
-  * @param value 값
-  */
-  setFloat(name: string, value: number): ScriptPreparedStatement;
-
-  /** 
-   * 지정된 파라미터를 Float 유형의 값으로 설정합니다.
-   *
   * @param idx 파라미터 인덱스
   * @param value 값
   */
   setFloat(idx: number, value: number): ScriptPreparedStatement;
+
+  /** 
+   * 지정된 파라미터를 Float 유형의 값으로 설정합니다.
+   *
+  * @param name 변수명
+  * @param value 값
+  */
+  setFloat(name: string, value: number): ScriptPreparedStatement;
 
   /** 
    * 지정된 파라미터를 Int 유형의 값으로 설정합니다.
@@ -435,18 +435,25 @@ export interface ScriptPreparedStatement{
   /** 
    * 지정된 파라미터를 Long 유형의 값으로 설정합니다.
    *
+  * @param name 변수명
+  * @param value 값
+  */
+  setLong(name: string, value: number): ScriptPreparedStatement;
+
+  /** 
+   * 지정된 파라미터를 Long 유형의 값으로 설정합니다.
+   *
   * @param idx 파라미터 인덱스
   * @param value 값
   */
   setLong(idx: number, value: number): ScriptPreparedStatement;
 
   /** 
-   * 지정된 파라미터를 Long 유형의 값으로 설정합니다.
+   * 지정된 파라미터를 null 값으로 설정합니다.
    *
-  * @param name 변수명
-  * @param value 값
+  * @param name Parameter name
   */
-  setLong(name: string, value: number): ScriptPreparedStatement;
+  setNull(name: string): ScriptPreparedStatement;
 
   /** 
    * 지정된 파라미터를 null 값으로 설정합니다.
@@ -467,24 +474,9 @@ export interface ScriptPreparedStatement{
    * 지정된 파라미터를 null 값으로 설정합니다.
    *
   * @param name Parameter name
-  */
-  setNull(name: string): ScriptPreparedStatement;
-
-  /** 
-   * 지정된 파라미터를 null 값으로 설정합니다.
-   *
-  * @param name Parameter name
   * @param columnType column's datatype
   */
   setNull(name: string, columnType: number): ScriptPreparedStatement;
-
-  /** 
-   * 지정된 파라미터를  object 형의 값으로 설정합니다.
-   *
-  * @param idx 파라미터 인덱스
-  * @param value 값
-  */
-  setObject(idx: number, value: object): ScriptPreparedStatement;
 
   /** 
    * 지정된 파라미터를  object 형의 값으로 설정합니다.
@@ -493,6 +485,14 @@ export interface ScriptPreparedStatement{
   * @param value 값
   */
   setObject(name: string, value: object): ScriptPreparedStatement;
+
+  /** 
+   * 지정된 파라미터를  object 형의 값으로 설정합니다.
+   *
+  * @param idx 파라미터 인덱스
+  * @param value 값
+  */
+  setObject(idx: number, value: object): ScriptPreparedStatement;
 
   /** 
    * Statement 객체 실행 대기 시간을 초 단위로 설정한다.
@@ -504,18 +504,18 @@ export interface ScriptPreparedStatement{
   /** 
    * 지정된 파라미터를 String 유형의 값으로 설정합니다.
    *
-  * @param idx 파라미터 인덱스
-  * @param value 값
-  */
-  setString(idx: number, value: string): ScriptPreparedStatement;
-
-  /** 
-   * 지정된 파라미터를 String 유형의 값으로 설정합니다.
-   *
   * @param name 변수명
   * @param value 값
   */
   setString(name: string, value: string): ScriptPreparedStatement;
+
+  /** 
+   * 지정된 파라미터를 String 유형의 값으로 설정합니다.
+   *
+  * @param idx 파라미터 인덱스
+  * @param value 값
+  */
+  setString(idx: number, value: string): ScriptPreparedStatement;
 
   /** 
    * 지정된 파라미터에 Time 값을 설정합니다.

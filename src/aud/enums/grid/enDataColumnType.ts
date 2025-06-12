@@ -5,39 +5,39 @@
 export enum enDataColumnType{
 
   /**   */
-  None = 0,
+  "None" = 0,
 
   /**   */
-  Text = 1,
+  "Text" = 1,
 
   /**   */
-  CheckBox = 2,
+  "CheckBox" = 2,
 
   /**   */
-  NumberBox = 3,
+  "NumberBox" = 3,
 
   /**   */
-  ComboBox = 4,
+  "ComboBox" = 4,
 
   /**   */
-  DateTime = 5,
+  "DateTime" = 5,
 
   /**   */
-  MaskEdit = 6,
+  "MaskEdit" = 6,
 
   /**   */
-  PopupSearch = 7,
+  "PopupSearch" = 7,
 
   /**   */
-  Image = 8,
+  "Image" = 8,
 
   /**   */
-  MultiLineText = 9,
+  "MultiLineText" = 9,
 
   /**   */
-  TrendLine = 10,
+  "TrendLine" = 10,
 
   /**   */
-  SingleBarChart = 11,
+  "SingleBarChart" = 11,
 
 }

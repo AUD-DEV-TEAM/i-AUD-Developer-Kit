@@ -5,72 +5,72 @@
 export enum enSQLTypes{
 
   /**   */
-  NULL = 0,
+  "NULL" = 0,
 
   /**   */
-  CURSOR = -10,
+  "CURSOR" = -10,
 
   /**   */
-  BIT = -7,
+  "BIT" = -7,
 
   /**   */
-  TINYINT = -6,
+  "TINYINT" = -6,
 
   /**   */
-  SMALLINT = 5,
+  "SMALLINT" = 5,
 
   /**   */
-  INTEGER = 4,
+  "INTEGER" = 4,
 
   /**   */
-  BIGINT = -5,
+  "BIGINT" = -5,
 
   /**   */
-  FLOAT = 6,
+  "FLOAT" = 6,
 
   /**   */
-  REAL = 7,
+  "REAL" = 7,
 
   /**   */
-  DOUBLE = 8,
+  "DOUBLE" = 8,
 
   /**   */
-  NUMERIC = 2,
+  "NUMERIC" = 2,
 
   /**   */
-  DECIMAL = 3,
+  "DECIMAL" = 3,
 
   /**   */
-  CHAR = 1,
+  "CHAR" = 1,
 
   /**   */
-  VARCHAR = 12,
+  "VARCHAR" = 12,
 
   /**   */
-  LONGVARCHAR = -1,
+  "LONGVARCHAR" = -1,
 
   /**   */
-  DATE = 91,
+  "DATE" = 91,
 
   /**   */
-  TIME = 92,
+  "TIME" = 92,
 
   /**   */
-  TIMESTAMP = 93,
+  "TIMESTAMP" = 93,
 
   /**   */
-  CLOB = 2005,
+  "CLOB" = 2005,
 
   /**   */
-  BOOLEAN = 16,
+  "BOOLEAN" = 16,
 
   /**   */
-  NCHAR = -15,
+  "NCHAR" = -15,
 
   /**   */
-  NVARCHAR = -9,
+  "NVARCHAR" = -9,
 
   /**   */
-  LONGNVARCHAR = -16,
+  "LONGNVARCHAR" = -16,
 
 }

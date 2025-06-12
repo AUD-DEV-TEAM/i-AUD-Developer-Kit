@@ -1,5 +1,5 @@
 import { Control } from "../../aud/control/Control";
-import { TabItem } from "../../aud/control/tabcontrol/TabItem";
+import { TabItem } from "../../aud/control/tabs/TabItem";
 import { NamedDictionary } from "../../aud/data/NamedDictionary";
 /**
 * 탭 컨트롤로 다양한 종류의 컨트롤을 탭 아이템별로 묶을 수 있습니다.
@@ -56,6 +56,30 @@ export interface Tab extends Control{
    *
    * @param args
    *
+   * @example
+   * ```js
+   * 	var tab = Matrix.getObject('TAB_MAIN');
+   * 	tab.OnActiveTabChanged = function(s,e){
+   * 		if(e.TabName === 'Dashboard'){
+   * 			Matrix.Execute("DS_CURRENT" ,'CHT_CURRENT');
+   * 			Matrix.doRefresh(['CHT_CURRENT','CHT_MONTHLY','GRD_DASHBOARD']);
+   * 		
+   * 		}else if(e.TabName === 'Chart'){
+   * 			var item = tab.TabItems.Get('Dashboard');
+   * 			item.Text = item.Text + "click";
+   * 			item.Tooltip = "clicked";
+   * 			item.Visible = false;
+   * 
+   * 			tab.Update();
+   * 
+   * 
+   * 			Matrix.doRefresh(['CHT_TEAM','CHT_DETAIL','CHT_PLAN','CHT_DISTRIBUTION']);
+   * 		
+   * 		}else {
+   * 			Matrix.doRefresh('GRD_DATA_ALL');
+   * 		}
+   * 	}
+   * ```
   */
   OnActiveTabChanged : (sender : Tab
   , args : { 

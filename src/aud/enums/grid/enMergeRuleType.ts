@@ -5,12 +5,12 @@
 export enum enMergeRuleType{
 
   /**   */
-  None = 0,
+  "None" = 0,
 
   /**   */
-  Vertical = 1,
+  "Vertical" = 1,
 
   /**   */
-  VerticalHierachy = 2,
+  "VerticalHierachy" = 2,
 
 }

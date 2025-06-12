@@ -1,5 +1,5 @@
 import { DataLabels } from "../../../aud/control/charts/DataLabels";
-import { chartenChartType } from "../../../aud/enums/chartenChartType";
+import { enChartType } from "../../../aud/enums/chart/enChartType";
 /**
 * Polygon 차트의 계열 정보를 제공합니다.
 */
@@ -99,7 +99,7 @@ export interface PolygonSeries{
   /**
    * 차트 유형
   */
-  Type: chartenChartType;
+  Type: enChartType;
 
   /**
    * 값의 단위(기본값:0)

@@ -5,21 +5,21 @@
 export enum enSortType{
 
   /** None */
-  None = 0,
+  "None" = 0,
 
   /** Asc */
-  Asc = 1,
+  "Asc" = 1,
 
   /** Desc */
-  Desc = 2,
+  "Desc" = 2,
 
   /** Custom */
-  Custom = 3,
+  "Custom" = 3,
 
   /** MeasureAsc */
-  MeasureAsc = 4,
+  "MeasureAsc" = 4,
 
   /** MeasureDesc */
-  MeasureDesc = 5,
+  "MeasureDesc" = 5,
 
 }

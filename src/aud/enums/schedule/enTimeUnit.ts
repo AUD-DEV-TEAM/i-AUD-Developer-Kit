@@ -5,36 +5,36 @@
 export enum enTimeUnit{
 
   /**   */
-  Second = 0,
+  "Second" = 0,
 
   /**   */
-  Minute = 1,
+  "Minute" = 1,
 
   /**   */
-  Hour = 2,
+  "Hour" = 2,
 
   /**   */
-  Day = 3,
+  "Day" = 3,
 
   /**   */
-  Month = 4,
+  "Month" = 4,
 
   /**   */
-  Year = 5,
+  "Year" = 5,
 
   /**   */
-  Quarter = 6,
+  "Quarter" = 6,
 
   /**   */
-  Week = 7,
+  "Week" = 7,
 
   /**   */
-  DayNight = 8,
+  "DayNight" = 8,
 
   /**   */
-  HalfHour = 9,
+  "HalfHour" = 9,
 
   /**   */
-  Text = 10,
+  "Text" = 10,
 
 }

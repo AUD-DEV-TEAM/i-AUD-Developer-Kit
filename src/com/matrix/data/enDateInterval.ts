@@ -5,21 +5,21 @@
 export enum enDateInterval{
 
   /** 년 */
-  YEAR = 1,
+  "YEAR" = 1,
 
   /** 월 */
-  MONTH = 2,
+  "MONTH" = 2,
 
   /** 일 */
-  DAY = 5,
+  "DAY" = 5,
 
   /** 시 */
-  HOUR = 11,
+  "HOUR" = 11,
 
   /** 분 */
-  MINUTE = 12,
+  "MINUTE" = 12,
 
   /** 초 */
-  SECOND = 13,
+  "SECOND" = 13,
 
 }

@@ -5,9 +5,9 @@
 export enum enReportType{
 
   /**  */
-  List = 3,
+  "List" = 3,
 
   /**  */
-  Analysis = 1,
+  "Analysis" = 1,
 
 }

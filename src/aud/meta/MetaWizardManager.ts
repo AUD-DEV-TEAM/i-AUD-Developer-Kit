@@ -5,6 +5,7 @@ import { enMetaConditionFilterType } from "../../aud/enums/meta/enMetaConditionF
 import { enMetaConditionPromptValidate } from "../../aud/enums/meta/enMetaConditionPromptValidate";
 import { enMetaReportControlType } from "../../aud/enums/meta/enMetaReportControlType";
 import { enMetaFieldGroupFunction } from "../../aud/enums/meta/enMetaFieldGroupFunction";
+import { PeriodAnalysis } from "../../aud/meta/PeriodAnalysis";
 import { MetaFilterItem } from "../../aud/meta/MetaFilterItem";
 import { MetaViewManager } from "../../aud/meta/MetaViewManager";
 import { MetaView } from "../../aud/meta/MetaView";
@@ -74,8 +75,9 @@ export interface MetaWizardManager{
   * @param viewName 뷰이름
   * @param formula 계산 수식
   * @param caption 화면 표시명
+  * @param periodAnalysis 기간별 비교분석
   */
-  AddItemEx(position: enMetaReportControlType, itemCode: string, groupFunction: enMetaFieldGroupFunction, viewName: string, formula: string, caption: string): void;
+  AddItemEx(position: enMetaReportControlType, itemCode: string, groupFunction?: enMetaFieldGroupFunction, viewName?: string, formula?: string, caption?: string, periodAnalysis?: PeriodAnalysis): void;
 
   /** 
    * 특정 메타 보고서에 SQLHint 항목을 추가하는 메소드

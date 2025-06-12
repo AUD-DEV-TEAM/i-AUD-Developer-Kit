@@ -5,27 +5,27 @@
 export enum enDataLabelPositionType{
 
   /** 가운데(막대형/꺾은선형/분산형/거품형/원형) */
-  Center = 0,
+  "Center" = 0,
 
   /** 안쪽 끝에(막대형/원형) */
-  InEnd = 1,
+  "InEnd" = 1,
 
   /** 축에 가깝게(막대형) */
-  InBase = 2,
+  "InBase" = 2,
 
   /** 바깥쪽 끝에(막대형/원형) */
-  OutEnd = 3,
+  "OutEnd" = 3,
 
   /** 왼쪽(꺾은선형/분산형/거품형) */
-  Left = 4,
+  "Left" = 4,
 
   /** 오른쪽(꺾은선형/분산형/거품형) */
-  Right = 5,
+  "Right" = 5,
 
   /** 위(꺾은선형/분산형/거품형) */
-  Top = 6,
+  "Top" = 6,
 
   /** 아래(꺾은선형/분산형/거품형) */
-  Bottom = 7,
+  "Bottom" = 7,
 
 }

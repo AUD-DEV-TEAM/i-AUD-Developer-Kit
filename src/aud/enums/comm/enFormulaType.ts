@@ -5,21 +5,21 @@
 export enum enFormulaType{
 
   /**   */
-  None = 0,
+  "None" = 0,
 
   /**   */
-  Number = 1,
+  "Number" = 1,
 
   /**   */
-  Currency = 2,
+  "Currency" = 2,
 
   /**   */
-  Percent = 3,
+  "Percent" = 3,
 
   /**   */
-  Exponential = 4,
+  "Exponential" = 4,
 
   /**   */
-  DateTime = 5,
+  "DateTime" = 5,
 
 }

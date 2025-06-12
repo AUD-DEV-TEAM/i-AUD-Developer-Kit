@@ -5,12 +5,12 @@
 export enum enRefreshType{
 
   /**   */
-  None = 0,
+  "None" = 0,
 
   /**   */
-  FirstTime = 1,
+  "FirstTime" = 1,
 
   /**   */
-  EveryTime = 2,
+  "EveryTime" = 2,
 
 }

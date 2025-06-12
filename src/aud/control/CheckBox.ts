@@ -1,4 +1,5 @@
 import { Control } from "../../aud/control/Control";
+import { enCheckBoxViewType } from "../../aud/enums/comm/enCheckBoxViewType";
 /**
 * 체크 박스 컨트롤로 사용자에게 선택/취소에 대한 입력을 처리할 수 있습니다.
 */
@@ -48,6 +49,12 @@ export interface CheckBox extends Control{
    * 체크박스의 값
   */
   Value: string;
+
+  /**
+   * 체크박스 뷰 형태
+   * @hidden
+  */
+  ViewType: enCheckBoxViewType;
 
   /**
    * @event 

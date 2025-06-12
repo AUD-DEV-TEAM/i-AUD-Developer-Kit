@@ -5,9 +5,9 @@
 export enum enDisplayType{
 
   /**   */
-  PopUpview = 0,
+  "PopUpview" = 0,
 
   /**   */
-  ListView = 1,
+  "ListView" = 1,
 
 }

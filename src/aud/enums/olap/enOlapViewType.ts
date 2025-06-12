@@ -5,9 +5,9 @@
 export enum enOlapViewType{
 
   /** Default */
-  Default = 0,
+  "Default" = 0,
 
   /** TreeView */
-  TreeView = 1,
+  "TreeView" = 1,
 
 }

@@ -1,4 +1,4 @@
-import { chartenChartType } from "../../../aud/enums/chartenChartType";
+import { enChartType } from "../../../aud/enums/chart/enChartType";
 /**
 * 차트의 영역과 기본적인 옵션 정보를 제공 합니다.
 */
@@ -7,7 +7,7 @@ export interface ChartOptions{
   /**
    * 차트 유형
   */
-  ChartType: chartenChartType;
+  ChartType: enChartType;
 
   /**
    * 툴팁 기능 활성화 여부

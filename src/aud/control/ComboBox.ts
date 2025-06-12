@@ -1,10 +1,16 @@
 import { Control } from "../../aud/control/Control";
+import { enInitType } from "../../aud/enums/comm/enInitType";
 import { enRefreshType } from "../../aud/enums/comm/enRefreshType";
 import { DataSet } from "../../aud/data/DataSet";
 /**
 * 콤보박스 컨트롤로 사용자에게 목록을 제시하고 그중에서 단일값을 선택할 수 있도록 합니다.
 */
 export interface ComboBox extends Control{
+
+  /**
+   * 초기값 유형
+  */
+  InitType: enInitType;
 
   /**
    * 초기값

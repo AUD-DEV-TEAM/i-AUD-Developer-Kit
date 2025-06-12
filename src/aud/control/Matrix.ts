@@ -11,6 +11,7 @@ import { enExportType } from "../../aud/enums/comm/enExportType";
 import { BoxStyleList } from "../../aud/drawing/BoxStyleList";
 import { enBrowserType } from "../../aud/enums/comm/enBrowserType";
 import { ScriptDateUtil } from "../../aud/util/ScriptDateUtil";
+import { Form } from "../../aud/control/Form";
 import { GlobalConfig } from "../../aud/data/GlobalConfig";
 import { GlobalParam } from "../../aud/common/GlobalParam";
 import { MetaWizardManager } from "../../aud/meta/MetaWizardManager";
@@ -333,7 +334,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   * @param option 
    * @hidden
   */
-  CreateSplitterEx(splitterType: enSplitterType, leftControls: string[], rightControls: string[], splitterControl: string, option: object | undefined): Splitter;
+  CreateSplitterEx(splitterType: enSplitterType, leftControls: string[], rightControls: string[], splitterControl: string, option?: object | undefined): Splitter;
 
   /** 
    * portal 에서 다른 보고서를 탭 형식으로 열 수 있도록 하는 함수입니다. 
@@ -653,8 +654,9 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
    *
   * @param year 년
   * @param month 월
+  * @param day 일
   */
-  GetDate(year: number, month: number): ScriptDateUtil;
+  GetDate(year: number, month: number, day: number): ScriptDateUtil;
 
   /** 
    * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
@@ -667,9 +669,8 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
    *
   * @param year 년
   * @param month 월
-  * @param day 일
   */
-  GetDate(year: number, month: number, day: number): ScriptDateUtil;
+  GetDate(year: number, month: number): ScriptDateUtil;
 
   /** 
    * 날짜 처리 객체를 반환합니다.
@@ -686,16 +687,20 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   /** 
    * 날짜 처리 객체를 반환합니다.
    *
-  */
-  GetDateTime(): ScriptDateUtil;
-
-  /** 
-   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
-   *
   * @param year 년
   * @param month 월
+  * @param day 일
+  * @param hour 시간
+  * @param minutes 분
+  * @param second 초
   */
-  GetDateTime(year: number, month: number): ScriptDateUtil;
+  GetDateTime(year: number, month: number, day: number, hour: number, minutes: number, second: number): ScriptDateUtil;
+
+  /** 
+   * 날짜 처리 객체를 반환합니다.
+   *
+  */
+  GetDateTime(): ScriptDateUtil;
 
   /** 
    * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
@@ -707,16 +712,12 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   GetDateTime(year: number, month: number, day: number): ScriptDateUtil;
 
   /** 
-   * 날짜 처리 객체를 반환합니다.
+   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
    *
   * @param year 년
   * @param month 월
-  * @param day 일
-  * @param hour 시간
-  * @param minutes 분
-  * @param second 초
   */
-  GetDateTime(year: number, month: number, day: number, hour: number, minutes: number, second: number): ScriptDateUtil;
+  GetDateTime(year: number, month: number): ScriptDateUtil;
 
   /** 
    * ShowReportDialog로 호출된 팝업에서, 부모 보고서가 보내준 파라미터를 추출합니다.
@@ -730,6 +731,13 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * @param enumName enum 이름
   */
   GetEnum(enumName: string): object | undefined;
+
+  /** 
+   * 주어진 이름을 가진  폼 객체를 반환 합니다.
+   *
+  * @param formName 폼 이름
+  */
+  GetForm(formName: string): Form;
 
   /** 
    * GlobalConfig 정보를 반환합니다.
@@ -1026,8 +1034,9 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
    *
   * @param msg 메시지
   * @param title 제목
+  * @param callback 메시지 박스가 닫힌 뒤 호출될 함수
   */
-  Information(msg: string, title?: string,  callback?: Function): void;
+  Information(msg: string, title?: string, callback?: Function): void;
 
   /** 
    * 보고서를 open 합니다.
@@ -1288,17 +1297,6 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   SaveReport(reportCode: string, reportName: string, folderCode: string, reportDesc: string): void;
 
   /** 
-   * 서버측 서비스를 호출합니다.(처리 완료 후 OnServiceCallBack 이벤트가 발생합니다.)
-   *
-  * @param gridNames 데이터 입력/수정/삭제 정보를 전송할 그리드 목록(string 타입인 경우 콤마(,)로 분리
-  * @param className 클래스 이름(ex:com.matrix.Data.BizExecuteDML)
-  * @param params 파라미터 리스트 e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
-  * @param tag 구분자(tag)
-   * @hidden
-  */
-  ServiceCall(gridNames: string|string[], className: string, params: Array<{"Key":string,"Value":string}>, tag: any): void;
-
-  /** 
    * 서버측 서비스를 호출합니다.
    *
    * @example
@@ -1353,6 +1351,17 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * ```
   */
   ServiceCall(gridNames: string|string[], className: string, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
+
+  /** 
+   * 서버측 서비스를 호출합니다.(처리 완료 후 OnServiceCallBack 이벤트가 발생합니다.)
+   *
+  * @param gridNames 데이터 입력/수정/삭제 정보를 전송할 그리드 목록(string 타입인 경우 콤마(,)로 분리
+  * @param className 클래스 이름(ex:com.matrix.Data.BizExecuteDML)
+  * @param params 파라미터 리스트 e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
+  * @param tag 구분자(tag)
+   * @hidden
+  */
+  ServiceCall(gridNames: string|string[], className: string, params: Array<{"Key":string,"Value":string}>, tag: any): void;
 
   /** 
    * 내보내기 및 디자인 속성 ContextMenu 표시 여부를 설정합니다.
@@ -1418,6 +1427,14 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   /** 
    * 이미지 에디터를 팝업으로 표시합니다.
    *
+  * @param tag 사용자 태그
+   * @hidden
+  */
+  ShowImageEditor(tag: any): void;
+
+  /** 
+   * 이미지 에디터를 팝업으로 표시합니다.
+   *
   * @param callBack CallBack 함수
   * ```
   * 
@@ -1432,14 +1449,6 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * ```
   */
   ShowImageEditor(callBack: (p: {"FolderName":string, "ImageName":string, "ImageWidth":number, "ImageHeight":number}) => void): void;
-
-  /** 
-   * 이미지 에디터를 팝업으로 표시합니다.
-   *
-  * @param tag 사용자 태그
-   * @hidden
-  */
-  ShowImageEditor(tag: any): void;
 
   /** 
    * 메타 팝업을 호출합니다.
@@ -1525,7 +1534,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * @param absCoord 팝업창을 절대좌표 기준 위치에 표시한다.
   * @param maximize 최대/최소 버튼 사용 여부
   */
-  ShowWindow(formName: string, left: number, top: number, width: number, height: number, isModal: boolean, resizable: boolean, header: string, isAutoClose: boolean, backColor: string, buttons: number, absCoord: boolean, maximize?: boolean): FormDialog;
+  ShowWindow(formName: string, left: number, top: number, width: number, height: number, isModal: boolean, resizable: boolean, header: string, isAutoClose: boolean, backColor: string, buttons: number, absCoord?: boolean, maximize?: boolean): FormDialog;
 
   /** 
    * 라벨 컨트롤의 글자를 수직 방향으로 변경합니다
@@ -1857,6 +1866,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *  
    *  //3. DoRefresh가  true인 전체 컨트롤 실행
    *  Matrix.doRefresh("");
+   *  Matrix.doRefresh();
    *  Matrix.doRefresh("*.*");
    *  
    *  //4. 특정 폼하위 DoRefresh가 true인 전체 컨트롤 실행 
@@ -1908,15 +1918,6 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   getDataSource(datasourceName: string): DataSource;
 
   /** 
-   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
-   *
-  * @param year 년
-  * @param month 월
-  * @param day 일
-  */
-  getDate(year: number, month: number, day: number): ScriptDateUtil;
-
-  /** 
    * 날짜 처리 객체를 반환합니다.
    *
   * @param year 년
@@ -1927,6 +1928,15 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   * @param second 초
   */
   getDate(year: number, month: number, day: number, hour: number, minutes: number, second: number): ScriptDateUtil;
+
+  /** 
+   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
+   *
+  * @param year 년
+  * @param month 월
+  * @param day 일
+  */
+  getDate(year: number, month: number, day: number): ScriptDateUtil;
 
   /** 
    * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
@@ -1943,16 +1953,13 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   getDate(): ScriptDateUtil;
 
   /** 
-   * 날짜 처리 객체를 반환합니다.
+   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
    *
   * @param year 년
   * @param month 월
   * @param day 일
-  * @param hour 시간
-  * @param minutes 분
-  * @param second 초
   */
-  getDateTime(year: number, month: number, day: number, hour: number, minutes: number, second: number): ScriptDateUtil;
+  getDateTime(year: number, month: number, day: number): ScriptDateUtil;
 
   /** 
    * 날짜 처리 객체를 반환합니다.
@@ -1968,13 +1975,16 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   getDateTime(format: string): string;
 
   /** 
-   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
+   * 날짜 처리 객체를 반환합니다.
    *
   * @param year 년
   * @param month 월
   * @param day 일
+  * @param hour 시간
+  * @param minutes 분
+  * @param second 초
   */
-  getDateTime(year: number, month: number, day: number): ScriptDateUtil;
+  getDateTime(year: number, month: number, day: number, hour: number, minutes: number, second: number): ScriptDateUtil;
 
   /** 
    * 서식 Converter를 불러옵니다.
@@ -2516,7 +2526,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCellClick : (sender : Matrix
   , args : { 
@@ -2551,7 +2561,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCellDoubleClick : (sender : Matrix
   , args : { 
@@ -2582,7 +2592,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCellDoubleTouch : (sender : Matrix
   , args : { 
@@ -2613,7 +2623,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCellLoaded : (sender : Matrix
   , args : { 
@@ -2664,7 +2674,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCellTouch : (sender : Matrix
   , args : { 
@@ -2784,6 +2794,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * @hidden
   */
   OnColumnLineDragEnd : (sender : Matrix
   , args : { 
@@ -2814,6 +2825,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * @hidden
   */
   OnColumnLineDragStart : (sender : Matrix
   , args : { 
@@ -2848,6 +2860,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * @hidden
   */
   OnColumnLineMouseOver : (sender : Matrix
   , args : { 
@@ -2909,7 +2922,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCreateNewRow : (sender : Matrix
   , args : { 
@@ -2936,7 +2949,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCurrentCellChanged : (sender : Matrix
   , args : { 
@@ -2975,7 +2988,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCurrentRowChanged : (sender : Matrix
   , args : { 
@@ -3056,7 +3069,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnDeletingRow : (sender : Matrix
   , args : { 
@@ -3179,7 +3192,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnEndClipBoardPaste : (sender : Matrix
   , args : { 
@@ -3218,7 +3231,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnEndEdit : (sender : Matrix
   , args : { 
@@ -3400,7 +3413,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridCheckBoxClicked : (sender : Matrix
   , args : { 
@@ -3420,6 +3433,10 @@ close 동작 시에 callback 으로 null 을 전달합니다.
      * 레코드 노드
     */
     Row: DataGridRow
+    /**
+     * 클릭한 셀의 데이터
+    */
+    Record: any
   }
   ) => void;
 
@@ -3450,7 +3467,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridColumnHeaderClicked : (sender : Matrix
   , args : { 
@@ -3477,7 +3494,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridColumnHeaderDoubleClicked : (sender : Matrix
   , args : { 
@@ -3504,7 +3521,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridComboBoxChanged : (sender : Matrix
   , args : { 
@@ -3547,7 +3564,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridContextMenuOpening : (sender : Matrix
   , args : { 
@@ -3586,7 +3603,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridExportStart : (sender : Matrix
   , args : { 
@@ -3633,7 +3650,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridFilterChanged : (sender : Matrix
   , args : { 
@@ -3656,7 +3673,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridMultiHeaderCellLoaded : (sender : Matrix
   , args : { 
@@ -3683,7 +3700,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridMultiHeaderCheckBoxClicked : (sender : Matrix
   , args : { 
@@ -3714,7 +3731,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridMultiHeaderClicked : (sender : Matrix
   , args : { 
@@ -3741,7 +3758,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridMultiHeaderDoubleClicked : (sender : Matrix
   , args : { 
@@ -3791,7 +3808,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGroupDataBindEnd : (sender : Matrix
   , args : { 
@@ -3837,6 +3854,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * @hidden
   */
   OnImageEditCompleted : (sender : Matrix
   , args : { 
@@ -4794,7 +4812,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   /**
    * @event 
    *
-   * Refresh가 완료된 후 발생합니다.(doRefresh 호출 뒤)
+   * 모든 종류의 서버 요청(doRefresh, Execute, RunScript 등)이 완료(응답을 받은 상태)되면 발생하는 이벤트입니다. 여러 개의 요청이 동시에 진행된 경우, 마지막 요청이 완료됐을 때 발생합니다.
    *
    * @param args
    *
@@ -4944,6 +4962,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * @hidden
   */
   OnRowLineDragEnd : (sender : Matrix
   , args : { 
@@ -4974,6 +4993,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * @hidden
   */
   OnRowLineDragStart : (sender : Matrix
   , args : { 
@@ -5008,6 +5028,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * @hidden
   */
   OnRowLineMouseOver : (sender : Matrix
   , args : { 
@@ -5210,7 +5231,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnStartClipBoardPaste : (sender : Matrix
   , args : { 
@@ -5245,7 +5266,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnStartEdit : (sender : Matrix
   , args : { 
@@ -5258,7 +5279,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
     */
     Cancel: boolean
     /**
-     * 셀의 필드 정보
+     * 셀의 필드 정보. 단, Paste(붙여넣기) 동작 시에는 셀의 필드 정보 중 Name 값만 반환됩니다.
     */
     Field: DataGridColumn
     /**
@@ -5490,7 +5511,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnTreeCellClick : (sender : Matrix
   , args : { 
@@ -5714,7 +5735,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnValidate : (sender : Matrix
   , args : { 
@@ -5968,8 +5989,5 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   }
   ) => void;
 
-
-
- 
 
 }

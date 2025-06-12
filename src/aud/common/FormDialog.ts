@@ -64,7 +64,7 @@ export interface FormDialog{
    *
    * 버튼 유형 2의 [확인] 버튼 클릭 시 발생합니다. 
    *
-   * @param args
+   * @param type 이벤트가 발생된 버튼의 유형(OK)이 반환됩니다.
    *
    * @example
    * ```js
@@ -79,9 +79,7 @@ export interface FormDialog{
    * };
    * ```
   */
-  OnDialogResult : ( 
-    result: string 
-  ) => void;
+  OnDialogResult : ( type: string ) => void;
 
 
 }

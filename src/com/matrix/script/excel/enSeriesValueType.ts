@@ -5,12 +5,12 @@
 export enum enSeriesValueType{
 
   /** top */
-  XValue = 0,
+  "XValue" = 0,
 
   /** center */
-  YValue = 1,
+  "YValue" = 1,
 
   /** bottom */
-  SizeValue = 2,
+  "SizeValue" = 2,
 
 }

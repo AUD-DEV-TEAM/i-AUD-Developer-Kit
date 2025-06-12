@@ -231,15 +231,15 @@ export interface OlapGrid extends Control{
   /** 
    * 현재 뷰에서 변경된 내용을 다시 계산 하고 화면을 다시 그립니다.
    *
-  * @param resetScroll 스크롤 초기화 여부
   */
-  Calculate(resetScroll: boolean): void;
+  Calculate(): void;
 
   /** 
    * 현재 뷰에서 변경된 내용을 다시 계산 하고 화면을 다시 그립니다.
    *
+  * @param resetScroll 스크롤 초기화 여부
   */
-  Calculate(): void;
+  Calculate(resetScroll: boolean): void;
 
   /** 
    * 수정된 데이터 셀들을 서버에서 계산 하도록 지시합니다.
@@ -731,6 +731,12 @@ export interface OlapGrid extends Control{
   /** 
    * base64 encoding된 이미지 결과를 반환 합니다.
    *
+  */
+  getBase64Image(): string;
+
+  /** 
+   * base64 encoding된 이미지 결과를 반환 합니다.
+   *
   * @param callback 이미지 변환 완료 후 함수
   * ```
   *  
@@ -740,12 +746,6 @@ export interface OlapGrid extends Control{
   * ```
   */
   getBase64Image(callback: (value:string) => void): void;
-
-  /** 
-   * base64 encoding된 이미지 결과를 반환 합니다.
-   *
-  */
-  getBase64Image(): string;
 
   /** 
    * 특정 위치의 데이터셀을 반환 합니다.
@@ -877,23 +877,6 @@ export interface OlapGrid extends Control{
    *
    * @example
    * ```js
-   * var OlapGrid = Matrix.getObject("OlapGrid");
-   * OlapGrid.setColumnSort(1, 0, true); // column leaf node 의 첫번째 셀(0) 기준으로  오름차순(1) 설정 후 자동 조회
-   * //또는 결로 값으로 설정 가능 합니다.
-   * OlapGrid.setColumnSort(1, {"PRODUCT":"SmartPhone", "CUSTOMER":"Korea"},  true);
-   * //컬럼 경로에 Product가 SmartPhone이고 CUSTOMER가 Korea인 첫번쨰 항목을 찾아서 정렬 합니다.
-   * ```
-  * @param sortType Asc:1/Desc:2
-  * @param indexOrPath Column Header LeafNode Index(0부터 시작)
-  * @param update ColumnSort 설정 후 자동 업데이트 여부
-  */
-  setColumnSort(sortType: number, indexOrPath: number | {[key:string]:string}, update: boolean): void;
-
-  /** 
-   * OlapGrid 의 ColumnSort 를 설정 합니다.
-   *
-   * @example
-   * ```js
    * 
    * var OlapGrid = Matrix.getObject("OlapGrid");
    * OlapGrid.setColumnSort(1, 0); // column leaf node 의 첫번째 셀(0) 기준으로  오름차순(1) 설정
@@ -906,6 +889,23 @@ export interface OlapGrid extends Control{
   * @param indexOrPath Column Header LeafNode Index(0부터 시작)
   */
   setColumnSort(sortType: number, indexOrPath: number | {[key:string]:string}): void;
+
+  /** 
+   * OlapGrid 의 ColumnSort 를 설정 합니다.
+   *
+   * @example
+   * ```js
+   * var OlapGrid = Matrix.getObject("OlapGrid");
+   * OlapGrid.setColumnSort(1, 0, true); // column leaf node 의 첫번째 셀(0) 기준으로  오름차순(1) 설정 후 자동 조회
+   * //또는 결로 값으로 설정 가능 합니다.
+   * OlapGrid.setColumnSort(1, {"PRODUCT":"SmartPhone", "CUSTOMER":"Korea"},  true);
+   * //컬럼 경로에 Product가 SmartPhone이고 CUSTOMER가 Korea인 첫번쨰 항목을 찾아서 정렬 합니다.
+   * ```
+  * @param sortType Asc:1/Desc:2
+  * @param indexOrPath Column Header LeafNode Index(0부터 시작)
+  * @param update ColumnSort 설정 후 자동 업데이트 여부
+  */
+  setColumnSort(sortType: number, indexOrPath: number | {[key:string]:string}, update: boolean): void;
 
   /** 
    * 컨트롤의 커서를 지정 합니다.

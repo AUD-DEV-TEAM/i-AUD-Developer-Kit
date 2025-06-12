@@ -5,12 +5,12 @@
 export enum enOlapFilterType{
 
   /**   */
-  In = 0,
+  "In" = 0,
 
   /**   */
-  NotIn = 1,
+  "NotIn" = 1,
 
   /**   */
-  BetWeen = 4,
+  "BetWeen" = 4,
 
 }

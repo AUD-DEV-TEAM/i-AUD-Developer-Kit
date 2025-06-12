@@ -5,12 +5,12 @@
 export enum enCheckBoxSelectType{
 
   /**   */
-  None = 0,
+  "None" = 0,
 
   /**   */
-  Hierachy = 1,
+  "Hierachy" = 1,
 
   /**   */
-  SingleNode = 2,
+  "SingleNode" = 2,
 
 }

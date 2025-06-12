@@ -5,12 +5,12 @@
 export enum enSaveMode{
 
   /**   */
-  All = 0,
+  "All" = 0,
 
   /**   */
-  InsertOnly = 1,
+  "InsertOnly" = 1,
 
   /**   */
-  UpdateOnly = 2,
+  "UpdateOnly" = 2,
 
 }

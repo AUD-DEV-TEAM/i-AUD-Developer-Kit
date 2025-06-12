@@ -5,9 +5,9 @@
 export enum enDragType{
 
   /** 리사이징 */
-  Resize = 0,
+  "Resize" = 0,
 
   /** Drag Drop */
-  DragDrop = 1,
+  "DragDrop" = 1,
 
 }

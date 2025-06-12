@@ -5,18 +5,18 @@
 export enum enLegendPositionType{
 
   /** Right */
-  Right = 0,
+  "Right" = 0,
 
   /** RightTop */
-  RightTop = 1,
+  "RightTop" = 1,
 
   /** Top */
-  Top = 2,
+  "Top" = 2,
 
   /** Bottom */
-  Bottom = 3,
+  "Bottom" = 3,
 
   /** Left */
-  Left = 4,
+  "Left" = 4,
 
 }

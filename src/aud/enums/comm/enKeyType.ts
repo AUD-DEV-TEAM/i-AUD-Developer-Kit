@@ -5,15 +5,15 @@
 export enum enKeyType{
 
   /**   */
-  None = 0,
+  "None" = 0,
 
   /**   */
-  NotNull = 1,
+  "NotNull" = 1,
 
   /**   */
-  Nullable = 2,
+  "Nullable" = 2,
 
   /**   */
-  Primary = 3,
+  "Primary" = 3,
 
 }

@@ -12,6 +12,12 @@ export interface DataGridRow{
   Data: DataRow;
 
   /**
+   * 레크드 순서
+   * @hidden
+  */
+  RowIndex: number;
+
+  /**
    * 레코드 group 타입
   */
   RowType: enTotalRowType;
@@ -36,6 +42,6 @@ export interface DataGridRow{
   * @param fieldName 필드명
   * @param value 설정할 값
   */
-  SetValue(fieldName: string, value: string | number|null): void;
+  SetValue(fieldName: string, value: string|number|null): void;
 
 }

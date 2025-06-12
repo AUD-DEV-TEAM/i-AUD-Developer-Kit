@@ -5,15 +5,15 @@
 export enum enMetaItemDropType{
 
   /**  */
-  None = 0,
+  "None" = 0,
 
   /**  */
-  Upper = 1,
+  "Upper" = 1,
 
   /**  */
-  Down = 2,
+  "Down" = 2,
 
   /**  */
-  Insert = 3,
+  "Insert" = 3,
 
 }

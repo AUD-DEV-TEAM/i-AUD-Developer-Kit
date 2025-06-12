@@ -5,24 +5,24 @@
 export enum enMetaConditionDefaultPromptType{
 
   /**  */
-  Calendar = 3,
+  "Calendar" = 3,
 
   /**  */
-  PickList = 4,
+  "PickList" = 4,
 
   /**  */
-  FixedValue = 5,
+  "FixedValue" = 5,
 
   /**  */
-  DataSet = 6,
+  "DataSet" = 6,
 
   /**  */
-  Input = 0,
+  "Input" = 0,
 
   /**  */
-  ListOfValue = 1,
+  "ListOfValue" = 1,
 
   /**  */
-  ListValue = 2,
+  "ListValue" = 2,
 
 }

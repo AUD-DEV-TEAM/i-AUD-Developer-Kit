@@ -5,24 +5,24 @@
 export enum enDataType{
 
   /** 수치형 */
-  Numeric = 0,
+  "Numeric" = 0,
 
   /** 문자형 */
-  String = 1,
+  "String" = 1,
 
   /** yyyyMMdd 형식의 날짜 */
-  DateTime8 = 2,
+  "DateTime8" = 2,
 
   /** 시스템 날짜(시간) */
-  DateTimeNow = 3,
+  "DateTimeNow" = 3,
 
   /** 접속 사용자 계정 */
-  UserCode = 4,
+  "UserCode" = 4,
 
   /** CLOB */
-  CLOB = 5,
+  "CLOB" = 5,
 
   /**  */
-  UUID = 7,
+  "UUID" = 7,
 
 }

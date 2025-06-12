@@ -5,96 +5,96 @@
 export enum enDBType{
 
   /**   */
-  DBNONE = 0,
+  "DBNONE" = 0,
 
   /**   */
-  DBOracle = 1,
+  "DBOracle" = 1,
 
   /**   */
-  DBSQLServer = 2,
+  "DBSQLServer" = 2,
 
   /**   */
-  DBSQLServer2005 = 21,
+  "DBSQLServer2005" = 21,
 
   /**   */
-  DBAnalysisService = 22,
+  "DBAnalysisService" = 22,
 
   /**   */
-  DBSQLServer2008 = 23,
+  "DBSQLServer2008" = 23,
 
   /**   */
-  DBODBC = 3,
+  "DBODBC" = 3,
 
   /**   */
-  DBDB2 = 4,
+  "DBDB2" = 4,
 
   /**   */
-  DBConnection = 5,
+  "DBConnection" = 5,
 
   /**   */
-  DBMSAS = 6,
+  "DBMSAS" = 6,
 
   /**   */
-  DBTeradata = 7,
+  "DBTeradata" = 7,
 
   /**   */
-  DBUniSQL = 8,
+  "DBUniSQL" = 8,
 
   /**   */
-  DBSybaseIQ = 9,
+  "DBSybaseIQ" = 9,
 
   /**   */
-  DBSybaseASE = 91,
+  "DBSybaseASE" = 91,
 
   /**   */
-  DBSoha = 10,
+  "DBSoha" = 10,
 
   /**   */
-  DBTibero = 11,
+  "DBTibero" = 11,
 
   /**   */
-  DBAltibase = 13,
+  "DBAltibase" = 13,
 
   /**   */
-  DBMySQL = 14,
+  "DBMySQL" = 14,
 
   /**   */
-  DBMaria = 15,
+  "DBMaria" = 15,
 
   /**   */
-  DBPostgreSQL = 31,
+  "DBPostgreSQL" = 31,
 
   /**   */
-  DBVertica = 32,
+  "DBVertica" = 32,
 
   /**   */
-  DBRedshift = 37,
+  "DBRedshift" = 37,
 
   /**   */
-  DBNetezza = 40,
+  "DBNetezza" = 40,
 
   /**   */
-  DBInformix = 41,
+  "DBInformix" = 41,
 
   /**   */
-  DBAS400 = 42,
+  "DBAS400" = 42,
 
   /**   */
-  DBISAS = 43,
+  "DBISAS" = 43,
 
   /**   */
-  DBHive = 50,
+  "DBHive" = 50,
 
   /**   */
-  DBDrill = 54,
+  "DBDrill" = 54,
 
   /**   */
-  DBImpala = 55,
+  "DBImpala" = 55,
 
   /**   */
-  DBHANA = 92,
+  "DBHANA" = 92,
 
   /**   */
-  DBSAPBW = 93,
+  "DBSAPBW" = 93,
 
 }

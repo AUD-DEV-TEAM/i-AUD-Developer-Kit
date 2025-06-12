@@ -8,16 +8,17 @@ import { MultiHeader } from "../../aud/control/grids/MultiHeader";
 import { CompactMultiLine } from "../../aud/control/charts/CompactMultiLine";
 import { enSelectRuleType } from "../../aud/enums/grid/enSelectRuleType";
 import { enHeaderType } from "../../aud/enums/grid/enHeaderType";
+import { DataGridColumn } from "../../aud/control/grids/DataGridColumn";
 import { DataGridRow } from "../../aud/control/grids/DataGridRow";
 import { enExportType } from "../../aud/enums/comm/enExportType";
 import { DataTable } from "../../aud/data/DataTable";
 import { DataGridCell } from "../../aud/control/grids/DataGridCell";
-import { DataGridColumn } from "../../aud/control/grids/DataGridColumn";
 import { MultiHeaderCell } from "../../aud/control/grids/MultiHeaderCell";
 import { DataRow } from "../../aud/data/DataRow";
 import { ContextMenu } from "../../aud/control/ContextMenu";
 /**
 * 데이터그리드, 트리그리드의 부모 클래스
+* @hidden
 */
 export interface Grid extends Control{
 
@@ -253,12 +254,17 @@ export interface Grid extends Control{
   ViewLineNumber: boolean;
 
   /** 
-   * 컬럼을 추가합니다.
+   * 컬럼을 추가합니다. 기존에 존재하는 필드명의 경우 추가하지 않고 기존 필드를 반환합니다.
    *
+   * @example
+   * ```js
+   * Matrix.getObject('DataGrid').AddColumn('추가한 컬럼');
+   * Matrix.getObject('DataGrid').Calculate();
+   * ```
   * @param name 컬럼명
   * @param isNumber 데이터 타입이 수치형인지 여부
   */
-  AddColumn(name: string, isNumber: boolean): void;
+  AddColumn(name: string, isNumber?: boolean): DataGridColumn;
 
   /** 
    * 특정 필드에 필터를 추가하는 메소드
@@ -366,6 +372,25 @@ export interface Grid extends Control{
   ClearSort(): void;
 
   /** 
+   * 멀티 헤더를 생성합니다.
+   *
+  * @param rowCount 행의 개수
+  */
+  CreateMultiHeaderLayout(rowCount: number): MultiHeader;
+
+  /** 
+   * 컬럼을 삭제합니다.
+   *
+   * @example
+   * ```js
+   * Matrix.getObject('DataGrid').DeleteColumn('추가한 컬럼');
+   * Matrix.getObject('DataGrid').Calculate();
+   * ```
+  * @param name 삭제하려는 컬럼의 이름
+  */
+  DeleteColumn(name: string): void;
+
+  /** 
    * 오직 헤더 영역만 그려준다.
    *
   */
@@ -387,7 +412,7 @@ export interface Grid extends Control{
   /** 
    * Export 서비스를 호출 합니다.
    *
-  * @param exportType Export Type(Excel, HTML, HML, DOC, PDF)
+  * @param exportType Export Type(Excel, PPT, CSV, Text)
   * @param callBack CallBack 함수
   * ```
   * 
@@ -484,7 +509,7 @@ export interface Grid extends Control{
    *
   * @param fieldInfo 필드명 또는 필드 위치
   */
-  GetField(fieldInfo: string): DataGridColumn;
+  GetField(fieldInfo: string | number): DataGridColumn;
 
   /** 
    * 특정 필드의 인덱스를 반환합니다.
@@ -552,17 +577,17 @@ export interface Grid extends Control{
   GetRowIndex(row: DataGridRow): number;
 
   /** 
-   * 현재 선택된 행의 상태값을 반환합니다.
-   *
-  */
-  GetRowStatus(): string;
-
-  /** 
    * 특정 위치 행의 상태값을 반환합니다.
    *
   * @param idx 레코드 인덱스
   */
   GetRowStatus(idx: number): string;
+
+  /** 
+   * 현재 선택된 행의 상태값을 반환합니다.
+   *
+  */
+  GetRowStatus(): string;
 
   /** 
    * 현재 선택된 셀의 목록을 반환합니다.
@@ -727,7 +752,7 @@ export interface Grid extends Control{
    *
   * @param layout GetMultiHeaderLayout()에서 return한 모델(type  0:None, 1:Label, 2:TextBox, 21:NumberBox, 3:Checkbox, 4:Button, 5:ComboBox, 6:Daily, 61:DFromTo, 62:Month, 63:MFromTo, 7:Image, 
   */
-  SetMultiHeaderLayout(layout: object): void;
+  SetMultiHeaderLayout(layout: object): boolean;
 
   /** 
    * 그리드를 다시 그려주는 메소드
@@ -769,19 +794,19 @@ export interface Grid extends Control{
   getDataTable(): DataTable;
 
   /** 
+   * 현재 선택된 행의 필드의 값을 반환합니다.
+   *
+  * @param fieldInfo 필드명 또는 필드 위치
+  */
+  getRowValue(fieldInfo: string | number): object;
+
+  /** 
    * 특정 위치행의 필드의 값을 반환합니다.
    *
   * @param idx 레코드 인덱스
   * @param fieldInfo 필드명 또는 필드 위치
   */
-  getRowValue(idx: number, fieldInfo: string|number): object;
-
-  /** 
-   * 현재 선택된 행의 필드의 값을 반환합니다.
-   *
-  * @param fieldInfo 필드명 또는 필드 위치
-  */
-  getRowValue(fieldInfo: string|number): object;
+  getRowValue(idx: number, fieldInfo: string | number): object;
 
   /** 
    * 특정 필드에 Dimension 필터(Between)를 추가하는 메소드
@@ -809,15 +834,6 @@ export interface Grid extends Control{
   setDimensionFilterNotIn(fieldName: string, values: string[]): void;
 
   /** 
-   * 특정 필드에 Measure 필터 하나를 추가하는 메소드
-   *
-  * @param fieldName 필드 명
-  * @param operator1 첫번째 비교 연산자(=,>,<,>=,<=,<>))
-  * @param value1 첫번째 필터 조건 값
-  */
-  setMeasureFilter(fieldName: string, operator1: string, value1: string): void;
-
-  /** 
    * 특정 필드에 Measure 필터 두개를 추가하는 메소드
    *
   * @param fieldName 필드 명
@@ -828,6 +844,15 @@ export interface Grid extends Control{
   * @param isAnd AND 인지 FALSE인지 유무(필터 타입이 Measure일 경우에만 사용. 기본값은 true)
   */
   setMeasureFilter(fieldName: string, operator1: string, value1: string, operator2: string, value2: string, isAnd: boolean): void;
+
+  /** 
+   * 특정 필드에 Measure 필터 하나를 추가하는 메소드
+   *
+  * @param fieldName 필드 명
+  * @param operator1 첫번째 비교 연산자(=,>,<,>=,<=,<>))
+  * @param value1 첫번째 필터 조건 값
+  */
+  setMeasureFilter(fieldName: string, operator1: string, value1: string): void;
 
   /** 
    * 특정 위치행의 필드값을 변경합니다.
@@ -853,7 +878,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCellClick : (sender : Grid
   , args : { 
@@ -888,7 +913,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCellDoubleClick : (sender : Grid
   , args : { 
@@ -919,7 +944,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCellDoubleTouch : (sender : Grid
   , args : { 
@@ -964,7 +989,7 @@ export interface Grid extends Control{
    * 	grid.AppendRow(false);
    * }
    * ```
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCellKeyDown : (sender : Grid
   , args : { 
@@ -999,7 +1024,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCellLoaded : (sender : Grid
   , args : { 
@@ -1050,7 +1075,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCellTouch : (sender : Grid
   , args : { 
@@ -1081,7 +1106,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnClick : (sender : Grid
   , args : { 
@@ -1100,7 +1125,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCreateNewRow : (sender : Grid
   , args : { 
@@ -1127,7 +1152,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCurrentCellChanged : (sender : Grid
   , args : { 
@@ -1166,7 +1191,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnCurrentRowChanged : (sender : Grid
   , args : { 
@@ -1201,7 +1226,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnDataBindEnd : (sender : Grid
   , args : { 
@@ -1224,7 +1249,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnDeletingRow : (sender : Grid
   , args : { 
@@ -1251,7 +1276,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnEndClipBoardPaste : (sender : Grid
   , args : { 
@@ -1290,7 +1315,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnEndEdit : (sender : Grid
   , args : { 
@@ -1329,7 +1354,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridCheckBoxClicked : (sender : Grid
   , args : { 
@@ -1349,6 +1374,10 @@ export interface Grid extends Control{
      * 레코드 노드
     */
     Row: DataGridRow
+    /**
+     * 클릭한 셀의 데이터
+    */
+    Record: any
   }
   ) => void;
 
@@ -1360,7 +1389,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridColumnHeaderClicked : (sender : Grid
   , args : { 
@@ -1387,7 +1416,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridColumnHeaderDoubleClicked : (sender : Grid
   , args : { 
@@ -1414,7 +1443,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridComboBoxChanged : (sender : Grid
   , args : { 
@@ -1457,7 +1486,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridContextMenuOpening : (sender : Grid
   , args : { 
@@ -1496,7 +1525,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridExportStart : (sender : Grid
   , args : { 
@@ -1543,7 +1572,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridFilterChanged : (sender : Grid
   , args : { 
@@ -1566,7 +1595,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridMultiHeaderCellLoaded : (sender : Grid
   , args : { 
@@ -1593,7 +1622,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridMultiHeaderCheckBoxClicked : (sender : Grid
   , args : { 
@@ -1624,7 +1653,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridMultiHeaderClicked : (sender : Grid
   , args : { 
@@ -1651,7 +1680,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGridMultiHeaderDoubleClicked : (sender : Grid
   , args : { 
@@ -1678,7 +1707,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnGroupDataBindEnd : (sender : Grid
   , args : { 
@@ -1701,14 +1730,15 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnMouseMove : (sender : Grid
   , args : { 
     /**
-     * cell 정보
+     * 마우스 오버 중인 셀 정보.
+셀이 없을 경우 undefined를 반환합니다.
     */
-    cell: DataGridCell
+    Cell: DataGridCell
   }
   ) => void;
 
@@ -1720,7 +1750,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnScroll : (sender : Grid
   , args : { 
@@ -1743,7 +1773,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnStartClipBoardPaste : (sender : Grid
   , args : { 
@@ -1778,7 +1808,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnStartEdit : (sender : Grid
   , args : { 
@@ -1791,7 +1821,7 @@ export interface Grid extends Control{
     */
     Cancel: boolean
     /**
-     * 셀의 필드 정보
+     * 셀의 필드 정보. 단, Paste(붙여넣기) 동작 시에는 셀의 필드 정보 중 Name 값만 반환됩니다.
     */
     Field: DataGridColumn
     /**
@@ -1813,7 +1843,7 @@ export interface Grid extends Control{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnValidate : (sender : Grid
   , args : { 

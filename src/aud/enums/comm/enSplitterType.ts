@@ -5,9 +5,9 @@
 export enum enSplitterType{
 
   /** Row */
-  Row = "Row",
+  "Row" = "Row",
 
   /** Col */
-  Col = "Col",
+  "Col" = "Col",
 
 }

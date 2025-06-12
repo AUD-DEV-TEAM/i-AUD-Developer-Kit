@@ -1,4 +1,4 @@
-import { chartenChartType } from "../../../aud/enums/chartenChartType";
+import { enChartType } from "../../../aud/enums/chart/enChartType";
 /**
 * Scatter 차트의 계열 정보를 제공합니다.
 */
@@ -73,7 +73,7 @@ export interface ExtraSeries{
   /**
    * 차트 유형
   */
-  Type: chartenChartType;
+  Type: enChartType;
 
   /**
    * 표시 여부

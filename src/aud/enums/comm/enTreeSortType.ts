@@ -5,12 +5,12 @@
 export enum enTreeSortType{
 
   /**   */
-  Asc = 0,
+  "Asc" = 0,
 
   /**   */
-  Desc = 1,
+  "Desc" = 1,
 
   /**   */
-  None = 2,
+  "None" = 2,
 
 }

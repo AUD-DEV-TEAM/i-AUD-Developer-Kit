@@ -8,6 +8,8 @@ import { DataTable } from "../../aud/data/DataTable";
 import { Selection } from "../../aud/control/igrids/Selection";
 import { XLS_UTIL } from "../../aud/control/igrids/XLS_UTIL";
 import { WorkBook } from "../../aud/control/igrids/WorkBook";
+import { ICell } from "../../aud/control/igrids/ICell";
+import { IValValidator } from "../../aud/control/igrids/IValValidator";
 import { ContextMenu } from "../../aud/control/ContextMenu";
 /**
 * Excel 변환 자료를 기반으로 서비스하는 그리드
@@ -18,6 +20,18 @@ export interface iGrid extends Control{
    * ActiveSheet Name
   */
   ActiveSheet: string;
+
+  /**
+   * 서버에서 쿼리 실행 후에 수행되는 스크립트
+(CRUD  Calculate 동작에서도 수행됩니다.)
+
+  */
+  AfterScript: string;
+
+  /**
+   *  서버에서 쿼리 실행 전에 수행되는 스크립트
+  */
+  BeforeScript: string;
 
   /**
    * MX-Grid에 표현된 데이터 기준으로 엑셀 내보내기 실행 시 숨겨진 셀을 제거할지 여부를 설정합니다.
@@ -40,6 +54,11 @@ export interface iGrid extends Control{
   ScrollTop: number;
 
   /**
+   *  원본 엑셀 모델의 코드
+  */
+  TemplateCode: string;
+
+  /**
    * Multi Worksheet support
   */
   UseMultiSheet: boolean;
@@ -48,21 +67,6 @@ export interface iGrid extends Control{
    * WorkBook
   */
   WorkBook: IWorkBook;
-  /**
-   * 서버에서 쿼리 실행 전에 수행되는 스크립트		
-   */
-  BeforeScript:string;
-  /**
-   *서버에서 쿼리 실행 후에 수행되는 스크립트
-   (CRUD  Calculate 동작에서도 수행됩니다.)
-   */
-  AfterScript : string;
-
-  /**
-   * 원본 엑셀 모델의 코드		
-   */		
-  TemplateCode : string;
-
 
   /** 
    * 그리드 모델이 변경된 경우 재 계산을 수행 합니다.
@@ -222,6 +226,12 @@ export interface iGrid extends Control{
   getDataTable(name: string): DataTable;
 
   /** 
+   * 엑셀 내보내기 방식을 설정 반환합니다. (Default, AllSheets)
+   *
+  */
+  getExcelExportType(): string;
+
+  /** 
    * 특정 주소값의 셀을 반환 합니다.
    *
   * @param rangeName 주소값(eg.A1)
@@ -259,6 +269,13 @@ export interface iGrid extends Control{
   */
   setEditable(editable: boolean): void;
 
+  /** 
+   * 엑셀 내보내기 방식을 설정 합니다. (Default, AllSheets)
+   *
+  * @param type 내보내기 방식(Default, AllSheets)
+  */
+  setExcelExportType(type: string): void;
+
   /**
    * @event 
    *
@@ -269,6 +286,25 @@ export interface iGrid extends Control{
    * Target : {@link iGrid}
   */
   OnCalculateEnd : (sender : iGrid
+  , args : { 
+    /**
+     * Control Name
+    */
+    Id: string
+  }
+  ) => void;
+
+
+  /**
+   * @event 
+   *
+   * CRUD 시 서버로 요청 시작 시점에 발생합니다.
+   *
+   * @param args
+   *
+   * Target : {@link iGrid}
+  */
+  OnCalculateStart : (sender : iGrid
   , args : { 
     /**
      * Control Name
@@ -332,6 +368,14 @@ export interface iGrid extends Control{
      * 데이터 셀 정보
     */
     Cell: Cell
+    /**
+     * 셀 내 클릭 위치 X
+    */
+    X: number
+    /**
+     * 셀 내 클릭 위치 Y
+    */
+    Y: number
   }
   ) => void;
 
@@ -355,6 +399,14 @@ export interface iGrid extends Control{
      * 데이터 셀 정보
     */
     Cell: Cell
+    /**
+     * 셀 내 클릭 위치 X
+    */
+    X: number
+    /**
+     * 셀 내 클릭 위치 Y
+    */
+    Y: number
   }
   ) => void;
 
@@ -380,6 +432,49 @@ export interface iGrid extends Control{
     getCells(): Cell[]
     /**
      * 서버로 계산 실행 취소 여부
+    */
+    Cancel: boolean
+  }
+  ) => void;
+
+
+  /**
+   * @event 
+   *
+   * CRUD 시 입력 유도 또는 오류 메시지를 표현하기 전 발생합니다.
+   *
+   * @param args
+   *
+   * Target : {@link iGrid}
+  */
+  OnCellValidatorMessage : (sender : iGrid
+  , args : { 
+    /**
+     * 컨트롤 이름
+    */
+    Id: string
+    /**
+     * 현재 셀 객체
+    */
+    Cell: ICell
+    /**
+     * 유효성 검사 정보
+    */
+    Validator: IValValidator
+    /**
+     * 입력 메시지 : 1, 오류 메시지 : -9
+    */
+    Type: number
+    /**
+     * 제목 (변경 가능)
+    */
+    Title: string
+    /**
+     * 메시지 (변경 가능)
+    */
+    Message: string
+    /**
+     * 메시지 출력을 취소할 지 여부
     */
     Cancel: boolean
   }

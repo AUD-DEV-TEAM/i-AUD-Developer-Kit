@@ -1,5 +1,5 @@
 import { DataLabels } from "../../../aud/control/charts/DataLabels";
-import { chartenChartType } from "../../../aud/enums/chartenChartType";
+import { enChartType } from "../../../aud/enums/chart/enChartType";
 /**
 * Pie 차트의 계열 정보를 제공합니다.
 */
@@ -69,7 +69,7 @@ export interface PieSeries{
   /**
    * 차트 유형을 반환합니다.
   */
-   readonly Type: chartenChartType;
+   readonly Type: enChartType;
 
   /**
    * 값의 단위(기본값:0)

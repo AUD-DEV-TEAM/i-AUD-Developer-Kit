@@ -18,16 +18,18 @@ export interface Selection{
   SelectionMode: number;
 
   /** 
+   * 선택 영역의 열의 너비를 글자 크기에 맞게 자동으로 설정합니다.
+   *
+  */
+  AutoFitColumns(): boolean;
+
+  /** 
    * 선택 영역의 행 높이를 글자 크기에 맞게 자동으로 설정합니다.
    *
   * @param rows 선택된 영역이 아닌 다른 영역에 대해서 작업할 경우 해당 Row 목록을 전달합니다.
   */
   AutoFitRows(rows?: number[]): boolean;
-/**
-	 * 컬럼 사이즈 자동 설정하기
-	 * @returns 
-	 */
- AutoFitColumns():boolean;
+
   /** 
    * 모든 선택 항목을 초기화 합니다.
    *
@@ -56,6 +58,14 @@ export interface Selection{
   /** 
    * 특정 영역을 선택 합니다.
    *
+  * @param rIndex 해당 찾으려는 셀의 행 인덱스 값
+  * @param cIndex 해당 찾으려는 셀의 열 인덱스 값
+  */
+  Select(rIndex: number, cIndex: number): void;
+
+  /** 
+   * 특정 영역을 선택 합니다.
+   *
   * @param rangeName 해당 찾으려는 셀의 영역(eg. A1:B10 or A1)
   */
   Select(rangeName: string): void;
@@ -69,14 +79,6 @@ export interface Selection{
   * @param toC 선택 종료 위치 Column
   */
   Select(fromR: number, fromC: number, toR: number, toC: number): void;
-
-  /** 
-   * 특정 영역을 선택 합니다.
-   *
-  * @param rIndex 해당 찾으려는 셀의 행 인덱스 값
-  * @param cIndex 해당 찾으려는 셀의 열 인덱스 값
-  */
-  Select(rIndex: number, cIndex: number): void;
 
   /** 
    * 특정 영역을 선택 합니다.

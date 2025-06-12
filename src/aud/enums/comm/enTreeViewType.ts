@@ -5,12 +5,12 @@
 export enum enTreeViewType{
 
   /**   */
-  None = 0,
+  "None" = 0,
 
   /**   */
-  MultiCheckBoxList = 1,
+  "MultiCheckBoxList" = 1,
 
   /**   */
-  TreeViewList = 2,
+  "TreeViewList" = 2,
 
 }

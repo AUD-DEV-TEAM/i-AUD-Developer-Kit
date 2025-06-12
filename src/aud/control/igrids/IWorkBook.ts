@@ -24,4 +24,10 @@ export interface IWorkBook{
   */
   Tables: IWorkSheet[];
 
+  /** 
+   * MX-GRID 엑셀 제어 모델
+   *
+  */
+  getWorkBook(): any;
+
 }

@@ -5,18 +5,18 @@
 export enum enCategory{
 
   /** Default */
-  Default = 0,
+  "Default" = 0,
 
   /** Dimension */
-  Dimension = 1,
+  "Dimension" = 1,
 
   /** Measure */
-  Measure = 2,
+  "Measure" = 2,
 
   /** Attribute */
-  Attribute = 3,
+  "Attribute" = 3,
 
   /** Period */
-  Period = 4,
+  "Period" = 4,
 
 }

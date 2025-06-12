@@ -5,12 +5,12 @@
 export enum enDimensionGroupItemType{
 
   /** Normal */
-  Normal = 0,
+  "Normal" = 0,
 
   /** Others */
-  Others = 1,
+  "Others" = 1,
 
   /** All */
-  All = 2,
+  "All" = 2,
 
 }

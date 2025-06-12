@@ -5,9 +5,9 @@
 export enum enInputType{
 
   /**   */
-  Text = 0,
+  "Text" = 0,
 
   /**   */
-  Password = 1,
+  "Password" = 1,
 
 }

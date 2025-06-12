@@ -2,12 +2,13 @@ import { ScriptWorkSheet } from "../../../../com/matrix/script/excel/ScriptWorkS
 import { ScriptCellStyle } from "../../../../com/matrix/script/excel/ScriptCellStyle";
 import { enHorizontal } from "../../../../com/matrix/script/excel/enHorizontal";
 import { enVertical } from "../../../../com/matrix/script/excel/enVertical";
+import { ScriptName } from "../../../../com/matrix/script/excel/ScriptName";
 import { ScriptBinderInfo } from "../../../../com/matrix/script/excel/ScriptBinderInfo";
 import { ScriptDataSet } from "../../../../com/matrix/script/ScriptDataSet";
 import { HTMLTableConverter } from "../../../../com/matrix/Excel/Convertor/HTMLTableConverter";
 import { JsonTableConverter } from "../../../../com/matrix/Excel/Convertor/JsonTableConverter";
+import { ScriptCellRange } from "../../../../com/matrix/script/excel/ScriptCellRange";
 import { WorkSheetDataReader } from "../../../../com/matrix/script/excel/WorkSheetDataReader";
-import { ScriptCellRange } from "./ScriptCellRange";
 /**
 * 엑셀의 WorkBook 모델을 제공합니다.
 */
@@ -31,17 +32,16 @@ export interface ScriptWorkBook{
    * 엑셀 문서 내 모든 수식을 계산 합니다.
    *
   * @param removeFormula 계산 후 모든 수식을 삭제합니다.
+  * @param sheetNames 계산할 시트 이름 목록을 전달 합니다.
   */
-  Calculate(removeFormula: boolean): void;
-  
+  Calculate(removeFormula: boolean, sheetNames: string[]): void;
+
   /** 
    * 엑셀 문서 내 모든 수식을 계산 합니다.
    *
   * @param removeFormula 계산 후 모든 수식을 삭제합니다.
-  * @param sheetNames 계산할 시트 이름 목록을 전달 합니다.
   */
-  Calculate(removeFormula: boolean, sheetNames:Array<string>): void;
-
+  Calculate(removeFormula: boolean): void;
 
   /** 
    * 현재 엑셀에서 실행한 데이터 셋의 바인딩 영역을 모두 찾아서 해당 셀들의 값을 삭제합니다.
@@ -362,9 +362,9 @@ export interface ScriptWorkBook{
    *
   * @param name 이름
   * @param workSheetName 대상 시트명
-  * @param rangeArea 영역명(e.g. A1:B1)
+  * @param rangeArea 영역명(e.g. A1:B1) 또는 영역에 대한 수식 (=OFFSET('T1'!$A$1, 0, 0, COUNTA('T1'!$A:$A), 17))
   */
-  addName(name: string, workSheetName: string, rangeArea: string): void;
+  addName(name: string, workSheetName: string, rangeArea: string): ScriptName;
 
   /** 
    * 엑셀 파일의 활성화된 시트를 반환 합니다.
@@ -398,15 +398,31 @@ export interface ScriptWorkBook{
   getJsonConverter(): JsonTableConverter;
 
   /** 
+   * 엑셀의 이름 정의 정보를 반환 합니다.
+   *
+  * @param name 이름정의 명
+  */
+  getName(name: string): ScriptName;
+
+  /** 
    * 엑셀 파일의 이름 정의 목록을 제공합니다.
    *
   */
   getNameList(): string[];
 
   /** 
+   * 엑셀 이름정의 또는 셀주소로 셀 정보를 반환 합니다.
+(이름정의 객체는 단일셀을 참조해야 합니다.
+셀 이름은 시트명을 포함해야 합니다.)
+   *
+  * @param name 엑셀 이름정의 명
+  */
+  getNameRange(name: string): ScriptCellRange;
+
+  /** 
    * 엑셀 이름정의 또는 셀의 텍스트를 반환 합니다.
-   * (이름정의 객체는 단일셀을 참조해야 합니다.
-   * 셀 이름은 시트명을 포함해야 합니다.)
+(이름정의 객체는 단일셀을 참조해야 합니다.
+셀 이름은 시트명을 포함해야 합니다.)
    *
   * @param name 엑셀 이름정의 명
   */
@@ -414,20 +430,12 @@ export interface ScriptWorkBook{
 
   /** 
    * 엑셀 이름정의 또는 셀의 값을 반환 합니다.
-   * (이름정의 객체는 단일셀을 참조해야 합니다.
-   * 셀 이름은 시트명을 포함해야 합니다.)
+(이름정의 객체는 단일셀을 참조해야 합니다.
+셀 이름은 시트명을 포함해야 합니다.)
    *
   * @param name 엑셀 이름정의 명
   */
   getNameRangeValue(name: string): any;
-  
-  /**
-   * 	엑셀 이름정의 또는 셀주소로 셀 정보를 반환 합니다.
-   * (이름정의 객체는 단일셀을 참조해야 합니다.
-   * 셀 이름은 시트명을 포함해야 합니다.)	
-   */  
-   getNameRange(name: string): ScriptCellRange;
-
 
   /** 
    * 엑셀 저장 시 시트명의 예약 헤더 문자 "V_"를 자동 제거하는 옵션의 활성화 여부를 반환 합니다.
@@ -468,13 +476,15 @@ export interface ScriptWorkBook{
   /** 
    * 엑셀의 이름정의를 삭제합니다.
    *
+  * @param name  삭제할 시트명
   */
-  removeName(name:string): void;
+  removeName(name: string): void;
 
   /** 
-   *엑셀 이름정의 또는 셀의 값을 수정합니다.
-   * (이름정의 객체는 단일셀을 참조해야 합니다.
-   * 셀 이름은 시트명을 포함해야 합니다.)
+   * 엑셀 이름정의 또는 셀의 값을 수정합니다.
+(이름정의 객체는 단일셀을 참조해야 합니다.
+셀 이름은 시트명을 포함해야 합니다.)
+   *
    * @example
    * ```js
    * ///// PDF 만들기

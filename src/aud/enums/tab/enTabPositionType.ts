@@ -5,9 +5,9 @@
 export enum enTabPositionType{
 
   /**  */
-  Top = 0,
+  "Top" = 0,
 
   /**  */
-  Bottom = 1,
+  "Bottom" = 1,
 
 }

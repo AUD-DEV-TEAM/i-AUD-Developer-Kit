@@ -66,7 +66,7 @@ export interface TreeGrid extends Grid{
    *
    * @param args
    *
-   * Target : {@link Grid}
+   * Target : Grid
   */
   OnTreeCellClick : (sender : TreeGrid
   , args : { 

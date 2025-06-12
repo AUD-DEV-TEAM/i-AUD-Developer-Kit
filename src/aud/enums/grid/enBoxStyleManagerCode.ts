@@ -5,21 +5,21 @@
 export enum enBoxStyleManagerCode{
 
   /**   */
-  HeaderStyle = 0,
+  "HeaderStyle" = 0,
 
   /**   */
-  DataStyle = 1,
+  "DataStyle" = 1,
 
   /**   */
-  ColumnHeaderStyle = 2,
+  "ColumnHeaderStyle" = 2,
 
   /**   */
-  RowHeaderStyle = 3,
+  "RowHeaderStyle" = 3,
 
   /**   */
-  TopRowStyle = 4,
+  "TopRowStyle" = 4,
 
   /**   */
-  BottomRowStyle = 5,
+  "BottomRowStyle" = 5,
 
 }

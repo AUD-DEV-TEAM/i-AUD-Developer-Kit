@@ -5,21 +5,21 @@
 export enum enOlapMeasureFilterType{
 
   /**   */
-  Equals = 0,
+  "Equals" = 0,
 
   /**   */
-  Greater = 1,
+  "Greater" = 1,
 
   /**   */
-  GreaterOrEquals = 2,
+  "GreaterOrEquals" = 2,
 
   /**   */
-  Less = 3,
+  "Less" = 3,
 
   /**   */
-  LessOrEquals = 4,
+  "LessOrEquals" = 4,
 
   /**   */
-  NotEquals = 5,
+  "NotEquals" = 5,
 
 }

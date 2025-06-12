@@ -6,6 +6,7 @@ import { ScriptHttpClient } from "../../../com/matrix/script/ScriptHttpClient";
 import { ScriptWebConnector } from "../../../com/matrix/script/ScriptWebConnector";
 import { JsonFileWriter } from "../../../com/matrix/script/io/JsonFileWriter";
 import { ScriptMatrix } from "../../../com/matrix/script/excel/ScriptMatrix";
+import { OlapScriptContext } from "../../../com/matrix/olap/OlapScriptContext";
 import { ScriptQueryGenerator } from "../../../com/matrix/script/ScriptQueryGenerator";
 import { ScriptRequestPacket } from "../../../com/matrix/script/ScriptRequestPacket";
 import { ScriptResponsePacket } from "../../../com/matrix/script/ScriptResponsePacket";
@@ -14,7 +15,6 @@ import { ScriptTextFileReader } from "../../../com/matrix/script/io/ScriptTextFi
 import { ScriptTextFileWriter } from "../../../com/matrix/script/io/ScriptTextFileWriter";
 import { ScriptUtility } from "../../../com/matrix/script/ScriptUtility";
 import { ScriptXmlToJsonConverter } from "../../../com/matrix/Excel/io/xml/ScriptXmlToJsonConverter";
-import { OlapScriptContext } from "../olap/OlapScriptContext";
 /**
 * Server Script에서 접근할 수 있는 메인 API 모델입니다.
 */
@@ -30,16 +30,16 @@ export interface Matrix{
   /** 
    * 엑셀 파일 작성을 위해 WorkBook 객체를 생성합니다.
    *
-  * @param fontName 기본 폰트명
-  * @param fontSize 기본 폰트 크기
   */
-  CreateWorkBook(fontName: string, fontSize: number): ScriptWorkBook;
+  CreateWorkBook(): ScriptWorkBook;
 
   /** 
    * 엑셀 파일 작성을 위해 WorkBook 객체를 생성합니다.
    *
+  * @param fontName 기본 폰트명
+  * @param fontSize 기본 폰트 크기
   */
-  CreateWorkBook(): ScriptWorkBook;
+  CreateWorkBook(fontName: string, fontSize: number): ScriptWorkBook;
 
   /** 
    * json 데이터 기준으로 WorkBook 객체를 생성합니다.
@@ -130,18 +130,24 @@ export interface Matrix{
   /** 
    * 시스템 로그를 작성합니다.
    *
+  * @param log 로그 타입
+  * @param message 로그 내용
+  */
+  WriteLog(log: string, message: object): void;
+
+  /** 
+   * 시스템 로그를 작성합니다.
+   *
   * @param log 
   * @param message 
   */
   WriteLog(log: string, message: string): void;
 
   /** 
-   * 시스템 로그를 작성합니다.
+   * Conflux 객체를 반환합니다.
    *
-  * @param log 로그 타입
-  * @param message 로그 내용
   */
-  WriteLog(log: string, message: object): void;
+  getConflux(): any;
 
   /** 
    * 데이터베이스 연결 객체를 반환합니다.
@@ -212,6 +218,12 @@ export interface Matrix{
    * ```
   */
   getMATRIX(): ScriptMatrix;
+
+  /** 
+   * OLAP Write-Back 작업을 할 수 있는 객체를 반환 합니다.
+   *
+  */
+  getOlapScriptContext(): OlapScriptContext;
 
   /** 
    * 쿼리를 자동으로 생성해주는 객체를 생성합니다.
@@ -332,12 +344,5 @@ export interface Matrix{
   * @param sql 
   */
   setResultDynamicSQL(sql: string): void;
-
-
-  /**
-   * OLAP Script Context를 반환합니다.
-   * Write-Back 시에만 사용 가능 합니다.
-   */
-  getOlapScriptContext():OlapScriptContext;
 
 }

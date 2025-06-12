@@ -9,13 +9,6 @@ import { ResponsePrintWriter } from "../../../com/matrix/Excel/Writer/ResponsePr
 export interface ScriptResponsePacket{
 
   /** 
-   * 빈 테이블을 생성합니다.
-   *
-  * @param tableName Table name
-  */
-  CreateTable(tableName: string): ScriptDataTable;
-
-  /** 
    * 쿼리 실행 결과를 테이블로 생성합니다. Client에서는 테이블 명으로 접근이 가능합니다.
    *
   * @param tableName 테이블 명
@@ -23,6 +16,13 @@ export interface ScriptResponsePacket{
   * @param sql 쿼리 문자열
   */
   CreateTable(tableName: string, connectionCode: string, sql: string): ScriptDataTable;
+
+  /** 
+   * 빈 테이블을 생성합니다.
+   *
+  * @param tableName Table name
+  */
+  CreateTable(tableName: string): ScriptDataTable;
 
   /** 
    * addAsyncTable() 메서드를 통해 등록된 DataTable들의 쿼리를 비동기적으로 실행합니다.
@@ -70,15 +70,6 @@ export interface ScriptResponsePacket{
 
   /** 
    * Client에서 사용할 DataTable을 등록합니다.
-DataTable의 결과 데이터가 많은 경우 서버 메모리 점유 문제를 발생시킬 수 있으니,  가벼운 데이터에 한정하여 사용하시고,  많은 데이터에 대한 처리는 "addTable(string tableName, ScriptPrepareStatement stmt)"를 사용하시기 바랍니다.
-   *
-  * @param tableName Table name
-  * @param table table
-  */
-  addTable(tableName: string, table: ScriptDataTable): boolean;
-
-  /** 
-   * Client에서 사용할 DataTable을 등록합니다.
 DataTable의 결과 데이터가 많아도 서버의 메모리에 저장하지 않습니다.
 ScriptPreparedStatement와 해당 데이터 베이스의 Connection 객체는 데이터 출력 후 자동으로 연결을 해제합니다.
 강제로 해당 객체를 닫을 경우 Client 데이터 출력 중 에러가 발생합니다.
@@ -111,6 +102,15 @@ ScriptPreparedStatement와 해당 데이터 베이스의 Connection 객체는 �
   * @param statement PreparedStatement
   */
   addTable(tableName: string, statement: ScriptPreparedStatement): boolean;
+
+  /** 
+   * Client에서 사용할 DataTable을 등록합니다.
+DataTable의 결과 데이터가 많은 경우 서버 메모리 점유 문제를 발생시킬 수 있으니,  가벼운 데이터에 한정하여 사용하시고,  많은 데이터에 대한 처리는 "addTable(string tableName, ScriptPrepareStatement stmt)"를 사용하시기 바랍니다.
+   *
+  * @param tableName Table name
+  * @param table table
+  */
+  addTable(tableName: string, table: ScriptDataTable): boolean;
 
   /** 
    * Client에서 전달할 데이터셋을 반환합니다.

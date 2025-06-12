@@ -5,15 +5,15 @@
 export enum enDataSourceType{
 
   /**   */
-  None = 0,
+  "None" = 0,
 
   /**   */
-  Center = 1,
+  "Center" = 1,
 
   /**   */
-  Top = 2,
+  "Top" = 2,
 
   /**   */
-  Bottom = 3,
+  "Bottom" = 3,
 
 }

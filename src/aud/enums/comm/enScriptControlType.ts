@@ -5,114 +5,114 @@
 export enum enScriptControlType{
 
   /**   */
-  CheckBox = 10,
+  "CheckBox" = 10,
 
   /**   */
-  Calendar = 11,
+  "Calendar" = 11,
 
   /**   */
-  CalendarFromTo = 12,
+  "CalendarFromTo" = 12,
 
   /**   */
-  CalendarYM = 13,
+  "CalendarYM" = 13,
 
   /**   */
-  CalendarYMFromTo = 14,
+  "CalendarYMFromTo" = 14,
 
   /**   */
-  Image = 15,
+  "Image" = 15,
 
   /**   */
-  Group = 17,
+  "Group" = 17,
 
   /**   */
-  DataGrid = 19,
+  "DataGrid" = 19,
 
   /**   */
-  TreeGrid = 20,
+  "TreeGrid" = 20,
 
   /**   */
-  Chart = 21,
+  "Chart" = 21,
 
   /**   */
-  PieChart = 22,
+  "PieChart" = 22,
 
   /**   */
-  CalendarWeekly = 25,
+  "CalendarWeekly" = 25,
 
   /**   */
-  CalendarWeeklyFromTo = 26,
+  "CalendarWeeklyFromTo" = 26,
 
   /**   */
-  Slider = 27,
+  "Slider" = 27,
 
   /**   */
-  OlapGrid = 28,
+  "OlapGrid" = 28,
 
   /**   */
-  MXGrid = 29,
+  "MXGrid" = 29,
 
   /**   */
-  CalendarYear = 30,
+  "CalendarYear" = 30,
 
   /**   */
-  CalendarYearFromTo = 31,
+  "CalendarYearFromTo" = 31,
 
   /**   */
-  RichTextBox = 8,
+  "RichTextBox" = 8,
 
   /**   */
-  RadioButton = 9,
+  "RadioButton" = 9,
 
   /**   */
-  MultiComboBox = 0,
+  "MultiComboBox" = 0,
 
   /**   */
-  ComboBox = 1,
+  "ComboBox" = 1,
 
   /**   */
-  PickList = 2,
+  "PickList" = 2,
 
   /**   */
-  Label = 3,
+  "Label" = 3,
 
   /**   */
-  Button = 4,
+  "Button" = 4,
 
   /**   */
-  TextBox = 5,
+  "TextBox" = 5,
 
   /**   */
-  MaskTextBox = 6,
+  "MaskTextBox" = 6,
 
   /**   */
-  NumberBox = 7,
+  "NumberBox" = 7,
 
   /**  */
-  ScatterChart = 45,
+  "ScatterChart" = 45,
 
   /**  */
-  AddIn = 49,
+  "AddIn" = 49,
 
   /**  */
-  PolygonChart = 46,
+  "PolygonChart" = 46,
 
   /**  */
-  ColorPicker = 32,
+  "ColorPicker" = 32,
 
   /**  */
-  Browser = 47,
+  "Browser" = 47,
 
   /**  */
-  UserComponent = 48,
+  "UserComponent" = 48,
 
   /**  */
-  Slicer = 42,
+  "Slicer" = 42,
 
   /**  */
-  FileUploadButton = 43,
+  "FileUploadButton" = 43,
 
   /**  */
-  Tree = 44,
+  "Tree" = 44,
 
 }

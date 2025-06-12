@@ -5,12 +5,12 @@
 export enum enOlapExportsType{
 
   /**   */
-  Excel = 0,
+  "Excel" = 0,
 
   /**   */
-  CSV = 1,
+  "CSV" = 1,
 
   /**   */
-  TXT = 2,
+  "TXT" = 2,
 
 }

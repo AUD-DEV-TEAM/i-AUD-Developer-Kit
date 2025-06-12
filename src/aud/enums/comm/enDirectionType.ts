@@ -5,15 +5,15 @@
 export enum enDirectionType{
 
   /**   */
-  Left = 0,
+  "Left" = 0,
 
   /**   */
-  Right = 1,
+  "Right" = 1,
 
   /**   */
-  Top = 2,
+  "Top" = 2,
 
   /**   */
-  Bottom = 3,
+  "Bottom" = 3,
 
 }

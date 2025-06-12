@@ -5,9 +5,9 @@
 export enum enWidthSettingType{
 
   /**  */
-  FitToLength = 0,
+  "FitToLength" = 0,
 
   /**  */
-  Pixel = 1,
+  "Pixel" = 1,
 
 }

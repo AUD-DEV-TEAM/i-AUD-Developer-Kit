@@ -5,12 +5,12 @@
 export enum enTreeCellArea{
 
   /** Normal */
-  Normal = 0,
+  "Normal" = 0,
 
   /** ToggleButton */
-  ToggleButton = 1,
+  "ToggleButton" = 1,
 
   /** CheckBox */
-  CheckBox = 2,
+  "CheckBox" = 2,
 
 }

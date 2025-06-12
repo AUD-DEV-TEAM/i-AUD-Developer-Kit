@@ -5,9 +5,9 @@
 export enum enQueryParamType{
 
   /** 숫자형 */
-  Numeric = 0,
+  "Numeric" = 0,
 
   /** 문자형 */
-  String = 1,
+  "String" = 1,
 
 }

@@ -28,7 +28,7 @@ export interface ICell{
   /**
    * 셀 유효성 오류 정보
   */
-  Error: IValValidator |undefined;
+  Error: IValValidator;
 
   /**
    * 셀의 수식 (디자인 모드에서만 출력)

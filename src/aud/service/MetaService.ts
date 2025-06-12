@@ -10,7 +10,7 @@ export interface MetaService{
   * @param option 
   * @param callBackFnc 
   */
-  GetMenuList(option: any, callBackFnc: Function): void;
+  GetMenuList(option?: any, callBackFnc?: Function): void;
 
   /** 
    * 메타 보고서 조회 서비스
@@ -18,6 +18,6 @@ export interface MetaService{
   * @param option 
   * @param callBackFnc 
   */
-  SearchReport(option: any, callBackFnc: Function): void;
+  SearchReport(option?: any, callBackFnc?: Function): void;
 
 }

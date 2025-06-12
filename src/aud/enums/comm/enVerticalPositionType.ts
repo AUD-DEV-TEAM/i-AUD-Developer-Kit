@@ -5,15 +5,15 @@
 export enum enVerticalPositionType{
 
   /**   */
-  Stretch = 0,
+  "Stretch" = 0,
 
   /**   */
-  Top = 1,
+  "Top" = 1,
 
   /**   */
-  Bottom = 2,
+  "Bottom" = 2,
 
   /**   */
-  Center = 3,
+  "Center" = 3,
 
 }

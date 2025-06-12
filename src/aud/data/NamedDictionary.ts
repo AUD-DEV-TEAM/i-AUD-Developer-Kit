@@ -12,6 +12,19 @@ export interface NamedDictionary{
   Add(item: any): void;
 
   /** 
+   * 모든 객체를 제거 합니다.
+   *
+  */
+  Clear(): void;
+
+  /** 
+   * 특정 키를 가지는 객체가 존재하는지 여부를 반환 합니다.
+   *
+  * @param name 객체의 고유이름
+  */
+  Contains(name: string): boolean;
+
+  /** 
    * Dictionary가 가지고 있는 item의 개수를 반환합니다.
    *
   */
@@ -30,6 +43,20 @@ export interface NamedDictionary{
    *
   * @param name 키 값
   */
-  Get(name: string): object;
+  Get(name: string): any;
+
+  /** 
+   * 특정 위치의 객체를 반환 합니다.
+   *
+  * @param index 
+  */
+  GetByIndex(index: number): any;
+
+  /** 
+   * 특정 키를 가지는 객체를 제거합니다.
+   *
+  * @param name 객체의 고유이름
+  */
+  Remove(name: string): void;
 
 }

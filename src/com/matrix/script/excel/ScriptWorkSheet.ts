@@ -6,15 +6,15 @@ import { enChartType } from "../../../../com/matrix/script/excel/enChartType";
 import { ScriptImage } from "../../../../com/matrix/script/excel/ScriptImage";
 import { ConditionFormatList } from "../../../../com/matrix/script/excel/ConditionFormatList";
 import { ScriptWorkSheetTableBinder } from "../../../../com/matrix/script/data/ScriptWorkSheetTableBinder";
+import { ScriptFileCellWriter } from "../../../../com/matrix/script/excel/ScriptFileCellWriter";
 import { WorkSheetPageSetup } from "../../../../com/matrix/Excel/WorkSheetPageSetup";
 import { ScriptCellRange } from "../../../../com/matrix/script/excel/ScriptCellRange";
 import { SparklineGroupCollectionEx } from "../../../../com/matrix/Excel/SparkLine/SparklineGroupCollectionEx";
 import { ValidatorCollection } from "../../../../com/matrix/Excel/Validation/ValidatorCollection";
-import { ScriptCellStyle } from "../../../../com/matrix/script/excel/ScriptCellStyle";
 import { enHorizontal } from "../../../../com/matrix/script/excel/enHorizontal";
 import { enVertical } from "../../../../com/matrix/script/excel/enVertical";
+import { ScriptCellStyle } from "../../../../com/matrix/script/excel/ScriptCellStyle";
 import { enWrapText } from "../../../../com/matrix/script/excel/enWrapText";
-import { ScriptFileCellWriter } from "./ScriptFileCellWriter";
 /**
 * 엑셀의 WorkSheet에 대한 접근을 제공합니다.
 */
@@ -123,10 +123,9 @@ export interface ScriptWorkSheet{
    * 차트를 생성합니다.
    *
   * @param jsonText json text
-  * @param fromRange 차트 생성 위치 시작 셀의 주소(eg.B1)
-  * @param toRange 차트 생성 위치 종료 셀의 주소(eg.G10)
+  * @param range 차트 생성 위치 시작 셀의 주소(eg.B1:K10)
   */
-  CreateChartByJson(jsonText: string, fromRange: string, toRange: string): ScriptChart;
+  CreateChartByJson(jsonText: string, range: string): ScriptChart;
 
   /** 
    * 차트를 생성합니다.
@@ -143,9 +142,19 @@ export interface ScriptWorkSheet{
    * 차트를 생성합니다.
    *
   * @param jsonText json text
-  * @param range 차트 생성 위치 시작 셀의 주소(eg.B1:K10)
+  * @param fromRange 차트 생성 위치 시작 셀의 주소(eg.B1)
+  * @param toRange 차트 생성 위치 종료 셀의 주소(eg.G10)
   */
-  CreateChartByJson(jsonText: string, range: string): ScriptChart;
+  CreateChartByJson(jsonText: string, fromRange: string, toRange: string): ScriptChart;
+
+  /** 
+   * 시트에 이미지를 삽입합니다.
+   *
+  * @param imagePath 이미지 경로
+  * @param fromRange 이미지 위치 시작 셀의 주소(eg.B1)
+  * @param toRange 이미지 위치 종료 셀의 주소(eg.G10)
+  */
+  CreateImage(imagePath: string, fromRange: string, toRange: string): ScriptImage;
 
   /** 
    * 시트에 이미지를 삽입합니다.
@@ -157,15 +166,6 @@ export interface ScriptWorkSheet{
   * @param endCol 종료 행 번호(1부터 시작 됨)
   */
   CreateImage(imagePath: string, beginRow: number, beginCol: number, endRow: number, endCol: number): ScriptImage;
-
-  /** 
-   * 시트에 이미지를 삽입합니다.
-   *
-  * @param imagePath 이미지 경로
-  * @param fromRange 이미지 위치 시작 셀의 주소(eg.B1)
-  * @param toRange 이미지 위치 종료 셀의 주소(eg.G10)
-  */
-  CreateImage(imagePath: string, fromRange: string, toRange: string): ScriptImage;
 
   /** 
    * 시트에 이미지를 삽입합니다.
@@ -254,17 +254,24 @@ export interface ScriptWorkSheet{
   InsertRows(index: number, count: number): void;
 
   /** 
+   * 현재 시트를 활성화 시킵니다.
+   *
+  * @param active 
+  */
+  IsActive(active: boolean): void;
+
+  /** 
    * 현재 시트가 활성화 되어 있는지를 반환 합니다.
    *
   */
   IsActive(): boolean;
 
   /** 
-   * 현재 시트를 활성화 시킵니다.
+   * 셀을 병합 합니다.
    *
-  * @param active 
+  * @param range 셀의 주소(eg.B1:G10)
   */
-  IsActive(active: boolean): void;
+  MergeCell(range: string): void;
 
   /** 
    * 셀을 병합 합니다.
@@ -283,13 +290,6 @@ export interface ScriptWorkSheet{
   * @param endCol 종료 행 번호(1부터 시작 됨)
   */
   MergeCell(beginRow: number, beginCol: number, endRow: number, endCol: number): void;
-
-  /** 
-   * 셀을 병합 합니다.
-   *
-  * @param range 셀의 주소(eg.B1:G10)
-  */
-  MergeCell(range: string): void;
 
   /** 
    * 셀 병합을 해제합니다.
@@ -334,6 +334,21 @@ export interface ScriptWorkSheet{
   getDisplayGridlines(): boolean;
 
   /** 
+   * 대용량 Excel 쓰기를 위한 FileCellWriter를 생성합니다.
+   *
+  * @param rangeName 시작셀의 주소값 e.g. A1
+  */
+  getFileCellWriter(rangeName: string): ScriptFileCellWriter;
+
+  /** 
+   * 대용량 Excel 쓰기를 위한 FileCellWriter를 생성합니다.
+   *
+  * @param row 시작 셀의 열번호
+  * @param column 시작 셀의 행 번호
+  */
+  getFileCellWriter(row: number, column: number): ScriptFileCellWriter;
+
+  /** 
    * 병합 셀 목록을 반환 합니다.
    *
   */
@@ -354,17 +369,17 @@ export interface ScriptWorkSheet{
   /** 
    * 셀 영역 객체를 반환 합니다.
    *
-  * @param rangeName RangeName
-  */
-  getRange(rangeName: string): ScriptCellRange;
-
-  /** 
-   * 셀 영역 객체를 반환 합니다.
-   *
   * @param row row number
   * @param col column number
   */
   getRange(row: number, col: number): ScriptCellRange;
+
+  /** 
+   * 셀 영역 객체를 반환 합니다.
+   *
+  * @param rangeName RangeName
+  */
+  getRange(rangeName: string): ScriptCellRange;
 
   /** 
    * WorkSheet 내부 SparkLine 객체의 목록을 반환합니다.
@@ -415,14 +430,6 @@ export interface ScriptWorkSheet{
   /** 
    * 특정 셀에 계산 수식을 작성합니다.
    *
-  * @param range 셀의 주소(eg.B1)
-  * @param formula 계산 수식
-  */
-  setCellFormula(range: string, formula: string): void;
-
-  /** 
-   * 특정 셀에 계산 수식을 작성합니다.
-   *
   * @param rowIndex 열 번호(1부터 시작 됨)
   * @param columnIndex 행 번호(1부터 시작 됨)
   * @param formula 계산 수식
@@ -430,13 +437,12 @@ export interface ScriptWorkSheet{
   setCellFormula(rowIndex: number, columnIndex: number, formula: string): void;
 
   /** 
-   * 특정 셀의 스타일을 지정합니다.
+   * 특정 셀에 계산 수식을 작성합니다.
    *
-  * @param rowIndex 열 번호(1부터 시작 됨)
-  * @param columnIndex 행 번호(1부터 시작 됨)
-  * @param style 스타일
+  * @param range 셀의 주소(eg.B1)
+  * @param formula 계산 수식
   */
-  setCellStyle(rowIndex: number, columnIndex: number, style: ScriptCellStyle): void;
+  setCellFormula(range: string, formula: string): void;
 
   /** 
    * 특정 셀의 스타일을 지정합니다.
@@ -448,9 +454,25 @@ export interface ScriptWorkSheet{
   * @param format format (eg.#,##0.00)
   * @param horizonAlgn 가로 정렬
   * @param verticalAlgn 세로 정렬
-  * @param wrapText 텍스트 줄 바꿈
   */
-  setCellStyle(range: string, fontStyle: string, borderStyle: string, fillStyle: string, format: string, horizonAlgn: enHorizontal, verticalAlgn: enVertical, wrapText: enWrapText): void;
+  setCellStyle(range: string, fontStyle: string, borderStyle: string, fillStyle: string, format: string, horizonAlgn: enHorizontal, verticalAlgn: enVertical): void;
+
+  /** 
+   * 특정 셀의 스타일을 지정합니다.
+   *
+  * @param range 셀의 주소(eg.B1)
+  * @param style 스타일
+  */
+  setCellStyle(range: string, style: ScriptCellStyle): void;
+
+  /** 
+   * 특정 셀의 스타일을 지정합니다.
+   *
+  * @param rowIndex 열 번호(1부터 시작 됨)
+  * @param columnIndex 행 번호(1부터 시작 됨)
+  * @param style 스타일
+  */
+  setCellStyle(rowIndex: number, columnIndex: number, style: ScriptCellStyle): void;
 
   /** 
    * 특정 셀의 스타일을 지정합니다.
@@ -485,22 +507,15 @@ export interface ScriptWorkSheet{
    * 특정 셀의 스타일을 지정합니다.
    *
   * @param range 셀의 주소(eg.B1)
-  * @param style 스타일
-  */
-  setCellStyle(range: string, style: ScriptCellStyle): void;
-
-  /** 
-   * 특정 셀의 스타일을 지정합니다.
-   *
-  * @param range 셀의 주소(eg.B1)
   * @param fontStyle font style (eg.font-family:Tahoma;font-size:10;font-weight:bold;font-style:italic,underline;font-color:#000000;)
   * @param borderStyle border style (eg. border-left:solid,#000000;border-top:solid,#000000;border-right:solid,#000000;border-bottom:solid,#000000;border-DiagonalUp:solid,#000000;border-DiagonalDown:solid,#000000;)
   * @param fillStyle fill style (eg. #00FFFF)
   * @param format format (eg.#,##0.00)
   * @param horizonAlgn 가로 정렬
   * @param verticalAlgn 세로 정렬
+  * @param wrapText 텍스트 줄 바꿈
   */
-  setCellStyle(range: string, fontStyle: string, borderStyle: string, fillStyle: string, format: string, horizonAlgn: enHorizontal, verticalAlgn: enVertical): void;
+  setCellStyle(range: string, fontStyle: string, borderStyle: string, fillStyle: string, format: string, horizonAlgn: enHorizontal, verticalAlgn: enVertical, wrapText: enWrapText): void;
 
   /** 
    * 특정 셀에 텍스트를 작성합니다.
@@ -522,19 +537,19 @@ export interface ScriptWorkSheet{
   /** 
    * 특정 셀에 값(수치값)을 작성합니다.
    *
+  * @param range 셀의 주소(eg.B1)
+  * @param value 값
+  */
+  setCellValue(range: string, value: number): void;
+
+  /** 
+   * 특정 셀에 값(수치값)을 작성합니다.
+   *
   * @param rowIndex 열 번호(1부터 시작 됨)
   * @param columnIndex 행 번호(1부터 시작 됨)
   * @param value 값
   */
   setCellValue(rowIndex: number, columnIndex: number, value: number): void;
-
-  /** 
-   * 특정 셀에 값(수치값)을 작성합니다.
-   *
-  * @param range 셀의 주소(eg.B1)
-  * @param value 값
-  */
-  setCellValue(range: string, value: number): void;
 
   /** 
    * 컬럼 헤더 영역을 설정 합니다.
@@ -563,6 +578,14 @@ export interface ScriptWorkSheet{
   /** 
    * 특정 행의 너비를 pixel 단위로 지정합니다.
    *
+  * @param columnIndex 행 번호(1부터 시작 됨)
+  * @param width 너비 값
+  */
+  setColumnWidthByPixel(columnIndex: number, width: number): void;
+
+  /** 
+   * 특정 행의 너비를 pixel 단위로 지정합니다.
+   *
   * @param startCol 시작 행 번호(1부터 시작 됨)
   * @param endCol 종료 행 번호(1부터 시작 됨)
   * @param width 너비 값
@@ -570,12 +593,12 @@ export interface ScriptWorkSheet{
   setColumnWidthByPixel(startCol: number, endCol: number, width: number): void;
 
   /** 
-   * 특정 행의 너비를 pixel 단위로 지정합니다.
+   * Sets the unit of the colum's width.
    *
-  * @param columnIndex 행 번호(1부터 시작 됨)
-  * @param width 너비 값
+  * @param columnIndex column number (starting at 1)
+  * @param unit unit value : % or empty 
   */
-  setColumnWidthByPixel(columnIndex: number, width: number): void;
+  setColumnWidthUnit(columnIndex: number, unit: string): void;
 
   /** 
    * Sets the unit of the colum's width.
@@ -585,14 +608,6 @@ export interface ScriptWorkSheet{
   * @param unit unit value : % or empty 
   */
   setColumnWidthUnit(startCol: number, endCol: number, unit: string): void;
-
-  /** 
-   * Sets the unit of the colum's width.
-   *
-  * @param columnIndex column number (starting at 1)
-  * @param unit unit value : % or empty 
-  */
-  setColumnWidthUnit(columnIndex: number, unit: string): void;
 
   /** 
    * Set worksheet's default row height.
@@ -626,13 +641,15 @@ export interface ScriptWorkSheet{
   /** 
    * 특정 영역의 스타일을 지정합니다.
    *
-  * @param beginRow 시작 열 번호(1부터 시작 됨)
-  * @param beginCol 시작 행 번호(1부터 시작 됨)
-  * @param endRow 종료 열 번호(1부터 시작 됨)
-  * @param endCol 종료 행 번호(1부터 시작 됨)
-  * @param style 스타일
+  * @param range 셀의 주소(eg.B1:G10)
+  * @param fontStyle font style (eg.font-family:Tahoma;font-size:10;font-weight:bold;font-style:italic,underline;font-color:#000000;)
+  * @param borderStyle border style (eg. border-left:solid,#000000;border-top:solid,#000000;border-right:solid,#000000;border-bottom:solid,#000000;border-DiagonalUp:solid,#000000;border-DiagonalDown:solid,#000000;)
+  * @param fillStyle fill style (eg. #00FFFF)
+  * @param format format (eg.#,##0.00)
+  * @param horizonAlgn 가로 정렬
+  * @param verticalAlgn 세로 정렬
   */
-  setRangeStyle(beginRow: number, beginCol: number, endRow: number, endCol: number, style: ScriptCellStyle): void;
+  setRangeStyle(range: string, fontStyle: string, borderStyle: string, fillStyle: string, format: string, horizonAlgn: enHorizontal, verticalAlgn: enVertical): void;
 
   /** 
    * 특정 영역의 스타일을 지정합니다.
@@ -645,15 +662,13 @@ export interface ScriptWorkSheet{
   /** 
    * 특정 영역의 스타일을 지정합니다.
    *
-  * @param range 셀의 주소(eg.B1:G10)
-  * @param fontStyle font style (eg.font-family:Tahoma;font-size:10;font-weight:bold;font-style:italic,underline;font-color:#000000;)
-  * @param borderStyle border style (eg. border-left:solid,#000000;border-top:solid,#000000;border-right:solid,#000000;border-bottom:solid,#000000;border-DiagonalUp:solid,#000000;border-DiagonalDown:solid,#000000;)
-  * @param fillStyle fill style (eg. #00FFFF)
-  * @param format format (eg.#,##0.00)
-  * @param horizonAlgn 가로 정렬
-  * @param verticalAlgn 세로 정렬
+  * @param beginRow 시작 열 번호(1부터 시작 됨)
+  * @param beginCol 시작 행 번호(1부터 시작 됨)
+  * @param endRow 종료 열 번호(1부터 시작 됨)
+  * @param endCol 종료 행 번호(1부터 시작 됨)
+  * @param style 스타일
   */
-  setRangeStyle(range: string, fontStyle: string, borderStyle: string, fillStyle: string, format: string, horizonAlgn: enHorizontal, verticalAlgn: enVertical): void;
+  setRangeStyle(beginRow: number, beginCol: number, endRow: number, endCol: number, style: ScriptCellStyle): void;
 
   /** 
    * 특정 열의 높이를 지정합니다.
@@ -671,16 +686,4 @@ export interface ScriptWorkSheet{
   */
   setRowHeightByPixel(row?: number, height?: number): void;
 
-
-  /**
-   * 대용량 Excel 쓰기를 위한 FileCellWriter를 호출 합니다.
-   * @param rngName 
-   */
-  getFileCellWriter(rngName:string):ScriptFileCellWriter;
-  
-  /**
-   * 대용량 Excel 쓰기를 위한 FileCellWriter를 호출 합니다.
-   * @param rngName 
-   */
-  getFileCellWriter(row:number, col:number):ScriptFileCellWriter;
 }

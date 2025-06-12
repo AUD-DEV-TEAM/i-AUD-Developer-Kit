@@ -5,12 +5,12 @@
 export enum enGridAndOrFilterOperator{
 
   /**   */
-  None = 0,
+  "None" = 0,
 
   /**   */
-  Or = 1,
+  "Or" = 1,
 
   /**   */
-  And = 2,
+  "And" = 2,
 
 }

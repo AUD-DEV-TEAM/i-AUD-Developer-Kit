@@ -84,7 +84,7 @@ export interface DataGrid extends Grid{
   MoveNextPage(): void;
 
   /** 
-   * 페이지를 사용할 경우 특정 페이지로 이동하는 메소드
+   * 페이지를 사용할 경우 특정 페이지로 이동하는 메소드. Record 개수 표시 옵션이 true로 설정되어 있어야 합니다.
    *
   * @param PageIndex 찾으려는 페이지(1부터 시작)
   */

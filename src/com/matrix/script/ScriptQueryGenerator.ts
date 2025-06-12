@@ -37,16 +37,16 @@ export interface ScriptQueryGenerator{
    * 쿼리의 바인딩 변수의 값을 대입한 SQL을 반환 합니다.
    *
   * @param sql SQL
-  * @param dbmsCode DBMS Code
   */
-  getParameterBindedSQL(sql: string, dbmsCode: string): string;
+  getParameterBindedSQL(sql: string): string;
 
   /** 
    * 쿼리의 바인딩 변수의 값을 대입한 SQL을 반환 합니다.
    *
   * @param sql SQL
+  * @param dbmsCode DBMS Code
   */
-  getParameterBindedSQL(sql: string): string;
+  getParameterBindedSQL(sql: string, dbmsCode: string): string;
 
   /** 
    * 쿼리 내에서 바인딩 변수의 목록을 추출 합니다.

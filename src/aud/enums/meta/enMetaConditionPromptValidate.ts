@@ -5,12 +5,12 @@
 export enum enMetaConditionPromptValidate{
 
   /**  */
-  vldNullable = 0,
+  "vldNullable" = 0,
 
   /**  */
-  vldNotNull = 1,
+  "vldNotNull" = 1,
 
   /**  */
-  vldOptional = 2,
+  "vldOptional" = 2,
 
 }

@@ -5,21 +5,21 @@
 export enum enTotalSummaryType{
 
   /** None */
-  None = 0,
+  "None" = 0,
 
   /** SumOfChild */
-  SumOfChild = 1,
+  "SumOfChild" = 1,
 
   /** MinOfChild */
-  MinOfChild = 2,
+  "MinOfChild" = 2,
 
   /** MaxOfChild */
-  MaxOfChild = 3,
+  "MaxOfChild" = 3,
 
   /** AverageOfChild */
-  AverageOfChild = 4,
+  "AverageOfChild" = 4,
 
   /** CountOfChild */
-  CountOfChild = 5,
+  "CountOfChild" = 5,
 
 }

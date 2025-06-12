@@ -5,9 +5,9 @@
 export enum enOrientationType{
 
   /**   */
-  Horizontal = 0,
+  "Horizontal" = 0,
 
   /**   */
-  Vertical = 1,
+  "Vertical" = 1,
 
 }

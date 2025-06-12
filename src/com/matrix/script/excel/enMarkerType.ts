@@ -5,21 +5,21 @@
 export enum enMarkerType{
 
   /** None */
-  None = 0,
+  "None" = 0,
 
   /** Auto */
-  Auto = 1,
+  "Auto" = 1,
 
   /** Circle */
-  Circle = 2,
+  "Circle" = 2,
 
   /** Diamond */
-  Diamond = 3,
+  "Diamond" = 3,
 
   /** Square */
-  Square = 4,
+  "Square" = 4,
 
   /** Triangle */
-  Triangle = 5,
+  "Triangle" = 5,
 
 }

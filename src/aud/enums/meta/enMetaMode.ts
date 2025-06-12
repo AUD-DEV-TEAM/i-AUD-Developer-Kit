@@ -5,18 +5,18 @@
 export enum enMetaMode{
 
   /**  */
-  None = 0,
+  "None" = 0,
 
   /**  */
-  Bind = 1,
+  "Bind" = 1,
 
   /**  */
-  Setting = 2,
+  "Setting" = 2,
 
   /**  */
-  SQLPreview = 3,
+  "SQLPreview" = 3,
 
   /**  */
-  MXGrid = 4,
+  "MXGrid" = 4,
 
 }

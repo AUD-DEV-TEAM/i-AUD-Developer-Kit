@@ -5,18 +5,18 @@
 export enum enOlapFieldCreateType{
 
   /** Default */
-  Default = 0,
+  "Default" = 0,
 
   /** Measures */
-  Measures = 1,
+  "Measures" = 1,
 
   /** DimensionGroup */
-  DimensionGroup = 2,
+  "DimensionGroup" = 2,
 
   /** HierarchyGroup */
-  HierarchyGroup = 3,
+  "HierarchyGroup" = 3,
 
   /** CalcTemp */
-  CalcTemp = 4,
+  "CalcTemp" = 4,
 
 }

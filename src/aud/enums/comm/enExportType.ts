@@ -5,33 +5,33 @@
 export enum enExportType{
 
   /**   */
-  CSV = 0,
+  "CSV" = 0,
 
   /**   */
-  Text = 1,
+  "Text" = 1,
 
   /**   */
-  Excel = 2,
+  "Excel" = 2,
 
   /**   */
-  HML = 3,
+  "HML" = 3,
 
   /**   */
-  PPT = 4,
+  "PPT" = 4,
 
   /**   */
-  DOC = 5,
+  "DOC" = 5,
 
   /**   */
-  PNG = 6,
+  "PNG" = 6,
 
   /**   */
-  PDF = 7,
+  "PDF" = 7,
 
   /**   */
-  HTML = 8,
+  "HTML" = 8,
 
   /** Excel 2003 */
-  XLS = 9,
+  "XLS" = 9,
 
 }

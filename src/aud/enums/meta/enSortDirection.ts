@@ -5,9 +5,9 @@
 export enum enSortDirection{
 
   /**  */
-  ASC = "sortAscending",
+  "ASC" = "sortAscending",
 
   /**  */
-  DESC = "sortDescending",
+  "DESC" = "sortDescending",
 
 }

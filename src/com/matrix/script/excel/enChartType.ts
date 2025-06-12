@@ -5,75 +5,75 @@
 export enum enChartType{
 
   /** BarChart */
-  BarChart = 0,
+  "BarChart" = 0,
 
   /** BarStackedChart */
-  BarStackedChart = 1,
+  "BarStackedChart" = 1,
 
   /** BarPercentStackedChart */
-  BarPercentStackedChart = 2,
+  "BarPercentStackedChart" = 2,
 
   /** ColumnChart */
-  ColumnChart = 3,
+  "ColumnChart" = 3,
 
   /** ColumnStackedChart */
-  ColumnStackedChart = 4,
+  "ColumnStackedChart" = 4,
 
   /** ColumnPercentStackedChart */
-  ColumnPercentStackedChart = 5,
+  "ColumnPercentStackedChart" = 5,
 
   /** LineChart */
-  LineChart = 6,
+  "LineChart" = 6,
 
   /** LineStackedChart */
-  LineStackedChart = 7,
+  "LineStackedChart" = 7,
 
   /** LinePercentStackedChart */
-  LinePercentStackedChart = 8,
+  "LinePercentStackedChart" = 8,
 
   /** SymbolLineChart */
-  SymbolLineChart = 9,
+  "SymbolLineChart" = 9,
 
   /** SymbolLineStackedChart */
-  SymbolLineStackedChart = 10,
+  "SymbolLineStackedChart" = 10,
 
   /** SymbolLinePercentStackedChart */
-  SymbolLinePercentStackedChart = 11,
+  "SymbolLinePercentStackedChart" = 11,
 
   /** AreaChart */
-  AreaChart = 12,
+  "AreaChart" = 12,
 
   /** AreaStackedChart */
-  AreaStackedChart = 13,
+  "AreaStackedChart" = 13,
 
   /** AreaPercentStackedChart */
-  AreaPercentStackedChart = 14,
+  "AreaPercentStackedChart" = 14,
 
   /** PieChart */
-  PieChart = 15,
+  "PieChart" = 15,
 
   /** PieExplosionChart */
-  PieExplosionChart = 16,
+  "PieExplosionChart" = 16,
 
   /** DoughnutChart */
-  DoughnutChart = 17,
+  "DoughnutChart" = 17,
 
   /** DoughnutExplosionChart */
-  DoughnutExplosionChart = 18,
+  "DoughnutExplosionChart" = 18,
 
   /** ScatterChart */
-  ScatterChart = 19,
+  "ScatterChart" = 19,
 
   /** BubbleChart */
-  BubbleChart = 20,
+  "BubbleChart" = 20,
 
   /** RadarChart(방사형 차트) */
-  RadarChart = 21,
+  "RadarChart" = 21,
 
   /** RadarLineChart(방사형 차트-계열 꺾은선형) */
-  RadarLineChart = 22,
+  "RadarLineChart" = 22,
 
   /** RadarAreaChart(방사형 차트-계열-영역형) */
-  RadarAreaChart = 23,
+  "RadarAreaChart" = 23,
 
 }

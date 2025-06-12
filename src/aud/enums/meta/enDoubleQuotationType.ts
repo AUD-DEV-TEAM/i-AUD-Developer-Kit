@@ -5,12 +5,12 @@
 export enum enDoubleQuotationType{
 
   /**  */
-  None = 0,
+  "None" = 0,
 
   /**  */
-  All = 1,
+  "All" = 1,
 
   /**  */
-  OnlyAlias = 2,
+  "OnlyAlias" = 2,
 
 }

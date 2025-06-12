@@ -5,12 +5,12 @@
 export enum enMetaListSortType{
 
   /**  */
-  Default = 0,
+  "Default" = 0,
 
   /**  */
-  ASC = 11,
+  "ASC" = 11,
 
   /**  */
-  DESC = 12,
+  "DESC" = 12,
 
 }

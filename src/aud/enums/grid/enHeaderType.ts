@@ -5,15 +5,15 @@
 export enum enHeaderType{
 
   /**   */
-  None = 0,
+  "None" = 0,
 
   /**   */
-  Row = 1,
+  "Row" = 1,
 
   /**   */
-  Column = 2,
+  "Column" = 2,
 
   /**   */
-  All = 3,
+  "All" = 3,
 
 }

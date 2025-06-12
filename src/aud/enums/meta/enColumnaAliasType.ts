@@ -5,12 +5,12 @@
 export enum enColumnaAliasType{
 
   /**  */
-  None = 0,
+  "None" = 0,
 
   /**  */
-  Name = 1,
+  "Name" = 1,
 
   /**  */
-  Description = 2,
+  "Description" = 2,
 
 }

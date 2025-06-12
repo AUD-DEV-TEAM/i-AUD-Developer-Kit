@@ -5,9 +5,9 @@
 export enum enSortType{
 
   /** Asc */
-  Asc = 1,
+  "Asc" = 1,
 
   /** Desc */
-  Desc = 2,
+  "Desc" = 2,
 
 }

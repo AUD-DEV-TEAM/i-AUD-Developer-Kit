@@ -69,7 +69,7 @@ export interface ScriptDataRow{
    *
   * @param array 값 배열
   */
-  setItemArray(array: any[]): void;
+  setItemArray(array: Array<any>): void;
 
   /** 
    * 레코드의 작업 상태 (N: 신규, U: 수정, D: 삭제)를 수정합니다.

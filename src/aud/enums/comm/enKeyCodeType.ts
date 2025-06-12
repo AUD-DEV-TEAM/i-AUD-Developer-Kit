@@ -5,66 +5,66 @@
 export enum enKeyCodeType{
 
   /**   */
-  C = 67,
+  "C" = 67,
 
   /**   */
-  F5 = 116,
+  "F5" = 116,
 
   /**   */
-  Down = 40,
+  "Down" = 40,
 
   /**   */
-  A = 65,
+  "A" = 65,
 
   /**   */
-  None = 0,
+  "None" = 0,
 
   /**   */
-  Alt = 2,
+  "Alt" = 2,
 
   /**   */
-  Enter = 13,
+  "Enter" = 13,
 
   /**   */
-  Shift = 16,
+  "Shift" = 16,
 
   /**   */
-  Ctrl = 17,
+  "Ctrl" = 17,
 
   /**   */
-  LeftAlt = 18,
+  "LeftAlt" = 18,
 
   /**   */
-  RightAlt = 21,
+  "RightAlt" = 21,
 
   /**   */
-  RightCtrl = 25,
+  "RightCtrl" = 25,
 
   /**   */
-  Esc = 27,
+  "Esc" = 27,
 
   /**   */
-  Space = 32,
+  "Space" = 32,
 
   /**   */
-  PageUp = 33,
+  "PageUp" = 33,
 
   /**   */
-  PageDown = 34,
+  "PageDown" = 34,
 
   /**   */
-  End = 35,
+  "End" = 35,
 
   /**   */
-  Home = 36,
+  "Home" = 36,
 
   /**   */
-  Left = 37,
+  "Left" = 37,
 
   /**   */
-  Up = 38,
+  "Up" = 38,
 
   /**   */
-  Right = 39,
+  "Right" = 39,
 
 }

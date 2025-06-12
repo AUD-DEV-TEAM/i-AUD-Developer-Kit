@@ -1,4 +1,4 @@
-import { chartenChartDataLabelType } from "../../../aud/enums/chartenChartDataLabelType";
+import { enChartDataLabelType } from "../../../aud/enums/chart/enChartDataLabelType";
 /**
 * 기본 차트의 데이터 표시 영역에 대한 정보를 제공합니다.
 */
@@ -14,6 +14,6 @@ export interface PlotOptions{
    *
   * @param type 0:None, 1:Value, 2:ValueLabel
   */
-  SetDataLabelsType(type: chartenChartDataLabelType): void;
+  SetDataLabelsType(type: enChartDataLabelType): void;
 
 }

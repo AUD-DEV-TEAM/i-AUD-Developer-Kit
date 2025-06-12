@@ -9,6 +9,14 @@ import { ScriptDataRow } from "../../../com/matrix/script/ScriptDataRow";
 export interface ScriptDataTable{
 
   /** 
+   * Column을 추가합니다.
+   *
+  * @param columnName Column 명
+  * @param isNumber 수치형인지 여부
+  */
+  AddColumn(columnName: string, isNumber: boolean): ScriptDataColumn;
+
+  /** 
    * Column을 추가 합니다.
    *
   * @param columnName Column 명
@@ -18,14 +26,6 @@ export interface ScriptDataTable{
   * @param saveMode 저장 실행 방식
   */
   AddColumn(columnName: string, isNumber: boolean, keyType: enKeyType, dataType: enDataType, saveMode: enSaveMode): ScriptDataColumn;
-
-  /** 
-   * Column을 추가합니다.
-   *
-  * @param columnName Column 명
-  * @param isNumber 수치형인지 여부
-  */
-  AddColumn(columnName: string, isNumber: boolean): ScriptDataColumn;
 
   /** 
    * 테이블 내 레코드를 추가하고 추가된 레코드 객체를 반환합니다.

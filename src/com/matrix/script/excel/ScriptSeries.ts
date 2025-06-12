@@ -70,6 +70,14 @@ export interface ScriptSeries{
   addLineColors(color: string): void;
 
   /** 
+   * 시리즈의 X/Y/Size 값을 추가 합니다.(차트 유형:Scatter,Bubble-Size)
+   *
+  * @param value 값
+  * @param isXYZ 시리즈 구성 데이터 유형(X/Y/Size)
+  */
+  addValue(value: string, isXYZ: string): void;
+
+  /** 
    * 시리즈의 레이블 값을 추가 합니다.(차트 유형:Scatter,Bubble)
    *
   * @param value 값
@@ -82,14 +90,6 @@ export interface ScriptSeries{
   * @param value 값
   */
   addValue(value: number): void;
-
-  /** 
-   * 시리즈의 X/Y/Size 값을 추가 합니다.(차트 유형:Scatter,Bubble-Size)
-   *
-  * @param value 값
-  * @param isXYZ 시리즈 구성 데이터 유형(X/Y/Size)
-  */
-  addValue(value: string, isXYZ: string): void;
 
   /** 
    * 시리즈의 값을 추가 합니다.

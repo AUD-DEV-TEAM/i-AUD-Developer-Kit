@@ -5,9 +5,9 @@
 export enum enSizeType{
 
   /**   */
-  Pixel = 0,
+  "Pixel" = 0,
 
   /**   */
-  Star = 1,
+  "Star" = 1,
 
 }

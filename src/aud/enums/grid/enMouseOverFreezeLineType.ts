@@ -5,12 +5,12 @@
 export enum enMouseOverFreezeLineType{
 
   /**   */
-  None = 0,
+  "None" = 0,
 
   /**   */
-  Left = 1,
+  "Left" = 1,
 
   /**   */
-  Right = 2,
+  "Right" = 2,
 
 }

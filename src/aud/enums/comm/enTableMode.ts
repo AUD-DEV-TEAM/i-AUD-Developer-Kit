@@ -5,12 +5,12 @@
 export enum enTableMode{
 
   /**   */
-  View = 2,
+  "View" = 2,
 
   /**   */
-  Design = 1,
+  "Design" = 1,
 
   /**   */
-  Right = 0,
+  "Right" = 0,
 
 }

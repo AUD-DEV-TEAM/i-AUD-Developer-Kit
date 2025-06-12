@@ -5,15 +5,15 @@
 export enum enSelectRuleType{
 
   /**   */
-  SingleRow = 0,
+  "SingleRow" = 0,
 
   /**   */
-  MultiRow = 1,
+  "MultiRow" = 1,
 
   /**   */
-  SingleRange = 2,
+  "SingleRange" = 2,
 
   /**   */
-  SingleCell = 3,
+  "SingleCell" = 3,
 
 }

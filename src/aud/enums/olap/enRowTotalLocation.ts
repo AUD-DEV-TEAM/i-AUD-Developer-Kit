@@ -5,9 +5,9 @@
 export enum enRowTotalLocation{
 
   /** None */
-  Bottom = 0,
+  "Bottom" = 0,
 
   /** Operator OR */
-  Top = 1,
+  "Top" = 1,
 
 }

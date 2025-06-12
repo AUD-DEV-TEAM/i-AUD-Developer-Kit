@@ -87,6 +87,4 @@ export interface XLS_UTIL{
   */
   parseExcelAddress(address: string): {"R":number, "C":number};
 
-
-  isEmptyBorder(borderStyle:string):boolean;
 }

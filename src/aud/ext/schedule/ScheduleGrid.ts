@@ -153,6 +153,37 @@ export interface ScheduleGrid{
   /**
    * @event 
    *
+   * 필드 헤더셀 drawing시 발생합니다.
+   *
+   * @param args
+   *
+   * Target : {@link ScheduleGrid}
+  */
+  OnDrawFieldHeader : (sender : ScheduleGrid
+  , args : { 
+    /**
+     * 컨트롤 이름
+    */
+    Id: string
+    /**
+     * 필드헤더셀 정보
+    */
+    Row: ScheduleRow
+    /**
+     * 배경색 (ex #FF0000)
+    */
+    BackColor: string
+    /**
+     * 글자색 (ex #FF0000)
+    */
+    FontColor: string
+  }
+  ) => void;
+
+
+  /**
+   * @event 
+   *
    * 셀 drawing시 발생합니다.
    *
    * @param args

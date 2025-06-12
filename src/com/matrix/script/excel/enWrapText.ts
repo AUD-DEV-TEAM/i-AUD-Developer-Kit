@@ -5,9 +5,9 @@
 export enum enWrapText{
 
   /** 사용 안함(기본값) */
-  Wrap = 0,
+  "Wrap" = 0,
 
   /** 사용 함 */
-  UnWrap = 1,
+  "UnWrap" = 1,
 
 }

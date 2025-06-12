@@ -5,12 +5,12 @@
 export enum enHorizonAlign{
 
   /**  */
-  Left = 0,
+  "Left" = 0,
 
   /**  */
-  Right = 1,
+  "Right" = 1,
 
   /**  */
-  Center = 2,
+  "Center" = 2,
 
 }

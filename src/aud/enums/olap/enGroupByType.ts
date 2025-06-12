@@ -5,30 +5,30 @@
 export enum enGroupByType{
 
   /** Auto */
-  Auto = 0,
+  "Auto" = 0,
 
   /** Sum */
-  Sum = 1,
+  "Sum" = 1,
 
   /** Count */
-  Count = 2,
+  "Count" = 2,
 
   /** Max */
-  Max = 3,
+  "Max" = 3,
 
   /** Min */
-  Min = 4,
+  "Min" = 4,
 
   /** Average */
-  Average = 5,
+  "Average" = 5,
 
   /** DistinctCount */
-  DistinctCount = 6,
+  "DistinctCount" = 6,
 
   /** None */
-  None = 7,
+  "None" = 7,
 
   /** AlwaysGroupBy */
-  AlwaysGroupBy = 8,
+  "AlwaysGroupBy" = 8,
 
 }

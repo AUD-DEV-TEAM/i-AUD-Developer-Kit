@@ -110,16 +110,16 @@ export interface ScriptUtility{
   /** 
    * 엑셀 파일 작성을 위해 WorkBook 객체를 생성합니다.
    *
-  * @param fontName 기본 폰트명
-  * @param fontSize 기본 폰트 크기
   */
-  CreateWorkBook(fontName: string, fontSize: number): ScriptWorkBook;
+  CreateWorkBook(): ScriptWorkBook;
 
   /** 
    * 엑셀 파일 작성을 위해 WorkBook 객체를 생성합니다.
    *
+  * @param fontName 기본 폰트명
+  * @param fontSize 기본 폰트 크기
   */
-  CreateWorkBook(): ScriptWorkBook;
+  CreateWorkBook(fontName: string, fontSize: number): ScriptWorkBook;
 
   /** 
    * json 데이터 기준으로 WorkBook 객체를 생성합니다.
@@ -237,14 +237,6 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   Hour(date: Date): number;
 
   /** 
-   * 대상 문자열에서 검색어의 위치를 반환합니다.
-   *
-  * @param text 대상 문자열
-  * @param find 검색어
-  */
-  IndexOf(text: string, find: string): number;
-
-  /** 
    * 대상 문자열에서 검색 시작 위치 이후의 검색어의 위치를 반환합니다.
    *
   * @param text 대상 문자열
@@ -252,6 +244,14 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   * @param fromIndex 검색 시작 위치
   */
   IndexOf(text: string, find: string, fromIndex: number): number;
+
+  /** 
+   * 대상 문자열에서 검색어의 위치를 반환합니다.
+   *
+  * @param text 대상 문자열
+  * @param find 검색어
+  */
+  IndexOf(text: string, find: string): number;
 
   /** 
    * 대상 문자열이 Null이거나 빈 문자열인지를 반환합니다.
@@ -375,6 +375,40 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
 
   /** 
    * CSV 형태 파일의 내용을 데이터 테이블 형태로 반환합니다.
+   *
+  * @param path 엑셀 파일의 경로
+  * @param firstLineIsColumnHeader 첫 행이 컬럼명인지 여부
+  * @param colSeparator 행 분리자(기본값:,)
+  * @param rowSeparator 열 분리자(기본값:개행)
+  * @param defColumns 컬럼의 데이터 타입을 정의합니다.(STR1;S|NUM1;N|STR2;S|NUM2;N)
+  * @param callbackRow 파일의 Row 단위 데이터 반환 함수
+  * ```
+  * 
+  *       CALL_BACK(function(row){
+  *       //row == com.matrix.script.ScriptDataRow
+  *       //return true : 해당 row 를 데이터 테이블에 추가
+  *       //      false : 엑셀 파일 읽기 종료
+  *       //       null : 다음 row 읽기
+  * })
+  * ```
+  */
+  ReadCSVFile(path: string, firstLineIsColumnHeader: boolean, colSeparator: string, rowSeparator: string, defColumns: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
+
+  /** 
+   * CSV 형태 파일의 내용을 데이터 테이블 형태로 반환합니다.
+대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
+callback을 지원하는 함수를 사용하시기 바랍니다.
+   *
+  * @param path 엑셀 파일의 경로
+  * @param firstLineIsColumnHeader 첫 행이 컬럼명인지 여부
+  * @param colSeparator 행 분리자(기본값:,)
+  * @param rowSeparator 열 분리자(기본값:개행)
+  * @param defColumns 컬럼의 데이터 타입을 정의합니다.(STR1;S|NUM1;N|STR2;S|NUM2;N)
+  */
+  ReadCSVFile(path: string, firstLineIsColumnHeader: boolean, colSeparator: string, rowSeparator: string, defColumns: string): ScriptDataTable;
+
+  /** 
+   * CSV 형태 파일의 내용을 데이터 테이블 형태로 반환합니다.
 대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
 callback을 지원하는 함수를 사용하시기 바랍니다.
    *
@@ -434,49 +468,6 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   ReadCSVFile(path: string, firstLineIsColumnHeader: boolean, colSeparator: string, rowSeparator: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
 
   /** 
-   * CSV 형태 파일의 내용을 데이터 테이블 형태로 반환합니다.
-대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
-callback을 지원하는 함수를 사용하시기 바랍니다.
-   *
-  * @param path 엑셀 파일의 경로
-  * @param firstLineIsColumnHeader 첫 행이 컬럼명인지 여부
-  * @param colSeparator 행 분리자(기본값:,)
-  * @param rowSeparator 열 분리자(기본값:개행)
-  * @param defColumns 컬럼의 데이터 타입을 정의합니다.(STR1;S|NUM1;N|STR2;S|NUM2;N)
-  */
-  ReadCSVFile(path: string, firstLineIsColumnHeader: boolean, colSeparator: string, rowSeparator: string, defColumns: string): ScriptDataTable;
-
-  /** 
-   * CSV 형태 파일의 내용을 데이터 테이블 형태로 반환합니다.
-   *
-  * @param path 엑셀 파일의 경로
-  * @param firstLineIsColumnHeader 첫 행이 컬럼명인지 여부
-  * @param colSeparator 행 분리자(기본값:,)
-  * @param rowSeparator 열 분리자(기본값:개행)
-  * @param defColumns 컬럼의 데이터 타입을 정의합니다.(STR1;S|NUM1;N|STR2;S|NUM2;N)
-  * @param callbackRow 파일의 Row 단위 데이터 반환 함수
-  * ```
-  * 
-  *       CALL_BACK(function(row){
-  *       //row == com.matrix.script.ScriptDataRow
-  *       //return true : 해당 row 를 데이터 테이블에 추가
-  *       //      false : 엑셀 파일 읽기 종료
-  *       //       null : 다음 row 읽기
-  * })
-  * ```
-  */
-  ReadCSVFile(path: string, firstLineIsColumnHeader: boolean, colSeparator: string, rowSeparator: string, defColumns: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
-
-  /** 
-   * 엑셀파일의 내용을 데이터 테이블 형태로 반환합니다.
-대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
-ReadExcelFile(path, callbackRow)을 사용하십시요.
-   *
-  * @param path 엑셀 파일의 경로
-  */
-  ReadExcelFile(path: string): ScriptDataTable;
-
-  /** 
    * 엑셀파일의 내용을 데이터 테이블 형태로 반환합니다.
    *
   * @param path 엑셀 파일의 경로
@@ -496,12 +487,11 @@ ReadExcelFile(path, callbackRow)을 사용하십시요.
   /** 
    * 엑셀파일의 내용을 데이터 테이블 형태로 반환합니다.
 대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
-ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
+ReadExcelFile(path, callbackRow)을 사용하십시요.
    *
   * @param path 엑셀 파일의 경로
-  * @param defColumns 컬럼의 데이터 타입을 정의합니다.(STR1;S|NUM1;N|STR2;S|NUM2;N)
   */
-  ReadExcelFile(path: string, defColumns: string): ScriptDataTable;
+  ReadExcelFile(path: string): ScriptDataTable;
 
   /** 
    * 엑셀파일의 내용을 데이터 테이블 형태로 반환합니다.
@@ -520,6 +510,16 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * ```
   */
   ReadExcelFile(path: string, defColumns: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
+
+  /** 
+   * 엑셀파일의 내용을 데이터 테이블 형태로 반환합니다.
+대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
+ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
+   *
+  * @param path 엑셀 파일의 경로
+  * @param defColumns 컬럼의 데이터 타입을 정의합니다.(STR1;S|NUM1;N|STR2;S|NUM2;N)
+  */
+  ReadExcelFile(path: string, defColumns: string): ScriptDataTable;
 
   /** 
    * 엑셀파일의 내용을 데이터 테이블 형태로 반환합니다.
@@ -813,16 +813,16 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
    * 입력된 값을 int 형식으로 변환하여 반환합니다.
    *
   * @param value 변환 대상
-  * @param defValue 변환 실패 시 대체할 값
   */
-  ToInteger(value: object, defValue: number): number;
+  ToInteger(value: object): number;
 
   /** 
    * 입력된 값을 int 형식으로 변환하여 반환합니다.
    *
   * @param value 변환 대상
+  * @param defValue 변환 실패 시 대체할 값
   */
-  ToInteger(value: object): number;
+  ToInteger(value: object, defValue: number): number;
 
   /** 
    * 입력된 값을 특정 양식으로 변환한 문자열을 반환합니다.
