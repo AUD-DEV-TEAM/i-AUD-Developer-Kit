@@ -1,0 +1,2090 @@
+{
+  "ReportInfo": {
+    "ReportCode": "AUD_USER_CONTROLS",
+    "FolderCode": "FLDC3B8BDFF526D488E89FBCE2351BD2FAC",
+    "SavePath": "FLDC3B8BDFF526D488E89FBCE2351BD2FAC/AUD_USER_CONTROLS.mtsd",
+    "ReportName": "AUD 사용자 컨트롤 관리",
+    "Writer": "yglee",
+    "WriteDate": "2025-04-18 15:16:20",
+    "Editor": "yglee",
+    "EditDate": "2025-04-18 15:16:20",
+    "TabPosition": 0,
+    "UseLayout": false,
+    "UsePersonalConditions": true,
+    "DocumentVersion": "3.0.0.0"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS766481A2BB784990BDA92B9F3B6FF04D",
+        "Name": "USER_CONTROLS",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "6FSK0Fy3FBj40+IWCcSwQoqaMIorCD8PkUqyiPvPdk1nmrGiQQL668nrnGjW1VL2+hObz9w6HbKGbGzIgHkYXboLJbkqh6BRrIinsfVOt4igFGSCROHwOctUw2kpgFjOMyaNI20rwgEWBDttYlAE8mKDhGoEbK8tgH4dokLdIYjQZG6gJUp9qBMur/0SpnBkUYcSfGkj6CQjoVV/XtLx7rVf24gSGzY3Sb/4mYApCw0jtjSJJKQ5t2TIV9W5C4nCBMplsdeo+DAasu14g2v7aQ3uv+d77DRNflXO+ADUk53bWqYR5fUHUpBDPJJzQIxM6YY46fIgho6SOoczDV0JPIsm7RGkt2UarkYOgxYkedcBuOoVgbFmtBspHB5euQCkqN5fiP4zeZ95X2OimKmzf9YY/Ih+WX2vJ1plXigpJx/0HcOzuZf9zG6SaP31fj5jAO3LZ6bAje6WyGxnANKHbT/TejWUxJ/uZ7TPPG1fMdov/d9OJClTfbkOSOZtG0+RZEOFmurzDdqmxQIFhTdiwc3/eXZIYUNAH9go4kHUWxu2cec6/2QvI14okEB2sHVOKIJTbS85y+Mw/0uZa/Xj3VbJ3cGUxOx2SOxAVqsWFAj8h8I4boAknBPku0v/lqhamArrRn2tlIaKd0e1epEmaIMABZEaBwhXCqlhhYkEmqRaP+5zXKsn/53dI+Lxek9crjEf29vDJSi+U1GHLw4KDViciZHPi3oaKuHdtyzd47T1S9/nZGmrE6tKRzmdRvjrD4pYUuTNghYuv4pByl2VQWmQVPZBbBg/mPAFJtO9WrAaUF1ddBlFg4ybXzzoYdkNDk8zfunfKrPtL63fJ0b+ibRD0ASiohXMXxVcSYFDCLoW2BnmCY22BF3KxM+88GET/4r0zCdFM/ZvoBIa1IlsippEXuO33V/Gj6dMP0740S5ZxN/PkWVn+ddKwFeGWJP33nC6pwZlv0D3XrdruO+pjg==",
+        "Params": [
+          {
+            "Name": ":VS_USE_YN",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_CONTROL_KW",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "CONTROL_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "CONTROL_TYPE",
+            "Type": "String"
+          },
+          {
+            "Name": "CONTROL_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "VAR_NAMES",
+            "Type": "String"
+          },
+          {
+            "Name": "CONTROL_DESC",
+            "Type": "String"
+          },
+          {
+            "Name": "CONTROL_BODY",
+            "Type": "String"
+          },
+          {
+            "Name": "CONTROL_WIDTH",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "CONTROL_HEIGHT",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "DELETE_YN",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATE_USER",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_USER",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_DATE",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS8ADAF307401544FF80B17C4001A49942",
+        "Name": "USE_YN",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "FILE_DATA_BASE",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "faBEJYjAJgTIpCM5b0rWbcFojAfXtt+L5mnRrUq9CEE=",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "CODE",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "var GRD_MAIN = Matrix.getObject(\"GRD_MAIN\");\r\nvar VS_CONTROL_KW = Matrix.getObject(\"VS_CONTROL_KW\");\r\nvar VS_USE_YN = Matrix.getObject(\"VS_USE_YN\");\r\nvar btnAdd = Matrix.getObject(\"btnAdd\");\r\nvar btnSave = Matrix.getObject(\"btnSave\");\r\nvar btnFilter = Matrix.getObject(\"btnFilter\");\r\nvar btnDelete = Matrix.getObject(\"btnDelete\");\r\nvar CONTROL_BODY = Matrix.getObject(\"CONTROL_BODY\");\r\nvar btnValidate = Matrix.getObject(\"btnValidate\");\r\n/**\r\n * 데이터 저장 하기\r\n * @returns\r\n */\r\nvar SaveData = function () {\r\n    if (!GRD_MAIN.Validate()) {\r\n        Matrix.Information(\"입력 필수 항목을 선택해 주세요\", \"AUD\");\r\n        return;\r\n    }\r\n    Matrix.RunScript(\"GRD_MAIN\", \"SAVE_CONTROLS\", function (p) {\r\n        if (p.Success == false) {\r\n            Matrix.Alert(p.Message);\r\n            return;\r\n        }\r\n        else {\r\n            Matrix.Information(\"정상적으로 처리되었습니다.\", \"AUD\");\r\n            Matrix.doRefresh(\"GRD_MAIN\");\r\n        }\r\n    });\r\n};\r\n/**\r\n * 데이터 조회\r\n */\r\nvar QueryData = function () {\r\n    if (GRD_MAIN.IsModified()) {\r\n        Matrix.Confirm(\"수정된 내용이 있습니다.\\n저장하시겠습니까?\", \"저장 확인\", function (ok) {\r\n            if (ok) {\r\n                SaveData();\r\n            }\r\n            else {\r\n                Matrix.doRefresh(\"GRD_MAIN\");\r\n            }\r\n        }, 0);\r\n        return;\r\n    }\r\n    Matrix.doRefresh(\"GRD_MAIN\");\r\n};\r\nbtnFilter.OnClick = function (sender, args) {\r\n    QueryData();\r\n};\r\n// enter로 검색\r\nVS_CONTROL_KW.OnTextKeypress = function (sender, args) {\r\n    if (args.Event.isEnter()) {\r\n        QueryData();\r\n    }\r\n};\r\nbtnAdd.OnClick = function (sender, args) {\r\n    var nRow = GRD_MAIN.AppendRow();\r\n};\r\nbtnDelete.OnClick = function (sender, args) {\r\n    var rows = GRD_MAIN.GetSelectedRows();\r\n    if (rows.length < 1) {\r\n        Matrix.Information(\"삭제하실 목록을 선택해 주세요\", \"AUD\");\r\n        return;\r\n    }\r\n    Matrix.Confirm(\"선택하신 목록을 삭제하시겠습니까?\", \"삭제확인\", function (ok) {\r\n        if (ok) {\r\n            for (var r = rows.length - 1; r >= 0; r--) {\r\n                GRD_MAIN.RemoveRow(rows[r], true);\r\n            }\r\n        }\r\n    }, 0);\r\n};\r\nGRD_MAIN.OnCreateNewRow = function (sender, args) {\r\n    var nRow = args.Record;\r\n    nRow.SetValue(\"CONTROL_CODE\", \"*\");\r\n    nRow.SetValue(\"CONTROL_WIDTH\", 150);\r\n    nRow.SetValue(\"CONTROL_HEIGHT\", 23);\r\n    nRow.SetValue(\"DELETE_YN\", \"N\");\r\n};\r\nbtnSave.OnClick = function (sender, args) {\r\n    SaveData();\r\n};\r\n/**\r\n * JSON 모델 정합성 검사\r\n *\r\n * @param sender\r\n * @param args\r\n * @returns\r\n */\r\nbtnValidate.OnClick = function (sender, args) {\r\n    try {\r\n        var currentRow = GRD_MAIN.GetCurrentRow();\r\n        if (!currentRow) {\r\n            Matrix.Information(\"컨트롤 목록을 추가 하시거나 선택해 주세요\", \"AUD\");\r\n            return;\r\n        }\r\n        if (!CONTROL_BODY.Text) {\r\n            Matrix.Information(\"컨트롤 정보가 없습니다.\\n디자이너에서 복사한 데이터를 넣어 주세요\", \"AUD\", function () {\r\n                CONTROL_BODY.Focus();\r\n            });\r\n            return;\r\n        }\r\n        var model = JSON.parse(CONTROL_BODY.Text);\r\n        var ctlModel = void 0;\r\n        if (model.Elements && Array.isArray(model.Elements)) {\r\n            ctlModel = model.Elements[0];\r\n        }\r\n        else {\r\n            ctlModel = model;\r\n        }\r\n        var text = JSON.stringify(ctlModel, null, \"  \");\r\n        currentRow.SetValue(\"CONTROL_WIDTH\", ctlModel.Position.Width);\r\n        currentRow.SetValue(\"CONTROL_HEIGHT\", ctlModel.Position.Height);\r\n        currentRow.SetValue(\"CONTROL_TYPE\", ctlModel.Type);\r\n        if (!currentRow.GetValue(\"CONTROL_NAME\")) {\r\n            currentRow.SetValue(\"CONTROL_NAME\", ctlModel.Name);\r\n        }\r\n        currentRow.SetValue(\"CONTROL_BODY\", text);\r\n        CONTROL_BODY.Text = text;\r\n        GRD_MAIN.ReDraw();\r\n    }\r\n    catch (e) {\r\n        alert(\"control 모델 파싱 오류 \" + e.Message);\r\n    }\r\n};\r\n",
+  "ServerScriptText": [
+    {
+      "Name": "SAVE_CONTROLS",
+      "Key": "BIZ46C5C2E0DC2846D996C4B491D24328B3",
+      "Encrypted": true,
+      "ScriptText": "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"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "Form7C5E201F36E7931FA987BE571C4F33ED",
+      "Name": "Form1",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "Type": "DataGrid",
+          "Id": "DataGridABA7EDE9A4E8F3F5801524AC1257AFAC",
+          "Name": "GRD_MAIN",
+          "Visible": true,
+          "Position": {
+            "Left": 10,
+            "Top": 40,
+            "Width": 733,
+            "Height": 930,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Margin": "10,40,10,10",
+              "MinHeight": 0,
+              "MinWidth": 0,
+              "Left": true,
+              "Top": true,
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Thickness": "1,1,1,1"
+            },
+            "VerticalBorder": {
+              "Thickness": 1
+            },
+            "HorizontalBorder": {
+              "Thickness": 1
+            },
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "top"
+            }
+          },
+          "CellMargin": "5,5,5,5",
+          "DataSource": "DS766481A2BB784990BDA92B9F3B6FF04D",
+          "SelectRule": 2,
+          "RowAddable": true,
+          "RowDeletable": true,
+          "NaNCellText": "-",
+          "ColumnHeaderHeight": 28,
+          "RowHeight": 24,
+          "UseMultiHeader": true,
+          "Editable": true,
+          "ExportCount": 0,
+          "FontFamily": "inherit",
+          "FontSize": 12,
+          "UsePPTExport": false,
+          "FrozenLineBrush": {
+            "Type": 0,
+            "Color": {
+              "R": 127,
+              "G": 127,
+              "B": 127,
+              "A": 1
+            }
+          },
+          "Columns": [
+            {
+              "Name": "CONTROL_CODE",
+              "Caption": "CONTROL_CODE",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Visible": false,
+              "KeyType": 3,
+              "DataType": 7,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "CONTROL_TYPE",
+              "Caption": "CONTROL_TYPE",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Editable": false,
+              "KeyType": 1,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "None"
+            },
+            {
+              "Name": "CONTROL_NAME",
+              "Caption": "CONTROL_NAME",
+              "Width": 136,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 1,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "VAR_NAMES",
+              "Caption": "변수명",
+              "Width": 181,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "ColumnType": 9,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "None"
+            },
+            {
+              "Name": "CONTROL_DESC",
+              "Caption": "CONTROL_DESC",
+              "Width": 139,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "ColumnType": 9,
+              "KeyType": 2,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "CONTROL_BODY",
+              "Caption": "CONTROL_BODY",
+              "Width": 66,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Visible": false,
+              "ColumnType": 9,
+              "KeyType": 1,
+              "DataType": 5,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "CONTROL_WIDTH",
+              "Caption": "CONTROL_WIDTH",
+              "Width": 60,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "ColumnType": 3,
+              "KeyType": 1,
+              "DataType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "CONTROL_HEIGHT",
+              "Caption": "CONTROL_HEIGHT",
+              "Width": 60,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "ColumnType": 3,
+              "KeyType": 1,
+              "DataType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "DELETE_YN",
+              "Caption": "DELETE_YN",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Visible": false,
+              "KeyType": 1,
+              "HeaderPosition": "center",
+              "TextPosition": "center"
+            },
+            {
+              "Name": "CREATE_USER",
+              "Caption": "CREATE_USER",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Editable": false,
+              "KeyType": 2,
+              "DataType": 4,
+              "HeaderPosition": "center",
+              "TextPosition": "center"
+            },
+            {
+              "Name": "CREATE_DATE",
+              "Caption": "CREATE_DATE",
+              "Width": 150,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Editable": false,
+              "KeyType": 2,
+              "DataType": 2,
+              "HeaderPosition": "center",
+              "TextPosition": "center"
+            },
+            {
+              "Name": "MODIFY_USER",
+              "Caption": "MODIFY_USER",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Editable": false,
+              "KeyType": 2,
+              "DataType": 4,
+              "HeaderPosition": "center",
+              "TextPosition": "center"
+            },
+            {
+              "Name": "MODIFY_DATE",
+              "Caption": "MODIFY_DATE",
+              "Width": 150,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Editable": false,
+              "KeyType": 2,
+              "DataType": 2,
+              "HeaderPosition": "center",
+              "TextPosition": "center"
+            }
+          ],
+          "MultiHeader": {
+            "MaxRow": 2,
+            "MaxColumn": 13,
+            "Cells": [
+              {
+                "Value": "기본정보",
+                "Elements": [],
+                "ColSpan": 5,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "컨트롤 JSON",
+                "Elements": [],
+                "Col": 5,
+                "RowSpan": 2,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "컨트롤 사이즈",
+                "Elements": [],
+                "Col": 6,
+                "ColSpan": 2,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "사용여부",
+                "Elements": [],
+                "Col": 8,
+                "RowSpan": 2,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "생성정보",
+                "Elements": [],
+                "Col": 9,
+                "ColSpan": 2,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "수정정보",
+                "Elements": [],
+                "Col": 11,
+                "ColSpan": 2,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "코드",
+                "Elements": [],
+                "Row": 1,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "타입 *",
+                "Elements": [],
+                "Row": 1,
+                "Col": 1,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "이름 *",
+                "Elements": [],
+                "Row": 1,
+                "Col": 2,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "바인딩 변수명",
+                "Elements": [],
+                "Row": 1,
+                "Col": 3,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "설명",
+                "Elements": [],
+                "Row": 1,
+                "Col": 4,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "Width",
+                "Elements": [],
+                "Row": 1,
+                "Col": 6,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "Height",
+                "Elements": [],
+                "Row": 1,
+                "Col": 7,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "생성자",
+                "Elements": [],
+                "Row": 1,
+                "Col": 9,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "생성일",
+                "Elements": [],
+                "Row": 1,
+                "Col": 10,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "수정자",
+                "Elements": [],
+                "Row": 1,
+                "Col": 11,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              },
+              {
+                "Value": "수정일",
+                "Elements": [],
+                "Row": 1,
+                "Col": 12,
+                "Margin": "5,5,5,5",
+                "Tooltip": ""
+              }
+            ]
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "검색",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "LabelA46F2997C2B596DE991CBAC579530028",
+          "Name": "Label",
+          "Position": {
+            "Left": 130,
+            "Top": 10,
+            "Width": 70,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 207,
+                "G": 226,
+                "B": 243,
+                "A": 0.432
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "",
+          "Value": "",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "InputType": 0,
+          "Formula": "",
+          "MxBinding": "",
+          "Type": "TextBox",
+          "Id": "TextBox6FA470217C82A40803ECE913C52992D8",
+          "Name": "VS_CONTROL_KW",
+          "Position": {
+            "Left": 201,
+            "Top": 10,
+            "Width": 232,
+            "Height": 23,
+            "ZIndex": 2,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "DataSource": "DS8ADAF307401544FF80B17C4001A49942",
+          "Value": "Y",
+          "Text": "Y",
+          "InitType": 0,
+          "RefreshType": 1,
+          "IsReadOnly": false,
+          "SortType": 0,
+          "AutoRefresh": true,
+          "AfterRefresh": "",
+          "UseAllItems": false,
+          "DisplayType": 1,
+          "DataSourceInfo": {
+            "LabelField": "",
+            "ValueField": ""
+          },
+          "InitValue": "Y",
+          "Type": "ComboBox",
+          "Id": "ComboBoxFC2480A794B40EA0D9DA48CA34B5C634",
+          "Name": "VS_USE_YN",
+          "Position": {
+            "Left": 81,
+            "Top": 10,
+            "Width": 44,
+            "Height": 25,
+            "ZIndex": 3,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "사용여부",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "Label4E5DBFED3172B8B732B065C30956E3FE",
+          "Name": "Label1",
+          "Position": {
+            "Left": 10,
+            "Top": 10,
+            "Width": 70,
+            "Height": 25,
+            "ZIndex": 2,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 207,
+                "G": 226,
+                "B": 243,
+                "A": 0.432
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Value": "추가",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "Type": "Button",
+          "Id": "ButtonEDD42070FB4B5199E2ABCD19F4CE191C",
+          "Name": "btnAdd",
+          "Position": {
+            "Left": 539,
+            "Top": 10,
+            "Width": 70,
+            "Height": 23,
+            "ZIndex": 5,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,155,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 233,
+                "G": 238,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 126,
+                "G": 155,
+                "B": 246,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Value": "저장",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "Type": "Button",
+          "Id": "Button8934678B17D998B4B137FEFDA8EE3461",
+          "Name": "btnSave",
+          "Position": {
+            "Left": 685,
+            "Top": 10,
+            "Width": 70,
+            "Height": 23,
+            "ZIndex": 6,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,9,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 210,
+                "G": 222,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 126,
+                "G": 155,
+                "B": 246,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Value": "검색",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "Type": "Button",
+          "Id": "ButtonBC3197C1C0B09ED708D980E32E142155",
+          "Name": "btnFilter",
+          "Position": {
+            "Left": 435,
+            "Top": 10,
+            "Width": 70,
+            "Height": 23,
+            "ZIndex": 6,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 210,
+                "G": 222,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 126,
+                "G": 155,
+                "B": 246,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Value": "삭제",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "Type": "Button",
+          "Id": "Button447A4D558641C54F0D6DCAE90B53841C",
+          "Name": "btnDelete",
+          "Position": {
+            "Left": 612,
+            "Top": 10,
+            "Width": 70,
+            "Height": 23,
+            "ZIndex": 6,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,82,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 210,
+                "G": 222,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 126,
+                "G": 155,
+                "B": 246,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "ChildElements": [
+            {
+              "Formula": "",
+              "IsReadOnly": false,
+              "MaxLength": 0,
+              "BindingInfo": {
+                "BindingGId": "DataGridABA7EDE9A4E8F3F5801524AC1257AFAC",
+                "BindingGName": "GRD_MAIN",
+                "BindingGColumn": "CONTROL_BODY",
+                "BindingGColumnId": "GRD_MAIN.CONTROL_BODY",
+                "BindingGColumnCaption": "CONTROL_BODY"
+              },
+              "MxBinding": "",
+              "Value": "{\n  \"ReportInfo\": {\n    \"CODE\": \"REP707536624DBE408EA4FCB76B54654805\",\n    \"NAME\": \"기준년월\",\n    \"PARENT\": \"FLD0E1C004295C04C9FB042B2239F0D75EF\",\n    \"DESC\": \"\",\n    \"TYPE\": \"SC\",\n    \"PATH\": \"FLD0E1C004295C04C9FB042B2239F0D75EF/REP707536624DBE408EA4FCB76B54654805.sc\"\n  },\n  \"DoRefresh\": true,\n  \"DoExport\": true,\n  \"Type\": \"UserComponent\",\n  \"Id\": \"UserComponentBF6B0CD14878B4E9336CB30ADF0B5C3C\",\n  \"Name\": \"UserComponent1112\",\n  \"Position\": {\n    \"Left\": 10,\n    \"Top\": 216,\n    \"Width\": 260,\n    \"Height\": 23,\n    \"ZIndex\": 5,\n    \"TabIndex\": 0,\n    \"Docking\": {\n      \"Left\": false,\n      \"Right\": false,\n      \"Top\": false,\n      \"Bottom\": false,\n      \"Margin\": \"0,0,0,0\",\n      \"HoldSize\": false,\n      \"MinWidth\": 0,\n      \"MinHeight\": 0\n    }\n  },\n  \"Style\": {\n    \"Type\": 2,\n    \"BoxStyle\": \"\",\n    \"Background\": {\n      \"Color\": {\n        \"R\": 255,\n        \"G\": 255,\n        \"B\": 255,\n        \"A\": 1\n      }\n    },\n    \"Border\": {\n      \"Color\": {\n        \"R\": 194,\n        \"G\": 194,\n        \"B\": 197,\n        \"A\": 1\n      },\n      \"LineType\": \"none\",\n      \"Thickness\": \"1,1,1,1\",\n      \"CornerRadius\": \"0,0,0,0\"\n    },\n    \"Font\": {\n      \"Color\": {\n        \"R\": 0,\n        \"G\": 0,\n        \"B\": 0,\n        \"A\": 1\n      },\n      \"Size\": 12,\n      \"Family\": \"inherit\",\n      \"Bold\": false,\n      \"Italic\": false,\n      \"UnderLine\": false,\n      \"HorizontalAlignment\": \"left\",\n      \"VerticalAlignment\": \"top\",\n      \"TempFontFamily\": \"맑은 고딕\"\n    }\n  }\n}",
+              "Text": "{\n  \"ReportInfo\": {\n    \"CODE\": \"REP707536624DBE408EA4FCB76B54654805\",\n    \"NAME\": \"기준년월\",\n    \"PARENT\": \"FLD0E1C004295C04C9FB042B2239F0D75EF\",\n    \"DESC\": \"\",\n    \"TYPE\": \"SC\",\n    \"PATH\": \"FLD0E1C004295C04C9FB042B2239F0D75EF/REP707536624DBE408EA4FCB76B54654805.sc\"\n  },\n  \"DoRefresh\": true,\n  \"DoExport\": true,\n  \"Type\": \"UserComponent\",\n  \"Id\": \"UserComponentBF6B0CD14878B4E9336CB30ADF0B5C3C\",\n  \"Name\": \"UserComponent1112\",\n  \"Position\": {\n    \"Left\": 10,\n    \"Top\": 216,\n    \"Width\": 260,\n    \"Height\": 23,\n    \"ZIndex\": 5,\n    \"TabIndex\": 0,\n    \"Docking\": {\n      \"Left\": false,\n      \"Right\": false,\n      \"Top\": false,\n      \"Bottom\": false,\n      \"Margin\": \"0,0,0,0\",\n      \"HoldSize\": false,\n      \"MinWidth\": 0,\n      \"MinHeight\": 0\n    }\n  },\n  \"Style\": {\n    \"Type\": 2,\n    \"BoxStyle\": \"\",\n    \"Background\": {\n      \"Color\": {\n        \"R\": 255,\n        \"G\": 255,\n        \"B\": 255,\n        \"A\": 1\n      }\n    },\n    \"Border\": {\n      \"Color\": {\n        \"R\": 194,\n        \"G\": 194,\n        \"B\": 197,\n        \"A\": 1\n      },\n      \"LineType\": \"none\",\n      \"Thickness\": \"1,1,1,1\",\n      \"CornerRadius\": \"0,0,0,0\"\n    },\n    \"Font\": {\n      \"Color\": {\n        \"R\": 0,\n        \"G\": 0,\n        \"B\": 0,\n        \"A\": 1\n      },\n      \"Size\": 12,\n      \"Family\": \"inherit\",\n      \"Bold\": false,\n      \"Italic\": false,\n      \"UnderLine\": false,\n      \"HorizontalAlignment\": \"left\",\n      \"VerticalAlignment\": \"top\",\n      \"TempFontFamily\": \"맑은 고딕\"\n    }\n  }\n}",
+              "Type": "RichTextBox",
+              "Id": "RichTextBoxED9E10DD670D585D571A17A4956027C5",
+              "Name": "CONTROL_BODY",
+              "InGroup": "GRP_DETAIL",
+              "Position": {
+                "Left": 3,
+                "Top": 278,
+                "Width": 212,
+                "Height": 647,
+                "ZIndex": 12,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": true,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": true,
+                  "Margin": "3",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 194,
+                    "G": 194,
+                    "B": 197,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 48,
+                    "G": 48,
+                    "B": 49,
+                    "A": 1
+                  },
+                  "Size": "12",
+                  "Family": "inherit",
+                  "Bold": false,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "top",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Text": "컨트롤 상세 정보\n  - 보고서에서 컨트롤 1개만 복사 한뒤 붙여넣기 하시기 바랍니다.",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": true,
+              "MxBinding": "",
+              "MxBindingUseStyle": true,
+              "Margin": {
+                "Left": 3,
+                "Top": 0,
+                "Right": 3,
+                "Bottom": 0,
+                "Text": "3,0,3,0"
+              },
+              "Type": "Label",
+              "Id": "LabelC3957A1DE3E6C1C9EC412AB219B81B6C",
+              "Name": "Label2",
+              "InGroup": "GRP_DETAIL",
+              "Position": {
+                "Left": 0,
+                "Top": 217,
+                "Width": 218,
+                "Height": 53,
+                "ZIndex": 2,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": true,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 85,
+                    "G": 142,
+                    "B": 213,
+                    "A": 1
+                  },
+                  "LineType": "none",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 48,
+                    "G": 48,
+                    "B": 49,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "top",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "Validate",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "ButtonA375BDB0833BD0888CFD9D1BC6974C07",
+              "Name": "btnValidate",
+              "InGroup": "GRP_DETAIL",
+              "Position": {
+                "Left": 128,
+                "Top": 280,
+                "Width": 70,
+                "Height": 23,
+                "ZIndex": 16,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,20,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 210,
+                    "G": 222,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 126,
+                    "G": 155,
+                    "B": 246,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "4,4,4,4"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 48,
+                    "G": 48,
+                    "B": 49,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "Formula": "",
+              "IsReadOnly": false,
+              "MaxLength": 0,
+              "BindingInfo": {
+                "BindingGId": "DataGridABA7EDE9A4E8F3F5801524AC1257AFAC",
+                "BindingGName": "GRD_MAIN",
+                "BindingGColumn": "CONTROL_DESC",
+                "BindingGColumnId": "GRD_MAIN.CONTROL_DESC",
+                "BindingGColumnCaption": "CONTROL_DESC"
+              },
+              "MxBinding": "",
+              "Value": "기준 년월 (yyyy-MM)",
+              "Text": "기준 년월 (yyyy-MM)",
+              "Type": "RichTextBox",
+              "Id": "RichTextBox25DAF3208F9BF01CC7129883F94FB9BC",
+              "Name": "RichTextBox",
+              "InGroup": "GRP_DETAIL",
+              "Position": {
+                "Left": 3,
+                "Top": 147,
+                "Width": 212,
+                "Height": 61,
+                "ZIndex": 16,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": true,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "3",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 194,
+                    "G": 194,
+                    "B": 197,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 48,
+                    "G": 48,
+                    "B": 49,
+                    "A": 1
+                  },
+                  "Size": "12",
+                  "Family": "inherit",
+                  "Bold": false,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "top",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Text": "설명",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": true,
+              "MxBinding": "",
+              "MxBindingUseStyle": true,
+              "Margin": {
+                "Left": 3,
+                "Top": 0,
+                "Right": 3,
+                "Bottom": 0,
+                "Text": "3,0,3,0"
+              },
+              "Type": "Label",
+              "Id": "LabelDB094E7BB3DEF271FEE45BB6E68EE4E3",
+              "Name": "Label21",
+              "InGroup": "GRP_DETAIL",
+              "Position": {
+                "Left": 3,
+                "Top": 127,
+                "Width": 212,
+                "Height": 22,
+                "ZIndex": 14,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": true,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "3",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 85,
+                    "G": 142,
+                    "B": 213,
+                    "A": 1
+                  },
+                  "LineType": "none",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 48,
+                    "G": 48,
+                    "B": 49,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "top",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Text": "변수명 \n   - 컨트롤이 여러개인 경우 여러개의 이름을 \",\"로 분리하여 입력 합니다.  \n   - e.g. VS_FROM,VS_TO",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": true,
+              "MxBinding": "",
+              "MxBindingUseStyle": true,
+              "Margin": {
+                "Left": 3,
+                "Top": 0,
+                "Right": 3,
+                "Bottom": 0,
+                "Text": "3,0,3,0"
+              },
+              "Type": "Label",
+              "Id": "LabelCD61634330A22D152EDFA3A64AF8CBFD",
+              "Name": "Label211",
+              "InGroup": "GRP_DETAIL",
+              "Position": {
+                "Left": 3,
+                "Top": 6,
+                "Width": 212,
+                "Height": 54,
+                "ZIndex": 15,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": true,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "3",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 85,
+                    "G": 142,
+                    "B": 213,
+                    "A": 1
+                  },
+                  "LineType": "none",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 48,
+                    "G": 48,
+                    "B": 49,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "top",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "Formula": "",
+              "IsReadOnly": false,
+              "MaxLength": 0,
+              "BindingInfo": {
+                "BindingGId": "DataGridABA7EDE9A4E8F3F5801524AC1257AFAC",
+                "BindingGName": "GRD_MAIN",
+                "BindingGColumn": "VAR_NAMES",
+                "BindingGColumnId": "GRD_MAIN.VAR_NAMES",
+                "BindingGColumnCaption": "변수명"
+              },
+              "MxBinding": "",
+              "Value": "VS_YYYYMM",
+              "Text": "VS_YYYYMM",
+              "Type": "RichTextBox",
+              "Id": "RichTextBox9BE41EC7C377F782F1FC1BF51FD4F730",
+              "Name": "RichTextBox1",
+              "InGroup": "GRP_DETAIL",
+              "Position": {
+                "Left": 3,
+                "Top": 58,
+                "Width": 212,
+                "Height": 61,
+                "ZIndex": 17,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": true,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "3",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 194,
+                    "G": 194,
+                    "B": 197,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 48,
+                    "G": 48,
+                    "B": 49,
+                    "A": 1
+                  },
+                  "Size": "12",
+                  "Family": "inherit",
+                  "Bold": false,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "top",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            }
+          ],
+          "Type": "Group",
+          "Id": "GroupA6244EA17FBFABCC1DFD6D97B3D7AE5F",
+          "Name": "GRP_DETAIL",
+          "Position": {
+            "Left": 757,
+            "Top": 40,
+            "Width": 220,
+            "Height": 930,
+            "ZIndex": 10,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": true,
+              "Top": true,
+              "Bottom": true,
+              "Margin": "10,40,10,10",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": " ",
+          "Cursor": "e-resize",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "LabelAF1FF2849EA0117C147C8BFA63236C2A",
+          "Name": "LBL_SPLITTER",
+          "Position": {
+            "Left": 745,
+            "Top": 40,
+            "Width": 10,
+            "Height": 930,
+            "ZIndex": 11,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": true,
+              "Bottom": true,
+              "Margin": "0,40,10,10",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 217,
+                "G": 217,
+                "B": 217,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 255,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 13,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [
+    {
+      "EVENT_YN": "N",
+      "CREATE_USER": "yglee",
+      "MODULE_DESCRIPTION": "좌/우 컨트롤을 Resize할 수 있는 Splitter 기능을 제공합니다.\n라벨 컨트롤 또는 이미지 등을 Spliter 구분으로 사용하실 수 있습니다.",
+      "SCRIPT_TEXT": "/*\n경고! 이 모듈은 시스템 모듈로 시스템 업데이트 시 초기화 될 수 있으니 직접 수정하지 마십시요\nwarning! This module is a system module and may be initialized when the system is updated, so do not modify it directly.\n\nSplitter 좌/우\n*/\t\t\n\nvar ColumnSplitter = /** @class */ (function () {\n    function ColumnSplitter(left, right, splitter) {\n        this.mBeginDrag = false;\n        this.mMouseDownX = -1;\n        this.mSplitterX = -1;\n        this.mBoundLeft = -1;\n        this.mBoundRight = -1;\n        this.MARGIN = 2;\n        var _this = this;\n        this.mSplitter = Matrix.getObject(splitter);\n        this.mSplitter.Cursor = \"e-resize\";\n        this.mSplitter.Text = \" \"; //공백을 주지 않으니, Cursor가 먹지 않는다.\n        this.minLeft = 50;\n        this.minRight = 50;\n        var ctl;\n        this.mLeftControls = new Array();\n        left.forEach(function (name) {\n            ctl = Matrix.getObject(name);\n            if (ctl) {\n                _this.mLeftControls.push(ctl);\n                _this.minLeft = Math.max(_this.minLeft, ctl.Docking.MinWidth);\n                ctl.Width = _this.mSplitter.Left - ctl.Left - _this.MARGIN;\n            }\n        });\n        this.mRightControls = new Array();\n        right.forEach(function (name) {\n            ctl = Matrix.getObject(name);\n            if (ctl) {\n                _this.mRightControls.push(ctl);\n                _this.minRight = Math.max(_this.minRight, ctl.Docking.MinWidth);\n                ctl.Left = _this.mSplitter.Left + _this.mSplitter.Width + _this.MARGIN;\n            }\n        });\n        var OnMouseDown = function (event) {\n            _this.mBeginDrag = true;\n            _this.mMouseDownX = event.clientX;\n            _this.mBoundLeft = event.clientX; //_this.ControlL.Left;\n            _this.mLeftControls.forEach(function (ctl) {\n                _this.mBoundLeft = Math.min(_this.mBoundLeft, ctl.Left);\n            });\n            _this.mSplitterX = _this.mSplitter.Left;\n            //_this.mBoundRight   = _this.ControlR.Left + _this.ControlR.Width;\n            _this.mBoundRight = 0;\n            _this.mRightControls.forEach(function (ctl) {\n                _this.mBoundRight = Math.max(_this.mBoundRight, (ctl.Left + ctl.Width));\n            });\n            event.preventDefault();\n        };\n        var OnMouseMove = function (event) {\n            if (_this.mBeginDrag) {\n                var diff = Math.abs(event.clientX - _this.mMouseDownX);\n                var splitLeft = 0;\n                if (event.clientX > _this.mMouseDownX) { //우측으로 이동\n                    splitLeft = _this.mSplitterX + diff; // splitPosition\n                }\n                else { //좌측으로 이동\n                    splitLeft = _this.mSplitterX - diff; // splitPosition\n                }\n                if (splitLeft - _this.mBoundLeft > _this.minLeft //check min left\n                    && _this.mBoundRight - splitLeft - _this.mSplitter.Width >= _this.minRight) {\n                    _this.mSplitter.Left = splitLeft;\n                    //_this.ControlL.Width  = splitLeft - _this.mBoundLeft - _this.MARGIN;\n                    _this.mLeftControls.forEach(function (ctl) {\n                        ctl.Width = splitLeft - ctl.Left - _this.MARGIN;\n                    });\n                    _this.mRightControls.forEach(function (ctl) {\n                        var rect = { \"Left\": 100000, \"Top\": 100000, \"Width\": 0, \"Height\": 0, \"Right\": 0, \"Bottom\": 0 };\n                        rect.Top = ctl.Top;\n                        rect.Height = ctl.Height;\n                        rect.Left = (_this.mSplitter.Left + _this.mSplitter.Width) + _this.MARGIN;\n                        rect.Width = (ctl.Left + ctl.Width) - rect.Left;\n                        ctl.setRect(rect);\n                        ctl.Resize();\n                    });\n                }\n                event.preventDefault();\n            }\n        };\n        var OnMouseUp = function (event) {\n            if (_this.mBeginDrag) {\n                event.preventDefault();\n                _this.mBeginDrag = false;\n            }\n        };\n        $(_this.mSplitter.Element).on(\"mousedown\", OnMouseDown);\n        $(window.document).on(\"mousemove\", OnMouseMove);\n        $(window.document).on(\"mouseup\", OnMouseUp);\n        Matrix.OnDestroy = function (sender, args) {\n            //이벤트 해제 하기\n            $(_this.mSplitter.Element).off(\"mousedown\", OnMouseDown);\n            $(window.document).off(\"mousemove\", OnMouseMove);\n            $(window.document).off(\"mouseup\", OnMouseUp);\n        };\n    }\n    return ColumnSplitter;\n}());\n\nnew ColumnSplitter(arguments[0].split(\",\"), arguments[1].split(\",\"),arguments[2]);\n",
+      "WF_YN": "Y",
+      "RESULT_TYPE": "",
+      "MODULE_SUBJECT": "Splitter 좌/우",
+      "MODULE_TYPE": "",
+      "CREATE_DATE": "2024-01-16 19:57:50",
+      "DELETE_FLAG": "N",
+      "MODULE_SEQ": "8",
+      "ORIGINAL_MODULE_CODE": "",
+      "MODIFY_DATE": "2025-03-07 15:08:59",
+      "MODULE_CODE": "AUD_017",
+      "EDIT_AUTHORITY": "-1",
+      "MODIFY_USER": "yglee"
+    }
+  ],
+  "WorkFlowInfo": "",
+  "schModel": {},
+  "WORK_FLOW": {
+    "Version": 1,
+    "UseEvent": true,
+    "Nodes": [
+      {
+        "ID": "_ROOT_",
+        "Type": "Report",
+        "ModuleCode": "",
+        "Name": "Report",
+        "Description": "",
+        "Left": 70,
+        "Top": 70,
+        "Width": 200,
+        "Height": 207,
+        "ControlType": "Report",
+        "Collapsed": false,
+        "IsEventActive": false,
+        "Deprecated": false,
+        "Parameters": [
+          {
+            "ID": "OnDocumentLoadComplete",
+            "Name": "OnDocumentLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnLoadComplete",
+            "Name": "OnLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnExecuteStart",
+            "Name": "OnExecuteStart",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnRefreshComplete",
+            "Name": "OnRefreshComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnActiveSheetChange",
+            "Name": "OnActiveSheetChange",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnDestroy",
+            "Name": "OnDestroy",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnViewerSizeChanged",
+            "Name": "OnViewerSizeChanged",
+            "Value": null,
+            "Description": ""
+          }
+        ]
+      },
+      {
+        "ID": "AUD_017",
+        "Type": "Module",
+        "ModuleCode": "AUD_017",
+        "Name": "Splitter 좌/우",
+        "Description": "좌/우 컨트롤을 Resize할 수 있는 Splitter 기능을 제공합니다.\n라벨 컨트롤 또는 이미지 등을 Spliter 구분으로 사용하실 수 있습니다.",
+        "Left": 390,
+        "Top": 90,
+        "Width": 200,
+        "Height": 173,
+        "ControlType": "",
+        "Collapsed": false,
+        "IsEventActive": false,
+        "Deprecated": false,
+        "Parameters": [
+          {
+            "Name": "좌측에 배치할 컨트롤 목록",
+            "Value": "GRD_MAIN",
+            "MODULE_CODE": "AUD_017",
+            "DEFAULT_VALUE": "",
+            "NULLABLE": "N",
+            "PARAM_DESCRIPTION": "좌측에 배치할 컨트롤 목록",
+            "PARAM_SEQ": "1",
+            "PARAM_TYPE": "INP005",
+            "ATTR1": "",
+            "ATTR2": "",
+            "ATTR3": ""
+          },
+          {
+            "Name": "우측에 배치할 컨트롤 목록",
+            "Value": "GRP_DETAIL",
+            "MODULE_CODE": "AUD_017",
+            "DEFAULT_VALUE": "",
+            "NULLABLE": "N",
+            "PARAM_DESCRIPTION": "우측에 배치할 컨트롤 목록",
+            "PARAM_SEQ": "2",
+            "PARAM_TYPE": "INP005",
+            "ATTR1": "",
+            "ATTR2": "",
+            "ATTR3": ""
+          },
+          {
+            "Name": "Splitter 경계로 사용할 컨트롤(라벨,이미지)",
+            "Value": "LBL_SPLITTER",
+            "MODULE_CODE": "AUD_017",
+            "DEFAULT_VALUE": "",
+            "NULLABLE": "N",
+            "PARAM_DESCRIPTION": "Splitter 경계로 사용할 컨트롤(라벨,이미지)",
+            "PARAM_SEQ": "3",
+            "PARAM_TYPE": "INP004",
+            "ATTR1": "",
+            "ATTR2": "",
+            "ATTR3": ""
+          }
+        ]
+      }
+    ],
+    "Links": [
+      {
+        "ID": "_ROOT_.OnDocumentLoadComplete~AUD_017",
+        "From": "_ROOT_",
+        "To": "AUD_017",
+        "Type": 0,
+        "FromParam": "OnDocumentLoadComplete"
+      }
+    ],
+    "MAP_NODES": {},
+    "MAP_LINKS": {}
+  },
+  "PersonalConditions": {
+    "list": [],
+    "useAll": true
+  }
+}

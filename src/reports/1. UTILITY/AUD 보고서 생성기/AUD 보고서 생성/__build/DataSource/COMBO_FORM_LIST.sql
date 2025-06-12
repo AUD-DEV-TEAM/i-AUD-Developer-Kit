@@ -1,0 +1,3 @@
+@@CSV
+CODE,TEXT
+1,(선택)

@@ -1,0 +1,6 @@
+/**
+* MetaDataSource
+*/
+export interface MetaDataSource{
+
+}
