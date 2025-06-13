@@ -1,19 +1,34 @@
 # i-AUD Developer Kit
 
-## 1. i-AUD 개발 환경 설정
+## 1. 소개 
+### 1.1. AUD Platform
+- AUD플랫폼은 업무시스템 화면 개발을 위한 솔루션으로 기존 <BI 툴>, <리포팅 툴>, <시각화 분석 툴>,
+<UI/UX 툴>, <JSP/Java 개발>로 해 왔던 다양한 화면 개발이 가능한 통합 UI 개발 플랫폼입니다.
+하나의 플랫폼에서 정형/비정형 보고서, OLAP, Dashboard, Report 등 다양한 형태의 화면을 제작할 수 있으며,
+지금까지 UI / UX 툴로 개발했던 각종 웹 화면이나 JSP / Java로 개발했던 화면들도 복잡하고 어려운 개발과정 없이 쉽고 빠르게 개발할 수 있습니다. 
+또한 Low Code 개발을 위한 다양한 AI 기술이 적용되어 있어 코딩을 모르는 사용자도 쉽게 업무용 화면을 개발할 수 있습니다.  
 
-### 1.1 작업 디렉토리에서 vs-code를 실행 합니다.
+
+### 1.2. i-AUD
+- i-AUD는 AUD Platform의 핵심 도구로, WYSIWYG(위지윅) 방식의 웹 애플리케이션 개발 환경을 제공합니다.
+- TypeScript(JavaScript) 기반의 단일 언어로 **클라이언트(Client Script)**와 서버(Server Script) 개발이 모두 가능하며,
+Java, Python, .NET, Perl 등의 별도 언어 학습 없이도 손쉽게 접근할 수 있습니다.
+
+
+## 2. i-AUD 개발 환경 설정
+
+### 2.1 작업 디렉토리에서 vs-code를 실행 합니다.
 ```sh
 cd D:\aud_report
 code .
 ```
-### 1.2 개발 소스 다운로드 - GitHub에서 개발 환경에 필요한 seed project를 다운로드 합니다.
+### 2.2 개발 소스 다운로드 - GitHub에서 개발 환경에 필요한 seed project를 다운로드 합니다.
 - GIT-URL : https://github.com/AUD-DEV-TEAM/i-AUD-Developer-Kit 
 - 터미널에서 아래 명령어를 실행 하여, 프로젝트 빌드에 필요한 외부 라이브러리를 설치합니다.
 ```sh
 npm -install
 ```
-### 1.3 개발 서버에 연결을 위한 정보를 셋팅 합니다.
+### 2.3 개발 서버에 연결을 위한 정보를 셋팅 합니다.
   - vs-code 작업디렉토리 하위에 `.vscode/settings.json` 파일을 추가하고 아래와 같이 설정 합니다.
 
 ```json
@@ -35,17 +50,17 @@ npm -install
 }
 ```
 
-## 2. 보고서 개발 절차
+## 3. 보고서 개발 절차
 
-### 2.1. i-AUD Designer에서 새로운 보고서를 저장 합니다.
+### 3.1. i-AUD Designer에서 새로운 보고서를 저장 합니다.
 - i-AUD Designer에서 필요한 컴포넌트를 배치 및 디자인을 합니다.
 
 
-### 2.2. vs-code에서 생성된 보고서를 다운로드 합니다.
+### 3.2. vs-code에서 생성된 보고서를 다운로드 합니다.
 - `AUD:Download Report` 명령어를 실행하여 저장된 보고서를 다운로드 합니다.
 - 다운로드된 폴더를 작업하고자 하는 위치로 이동합니다.
 
-### 2.3. TypeScript 개발 준비
+### 3.3. TypeScript 개발 준비
 - TypeScript로 개발하기 위해서 {폴더명}.script.js 파일의 확장자를 .ts 로 변경합니다.
    (Client Script는 {폴더명}.script.ts 파일을 우선으로 탐색합니다. js로 개발하실 경우 {폴더명}.script.js 파일을 유지하셔도 됩니다.)
 - `AUD: Generate starter code`를 실행하여 TypeScript 빌드에 필요한 모듈을 import 합니다.
@@ -72,18 +87,18 @@ import { event } from "jquery";
 let Matrix : Matrix; 
 ```
  
-### 2.4. 소스 변경 시 자동으로 TypeScript 빌드를 하도록 자동 감시모드(watch mode)를 실행합니다.
+### 3.4. 소스 변경 시 자동으로 TypeScript 빌드를 하도록 자동 감시모드(watch mode)를 실행합니다.
 
 - 터미널에서 아래 명령어를 실행하여 TypeScript watch mode로 설정해 줍니다.
 ```sh
 tsc --w
 ```
 
-### 2.5. 소스 수정 반영 테스트
+### 3.5. 소스 수정 반영 테스트
 - command palette(`Ctrl + Shift + P`로 실행)에서 `AUD: Save Script`를 실행하여 현재 변경된 내용을 저장 합니다.
 - `AUD: Run Designer`를 실행하여 chrome를 통해 실행된 프로그램을 테스트 합니다.
 
-## 3. i-AUD Developer Kit - Command Palette
+## 4. i-AUD Developer Kit - Command Palette
 
 - **AUD: Download Report**
   - 서버에서 특정 이름을 가진 프로그램을 다운로드 합니다.
