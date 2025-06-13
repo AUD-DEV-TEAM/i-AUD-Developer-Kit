@@ -8,13 +8,13 @@ cd D:\aud_report
 code .
 ```
 ### 1.2 개발 소스 다운로드 - GitHub에서 개발 환경에 필요한 seed project를 다운로드 합니다.
-   - GIT-URL : https://github.com/AUD-DEV-TEAM/i-AUD-Developer-Kit
-   -  터미널에서 아래 명령어를 실행 하여, 프로젝트 빌드에 필요한 외부 라이브러리를 설치합니다.
+- GIT-URL : https://github.com/AUD-DEV-TEAM/i-AUD-Developer-Kit 
+- 터미널에서 아래 명령어를 실행 하여, 프로젝트 빌드에 필요한 외부 라이브러리를 설치합니다.
 ```sh
 npm -install
 ```
 ### 1.3 개발 서버에 연결을 위한 정보를 셋팅 합니다.
-    vs-code 작업디렉토리 하위에 `.vscode/settings.json` 파일을 추가하고 아래와 같이 설정 합니다.
+  - vs-code 작업디렉토리 하위에 `.vscode/settings.json` 파일을 추가하고 아래와 같이 설정 합니다.
 
 ```json
 {
@@ -84,7 +84,7 @@ tsc --w
 - `AUD: Run Designer`를 실행하여 chrome를 통해 실행된 프로그램을 테스트 합니다.
 
 ## 3. i-AUD Developer Kit - Command Palette
-Press `Ctrl + Shift + P` to open the command palette, type `AUD`, and use the following commands:
+-Press `Ctrl + Shift + P` to open the command palette, type `AUD`, and use the following commands:
 
 - **AUD: Download Report**
   - 서버에서 특정 이름을 가진 프로그램을 다운로드 합니다.
