@@ -31,14 +31,17 @@ var UploadUserExcel = function () {
             Matrix.Alert(p.Message);
             return;
         }
+        //파일 이름을 파라미터로 등록한다.
         Matrix.AddGlobalParams("VS_USER_UPLOAD_FILE_NAME", p.SaveFileName, 1);
+        //서버 스크립트 호출하기
         Matrix.RunScript("", "IMPORT_USER_EXCEL", function (p) {
             if (p.Success == false) {
                 Matrix.Alert(p.Message);
                 return;
             }
             var ds = p.DataSet;
-            (mainView as any).TemplateCode = (ds as  any).XLS_PATH;
+            //MX-GRID의 TemplateCode를 넣는다.
+            mainView.TemplateCode = (ds as  any).XLS_PATH as string;
             mainView.Refresh();
         });
         Matrix.RemoveGlobalParams("VS_USER_UPLOAD_FILE_NAME");

@@ -1,0 +1,244 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPAF02F7031F2B4DDA90ADEC717DE6F1B8",
+    "FolderCode": "MYDOCUMENT.yglee",
+    "SavePath": "MYDOCUMENT.yglee/REPAF02F7031F2B4DDA90ADEC717DE6F1B8.mtsd",
+    "ReportName": "MX-GRID 이름정의(가변) 영역 API 접근하기",
+    "Writer": "yglee",
+    "WriteDate": "2025-06-04 13:45:01",
+    "Editor": "yglee",
+    "EditDate": "2025-06-04 13:45:01",
+    "TabPosition": 0,
+    "UsePersonalConditions": true,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0
+  },
+  "DataSources": {
+    "Datas": []
+  },
+  "ScriptText": "/*****************************\r\n * i-AUD Client Sample\r\n *****************************/\r\n//let DataGrid  : Grid = Matrix.getObject(\"DataGrid\") as Grid;\r\n//let btnExecute: Button = Matrix.getObject(\"Button\") as Button;\r\n",
+  "ServerScriptText": [
+    {
+      "Name": "COPY_NAME",
+      "Key": "BIZ0E2680EDCF894965AB732DBBF4E5ABEE",
+      "Encrypted": true,
+      "ScriptText": "SnGZTXoWgLwnWaQFwynZkMloOIQcnzfw03AihKOUcMghluSJqfuFzWYi6BHo9NxrzvuO7dhUG1p7r0hAhJJLLAeqACZhHRCcelqh/bXZB5ZN5U5ueYSQrN/awKNugx/akh5j/ROi/i83xWfU9mUvmVERg3jJLxFFLtQkBTVbn7aXAQYBqh4JcfpWCpYtVKj9gtXSxNKF7EnfoqgV/YNqNzSa6xFdJl87Y0m1uMjYMa7O6bDrGF1ewsaxexX46EOvMmNQW8/uqE5Pnoakq48mVEH6X1WeDoIoXe5Pc5ZeVMzym34/TgAlei5xy/lqDD4g1kpiyBj+Q0yFQDokhZUTpPBlhIs9oE9ho/oFz0umf5hTvT1r4/9mPgrJ3eraEPAY7Q6EfGP64+GCx4dLjxFbu1B6oQzlTPNjlsNSYVvGtk/3sUxr07usgvkyuvCR6hj7fmNir+BcPwYraiK6YZ/5cKptS0l3B014iZXE2IR9Baa8OEmnaYHDCRrlsEPOc818n5Plie39DpuY1gdOeqdVYyNRAHpNxf9RCCi/xH1twRkCfRdg5BSjvuiP0Ve5TsO7JFtNX9MXOq6dNlMhB1hM+hCmj/JkCcYvsQ1lnuVfMs1bl4B5caJtRn4Tp5Qg+I9RUd0tNJMVJjGUGwr/Nv6FdfqAs2JTGsGAyENqinaAj8OxhKdlMRh2s6ZKJ9An9zaXGzdVkH4fqYUVpRYJDP9TLJR+9dSdZF/JUvhItFUigQOa+egnNGlPZODzyHcsEnwXDl+uFLW7ej0LSC7rHR0SjwqBM7UpseCXVx6hZ0PkZEbmEn0CGdQqcrpDAg7Bbm3b9l78uC/0WfzRULiwKJEtBjv7rNEO0iIm90J3eXgzADCdRfUkw7N2cqmfuuGR4VGKjFTtzN6WTZC6ENe2svcJ0tmq4RvwEHAsB/J93eagB4zF9735eZyVm4zD8l1rxETbWqvt4B5sgVaYkYQ47S0SFiXUB0BJ49lTDU7H/BNn/poPosvSMsh/Shnv5BJeKCDC8HL5AL8MExZTox52r47vDvWW/KtpEfBxidZnWCleppI="
+    },
+    {
+      "Name": "COPY_BINDING_RANGE",
+      "Key": "BIZDE6EC183A8C943D1A3E0BE0E8F66EA41",
+      "Encrypted": true,
+      "ScriptText": "SnGZTXoWgLwnWaQFwynZkMloOIQcnzfw03AihKOUcMghluSJqfuFzWYi6BHo9NxrzvuO7dhUG1p7r0hAhJJLLAeqACZhHRCcelqh/bXZB5ZN5U5ueYSQrN/awKNugx/akh5j/ROi/i83xWfU9mUvmVERg3jJLxFFLtQkBTVbn7aXAQYBqh4JcfpWCpYtVKj9gtXSxNKF7EnfoqgV/YNqNzSa6xFdJl87Y0m1uMjYMa7O6bDrGF1ewsaxexX46EOvMmNQW8/uqE5Pnoakq48mVEH6X1WeDoIoXe5Pc5ZeVMzym34/TgAlei5xy/lqDD4g1kpiyBj+Q0yFQDokhZUTpPBlhIs9oE9ho/oFz0umf5hTvT1r4/9mPgrJ3eraEPAY7Q6EfGP64+GCx4dLjxFbu1B6oQzlTPNjlsNSYVvGtk/3sUxr07usgvkyuvCR6hj7fmNir+BcPwYraiK6YZ/5cHUnfO1X00MI91Fx7cBVsiZJgJej66xWKN+iV8P3w+lheSZVQxQjKOyNPKTO7dQtaNDyhYKZZbRfcY7H6C0EfYcL5/y+KhNummbSQi4YphKJF/lWhhAG7LcLuCHTVoC9QVEk5nUPzIrgiAIXs5NUx9PCLHE+p1hAkyPGvXzD+fJL3F2c1VLvTLGEES09vcaUjaPPdGomSh4T4eV7ZWNztNbNIXftsbb/erEf98oYyI/aNNJxJwlM5mKp9WkBwX1qTFRcmj+f6kw9LKVsA1u2K3gCA6C93ufHJACf7WmIQUtL+8XRznzJWWEWRASixUJO2g7PRZfcNO+fpARgZZ8WrC8mRIDJCVx1tdLljcR2ac3PMixB4iaLfjPIrtg9LqixYw=="
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "FormD822588EED8A85E445A46595086E1D94",
+      "Name": "Form1",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "ServerScript": "COPY_NAME",
+          "AutoRefresh": true,
+          "DoRefresh": true,
+          "DoExport": true,
+          "TemplateCode": "1B3A8DF64ABC461981281B8F598F2CCD",
+          "ActiveSheet": "",
+          "UseMultiSheet": false,
+          "FreezeLineThickness": 1,
+          "ParentGridName": "",
+          "DisableScrollBar": false,
+          "LimitOfBinding": 10000,
+          "ExcelExportType": "Default",
+          "SelectedColor": {
+            "R": 198,
+            "G": 217,
+            "B": 241,
+            "A": 0.5
+          },
+          "FreezeLineColor": {
+            "R": 127,
+            "G": 127,
+            "B": 127,
+            "A": 1
+          },
+          "SelectionBorderColor": "rgba(234, 86, 64, 0.5)",
+          "SelectionMode": 0,
+          "Controls": [],
+          "MenuOption": {
+            "VisibleExcel": true,
+            "VisibleHTML": true,
+            "VisiblePDF": true
+          },
+          "MoveAfterReturn": 1,
+          "Type": "iGrid",
+          "Id": "iGrid1749010416861",
+          "Name": "MXGrid",
+          "Position": {
+            "Left": 0,
+            "Top": 54,
+            "Width": 2026,
+            "Height": 960,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": true,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "Data List",
+          "Value": "Data List",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "InputType": 0,
+          "Formula": "",
+          "MxBinding": "",
+          "Type": "TextBox",
+          "Id": "TextBox0A48B257DC9CDC932057DFE341ECF084",
+          "Name": "VS_REPORT_NAME",
+          "Position": {
+            "Left": 10,
+            "Top": 10,
+            "Width": 120,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {},
+  "PersonalConditions": {
+    "list": [],
+    "useAll": true
+  }
+}

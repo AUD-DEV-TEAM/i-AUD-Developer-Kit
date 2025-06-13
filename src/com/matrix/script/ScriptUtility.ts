@@ -778,7 +778,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
    *
   * @param value 변환 대상
   */
-  ToBoolean(value: object): boolean;
+  ToBoolean(value: any): boolean;
 
   /** 
    * 날짜 형식을 기준으로 변환 대상 값을 Date 형식으로 변환하여 반환합니다.
@@ -807,14 +807,14 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param value 변환 대상
   * @param defValue 변환 실패 시 대체할 값
   */
-  ToDouble(value: object, defValue: number): number;
+  ToDouble(value: any, defValue: number): number;
 
   /** 
    * 입력된 값을 int 형식으로 변환하여 반환합니다.
    *
   * @param value 변환 대상
   */
-  ToInteger(value: object): number;
+  ToInteger(value: any): number;
 
   /** 
    * 입력된 값을 int 형식으로 변환하여 반환합니다.
@@ -822,7 +822,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param value 변환 대상
   * @param defValue 변환 실패 시 대체할 값
   */
-  ToInteger(value: object, defValue: number): number;
+  ToInteger(value: any, defValue: number): number;
 
   /** 
    * 입력된 값을 특정 양식으로 변환한 문자열을 반환합니다.
@@ -830,7 +830,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param value 변환 대상
   * @param format 변환 양식
   */
-  ToString(value: object, format: string): string;
+  ToString(value: any, format: string): string;
 
   /** 
    * 대상 문자열의 좌우 공백을 제거한 문자열을 반환합니다.
