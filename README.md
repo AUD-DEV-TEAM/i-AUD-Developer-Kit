@@ -8,8 +8,8 @@ cd D:\aud_report
 code .
 ```
 ### 1.2 개발 소스 다운로드 - GitHub에서 개발 환경에 필요한 seed project를 다운로드 합니다.
-   GIT-URL : https://github.com/AUD-DEV-TEAM/i-AUD-Developer-Kit
-   터미널에서 아래 명령어를 실행 하여, 프로젝트 빌드에 필요한 외부 라이브러리를 설치합니다.
+   - GIT-URL : https://github.com/AUD-DEV-TEAM/i-AUD-Developer-Kit
+   -  터미널에서 아래 명령어를 실행 하여, 프로젝트 빌드에 필요한 외부 라이브러리를 설치합니다.
 ```sh
 npm -install
 ```
@@ -73,7 +73,8 @@ let Matrix : Matrix;
 ```
  
 ### 2.4. 소스 변경 시 자동으로 TypeScript 빌드를 하도록 자동 감시모드(watch mode)를 실행합니다.
-터미널에서 아래 명령어를 실행하여 TypeScript watch mode로 설정해 줍니다.
+
+- 터미널에서 아래 명령어를 실행하여 TypeScript watch mode로 설정해 줍니다.
 ```sh
 tsc --w
 ```
