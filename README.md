@@ -84,7 +84,6 @@ tsc --w
 - `AUD: Run Designer`를 실행하여 chrome를 통해 실행된 프로그램을 테스트 합니다.
 
 ## 3. i-AUD Developer Kit - Command Palette
--Press `Ctrl + Shift + P` to open the command palette, type `AUD`, and use the following commands:
 
 - **AUD: Download Report**
   - 서버에서 특정 이름을 가진 프로그램을 다운로드 합니다.
