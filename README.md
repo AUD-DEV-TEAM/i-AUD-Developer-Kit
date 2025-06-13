@@ -138,10 +138,11 @@ tsc --w
 - **AUD: Save Script**
   - 현재 작성한 프로그램을 서버에 배포합니다.
   - 배포 대상은 Client Script, Server Script, DataSource 이며, 서버의 프로그램을 배포 후 i-AUD 디자이너에서 수정된 내용은 자동으로 동기화 됩니다.
-  - 단축키 : `ctrl+shift+s`
+  - 단축키 : `ctrl+alt+S`
 
 - **AUD: Run Designer**
   - 현재 편집기에서 활성화된 프로그램을 브라우저로 실행합니다.
+  - 단축키 : `ctrl+alt+D`
 
 - **AUD: Upload Report**
   - 현재 편집기에서 활성화된 프로그램을 서버에 배포합니다. (디자인 정보를 포함한 서버의 프로그램 자체를 변경합니다.)

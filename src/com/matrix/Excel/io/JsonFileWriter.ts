@@ -9,14 +9,14 @@ export interface JsonFileWriter{
   * @param propName 속성 이름
   * @param propValue 속성 값
   */
-  addProperty(propName: string, propValue: object): JsonFileWriter;
+  addProperty(propName: string, propValue: any): JsonFileWriter;
 
   /** 
    * Json 배열에 값을 추가 합니다.
    *
   * @param value 항목의 값
   */
-  addToArray(value: object): JsonFileWriter;
+  addToArray(value: any): JsonFileWriter;
 
   /** 
    * Json 배열 시작 문자열 출력합니다.
