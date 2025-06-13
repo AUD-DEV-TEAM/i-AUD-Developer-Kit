@@ -138,6 +138,7 @@ tsc --w
 - **AUD: Save Script**
   - 현재 작성한 프로그램을 서버에 배포합니다.
   - 배포 대상은 Client Script, Server Script, DataSource 이며, 서버의 프로그램을 배포 후 i-AUD 디자이너에서 수정된 내용은 자동으로 동기화 됩니다.
+  - 단축키 : `ctrl+shift+s`
 
 - **AUD: Run Designer**
   - 현재 편집기에서 활성화된 프로그램을 브라우저로 실행합니다.
@@ -152,6 +153,7 @@ tsc --w
 
 - **AUD: Execute Query**
   - 데이터 소스 편집 화면에서 선택한 영역을 SQL을 실행하여 해당 결과를 console에 출력합니다.
+  - 단축키 : `ctrl+F5`
       
 - **AUD: Generate Control Variables**
   - Generates scripts that declare all controls within the report.
