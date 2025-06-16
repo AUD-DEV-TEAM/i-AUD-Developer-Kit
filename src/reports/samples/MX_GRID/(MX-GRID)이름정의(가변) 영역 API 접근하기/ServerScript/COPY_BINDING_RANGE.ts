@@ -20,7 +20,7 @@ const res = Matrix.getResponse();
 const session  = Matrix.getSession(); 
 const util = Matrix.getUtility(); 
 const fso = Matrix.getFileSystemObject(); 
-let  con = Matrix.getConnection(); 
+const  con = Matrix.getConnection(); 
 /**
  * 현재 실행 중인 MX-GRID의 엑셀 모델내에 데이터가 바인딩된 영역을
  * 식별하고 해당영역의 데이터를 다른 영역에 복사 합니다.

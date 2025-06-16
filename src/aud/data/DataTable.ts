@@ -266,7 +266,7 @@ export interface DataTable{
   * @param rowIdx 특정 레코드의 위치
   * @param field 특정 컬럼의 이름 또는 인덱스
   */
-  getData(rowIdx: number, field: string | number): object;
+  getData(rowIdx: number, field: string | number): any;
 
   /** 
    * 레코드의 특정 셀의 값을 반환합니다.
@@ -274,7 +274,7 @@ export interface DataTable{
   * @param rowIdx 특정 레코드의 위치
   * @param fieldName 특정 컬럼의 이름
   */
-  getRowValue(rowIdx: number, fieldName: string): string | object;
+  getRowValue(rowIdx: number, fieldName: string): any;
 
   /** 
    * 레코드의 특정 셀의 값을 설정합니다.
@@ -283,7 +283,7 @@ export interface DataTable{
   * @param field 특정 컬럼의 이름 또는 인덱스
   * @param value 값
   */
-  setData(rowIdx: number, field: string | number, value: object): void;
+  setData(rowIdx: number, field: string | number, value: any): void;
 
   /** 
    * 레코드의 특정 셀의 값을 설정합니다.

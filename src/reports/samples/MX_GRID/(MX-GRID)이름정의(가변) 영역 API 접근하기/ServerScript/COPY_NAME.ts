@@ -25,7 +25,7 @@ const res = Matrix.getResponse();
 const session  = Matrix.getSession(); 
 const util = Matrix.getUtility(); 
 const fso = Matrix.getFileSystemObject(); 
-let  con = Matrix.getConnection(); 
+const  con = Matrix.getConnection(); 
  
 
 var wb = Matrix.getWorkBook();

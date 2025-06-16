@@ -69,7 +69,9 @@ npm -install
                                     //  2. 인증 키 관리 메뉴에서 "개인용 Access Token 발급"에서 "Access Token 생성"을 통해 발급받습니다.
         "AutoBuild": false,      // 스크립트 저장에서 tsc 빌드를 자동으로 실행할지 여부 (`tsc --w` 명령어를 통해 수정된 파일이 실시간으로 빌드하는 방법을 추천합니다.)
         "MX_GRID_BACKUP": true, //MX-GRID 디자인 정보를 다운로드 할지 여부를 설정합니다.
-        "MX_GRID_JSON_PRETTY": true  //i-AUD 보고서 파일 (json 구조)을 자동 formatting할 지 여부를 설정합니다.
+        "MX_GRID_JSON_PRETTY": true,  //i-AUD 보고서 파일 (json 구조)을 자동 formatting할 지 여부를 설정합니다.        
+        "QueryResultLimit":100,    //쿼리 출력 최대 건수 입니다.
+        "QueryResultFileName" : "QueryResult.txt" //쿼리 출력 파일명 , 값이 없으면 console에 출력 됩니다.
     }
 }
 ```

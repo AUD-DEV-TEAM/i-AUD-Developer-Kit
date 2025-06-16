@@ -435,7 +435,7 @@ export interface OlapGrid extends Control{
    *
   * @param range Excel 의 출력 시작 셀 주소
   */
-  GetExcelExportJSON(range: string): object;
+  GetExcelExportJSON(range: string): any;
 
   /** 
    * 그리드에서 수정된 데이터가 존재하는지 여부를 반환 합니다.

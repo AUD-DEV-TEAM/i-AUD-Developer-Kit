@@ -14,7 +14,7 @@ export interface AddIn extends Control{
    *
   * @param clsName 메인 클래스 명
   */
-  getScriptClass(clsName: string): object;
+  getScriptClass(clsName: string): any;
 
   /**
    * @event 

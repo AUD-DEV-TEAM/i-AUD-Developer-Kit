@@ -15,7 +15,7 @@ export interface ScriptDataRow{
    *
   * @param column 컬럼 인덱스 또는 컬럼명
   */
-  getData(column: string|number): object;
+  getData(column: string|number): any;
 
   /** 
    * 레코드가 포함된 데이터 테이블을 반환합니다.
@@ -41,7 +41,7 @@ export interface ScriptDataRow{
    * 레코드의 전체 Column의 값을 배열 유형으로 반환합니다.
    *
   */
-  getItemArray(): object[];
+  getItemArray(): any[];
 
   /** 
    * 레코드의 작업 상태 (N: 신규, U: 수정, D: 삭제)를 반환합니다.

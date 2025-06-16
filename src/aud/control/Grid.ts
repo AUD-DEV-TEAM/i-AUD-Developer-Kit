@@ -275,7 +275,7 @@ export interface Grid extends Control{
   * @param value 필터 조건 값
   * @param isAnd AND 인지 OR인지 유무(필터 타입이 Measure일 경우에만 사용. 기본값은 true)
   */
-  AddFilter(fieldName: string, type: number, operator: string, value: object, isAnd: boolean): void;
+  AddFilter(fieldName: string, type: number, operator: string, value: any, isAnd: boolean): void;
 
   /** 
    * 특정 필드에  정렬 정보를 추가하는 메소드
