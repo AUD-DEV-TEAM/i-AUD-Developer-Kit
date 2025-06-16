@@ -7,16 +7,16 @@ export interface DimensionGroupItem{
   /**
    * 항목 리스트
   */
-   readonly Entries: string[];
+  Entries: string[];
 
   /**
    * 항목 타입
   */
-   readonly ItemType: enDimensionGroupItemType;
+  ItemType: enDimensionGroupItemType;
 
   /**
    * 이름
   */
-   readonly Name: string;
+  Name: string;
 
 }

@@ -7,12 +7,12 @@ export interface FieldGroup{
   /**
    * 그룹의 항목 리스트(필드리스트)
   */
-   readonly Childrens: string[];
+  Childrens: string[];
 
   /**
    * 그룹명
   */
-   readonly Name: string;
+  Name: string;
 
   /** 
    * 변경된 필드 그룹 정보를 반영합니다.

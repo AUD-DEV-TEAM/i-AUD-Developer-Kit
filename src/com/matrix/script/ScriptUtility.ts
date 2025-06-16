@@ -17,7 +17,7 @@ export interface ScriptUtility{
    *
   * @param value 입력값
   */
-  Abs(value: object): object;
+  Abs(value: number): number;
 
   /** 
    * Base64로 Encoding 된 이미지 데이터로  이미지 파일을 생성합니다.
@@ -32,7 +32,7 @@ export interface ScriptUtility{
    *
   * @param className Class Name
   */
-  CreateInstance(className: string): object;
+  CreateInstance(className: string): any;
 
   /** 
    * PDF 파일 작성을 위한 객체를 반환합니다.
@@ -272,14 +272,14 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
    *
   * @param json json text
   */
-  JsonParse(json: string): object;
+  JsonParse(json: string): any;
 
   /** 
    * javascript 를 json object로 변환하여 반환합니다.
    *
   * @param jsObject javascript object
   */
-  JsonToString(jsObject: object): string;
+  JsonToString(jsObject: any): string;
 
   /** 
    * 문자열에서 마지막으로 나오는 부분 문자열을 반환합니다.
@@ -317,7 +317,7 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   * @param valueA 입력값 A
   * @param valueB 입력값 B
   */
-  Max(valueA: object, valueB: object): object;
+  Max(valueA: number, valueB: number): number;
 
   /** 
    * 입력된 2개의 값 중 작은 값을 반환합니다(입력값은 수치형 데이터만 허용합니다).
@@ -325,7 +325,7 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   * @param valueA 입력값 A
   * @param valueB 입력값 B
   */
-  Min(valueA: object, valueB: object): object;
+  Min(valueA: number, valueB: number): number;
 
   /** 
    * 입력된 날짜 및 시간의 분 값을 반환합니다.
@@ -618,7 +618,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param inlineImages InLine Images(eg. [id@base64text, id2@base64text2])
   * @param attachFileEncoding 첨부파일 명 encoding 타입
   */
-  SendMail(smtpUrl: string, smtpPort: string, useSSL: boolean, userName: string, passWord: string, fromMail: string, toMails: string, ccMails: string, bccMails: string, subject: string, content: string, params: object[], attachFiles: string[], charset: string, messageHeaders: string[], inlineImages: string[], attachFileEncoding: string): boolean;
+  SendMail(smtpUrl: string, smtpPort: string, useSSL: boolean, userName: string, passWord: string, fromMail: string, toMails: string, ccMails: string, bccMails: string, subject: string, content: string, params: any[], attachFiles: string[], charset: string, messageHeaders: string[], inlineImages: string[], attachFileEncoding: string): boolean;
 
   /** 
    * 메일 전송하기.
@@ -640,7 +640,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param messageHeaders Message headers
   * @param inlineImages InLine Images(eg. [id@base64text, id2@base64text2])
   */
-  SendMail(smtpUrl: string, smtpPort: string, useSSL: boolean, userName: string, passWord: string, fromMail: string, toMails: string, ccMails: string, bccMails: string, subject: string, content: string, params: object[], attachFiles: string[], charset: string, messageHeaders: string[], inlineImages: string[]): boolean;
+  SendMail(smtpUrl: string, smtpPort: string, useSSL: boolean, userName: string, passWord: string, fromMail: string, toMails: string, ccMails: string, bccMails: string, subject: string, content: string, params: any[], attachFiles: string[], charset: string, messageHeaders: string[], inlineImages: string[]): boolean;
 
   /** 
    * 메일 전송하기.
@@ -659,7 +659,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param params 메일 옵션
   * @param attachFiles 첨부 파일(eg. [path@name, path2@name2])
   */
-  SendMail(smtpUrl: string, smtpPort: string, useSSL: boolean, userName: string, passWord: string, fromMail: string, toMails: string, ccMails: string, bccMails: string, subject: string, content: string, params: object[], attachFiles: string[]): boolean;
+  SendMail(smtpUrl: string, smtpPort: string, useSSL: boolean, userName: string, passWord: string, fromMail: string, toMails: string, ccMails: string, bccMails: string, subject: string, content: string, params: Array<any>, attachFiles: string[]): boolean;
 
   /** 
    * 별도의 프로세스에서 지정된 문자열 명령을 실행합니다.
@@ -755,7 +755,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param value2 값2
   * @param valueN 값 ... n
   */
-  StringFormat(text: string, value1: object, value2: object, valueN: object): number;
+  StringFormat(text: string, value1: any, value2: any, valueN: any): number;
 
   /** 
    * 문자열의 길이를 반환 합니다.
@@ -799,7 +799,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
    *
   * @param value 변환 대상
   */
-  ToDouble(value: object): number;
+  ToDouble(value: any): number;
 
   /** 
    * 입력된 값을 double 형식으로 변환하여 반환합니다.
@@ -891,7 +891,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
    * ```
   * @param xml xml text
   */
-  XmlParse(xml: string): object;
+  XmlParse(xml: string): any;//
 
   /** 
    * 입력된 날짜 및 시간의 연도 값을 반환합니다.

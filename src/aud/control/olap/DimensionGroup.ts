@@ -7,7 +7,7 @@ export interface DimensionGroup{
   /**
    * 디멘젼 항목 정보
   */
-   readonly Items: DimensionGroupItem[];
+  Items: DimensionGroupItem[];
 
   /** 
    * 디멘젼 항목을 추가합니다.

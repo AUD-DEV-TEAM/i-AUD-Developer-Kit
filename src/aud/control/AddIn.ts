@@ -7,7 +7,7 @@ export interface AddIn extends Control{
   /**
    * 생성할 클래스 이름
   */
-   readonly ClassName: string;
+  ClassName: string;
 
   /** 
    * 로딩 된 라이브러리의 메인 객체를 반환합니다.

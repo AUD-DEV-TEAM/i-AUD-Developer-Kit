@@ -14,14 +14,14 @@ export interface JsonFileWriter{
   * @param name 속성명
   * @param value 속성값
   */
-  addProperty(name: string, value: object): JsonFileWriter;
+  addProperty(name: string, value: any): JsonFileWriter;
 
   /** 
    * Json 배열에 값을 추가합니다.
    *
   * @param value 속성값
   */
-  addToArray(value: object): JsonFileWriter;
+  addToArray(value: any): JsonFileWriter;
 
   /** 
    * Json 배열 구분을 출력합니다(구문:name=[)

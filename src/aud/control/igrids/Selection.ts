@@ -8,12 +8,12 @@ import { IValValidator } from "../../../aud/control/igrids/IValValidator";
 export interface Selection{
 
   /**
-   * 외곽 라인 색상 (선택 모드가 SingleRange일 경우만 동작 합니다.)
+   * 외곽 라인 색상
   */
-  BorderColor: boolean;
+  BorderColor: string;
 
   /**
-   * 선택 모드 (0:Default, 1:SingleRange)
+   * 선택 모드 (0:Default, 1:SingleCell, 2:SingleRow)
   */
   SelectionMode: number;
 

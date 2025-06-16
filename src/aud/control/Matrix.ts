@@ -1422,7 +1422,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * }
   * ```
   */
-  ShowCommonPopup(code: string, callBack: (rows: DataRow[]) => void): void;
+  ShowCommonPopup(code: string, callBack: (rows: Array<DataRow>) => void): void;
 
   /** 
    * 이미지 에디터를 팝업으로 표시합니다.

@@ -42,7 +42,7 @@ export interface CalendarYMFromTo extends Control{
   /**
    * To 달력 컨트롤 이름
   */
-   readonly Name2: string;
+  Name2: string;
 
   /**
    * To Date형 선택된 날짜
@@ -57,12 +57,12 @@ export interface CalendarYMFromTo extends Control{
   /**
    * From 에 선택된 날짜를 DataFormat에 맞춰서 반환한다.
   */
-   readonly Value: string;
+  Value: string;
 
   /**
    * To 에 선택된 날짜를 DataFormat에 맞춰서 반환한다.
   */
-   readonly Value2: string;
+  Value2: string;
 
   /**
    * 출력용 날짜 포멧

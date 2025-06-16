@@ -58,7 +58,7 @@ export interface ICell{
   /**
    * 셀의 행 번호
   */
-   readonly R: number;
+  R: number;
 
   /**
    * 셀의 주소 값
