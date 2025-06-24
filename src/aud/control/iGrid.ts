@@ -658,4 +658,27 @@ export interface iGrid extends Control{
   ) => void;
 
 
+  /**
+   * @event 
+   *
+   *  MX-Grid의 시트가 변경된 후 발생합니다.
+   *
+   * @param args
+   *
+   * Target : {@link iGrid}
+  */
+  OnSheetChanged : (sender : iGrid
+  , args : { 
+    /**
+     * 컨트롤 아이디
+    */
+    Id: string
+    /**
+     * 시트명
+    */
+    SheetName: string
+  }
+  ) => void;
+
+
 }

@@ -97,7 +97,7 @@ export interface iGridView{
    * ```
    * Target : {@link iGridView}
   */
-  OnBeginClipBoardPaste : ( args: {Rows: Array<Array<string>>, Range: ISelectionArea, Cancel: boolean} ) => void;
+  OnBeginClipBoardPaste : ( args: {Rows:Array<Array<string>>,Range:ISelectionArea,IgnoreHiddenCells:boolean,Cancel:boolean} ) => void;
 
 
   /**
