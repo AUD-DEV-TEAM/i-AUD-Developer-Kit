@@ -6,7 +6,7 @@ export interface OptionView{
   /**
    * 데이터 박스의 상하 좌우 마진
   */
-  BoxMargin: number;
+  BoxMargin: double;
 
   /**
    * 셀 텍스트 가로 정렬(ex:left, center, right)
@@ -16,12 +16,12 @@ export interface OptionView{
   /**
    * 데이터 표시 영역의 셀 너비
   */
-  CellWidth: number;
+  CellWidth: double;
 
   /**
    * 컬럼 헤더 영역의 높이
   */
-  ColumnHeaderHeight: number;
+  ColumnHeaderHeight: double;
 
   /**
    * 컬럼 헤더 영역 텍스트 가로 정렬(ex:left, center, right)
@@ -36,12 +36,12 @@ export interface OptionView{
   /**
    * 데이터 라벨의 마진
   */
-  LabelMargin: number;
+  LabelMargin: double;
 
   /**
    * 멀티행의 행간 gap 높이
   */
-  LineHeight: number;
+  LineHeight: double;
 
   /**
    * 가로 고정 영역 헤더 정렬 (ex:left, center, right)
@@ -51,7 +51,7 @@ export interface OptionView{
   /**
    * 데이터 행의 높이
   */
-  RowHeight: number;
+  RowHeight: double;
 
   /**
    * Minor Unit 라벨 표시 여부

@@ -58,21 +58,6 @@ export interface Selection{
   /** 
    * 특정 영역을 선택 합니다.
    *
-  * @param rIndex 해당 찾으려는 셀의 행 인덱스 값
-  * @param cIndex 해당 찾으려는 셀의 열 인덱스 값
-  */
-  Select(rIndex: number, cIndex: number): void;
-
-  /** 
-   * 특정 영역을 선택 합니다.
-   *
-  * @param rangeName 해당 찾으려는 셀의 영역(eg. A1:B10 or A1)
-  */
-  Select(rangeName: string): void;
-
-  /** 
-   * 특정 영역을 선택 합니다.
-   *
   * @param fromR 선택 시작 위치 Row
   * @param fromC 선택 시작 위치 Column
   * @param toR 선택 종료 위치 Row
@@ -87,6 +72,21 @@ export interface Selection{
   * @param toRange 선택 시작 위치(eg. C10))
   */
   Select(fromRange: string, toRange: string): void;
+
+  /** 
+   * 특정 영역을 선택 합니다.
+   *
+  * @param rIndex 해당 찾으려는 셀의 행 인덱스 값
+  * @param cIndex 해당 찾으려는 셀의 열 인덱스 값
+  */
+  Select(rIndex: number, cIndex: number): void;
+
+  /** 
+   * 특정 영역을 선택 합니다.
+   *
+  * @param rangeName 해당 찾으려는 셀의 영역(eg. A1:B10 or A1)
+  */
+  Select(rangeName: string): void;
 
   /** 
    * 특정 위치의 Row 영역 선택하기

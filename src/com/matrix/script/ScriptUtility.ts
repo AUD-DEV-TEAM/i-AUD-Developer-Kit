@@ -110,16 +110,16 @@ export interface ScriptUtility{
   /** 
    * 엑셀 파일 작성을 위해 WorkBook 객체를 생성합니다.
    *
+  * @param fontName 기본 폰트명
+  * @param fontSize 기본 폰트 크기
   */
-  CreateWorkBook(): ScriptWorkBook;
+  CreateWorkBook(fontName: string, fontSize: int): ScriptWorkBook;
 
   /** 
    * 엑셀 파일 작성을 위해 WorkBook 객체를 생성합니다.
    *
-  * @param fontName 기본 폰트명
-  * @param fontSize 기본 폰트 크기
   */
-  CreateWorkBook(fontName: string, fontSize: number): ScriptWorkBook;
+  CreateWorkBook(): ScriptWorkBook;
 
   /** 
    * json 데이터 기준으로 WorkBook 객체를 생성합니다.
@@ -127,6 +127,15 @@ export interface ScriptUtility{
   * @param jsonText json text
   */
   CreateWorkBookByJson(jsonText: string): ScriptWorkBook;
+
+  /** 
+   * 입력된 값을 Date 형식으로 변환하여 반환합니다.
+   *
+  * @param year 년
+  * @param month 월 (월은 값은 0부터 시작합니다. e.g., 0 = 1월.)
+  * @param day 일
+  */
+  Date(year: int, month: int, day: int): Date;
 
   /** 
    * 입력된 값을 Date 형식으로 생성하여 반환합니다.
@@ -138,16 +147,7 @@ export interface ScriptUtility{
   * @param minute 분
   * @param second 초
   */
-  Date(year: number, month: number, day: number, hour: number, minute: number, second: number): Date;
-
-  /** 
-   * 입력된 값을 Date 형식으로 변환하여 반환합니다.
-   *
-  * @param year 년
-  * @param month 월 (월은 값은 0부터 시작합니다. e.g., 0 = 1월.)
-  * @param day 일
-  */
-  Date(year: number, month: number, day: number): Date;
+  Date(year: int, month: int, day: int, hour: int, minute: int, second: int): Date;
 
   /** 
    * 입력한 날짜에 날짜 또는 시간 간격을 더한 Date 값을 반환합니다.
@@ -156,7 +156,7 @@ export interface ScriptUtility{
   * @param addValue 변경할 값
   * @param date 날짜
   */
-  DateAdd(interval: enDateInterval, addValue: number, date: Date): Date;
+  DateAdd(interval: enDateInterval, addValue: int, date: Date): Date;
 
   /** 
    * 지정된 두 날짜 및 시간 사이의 날짜 및 시간 차이 값을 반환합니다.
@@ -165,7 +165,7 @@ export interface ScriptUtility{
   * @param dateA 날짜 및 시간 A
   * @param dateB 날짜 및 시간 B
   */
-  DateDiff(interval: enDateInterval, dateA: Date, dateB: Date): number;
+  DateDiff(interval: enDateInterval, dateA: Date, dateB: Date): int;
 
   /** 
    * 날짜 및 시간 값 중 지정된 부분의 날짜 및 시간 데이터를 정수로 반환합니다.
@@ -173,14 +173,14 @@ export interface ScriptUtility{
   * @param interval 단위
   * @param date 날짜 및 시간
   */
-  DatePart(interval: enDateInterval, date: Date): number;
+  DatePart(interval: enDateInterval, date: Date): int;
 
   /** 
    * 입력된 날짜 및 시간의 일 값을 반환합니다.
    *
   * @param date 날짜
   */
-  Day(date: Date): number;
+  Day(date: Date): int;
 
   /** 
    * 파일의 DRM을 해제 합니다.
@@ -234,7 +234,7 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
    *
   * @param date 날짜
   */
-  Hour(date: Date): number;
+  Hour(date: Date): int;
 
   /** 
    * 대상 문자열에서 검색 시작 위치 이후의 검색어의 위치를 반환합니다.
@@ -243,7 +243,7 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   * @param find 검색어
   * @param fromIndex 검색 시작 위치
   */
-  IndexOf(text: string, find: string, fromIndex: number): number;
+  IndexOf(text: string, find: string, fromIndex: int): int;
 
   /** 
    * 대상 문자열에서 검색어의 위치를 반환합니다.
@@ -251,7 +251,7 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   * @param text 대상 문자열
   * @param find 검색어
   */
-  IndexOf(text: string, find: string): number;
+  IndexOf(text: string, find: string): int;
 
   /** 
    * 대상 문자열이 Null이거나 빈 문자열인지를 반환합니다.
@@ -287,7 +287,7 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   * @param text 대상 문자열
   * @param findText 찾을 문자열
   */
-  LastIndexOf(text: string, findText: string): number;
+  LastIndexOf(text: string, findText: string): int;
 
   /** 
    * 대상 문자열의 좌측부터 지정한 길이만큼의 문자열을 반환합니다.
@@ -295,14 +295,14 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   * @param text 대상 문자열
   * @param length 길이
   */
-  Left(text: string, length: number): string;
+  Left(text: string, length: int): string;
 
   /** 
    * 대상 문자열의 길이를 반환 합니다.
    *
   * @param text 대상 문자열
   */
-  Length(text: string): number;
+  Length(text: string): int;
 
   /** 
    * 문자열을 소문자로 변환해줍니다.
@@ -317,7 +317,7 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   * @param valueA 입력값 A
   * @param valueB 입력값 B
   */
-  Max(valueA: number, valueB: number): number;
+  Max(valueA: any, valueB: any): any;
 
   /** 
    * 입력된 2개의 값 중 작은 값을 반환합니다(입력값은 수치형 데이터만 허용합니다).
@@ -325,27 +325,35 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   * @param valueA 입력값 A
   * @param valueB 입력값 B
   */
-  Min(valueA: number, valueB: number): number;
+  Min(valueA: any, valueB: any): any;
 
   /** 
    * 입력된 날짜 및 시간의 분 값을 반환합니다.
    *
   * @param date 날짜
   */
-  Minute(date: Date): number;
+  Minute(date: Date): int;
 
   /** 
    * 입력된 날짜 및 시간의 월의 값을 반환합니다.
    *
   * @param date 날짜
   */
-  Month(date: Date): number;
+  Month(date: Date): int;
 
   /** 
    * 현재 날짜 및 시간을 반환합니다.
    *
   */
   Now(): Date;
+
+  /** 
+   * PPT Slide 를 이미지 파일로 변환합니다. (이미지 확장자 : png)
+   *
+  * @param pptPath PPT 경로 (reports 아래 경로만 사용)
+  * @param saveFolder 이미지 저장 폴더 명 (reports 아래 경로만 사용)
+  */
+  PptToImages(pptPath: string, saveFolder: string): string[];
 
   /** 
    * PPT Slide 를 이미지 파일로 변환합니다.
@@ -357,14 +365,6 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   PptToImages(pptPath: string, saveFolder: string, imgExt: string): string[];
 
   /** 
-   * PPT Slide 를 이미지 파일로 변환합니다. (이미지 확장자 : png)
-   *
-  * @param pptPath PPT 경로 (reports 아래 경로만 사용)
-  * @param saveFolder 이미지 저장 폴더 명 (reports 아래 경로만 사용)
-  */
-  PptToImages(pptPath: string, saveFolder: string): string[];
-
-  /** 
    * XML 문서의 내용을 포멧팅해 줍니다.
    *
   * @param sourcePath 원본 파일의 경로
@@ -372,6 +372,15 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   * @param attrNewLine Attribute 개행 여부
   */
   PrettyXML(sourcePath: string, targetPath: string, attrNewLine: boolean): void;
+
+  /** 
+   * CSV 형태 파일의 내용을 데이터 테이블 형태로 반환합니다.
+대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
+callback을 지원하는 함수를 사용하시기 바랍니다.
+   *
+  * @param path 엑셀 파일의 경로
+  */
+  ReadCSVFile(path: string): ScriptDataTable;
 
   /** 
    * CSV 형태 파일의 내용을 데이터 테이블 형태로 반환합니다.
@@ -413,44 +422,6 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
 callback을 지원하는 함수를 사용하시기 바랍니다.
    *
   * @param path 엑셀 파일의 경로
-  */
-  ReadCSVFile(path: string): ScriptDataTable;
-
-  /** 
-   * CSV 형태 파일의 내용을 데이터 테이블 형태로 반환합니다.
-   *
-  * @param path 엑셀 파일의 경로
-  * @param callbackRow 파일의 Row 단위 데이터 반환 함수
-  * ```
-  * 
-  *       CALL_BACK(function(row){
-  *       //row == com.matrix.script.ScriptDataRow
-  *       //return true : 해당 row 를 데이터 테이블에 추가
-  *       //      false : 엑셀 파일 읽기 종료
-  *       //       null : 다음 row 읽기
-  * })
-  * ```
-  */
-  ReadCSVFile(path: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
-
-  /** 
-   * CSV 형태 파일의 내용을 데이터 테이블 형태로 반환합니다.
-대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
-callback을 지원하는 함수를 사용하시기 바랍니다.
-   *
-  * @param path 엑셀 파일의 경로
-  * @param firstLineIsColumnHeader 첫 행이 컬럼명인지 여부
-  * @param colSeparator 행 분리자(기본값:,)
-  * @param rowSeparator 열 분리자(기본값:개행)
-  */
-  ReadCSVFile(path: string, firstLineIsColumnHeader: boolean, colSeparator: string, rowSeparator: string): ScriptDataTable;
-
-  /** 
-   * CSV 형태 파일의 내용을 데이터 테이블 형태로 반환합니다.
-대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
-callback을 지원하는 함수를 사용하시기 바랍니다.
-   *
-  * @param path 엑셀 파일의 경로
   * @param firstLineIsColumnHeader 첫 행이 컬럼명인지 여부
   * @param colSeparator 행 분리자(기본값:,)
   * @param rowSeparator 열 분리자(기본값:개행)
@@ -468,7 +439,19 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   ReadCSVFile(path: string, firstLineIsColumnHeader: boolean, colSeparator: string, rowSeparator: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
 
   /** 
-   * 엑셀파일의 내용을 데이터 테이블 형태로 반환합니다.
+   * CSV 형태 파일의 내용을 데이터 테이블 형태로 반환합니다.
+대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
+callback을 지원하는 함수를 사용하시기 바랍니다.
+   *
+  * @param path 엑셀 파일의 경로
+  * @param firstLineIsColumnHeader 첫 행이 컬럼명인지 여부
+  * @param colSeparator 행 분리자(기본값:,)
+  * @param rowSeparator 열 분리자(기본값:개행)
+  */
+  ReadCSVFile(path: string, firstLineIsColumnHeader: boolean, colSeparator: string, rowSeparator: string): ScriptDataTable;
+
+  /** 
+   * CSV 형태 파일의 내용을 데이터 테이블 형태로 반환합니다.
    *
   * @param path 엑셀 파일의 경로
   * @param callbackRow 파일의 Row 단위 데이터 반환 함수
@@ -482,7 +465,7 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   * })
   * ```
   */
-  ReadExcelFile(path: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
+  ReadCSVFile(path: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
 
   /** 
    * 엑셀파일의 내용을 데이터 테이블 형태로 반환합니다.
@@ -520,6 +503,23 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param defColumns 컬럼의 데이터 타입을 정의합니다.(STR1;S|NUM1;N|STR2;S|NUM2;N)
   */
   ReadExcelFile(path: string, defColumns: string): ScriptDataTable;
+
+  /** 
+   * 엑셀파일의 내용을 데이터 테이블 형태로 반환합니다.
+   *
+  * @param path 엑셀 파일의 경로
+  * @param callbackRow 파일의 Row 단위 데이터 반환 함수
+  * ```
+  * 
+  *       CALL_BACK(function(row){
+  *       //row == com.matrix.script.ScriptDataRow
+  *       //return true : 해당 row 를 데이터 테이블에 추가
+  *       //      false : 엑셀 파일 읽기 종료
+  *       //       null : 다음 row 읽기
+  * })
+  * ```
+  */
+  ReadExcelFile(path: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
 
   /** 
    * 엑셀파일의 내용을 데이터 테이블 형태로 반환합니다.
@@ -588,14 +588,33 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param text 대상 문자열
   * @param length 길이
   */
-  Right(text: string, length: number): string;
+  Right(text: string, length: int): string;
 
   /** 
    * 입력된 날짜 및 시간의 초 값을 반환합니다.
    *
   * @param date 날짜
   */
-  Second(date: Date): number;
+  Second(date: Date): int;
+
+  /** 
+   * 메일 전송하기.
+   *
+  * @param smtpUrl SMTP 서버 주소
+  * @param smtpPort SMTP 서버 포트
+  * @param useSSL SSL 사용 여부
+  * @param userName SMTP 연결 계정
+  * @param passWord SMTP 연결 비밀번호
+  * @param fromMail 메일 발송인 주소
+  * @param toMails 메일 수신자 주소(여러 명일 경우 ,로 분리)
+  * @param ccMails 메일 수신 참조자 주소(여러 명일 경우 ,로 분리)
+  * @param bccMails 메일 수신 비밀 참조자 주소(여러 명일 경우 ,로 분리)
+  * @param subject 메일 제목
+  * @param content 메일 본문
+  * @param params 메일 옵션
+  * @param attachFiles 첨부 파일(eg. [path@name, path2@name2])
+  */
+  SendMail(smtpUrl: string, smtpPort: string, useSSL: boolean, userName: string, passWord: string, fromMail: string, toMails: string, ccMails: string, bccMails: string, subject: string, content: string, params: Array<any>, attachFiles: string[]): boolean;
 
   /** 
    * 메일 전송하기.
@@ -618,7 +637,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param inlineImages InLine Images(eg. [id@base64text, id2@base64text2])
   * @param attachFileEncoding 첨부파일 명 encoding 타입
   */
-  SendMail(smtpUrl: string, smtpPort: string, useSSL: boolean, userName: string, passWord: string, fromMail: string, toMails: string, ccMails: string, bccMails: string, subject: string, content: string, params: any[], attachFiles: string[], charset: string, messageHeaders: string[], inlineImages: string[], attachFileEncoding: string): boolean;
+  SendMail(smtpUrl: string, smtpPort: string, useSSL: boolean, userName: string, passWord: string, fromMail: string, toMails: string, ccMails: string, bccMails: string, subject: string, content: string, params: Array<any>, attachFiles: string[], charset: string, messageHeaders: string[], inlineImages: string[], attachFileEncoding: string): boolean;
 
   /** 
    * 메일 전송하기.
@@ -640,26 +659,28 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param messageHeaders Message headers
   * @param inlineImages InLine Images(eg. [id@base64text, id2@base64text2])
   */
-  SendMail(smtpUrl: string, smtpPort: string, useSSL: boolean, userName: string, passWord: string, fromMail: string, toMails: string, ccMails: string, bccMails: string, subject: string, content: string, params: any[], attachFiles: string[], charset: string, messageHeaders: string[], inlineImages: string[]): boolean;
+  SendMail(smtpUrl: string, smtpPort: string, useSSL: boolean, userName: string, passWord: string, fromMail: string, toMails: string, ccMails: string, bccMails: string, subject: string, content: string, params: Array<any>, attachFiles: string[], charset: string, messageHeaders: string[], inlineImages: string[]): boolean;
 
   /** 
-   * 메일 전송하기.
+   * 별도의 프로세스에서 지정된 문자열 명령을 실행합니다.
    *
-  * @param smtpUrl SMTP 서버 주소
-  * @param smtpPort SMTP 서버 포트
-  * @param useSSL SSL 사용 여부
-  * @param userName SMTP 연결 계정
-  * @param passWord SMTP 연결 비밀번호
-  * @param fromMail 메일 발송인 주소
-  * @param toMails 메일 수신자 주소(여러 명일 경우 ,로 분리)
-  * @param ccMails 메일 수신 참조자 주소(여러 명일 경우 ,로 분리)
-  * @param bccMails 메일 수신 비밀 참조자 주소(여러 명일 경우 ,로 분리)
-  * @param subject 메일 제목
-  * @param content 메일 본문
-  * @param params 메일 옵션
-  * @param attachFiles 첨부 파일(eg. [path@name, path2@name2])
+   * @example
+   * ```js
+   * var util = Matrix.getUtility();
+   * var PATH_BAT = "D:\\TEST\\build.bat";
+   * var command = [];
+   * // WINDOW ----   
+   * 	command[0] = "cmd";
+   * 	command[1] = "/c";
+   * 	command[2] = PATH_BAT; 
+   * util.ShellExecute(command ,false);
+   * // LINUX ====   
+   * //util.ShellExecute("cp -i " +source + " " +  target,false);
+   * ```
+  * @param shellCommand 명령어
+  * @param waitForExit 명령어 종료 대기 여부
   */
-  SendMail(smtpUrl: string, smtpPort: string, useSSL: boolean, userName: string, passWord: string, fromMail: string, toMails: string, ccMails: string, bccMails: string, subject: string, content: string, params: Array<any>, attachFiles: string[]): boolean;
+  ShellExecute(shellCommand: string, waitForExit: boolean): string;
 
   /** 
    * 별도의 프로세스에서 지정된 문자열 명령을 실행합니다.
@@ -685,27 +706,6 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param waitForExit 명령어 종료 대기 여부
   */
   ShellExecute(cmdarray: string[], waitForExit: boolean): string;
-
-  /** 
-   * 별도의 프로세스에서 지정된 문자열 명령을 실행합니다.
-   *
-   * @example
-   * ```js
-   * var util = Matrix.getUtility();
-   * var PATH_BAT = "D:\\TEST\\build.bat";
-   * var command = [];
-   * // WINDOW ----   
-   * 	command[0] = "cmd";
-   * 	command[1] = "/c";
-   * 	command[2] = PATH_BAT; 
-   * util.ShellExecute(command ,false);
-   * // LINUX ====   
-   * //util.ShellExecute("cp -i " +source + " " +  target,false);
-   * ```
-  * @param shellCommand 명령어
-  * @param waitForExit 명령어 종료 대기 여부
-  */
-  ShellExecute(shellCommand: string, waitForExit: boolean): string;
 
   /** 
    * 대상 문자열을 구분자 기준으로 분리한 문자열 배열을 반환합니다.
@@ -755,14 +755,14 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param value2 값2
   * @param valueN 값 ... n
   */
-  StringFormat(text: string, value1: any, value2: any, valueN: any): number;
+  StringFormat(text: string, value1: object, value2: object, valueN: object): int;
 
   /** 
    * 문자열의 길이를 반환 합니다.
    *
   * @param text 대상 문자열
   */
-  StringLength(text: string): number;
+  StringLength(text: string): int;
 
   /** 
    * 대상 문자열 중 특정 시작 위치부터 특정 종료 위치까지의 부분 문자열을 반환합니다.
@@ -771,7 +771,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param startindex 시작 위치
   * @param endindex 종료 위치
   */
-  SubString(text: string, startindex: number, endindex: number): string;
+  SubString(text: string, startindex: int, endindex: int): string;
 
   /** 
    * 입력된 값을 bool 형식으로 변환하여 반환합니다.
@@ -799,7 +799,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
    *
   * @param value 변환 대상
   */
-  ToDouble(value: any): number;
+  ToDouble(value: any): double;
 
   /** 
    * 입력된 값을 double 형식으로 변환하여 반환합니다.
@@ -807,14 +807,14 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param value 변환 대상
   * @param defValue 변환 실패 시 대체할 값
   */
-  ToDouble(value: any, defValue: number): number;
+  ToDouble(value: any, defValue: double): double;
 
   /** 
    * 입력된 값을 int 형식으로 변환하여 반환합니다.
    *
   * @param value 변환 대상
   */
-  ToInteger(value: any): number;
+  ToInteger(value: any): int;
 
   /** 
    * 입력된 값을 int 형식으로 변환하여 반환합니다.
@@ -822,7 +822,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param value 변환 대상
   * @param defValue 변환 실패 시 대체할 값
   */
-  ToInteger(value: any, defValue: number): number;
+  ToInteger(value: any, defValue: int): int;
 
   /** 
    * 입력된 값을 특정 양식으로 변환한 문자열을 반환합니다.
@@ -851,10 +851,10 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
    *
   * @param date 날짜
   */
-  Weekday(date: Date): number;
+  Weekday(date: Date): int;
 
   /** 
-   * XML parsing
+   * XML parsing 한  org.w3c.dom.Document 객체를 반환 합니다.
    *
    * @example
    * ```js
@@ -891,14 +891,14 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
    * ```
   * @param xml xml text
   */
-  XmlParse(xml: string): any;//
+  XmlParse(xml: string): org.w3c.dom.Document;
 
   /** 
    * 입력된 날짜 및 시간의 연도 값을 반환합니다.
    *
   * @param date 날짜
   */
-  Year(date: Date): number;
+  Year(date: Date): int;
 
   /** 
    * 현재 요청의 암호화 키값의 소스를 반환 합니다.

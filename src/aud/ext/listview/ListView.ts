@@ -122,7 +122,7 @@ export interface ListView{
    *
   * @param idx ListViewItem Index 번호
   */
-  GetAt(idx: number): ListViewItem | undefined;
+  GetAt(idx: int): ListViewItem | undefined;
 
   /** 
    * ListViewItem 제거
@@ -136,7 +136,7 @@ export interface ListView{
    *
   * @param idx ListViewItem Index 번호
   */
-  RemoveAt(idx: number): void;
+  RemoveAt(idx: int): void;
 
   /** 
    * ListView ScrollBar 위치를 가장 밑으로 이동

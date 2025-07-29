@@ -30,7 +30,7 @@ export interface ScriptDataSet{
    *
   * @param idx 테이블 컬렉션 내 인덱스 값
   */
-  getTable(idx: number): ScriptDataTable;
+  getTable(idx: int): ScriptDataTable;
 
   /** 
    * 특정 이름을 가지는 테이블 객체를 반환합니다.
@@ -43,7 +43,7 @@ export interface ScriptDataSet{
    * 데이터셋이 가지고 잇는 테이블 개수를 반환합니다.
    *
   */
-  getTableCount(): number;
+  getTableCount(): int;
 
   /** 
    * 데이터셋이 가지는 테이블 목록을 배열 유형으로 반환합니다.

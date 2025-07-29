@@ -52,7 +52,6 @@ export interface CheckBox extends Control{
 
   /**
    * 체크박스 뷰 형태
-   * @hidden
   */
   ViewType: enCheckBoxViewType;
 

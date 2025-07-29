@@ -15,7 +15,7 @@ export interface ScriptDataRow{
    *
   * @param column 컬럼 인덱스 또는 컬럼명
   */
-  getData(column: string|number): any;
+  getData(column: string|int): any;
 
   /** 
    * 레코드가 포함된 데이터 테이블을 반환합니다.
@@ -28,20 +28,20 @@ export interface ScriptDataRow{
    *
   * @param column 컬럼 인덱스 또는 컬럼명
   */
-  getDouble(column: string|number): number;
+  getDouble(column: string|int): double;
 
   /** 
    * 레코드의 값을 반환합니다.
    *
   * @param column 컬럼 인덱스 또는 컬럼명
   */
-  getInt(column: string|number): number;
+  getInt(column: string|int): int;
 
   /** 
    * 레코드의 전체 Column의 값을 배열 유형으로 반환합니다.
    *
   */
-  getItemArray(): any[];
+  getItemArray(): Array<any>;
 
   /** 
    * 레코드의 작업 상태 (N: 신규, U: 수정, D: 삭제)를 반환합니다.
@@ -54,7 +54,7 @@ export interface ScriptDataRow{
    *
   * @param column 컬럼 인덱스 또는 컬럼명
   */
-  getString(column: string|number): string;
+  getString(column: string|int): string;
 
   /** 
    * 레코드의 값을 수정합니다.
@@ -62,7 +62,7 @@ export interface ScriptDataRow{
   * @param column 컬럼 인덱스 또는 컬럼명
   * @param value 값
   */
-  setData(column: string|number, value: any): void;
+  setData(column: string|int, value: any): void;
 
   /** 
    * 배열의 값을 레코드의 값으로 수정합니다.

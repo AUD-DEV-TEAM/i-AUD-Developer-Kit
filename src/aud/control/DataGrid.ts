@@ -65,17 +65,17 @@ export interface DataGrid extends Grid{
   GroupGrid(Fields: string[]): void;
 
   /** 
+   * 행을 현재 선택된 행의 다음 행에 삽입하는 메소드
+   *
+  */
+  InsertRow(): DataGridRow;
+
+  /** 
    * 행을 특정 위치에 삽입하는 메소드
    *
   * @param idx 삽입할 행 인덱스
   */
   InsertRow(idx: number): DataGridRow;
-
-  /** 
-   * 행을 현재 선택된 행의 다음 행에 삽입하는 메소드
-   *
-  */
-  InsertRow(): DataGridRow;
 
   /** 
    * 페이지를 사용할 경우 다음 페이지로 이동하는 메소드

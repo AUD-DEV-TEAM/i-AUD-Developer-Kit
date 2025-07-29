@@ -12,25 +12,6 @@ export interface ScriptRequestPacket{
 대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
 callback을 지원하는 함수를 사용하시기 바랍니다.
    *
-  * @param key 데이터 소스 명 or 아이디
-  * @param callbackRow 파일의 Row 단위 데이터 처리 함수
-  * ```
-  * 
-  *                     CALL_BACK(function(row){
-  *                     //row == com.matrix.script.ScriptDataRow
-  *                     //return true : 해당 row 를 데이터 테이블에 추가
-  *                     //      false : 엑셀 파일 읽기 종료
-  *                     //       null : 다음 row 읽기
-  *               })
-  * ```
-  */
-  ExecuteReportDataSource(key: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
-
-  /** 
-   * 보고서내 SQL을 실행합니다.
-대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
-callback을 지원하는 함수를 사용하시기 바랍니다.
-   *
    * @example
    * ```js
    * 		var req = Matrix.getRequest();  
@@ -51,11 +32,38 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   ExecuteReportDataSource(key: string): ScriptDataTable;
 
   /** 
+   * 보고서내 SQL을 실행합니다.
+대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
+callback을 지원하는 함수를 사용하시기 바랍니다.
+   *
+  * @param key 데이터 소스 명 or 아이디
+  * @param callbackRow 파일의 Row 단위 데이터 처리 함수
+  * ```
+  * 
+  *                     CALL_BACK(function(row){
+  *                     //row == com.matrix.script.ScriptDataRow
+  *                     //return true : 해당 row 를 데이터 테이블에 추가
+  *                     //      false : 엑셀 파일 읽기 종료
+  *                     //       null : 다음 row 읽기
+  *               })
+  * ```
+  */
+  ExecuteReportDataSource(key: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
+
+  /** 
    * 현재 접속한 사용자가 특정 권한 그룹의 소속인지를 반환합니다.
    *
   * @param roleCode 권한 그룹 코드
   */
   HasRole(roleCode: string): string;
+
+  /** 
+   * 현재 접속한 사용자의 권한 정보를 확인할 수 있습니다. 해당 정보는 객체(보고서, 폴더, 데이터베이스)에 대한 것입니다.
+   *
+  * @param authObjectCode 객체 코드(보고서코드, 폴더코드, 데이터 베이스 코드)
+  * @param objectCode 객체 타입 코드(보고서 : R0, 폴더: F0, 데이터 베이스: D0)
+  */
+  getAuthority(authObjectCode: string, objectCode?: string): number;
 
   /** 
    * 로그인한 사용자의 인증 쿠키 정보를 반환 합니다.
@@ -119,22 +127,22 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   /** 
    * Client에서 전달 받은 파라미터의 값을 반환합니다.
    *
-  * @param idx 파라미터 컬렉션 내 인덱스 값
-  */
-  getParam(idx: number): string;
-
-  /** 
-   * Client에서 전달 받은 파라미터의 값을 반환합니다.
-   *
   * @param key 파라미터 명(컨트롤 명)
   */
   getParam(key: string): string;
 
   /** 
+   * Client에서 전달 받은 파라미터의 값을 반환합니다.
+   *
+  * @param idx 파라미터 컬렉션 내 인덱스 값
+  */
+  getParam(idx: int): string;
+
+  /** 
    * Client에서 전달 받은 파라미터의 개수를 반환합니다.
    *
   */
-  getParamsCount(): number;
+  getParamsCount(): int;
 
   /** 
    * 현재 접속한 사용자의 IP Address를 반환합니다.
@@ -174,13 +182,13 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    *
   * @param idx 테이블 컬렉션 내 인덱스 값
   */
-  getTable(idx: number): ScriptDataTable;
+  getTable(idx: int): ScriptDataTable;
 
   /** 
    * Client에서 전달 받은 테이블의 개수를 반환합니다.
    *
   */
-  getTableCount(): number;
+  getTableCount(): int;
 
   /** 
    * 현재 접속한 사용자의 ID를 반환합니다.

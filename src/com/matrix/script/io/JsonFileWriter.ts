@@ -24,6 +24,12 @@ export interface JsonFileWriter{
   addToArray(value: any): JsonFileWriter;
 
   /** 
+   * Json 배열 구분을 출력합니다.(구문:[)
+   *
+  */
+  beginArray(): JsonFileWriter;
+
+  /** 
    * Json 배열 구분을 출력합니다(구문:name=[)
    *
   * @param name 속성명
@@ -31,10 +37,10 @@ export interface JsonFileWriter{
   beginArray(name: string): JsonFileWriter;
 
   /** 
-   * Json 배열 구분을 출력합니다.(구문:[)
+   * Json 객체 생성 기호를 파일에 출력합니다.(구문:{)
    *
   */
-  beginArray(): JsonFileWriter;
+  beginObject(): JsonFileWriter;
 
   /** 
    * Json 객체 생성 기호를 파일에 출력합니다.(구문:name={ )
@@ -42,12 +48,6 @@ export interface JsonFileWriter{
   * @param name 속성명
   */
   beginObject(name: string): JsonFileWriter;
-
-  /** 
-   * Json 객체 생성 기호를 파일에 출력합니다.(구문:{)
-   *
-  */
-  beginObject(): JsonFileWriter;
 
   /** 
    * buffer에 있는 내용을 파일에 Write 하고 객체를 닫습니다.

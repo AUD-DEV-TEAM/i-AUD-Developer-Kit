@@ -25,12 +25,6 @@ export interface ScriptWorkBook{
   /** 
    * 엑셀 문서 내 모든 수식을 계산 합니다.
    *
-  */
-  Calculate(): void;
-
-  /** 
-   * 엑셀 문서 내 모든 수식을 계산 합니다.
-   *
   * @param removeFormula 계산 후 모든 수식을 삭제합니다.
   * @param sheetNames 계산할 시트 이름 목록을 전달 합니다.
   */
@@ -42,6 +36,12 @@ export interface ScriptWorkBook{
   * @param removeFormula 계산 후 모든 수식을 삭제합니다.
   */
   Calculate(removeFormula: boolean): void;
+
+  /** 
+   * 엑셀 문서 내 모든 수식을 계산 합니다.
+   *
+  */
+  Calculate(): void;
 
   /** 
    * 현재 엑셀에서 실행한 데이터 셋의 바인딩 영역을 모두 찾아서 해당 셀들의 값을 삭제합니다.
@@ -226,7 +226,14 @@ export interface ScriptWorkBook{
    *
   * @param key name or index
   */
-  RemoveWorkSheet(key: string|number): void;
+  RemoveWorkSheet(key: string|int): void;
+
+  /** 
+   * 엑셀 파일을 생성합니다.
+   *
+  * @param path 저장 경로(reports 아래 경로만 사용)
+  */
+  Save(path: string): void;
 
   /** 
    * 엑셀 파일을 생성합니다.
@@ -245,11 +252,12 @@ export interface ScriptWorkBook{
   Save(path: string, targetSheets: string): void;
 
   /** 
-   * 엑셀 파일을 생성합니다.
+   * HTM 파일을 생성합니다.
    *
-  * @param path 저장 경로(reports 아래 경로만 사용)
+  * @param path File path
+  * @param targetsheets List of target sheet names(Enter with , separated)
   */
-  Save(path: string): void;
+  SaveAsHML(path: string, targetsheets: string): void;
 
   /** 
    * HTM 파일을 생성합니다.
@@ -260,12 +268,12 @@ export interface ScriptWorkBook{
   SaveAsHML(path: string, targetsheets: string[]): void;
 
   /** 
-   * HTM 파일을 생성합니다.
+   * MS-Word 파일을 생성합니다.
    *
   * @param path File path
   * @param targetsheets List of target sheet names(Enter with , separated)
   */
-  SaveAsHML(path: string, targetsheets: string): void;
+  SaveAsMSWord(path: string, targetsheets: string): void;
 
   /** 
    * MS-Word 파일을 생성합니다.
@@ -276,12 +284,12 @@ export interface ScriptWorkBook{
   SaveAsMSWord(path: string, targetsheets: string[]): void;
 
   /** 
-   * MS-Word 파일을 생성합니다.
+   * PDF 파일을 생성합니다.
    *
   * @param path File path
   * @param targetsheets List of target sheet names(Enter with , separated)
   */
-  SaveAsMSWord(path: string, targetsheets: string): void;
+  SaveAsPDF(path: string, targetsheets: string): void;
 
   /** 
    * PDF 파일을 생성합니다.
@@ -290,14 +298,6 @@ export interface ScriptWorkBook{
   * @param targetsheets List of target sheet names
   */
   SaveAsPDF(path: string, targetsheets: string[]): void;
-
-  /** 
-   * PDF 파일을 생성합니다.
-   *
-  * @param path File path
-  * @param targetsheets List of target sheet names(Enter with , separated)
-  */
-  SaveAsPDF(path: string, targetsheets: string): void;
 
   /** 
    * 엑셀의 특정 Range 영역을 CSV 파일로 출력합니다.
@@ -348,7 +348,7 @@ export interface ScriptWorkBook{
    * worsheet의 수량을 반환 합니다.
    *
   */
-  WorkSheetCount(): number;
+  WorkSheetCount(): int;
 
   /** 
    * 현재 엑셀 모델을 MX-GRID 템플릿 파일로 저장 합니다.
@@ -448,7 +448,7 @@ export interface ScriptWorkBook{
    *
   * @param key 이름 또는 Index
   */
-  getWorkSheet(key: string|number): ScriptWorkSheet;
+  getWorkSheet(key: string|int): ScriptWorkSheet;
 
   /** 
    * 엑셀 내 특정 영역을 순차적으로 읽기 위한 객체를 반환 합니다.

@@ -22,6 +22,14 @@ export interface ScriptFileCellWriter{
   /** 
    * 셀을 생성합니다.
    *
+  * @param rangeName 셀 주소 e.g. A1
+  * @param baseCell 복사할 원본 셀
+  */
+  createCell(rangeName: string, baseCell: ScriptCellRange): ScriptCellRange;
+
+  /** 
+   * 셀을 생성합니다.
+   *
   * @param row 엑셀의 열 번호
   * @param column 엑셀의 행 번호
    * @hidden
@@ -45,14 +53,6 @@ export interface ScriptFileCellWriter{
    * @hidden
   */
   createCell(row: number, column: number, baseCell: ScriptCellRange): ScriptCellRange;
-
-  /** 
-   * 셀을 생성합니다.
-   *
-  * @param rangeName 셀 주소 e.g. A1
-  * @param baseCell 복사할 원본 셀
-  */
-  createCell(rangeName: string, baseCell: ScriptCellRange): ScriptCellRange;
 
   /** 
    * 셀의 정보를 파일로 출력합니다.

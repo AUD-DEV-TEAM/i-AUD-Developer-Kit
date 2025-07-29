@@ -45,12 +45,12 @@ export interface ScriptChart{
    *
   * @param index series index
   */
-  getSeries(index: number): ScriptSeries;
+  getSeries(index: int): ScriptSeries;
 
   /** 
    * 시리즈 수량 반환
    *
   */
-  getSeriesCount(): number;
+  getSeriesCount(): int;
 
 }

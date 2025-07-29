@@ -29,6 +29,6 @@ export interface ConditionFormatList{
   * @param index 인덱스 위치
   * @param jsonText 조건부 형식의 JSON 모델
   */
-  Update(index: number, jsonText: string): ConditionBase;
+  Update(index: int, jsonText: string): ConditionBase;
 
 }

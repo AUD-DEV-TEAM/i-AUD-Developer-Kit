@@ -39,7 +39,7 @@ export interface Matrix{
   * @param fontName 기본 폰트명
   * @param fontSize 기본 폰트 크기
   */
-  CreateWorkBook(fontName: string, fontSize: number): ScriptWorkBook;
+  CreateWorkBook(fontName: string, fontSize: int): ScriptWorkBook;
 
   /** 
    * json 데이터 기준으로 WorkBook 객체를 생성합니다.
@@ -66,6 +66,14 @@ export interface Matrix{
   ExcelToPDF(xlxFilePath: string, pdfPath: string): boolean;
 
   /** 
+   * 엑셀 파일을 파워 포인트 파일로 변환 합니다.
+   *
+  * @param xlxFilePath  Excel의 파일 경로
+  * @param pptPath PPT 파일 저장 경로
+  */
+  ExcelToPPTX(xlxFilePath: string, pptPath: string): boolean;
+
+  /** 
    * Request가 전달 받은 데이터셋의 데이터를 데이터베이스에 저장합니다.
    *
   */
@@ -76,17 +84,17 @@ export interface Matrix{
    *
   * @param reportCode 보고서 코드
   * @param mxGridCode MX-Grid에 연결된 i-MATRIX 코드
-  * @param executeDataSet dataset을 실행해서 데이터를 가져올지 여부
   */
-  OpenWorkBook(reportCode: string, mxGridCode: string, executeDataSet: boolean): ScriptWorkBook;
+  OpenWorkBook(reportCode: string, mxGridCode: string): ScriptWorkBook;
 
   /** 
    * 특정 MX-Grid의 엑셀 개체를 반환합니다.
    *
   * @param reportCode 보고서 코드
   * @param mxGridCode MX-Grid에 연결된 i-MATRIX 코드
+  * @param executeDataSet dataset을 실행해서 데이터를 가져올지 여부
   */
-  OpenWorkBook(reportCode: string, mxGridCode: string): ScriptWorkBook;
+  OpenWorkBook(reportCode: string, mxGridCode: string, executeDataSet: boolean): ScriptWorkBook;
 
   /** 
    * 주어진 엑셀파일을 MX-GRID용 문서로 변환한 뒤 해당 파일의 경로를 반환 합니다.
@@ -118,7 +126,7 @@ export interface Matrix{
   * @param log 로그 데이터
   * @param exception exception
   */
-  WriteCustomLog(fileName: string, log: string, exception: object): void;
+  WriteCustomLog(fileName: string, log: string, exception: Throwable): void;
 
   /** 
    * 시스템 로그를 작성합니다.
@@ -133,7 +141,7 @@ export interface Matrix{
   * @param log 로그 타입
   * @param message 로그 내용
   */
-  WriteLog(log: string, message: object): void;
+  WriteLog(log: string, message: Throwable): void;
 
   /** 
    * 시스템 로그를 작성합니다.

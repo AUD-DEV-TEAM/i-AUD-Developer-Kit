@@ -877,6 +877,23 @@ export interface OlapGrid extends Control{
    *
    * @example
    * ```js
+   * var OlapGrid = Matrix.getObject("OlapGrid");
+   * OlapGrid.setColumnSort(1, 0, true); // column leaf node 의 첫번째 셀(0) 기준으로  오름차순(1) 설정 후 자동 조회
+   * //또는 결로 값으로 설정 가능 합니다.
+   * OlapGrid.setColumnSort(1, {"PRODUCT":"SmartPhone", "CUSTOMER":"Korea"},  true);
+   * //컬럼 경로에 Product가 SmartPhone이고 CUSTOMER가 Korea인 첫번쨰 항목을 찾아서 정렬 합니다.
+   * ```
+  * @param sortType Asc:1/Desc:2
+  * @param indexOrPath Column Header LeafNode Index(0부터 시작)
+  * @param update ColumnSort 설정 후 자동 업데이트 여부
+  */
+  setColumnSort(sortType: number, indexOrPath: number | {[key:string]:string}, update: boolean): void;
+
+  /** 
+   * OlapGrid 의 ColumnSort 를 설정 합니다.
+   *
+   * @example
+   * ```js
    * 
    * var OlapGrid = Matrix.getObject("OlapGrid");
    * OlapGrid.setColumnSort(1, 0); // column leaf node 의 첫번째 셀(0) 기준으로  오름차순(1) 설정
@@ -889,23 +906,6 @@ export interface OlapGrid extends Control{
   * @param indexOrPath Column Header LeafNode Index(0부터 시작)
   */
   setColumnSort(sortType: number, indexOrPath: number | {[key:string]:string}): void;
-
-  /** 
-   * OlapGrid 의 ColumnSort 를 설정 합니다.
-   *
-   * @example
-   * ```js
-   * var OlapGrid = Matrix.getObject("OlapGrid");
-   * OlapGrid.setColumnSort(1, 0, true); // column leaf node 의 첫번째 셀(0) 기준으로  오름차순(1) 설정 후 자동 조회
-   * //또는 결로 값으로 설정 가능 합니다.
-   * OlapGrid.setColumnSort(1, {"PRODUCT":"SmartPhone", "CUSTOMER":"Korea"},  true);
-   * //컬럼 경로에 Product가 SmartPhone이고 CUSTOMER가 Korea인 첫번쨰 항목을 찾아서 정렬 합니다.
-   * ```
-  * @param sortType Asc:1/Desc:2
-  * @param indexOrPath Column Header LeafNode Index(0부터 시작)
-  * @param update ColumnSort 설정 후 자동 업데이트 여부
-  */
-  setColumnSort(sortType: number, indexOrPath: number | {[key:string]:string}, update: boolean): void;
 
   /** 
    * 컨트롤의 커서를 지정 합니다.
@@ -959,21 +959,6 @@ export interface OlapGrid extends Control{
    * @example
    * ```js
    * var OlapGrid = Matrix.getObject("OlapGrid");
-   * OlapGrid.setMeasureFilter('판매단가', '>=',10000);
-   * OlapGrid.Refresh();
-   * ```
-  * @param fieldName 필드명
-  * @param operator 연산자 (eg. <, >,<>,>=,<=)
-  * @param value 값
-  */
-  setMeasureFilter(fieldName: string, operator: string, value: number): void;
-
-  /** 
-   * 필드에 필터를 설정합니다.(Measure)
-   *
-   * @example
-   * ```js
-   * var OlapGrid = Matrix.getObject("OlapGrid");
    * OlapGrid.setMeasureFilter('판매단가', '>=',10000 ,'<=',30000,true);
    * OlapGrid.Refresh();
    * ```
@@ -985,6 +970,21 @@ export interface OlapGrid extends Control{
   * @param and true=And, false=Or
   */
   setMeasureFilter(fieldName: string, operator1: string, value1: number, operator2: string, value2: number, and: boolean): void;
+
+  /** 
+   * 필드에 필터를 설정합니다.(Measure)
+   *
+   * @example
+   * ```js
+   * var OlapGrid = Matrix.getObject("OlapGrid");
+   * OlapGrid.setMeasureFilter('판매단가', '>=',10000);
+   * OlapGrid.Refresh();
+   * ```
+  * @param fieldName 필드명
+  * @param operator 연산자 (eg. <, >,<>,>=,<=)
+  * @param value 값
+  */
+  setMeasureFilter(fieldName: string, operator: string, value: number): void;
 
   /** 
    * 데이터 갱신 시 자동으로 선택될 영역을 지정합니다.

@@ -6,7 +6,7 @@ export interface WorkSheetPageSetup{
   /**
    * 하단 여백
   */
-  BottomMargin: number;
+  BottomMargin: double;
 
   /**
    * 바닥글 가운데 구역
@@ -21,22 +21,22 @@ export interface WorkSheetPageSetup{
   /**
    * 인쇄 자동 맞춤 용지 페이지 높이 개수
   */
-  FitToHeight: number;
+  FitToHeight: int;
 
   /**
    * 인쇄 자동 맞춤 용지 페이지 너비 개수
   */
-  FitToWidth: number;
+  FitToWidth: int;
 
   /**
    * 바닥글 여백
   */
-  FooterMargin: number;
+  FooterMargin: double;
 
   /**
    * 머리글 여백
   */
-  HeaderMargin: number;
+  HeaderMargin: double;
 
   /**
    * 인쇄 자동 맞춤이 비율인지 여부.
@@ -56,7 +56,7 @@ export interface WorkSheetPageSetup{
   /**
    * 좌측 여백
   */
-  LeftMargin: number;
+  LeftMargin: double;
 
   /**
    * 용지 방향(portrait or landscape)
@@ -86,11 +86,11 @@ export interface WorkSheetPageSetup{
   /**
    * 우측 여백
   */
-  RightMargin: number;
+  RightMargin: double;
 
   /**
    * 상단 여백
   */
-  TopMargin: number;
+  TopMargin: double;
 
 }

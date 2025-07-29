@@ -21,15 +21,15 @@ export interface JsonFileWriter{
   /** 
    * Json 배열 시작 문자열 출력합니다.
    *
+  * @param name 배열의 이름
   */
-  beginArray(): JsonFileWriter;
+  beginArray(name: string): JsonFileWriter;
 
   /** 
    * Json 배열 시작 문자열 출력합니다.
    *
-  * @param name 배열의 이름
   */
-  beginArray(name: string): JsonFileWriter;
+  beginArray(): JsonFileWriter;
 
   /** 
    * Json 객체의 시작 문자열 출력합니다.

@@ -36,17 +36,17 @@ export interface HTMLTableConverter{
    *
   * @param folderName Folder Name
   * @param fileName File Name
-  * @param targetSheetNames target sheet name(eg.sheet1,shtt2)
   */
-  WriteToFile(folderName: string, fileName: string, targetSheetNames: string): void;
+  WriteToFile(folderName: string, fileName: string): void;
 
   /** 
    * HTML 파일을 생성합니다.
    *
   * @param folderName Folder Name
   * @param fileName File Name
+  * @param targetSheetNames target sheet name(eg.sheet1,shtt2)
   */
-  WriteToFile(folderName: string, fileName: string): void;
+  WriteToFile(folderName: string, fileName: string, targetSheetNames: string): void;
 
   /** 
    * HTML Table Tag 반환합니다.

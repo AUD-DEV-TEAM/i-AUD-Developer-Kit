@@ -12,6 +12,7 @@ import { enMetaConditionPromptValidate } from "../../aud/enums/meta/enMetaCondit
 import { enMetaReportControlType } from "../../aud/enums/meta/enMetaReportControlType";
 import { enMetaFieldGroupFunction } from "../../aud/enums/meta/enMetaFieldGroupFunction";
 import { PeriodAnalysis } from "../../aud/meta/PeriodAnalysis";
+import { Control } from "../../aud/control/Control";
 import { DataRow } from "../../aud/data/DataRow";
 /**
 * 
@@ -56,6 +57,12 @@ export interface MetaManager{
   ProductMode: enProductMode;
 
   /**
+   * QueryBuilder창 Option에 대한 프로퍼티입니다.
+   * @hidden
+  */
+  QueryBuilderOption: any;
+
+  /**
    * 보고서 유형
    * @hidden
   */
@@ -97,10 +104,11 @@ export interface MetaManager{
   /** 
    * layout 정보를 만들어주는 메소드
    *
+  * @param control 
   * @param resultCallbackFunc 
    * @hidden
   */
-  ApplyMeta(resultCallbackFunc?: Function): void;
+  ApplyMeta(control: Control, resultCallbackFunc: Function): void;
 
   /** 
    * 레포트 유형을 변경하는 메소드
@@ -118,12 +126,22 @@ export interface MetaManager{
   * @param folderCode 폴더코드
    * @hidden
   */
-  CreateMergeFolder(targetNodeList: DataRow[], folderName?: string, folderCode?: string): DataRow;
+  CreateMergeFolder(targetNodeList: Array<any>, folderName?: string, folderCode?: string): DataRow;
+
+  /** 
+   * 특정 메타 보고서에 조회 항목을 삭제하는 메소드
+   *
+  * @param position 삭제할 위치
+  * @param metaItemCode 항목 코드
+   * @hidden
+  */
+  DeleteItem(position: enMetaReportControlType, metaItemCode: string): void;
 
   /** 
    * 병합 폴더를 삭제해주는 메소드
    *
   * @param targetNodeList 삭제할 폴더
+   * @hidden
   */
   DeleteMergeList(targetNodeList: DataRow[]): void;
 
@@ -133,6 +151,17 @@ export interface MetaManager{
    * @hidden
   */
   GetItemCount(): number;
+
+  /** 
+   * layout 정보를 받아서 view를 불러오는 메소드
+   *
+  * @param layout 레이아웃 XML
+  * @param gridLayoutInfo grid 배치 정보
+  * @param callback 콜백 함수
+  * @param isShowMeta 팝업 여부
+   * @hidden
+  */
+  LoadMeta(layout: string, gridLayoutInfo: object | undefined, callback: Function, isShowMeta?: boolean): void;
 
   /** 
    * SQLText 요청하는 메소드
@@ -160,5 +189,13 @@ export interface MetaManager{
    * @hidden
   */
   OpenMeta(reportCode: string, isMerge: boolean, callback?: Function): Promise<any>;
+
+  /** 
+   * 메타 보고서 오픈 메소드
+   *
+  * @param reportCode 보고서 코드
+   * @hidden
+  */
+  OpenReport(reportCode: string): void;
 
 }

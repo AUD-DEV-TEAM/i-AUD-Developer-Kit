@@ -17,7 +17,7 @@ export interface TimeUnit{
   /**
    * 기간 값
   */
-  Value: number;
+  Value: int;
 
   /** 
    * 월별 text를 지정합니다.(ex:['Jan', 'Feb'])

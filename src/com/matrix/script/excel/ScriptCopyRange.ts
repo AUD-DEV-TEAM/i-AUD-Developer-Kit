@@ -21,8 +21,9 @@ export interface ScriptCopyRange{
   * @param updateHeight Whether it is a copy of the cell's height
   * @param updateWidth Whether it is a copy of the cell's width
   * @param updateMerge Whether it is a copy of the merge
+  * @param updateFormula Whether it is a copy of the Formula
   */
-  Paste(worksheet: ScriptWorkSheet, area: RangeArea, updateData: boolean, updateStyle: boolean, updateHeight: boolean, updateWidth: boolean, updateMerge: boolean): void;
+  Paste(worksheet: ScriptWorkSheet, area: RangeArea, updateData: boolean, updateStyle: boolean, updateHeight: boolean, updateWidth: boolean, updateMerge: boolean, updateFormula: boolean): void;
 
   /** 
    * 현재 영역을 특정 시트의 영역에 붙여 넣기 한다.
@@ -34,9 +35,8 @@ export interface ScriptCopyRange{
   * @param updateHeight Whether it is a copy of the cell's height
   * @param updateWidth Whether it is a copy of the cell's width
   * @param updateMerge Whether it is a copy of the merge
-  * @param updateFormula Whether it is a copy of the Formula
   */
-  Paste(worksheet: ScriptWorkSheet, area: RangeArea, updateData: boolean, updateStyle: boolean, updateHeight: boolean, updateWidth: boolean, updateMerge: boolean, updateFormula: boolean): void;
+  Paste(worksheet: ScriptWorkSheet, area: RangeArea, updateData: boolean, updateStyle: boolean, updateHeight: boolean, updateWidth: boolean, updateMerge: boolean): void;
 
   /** 
    * 현재 영역을 특정 시트의 영역에 붙여 넣기 한다.
@@ -50,7 +50,7 @@ export interface ScriptCopyRange{
   * @param updateWidth Whether it is a copy of the cell's width
   * @param updateMerge Whether it is a copy of the merge
   */
-  Paste(worksheet: ScriptWorkSheet, row: number, col: number, updateData: boolean, updateStyle: boolean, updateHeight: boolean, updateWidth: boolean, updateMerge: boolean): void;
+  Paste(worksheet: ScriptWorkSheet, row: int, col: int, updateData: boolean, updateStyle: boolean, updateHeight: boolean, updateWidth: boolean, updateMerge: boolean): void;
 
   /** 
    * 현재 영역을 특정 시트의 영역에 붙여 넣기 한다.
@@ -80,7 +80,7 @@ export interface ScriptCopyRange{
   * @param row 열 번호(1부터 시작 됨)
   * @param col 행 번호(1부터 시작 됨)
   */
-  Paste(worksheet: ScriptWorkSheet, row: number, col: number): void;
+  Paste(worksheet: ScriptWorkSheet, row: int, col: int): void;
 
   /** 
    * 현재 영역을 특정 시트의 영역에 붙여 넣기 한다.

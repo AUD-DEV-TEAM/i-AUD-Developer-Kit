@@ -142,6 +142,14 @@ export interface TreeView extends Control{
   RemoveRow(key: string): void;
 
   /** 
+   * 특정 노드를 선택하는 메소드
+   *
+  * @param idx 행번호
+   * @hidden
+  */
+  SelectRow(idx: number): void;
+
+  /** 
    * 전체 row의 bound를 계산해주는 메소드
    *
    * @hidden

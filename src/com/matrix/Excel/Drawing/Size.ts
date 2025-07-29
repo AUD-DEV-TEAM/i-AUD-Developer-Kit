@@ -6,11 +6,11 @@ export interface Size{
   /**
    * 높이
   */
-  Height: number;
+  Height: double;
 
   /**
    * 너비
   */
-  Width: number;
+  Width: double;
 
 }

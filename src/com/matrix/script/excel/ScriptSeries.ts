@@ -39,14 +39,7 @@ export interface ScriptSeries{
   * @param text 항목 값
   * @param value 값
   */
-  addCategoryValue(text: string, value: number): void;
-
-  /** 
-   * 시리즈의 배경 색상을 지정 합니다.
-   *
-  * @param colors 색상 값 목록(eg.['#FF00FF',...,'#FFFF00'])
-  */
-  addFillColors(colors: string[]): void;
+  addCategoryValue(text: string, value: double): void;
 
   /** 
    * 시리즈의 배경 색상을 추가 합니다.
@@ -56,11 +49,11 @@ export interface ScriptSeries{
   addFillColors(color: string): void;
 
   /** 
-   * 시리즈의 테두리 라인 색상을 지정 합니다.
+   * 시리즈의 배경 색상을 지정 합니다.
    *
   * @param colors 색상 값 목록(eg.['#FF00FF',...,'#FFFF00'])
   */
-  addLineColors(colors: string[]): void;
+  addFillColors(colors: string[]): void;
 
   /** 
    * 시리즈의 테두리 라인 색상을 추가 합니다.
@@ -68,6 +61,20 @@ export interface ScriptSeries{
   * @param color 색상 값(eg.#FF00FF)
   */
   addLineColors(color: string): void;
+
+  /** 
+   * 시리즈의 테두리 라인 색상을 지정 합니다.
+   *
+  * @param colors 색상 값 목록(eg.['#FF00FF',...,'#FFFF00'])
+  */
+  addLineColors(colors: string[]): void;
+
+  /** 
+   * 시리즈의 값을 추가 합니다.
+   *
+  * @param value 값
+  */
+  addValue(value: double): void;
 
   /** 
    * 시리즈의 X/Y/Size 값을 추가 합니다.(차트 유형:Scatter,Bubble-Size)
@@ -89,14 +96,7 @@ export interface ScriptSeries{
    *
   * @param value 값
   */
-  addValue(value: number): void;
-
-  /** 
-   * 시리즈의 값을 추가 합니다.
-   *
-  * @param value 값
-  */
-  addValueArray(value: number[]): void;
+  addValueArray(value: double[]): void;
 
   /** 
    * 시리즈에 X/Y/Size 값을 추가합니다. (지원되는 차트 유형: Scatter, Bubble-Size) 
@@ -104,7 +104,7 @@ export interface ScriptSeries{
   * @param value 값
   * @param isXYZ 시리즈 구성 데이터 유형(X/Y/Size)
   */
-  addValueArray(value: number[], isXYZ: string): void;
+  addValueArray(value: double[], isXYZ: string): void;
 
   /** 
    * 차트 타입 반환
@@ -142,7 +142,7 @@ export interface ScriptSeries{
    *
   * @param size 기본값 10(Min:0/Max:400)
   */
-  setExplosion(size: number): void;
+  setExplosion(size: int): void;
 
   /** 
    * 시리즈의 배경 색상을 지정 합니다.
@@ -156,7 +156,7 @@ export interface ScriptSeries{
    *
   * @param angle 기본값 0(Min:0/Max:360)
   */
-  setFirstSliceAng(angle: number): void;
+  setFirstSliceAng(angle: int): void;
 
   /** 
    * 값 필드의 서식을 설저합니다.
@@ -170,7 +170,7 @@ export interface ScriptSeries{
    *
   * @param angle 기본값 50(Min:0/Max:90)
   */
-  setHoleSize(angle: number): void;
+  setHoleSize(angle: int): void;
 
   /** 
    * 시리즈 이름 셀의 주소를 설정합니다.
@@ -205,7 +205,7 @@ export interface ScriptSeries{
    *
   * @param width 기본값 1
   */
-  setLineWidth(width: number): void;
+  setLineWidth(width: int): void;
 
   /** 
    * Line/Scatter 차트의 마커의 색상을 지정합니다.
@@ -219,7 +219,7 @@ export interface ScriptSeries{
    *
   * @param size 기본값 5(Min:2/Max:72)
   */
-  setMarkerSize(size: number): void;
+  setMarkerSize(size: int): void;
 
   /** 
    * Line/Scatter 차트의 마커 유형을 설정합니다.
@@ -233,7 +233,7 @@ export interface ScriptSeries{
    *
   * @param value 투명도(0.0~1.0)
   */
-  setOpacity(value: number): void;
+  setOpacity(value: double): void;
 
   /** 
    * 보조축 사용 여부 설정.

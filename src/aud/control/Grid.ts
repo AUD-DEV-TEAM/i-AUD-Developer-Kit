@@ -577,17 +577,17 @@ export interface Grid extends Control{
   GetRowIndex(row: DataGridRow): number;
 
   /** 
+   * 현재 선택된 행의 상태값을 반환합니다.
+   *
+  */
+  GetRowStatus(): string;
+
+  /** 
    * 특정 위치 행의 상태값을 반환합니다.
    *
   * @param idx 레코드 인덱스
   */
   GetRowStatus(idx: number): string;
-
-  /** 
-   * 현재 선택된 행의 상태값을 반환합니다.
-   *
-  */
-  GetRowStatus(): string;
 
   /** 
    * 현재 선택된 셀의 목록을 반환합니다.
@@ -636,18 +636,18 @@ export interface Grid extends Control{
   RefreshData(): void;
 
   /** 
+   * 특정 선택한 레코드를 삭제합니다.
+   *
+  */
+  RemoveRow(): void;
+
+  /** 
    * 특정 레코드를 삭제합니다.
    *
   * @param row 레코드
   * @param isNotDraw 행을 추가 한 후에 그리드를 다시 그릴지 유무. 기본값은 false이다.(true : 그리지 않음)
   */
   RemoveRow(row: DataGridRow, isNotDraw: boolean): void;
-
-  /** 
-   * 특정 선택한 레코드를 삭제합니다.
-   *
-  */
-  RemoveRow(): void;
 
   /** 
    * 특정 위치의 레코드를 삭제합니다.
@@ -834,6 +834,15 @@ export interface Grid extends Control{
   setDimensionFilterNotIn(fieldName: string, values: string[]): void;
 
   /** 
+   * 특정 필드에 Measure 필터 하나를 추가하는 메소드
+   *
+  * @param fieldName 필드 명
+  * @param operator1 첫번째 비교 연산자(=,>,<,>=,<=,<>))
+  * @param value1 첫번째 필터 조건 값
+  */
+  setMeasureFilter(fieldName: string, operator1: string, value1: string): void;
+
+  /** 
    * 특정 필드에 Measure 필터 두개를 추가하는 메소드
    *
   * @param fieldName 필드 명
@@ -846,13 +855,12 @@ export interface Grid extends Control{
   setMeasureFilter(fieldName: string, operator1: string, value1: string, operator2: string, value2: string, isAnd: boolean): void;
 
   /** 
-   * 특정 필드에 Measure 필터 하나를 추가하는 메소드
+   * 현재 선택된 행의 필드값을 수정합니다.
    *
-  * @param fieldName 필드 명
-  * @param operator1 첫번째 비교 연산자(=,>,<,>=,<=,<>))
-  * @param value1 첫번째 필터 조건 값
+  * @param fieldName 필드명
+  * @param value 값
   */
-  setMeasureFilter(fieldName: string, operator1: string, value1: string): void;
+  setRowValue(fieldName: string, value: string | object): boolean;
 
   /** 
    * 특정 위치행의 필드값을 변경합니다.
@@ -862,14 +870,6 @@ export interface Grid extends Control{
   * @param value 값
   */
   setRowValue(rowIdx: number, fieldName: string, value: string | object): boolean;
-
-  /** 
-   * 현재 선택된 행의 필드값을 수정합니다.
-   *
-  * @param fieldName 필드명
-  * @param value 값
-  */
-  setRowValue(fieldName: string, value: string | object): boolean;
 
   /**
    * @event 

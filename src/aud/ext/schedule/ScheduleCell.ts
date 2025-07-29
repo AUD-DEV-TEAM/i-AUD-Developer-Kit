@@ -46,7 +46,7 @@ export interface ScheduleCell{
   /**
    * 폰트크기
   */
-  FontSize: number;
+  FontSize: int;
 
   /**
    * 시작일자

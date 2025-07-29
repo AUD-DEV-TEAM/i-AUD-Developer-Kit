@@ -16,17 +16,17 @@ export interface ContextWrapper{
   /**
    * 투명도(0~1)
   */
-  GlobalAlpha: number;
+  GlobalAlpha: double;
 
   /**
    * 선 두께
   */
-  LineWidth: number;
+  LineWidth: int;
 
   /**
    * 선 색(ex:#6b9dcb)
   */
-  StrokeStyle: number;
+  StrokeStyle: int;
 
   /**
    * 글자 가로 위치(ex: left, center, right)
@@ -41,7 +41,7 @@ export interface ContextWrapper{
   * @param width 너비
   * @param height 높이
   */
-  FillRect(x: number, y: number, width: number, height: number): void;
+  FillRect(x: int, y: int, width: int, height: int): void;
 
   /** 
    * 지정된 (x, y) 위치에 지정된 텍스트를 그립니다(채웁니다).
@@ -49,14 +49,14 @@ export interface ContextWrapper{
   * @param x x좌표
   * @param y y좌표
   */
-  FillText(x: number, y: number): void;
+  FillText(x: int, y: int): void;
 
   /** 
    * 문자열의 길이(px)값을 반환합니다.
    *
   * @param text 문자열
   */
-  MeasureText(text: string): number;
+  MeasureText(text: string): int;
 
   /** 
    * 박스 스타일명으로 스타일을 적용합니다.
@@ -73,6 +73,6 @@ export interface ContextWrapper{
   * @param width 너비
   * @param height 높이
   */
-  StrokeRect(x: number, y: number, width: number, height: number): void;
+  StrokeRect(x: int, y: int, width: int, height: int): void;
 
 }

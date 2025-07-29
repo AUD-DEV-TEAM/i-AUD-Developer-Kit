@@ -12,7 +12,7 @@ export interface ScheduleField{
   /**
    * 높이
   */
-  Height: number;
+  Height: int;
 
   /**
    * 필드명
@@ -32,6 +32,6 @@ export interface ScheduleField{
   /**
    * 너비
   */
-  Width: number;
+  Width: int;
 
 }

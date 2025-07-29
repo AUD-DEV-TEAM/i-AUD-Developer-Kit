@@ -9,14 +9,6 @@ import { ScriptDataRow } from "../../../com/matrix/script/ScriptDataRow";
 export interface ScriptDataTable{
 
   /** 
-   * Column을 추가합니다.
-   *
-  * @param columnName Column 명
-  * @param isNumber 수치형인지 여부
-  */
-  AddColumn(columnName: string, isNumber: boolean): ScriptDataColumn;
-
-  /** 
    * Column을 추가 합니다.
    *
   * @param columnName Column 명
@@ -28,10 +20,12 @@ export interface ScriptDataTable{
   AddColumn(columnName: string, isNumber: boolean, keyType: enKeyType, dataType: enDataType, saveMode: enSaveMode): ScriptDataColumn;
 
   /** 
-   * 테이블 내 레코드를 추가하고 추가된 레코드 객체를 반환합니다.
+   * Column을 추가합니다.
    *
+  * @param columnName Column 명
+  * @param isNumber 수치형인지 여부
   */
-  AppendRow(): ScriptDataRow;
+  AddColumn(columnName: string, isNumber: boolean): ScriptDataColumn;
 
   /** 
    * 테이블 내 레코드를 추가하고 추가된 레코드 객체를 반환합니다.
@@ -39,6 +33,12 @@ export interface ScriptDataTable{
   * @param row 추가할 행
   */
   AppendRow(row: ScriptDataRow): ScriptDataRow;
+
+  /** 
+   * 테이블 내 레코드를 추가하고 추가된 레코드 객체를 반환합니다.
+   *
+  */
+  AppendRow(): ScriptDataRow;
 
   /** 
    * 현재 테이블에 새로운 테이블의 모든 레코드를 추가합니다.
@@ -93,7 +93,7 @@ export interface ScriptDataTable{
    *
   * @param idx 레코드의 위치
   */
-  RemoveRow(idx: number): void;
+  RemoveRow(idx: int): void;
 
   /** 
    * 레코드를 정렬합니다.
@@ -105,22 +105,22 @@ export interface ScriptDataTable{
   /** 
    * 테이블 내 특정 컬럼을 반환합니다.
    *
+  * @param index index
+  */
+  getColumn(index: int): ScriptDataColumn;
+
+  /** 
+   * 테이블 내 특정 컬럼을 반환합니다.
+   *
   * @param columnName Column 명
   */
   getColumn(columnName: string): ScriptDataColumn;
 
   /** 
-   * 테이블 내 특정 컬럼을 반환합니다.
-   *
-  * @param index index
-  */
-  getColumn(index: number): ScriptDataColumn;
-
-  /** 
    * 테이블 내 컬럼의 개수를 반환합니다.
    *
   */
-  getColumnCount(): number;
+  getColumnCount(): int;
 
   /** 
    * 테이블 내 컬럼의 목록을 배열 유형으로 반환합니다.
@@ -134,7 +134,7 @@ export interface ScriptDataTable{
   * @param recordIndex 레코드의 위치
   * @param columnName Column 명
   */
-  getData(recordIndex: number, columnName: string): object;
+  getData(recordIndex: int, columnName: string): object;
 
   /** 
    * 특정 레코드의 값을 반환합니다.
@@ -142,7 +142,7 @@ export interface ScriptDataTable{
   * @param recordIndex 레코드의 위치
   * @param columnName Column 명
   */
-  getDouble(recordIndex: number, columnName: string): number;
+  getDouble(recordIndex: int, columnName: string): double;
 
   /** 
    * 특정 레코드의 값을 반환합니다.
@@ -150,7 +150,7 @@ export interface ScriptDataTable{
   * @param recordIndex 레코드의 위치
   * @param columnName Column 명
   */
-  getInt(recordIndex: number, columnName: string): number;
+  getInt(recordIndex: int, columnName: string): int;
 
   /** 
    * 테이블 객체의 고유 이름을 반환 합니다.
@@ -163,13 +163,13 @@ export interface ScriptDataTable{
    *
   * @param idx 레코드의 위치
   */
-  getRow(idx: number): ScriptDataRow;
+  getRow(idx: int): ScriptDataRow;
 
   /** 
    * 테이블 내 데이터의 개수를 반환합니다.
    *
   */
-  getRowCount(): number;
+  getRowCount(): int;
 
   /** 
    * 특정 레코드의 값을 반환합니다.
@@ -177,7 +177,7 @@ export interface ScriptDataTable{
   * @param recordIndex 레코드의 위치
   * @param columnName Column 명
   */
-  getString(recordIndex: number, columnName: string): string;
+  getString(recordIndex: int, columnName: string): string;
 
   /** 
    * 데이터베이스와 연결된 테이블 명을 반환합니다.
@@ -192,7 +192,7 @@ export interface ScriptDataTable{
   * @param columnName Column 명
   * @param value 수정할 값
   */
-  setData(recordIndex: number, columnName: string, value: object): void;
+  setData(recordIndex: int, columnName: string, value: object): void;
 
   /** 
    * 테이블 내 모든 레코드의 작업 상태를 변경합니다.

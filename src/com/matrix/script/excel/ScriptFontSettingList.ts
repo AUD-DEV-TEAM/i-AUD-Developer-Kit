@@ -15,7 +15,7 @@ export interface ScriptFontSettingList{
    * 스타일 항목의 개수를 반환 합니다.
    *
   */
-  Count(): number;
+  Count(): int;
 
   /** 
    * 스타일 항목을 추가합니다.
@@ -30,6 +30,6 @@ export interface ScriptFontSettingList{
    *
   * @param index 목록 내위치
   */
-  get(index: number): ScriptFontSetting;
+  get(index: int): ScriptFontSetting;
 
 }

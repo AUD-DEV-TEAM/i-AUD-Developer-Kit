@@ -13,6 +13,11 @@ export interface MetaManagerModel{
   ActiveView: any;
 
   /**
+   * 중복 항목 제거
+  */
+  DistinctRecord: boolean;
+
+  /**
    * 병합 유형
    * @hidden
   */
@@ -23,6 +28,14 @@ export interface MetaManagerModel{
    * @hidden
   */
   Views: NamedDictionary;
+
+  /** 
+   * 확인 버튼 클릭 시 layout 모델을 만들어주는 메소드
+   *
+  * @param callback 콜백 함수
+   * @hidden
+  */
+  ApplyMetaModel(callback: Function): void;
 
   /** 
    * 언어 코드를 요청하는 메소드

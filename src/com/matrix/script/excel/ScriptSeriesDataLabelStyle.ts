@@ -29,7 +29,7 @@ export interface ScriptSeriesDataLabelStyle{
    *
   * @param w pixel 단위
   */
-  setBorderWidth(w: number): void;
+  setBorderWidth(w: int): void;
 
   /** 
    * 글자 색
@@ -50,7 +50,7 @@ export interface ScriptSeriesDataLabelStyle{
    *
   * @param size pixel 단위
   */
-  setFontSize(size: number): void;
+  setFontSize(size: int): void;
 
   /** 
    * 글자 기울림꼴 여부
@@ -64,6 +64,6 @@ export interface ScriptSeriesDataLabelStyle{
    *
   * @param op 0~1(eg.0.8) (0 : 투명/ 1: 불투명) 
   */
-  setOpacity(op: number): void;
+  setOpacity(op: double): void;
 
 }

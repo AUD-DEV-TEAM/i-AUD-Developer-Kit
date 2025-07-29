@@ -53,19 +53,19 @@ export interface ScheduleGrid{
   * @param topPadding 위쪽 여백
   * @param compressYN 압축 여부(웹브라우저에서 이미지 깨질 가능성 있음)
   */
-  ExportPDF(fileName: string, leftPadding: number, topPadding: number, compressYN: boolean): PDFError;
+  ExportPDF(fileName: string, leftPadding: int, topPadding: int, compressYN: boolean): PDFError;
 
   /** 
    * 차트의 전체 높이를 반환해주는 메소드
    *
   */
-  GetTotalHeight(): number;
+  GetTotalHeight(): int;
 
   /** 
    * 차트의 전체 너비를 반환해주는 메소드
    *
   */
-  GetTotalWidth(): number;
+  GetTotalWidth(): int;
 
   /** 
    * 데이터의 수정 유무를 결과로 반환해주는 메소드
@@ -86,7 +86,7 @@ export interface ScheduleGrid{
    *
   * @param topHeight 상단 높이
   */
-  SetSplitVirticalTop(topHeight: number): void;
+  SetSplitVirticalTop(topHeight: double): void;
 
   /** 
    * 현재 행렬 축을 바꾸는 메소드
@@ -207,7 +207,7 @@ export interface ScheduleGrid{
     /**
      * GrandTotal Row일 경우 row index
     */
-    GrandTotalRowIndex: number
+    GrandTotalRowIndex: int
   }
   ) => void;
 

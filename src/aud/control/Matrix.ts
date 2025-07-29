@@ -51,7 +51,6 @@ import { TableColumn } from "../../aud/control/table/TableColumn";
 import { ComboBox } from "../../aud/control/ComboBox";
 import { DataRow } from "../../aud/data/DataRow";
 import { HighChart_C } from "../../aud/control/HighChart_C";
-import { enDialogButtonType } from "../../aud/enums/comm/enDialogButtonType";
 import { DataTable } from "../../aud/data/DataTable";
 import { FileUploadButton } from "../../aud/control/FileUploadButton";
 import { MetaItem } from "../../aud/meta/MetaItem";
@@ -395,6 +394,16 @@ false로 전달되면 새로운 탭에서 보고서를 열게 됩니다.
   Error(msg: string, detail: string): void;
 
   /** 
+   * 데이터 엑셀 내보내기 서비스를 호출합니다.(처리 완료 후 OnServiceCallBack 이벤트가 발생합니다.)
+   *
+  * @param json 데이터 엑셀 내보내기 JSON 객체
+  * @param params parameters e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
+  * @param tag 구분자(tag)
+   * @hidden
+  */
+  ExcelExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, tag: object): void;
+
+  /** 
    * 데이터 엑셀 내보내기 서비스를 호출합니다.
    *
    * @example
@@ -471,14 +480,13 @@ false로 전달되면 새로운 탭에서 보고서를 열게 됩니다.
   ExcelExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
-   * 데이터 엑셀 내보내기 서비스를 호출합니다.(처리 완료 후 OnServiceCallBack 이벤트가 발생합니다.)
+   * 데이터소스를 실행 합니다.(처리 완료 후 OnExecutCompleted 이벤트가 발생합니다.)
    *
-  * @param json 데이터 엑셀 내보내기 JSON 객체
-  * @param params parameters e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
+  * @param dataSourceName 데이터 소스명
   * @param tag 구분자(tag)
    * @hidden
   */
-  ExcelExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, tag: object): void;
+  Execute(dataSourceName: string, tag: string): void;
 
   /** 
    * 데이터소스를 실행 합니다.(처리 완료 후 OnExecutCompleted 이벤트가 발생합니다.)
@@ -500,29 +508,10 @@ false로 전달되면 새로운 탭에서 보고서를 열게 됩니다.
   Execute(dataSourceName: string, callBack: Function): void;
 
   /** 
-   * 데이터소스를 실행 합니다.(처리 완료 후 OnExecutCompleted 이벤트가 발생합니다.)
-   *
-  * @param dataSourceName 데이터 소스명
-  * @param tag 구분자(tag)
-   * @hidden
-  */
-  Execute(dataSourceName: string, tag: string): void;
-
-  /** 
    * Prompt 조회조건이 있는 경우 MetaViewer Prompt 팝업창을 호출하고 없으면 조회합니다.
    *
   */
   ExecuteMetaViewPrompt(): void;
-
-  /** 
-   * 데이터소스를 실행 합니다.(처리 완료 후 OnExecutCompleted 이벤트가 발생합니다.)
-   *
-  * @param planName 실행 계획 명
-  * @param option 옵션(예약)
-  * @param tag 구분자(tag)
-   * @hidden
-  */
-  ExecutePlan(planName: string, option: Array<{"Key":string,"Value":string}>, tag: any): void;
 
   /** 
    * 데이터소스를 실행 합니다.(처리 완료 후 OnExecutCompleted 이벤트가 발생합니다.)
@@ -543,6 +532,16 @@ false로 전달되면 새로운 탭에서 보고서를 열게 됩니다.
   * ```
   */
   ExecutePlan(planName: string, option: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
+
+  /** 
+   * 데이터소스를 실행 합니다.(처리 완료 후 OnExecutCompleted 이벤트가 발생합니다.)
+   *
+  * @param planName 실행 계획 명
+  * @param option 옵션(예약)
+  * @param tag 구분자(tag)
+   * @hidden
+  */
+  ExecutePlan(planName: string, option: Array<{"Key":string,"Value":string}>, tag: any): void;
 
   /** 
    * 이미지 내보내기를 실행합니다.
@@ -650,13 +649,16 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   GetDataSetMafPacket(gridNames: string|string[]): object;
 
   /** 
-   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
+   * 날짜 처리 객체를 반환합니다.
    *
   * @param year 년
   * @param month 월
   * @param day 일
+  * @param hour 시간
+  * @param minutes 분
+  * @param second 초
   */
-  GetDate(year: number, month: number, day: number): ScriptDateUtil;
+  GetDate(year: number, month: number, day: number, hour: number, minutes: number, second: number): ScriptDateUtil;
 
   /** 
    * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
@@ -673,16 +675,13 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   GetDate(year: number, month: number): ScriptDateUtil;
 
   /** 
-   * 날짜 처리 객체를 반환합니다.
+   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
    *
   * @param year 년
   * @param month 월
   * @param day 일
-  * @param hour 시간
-  * @param minutes 분
-  * @param second 초
   */
-  GetDate(year: number, month: number, day: number, hour: number, minutes: number, second: number): ScriptDateUtil;
+  GetDate(year: number, month: number, day: number): ScriptDateUtil;
 
   /** 
    * 날짜 처리 객체를 반환합니다.
@@ -707,17 +706,17 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
    *
   * @param year 년
   * @param month 월
-  * @param day 일
   */
-  GetDateTime(year: number, month: number, day: number): ScriptDateUtil;
+  GetDateTime(year: number, month: number): ScriptDateUtil;
 
   /** 
    * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
    *
   * @param year 년
   * @param month 월
+  * @param day 일
   */
-  GetDateTime(year: number, month: number): ScriptDateUtil;
+  GetDateTime(year: number, month: number, day: number): ScriptDateUtil;
 
   /** 
    * ShowReportDialog로 호출된 팝업에서, 부모 보고서가 보내준 파라미터를 추출합니다.
@@ -1236,6 +1235,16 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   Resize(): void;
 
   /** 
+   * 서버 측 js Business 서비스를 호출합니다. (처리 완료 후 OnServiceCallBack 이벤트가 실행됩니다.)
+   *
+  * @param gridNames 데이터 입력/수정/삭제 정보를 전송할 그리드 이름 (string 타입인 경우 콤마(,)로 분리)
+  * @param scriptName 서버 스트립트 이름(@로 시작하는 경우 서버의 SERVER_SCRIPT 아래 파일 탐색, @보고서코드@스크립트코드 는 특정 보고서의 @로 시작하는 스크립트 탐색)
+  * @param tag 구분자(tag) 또는 CallBack함수
+   * @hidden
+  */
+  RunScript(gridNames: string|string[], scriptName: string, tag: any): void;
+
+  /** 
    * 서버 측 js Business 서비스를 호출합니다.
    *
    * @example
@@ -1271,16 +1280,6 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   RunScript(gridNames: string|string[], scriptName: string, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
-   * 서버 측 js Business 서비스를 호출합니다. (처리 완료 후 OnServiceCallBack 이벤트가 실행됩니다.)
-   *
-  * @param gridNames 데이터 입력/수정/삭제 정보를 전송할 그리드 이름 (string 타입인 경우 콤마(,)로 분리)
-  * @param scriptName 서버 스트립트 이름(@로 시작하는 경우 서버의 SERVER_SCRIPT 아래 파일 탐색, @보고서코드@스크립트코드 는 특정 보고서의 @로 시작하는 스크립트 탐색)
-  * @param tag 구분자(tag) 또는 CallBack함수
-   * @hidden
-  */
-  RunScript(gridNames: string|string[], scriptName: string, tag: any): void;
-
-  /** 
    * 뷰어의 Excel Export 대화 상자를 표시합니다.
    *
   */
@@ -1295,6 +1294,17 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * @param reportDesc 보고서에 대한 설명
   */
   SaveReport(reportCode: string, reportName: string, folderCode: string, reportDesc: string): void;
+
+  /** 
+   * 서버측 서비스를 호출합니다.(처리 완료 후 OnServiceCallBack 이벤트가 발생합니다.)
+   *
+  * @param gridNames 데이터 입력/수정/삭제 정보를 전송할 그리드 목록(string 타입인 경우 콤마(,)로 분리
+  * @param className 클래스 이름(ex:com.matrix.Data.BizExecuteDML)
+  * @param params 파라미터 리스트 e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
+  * @param tag 구분자(tag)
+   * @hidden
+  */
+  ServiceCall(gridNames: string|string[], className: string, params: Array<{"Key":string,"Value":string}>, tag: any): void;
 
   /** 
    * 서버측 서비스를 호출합니다.
@@ -1351,17 +1361,6 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * ```
   */
   ServiceCall(gridNames: string|string[], className: string, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
-
-  /** 
-   * 서버측 서비스를 호출합니다.(처리 완료 후 OnServiceCallBack 이벤트가 발생합니다.)
-   *
-  * @param gridNames 데이터 입력/수정/삭제 정보를 전송할 그리드 목록(string 타입인 경우 콤마(,)로 분리
-  * @param className 클래스 이름(ex:com.matrix.Data.BizExecuteDML)
-  * @param params 파라미터 리스트 e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
-  * @param tag 구분자(tag)
-   * @hidden
-  */
-  ServiceCall(gridNames: string|string[], className: string, params: Array<{"Key":string,"Value":string}>, tag: any): void;
 
   /** 
    * 내보내기 및 디자인 속성 ContextMenu 표시 여부를 설정합니다.
@@ -1577,6 +1576,17 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
    *
   * @param folderName 업로드할 위치(reports 폴더 하위 폴더 명을 입력합니다.)
   * @param filter 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
+  * @param tag 사용자 태그
+   * @hidden
+  */
+  UploadLocalFile(folderName: string, filter: string, tag: any): void;
+
+  /** 
+   * 사용자의 로컬의 파일을 서버로 업로드 합니다.
+   *
+  * @param folderName 업로드할 위치(reports 폴더 하위 폴더 명을 입력합니다.)
+  * @param saveName 저장할 파일 명 (한글 및 특수문자 금지)
+  * @param filter 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
   * @param callBack CallBack 함수
   * ```
   * 
@@ -1593,40 +1603,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * }
   * ```
   */
-  UploadLocalFile(folderName: string, filter: string, callBack: (p: {"Success":boolean, "Message":string, "FolderName":string, "SaveFileName" : string, "FileName" : string, "FileSize":number, "FileExtention":string, "Tag":any}) => void): void;
-
-  /** 
-   * 사용자의 로컬의 파일을 서버로 업로드 합니다.
-   *
-  * @param folderName 업로드할 위치(reports 폴더 하위 폴더 명을 입력합니다.)
-  * @param saveName 저장할 파일 명 (한글 및 특수문자 금지)
-  * @param filter 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
-  * @param limitsize 업로드 제한 사이즈(bytes)
-  * @param tag 사용자 태그
-   * @hidden
-  */
-  UploadLocalFile(folderName: string, saveName: string, filter: string, limitsize: number, tag: any): void;
-
-  /** 
-   * 사용자의 로컬의 파일을 서버로 업로드 합니다.
-   *
-  * @param folderName 업로드할 위치(reports 폴더 하위 폴더 명을 입력합니다.)
-  * @param filter 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
-  * @param tag 사용자 태그
-   * @hidden
-  */
-  UploadLocalFile(folderName: string, filter: string, tag: any): void;
-
-  /** 
-   * 사용자의 로컬의 파일을 서버로 업로드 합니다.
-   *
-  * @param folderName 업로드할 위치(reports 폴더 하위 폴더 명을 입력합니다.)
-  * @param saveName 저장할 파일 명 (한글 및 특수문자 금지)
-  * @param filter 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
-  * @param tag 사용자 태그
-   * @hidden
-  */
-  UploadLocalFile(folderName: string, saveName: string, filter: string, tag: any): void;
+  UploadLocalFile(folderName: string, saveName: string, filter: string, callBack: (p: {"Success":boolean, "Message":string, "FolderName":string, "SaveFileName" : string, "FileName" : string, "FileSize":number, "FileExtention":string, "Tag":any}) => void): void;
 
   /** 
    * 사용자의 로컬의 파일을 서버로 업로드 합니다.
@@ -1659,6 +1636,28 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * @param folderName 업로드할 위치(reports 폴더 하위 폴더 명을 입력합니다.)
   * @param saveName 저장할 파일 명 (한글 및 특수문자 금지)
   * @param filter 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
+  * @param limitsize 업로드 제한 사이즈(bytes)
+  * @param tag 사용자 태그
+   * @hidden
+  */
+  UploadLocalFile(folderName: string, saveName: string, filter: string, limitsize: number, tag: any): void;
+
+  /** 
+   * 사용자의 로컬의 파일을 서버로 업로드 합니다.
+   *
+  * @param folderName 업로드할 위치(reports 폴더 하위 폴더 명을 입력합니다.)
+  * @param saveName 저장할 파일 명 (한글 및 특수문자 금지)
+  * @param filter 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
+  * @param tag 사용자 태그
+   * @hidden
+  */
+  UploadLocalFile(folderName: string, saveName: string, filter: string, tag: any): void;
+
+  /** 
+   * 사용자의 로컬의 파일을 서버로 업로드 합니다.
+   *
+  * @param folderName 업로드할 위치(reports 폴더 하위 폴더 명을 입력합니다.)
+  * @param filter 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
   * @param callBack CallBack 함수
   * ```
   * 
@@ -1675,7 +1674,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * }
   * ```
   */
-  UploadLocalFile(folderName: string, saveName: string, filter: string, callBack: (p: {"Success":boolean, "Message":string, "FolderName":string, "SaveFileName" : string, "FileName" : string, "FileSize":number, "FileExtention":string, "Tag":any}) => void): void;
+  UploadLocalFile(folderName: string, filter: string, callBack: (p: {"Success":boolean, "Message":string, "FolderName":string, "SaveFileName" : string, "FileName" : string, "FileSize":number, "FileExtention":string, "Tag":any}) => void): void;
 
   /** 
    * i-META를 데이터소스로 사용하는 컨트롤의 필수 입력 유효성 검사를 수행하고, 값이 없는 항목의 이름을 반환합니다.
@@ -1932,11 +1931,8 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   /** 
    * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
    *
-  * @param year 년
-  * @param month 월
-  * @param day 일
   */
-  getDate(year: number, month: number, day: number): ScriptDateUtil;
+  getDate(): ScriptDateUtil;
 
   /** 
    * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
@@ -1949,17 +1945,23 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   /** 
    * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
    *
-  */
-  getDate(): ScriptDateUtil;
-
-  /** 
-   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
-   *
   * @param year 년
   * @param month 월
   * @param day 일
   */
-  getDateTime(year: number, month: number, day: number): ScriptDateUtil;
+  getDate(year: number, month: number, day: number): ScriptDateUtil;
+
+  /** 
+   * 날짜 처리 객체를 반환합니다.
+   *
+  * @param year 년
+  * @param month 월
+  * @param day 일
+  * @param hour 시간
+  * @param minutes 분
+  * @param second 초
+  */
+  getDateTime(year: number, month: number, day: number, hour: number, minutes: number, second: number): ScriptDateUtil;
 
   /** 
    * 날짜 처리 객체를 반환합니다.
@@ -1975,16 +1977,13 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   getDateTime(format: string): string;
 
   /** 
-   * 날짜 처리 객체를 반환합니다.
+   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
    *
   * @param year 년
   * @param month 월
   * @param day 일
-  * @param hour 시간
-  * @param minutes 분
-  * @param second 초
   */
-  getDateTime(year: number, month: number, day: number, hour: number, minutes: number, second: number): ScriptDateUtil;
+  getDateTime(year: number, month: number, day: number): ScriptDateUtil;
 
   /** 
    * 서식 Converter를 불러옵니다.
@@ -3104,68 +3103,6 @@ close 동작 시에 callback 으로 null 을 전달합니다.
      * 뷰어ID
     */
     Id: string
-  }
-  ) => void;
-
-
-  /**
-   * @event 
-   *
-   * 보고서 팝업창의 버튼 클릭 시 발생한다. ( Return 한 객체가 부모창에 전달할 정보 )
-   *
-   * @param args
-   *
-   * Target : {@link Matrix}
-  */
-  OnDialogBoxResult : (sender : Matrix
-  , args : { 
-    /**
-     * 열린 팝업창의 고유 ID
-    */
-    Id: string
-    /**
-     * 작업 취소 여부
-    */
-    Cancel: boolean
-    /**
-     * 팝업창의 결과값을 전달 후, 팝업창을 닫을 지 여부
-    */
-    Close: boolean
-    /**
-     * 버튼 타입
-    */
-    Type: enDialogButtonType
-    /**
-     * 팝업창에서 반환한 결과값
-    */
-    Result: object
-  }
-  ) => void;
-
-
-  /**
-   * @event 
-   *
-   * 보고서 팝업창을 닫기 전에 validation 체크를 합니다.
-   *
-   * @param args
-   *
-   * Target : {@link Matrix}
-  */
-  OnDialogValidation : (sender : Matrix
-  , args : { 
-    /**
-     * 열린 팝업창의 고유 ID
-    */
-    Id: string
-    /**
-     * 작업 취소 여부
-    */
-    Cancel: boolean
-    /**
-     * 버튼 타입
-    */
-    Type: enDialogButtonType
   }
   ) => void;
 

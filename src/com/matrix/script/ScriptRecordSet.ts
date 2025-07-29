@@ -8,28 +8,28 @@ export interface ScriptRecordSet{
    *
   * @param columnIndex 컬럼 이름 또는 인덱스
   */
-  getData(columnIndex: string|number): object;
+  getData(columnIndex: string|int): object;
 
   /** 
    * ResultSet의 데이터를 double 형태로 반환 합니다.
    *
   * @param columnIndex 컬럼 이름 또는 인덱스
   */
-  getDouble(columnIndex: string|number): number;
+  getDouble(columnIndex: string|int): double;
 
   /** 
    * ResultSet의 데이터를 INT 타입으로 반환 합니다.
    *
   * @param columnIndex 컬럼 이름 또는 인덱스
   */
-  getInt(columnIndex: string|number): number;
+  getInt(columnIndex: string|int): int;
 
   /** 
    * ResultSet의 데이터를 문자열 형태로 반환 합니다.
    *
   * @param columnIndex 컬럼 이름 또는 인덱스
   */
-  getString(columnIndex: string|number): string;
+  getString(columnIndex: string|int): string;
 
   /** 
    * ResultSet의 Cursor를 이동합니다.

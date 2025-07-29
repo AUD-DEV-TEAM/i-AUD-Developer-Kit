@@ -21,21 +21,21 @@ export interface ScriptCellRange{
   /** 
    * 셀 데이터 특성을 나타내는 문자열을 반환 합니다.
    *
-  */
-  getCellType(): string;
-
-  /** 
-   * 셀 데이터 특성을 나타내는 문자열을 반환 합니다.
-   *
   * @param ws 
   */
   getCellType(ws: ScriptWorkSheet): string;
 
   /** 
+   * 셀 데이터 특성을 나타내는 문자열을 반환 합니다.
+   *
+  */
+  getCellType(): string;
+
+  /** 
    * 열의 인덱스를 반환 합니다.
    *
   */
-  getColumn(): number;
+  getColumn(): int;
 
   /** 
    * 셀의 날짜 값을 반환 합니다.
@@ -71,7 +71,7 @@ export interface ScriptCellRange{
    * 셀의 수치 값을 반환 합니다.
    *
   */
-  getNumber(): number;
+  getNumber(): double;
 
   /** 
    * 셀의 사용자 정의 속성을 반환 합니다.
@@ -90,7 +90,7 @@ export interface ScriptCellRange{
    * 헹의 인덱스를 반환합니다.
    *
   */
-  getRow(): number;
+  getRow(): int;
 
   /** 
    * 셀의 스타일을 반환 합니다.
@@ -108,7 +108,7 @@ export interface ScriptCellRange{
    * 셀의 유효성 검사 설정 값을 반환 합니다.
    *
   */
-  getValidator(): number;
+  getValidator(): int;
 
   /** 
    * 셀의 값을 반환 합니다.
@@ -159,14 +159,14 @@ export interface ScriptCellRange{
   * @param month month
   * @param day day
   */
-  setDate(year: number, month: number, day: number): void;
+  setDate(year: int, month: int, day: int): void;
 
   /** 
    * 셀에 날짜 값으로 수정 합니다.
    *
   * @param dateValue dateValue
   */
-  setDateValue(dateValue: number): void;
+  setDateValue(dateValue: double): void;
 
   /** 
    * 셀의 편집 가능 여부를 설정합니다.
@@ -194,7 +194,7 @@ export interface ScriptCellRange{
    *
   * @param number Number value
   */
-  setNumber(number: number): void;
+  setNumber(number: double): void;
 
   /** 
    * 셀의 사용자 정의 속성을 추가 합니다.
@@ -223,7 +223,7 @@ export interface ScriptCellRange{
    *
   * @param index 유효성 검사의 Index
   */
-  setValidator(index: number): void;
+  setValidator(index: int): void;
 
   /** 
    * 셀의 값을 설정합니다.

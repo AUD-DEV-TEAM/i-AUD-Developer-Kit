@@ -29,6 +29,15 @@ export interface Axis{
   BaseLineColor: string;
 
   /**
+   * 축 라벨을 재정의하는 함수
+(Chart.XAxis.Formatter = function(val, pos, categories) {}
+val: 현재 라벨 값
+pos: 라벨 순서
+categories: 전체 목록)
+  */
+  Formatter: Function;
+
+  /**
    * 축의 레이블 표시 각도. 단위 : px(픽셀)
   */
   LabelAngle: string;

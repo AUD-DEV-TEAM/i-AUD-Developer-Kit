@@ -7,19 +7,19 @@ export interface ConditionBase{
   /** 
    * 조건부 서식이 적용되는 대상 영역을 추가합니다.
    *
+  * @param rangeName 
+  */
+  addRange(rangeName: string): RangeArea;
+
+  /** 
+   * 조건부 서식이 적용되는 대상 영역을 추가합니다.
+   *
   * @param startRow 영역의 시작 행 주소
   * @param startCol 영역의 시작 열 주소
   * @param endRow 영역의 종료 행 주소
   * @param endCol 영역의 종료 열 주소
   */
-  addRange(startRow: number, startCol: number, endRow: number, endCol: number): RangeArea;
-
-  /** 
-   * 조건부 서식이 적용되는 대상 영역을 추가합니다.
-   *
-  * @param rangeName 
-  */
-  addRange(rangeName: string): RangeArea;
+  addRange(startRow: int, startCol: int, endRow: int, endCol: int): RangeArea;
 
   /** 
    * 조건부 서식의 적용 대상 영역 모두 삭제

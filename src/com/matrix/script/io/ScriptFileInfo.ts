@@ -38,7 +38,7 @@ export interface ScriptFileInfo{
    * 파일의 사이즈를 반환 합니다.
    *
   */
-  getLength(): number;
+  getLength(): long;
 
   /** 
    * 파일의 이름을 반환 합니다.

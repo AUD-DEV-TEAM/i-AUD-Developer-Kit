@@ -32,7 +32,7 @@ export interface ScriptXmlToJsonConverter{
   * ```
   * @param name Json으로 변환할 이름
   */
-  addRule(path: string, rule: string|number, name: string): void;
+  addRule(path: string, rule: string|int, name: string): void;
 
   /** 
    * 모든 변환 규칙을 삭제합니다.

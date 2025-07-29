@@ -31,19 +31,19 @@ export interface ScriptCellStyle{
    * Horizontal alignment
    *
   */
-  getHorizontal(): number;
+  getHorizontal(): int;
 
   /** 
    * cell's indent level
    *
   */
-  getIndentLevel(): number;
+  getIndentLevel(): int;
 
   /** 
    * text rotataion angle
    *
   */
-  getRotationAngle(): number;
+  getRotationAngle(): int;
 
   /** 
    * Shrink To Fit cell's text
@@ -55,7 +55,7 @@ export interface ScriptCellStyle{
    * Vertical alignment
    *
   */
-  getVertical(): number;
+  getVertical(): int;
 
   /** 
    * Wrap cell's text
@@ -103,21 +103,21 @@ export interface ScriptCellStyle{
    *
   * @param align eg. Left = 0, Center = 1, Right = 2
   */
-  setHorizontal(align: number): void;
+  setHorizontal(align: int): void;
 
   /** 
    * cell's indent level
    *
   * @param level  
   */
-  setIndentLevel(level: number): void;
+  setIndentLevel(level: int): void;
 
   /** 
    * text rotataion angle
    *
   * @param angle 90, -90, 0
   */
-  setRotationAngle(angle: number): void;
+  setRotationAngle(angle: int): void;
 
   /** 
    * Shrink To Fit cell's text
@@ -129,16 +129,16 @@ export interface ScriptCellStyle{
   /** 
    * update vertical align
    *
-  * @param align eg. Top = 0, Center = 1, Bottom = 2
+  * @param align eg. Top, Center, Bottom
   */
-  setVertical(align: number): void;
+  setVertical(align: string): void;
 
   /** 
    * update vertical align
    *
-  * @param align eg. Top, Center, Bottom
+  * @param align eg. Top = 0, Center = 1, Bottom = 2
   */
-  setVertical(align: string): void;
+  setVertical(align: int): void;
 
   /** 
    * Wrap cell's text
