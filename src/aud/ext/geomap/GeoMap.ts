@@ -18,7 +18,7 @@ export interface GeoMap{
   /**
    * Map의 모든 Feature객체 정보
   */
-  Features: object[];
+  Features: any;
 
   /**
    * AudMap 제공. feature mouseover시의 하이라이트 기능의 style 객체
@@ -33,7 +33,7 @@ export interface GeoMap{
   /**
    * Map의 source
   */
-  Source: object;
+  Source: any;
 
   /**
    * Tooltip 객체
@@ -78,7 +78,7 @@ export interface GeoMap{
   * @param GeoJSON feature 정보가 존재하는 featureCollection 타입의 GeoJSON
   * @param isFit isFit이 true일 경우 Bound를 Set합니다
   */
-  LoadMap(GeoJSON: object[], isFit?: boolean): void;
+  LoadMap(GeoJSON: any, isFit?: boolean): void;
 
   /** 
    * AudMap 전용. Map 의 배경색을 지정합니다.
@@ -105,14 +105,14 @@ export interface GeoMap{
    *
   * @param locations line 꼭짓점에 해당하는 위도,경도 지리정보가 담긴 Array (eg.[['127.0448', '37.5038'],['126.9602', '37.5788']])
   */
-  addLine(locations: object[]): Line;
+  addLine(locations: any): Line;
 
   /** 
    * 매개 변수 markerInfos정보에 맞는 위치에 Marker를 생성하고, 해당 Marker 객체를 반환합니다.
    *
   * @param markerInfos 마커 위치에 해당하는 지리정보와 사용자 지정 ID가 담긴 Array (eg.[{'name' : '세방빌딩', 'id' : 'ID_AA', 'lonLat': ['127.0448', '37.5038']},{'name' : '경복궁', 'id' : 'ID_BB', 'lonLat': ['126.9602', '37.5788']}])
   */
-  addMarker(markerInfos: object[]): Marker;
+  addMarker(markerInfos: any): Marker;
 
   /** 
    * 지도 위에 Overlay 를 추가합니다.
@@ -170,7 +170,7 @@ export interface GeoMap{
     /**
      * {X: offsetX, Y: offsetY}
     */
-    point: object
+    point: any
     /**
      * feature 객체
     */
@@ -193,7 +193,7 @@ export interface GeoMap{
     /**
      * {X: offsetX, Y: offsetY}
     */
-    point: object
+    point: any
     /**
      * feature 객체
     */
@@ -216,7 +216,7 @@ export interface GeoMap{
     /**
      * {X: offsetX, Y: offsetY}
     */
-    point: object
+    point: any
     /**
      * feature 객체
     */
@@ -238,7 +238,7 @@ export interface GeoMap{
     /**
      * {X: offsetX, Y: offsetY}
     */
-    point: object
+    point: any
     /**
      * [longitude, latitude]
     */
@@ -275,7 +275,7 @@ export interface GeoMap{
     /**
      * {X: offsetX, Y: offsetY}
     */
-    point: object
+    point: any
     /**
      * marker 객체
 
@@ -302,7 +302,7 @@ export interface GeoMap{
     /**
      * {X: offsetX, Y: offsetY}
     */
-    point: object
+    point: any
     /**
      * marker 객체
     */
@@ -329,7 +329,7 @@ export interface GeoMap{
     /**
      * {X: offsetX, Y: offsetY}
     */
-    point: object
+    point: any
     /**
      * marker 객체
     */

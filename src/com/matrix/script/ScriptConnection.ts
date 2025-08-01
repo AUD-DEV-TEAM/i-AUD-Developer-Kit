@@ -119,7 +119,7 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   * @param sql 실행할 SQL
   * @param limitRows 제한할 레코드 수량
   */
-  ExecuteDataTableLimit(sql: string, limitRows: int): ScriptDataTable;
+  ExecuteDataTableLimit(sql: string, limitRows: number): ScriptDataTable;
 
   /** 
    * SQL 실행한 ResuletSet을 반환 합니다.
@@ -144,14 +144,14 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    *
   * @param sql 실행 쿼리
   */
-  ExecuteScalar(sql: string): int;
+  ExecuteScalar(sql: string): number;
 
   /** 
    * 입력/수정/삭제 쿼리를 실행 합니다.
    *
   * @param sql 실행 쿼리
   */
-  ExecuteUpdate(sql: string): int;
+  ExecuteUpdate(sql: string): number;
 
   /** 
    * 입력/수정/삭제 쿼리를 실행 합니다.(PreparedStatement의 바인딩 기능 사용)
@@ -161,7 +161,7 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   * @param tableName 대상 테이블 명
   * @param useStatement 바인딩 사용 여부
   */
-  ExecuteUpdateRow(table: ScriptDataTable, row: ScriptDataRow, tableName: string, useStatement: boolean): int;
+  ExecuteUpdateRow(table: ScriptDataTable, row: ScriptDataRow, tableName: string, useStatement: boolean): number;
 
   /** 
    * JDBC의 CallableStatement 객체를 생성 반환합니다(Procedure 사용할 경우)
@@ -215,7 +215,7 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    * 현재 연결된 데이터베이스의 DbType를 반환합니다.
    *
   */
-  getDbType(): int;
+  getDbType(): number;
 
   /** 
    * 데이터베이스 연결의 카탈로그 정보를 설정합니다.

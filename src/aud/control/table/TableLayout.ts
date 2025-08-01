@@ -140,7 +140,7 @@ export interface TableLayout extends Control{
   * @param columns 열 객체(Name은 필수로 정의 필요)
   * @param model 구성하려는 테이블 모델 객체
   */
-  SetJSONModel(columns: object[], model: object): void;
+  SetJSONModel(columns: any, model: any): void;
 
   /** 
    * 전체 영역을 다시 그려준다.

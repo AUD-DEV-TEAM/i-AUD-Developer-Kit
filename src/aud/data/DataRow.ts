@@ -19,7 +19,7 @@ export interface DataRow{
    *
   * @param name 필드명(string)
   */
-  GetValue(name: string): object;
+  GetValue(name: string): any;
 
   /** 
    * 레코드의 특정 필드의 셀값을 설정합니다.

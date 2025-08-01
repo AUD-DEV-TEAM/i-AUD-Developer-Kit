@@ -16,7 +16,7 @@ export interface ScriptDataColumn{
    * 필드의 원본 데이터 타입코드를 반환 합니다.
    *
   */
-  getColumnType(): int;
+  getColumnType(): number;
 
   /** 
    * 필드의 원본 데이터 타입 이름을 반환 합니다.
@@ -40,7 +40,7 @@ export interface ScriptDataColumn{
    * 필드의 최대 데이터 사이즈를 반환 합니다.
    *
   */
-  getMaxDataLength(): int;
+  getMaxDataLength(): number;
 
   /** 
    * Column 명을 반환합니다.

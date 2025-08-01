@@ -11,7 +11,7 @@ export interface OlapField{
   /**
    * 데이터 테이블의 컬럼 인덱스
   */
-   readonly DataColumnIndex: int;
+   readonly DataColumnIndex: number;
 
   /**
    * 필드 이름

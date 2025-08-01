@@ -13,7 +13,7 @@ export interface ScriptFTP{
   * @param password 비밀번호
   * @param passiveMode passive mode
   */
-  Connect(address: string, port: int, userID: string, password: string, passiveMode: boolean): void;
+  Connect(address: string, port: number, userID: string, password: string, passiveMode: boolean): void;
 
   /** 
    * 연결 해제

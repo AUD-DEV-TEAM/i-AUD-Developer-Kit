@@ -188,7 +188,7 @@ DataTable의 결과 데이터가 많은 경우 서버 메모리 점유 문제를
    *
   * @param idx 테이블 컬렉션 내 인덱스 값
   */
-  getTable(idx: int): ScriptDataTable;
+  getTable(idx: number): ScriptDataTable;
 
   /** 
    * Client에서 전달 받은 데이터 테이블 객체를 반환합니다.
@@ -201,6 +201,6 @@ DataTable의 결과 데이터가 많은 경우 서버 메모리 점유 문제를
    * Client에서 전달 받은 테이블의 개수를 반환합니다.
    *
   */
-  getTableCount(): int;
+  getTableCount(): number;
 
 }

@@ -41,7 +41,7 @@ export interface MultiHeaderCell{
   /**
    * 셀의 텍스트
   */
-  Value: object;
+  Value: any;
 
   /** 
    * 내부 컨트롤 생성 메소드

@@ -99,7 +99,7 @@ export interface Control{
   * @param option 애니메이션 옵션
    * @hidden
   */
-  Animation(option: object): void;
+  Animation(option: any): void;
 
   /** 
    * 컨트롤이 포커스를 얻게 합니다.

@@ -73,7 +73,7 @@ export interface DataGridColumn{
   /**
    * 레코드 추가 시 초기 지정값
   */
-  InitValue: object;
+  InitValue: any;
 
   /**
    * 필드의 헤더에 체크박스가 있을 경우 체크 유무
@@ -143,7 +143,7 @@ export interface DataGridColumn{
   * @param value 필터 조건 값
   * @param isAnd AND 인지 OR 인지 유무(필터 타입이 Measure일 경우에만 사용. 기본값은 true)
   */
-  AddFilter(type: number, operator: string, value: object, isAnd: boolean): void;
+  AddFilter(type: number, operator: string, value: any, isAnd: boolean): void;
 
   /** 
    * 컬럼의 데이타 스타일을 삭제해주는 메소드

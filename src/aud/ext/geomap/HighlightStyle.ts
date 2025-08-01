@@ -17,12 +17,12 @@ export interface HighlightStyle{
    * fill 반환
    *
   */
-  getFill(): object;
+  getFill(): any;
 
   /** 
    * stroke 반환
    *
   */
-  getStroke(): object;
+  getStroke(): any;
 
 }

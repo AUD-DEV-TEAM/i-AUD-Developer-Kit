@@ -39,7 +39,7 @@ export interface Image extends Control{
    *
   * @param range 엑셀 시트의 표시 시작 위치(eg.A5:J11)
   */
-  GetExcelExportJSON(range: string): object;
+  GetExcelExportJSON(range: string): any;
 
   /**
    * @event 

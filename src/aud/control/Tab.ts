@@ -19,7 +19,7 @@ export interface Tab extends Control{
   /**
    * 탭 컨트롤의 속성들
   */
-  Property: object;
+  Property: any;
 
   /**
    * 탭 아이템 목록

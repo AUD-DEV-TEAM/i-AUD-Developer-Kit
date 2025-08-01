@@ -15,19 +15,19 @@ export interface WebContainer extends Control{
   * @param fnName 호출할 함수 이름
   * @param args 호출할 함수에 넘길 파라미터
   */
-  CallInnerFunction(fnName: string, args: object): object;
+  CallInnerFunction(fnName: string, args: any): any;
 
   /** 
    * 브라우저 컴포넌트의 html document 객체를 반환 합니다.
    *
   */
-  getDocument(): object;
+  getDocument(): any;
 
   /** 
    * 브라우저 컴포넌트의 window 객체를 반환 합니다.
    *
   */
-  getWindow(): object;
+  getWindow(): any;
 
   /** 
    * 특정 페이지로 이동 합니다.
@@ -35,7 +35,7 @@ export interface WebContainer extends Control{
   * @param url 대상 페이지 주소
   * @param postData POST 방식으로 로 전송할 파라미터 (생략할 경우 GET 방식으로 호출합니다.)
   */
-  goPage(url: string, postData: object): void;
+  goPage(url: string, postData: any): void;
 
   /**
    * @event 

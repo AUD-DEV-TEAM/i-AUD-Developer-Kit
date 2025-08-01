@@ -16,7 +16,7 @@ export interface UserComponent extends Control{
   * @param reportInfo {CODE: reportCode, NAME: reportName} 형식
   * @param openReport true인 경우, 보고서 정보 셋팅 후 바로 보고서를 오픈합니다.
   */
-  SetReportInfo(reportInfo: object, openReport: boolean): void;
+  SetReportInfo(reportInfo: any, openReport: boolean): void;
 
   /** 
    * 유저 컴포넌트의 스크립트의 객체를 불러옵니다.
@@ -42,7 +42,7 @@ export interface UserComponent extends Control{
     /**
      * 보고서 스크립트 객체
     */
-    ScriptObject: object
+    ScriptObject: any
   }
   ) => void;
 

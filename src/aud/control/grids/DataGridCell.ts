@@ -19,7 +19,7 @@ export interface DataGridCell{
   /**
    * 실제 데이터 객체
   */
-  Data: object;
+  Data: any;
 
   /**
    * 텍스트 Bold 처리 유무(true 인 경우 Bold 처리)
@@ -49,11 +49,11 @@ export interface DataGridCell{
   /**
    * 콤보박스 셀의 텍스트
   */
-   readonly Text: object;
+   readonly Text: any;
 
   /**
    * 셀의 텍스트
   */
-  Value: object;
+  Value: any;
 
 }

@@ -19,6 +19,46 @@ export interface FileUploadButton extends Control{
   */
   Text: string;
 
+  /** 
+   * MouseDown 했을 때 적용할 BoxStyle을 지정합니다.
+BoxStyle이 존재하지 않거나, Style 속성이 없을 경우 설정되지 않습니다.
+   *
+   * @example
+   * ```js
+   * // MouseDown 시 BoxStyle을 변경 합니다.
+   * // BoxStyle은 이름 또는 Key 값으로 변경하실 수 있습니다.
+   * // FileUploadButton.SetMouseDownBoxStyle("");
+   * var FileUploadButton = Matrix.getObject("FileUploadButton");
+   * // Key를 입력한 경우
+   * FileUploadButton.SetMouseDownBoxStyle("BX5DF3C663CEBD410DB823074438DD30C6");
+   * // 이름을 입력한 경우
+   * FileUploadButton.SetMouseDownBoxStyle("PRIMARY_BTN_Default");
+   * ```
+  * @param boxStyleIdentifier BoxStyle의 Key 또는 이름
+   * @hidden
+  */
+  SetMouseDownBoxStyle(boxStyleIdentifier: string): void;
+
+  /** 
+   * MouseOver 했을 때 적용할 BoxStyle을 지정합니다.
+BoxStyle이 존재하지 않거나, Style 속성이 없을 경우 설정되지 않습니다.
+   *
+   * @example
+   * ```js
+   * // MouseOver 시 BoxStyle을 변경 합니다.
+   * // BoxStyle은 이름 또는 Key 값으로 변경하실 수 있습니다.
+   * // FileUploadButton.SetMouseOverBoxStyle("");
+   * var FileUploadButton = Matrix.getObject("FileUploadButton");
+   * // Key를 입력한 경우
+   * FileUploadButton.SetMouseOverBoxStyle("BXCAF656A487E84A92A16419B0ACC273D0");
+   * // 이름을 입력한 경우
+   * FileUploadButton.SetMouseOverBoxStyle("PRIMARY_BTN_Hover");
+   * ```
+  * @param boxStyleIdentifier BoxStyle의 Key 또는 이름
+   * @hidden
+  */
+  SetMouseOverBoxStyle(boxStyleIdentifier: string): void;
+
   /**
    * @event 
    *

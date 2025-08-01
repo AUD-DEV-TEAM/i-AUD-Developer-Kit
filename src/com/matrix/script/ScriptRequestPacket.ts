@@ -136,13 +136,13 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    *
   * @param idx 파라미터 컬렉션 내 인덱스 값
   */
-  getParam(idx: int): string;
+  getParam(idx: number): string;
 
   /** 
    * Client에서 전달 받은 파라미터의 개수를 반환합니다.
    *
   */
-  getParamsCount(): int;
+  getParamsCount(): number;
 
   /** 
    * 현재 접속한 사용자의 IP Address를 반환합니다.
@@ -182,13 +182,13 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    *
   * @param idx 테이블 컬렉션 내 인덱스 값
   */
-  getTable(idx: int): ScriptDataTable;
+  getTable(idx: number): ScriptDataTable;
 
   /** 
    * Client에서 전달 받은 테이블의 개수를 반환합니다.
    *
   */
-  getTableCount(): int;
+  getTableCount(): number;
 
   /** 
    * 현재 접속한 사용자의 ID를 반환합니다.

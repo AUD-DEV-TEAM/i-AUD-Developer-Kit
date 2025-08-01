@@ -78,7 +78,7 @@ export interface ListView{
   /**
    * ListViewItem 선택 시, SelectionStyle 지정(테두리 두께, 테두리 색상, 배경색)
   */
-  SelectionStyle: object;
+  SelectionStyle: any;
 
   /**
    * 현재 표시되는 ListViewItem 배열
@@ -122,7 +122,7 @@ export interface ListView{
    *
   * @param idx ListViewItem Index 번호
   */
-  GetAt(idx: int): ListViewItem | undefined;
+  GetAt(idx: number): ListViewItem | undefined;
 
   /** 
    * ListViewItem 제거
@@ -136,7 +136,7 @@ export interface ListView{
    *
   * @param idx ListViewItem Index 번호
   */
-  RemoveAt(idx: int): void;
+  RemoveAt(idx: number): void;
 
   /** 
    * ListView ScrollBar 위치를 가장 밑으로 이동

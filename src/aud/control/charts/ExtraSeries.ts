@@ -33,7 +33,7 @@ export interface ExtraSeries{
   /**
    * Label 에 해당하는 필드 정보
   */
-  LabelSeries: object;
+  LabelSeries: any;
 
   /**
    * 계열명 다국어 처리시 필요한 다국어 코드
@@ -48,17 +48,17 @@ export interface ExtraSeries{
   /**
    * X축에 해당하는 필드 정보
   */
-  SeriesX: object;
+  SeriesX: any;
 
   /**
    * Y축에 해당하는 필드 정보
   */
-  SeriesY: object;
+  SeriesY: any;
 
   /**
    * Z축에 해당하는 필드 정보
   */
-  SeriesZ: object;
+  SeriesZ: any;
 
   /**
    * 심볼 크기(default:4)

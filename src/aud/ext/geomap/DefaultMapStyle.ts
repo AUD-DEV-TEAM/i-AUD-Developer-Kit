@@ -22,18 +22,18 @@ export interface DefaultMapStyle{
    * fill 반환
    *
   */
-  getFill(): object;
+  getFill(): any;
 
   /** 
    * font 반환
    *
   */
-  getFont(): object;
+  getFont(): any;
 
   /** 
    * stroke 반환
    *
   */
-  getStroke(): object;
+  getStroke(): any;
 
 }

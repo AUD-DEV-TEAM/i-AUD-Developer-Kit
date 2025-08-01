@@ -226,7 +226,7 @@ export interface ScriptWorkBook{
    *
   * @param key name or index
   */
-  RemoveWorkSheet(key: string|int): void;
+  RemoveWorkSheet(key: string|number): void;
 
   /** 
    * 엑셀 파일을 생성합니다.
@@ -348,7 +348,7 @@ export interface ScriptWorkBook{
    * worsheet의 수량을 반환 합니다.
    *
   */
-  WorkSheetCount(): int;
+  WorkSheetCount(): number;
 
   /** 
    * 현재 엑셀 모델을 MX-GRID 템플릿 파일로 저장 합니다.
@@ -448,7 +448,7 @@ export interface ScriptWorkBook{
    *
   * @param key 이름 또는 Index
   */
-  getWorkSheet(key: string|int): ScriptWorkSheet;
+  getWorkSheet(key: string|number): ScriptWorkSheet;
 
   /** 
    * 엑셀 내 특정 영역을 순차적으로 읽기 위한 객체를 반환 합니다.

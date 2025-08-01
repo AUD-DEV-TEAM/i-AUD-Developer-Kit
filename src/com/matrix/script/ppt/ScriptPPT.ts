@@ -9,14 +9,14 @@ export interface ScriptPPT{
    *
   * @param slideIndex 슬라이드 위치
   */
-  CopySlide(slideIndex: int): ScriptSlide;
+  CopySlide(slideIndex: number): ScriptSlide;
 
   /** 
    * 슬라이드를 삭제합니다.
    *
   * @param slideIndex 슬라이드 위치
   */
-  RemoveSlide(slideIndex: int): ScriptSlide;
+  RemoveSlide(slideIndex: number): ScriptSlide;
 
   /** 
    * PPT 파일을 생성합니다.
@@ -30,6 +30,6 @@ export interface ScriptPPT{
    *
   * @param slideIndex 슬라이드 위치
   */
-  getSlide(slideIndex: int): ScriptSlide;
+  getSlide(slideIndex: number): ScriptSlide;
 
 }

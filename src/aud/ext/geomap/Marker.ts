@@ -48,7 +48,7 @@ export interface Marker{
   * @param imgUrl contextpath/reports/WEB_IMAGES 아래의 이미지 파일을 입력합니다.
   * @param imgScale 빈 값이 입력되면 기본 스케일로 1이 적용됩니다.
   */
-  setImg(imgUrl: string, imgScale?: int): void;
+  setImg(imgUrl: string, imgScale?: number): void;
 
   /** 
    * Marker 를 보여줍니다.

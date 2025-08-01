@@ -15,13 +15,13 @@ export interface ScriptAxis{
    *
   * @param max 값
   */
-  setMaxValue(max: double): void;
+  setMaxValue(max: number): void;
 
   /** 
    * 축의 최소값을 설정합니다.
    *
   * @param min 값
   */
-  setMinValue(min: double): void;
+  setMinValue(min: number): void;
 
 }

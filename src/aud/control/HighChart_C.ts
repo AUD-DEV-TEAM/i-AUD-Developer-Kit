@@ -80,6 +80,6 @@ export interface HighChart_C extends Control{
    *
   * @param script 차트에 적용할 Script
   */
-  SetHighChartScript(script: object): void;
+  SetHighChartScript(script: any): void;
 
 }

@@ -57,7 +57,7 @@ export interface ScriptHeaderCell{
   /**
    * 셀의 참조값
   */
-   readonly Value2: object;
+   readonly Value2: any;
 
   /** 
    * 선택된 헤더를 축소 합니다.

@@ -28,7 +28,7 @@ export interface MetaView{
   /**
    * 영역 별 MetaItem 오프젝트
   */
-  Items: object;
+  Items: any;
 
   /**
    * 뷰 이름(예 :V1,V3)

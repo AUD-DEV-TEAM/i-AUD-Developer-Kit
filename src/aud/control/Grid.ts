@@ -561,7 +561,7 @@ export interface Grid extends Control{
    * 멀티헤더의 Layout을 JSON형태로 반환합니다.
    *
   */
-  GetMultiHeaderLayout(): object;
+  GetMultiHeaderLayout(): any;
 
   /** 
    * 레코드의 수를 반환합니다.
@@ -752,7 +752,7 @@ export interface Grid extends Control{
    *
   * @param layout GetMultiHeaderLayout()에서 return한 모델(type  0:None, 1:Label, 2:TextBox, 21:NumberBox, 3:Checkbox, 4:Button, 5:ComboBox, 6:Daily, 61:DFromTo, 62:Month, 63:MFromTo, 7:Image, 
   */
-  SetMultiHeaderLayout(layout: object): boolean;
+  SetMultiHeaderLayout(layout: any): boolean;
 
   /** 
    * 그리드를 다시 그려주는 메소드
@@ -798,7 +798,7 @@ export interface Grid extends Control{
    *
   * @param fieldInfo 필드명 또는 필드 위치
   */
-  getRowValue(fieldInfo: string | number): object;
+  getRowValue(fieldInfo: string | number): any;
 
   /** 
    * 특정 위치행의 필드의 값을 반환합니다.
@@ -806,7 +806,7 @@ export interface Grid extends Control{
   * @param idx 레코드 인덱스
   * @param fieldInfo 필드명 또는 필드 위치
   */
-  getRowValue(idx: number, fieldInfo: string | number): object;
+  getRowValue(idx: number, fieldInfo: string | number): any;
 
   /** 
    * 특정 필드에 Dimension 필터(Between)를 추가하는 메소드
@@ -1206,7 +1206,7 @@ export interface Grid extends Control{
     /**
      * 셀 데이타 정보
     */
-    Record: object
+    Record: any
     /**
      * 이 값을 true 설정하면 자동 선택 기능이 취소됩니다.
     */
@@ -1295,7 +1295,7 @@ export interface Grid extends Control{
     /**
      * 셀 데이타 정보
     */
-    Record: object
+    Record: any
     /**
      * 수정되거나 추가된 레코드 목록을 반환합니다.
     */
@@ -1334,11 +1334,11 @@ export interface Grid extends Control{
     /**
      * 수정 되기 전 값
     */
-    BeforeValue: object
+    BeforeValue: any
     /**
      * 수정된 값
     */
-    AfterValue: object
+    AfterValue: any
     /**
      * 행 객체
     */
@@ -1462,7 +1462,7 @@ export interface Grid extends Control{
     /**
      * 셀 데이타 정보
     */
-    Record: object
+    Record: any
     /**
      * 필드 정보
     */
@@ -1548,7 +1548,7 @@ export interface Grid extends Control{
     /**
      * Excel로 내보내기 할 경우 상단 Row에 데이터를 추가할 수 있습니다.(string array 또는 {"Range":"A1","ColSpan":10,"Value":"■ 보고서 명 : ","Style":{"Border":"border:Thin,#000000;","Font":"font-color:#000000"}}형태로 지정)
     */
-    ExportRows: object[]
+    ExportRows: any
     /**
      * DataGrid의 엑셀 위치 (default : A1)
     */
@@ -1792,7 +1792,7 @@ export interface Grid extends Control{
     /**
      * 셀 데이타 정보
     */
-    Record: object
+    Record: any
     /**
      * 클립보드 텍스트로, 작업을 취소하려면 이 값을 제거하십시오.
     */
@@ -1827,7 +1827,7 @@ export interface Grid extends Control{
     /**
      * 셀의 값
     */
-    Value: object
+    Value: any
     /**
      * 행 객체
     */

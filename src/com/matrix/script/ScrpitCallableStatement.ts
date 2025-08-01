@@ -52,7 +52,7 @@ export interface ScrpitCallableStatement extends ScriptPreparedStatement{
    * CallableStatement에 속한 쿼리 중 입력(Insert), 수정(Update), 또는 삭제(Delete)와 같은 DML 또는 DDL 저장 프로시저 실행
    *
   */
-  executeUpdate(): int;
+  executeUpdate(): number;
 
   /** 
    * 지정된 파라미터의 BLOB 값을 파일로 생성한 뒤 해당 파일의 경로를 반환합니다.
@@ -66,7 +66,7 @@ export interface ScrpitCallableStatement extends ScriptPreparedStatement{
    *
   * @param idx 파라미터 인덱스
   */
-  getBlob(idx: int): string;
+  getBlob(idx: number): string;
 
   /** 
    * 지정된 JDBC BIT 또는 BOOLEAN 파라미터 값을 Java에 있는 boolean 유형으로 불러옵니다.
@@ -80,7 +80,7 @@ export interface ScrpitCallableStatement extends ScriptPreparedStatement{
    *
   * @param idx 파라미터 인덱스
   */
-  getBoolean(idx: int): boolean;
+  getBoolean(idx: number): boolean;
 
   /** 
    * 지정된 JDBC CLOB 파라미터 값을 Java에 있는 문자열 형식으로 불러옵니다.
@@ -94,7 +94,7 @@ export interface ScrpitCallableStatement extends ScriptPreparedStatement{
    *
   * @param idx 파라미터 인덱스
   */
-  getClob(idx: int): string;
+  getClob(idx: number): string;
 
   /** 
    * 지정된 REFERENCE CURSOR 파라미터 값을 ScriptDataTable 형식으로 불러옵니다.
@@ -135,14 +135,14 @@ export interface ScrpitCallableStatement extends ScriptPreparedStatement{
   *               })
   * ```
   */
-  getDataTable(idx: int, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
+  getDataTable(idx: number, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
 
   /** 
    * 지정된 REFERENCE CURSOR 파라미터 값을 ScriptDataTable 형식으로 불러옵니다.
    *
   * @param idx 파라미터 인덱스
   */
-  getDataTable(idx: int): ScriptDataTable;
+  getDataTable(idx: number): ScriptDataTable;
 
   /** 
    * 지정된 JDBC 날짜 파라미터 값을 Java에 있는 문자열 형식으로 불러옵니다.
@@ -158,63 +158,63 @@ export interface ScrpitCallableStatement extends ScriptPreparedStatement{
   * @param idx 파라미터 인덱스
   * @param fmt 날짜 형식 (E.g. yyyy-MM-dd)
   */
-  getDate(idx: int, fmt: string): string;
+  getDate(idx: number, fmt: string): string;
 
   /** 
    * 지정된 JDBC DOUBLE 파라미터 값을 Java에 있는 double 형식으로 불러옵니다.
    *
   * @param paramName 파라미터 명
   */
-  getDouble(paramName: string): double;
+  getDouble(paramName: string): number;
 
   /** 
    * 지정된 JDBC DOUBLE 파라미터 값을 Java에 있는 double 형식으로 불러옵니다.
    *
   * @param idx 파라미터 인덱스
   */
-  getDouble(idx: int): double;
+  getDouble(idx: number): number;
 
   /** 
    * 지정된 JDBC FLOAT 파라미터 값을 Java에 있는 float 형식으로 불러옵니다.
    *
   * @param idx 파라미터 인덱스
   */
-  getFloat(idx: int): float;
+  getFloat(idx: number): number;
 
   /** 
    * 지정된 JDBC FLOAT 파라미터 값을 Java에 있는 float 형식으로 불러옵니다.
    *
   * @param paramName 파라미터 명
   */
-  getFloat(paramName: string): float;
+  getFloat(paramName: string): number;
 
   /** 
    * 지정된 JDBC INTEGER 파라미터 값을 Java에 있는 Int 형식으로 불러옵니다.
    *
   * @param paramName 파라미터 명
   */
-  getInt(paramName: string): int;
+  getInt(paramName: string): number;
 
   /** 
    * 지정된 JDBC INTEGER 파라미터 값을 Java에 있는 Int 형식으로 불러옵니다.
    *
   * @param idx 파라미터 인덱스
   */
-  getInt(idx: int): int;
+  getInt(idx: number): number;
 
   /** 
    * 지정된 파라미터의 값을 반환합니다.
    *
   * @param name 파라미터 명
   */
-  getLong(name: string): object;
+  getLong(name: string): any;
 
   /** 
    * 지정된 파라미터의 값을 반환합니다.
    *
   * @param idx 파라미터 인덱스
   */
-  getLong(idx: int): object;
+  getLong(idx: number): any;
 
   /** 
    * 다음 결과셋으로 이동하고 현재 결과셋을 닫습니다.
@@ -227,14 +227,14 @@ export interface ScrpitCallableStatement extends ScriptPreparedStatement{
    *
   * @param idx 파라미터 인덱스
   */
-  getObject(idx: int): object;
+  getObject(idx: number): any;
 
   /** 
    * 지정된 파라미터의 값을 반환합니다.
    *
   * @param name 파라미터 명
   */
-  getObject(name: string): object;
+  getObject(name: string): any;
 
   /** 
    * 지정된 JDBC CHAR, VARCHAR 또는 LONGVARCHAR 파라미터 값을 Java에 있는 문자열 형식으로 불러옵니다.
@@ -248,7 +248,7 @@ export interface ScrpitCallableStatement extends ScriptPreparedStatement{
    *
   * @param idx 파라미터 인덱스
   */
-  getString(idx: int): string;
+  getString(idx: number): string;
 
   /** 
    * JDBC가 제공하는 sqlType의 parameterIndex에 OUT 파라미터를 등록합니다. 모든 OUT 파라미터는 저장 프로시저가 실행되기 전에 등록되어 있어야 합니다.
@@ -256,13 +256,13 @@ export interface ScrpitCallableStatement extends ScriptPreparedStatement{
   * @param idx 파라미터 인덱스
   * @param type sqlType
   */
-  registerOutParameter(idx: int, type: enSQLTypes): void;
+  registerOutParameter(idx: number, type: enSQLTypes): void;
 
   /** 
    * CallableStatement에 의해 생성된 ResultSet 객체가 Row를 추가로 필요로 할 때, Row는 DB로부터 Fetch 되며, 이에 대한 Hint를 JDBC 드라이버에 넘깁니다. 값이 '0'으로 설정되면 Hint를 무시하며 기본 값은 '0'입니다.
    *
   * @param size Fetch 사이즈
   */
-  setFetchSize(size: int): void;
+  setFetchSize(size: number): void;
 
 }

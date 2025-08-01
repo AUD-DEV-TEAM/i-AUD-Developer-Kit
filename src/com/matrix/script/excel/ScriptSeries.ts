@@ -39,7 +39,7 @@ export interface ScriptSeries{
   * @param text 항목 값
   * @param value 값
   */
-  addCategoryValue(text: string, value: double): void;
+  addCategoryValue(text: string, value: number): void;
 
   /** 
    * 시리즈의 배경 색상을 추가 합니다.
@@ -74,7 +74,7 @@ export interface ScriptSeries{
    *
   * @param value 값
   */
-  addValue(value: double): void;
+  addValue(value: number): void;
 
   /** 
    * 시리즈의 X/Y/Size 값을 추가 합니다.(차트 유형:Scatter,Bubble-Size)
@@ -96,7 +96,7 @@ export interface ScriptSeries{
    *
   * @param value 값
   */
-  addValueArray(value: double[]): void;
+  addValueArray(value: number[]): void;
 
   /** 
    * 시리즈에 X/Y/Size 값을 추가합니다. (지원되는 차트 유형: Scatter, Bubble-Size) 
@@ -104,7 +104,7 @@ export interface ScriptSeries{
   * @param value 값
   * @param isXYZ 시리즈 구성 데이터 유형(X/Y/Size)
   */
-  addValueArray(value: double[], isXYZ: string): void;
+  addValueArray(value: number[], isXYZ: string): void;
 
   /** 
    * 차트 타입 반환
@@ -142,7 +142,7 @@ export interface ScriptSeries{
    *
   * @param size 기본값 10(Min:0/Max:400)
   */
-  setExplosion(size: int): void;
+  setExplosion(size: number): void;
 
   /** 
    * 시리즈의 배경 색상을 지정 합니다.
@@ -156,7 +156,7 @@ export interface ScriptSeries{
    *
   * @param angle 기본값 0(Min:0/Max:360)
   */
-  setFirstSliceAng(angle: int): void;
+  setFirstSliceAng(angle: number): void;
 
   /** 
    * 값 필드의 서식을 설저합니다.
@@ -170,7 +170,7 @@ export interface ScriptSeries{
    *
   * @param angle 기본값 50(Min:0/Max:90)
   */
-  setHoleSize(angle: int): void;
+  setHoleSize(angle: number): void;
 
   /** 
    * 시리즈 이름 셀의 주소를 설정합니다.
@@ -205,7 +205,7 @@ export interface ScriptSeries{
    *
   * @param width 기본값 1
   */
-  setLineWidth(width: int): void;
+  setLineWidth(width: number): void;
 
   /** 
    * Line/Scatter 차트의 마커의 색상을 지정합니다.
@@ -219,7 +219,7 @@ export interface ScriptSeries{
    *
   * @param size 기본값 5(Min:2/Max:72)
   */
-  setMarkerSize(size: int): void;
+  setMarkerSize(size: number): void;
 
   /** 
    * Line/Scatter 차트의 마커 유형을 설정합니다.
@@ -233,7 +233,7 @@ export interface ScriptSeries{
    *
   * @param value 투명도(0.0~1.0)
   */
-  setOpacity(value: double): void;
+  setOpacity(value: number): void;
 
   /** 
    * 보조축 사용 여부 설정.

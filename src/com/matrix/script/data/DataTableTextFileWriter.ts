@@ -81,6 +81,6 @@ CSV 또는 텍스트 파일에 추가 적인 정보를 출력할 때 사용 합�
    *
   * @param text 출력할 문자열
   */
-  getRowCount(text: string): int;
+  getRowCount(text: string): number;
 
 }

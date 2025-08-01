@@ -11,7 +11,7 @@ export interface ScriptPdfDocument{
   * @param width 너비 값
   * @param height 높이 값
   */
-  ImageFileToPDF(imagePath: string, pdfPath: string, width: double, height: double): boolean;
+  ImageFileToPDF(imagePath: string, pdfPath: string, width: number, height: number): boolean;
 
   /** 
    * 여러개의 PDF 파일을 한개의 파일로 병합 니다.

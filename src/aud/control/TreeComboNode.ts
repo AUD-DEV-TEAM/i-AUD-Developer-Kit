@@ -46,7 +46,7 @@ export interface TreeComboNode{
    *
   * @param name 필드명
   */
-  getData(name: string): object;
+  getData(name: string): any;
 
   /** 
    * 노드의 체크 박스 상태를 변경합니다.

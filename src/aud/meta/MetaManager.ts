@@ -85,7 +85,7 @@ export interface MetaManager{
   * @param caption 화면 표시명
    * @hidden
   */
-  AddFilterItem(itemCode: string, filterOperator: enMetaConditionOperator, promptType: enMetaConditionDefaultPromptType, promptName: string, defaultValue: object, protectLevel: enFilterItemProtectLevel, viewName: string, filterType: enMetaConditionFilterType, promptValidate: enMetaConditionPromptValidate, parentCode: string, formula: string, caption: string): void;
+  AddFilterItem(itemCode: string, filterOperator: enMetaConditionOperator, promptType: enMetaConditionDefaultPromptType, promptName: string, defaultValue: any, protectLevel: enFilterItemProtectLevel, viewName: string, filterType: enMetaConditionFilterType, promptValidate: enMetaConditionPromptValidate, parentCode: string, formula: string, caption: string): void;
 
   /** 
    * 특정 메타 보고서에 조회 항목을 추가하는 메소드

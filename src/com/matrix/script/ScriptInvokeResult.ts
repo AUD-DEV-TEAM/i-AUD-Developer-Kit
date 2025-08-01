@@ -19,6 +19,6 @@ export interface ScriptInvokeResult{
    *  
    *
   */
-  getValue(): object;
+  getValue(): any;
 
 }

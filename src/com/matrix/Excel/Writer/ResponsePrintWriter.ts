@@ -20,13 +20,13 @@ export interface ResponsePrintWriter{
    *
   * @param text 파일에 쓰고자 하는 내용
   */
-  print(text: object): void;
+  print(text: any): void;
 
   /** 
    * 파일에 주어진 문자열을 추가하고 개행을 처리합니다.
    *
   * @param text 파일에 쓰고자 하는 내용
   */
-  println(text: object): void;
+  println(text: any): void;
 
 }

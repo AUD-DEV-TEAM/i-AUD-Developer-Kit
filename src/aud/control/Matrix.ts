@@ -97,7 +97,7 @@ export interface Matrix{
    *
   * @param menuitem 컨텍스트 메뉴에 추가할 사용자 정의 컨텍스트 메뉴 아이템
   */
-  AddContextMenu(menuitem: object): void;
+  AddContextMenu(menuitem: any): void;
 
   /** 
    * 컨텍스트 메뉴에 라인을 추가합니다.
@@ -140,7 +140,7 @@ export interface Matrix{
   * @param name 호출하고자 하는 메소드의 이름
   * @param valuelist [ {"KEY":"parameter name", "VALUE":"값"},{...} ]
   */
-  CallExtentionFunc(name: string, valuelist: object[]): void;
+  CallExtentionFunc(name: string, valuelist: any): void;
 
   /** 
    * RestAPI를 호출합니다.
@@ -149,7 +149,7 @@ export interface Matrix{
   * @param req RestAPI에 전달할 파라미터
   * @param callback RestAPI 실행 결과를 전달받을 callback 함수
   */
-  CallRestAPI(url: string, req: object, callback: (p: {"Success":boolean, "Message":string, "Result":any}) => void): void;
+  CallRestAPI(url: string, req: any, callback: (p: {"Success":boolean, "Message":string, "Result":any}) => void): void;
 
   /** 
    * 화면상의 모든 대화상자를 삭제 합니다.
@@ -240,7 +240,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   * @param style style 객체
    * @hidden
   */
-  ConvertToBackColor(style?: Style): object;
+  ConvertToBackColor(style?: Style): any;
 
   /** 
    * CodeMirror를 사용하는 함수 재품 내부에서 사용
@@ -401,7 +401,7 @@ false로 전달되면 새로운 탭에서 보고서를 열게 됩니다.
   * @param tag 구분자(tag)
    * @hidden
   */
-  ExcelExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, tag: object): void;
+  ExcelExportServiceCall(json: any, params: Array<{"Key":string,"Value":string}>, tag: any): void;
 
   /** 
    * 데이터 엑셀 내보내기 서비스를 호출합니다.
@@ -477,7 +477,7 @@ false로 전달되면 새로운 탭에서 보고서를 열게 됩니다.
   * }
   * ```
   */
-  ExcelExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
+  ExcelExportServiceCall(json: any, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
    * 데이터소스를 실행 합니다.(처리 완료 후 OnExecutCompleted 이벤트가 발생합니다.)
@@ -576,7 +576,7 @@ false로 전달되면 새로운 탭에서 보고서를 열게 됩니다.
   * }
   * ```
   */
-  ExportImageEx(controlNames: string[], exportType: enExportType, option: object): void;
+  ExportImageEx(controlNames: string[], exportType: enExportType, option: any): void;
 
   /** 
    * 팝업으로 내보내기 설정창을 표시합니다.
@@ -613,7 +613,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
    * 보고서의 변수 목록(VS,VN,변수편집기,Global변수)을 모두 반환합니다.
    *
   */
-  GetAllVariables(): object;
+  GetAllVariables(): any;
 
   /** 
    * 해당 컨트롤의 PNG 타입 Base64 인코딩된 문자열을 반환합니다.
@@ -646,7 +646,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
    *
   * @param gridNames 데이터 입력/수정/삭제 정보를 전송할 그리드 목록(string 타입인 경우 콤마(,)로 분리
   */
-  GetDataSetMafPacket(gridNames: string|string[]): object;
+  GetDataSetMafPacket(gridNames: string|string[]): any;
 
   /** 
    * 날짜 처리 객체를 반환합니다.
@@ -722,7 +722,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
    * ShowReportDialog로 호출된 팝업에서, 부모 보고서가 보내준 파라미터를 추출합니다.
    *
   */
-  GetDialogRequestParams(): object;
+  GetDialogRequestParams(): any;
 
   /** 
    * 제품에서 사용하는 enum 타입을 가져옵니다.
@@ -831,7 +831,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
    *
   * @param isCondition 스케줄 예약 실행 여부(true:예약 실행)
   */
-  GetScheduleCondition(isCondition: boolean): object;
+  GetScheduleCondition(isCondition: boolean): any;
 
   /** 
    * 스케줄 실행 layout을 조회합니다.
@@ -839,7 +839,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * @param workbook 엑셀 내보내기 layout
   * @param isCondition 스케줄 예약 실행 여부(true:예약 실행)
   */
-  GetScheduleParam(workbook: object, isCondition: boolean): object;
+  GetScheduleParam(workbook: any, isCondition: boolean): any;
 
   /** 
    * 메타 템플릿 사용을 위해 메타 데이터소스 매니저의 TemplateMetaData를 반환합니다.
@@ -939,7 +939,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * }
   * ```
   */
-  HMLExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
+  HMLExportServiceCall(json: any, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
    * 웹(HTML) 형식으로 다운로드합니다.
@@ -1010,7 +1010,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * }
   * ```
   */
-  HTMLExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
+  HTMLExportServiceCall(json: any, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
    * 현재 문서에 css 파일을 추가합니다.
@@ -1043,14 +1043,14 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * @param id 보고서 코드
   * @param params 타겟 보고서로 넘길 parameters(Array[object{KEY,VALUE}]) 또는 null
   */
-  LoadDocument(id: string, params: object): void;
+  LoadDocument(id: string, params: any): void;
 
   /** 
    * 컨트롤의 데이터소스가 i-META일 경우 자동으로 i-META 조회 조건 컨트롤을 생성합니다.
    *
   * @param options 그룹 사용여부, 조회 조건 컨트롤의 시작위치, 라벨 스타일 등을 지정
   */
-  MakeMetaFilterControls(options: object): void;
+  MakeMetaFilterControls(options: any): void;
 
   /** 
    * PDF3 형식으로 다운로드합니다.
@@ -1126,7 +1126,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * }
   * ```
   */
-  PDFExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
+  PDFExportServiceCall(json: any, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
    * 다운로드 받은 PDF 파일을 브라우저 인쇄 기능을 이용하여 인쇄합니다. (웹 취약 보안 상의 이유로 folderName 이 없을 경우 무조건 _TEMP_ 폴더로 고정 됨)
@@ -1186,7 +1186,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * @param close 파라미터를 전달한 후, 팝업창 닫힘 설정(true:팝업닫힘)
   * @param type 결과 유형
   */
-  ReportDialogResult(params: object, close: boolean, type: string): void;
+  ReportDialogResult(params: any, close: boolean, type: string): void;
 
   /** 
    * 데이터 내보내기 서비스를 호출합니다.(처리 완료 후 OnServiceCallBack 이벤트가 발생합니다.)
@@ -1197,7 +1197,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * @param type 내보낼 파일 형식
    * @hidden
   */
-  ReportExport(json: object, params: object, tag: object, type: enExportType): void;
+  ReportExport(json: any, params: any, tag: any, type: enExportType): void;
 
   /** 
    * 데이터 내보내기 서비스를 호출합니다.(처리 완료 후 OnServiceCallBack 이벤트가 발생합니다.)
@@ -1226,7 +1226,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * ```
   * @param type 내보낼 파일 형식
   */
-  ReportExport(json: object, params: object, callBack: Function, type: enExportType): void;
+  ReportExport(json: any, params: any, callBack: Function, type: enExportType): void;
 
   /** 
    * 문서 전체를 리사이즈합니다.
@@ -1496,7 +1496,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * }
   * ```
   */
-  ShowReportDialog(reportCode: string, parameter: object, options: object, callBack: (resultData:any) => void): DialogBox;
+  ShowReportDialog(reportCode: string, parameter: any, options: any, callBack: (resultData:any) => void): DialogBox;
 
   /** 
    * 스케줄 옵션 보고서를 팝업으로 표시합니다.
@@ -1822,7 +1822,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   * }
   * ```
   */
-  WordExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
+  WordExportServiceCall(json: any, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
    * Excel 2003 형식으로 다운로드합니다.
@@ -1850,7 +1850,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   * }
   * ```
   */
-  XLSExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
+  XLSExportServiceCall(json: any, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
    * 특정 컨트롤들의 데이터를 Refresh 합니다.
@@ -2012,7 +2012,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
   * @param name 파라미터 이름(optional)
   */
-  getParamList(name: string): object;
+  getParamList(name: string): any;
 
   /** 
    * 컨트롤의 특정 속성을 반환합니다.
@@ -2020,7 +2020,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   * @param controlName 컨트롤 명
   * @param propertieName 속성 명
   */
-  getProperty(controlName: string, propertieName: string): object;
+  getProperty(controlName: string, propertieName: string): any;
 
   /** 
    * 문자열 처리 객체를 반환합니다.
@@ -2068,7 +2068,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   * @param propName 속성 명
   * @param value 속성 값
   */
-  setProperty(controlName: string, propName: string, value: object): boolean;
+  setProperty(controlName: string, propName: string, value: any): boolean;
 
   /**
    * @event 
@@ -3002,7 +3002,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
     /**
      * 셀 데이타 정보
     */
-    Record: object
+    Record: any
     /**
      * 이 값을 true 설정하면 자동 선택 기능이 취소됩니다.
     */
@@ -3148,7 +3148,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
     /**
      * 셀 데이타 정보
     */
-    Record: object
+    Record: any
     /**
      * 수정되거나 추가된 레코드 목록을 반환합니다.
     */
@@ -3187,11 +3187,11 @@ close 동작 시에 callback 으로 null 을 전달합니다.
     /**
      * 수정 되기 전 값
     */
-    BeforeValue: object
+    BeforeValue: any
     /**
      * 수정된 값
     */
-    AfterValue: object
+    AfterValue: any
     /**
      * 행 객체
     */
@@ -3477,7 +3477,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
     /**
      * 셀 데이타 정보
     */
-    Record: object
+    Record: any
     /**
      * 필드 정보
     */
@@ -3563,7 +3563,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
     /**
      * Excel로 내보내기 할 경우 상단 Row에 데이터를 추가할 수 있습니다.(string array 또는 {"Range":"A1","ColSpan":10,"Value":"■ 보고서 명 : ","Style":{"Border":"border:Thin,#000000;","Font":"font-color:#000000"}}형태로 지정)
     */
-    ExportRows: object[]
+    ExportRows: any
     /**
      * DataGrid의 엑셀 위치 (default : A1)
     */
@@ -3798,7 +3798,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
     /**
      * 사용자 지정 태크
     */
-    Tag: object
+    Tag: any
     /**
      * 이미지 이름
     */
@@ -5187,7 +5187,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
     /**
      * 셀 데이타 정보
     */
-    Record: object
+    Record: any
     /**
      * 클립보드 텍스트로, 작업을 취소하려면 이 값을 제거하십시오.
     */
@@ -5222,7 +5222,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
     /**
      * 셀의 값
     */
-    Value: object
+    Value: any
     /**
      * 행 객체
     */
@@ -5613,7 +5613,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
     /**
      * 보고서 스크립트 객체
     */
-    ScriptObject: object
+    ScriptObject: any
   }
   ) => void;
 
@@ -5660,7 +5660,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
     /**
      * 사용자 지정 태크
     */
-    Tag: object
+    Tag: any
   }
   ) => void;
 

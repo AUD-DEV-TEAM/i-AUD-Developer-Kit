@@ -102,6 +102,6 @@ export interface OptionStyle{
    *
   * @param option 소계행 옵션
   */
-  SubTotalRow(option: object): void;
+  SubTotalRow(option: any): void;
 
 }

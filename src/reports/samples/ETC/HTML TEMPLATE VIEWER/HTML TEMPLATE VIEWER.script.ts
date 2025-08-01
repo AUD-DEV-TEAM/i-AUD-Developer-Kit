@@ -27,7 +27,6 @@ let Matrix : Matrix;
  *****************************/
 
 class TemplateBinder{
-
 	
 	public Model : any;
 	private mStyle : HTMLElement; //스타일
@@ -493,7 +492,7 @@ templateViewer.OnChangeModel = function(model){
 };
 
 const FORMAT = function(v, context){
-	return v;
+	alert(v);
 }
 
 const BUILD_TEMPLATE = function(){
@@ -510,10 +509,8 @@ tbxHTML.OnTextChange = function(){
 	BUILD_TEMPLATE();	
 };
 btnExecute.OnClick = function(){
-	let model = JSON.parse(tbxModel.Text);
-	model["GET_DATA"] = function(row){
-
-	}
+	//let model = JSON.parse(tbxModel.Text);
+	 
 	//templateViewer.MODEL(JSON.parse(tbxModel.Text));
 	BUILD_TEMPLATE();
 }

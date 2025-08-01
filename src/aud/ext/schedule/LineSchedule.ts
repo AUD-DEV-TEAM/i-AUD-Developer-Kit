@@ -11,7 +11,7 @@ export interface LineSchedule{
   * @param month 월
   * @param day 일
   */
-  AddStopSpecialDay(year: int, month: int, day: int): void;
+  AddStopSpecialDay(year: number, month: number, day: number): void;
 
   /** 
    * 라인 정지 일정 추가(매일 반복)
@@ -19,14 +19,14 @@ export interface LineSchedule{
   * @param beginHour 시작시간
   * @param endHour 종료시간
   */
-  AddStopTimeDaily(beginHour: int, endHour: int): void;
+  AddStopTimeDaily(beginHour: number, endHour: number): void;
 
   /** 
    * 라인 정지 일정 추가(월간 반복)
    *
   * @param day 일
   */
-  AddStopTimeMonthly(day: int): void;
+  AddStopTimeMonthly(day: number): void;
 
   /** 
    * 라인 정지 일정 추가(주간 반복)
@@ -42,7 +42,7 @@ export interface LineSchedule{
   * @param beginHour 시작시간
   * @param endHour 종료시간
   */
-  AddStopTimeWeeklyBetween(dayOfweek: DayOfWeek, beginHour: int, endHour: int): void;
+  AddStopTimeWeeklyBetween(dayOfweek: DayOfWeek, beginHour: number, endHour: number): void;
 
   /** 
    * 라인 정지 일정 추가(년간 반복)
@@ -50,7 +50,7 @@ export interface LineSchedule{
   * @param month 월
   * @param day 일
   */
-  AddStopTimeYearly(month: int, day: int): void;
+  AddStopTimeYearly(month: number, day: number): void;
 
   /** 
    * 라인 정지 일정 모두 제거

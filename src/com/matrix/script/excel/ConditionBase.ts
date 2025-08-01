@@ -19,7 +19,7 @@ export interface ConditionBase{
   * @param endRow 영역의 종료 행 주소
   * @param endCol 영역의 종료 열 주소
   */
-  addRange(startRow: int, startCol: int, endRow: int, endCol: int): RangeArea;
+  addRange(startRow: number, startCol: number, endRow: number, endCol: number): RangeArea;
 
   /** 
    * 조건부 서식의 적용 대상 영역 모두 삭제

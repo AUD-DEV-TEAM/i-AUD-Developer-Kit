@@ -43,6 +43,6 @@ export interface ScriptHitTestResult{
    *
   * @param fldName 필드명(입력하지 않을 경우 현재영역의 기본 필드의 값을 반환 합니다.)
   */
-  getValue(fldName: string): object;
+  getValue(fldName: string): any;
 
 }

@@ -93,7 +93,7 @@ export interface ScriptDataTable{
    *
   * @param idx 레코드의 위치
   */
-  RemoveRow(idx: int): void;
+  RemoveRow(idx: number): void;
 
   /** 
    * 레코드를 정렬합니다.
@@ -107,7 +107,7 @@ export interface ScriptDataTable{
    *
   * @param index index
   */
-  getColumn(index: int): ScriptDataColumn;
+  getColumn(index: number): ScriptDataColumn;
 
   /** 
    * 테이블 내 특정 컬럼을 반환합니다.
@@ -120,7 +120,7 @@ export interface ScriptDataTable{
    * 테이블 내 컬럼의 개수를 반환합니다.
    *
   */
-  getColumnCount(): int;
+  getColumnCount(): number;
 
   /** 
    * 테이블 내 컬럼의 목록을 배열 유형으로 반환합니다.
@@ -134,7 +134,7 @@ export interface ScriptDataTable{
   * @param recordIndex 레코드의 위치
   * @param columnName Column 명
   */
-  getData(recordIndex: int, columnName: string): object;
+  getData(recordIndex: number, columnName: string): any;
 
   /** 
    * 특정 레코드의 값을 반환합니다.
@@ -142,7 +142,7 @@ export interface ScriptDataTable{
   * @param recordIndex 레코드의 위치
   * @param columnName Column 명
   */
-  getDouble(recordIndex: int, columnName: string): double;
+  getDouble(recordIndex: number, columnName: string): number;
 
   /** 
    * 특정 레코드의 값을 반환합니다.
@@ -150,7 +150,7 @@ export interface ScriptDataTable{
   * @param recordIndex 레코드의 위치
   * @param columnName Column 명
   */
-  getInt(recordIndex: int, columnName: string): int;
+  getInt(recordIndex: number, columnName: string): number;
 
   /** 
    * 테이블 객체의 고유 이름을 반환 합니다.
@@ -163,13 +163,13 @@ export interface ScriptDataTable{
    *
   * @param idx 레코드의 위치
   */
-  getRow(idx: int): ScriptDataRow;
+  getRow(idx: number): ScriptDataRow;
 
   /** 
    * 테이블 내 데이터의 개수를 반환합니다.
    *
   */
-  getRowCount(): int;
+  getRowCount(): number;
 
   /** 
    * 특정 레코드의 값을 반환합니다.
@@ -177,7 +177,7 @@ export interface ScriptDataTable{
   * @param recordIndex 레코드의 위치
   * @param columnName Column 명
   */
-  getString(recordIndex: int, columnName: string): string;
+  getString(recordIndex: number, columnName: string): string;
 
   /** 
    * 데이터베이스와 연결된 테이블 명을 반환합니다.
@@ -192,7 +192,7 @@ export interface ScriptDataTable{
   * @param columnName Column 명
   * @param value 수정할 값
   */
-  setData(recordIndex: int, columnName: string, value: object): void;
+  setData(recordIndex: number, columnName: string, value: any): void;
 
   /** 
    * 테이블 내 모든 레코드의 작업 상태를 변경합니다.
@@ -212,6 +212,6 @@ export interface ScriptDataTable{
    * SAP RFC DataTable 형태로 변환 합니다.
    *
   */
-  toSapDataTable(): object;
+  toSapDataTable(): any;
 
 }

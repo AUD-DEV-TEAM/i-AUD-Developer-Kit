@@ -79,7 +79,7 @@ export interface MetaViewManager{
   * @param removeGroupBy group by 사용 여부
   * @param filterFieldInfo OlapGrid 필터 필드
   */
-  GetExecuteHybridQueryXML(layoutXML: string, gridLayoutInfo: object, pivotXML: string, useNotSort: boolean, removeGroupBy: boolean, filterFieldInfo: object): string;
+  GetExecuteHybridQueryXML(layoutXML: string, gridLayoutInfo: any, pivotXML: string, useNotSort: boolean, removeGroupBy: boolean, filterFieldInfo: any): string;
 
   /** 
    * LOV용 XML을 만들어주는 메소드
@@ -97,7 +97,7 @@ export interface MetaViewManager{
   * @param isViewMode portal 에서 meta file 띄우는 경우인지 여부
   * @param addingFilterItems 추가되는 Filter Item
   */
-  GetExecuteLOVQueryXML(layoutXML: string, itemCode: string, isDistinct: boolean, keyword: string, includeAttribute: boolean, useSQLEncrypt: boolean, isViewMode: boolean, addingFilterItems: object): string;
+  GetExecuteLOVQueryXML(layoutXML: string, itemCode: string, isDistinct: boolean, keyword: string, includeAttribute: boolean, useSQLEncrypt: boolean, isViewMode: boolean, addingFilterItems: any): string;
 
   /** 
    * 쿼리를 요청해서 화면에 출력하는 메소드

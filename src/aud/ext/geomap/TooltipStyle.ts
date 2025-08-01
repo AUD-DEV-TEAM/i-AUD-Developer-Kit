@@ -16,16 +16,16 @@ export interface TooltipStyle{
   /**
    * Tooltip의 높이
   */
-  Height: int;
+  Height: number;
 
   /**
    * Tooltip의 폰트 크기
   */
-  Size: int;
+  Size: number;
 
   /**
    * Tooltip의 너비
   */
-  Width: int;
+  Width: number;
 
 }

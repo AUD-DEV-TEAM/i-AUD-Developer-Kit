@@ -193,7 +193,7 @@ export interface Selection{
   * @param targetRect (옵션)스타일을 설정할 영역을 지정합니다.
   * @param forceUpdate (옵션)true로 설정 시 주어진 스타일이 없는 셀에 스타일은 무시합니다.
   */
-  setStyle(style: object, targetRect?: ISelectionArea, forceUpdate?: boolean): void;
+  setStyle(style: any, targetRect?: ISelectionArea, forceUpdate?: boolean): void;
 
   /** 
    * 현재 선택된 셀의 유효성 검사 정보를 설정합니다.

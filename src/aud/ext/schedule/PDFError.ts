@@ -6,16 +6,16 @@ export interface PDFError{
   /**
    * Major 마지막 단위로 계산한 조회 가능 일자
   */
-  AvailableDate: int;
+  AvailableDate: number;
 
   /**
    * Major 마지막 단위로 계산한 초과한 일자
   */
-  OverDate: int;
+  OverDate: number;
 
   /**
    * 초과한 너비(pixel)
   */
-  OverWidth: int;
+  OverWidth: number;
 
 }

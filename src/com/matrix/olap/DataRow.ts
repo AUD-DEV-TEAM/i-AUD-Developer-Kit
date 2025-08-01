@@ -8,14 +8,14 @@ export interface DataRow{
    *
   * @param dataColumnIndex OlapField의 DataColumnIndex
   */
-  IsLockColumn(dataColumnIndex: int): boolean;
+  IsLockColumn(dataColumnIndex: number): boolean;
 
   /** 
    * 특정 컬럼의 값을 반환 합니다. Measure 필드의 값만 허용 합니다.
    *
   * @param dataColumnIndex OlapField의 DataColumnIndex
   */
-  getNumber(dataColumnIndex: int): number;
+  getNumber(dataColumnIndex: number): number;
 
   /** 
    * 특정 디멘전 값을 가져옵니다.(Dimension 필드)
@@ -29,7 +29,7 @@ export interface DataRow{
    *
   * @param dataColumnIndex OlapField의 DataColumnIndex
   */
-  getString(dataColumnIndex: int): string;
+  getString(dataColumnIndex: number): string;
 
   /** 
    * 특정 컬럼의 값을 설정합니다.
@@ -37,7 +37,7 @@ export interface DataRow{
   * @param dataColumnIndex OlapField의 DataColumnIndex
   * @param columnValue 값
   */
-  setNumber(dataColumnIndex: int, columnValue: number): void;
+  setNumber(dataColumnIndex: number, columnValue: number): void;
 
   /** 
    * 특정 디멘전의 값을 설정합니다.
@@ -45,7 +45,7 @@ export interface DataRow{
   * @param index OlapField의 DataColumnIndex
   * @param text  텍스트
   */
-  setString(index: int, text: string): string;
+  setString(index: number, text: string): string;
 
   /** 
    * 특정 디멘전의 값을 설정합니다.

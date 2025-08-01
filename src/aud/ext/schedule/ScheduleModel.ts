@@ -96,7 +96,7 @@ export interface ScheduleModel{
   * @param Cell target cell
   * @param Position 분할할 위치
   */
-  SplitCell(Cell: ScheduleCell, Position: int): ScheduleCell[];
+  SplitCell(Cell: ScheduleCell, Position: number): ScheduleCell[];
 
   /** 
    * 카테고리 항목을 갱신합니다.

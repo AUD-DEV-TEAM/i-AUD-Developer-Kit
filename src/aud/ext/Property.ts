@@ -8,14 +8,14 @@ export interface Property{
    *
   * @param properties Property 의 Section 에 들어갈 목록
   */
-  SetProperties(properties: object[]): void;
+  SetProperties(properties: any): void;
 
   /** 
    * Property 의 Section 목록을 설정
    *
   * @param selectionsOpt Section 에 설정할 객체
   */
-  SetSections(selectionsOpt: object): void;
+  SetSections(selectionsOpt: any): void;
 
   /** 
    * Property 컨트롤의 업데이트 작업 수행

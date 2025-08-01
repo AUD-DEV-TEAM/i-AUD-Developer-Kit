@@ -113,7 +113,7 @@ export interface ScriptUtility{
   * @param fontName 기본 폰트명
   * @param fontSize 기본 폰트 크기
   */
-  CreateWorkBook(fontName: string, fontSize: int): ScriptWorkBook;
+  CreateWorkBook(fontName: string, fontSize: number): ScriptWorkBook;
 
   /** 
    * 엑셀 파일 작성을 위해 WorkBook 객체를 생성합니다.
@@ -135,7 +135,7 @@ export interface ScriptUtility{
   * @param month 월 (월은 값은 0부터 시작합니다. e.g., 0 = 1월.)
   * @param day 일
   */
-  Date(year: int, month: int, day: int): Date;
+  Date(year: number, month: number, day: number): Date;
 
   /** 
    * 입력된 값을 Date 형식으로 생성하여 반환합니다.
@@ -147,7 +147,7 @@ export interface ScriptUtility{
   * @param minute 분
   * @param second 초
   */
-  Date(year: int, month: int, day: int, hour: int, minute: int, second: int): Date;
+  Date(year: number, month: number, day: number, hour: number, minute: number, second: number): Date;
 
   /** 
    * 입력한 날짜에 날짜 또는 시간 간격을 더한 Date 값을 반환합니다.
@@ -156,7 +156,7 @@ export interface ScriptUtility{
   * @param addValue 변경할 값
   * @param date 날짜
   */
-  DateAdd(interval: enDateInterval, addValue: int, date: Date): Date;
+  DateAdd(interval: enDateInterval, addValue: number, date: Date): Date;
 
   /** 
    * 지정된 두 날짜 및 시간 사이의 날짜 및 시간 차이 값을 반환합니다.
@@ -165,7 +165,7 @@ export interface ScriptUtility{
   * @param dateA 날짜 및 시간 A
   * @param dateB 날짜 및 시간 B
   */
-  DateDiff(interval: enDateInterval, dateA: Date, dateB: Date): int;
+  DateDiff(interval: enDateInterval, dateA: Date, dateB: Date): number;
 
   /** 
    * 날짜 및 시간 값 중 지정된 부분의 날짜 및 시간 데이터를 정수로 반환합니다.
@@ -173,14 +173,14 @@ export interface ScriptUtility{
   * @param interval 단위
   * @param date 날짜 및 시간
   */
-  DatePart(interval: enDateInterval, date: Date): int;
+  DatePart(interval: enDateInterval, date: Date): number;
 
   /** 
    * 입력된 날짜 및 시간의 일 값을 반환합니다.
    *
   * @param date 날짜
   */
-  Day(date: Date): int;
+  Day(date: Date): number;
 
   /** 
    * 파일의 DRM을 해제 합니다.
@@ -234,7 +234,7 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
    *
   * @param date 날짜
   */
-  Hour(date: Date): int;
+  Hour(date: Date): number;
 
   /** 
    * 대상 문자열에서 검색 시작 위치 이후의 검색어의 위치를 반환합니다.
@@ -243,7 +243,7 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   * @param find 검색어
   * @param fromIndex 검색 시작 위치
   */
-  IndexOf(text: string, find: string, fromIndex: int): int;
+  IndexOf(text: string, find: string, fromIndex: number): number;
 
   /** 
    * 대상 문자열에서 검색어의 위치를 반환합니다.
@@ -251,7 +251,7 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   * @param text 대상 문자열
   * @param find 검색어
   */
-  IndexOf(text: string, find: string): int;
+  IndexOf(text: string, find: string): number;
 
   /** 
    * 대상 문자열이 Null이거나 빈 문자열인지를 반환합니다.
@@ -287,7 +287,7 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   * @param text 대상 문자열
   * @param findText 찾을 문자열
   */
-  LastIndexOf(text: string, findText: string): int;
+  LastIndexOf(text: string, findText: string): number;
 
   /** 
    * 대상 문자열의 좌측부터 지정한 길이만큼의 문자열을 반환합니다.
@@ -295,14 +295,14 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   * @param text 대상 문자열
   * @param length 길이
   */
-  Left(text: string, length: int): string;
+  Left(text: string, length: number): string;
 
   /** 
    * 대상 문자열의 길이를 반환 합니다.
    *
   * @param text 대상 문자열
   */
-  Length(text: string): int;
+  Length(text: string): number;
 
   /** 
    * 문자열을 소문자로 변환해줍니다.
@@ -332,14 +332,14 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
    *
   * @param date 날짜
   */
-  Minute(date: Date): int;
+  Minute(date: Date): number;
 
   /** 
    * 입력된 날짜 및 시간의 월의 값을 반환합니다.
    *
   * @param date 날짜
   */
-  Month(date: Date): int;
+  Month(date: Date): number;
 
   /** 
    * 현재 날짜 및 시간을 반환합니다.
@@ -588,14 +588,14 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param text 대상 문자열
   * @param length 길이
   */
-  Right(text: string, length: int): string;
+  Right(text: string, length: number): string;
 
   /** 
    * 입력된 날짜 및 시간의 초 값을 반환합니다.
    *
   * @param date 날짜
   */
-  Second(date: Date): int;
+  Second(date: Date): number;
 
   /** 
    * 메일 전송하기.
@@ -755,14 +755,14 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param value2 값2
   * @param valueN 값 ... n
   */
-  StringFormat(text: string, value1: object, value2: object, valueN: object): int;
+  StringFormat(text: string, value1: any, value2: any, valueN: any): number;
 
   /** 
    * 문자열의 길이를 반환 합니다.
    *
   * @param text 대상 문자열
   */
-  StringLength(text: string): int;
+  StringLength(text: string): number;
 
   /** 
    * 대상 문자열 중 특정 시작 위치부터 특정 종료 위치까지의 부분 문자열을 반환합니다.
@@ -771,7 +771,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param startindex 시작 위치
   * @param endindex 종료 위치
   */
-  SubString(text: string, startindex: int, endindex: int): string;
+  SubString(text: string, startindex: number, endindex: number): string;
 
   /** 
    * 입력된 값을 bool 형식으로 변환하여 반환합니다.
@@ -799,7 +799,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
    *
   * @param value 변환 대상
   */
-  ToDouble(value: any): double;
+  ToDouble(value: any): number;
 
   /** 
    * 입력된 값을 double 형식으로 변환하여 반환합니다.
@@ -807,14 +807,14 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param value 변환 대상
   * @param defValue 변환 실패 시 대체할 값
   */
-  ToDouble(value: any, defValue: double): double;
+  ToDouble(value: any, defValue: number): number;
 
   /** 
    * 입력된 값을 int 형식으로 변환하여 반환합니다.
    *
   * @param value 변환 대상
   */
-  ToInteger(value: any): int;
+  ToInteger(value: any): number;
 
   /** 
    * 입력된 값을 int 형식으로 변환하여 반환합니다.
@@ -822,7 +822,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param value 변환 대상
   * @param defValue 변환 실패 시 대체할 값
   */
-  ToInteger(value: any, defValue: int): int;
+  ToInteger(value: any, defValue: number): number;
 
   /** 
    * 입력된 값을 특정 양식으로 변환한 문자열을 반환합니다.
@@ -851,7 +851,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
    *
   * @param date 날짜
   */
-  Weekday(date: Date): int;
+  Weekday(date: Date): number;
 
   /** 
    * XML parsing 한  org.w3c.dom.Document 객체를 반환 합니다.
@@ -891,14 +891,14 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
    * ```
   * @param xml xml text
   */
-  XmlParse(xml: string): org.w3c.dom.Document;
+  XmlParse(xml: string): any;
 
   /** 
    * 입력된 날짜 및 시간의 연도 값을 반환합니다.
    *
   * @param date 날짜
   */
-  Year(date: Date): int;
+  Year(date: Date): number;
 
   /** 
    * 현재 요청의 암호화 키값의 소스를 반환 합니다.

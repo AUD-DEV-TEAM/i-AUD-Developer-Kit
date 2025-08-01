@@ -51,12 +51,12 @@ export interface MetaFilterItem{
   /**
    * 첫번째 값
   */
-  Value1: object;
+  Value1: any;
 
   /**
    * 두번째 값
   */
-  Value2: object;
+  Value2: any;
 
   /**
    * 변수 이름

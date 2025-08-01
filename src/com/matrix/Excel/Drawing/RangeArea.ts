@@ -13,19 +13,19 @@ export interface RangeArea{
    * 영역의 종료 열의 주소값을 반환 합니다.
    *
   */
-  getBottom(): int;
+  getBottom(): number;
 
   /** 
    * 영역의 높이를 반환 합니다.
    *
   */
-  getHeight(): int;
+  getHeight(): number;
 
   /** 
    * 영역의 시작 행의 주소값을 반환 합니다.
    *
   */
-  getLeft(): int;
+  getLeft(): number;
 
   /** 
    * 영역의 주소명을 반환 합니다.
@@ -37,18 +37,18 @@ export interface RangeArea{
    * 영역의 종료 행의 주소값을 반환 합니다.
    *
   */
-  getRight(): int;
+  getRight(): number;
 
   /** 
    * 영역의 시작 열의 주소값을 반환 합니다.
    *
   */
-  getTop(): int;
+  getTop(): number;
 
   /** 
    * 영역의 너비를 반환 합니다.
    *
   */
-  getWidth(): int;
+  getWidth(): number;
 
 }

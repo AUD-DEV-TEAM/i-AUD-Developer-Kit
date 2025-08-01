@@ -39,7 +39,7 @@ export interface Matrix{
   * @param fontName 기본 폰트명
   * @param fontSize 기본 폰트 크기
   */
-  CreateWorkBook(fontName: string, fontSize: int): ScriptWorkBook;
+  CreateWorkBook(fontName: string, fontSize: number): ScriptWorkBook;
 
   /** 
    * json 데이터 기준으로 WorkBook 객체를 생성합니다.
@@ -126,7 +126,7 @@ export interface Matrix{
   * @param log 로그 데이터
   * @param exception exception
   */
-  WriteCustomLog(fileName: string, log: string, exception: Throwable): void;
+  WriteCustomLog(fileName: string, log: string, exception: any): void;
 
   /** 
    * 시스템 로그를 작성합니다.
@@ -141,7 +141,7 @@ export interface Matrix{
   * @param log 로그 타입
   * @param message 로그 내용
   */
-  WriteLog(log: string, message: Throwable): void;
+  WriteLog(log: string, message: any): void;
 
   /** 
    * 시스템 로그를 작성합니다.

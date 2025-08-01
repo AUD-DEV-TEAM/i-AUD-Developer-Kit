@@ -106,7 +106,7 @@ export interface OptionData{
   /**
    * 시작 일자, 시간 또는 종료 일자, 시간의 근사값 구하는 방식(0: 버림, 1: 반올림, 2: 올림)
   */
-  RoundType: int;
+  RoundType: number;
 
   /**
    * 스케쥴 항목의 기간 종료 필드명
@@ -138,7 +138,7 @@ export interface OptionData{
    *
   * @param option 소계행 옵션
   */
-  AddGrandTotalRow(option: object): void;
+  AddGrandTotalRow(option: any): void;
 
   /** 
    * 특수 일정 기간을 등록합니다.
@@ -192,7 +192,7 @@ export interface OptionData{
   * @param format 표현 양식
   * @param index 멀티헤더 위치
   */
-  SetMajorUnit(unit: enTimeUnit, interval: int, format: string, index: int): TimeUnit;
+  SetMajorUnit(unit: enTimeUnit, interval: number, format: string, index: number): TimeUnit;
 
   /** 
    * 시간 관리 보조 눈금 단위를 설정 합니다.
@@ -201,6 +201,6 @@ export interface OptionData{
   * @param interval 간격
   * @param format 표현 양식
   */
-  SetMinorUnit(unit: enTimeUnit, interval: int, format: string): void;
+  SetMinorUnit(unit: enTimeUnit, interval: number, format: string): void;
 
 }

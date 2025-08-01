@@ -77,7 +77,7 @@ export interface ScriptWebConnector{
    * 원격 서버 연결에 대한 마지막 http response 코드를 반환 합니다.
    *
   */
-  getLastResponseCode(): int;
+  getLastResponseCode(): number;
 
   /** 
    * 해당 메소드 호출 전에 연결한 서버에서 받은 쿠키 정보를 제공해드립니다.
@@ -108,13 +108,13 @@ export interface ScriptWebConnector{
    * ```
   * @param responseCodes 허용목록(e.g. [200,201,400,500])
   */
-  setAcceptResponseCodes(responseCodes: int[]): void;
+  setAcceptResponseCodes(responseCodes: number[]): void;
 
   /** 
    * 최대 연결 대기 시간 설정
    *
   * @param millisecond 시간(milliseconds)
   */
-  setReadTimeout(millisecond: int): void;
+  setReadTimeout(millisecond: number): void;
 
 }

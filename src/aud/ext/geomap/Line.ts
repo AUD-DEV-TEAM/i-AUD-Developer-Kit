@@ -90,7 +90,7 @@ export interface Line{
    * ```
   * @param lineDash 선의 표시와 숨김 부분의 길이를 나타내는 배열을 입력합니다.
   */
-  setLineDash(lineDash: int[]): void;
+  setLineDash(lineDash: number[]): void;
 
   /** 
    * line 객체의 width를 설정합니다. Update() 실행 후 UI가 변경됩니다.
@@ -108,6 +108,6 @@ export interface Line{
    * ```
   * @param width 너비를 입력합니다.
   */
-  setWidth(width: int): void;
+  setWidth(width: number): void;
 
 }

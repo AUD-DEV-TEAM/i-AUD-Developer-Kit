@@ -22,6 +22,6 @@ export interface FilterCondition{
   /**
    * 비교값
   */
-  Value: object;
+  Value: any;
 
 }

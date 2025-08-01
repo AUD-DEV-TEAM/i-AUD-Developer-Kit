@@ -33,7 +33,7 @@ export interface MetaWizardManager{
   * @param protectLevel 추가할 조회 조건의 보안레벨
   * @param viewName 추가할 뷰의 이름. 없을 경우에는 현재 활성화 뷰에 추가(예)V1, V3, V3등
   */
-  AddAnalysisFilterItem(itemCode: string, filterOperator: number, promptType: number, promptName: string, defaultValue: object, protectLevel: number, viewName: string): void;
+  AddAnalysisFilterItem(itemCode: string, filterOperator: number, promptType: number, promptName: string, defaultValue: any, protectLevel: number, viewName: string): void;
 
   /** 
    * 특정 메타 보고서에 조회 조건을 추가하는 메소드
@@ -51,7 +51,7 @@ export interface MetaWizardManager{
   * @param formula 계산 수식
   * @param caption 화면 표시명
   */
-  AddFilterItem(itemCode: string, filterOperator: enMetaConditionOperator, promptType: enMetaConditionDefaultPromptType, promptName: string, defaultValue: object, protectLevel: enFilterItemProtectLevel, viewName: string, filterType: enMetaConditionFilterType, promptValidate: enMetaConditionPromptValidate, parentCode: string, formula: string, caption: string): void;
+  AddFilterItem(itemCode: string, filterOperator: enMetaConditionOperator, promptType: enMetaConditionDefaultPromptType, promptName: string, defaultValue: any, protectLevel: enFilterItemProtectLevel, viewName: string, filterType: enMetaConditionFilterType, promptValidate: enMetaConditionPromptValidate, parentCode: string, formula: string, caption: string): void;
 
   /** 
    * 특정 메타 보고서에 조회 조건을 추가하는 메소드
@@ -64,7 +64,7 @@ export interface MetaWizardManager{
   * @param protectLevel 추가할 조회 조건의 보안레벨
   * @param viewName 추가할 뷰의 이름. 없을 경우에는 현재 활성화 뷰에 추가(예)V1, V3, V3등
   */
-  AddFilterItemByName(itemName: string, filterOperator: number, promptType: number, promptName: string, defaultValue: object, protectLevel: number, viewName: string): void;
+  AddFilterItemByName(itemName: string, filterOperator: number, promptType: number, promptName: string, defaultValue: any, protectLevel: number, viewName: string): void;
 
   /** 
    * 특정 메타 보고서에 조회 항목을 추가하는 메소드
@@ -162,7 +162,7 @@ export interface MetaWizardManager{
   * @param value1 설정할 값 1
   * @param value2 설정할 값 2(Between 시 사용)
   */
-  SetFilterValue(viewName: string, promptName: string, value1: object, value2: object): void;
+  SetFilterValue(viewName: string, promptName: string, value1: any, value2: any): void;
 
   /** 
    * 메타 데이터소스 설정 팝업을 출력하는 메소드
