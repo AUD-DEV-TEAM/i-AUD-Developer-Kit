@@ -587,6 +587,11 @@ false로 전달되면 새로운 탭에서 보고서를 열게 됩니다.
   /** 
    * 내보내기 서버를 통하여 특정 컨트롤의 데이터를 파일로 내보내기 합니다.
 exportType가 없으면 기본값은 Excel로 출력됩니다.
+※ 지원 가능 유형 
+ 1) OlapGrid : Excel, CSV, Text
+ 2) DataGrid : Excel, CSV, Text, PPT
+ 3) Chart : Excel, PPT, HML, DOC
+ 4) MX-Grid : Excel, HTML, HML, DOC, PDF, PNG
    *
   * @param controlName 컨트롤 이름
   * @param exportType 내보낼 파일 형식

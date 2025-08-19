@@ -98,6 +98,26 @@ export interface Grid extends Control{
   FilterLOVLimit: number;
 
   /**
+   * 글자 스타일 굵기 여부
+  */
+  FontBold: boolean;
+
+  /**
+   * 글자 유형
+  */
+  FontFamily: string;
+
+  /**
+   * 글자 스타일 기울임 여부
+  */
+  FontItalic: boolean;
+
+  /**
+   * 글자 크기. 레코드 높이보다 작은 크기만 설정 가능합니다.
+  */
+  FontSize: number;
+
+  /**
    * Font Color
   */
   Foreground: SolidColorBrush;

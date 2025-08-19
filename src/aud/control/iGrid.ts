@@ -34,6 +34,11 @@ export interface iGrid extends Control{
   BeforeScript: string;
 
   /**
+   * 엑셀 내보내기 시 시트보호 옵션을 적용할지 여부
+  */
+  EnableSheetProtection: boolean;
+
+  /**
    * MX-Grid에 표현된 데이터 기준으로 엑셀 내보내기 실행 시 숨겨진 셀을 제거할지 여부를 설정합니다.
   */
   IgnoreExportHiddenCells: boolean;

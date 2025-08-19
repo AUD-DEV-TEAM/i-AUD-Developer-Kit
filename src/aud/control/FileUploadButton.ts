@@ -35,7 +35,6 @@ BoxStyle이 존재하지 않거나, Style 속성이 없을 경우 설정되지 �
    * FileUploadButton.SetMouseDownBoxStyle("PRIMARY_BTN_Default");
    * ```
   * @param boxStyleIdentifier BoxStyle의 Key 또는 이름
-   * @hidden
   */
   SetMouseDownBoxStyle(boxStyleIdentifier: string): void;
 
@@ -55,7 +54,6 @@ BoxStyle이 존재하지 않거나, Style 속성이 없을 경우 설정되지 �
    * FileUploadButton.SetMouseOverBoxStyle("PRIMARY_BTN_Hover");
    * ```
   * @param boxStyleIdentifier BoxStyle의 Key 또는 이름
-   * @hidden
   */
   SetMouseOverBoxStyle(boxStyleIdentifier: string): void;
 
