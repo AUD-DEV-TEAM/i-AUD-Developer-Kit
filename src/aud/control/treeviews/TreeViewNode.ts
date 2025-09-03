@@ -18,6 +18,36 @@ export interface TreeViewNode{
   DataRow: DataRow | undefined | null;
 
   /**
+   * 글자 굵기
+   * @hidden
+  */
+  FontBold: boolean;
+
+  /**
+   * 글자 색상
+   * @hidden
+  */
+  FontColor: string;
+
+  /**
+   * 글자체
+   * @hidden
+  */
+  FontFamily: string;
+
+  /**
+   * 글자 이탤릭체
+   * @hidden
+  */
+  FontItalic: boolean;
+
+  /**
+   * 글자 크기
+   * @hidden
+  */
+  FontSize: number;
+
+  /**
    * 이미지 HTML Element
    * @hidden
   */
@@ -60,6 +90,12 @@ export interface TreeViewNode{
   Key: string;
 
   /**
+   * TreeViewNode 의 Level
+   * @hidden
+  */
+   readonly Level: number;
+
+  /**
    * 부모노드
    * @hidden
   */
@@ -70,6 +106,14 @@ export interface TreeViewNode{
    * @hidden
   */
   ParentValue: string;
+
+  /** 
+   * 하위 노드 구하는 메소드
+   *
+  * @param isRecursive leaf 노드까지 조회할지 여부
+   * @hidden
+  */
+  GetChildNodeList(isRecursive?: boolean): TreeViewNode[];
 
   /** 
    * 값 셋팅 함수

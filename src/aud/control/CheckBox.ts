@@ -74,6 +74,14 @@ export interface CheckBox extends Control{
      * 체크 상태
     */
     IsChecked: boolean
+    /**
+     * 그룹이름
+    */
+    GroupName: string
+    /**
+     * 텍스트
+    */
+    Text: string
   }
   ) => void;
 

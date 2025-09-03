@@ -49,6 +49,39 @@ export interface Matrix{
   CreateWorkBookByJson(jsonPath: string): ScriptWorkBook;
 
   /** 
+   * 엑셀의 활성화 시트의 내용을 HTML Table Tag로 반환합니다.
+   *
+   * @example
+   * ```js
+   * 
+   * var EXCEL_TO_HTML_TABLE = function(xlsFilePath){
+   *     
+   *     try{
+   *         var fso = Matrix.getFileSystemObject(); // File Access // 
+   *         var util = Matrix.getUtility(); // Utility // 
+   *         if(!fso.Exists(xlsFilePath)){
+   *             //파일이 존재하지 않습니다.
+   *             Matrix.WriteLog("EXCEL_TO_HTML_TABLE FAIL(FILE IS NOT EXISTS). Path="+ xlsFilePath);
+   *             return ""; 
+   *         }
+   *         var htmlPath = fso.getTemplatePath(util.getUniqueKey("T")+".htm");
+   *         //엑셀파일이 대용량일 수 있어서 별도 프로세스로 동작하도록 처리
+   * 		//최대 1000개 행만 반환
+   *         Matrix.ExcelToHtmlTable(xlsFilePath, htmlPath, 1000);         
+   *         return fso.ReadTextFile(htmlPath);
+   *     }catch(e){
+   *         Matrix.WriteLog("EXCEL_TO_HTML_TABLE FAIL !"+e.message);
+   *         return "";
+   *     }
+   * }
+   * ```
+  * @param xlsFilePath 엑셀 파일 경로
+  * @param outFilePath HTML 출력 파일 경로
+  * @param limitRows  최대 출력 행수
+  */
+  ExcelToHtmlTable(xlsFilePath: string, outFilePath: string, limitRows: number): boolean;
+
+  /** 
    * 엑셀 파일을 이미지로 출력합니다.
    *
   * @param xlxFilePath  Excel의 파일 경로
@@ -152,8 +185,12 @@ export interface Matrix{
   WriteLog(log: string, message: string): void;
 
   /** 
-   * Conflux 객체를 반환합니다.
+   * Conflux 객체. AUD-Conflux Script Editor에서 접근 가능합니다.
    *
+   * @example
+   * ```js
+   * var Conflux = Matrix.getConflux();
+   * ```
   */
   getConflux(): any;
 
@@ -238,6 +275,16 @@ export interface Matrix{
    *
   */
   getQueryGenerator(): ScriptQueryGenerator;
+
+  /** 
+   * Conflux 객체. i-AUD Script Editor에서 접근 가능합니다.
+   *
+   * @example
+   * ```js
+   * var Conflux = Matrix.getReportConflux();
+   * ```
+  */
+  getReportConflux(): any;
 
   /** 
    * Request 객체를 반환합니다.

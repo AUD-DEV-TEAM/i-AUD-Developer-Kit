@@ -5,7 +5,6 @@ import { DataSet } from "../../aud/data/DataSet";
 import { Control } from "../../aud/control/Control";
 import { enScriptControlType } from "../../aud/enums/comm/enScriptControlType";
 import { Splitter } from "../../aud/util/Splitter";
-import { enSplitterType } from "../../aud/enums/comm/enSplitterType";
 import { OlapGrid } from "../../aud/control/OlapGrid";
 import { enExportType } from "../../aud/enums/comm/enExportType";
 import { BoxStyleList } from "../../aud/drawing/BoxStyleList";
@@ -326,14 +325,14 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   /** 
    * Splitter를 생성하는 함수2 제품 내부에서 사용
    *
-  * @param splitterType 
-  * @param leftControls 
-  * @param rightControls 
-  * @param splitterControl 
-  * @param option 
+  * @param splitterType Splitter의 방향 ( Row or Col 중 선택)
+  * @param leftControls 좌측에 배치할 컨트롤 목록
+  * @param rightControls 우측에 배치할 컨트롤 목록
+  * @param splitterControl Splitter를 수행할 컨트롤
+  * @param option 옵션
    * @hidden
   */
-  CreateSplitterEx(splitterType: enSplitterType, leftControls: string[], rightControls: string[], splitterControl: string, option?: object | undefined): Splitter;
+  CreateSplitterEx(splitterType: string, leftControls: string[], rightControls: string[], splitterControl: string, option?: any): Splitter;
 
   /** 
    * portal 에서 다른 보고서를 탭 형식으로 열 수 있도록 하는 함수입니다. 
@@ -1283,6 +1282,45 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * ```
   */
   RunScript(gridNames: string|string[], scriptName: string, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
+
+  /** 
+   * 서버 측 js Business 서비스를 호출합니다.
+   *
+   * @example
+   * ```js
+   * //특정 보고서의 스크립트 호출 하기
+   * //현재 실행중인 보고서가 아닌 다른 경로에 있는 스크립트를 호출하고자 하면
+   * //보고서 코드와 스크립트 코드를 @로 구분하여 입력 합니다.
+   * //e.g. @보고서코드@스크립트코드
+   * Matrix.RunScriptEx("" ,"@REP123213@SEND_MAIL" 
+   * 					, {"VS_CODE":"codevalue"
+   * 						,"VS_NAME":"name value"
+   * 					  }
+   * 					,function(p){
+   *                     	if(p.Success == false){
+   * 							Matrix.Alert(p.Message);
+   * 							return;
+   * 						}
+   * 						var  ds = p.DataSet; 
+   * 						
+   *                        });
+   * ```
+  * @param gridNames 데이터 입력/수정/삭제 정보를 전송할 그리드 이름 배열 또는 그리드 이름을 , 분리해서 입력
+  * @param scriptName 서버 스트립트 이름(@로 시작하는 경우 서버의 SERVER_SCRIPT 아래 파일 탐색, @보고서코드@스크립트코드 는 특정 보고서의 @로 시작하는 스크립트 탐색)
+  * @param params 서버로 전달할 파라미터 목록 (e.g. {'VS_CODE':'100', 'VS_NAME':'PC'} )
+  * @param callBack CallBack함수
+  * ```
+  * 
+  * function(p){
+  *  	if(p.Success == false){
+  * 		Matrix.Alert(p.Message);
+  * 		return;
+  * 	}
+  * 	var  ds = p.DataSet; 
+  * }
+  * ```
+  */
+  RunScriptEx(gridNames: string|string[], scriptName: string, params?: {[key:string]:string|number}, callBack?: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
    * 뷰어의 Excel Export 대화 상자를 표시합니다.
@@ -2764,6 +2802,14 @@ close 동작 시에 callback 으로 null 을 전달합니다.
      * 체크 상태
     */
     IsChecked: boolean
+    /**
+     * 그룹이름
+    */
+    GroupName: string
+    /**
+     * 텍스트
+    */
+    Text: string
   }
   ) => void;
 
@@ -2915,6 +2961,10 @@ close 동작 시에 callback 으로 null 을 전달합니다.
      * 컨트롤 값
     */
     Value: string
+    /**
+     * 선택된 값의 인덱스
+    */
+    SelectedIndex: number
   }
   ) => void;
 
@@ -3888,6 +3938,10 @@ close 동작 시에 callback 으로 null 을 전달합니다.
      * 현재 값
     */
     NewValue: string
+    /**
+     * 컨트롤 값
+    */
+    Text: string
   }
   ) => void;
 

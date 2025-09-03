@@ -22,6 +22,12 @@ export interface TreeView extends Control{
   Option: any;
 
   /**
+   * 최상위 노드
+   * @hidden
+  */
+  RootNode: TreeViewNode;
+
+  /**
    * 행 목록
    * @hidden
   */
@@ -271,7 +277,11 @@ export interface TreeView extends Control{
     /**
      * 
     */
-    args: TreeViewNode
+    Id: string
+    /**
+     * 
+    */
+    Node: TreeViewNode
   }
   ) => void;
 
@@ -377,9 +387,17 @@ export interface TreeView extends Control{
   OnSelectedItemChanged : (sender : TreeView
   , args : { 
     /**
-     * TreeViewNode[]에 IsDisposed 라는 boolean 속성이 붙습니다
+     * 
     */
-    args: any
+    Id: string
+    /**
+     * 
+    */
+    SelectedNodes: TreeViewNode[]
+    /**
+     * 
+    */
+    LastSelectedNode: TreeViewNode
   }
   ) => void;
 

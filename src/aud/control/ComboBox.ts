@@ -144,6 +144,10 @@ export interface ComboBox extends Control{
      * 컨트롤 값
     */
     Value: string
+    /**
+     * 선택된 값의 인덱스
+    */
+    SelectedIndex: number
   }
   ) => void;
 

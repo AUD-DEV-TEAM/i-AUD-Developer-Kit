@@ -55,4 +55,12 @@ export interface HTMLTableConverter{
   */
   getHtmlTable(targetSheetNames: string): string;
 
+  /** 
+   * HTML Table Tag 반환합니다.
+   *
+  * @param targetSheetNames target sheet name(eg.sheet1,shtt2)
+  * @param limitRows Maximum number of output rows
+  */
+  getHtmlTable(targetSheetNames: string, limitRows: number): string;
+
 }

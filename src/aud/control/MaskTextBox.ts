@@ -75,6 +75,10 @@ export interface MaskTextBox extends Control{
      * 현재 값
     */
     NewValue: string
+    /**
+     * 컨트롤 값
+    */
+    Text: string
   }
   ) => void;
 
