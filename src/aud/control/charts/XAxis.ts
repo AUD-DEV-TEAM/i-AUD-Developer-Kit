@@ -40,6 +40,36 @@ export interface XAxis extends Axis{
   FontSize: number;
 
   /**
+   * X축의 Group 으로 설정할 필드
+  */
+  GroupField: string;
+
+  /**
+   * X축의 GroupLabel 의 글자 굵기
+  */
+  GroupFontBold: boolean;
+
+  /**
+   * X축의 GroupLabel 의 글자 색상
+  */
+  GroupFontColor: string;
+
+  /**
+   * X축의 GroupLabel 의 글꼴
+  */
+  GroupFontFamily: string;
+
+  /**
+   * X축의 GroupLabel 의 글자 기울기
+  */
+  GroupFontItalic: boolean;
+
+  /**
+   * X축의 GroupLabel 의 글자 크기
+  */
+  GroupFontSize: number;
+
+  /**
    * 축의 Items별 X offset 값(default:0)
   */
   LabelsX: number;

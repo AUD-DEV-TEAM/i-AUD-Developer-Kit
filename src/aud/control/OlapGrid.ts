@@ -423,6 +423,11 @@ export interface OlapGrid extends Control{
    *
   * @param callbackFunc 내보내기가 완료되었을 때 호출할 콜백 함수를 설정합니다.
 \n\t반환 결과 : {Type:string, Path:string, Extention:string, UpdateDate:string}
+  * ```
+  * function(ret){
+  * \t// ret : {"Type":string,"Path":string,"Extention":string,"UpdateDate":string}
+  * }
+  * ```
    * @hidden
   */
   ExportCSV(callbackFunc: Function): Function;

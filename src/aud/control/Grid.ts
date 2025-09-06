@@ -370,8 +370,9 @@ export interface Grid extends Control{
   /** 
    * 데이터의 레코드 수정 정보(신규/수정/삭제)를 모두 제거합니다.
    *
+  * @param removeDeletedRows 삭제된 레코드를 제거합니다.
   */
-  ClearRowState(): void;
+  ClearRowState(removeDeletedRows: boolean): void;
 
   /** 
    * 모든 레코드를 삭제합니다.

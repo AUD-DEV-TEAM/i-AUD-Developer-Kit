@@ -315,6 +315,10 @@ export interface iGrid extends Control{
      * Control Name
     */
     Id: string
+    /**
+     * true로 설정 시 실행이 취소됩니다.
+    */
+    Cancel: boolean
   }
   ) => void;
 

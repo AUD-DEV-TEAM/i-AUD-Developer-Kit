@@ -98,9 +98,9 @@ export interface DataTable{
   /** 
    * 레코드들의 상태 수정(U)/삭제(D)/신규(D) 값들을 초기화 시킵니다.
    *
-  * @param removeRow row를 삭제할지 여부
+  * @param removeDeletedRows 삭제된 레코드를 제거합니다.
   */
-  ClearRowState(removeRow: boolean): void;
+  ClearRowState(removeDeletedRows: boolean): void;
 
   /** 
    * 모든 레코드를 삭제합니다.
