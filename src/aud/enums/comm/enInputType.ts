@@ -4,10 +4,10 @@
 */
 export enum enInputType{
 
-  /**   */
+  /** Text */
   "Text" = 0,
 
-  /**   */
+  /** Password */
   "Password" = 1,
 
 }

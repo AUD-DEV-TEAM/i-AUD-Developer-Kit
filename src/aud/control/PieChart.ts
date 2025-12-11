@@ -123,6 +123,7 @@ export interface PieChart extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnDataBindEnd : (sender : PieChart
   , args : { 

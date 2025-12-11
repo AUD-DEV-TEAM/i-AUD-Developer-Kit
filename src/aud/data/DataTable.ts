@@ -175,7 +175,7 @@ export interface DataTable{
    *         dt.ImportRows([["Kr","Korea"], ["En","USA"],["Ca","Canada"]]); 
    *         Matrix.getObject("comboBox").SetDataSet(ds);
    * ```
-  * @param rows 
+  * @param rows Row들
   */
   ImportRows(rows?: Array<any>|Array<Array<any>>): void;
 

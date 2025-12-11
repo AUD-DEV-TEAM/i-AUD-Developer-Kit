@@ -1,5 +1,5 @@
 /**
-*  
+* enVertical
 * @enum
 */
 export enum enVertical{

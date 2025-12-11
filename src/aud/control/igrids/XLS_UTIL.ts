@@ -11,8 +11,8 @@ export interface XLS_UTIL{
   /** 
    * 시트에 셀을 추가 합니다.
    *
-  * @param ws 
-  * @param cell 
+  * @param ws 워크 시트 모델
+  * @param cell 셀
   */
   addCell(ws: IWorkSheet, cell: ICell): boolean;
 
@@ -36,54 +36,54 @@ export interface XLS_UTIL{
   /** 
    *  시트에 열이 주어진 열 수 보다 작을 경우 해당 수량 만큼 생성합니다.
    *
-  * @param ws 
-  * @param columns 
+  * @param ws 워크 시트 모델
+  * @param columns Column들
   */
   expandColumnsToIndex(ws: IWorkSheet, columns: number): boolean;
 
   /** 
    *  시트에 행이 주어진 행 수 보다 작을 경우 해당 수량 만큼 생성합니다.
    *
-  * @param ws 
-  * @param rows 
+  * @param ws 워크 시트 모델
+  * @param rows Row들
   */
   expandRowsToIndex(ws: IWorkSheet, rows: number): boolean;
 
   /** 
    * 주어진 주소 영역 값으로 영역의 위치 값을 반환 합니다.
    *
-  * @param range 
+  * @param range Range
   */
   getAreaFromRange(range: string): ISelectionArea;
 
   /** 
    * 시트의 특정 셀을 반환 합니다. 모델이 없으면 임시 생성한 모델을 반환 합니다.
    *
-  * @param ws 
-  * @param row 
-  * @param column 
+  * @param ws 워크 시트 모델
+  * @param row Row
+  * @param column Column
   */
   getCell(ws: IWorkSheet, row: number, column: number): ICell;
 
   /** 
    * 주어진 컬럼 위치 값으로 엑셀 컬럼의 주소 값을 반환 합니다.
    *
-  * @param column 
+  * @param column Column
   */
   getColumnName(column: string): string;
 
   /** 
    * 주어진 위치 값으로 엑셀의 주소값을 반환 합니다.
    *
-  * @param row 
-  * @param column 
+  * @param row Row
+  * @param column Column
   */
   getRangeName(row: number, column: number): string;
 
   /** 
    * 주어진 엑셀 주소값을 계산된 행/열 번호로 반환 합니다.
    *
-  * @param address 
+  * @param address 주소
   */
   parseExcelAddress(address: string): {"R":number, "C":number};
 

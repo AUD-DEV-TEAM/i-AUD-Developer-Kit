@@ -4,10 +4,10 @@
 */
 export enum enReportType{
 
-  /**  */
+  /** List */
   "List" = 3,
 
-  /**  */
+  /** Analysis */
   "Analysis" = 1,
 
 }

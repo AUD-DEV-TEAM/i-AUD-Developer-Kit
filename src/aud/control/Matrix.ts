@@ -41,6 +41,8 @@ import { DataGridRow } from "../../aud/control/grids/DataGridRow";
 import { DataGridCell } from "../../aud/control/grids/DataGridCell";
 import { DataGridColumn } from "../../aud/control/grids/DataGridColumn";
 import { Chart } from "../../aud/control/Chart";
+import { TreeView } from "../../aud/control/TreeView";
+import { TreeViewNode } from "../../aud/control/treeviews/TreeViewNode";
 import { CheckBox } from "../../aud/control/CheckBox";
 import { ColorPicker } from "../../aud/control/ColorPicker";
 import { Color } from "../../aud/drawing/Color";
@@ -50,9 +52,11 @@ import { TableColumn } from "../../aud/control/table/TableColumn";
 import { ComboBox } from "../../aud/control/ComboBox";
 import { DataRow } from "../../aud/data/DataRow";
 import { HighChart_C } from "../../aud/control/HighChart_C";
+import { MetaTreeView } from "../../aud/control/MetaTreeView";
 import { DataTable } from "../../aud/data/DataTable";
 import { FileUploadButton } from "../../aud/control/FileUploadButton";
 import { MetaItem } from "../../aud/meta/MetaItem";
+import { FilterInfo } from "../../aud/control/MetaTreeView/FilterInfo";
 import { MultiHeaderCell } from "../../aud/control/grids/MultiHeaderCell";
 import { Image } from "../../aud/control/Image";
 import { MaskTextBox } from "../../aud/control/MaskTextBox";
@@ -244,9 +248,9 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   /** 
    * CodeMirror를 사용하는 함수 재품 내부에서 사용
    *
-  * @param richTextBoxName 
-  * @param callback 
-  * @param mode 
+  * @param richTextBoxName RichTextBox 명
+  * @param callback 콜백함수
+  * @param mode 모드
    * @hidden
   */
   CreateCodeMirror(richTextBoxName: string, callback: Function, mode: string | object): void;
@@ -313,11 +317,11 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   /** 
    * Splitter를 생성하는 함수
    *
-  * @param direction 
-  * @param firstControlName 
-  * @param secondControlName 
-  * @param splitterControlNames 
-  * @param option 
+  * @param direction 방향
+  * @param firstControlName 첫번째 컨트롤 명
+  * @param secondControlName 두번째 컨트롤 명
+  * @param splitterControlNames 스플리터 컨트롤 이름 배열
+  * @param option 옵션
    * @hidden
   */
   CreateSplitter(direction: string, firstControlName: string, secondControlName: string, splitterControlNames: string | Array<string>, option?: any): any;
@@ -825,6 +829,13 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   GetMetaWizard(): MetaWizardManager;
 
   /** 
+   * 주어진 컨트롤의 선택값을 반환합니다.
+   *
+  * @param control 컨트롤 객체
+  */
+  GetParamValue(control: Control): Array<any>;
+
+  /** 
    * 보고서 정보를 반환합니다.
    *
   */
@@ -1030,7 +1041,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * @param scriptfiles javascript file or files
   * @param callback script load complete 이후 동작 할 함수
   */
-  ImportScript(scriptfiles: string[], callback: Function): void;
+  ImportScript(scriptfiles: string|string[], callback: Function): void;
 
   /** 
    * 사용자에게 정보 대화 상자를 보여줍니다.
@@ -1320,7 +1331,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   * }
   * ```
   */
-  RunScriptEx(gridNames: string|string[], scriptName: string, params?: {[key:string]:string|number}, callBack?: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
+  RunScriptEx(gridNames: string|string[], scriptName: string, params: {[key:string]:any}, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
    * 뷰어의 Excel Export 대화 상자를 표시합니다.
@@ -1581,7 +1592,7 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   /** 
    * 라벨 컨트롤의 글자를 수직 방향으로 변경합니다
    *
-  * @param labelControl 
+  * @param labelControl 라벨 컨트롤
    * @hidden
   */
   StyleVerticalText(labelControl: Label): void;
@@ -1611,8 +1622,10 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   /** 
    * 박스 스타일 목록을 Update 합니다.
    *
+  * @param list Update할 박스 스타일 목록
+  * @param callback 콜백 함수
   */
-  UploadBoxStyleList(): BoxStyleList;
+  UploadBoxStyleList(list: BoxStyleList, callback: any): BoxStyleList;
 
   /** 
    * 사용자의 로컬의 파일을 서버로 업로드 합니다.
@@ -2702,6 +2715,10 @@ close 동작 시에 callback 으로 null 을 전달합니다.
     */
     FontItalic: boolean
     /**
+     * 셀의 텍스트 아래 밑줄을 표현할지 유무. true일 경우 밑줄이 표시됩니다.
+    */
+    FontUnderline: boolean
+    /**
      * 이 값을 true로 설정 하게되면 값을 그리지 않습니다.
     */
     Cancel: boolean
@@ -2786,6 +2803,41 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   /**
    * @event 
    *
+   * Tree의 체크 박스를 클릭하는 순간 발생합니다.
+   *
+   * @param args
+   *
+   * Target : {@link TreeView}
+  */
+  OnCheckBoxClicked : (sender : Matrix
+  , args : { 
+    /**
+     * 컨트롤 이름
+    */
+    Id: string
+    /**
+     * 체크 유무
+    */
+    Checked: boolean
+    /**
+     * 이 값을 true로 설정 하게되면 클릭 처리가 취소됩니다.
+    */
+    Cancel: boolean
+    /**
+     * 레코드 노드
+    */
+    Row: TreeViewNode
+    /**
+     * 체크한 항목을 메타에 바로 추가할 지 여부
+    */
+    Handled: boolean
+  }
+  ) => void;
+
+
+  /**
+   * @event 
+   *
    * 체크박스 컨트롤의 값이 변경될 경우 발생합니다.
    *
    * @param args
@@ -2844,6 +2896,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * Parameter Info
    * @hidden
   */
   OnColumnLineDragEnd : (sender : Matrix
@@ -2875,6 +2928,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * Parameter Info
    * @hidden
   */
   OnColumnLineDragStart : (sender : Matrix
@@ -2910,6 +2964,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * Parameter Info
    * @hidden
   */
   OnColumnLineMouseOver : (sender : Matrix
@@ -3180,6 +3235,41 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   /**
    * @event 
    *
+   * 항목을 drop 시 발생하는 이벤트
+   *
+   * @param args
+   *
+   * Target : {@link MetaTreeView}
+  */
+  OnDrop : (sender : Matrix
+  , args : { 
+    /**
+     * Id
+    */
+    Id: string
+    /**
+     * Row들
+    */
+    Rows: TreeViewNode[]
+    /**
+     * Row: 1, Column:2, Filter: 3, Data 4
+    */
+    Area: number
+    /**
+     * 취소 여부
+    */
+    Cancel: boolean
+    /**
+     * Handled
+    */
+    Handled: boolean
+  }
+  ) => void;
+
+
+  /**
+   * @event 
+   *
    * [Ctrl + V] 키를 이용해 클립보드에 데이터를 붙여넣기 종료 시 발생합니다.
    *
    * @param args
@@ -3355,6 +3445,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * Parameter Info
   */
   OnFileOpened : (sender : Matrix
   , args : { 
@@ -3394,6 +3485,37 @@ close 동작 시에 callback 으로 null 을 전달합니다.
      * 성공 여부
     */
     IsSuccess: boolean
+  }
+  ) => void;
+
+
+  /**
+   * @event 
+   *
+   * 조회 조건이 변경되는 경우 발생하는 이벤트
+   *
+   * @param args
+   *
+   * Target : {@link MetaTreeView}
+  */
+  OnFilterChanged : (sender : Matrix
+  , args : { 
+    /**
+     * Id
+    */
+    Id: string
+    /**
+     * 데이터
+    */
+    Data: DataRow
+    /**
+     * 필터 정보
+    */
+    FilterInfo: FilterInfo[]
+    /**
+     * 연결된 grid refresh할지 여부
+    */
+    Handled: boolean
   }
   ) => void;
 
@@ -3846,6 +3968,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * Parameter Info
    * @hidden
   */
   OnImageEditCompleted : (sender : Matrix
@@ -3904,6 +4027,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * Parameter Info
   */
   OnLocalFileOpened : (sender : Matrix
   , args : { 
@@ -4034,6 +4158,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * Parameter Info
   */
   OnMetaViewerBindClosed : (sender : Matrix
   , args : { 
@@ -4056,6 +4181,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * Parameter Info
   */
   OnMetaViewerOpened : (sender : Matrix
   , args : { 
@@ -4958,6 +5084,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * Parameter Info
    * @hidden
   */
   OnRowLineDragEnd : (sender : Matrix
@@ -4989,6 +5116,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * Parameter Info
    * @hidden
   */
   OnRowLineDragStart : (sender : Matrix
@@ -5024,6 +5152,7 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * @param args
    *
+   * Parameter Info
    * @hidden
   */
   OnRowLineMouseOver : (sender : Matrix
@@ -5258,6 +5387,41 @@ close 동작 시에 callback 으로 null 을 전달합니다.
   /**
    * @event 
    *
+   * 드래그 시작 시 발생하는 이벤트
+   *
+   * @param args
+   *
+   * Target : {@link TreeView}
+  */
+  OnStartDrag : (sender : Matrix
+  , args : { 
+    /**
+     * Id
+    */
+    Id: string
+    /**
+     * 타입
+    */
+    Type: number
+    /**
+     * 대상
+    */
+    Target: TreeViewNode
+    /**
+     * 선택된 Row들
+    */
+    SelectedRows: any
+    /**
+     * 취소 여부
+    */
+    Cancel: boolean
+  }
+  ) => void;
+
+
+  /**
+   * @event 
+   *
    * 그리드의 셀이 수정모드로 변경될 때 발생합니다.
    *
    * @param args
@@ -5441,8 +5605,6 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *
    * 텍스트 박스 컨트롤의 key 입력 누르는 동안 발생합니다.
    *
-   * @param args
-   *
    * @example
    * ```js
    *     //텍스트 박스에 Enter 입력 시 조회 하기
@@ -5453,6 +5615,8 @@ close 동작 시에 callback 으로 null 을 전달합니다.
    *         }
    *     };
    * ```
+   * @param args
+   *
    * Target : {@link TextBox}
   */
   OnTextKeypress : (sender : Matrix

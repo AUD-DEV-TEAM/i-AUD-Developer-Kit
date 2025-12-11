@@ -70,6 +70,7 @@ export interface Splitter{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnEndDrag : (sender : Splitter
   , args : { 
@@ -88,6 +89,7 @@ export interface Splitter{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnMoveDrag : (sender : Splitter
   , args : { 
@@ -114,6 +116,7 @@ export interface Splitter{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnStartDrag : (sender : Splitter
   , args : { 

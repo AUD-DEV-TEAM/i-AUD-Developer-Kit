@@ -21,7 +21,7 @@ export interface ScriptSeriesDataLabel{
   /** 
    * 데이터레이블 위치
    *
-  * @param pos  
+  * @param pos 위치
   */
   setPosition(pos: enDataLabelPositionType): void;
 

@@ -6,7 +6,7 @@ export interface NamedDictionary{
   /** 
    * 항목을 추가합니다.
    *
-  * @param item 
+  * @param item 아이템
    * @hidden
   */
   Add(item: any): void;
@@ -33,7 +33,7 @@ export interface NamedDictionary{
   /** 
    * 항목을 반복합니다.
    *
-  * @param enumFunc 
+  * @param enumFunc Enum 함수
    * @hidden
   */
   ForEach(enumFunc?: (idx: number, item: any) => boolean | void): void;
@@ -48,7 +48,7 @@ export interface NamedDictionary{
   /** 
    * 특정 위치의 객체를 반환 합니다.
    *
-  * @param index 
+  * @param index Index
   */
   GetByIndex(index: number): any;
 

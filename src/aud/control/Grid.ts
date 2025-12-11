@@ -14,6 +14,7 @@ import { enExportType } from "../../aud/enums/comm/enExportType";
 import { DataTable } from "../../aud/data/DataTable";
 import { DataGridCell } from "../../aud/control/grids/DataGridCell";
 import { MultiHeaderCell } from "../../aud/control/grids/MultiHeaderCell";
+import { StyleOption } from "../../aud/control/grids/StyleOption";
 import { DataRow } from "../../aud/data/DataRow";
 import { ContextMenu } from "../../aud/control/ContextMenu";
 /**
@@ -28,7 +29,8 @@ export interface Grid extends Control{
   AutoRefresh: boolean;
 
   /**
-   * 배경색
+   * 배경색(deprecated)
+   * @hidden
   */
   Background: SolidColorBrush;
 
@@ -38,7 +40,8 @@ export interface Grid extends Control{
   BottomRowDataSource: string;
 
   /**
-   * Column 높이
+   * Column 높이(deprecated)
+   * @hidden
   */
   ColumnHeaderHeight: number;
 
@@ -98,27 +101,32 @@ export interface Grid extends Control{
   FilterLOVLimit: number;
 
   /**
-   * 글자 스타일 굵기 여부
+   * 글자 스타일 굵기 여부(deprecated)
+   * @hidden
   */
   FontBold: boolean;
 
   /**
-   * 글자 유형
+   * 글자 유형(deprecated)
+   * @hidden
   */
   FontFamily: string;
 
   /**
-   * 글자 스타일 기울임 여부
+   * 글자 스타일 기울임 여부(deprecated)
+   * @hidden
   */
   FontItalic: boolean;
 
   /**
-   * 글자 크기. 레코드 높이보다 작은 크기만 설정 가능합니다.
+   * 글자 크기. 레코드 높이보다 작은 크기만 설정 가능합니다.(deprecated)
+   * @hidden
   */
   FontSize: number;
 
   /**
-   * Font Color
+   * Font Color(deprecated)
+   * @hidden
   */
   Foreground: SolidColorBrush;
 
@@ -143,17 +151,20 @@ export interface Grid extends Control{
   MultiLinePopup: CompactMultiLine;
 
   /**
-   * 반복행 배경색
+   * 반복행 배경색(deprecated)
+   * @hidden
   */
   OddRowBackground: SolidColorBrush;
 
   /**
-   * Row 헤더 너비
+   * Row 헤더 너비(deprecated)
+   * @hidden
   */
   RowHeaderWidth: number;
 
   /**
-   * Row 높이
+   * Row 높이(deprecated)
+   * @hidden
   */
   RowHeight: number;
 
@@ -372,7 +383,7 @@ export interface Grid extends Control{
    *
   * @param removeDeletedRows 삭제된 레코드를 제거합니다.
   */
-  ClearRowState(removeDeletedRows: boolean): void;
+  ClearRowState(removeDeletedRows?: boolean): void;
 
   /** 
    * 모든 레코드를 삭제합니다.
@@ -830,6 +841,17 @@ export interface Grid extends Control{
   getRowValue(idx: number, fieldInfo: string | number): any;
 
   /** 
+   * 그리드 컨트롤의 스타일 옵션을 반환합니다.
+   *
+   * @example
+   * ```js
+   * var DataGrid = Matrix.getObject("DataGrid");
+   * var options = DataGrid.getStyleOption();
+   * ```
+  */
+  getStyleOption(): StyleOption;
+
+  /** 
    * 특정 필드에 Dimension 필터(Between)를 추가하는 메소드
    *
   * @param fieldName 필드 명
@@ -994,8 +1016,6 @@ export interface Grid extends Control{
    *
    * 그리드의 셀의 key 입력 시 발생합니다.
    *
-   * @param args
-   *
    * @example
    * ```js
    * Matrix.getObject('DataGrid').OnCellKeyDown = function(s,e){
@@ -1010,6 +1030,8 @@ export interface Grid extends Control{
    * 	grid.AppendRow(false);
    * }
    * ```
+   * @param args
+   *
    * Target : Grid
   */
   OnCellKeyDown : (sender : Grid
@@ -1081,6 +1103,10 @@ export interface Grid extends Control{
      * 셀의 텍스트를 Italic처리하여 표현할지 유무. true일 경우 Italic처리가 됩니다.
     */
     FontItalic: boolean
+    /**
+     * 셀의 텍스트 아래 밑줄을 표현할지 유무. true일 경우 밑줄이 표시됩니다.
+    */
+    FontUnderline: boolean
     /**
      * 이 값을 true로 설정 하게되면 값을 그리지 않습니다.
     */

@@ -69,7 +69,7 @@ export interface ScriptDataCell{
   /** 
    * 특정 값으로 셀의 값을 변경합니다.
    *
-  * @param newValue 
+  * @param newValue 새로운 값
   */
   updateValue(newValue: number): void;
 

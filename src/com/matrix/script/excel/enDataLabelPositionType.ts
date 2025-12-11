@@ -1,5 +1,5 @@
 /**
-*  
+* enDataLabelPositionType
 * @enum
 */
 export enum enDataLabelPositionType{

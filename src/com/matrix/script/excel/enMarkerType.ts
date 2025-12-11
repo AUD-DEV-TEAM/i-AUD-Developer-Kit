@@ -1,5 +1,5 @@
 /**
-*  
+* enMarkerType
 * @enum
 */
 export enum enMarkerType{

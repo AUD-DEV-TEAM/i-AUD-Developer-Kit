@@ -8,7 +8,7 @@ export interface MetaEditor extends Control{
   /** 
    * SQL Text를 설정하는 메소드
    *
-  * @param sqlText 
+  * @param sqlText SQL 문
    * @hidden
   */
   SetValue(sqlText: string): void;

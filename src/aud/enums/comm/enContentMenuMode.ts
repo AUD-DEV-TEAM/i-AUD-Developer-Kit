@@ -4,13 +4,13 @@
 */
 export enum enContentMenuMode{
 
-  /**   */
+  /** Click */
   "Click" = 0,
 
-  /**   */
+  /** ClickOrMouseOver */
   "ClickOrMouseOver" = 1,
 
-  /**   */
+  /** MouseOver */
   "MouseOver" = 2,
 
 }

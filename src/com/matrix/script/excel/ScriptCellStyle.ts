@@ -108,7 +108,7 @@ export interface ScriptCellStyle{
   /** 
    * cell's indent level
    *
-  * @param level  
+  * @param level 레벨
   */
   setIndentLevel(level: number): void;
 
@@ -122,7 +122,7 @@ export interface ScriptCellStyle{
   /** 
    * Shrink To Fit cell's text
    *
-  * @param shrinkToFit  
+  * @param shrinkToFit shrink to fit 여부
   */
   setShrinkToFit(shrinkToFit: boolean): void;
 
@@ -143,7 +143,7 @@ export interface ScriptCellStyle{
   /** 
    * Wrap cell's text
    *
-  * @param wrap  
+  * @param wrap Wrap 여부
   */
   setWrapText(wrap: boolean): void;
 

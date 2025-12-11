@@ -48,14 +48,14 @@ export interface OptionStyle{
   /** 
    * OLAP 옵션 스타일 별 지정된 BoxStyle Key 를 반환합니다.
    *
-  * @param optionStyleName 
+  * @param optionStyleName 옵션 스타일명
   */
   GetBoxStyleKey(optionStyleName: enOptionStyle): string;
 
   /** 
    * OLAP 옵션 스타일 별 BoxStyle 을 설정합니다.
    *
-  * @param optionStyleName 
+  * @param optionStyleName 옵션 스타일명
   * @param key BoxStyle 의 Name 또는 Key
   */
   SetBoxStyleKey(optionStyleName: enOptionStyle, key: string): void;

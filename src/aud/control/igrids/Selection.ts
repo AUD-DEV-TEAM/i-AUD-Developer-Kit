@@ -165,7 +165,7 @@ export interface Selection{
   /** 
    * 현재 선택된 셀을 변경 합니다.
    *
-  * @param cell 
+  * @param cell 셀
   */
   setCurrentCell(cell: ICell): void;
 

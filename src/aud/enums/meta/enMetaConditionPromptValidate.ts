@@ -4,13 +4,13 @@
 */
 export enum enMetaConditionPromptValidate{
 
-  /**  */
+  /** vldNullable */
   "vldNullable" = 0,
 
-  /**  */
+  /** vldNotNull */
   "vldNotNull" = 1,
 
-  /**  */
+  /** vldOptional */
   "vldOptional" = 2,
 
 }

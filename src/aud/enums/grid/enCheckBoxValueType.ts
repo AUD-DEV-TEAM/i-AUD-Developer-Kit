@@ -4,13 +4,13 @@
 */
 export enum enCheckBoxValueType{
 
-  /**   */
+  /** True */
   "True" = 1,
 
-  /**   */
+  /** Merge */
   "Merge" = "M",
 
-  /**   */
+  /** False */
   "False" = 0,
 
 }

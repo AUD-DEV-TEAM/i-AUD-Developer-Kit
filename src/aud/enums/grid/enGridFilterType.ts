@@ -4,10 +4,10 @@
 */
 export enum enGridFilterType{
 
-  /**   */
+  /** Dimension */
   "Dimension" = 0,
 
-  /**   */
+  /** Measure */
   "Measure" = 1,
 
 }

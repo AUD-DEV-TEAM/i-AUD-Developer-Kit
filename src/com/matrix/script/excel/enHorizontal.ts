@@ -1,5 +1,5 @@
 /**
-*  
+* enHorizontal
 * @enum
 */
 export enum enHorizontal{

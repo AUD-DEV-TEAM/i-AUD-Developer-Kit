@@ -32,7 +32,7 @@ export interface WebEditor{
    * ```js
    * editor.SetScrollTop(0); //스크롤을 맨 위로 올립니다.
    * ```
-  * @param top 
+  * @param top Top
   */
   SetScrollTop(top: number): void;
 

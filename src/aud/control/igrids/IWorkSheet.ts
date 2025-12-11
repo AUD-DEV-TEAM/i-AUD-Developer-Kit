@@ -10,6 +10,11 @@ import { IValValidator } from "../../../aud/control/igrids/IValValidator";
 export interface IWorkSheet{
 
   /**
+   *  시트 활성화 상태
+  */
+  Active: boolean;
+
+  /**
    * 셀 목록
   */
   Cells: {[rngname:string]:ICell};
@@ -43,5 +48,15 @@ export interface IWorkSheet{
    * 입력 유효성 목록
   */
   Validators: Array<IValValidator>;
+
+  /**
+   * 시트 화면에 표여지는지 여부
+  */
+  Visible: boolean;
+
+  /**
+   * 시트 확대/축소(Zoom) 값
+  */
+  Zoom: number;
 
 }

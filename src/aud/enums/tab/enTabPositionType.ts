@@ -4,10 +4,10 @@
 */
 export enum enTabPositionType{
 
-  /**  */
+  /** Top */
   "Top" = 0,
 
-  /**  */
+  /** Bottom */
   "Bottom" = 1,
 
 }

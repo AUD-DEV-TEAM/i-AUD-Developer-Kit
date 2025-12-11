@@ -4,7 +4,7 @@
 */
 export enum enCellType{
 
-  /**   */
+  /** None */
   "None" = 0,
 
   /** 텍스트 박스 */

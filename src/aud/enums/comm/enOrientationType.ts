@@ -4,10 +4,10 @@
 */
 export enum enOrientationType{
 
-  /**   */
+  /** Horizontal */
   "Horizontal" = 0,
 
-  /**   */
+  /** Vertical */
   "Vertical" = 1,
 
 }

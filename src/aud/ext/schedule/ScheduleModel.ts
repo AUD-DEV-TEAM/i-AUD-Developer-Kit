@@ -124,6 +124,7 @@ export interface ScheduleModel{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnContextMenuOpenning : (sender : ScheduleModel
   , args : { 
@@ -158,6 +159,7 @@ export interface ScheduleModel{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnScheduleCellDoubleClick : (sender : ScheduleModel
   , args : { 
@@ -176,6 +178,7 @@ export interface ScheduleModel{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnScheduleUpdated : (sender : ScheduleModel
   , args : { 

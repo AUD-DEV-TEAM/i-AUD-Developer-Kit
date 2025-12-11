@@ -217,6 +217,12 @@ export interface ScriptPreparedStatement{
   executeUpdate(): number;
 
   /** 
+   * 실제 실행된 쿼리 정보를 반환 합니다.
+   *
+  */
+  getParameterBindingSQL(): string;
+
+  /** 
    * 지정된 매개변수를 주어진 Array 객체로 설정합니다.
    *
   * @param idx 파라미터 인덱스

@@ -4,13 +4,13 @@
 */
 export enum enGridAndOrFilterOperator{
 
-  /**   */
+  /** None */
   "None" = 0,
 
-  /**   */
+  /** Or */
   "Or" = 1,
 
-  /**   */
+  /** And */
   "And" = 2,
 
 }

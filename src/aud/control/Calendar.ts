@@ -15,6 +15,16 @@ export interface Calendar extends Control{
   Date: Date;
 
   /**
+   * 달력에서 요일 표시를 시작할 기준 요일을 지정(기본값: 0, 일요일)
+  */
+  DisplayStartDayOfWeek: number;
+
+  /**
+   * 토/일 강조 색상 적용 여부
+  */
+  HighlightWeekend: boolean;
+
+  /**
    * 초기 선택된 날짜
   */
   InitDate: string;
@@ -38,6 +48,11 @@ export interface Calendar extends Control{
    * String형 선택된 날짜
   */
   Text: string;
+
+  /**
+   * Daily 달력에 각 행의 주차를 표시할지 여부
+  */
+  UseWeekNumber: boolean;
 
   /**
    * DataFormat 형태의 String형 선택된 날짜

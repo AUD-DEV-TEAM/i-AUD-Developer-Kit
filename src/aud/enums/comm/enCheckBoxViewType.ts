@@ -4,10 +4,10 @@
 */
 export enum enCheckBoxViewType{
 
-  /**  */
+  /** CheckBox */
   "CheckBox" = 0,
 
-  /**  */
+  /** Switch */
   "Switch" = 1,
 
 }

@@ -161,6 +161,7 @@ export interface PolygonChart extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnDataBindEnd : (sender : PolygonChart
   , args : { 

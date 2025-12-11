@@ -22,7 +22,7 @@ export enum enDataType{
   /** CLOB */
   "CLOB" = 5,
 
-  /**  */
+  /** UUID */
   "UUID" = 7,
 
 }

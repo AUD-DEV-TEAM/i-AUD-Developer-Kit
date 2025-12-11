@@ -59,6 +59,7 @@ export interface Label extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnClick : (sender : Label
   , args : { 
@@ -81,6 +82,7 @@ export interface Label extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnMouseOut : (sender : Label
   , args : { 
@@ -103,6 +105,7 @@ export interface Label extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnMouseOver : (sender : Label
   , args : { 

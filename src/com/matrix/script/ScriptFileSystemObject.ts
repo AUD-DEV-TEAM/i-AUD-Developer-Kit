@@ -122,8 +122,8 @@ export interface ScriptFileSystemObject{
   /** 
    * 폴더 하위에 특정 시간(분)이 지난 파일/폴더들을 삭제합니다.
    *
-  * @param folderPath 
-  * @param minutes 
+  * @param folderPath 폴더 경로
+  * @param minutes 분
   */
   RemoveOldFiles(folderPath: string, minutes: number): void;
 

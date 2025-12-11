@@ -46,9 +46,9 @@ export interface MultiHeaderCell{
   /** 
    * 내부 컨트롤 생성 메소드
    *
-  * @param grid 
-  * @param container 
-  * @param name 
+  * @param grid 그리드
+  * @param container 컨테이너
+  * @param name 이름
    * @hidden
   */
   CreateInnerControl(grid: Grid, container: any, name: string): void;

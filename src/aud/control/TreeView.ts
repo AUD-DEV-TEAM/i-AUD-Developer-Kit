@@ -1,19 +1,29 @@
 import { Control } from "../../aud/control/Control";
 import { ContextMenu } from "../../aud/control/ContextMenu";
-import { TreeViewNode } from "../../aud/control/treeviews/TreeViewNode";
-import { enMetaItemDropType } from "../../aud/enums/treeview/enMetaItemDropType";
 import { DataSet } from "../../aud/data/DataSet";
+import { TreeViewNode } from "../../aud/control/treeviews/TreeViewNode";
+import { SelectionModel } from "../../aud/control/treeview/SelectionModel";
+import { enMetaItemDropType } from "../../aud/enums/treeview/enMetaItemDropType";
 /**
 * TreeView 객체
-* @hidden
 */
 export interface TreeView extends Control{
+
+  /**
+   * 보고서가 열리면서 자동으로 Refresh를 할지 여부
+  */
+  AutoRefresh: boolean;
 
   /**
    * 컨텍스트 메뉴 객체
    * @hidden
   */
   ContextMenu: ContextMenu;
+
+  /**
+   * 데이터 셋
+  */
+  DataSet: DataSet;
 
   /**
    * Tree Option
@@ -35,9 +45,8 @@ export interface TreeView extends Control{
 
   /**
    * 선택 행 정보 객체
-   * @hidden
   */
-  Selection: any;
+  Selection: SelectionModel;
 
   /**
    * 전체 행 목록
@@ -50,7 +59,6 @@ export interface TreeView extends Control{
    *
   * @param key 추가하려는 node의 key
   * @param parentKey 추가하려는 node의 parent key
-   * @hidden
   */
   AppendRow(key: string, parentKey: string): TreeViewNode|undefined;
 
@@ -58,7 +66,6 @@ export interface TreeView extends Control{
    * 데이타 계산과 그리기를 해주는 메소드
    *
   * @param keepAutoExpandLevel 확장된 노드를 유지할지 말지 선택
-   * @hidden
   */
   Calculate(keepAutoExpandLevel: boolean): void;
 
@@ -80,23 +87,21 @@ export interface TreeView extends Control{
    * node의 하위 node들을 rows에서 삭제한다.
    *
   * @param node 접으려는 대상 Node
-   * @hidden
   */
   Collapse(node: TreeViewNode): void;
 
   /** 
    * 전체 축소
    *
-   * @hidden
   */
   CollapseAll(): void;
 
   /** 
    * 선택한 node들의 Parent값들을 바꿔준다.
    *
-  * @param dropType 
-  * @param targetNode 
-  * @param draggingRows 
+  * @param dropType Drop 타입
+  * @param targetNode 대상 Node
+  * @param draggingRows 드래깅 중인 Row들
    * @hidden
   */
   DragAndDrop(dropType: enMetaItemDropType, targetNode: TreeViewNode, draggingRows: any): void;
@@ -120,7 +125,6 @@ export interface TreeView extends Control{
    * key에 해당하는 row를 찾아서 이동
    *
   * @param key node의 key
-   * @hidden
   */
   FindAndFocus(key: string): TreeViewNode|undefined;
 
@@ -135,7 +139,6 @@ export interface TreeView extends Control{
    * key에 해당하는 TreeNode를 반환한다
    *
   * @param key 찾으려는 노드의 키
-   * @hidden
   */
   GetTreeNode(key: string): TreeViewNode|undefined;
 
@@ -143,7 +146,6 @@ export interface TreeView extends Control{
    * 행 삭제
    *
   * @param key node의 key
-   * @hidden
   */
   RemoveRow(key: string): void;
 
@@ -181,8 +183,7 @@ export interface TreeView extends Control{
   /** 
    * control에 overriding 되서 자주 호출되므로 그리기만 수행함
    *
-  * @param updateRows 
-   * @hidden
+  * @param updateRows 업데이트 Row들
   */
   Update(updateRows?: boolean): void;
 
@@ -194,7 +195,6 @@ export interface TreeView extends Control{
    * @param args
    *
    * Target : {@link TreeView}
-   * @hidden
   */
   OnCellLoaded : (sender : TreeView
   , args : { 
@@ -218,7 +218,6 @@ export interface TreeView extends Control{
    * @param args
    *
    * Target : {@link TreeView}
-   * @hidden
   */
   OnCheckBoxClicked : (sender : TreeView
   , args : { 
@@ -238,6 +237,10 @@ export interface TreeView extends Control{
      * 레코드 노드
     */
     Row: TreeViewNode
+    /**
+     * 체크한 항목을 메타에 바로 추가할 지 여부
+    */
+    Handled: boolean
   }
   ) => void;
 
@@ -250,7 +253,6 @@ export interface TreeView extends Control{
    * @param args
    *
    * Target : {@link TreeView}
-   * @hidden
   */
   OnContextMenuOpenning : (sender : TreeView
   , args : { 
@@ -270,16 +272,15 @@ export interface TreeView extends Control{
    * @param args
    *
    * Target : {@link TreeView}
-   * @hidden
   */
   OnDoubleClick : (sender : TreeView
   , args : { 
     /**
-     * 
+     * Id
     */
     Id: string
     /**
-     * 
+     * 노드
     */
     Node: TreeViewNode
   }
@@ -294,28 +295,27 @@ export interface TreeView extends Control{
    * @param args
    *
    * Target : {@link TreeView}
-   * @hidden
   */
   OnDrag : (sender : TreeView
   , args : { 
     /**
-     * 
+     * IsDisposed
     */
     IsDisposed: boolean
     /**
-     * 
+     * 부모 여부
     */
     IsParent: boolean
     /**
-     * 
+     * 선택된 Row들
     */
     SelectedRows: any
     /**
-     * 
+     * 대상
     */
     Target: TreeViewNode
     /**
-     * 
+     * 타입
     */
     Type: number
   }
@@ -330,28 +330,27 @@ export interface TreeView extends Control{
    * @param args
    *
    * Target : {@link TreeView}
-   * @hidden
   */
   OnEndDrop : (sender : TreeView
   , args : { 
     /**
-     * 
+     * 취소여부
     */
     Cancel: boolean
     /**
-     * 
+     * IsDisposed
     */
     IsDisposed: boolean
     /**
-     * 
+     * 선택된 Row들
     */
     SelectedRows: TreeViewNode[]
     /**
-     * 
+     * 대상
     */
     Target: TreeViewNode
     /**
-     * 
+     * 타입
     */
     Type: number
   }
@@ -366,7 +365,6 @@ export interface TreeView extends Control{
    * @param args
    *
    * Target : {@link TreeView}
-   * @hidden
   */
   OnKeyDown : (sender : TreeView
   , args : { 
@@ -382,20 +380,19 @@ export interface TreeView extends Control{
    * @param args
    *
    * Target : {@link TreeView}
-   * @hidden
   */
   OnSelectedItemChanged : (sender : TreeView
   , args : { 
     /**
-     * 
+     * Id
     */
     Id: string
     /**
-     * 
+     * 선택된 Node들
     */
     SelectedNodes: TreeViewNode[]
     /**
-     * 
+     * 마지막으로 선택된 Node
     */
     LastSelectedNode: TreeViewNode
   }
@@ -410,10 +407,29 @@ export interface TreeView extends Control{
    * @param args
    *
    * Target : {@link TreeView}
-   * @hidden
   */
   OnStartDrag : (sender : TreeView
   , args : { 
+    /**
+     * Id
+    */
+    Id: string
+    /**
+     * 타입
+    */
+    Type: number
+    /**
+     * 대상
+    */
+    Target: TreeViewNode
+    /**
+     * 선택된 Row들
+    */
+    SelectedRows: any
+    /**
+     * 취소 여부
+    */
+    Cancel: boolean
   }
   ) => void;
 
@@ -426,32 +442,31 @@ export interface TreeView extends Control{
    * @param args
    *
    * Target : {@link TreeView}
-   * @hidden
   */
   OnStartDrop : (sender : TreeView
   , args : { 
     /**
-     * 
+     * 취소 여부
     */
     Cancel: boolean
     /**
-     * 
+     * Handled
     */
     Handled: boolean
     /**
-     * 
+     * IsDisposed
     */
     IsDisposed: boolean
     /**
-     * 
+     * 선택된 Row들
     */
     SelectedRows: TreeViewNode[]
     /**
-     * 
+     * 대상
     */
     Target: TreeViewNode
     /**
-     * 
+     * 타입
     */
     Type: number
   }
@@ -466,16 +481,15 @@ export interface TreeView extends Control{
    * @param args
    *
    * Target : {@link TreeView}
-   * @hidden
   */
   OnTextChange : (sender : TreeView
   , args : { 
     /**
-     * 
+     * 선택된 Row
     */
     SelectedRow: TreeViewNode
     /**
-     * 
+     * 값
     */
     Value: string
   }

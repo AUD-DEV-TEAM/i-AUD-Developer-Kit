@@ -1,7 +1,6 @@
 import { DataRow } from "../../../aud/data/DataRow";
 /**
 * TreeViewNode 객체
-* @hidden
 */
 export interface TreeViewNode{
 
@@ -15,7 +14,7 @@ export interface TreeViewNode{
    * TreeViewNode 의 DataRow
    * @hidden
   */
-  DataRow: DataRow | undefined | null;
+   readonly DataRow: DataRow | undefined | null;
 
   /**
    * 글자 굵기
@@ -63,7 +62,7 @@ export interface TreeViewNode{
    * 체크 된건지 여부
    * @hidden
   */
-  IsChecked: boolean;
+   readonly IsChecked: boolean;
 
   /**
    * Focus된 것인지 여부
@@ -111,16 +110,21 @@ export interface TreeViewNode{
    * 하위 노드 구하는 메소드
    *
   * @param isRecursive leaf 노드까지 조회할지 여부
-   * @hidden
   */
   GetChildNodeList(isRecursive?: boolean): TreeViewNode[];
 
   /** 
+   * 노드를 체크하는 메소드
+   *
+  * @param isChecked 체크 상태
+  */
+  SetCheckStatus(isChecked: boolean): void;
+
+  /** 
    * 값 셋팅 함수
    *
-  * @param key 
-  * @param value 
-   * @hidden
+  * @param key Key
+  * @param value Value
   */
   SetValue(key?: string, value?: any): void;
 

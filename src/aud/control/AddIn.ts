@@ -23,6 +23,7 @@ export interface AddIn extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnComponentClassLoaded : (sender : AddIn
   , args : { 

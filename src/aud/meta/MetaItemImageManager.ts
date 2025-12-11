@@ -9,7 +9,7 @@ export interface MetaItemImageManager{
   /** 
    * 버튼 이미지를 반환해주는 메소드
    *
-  * @param imageCode 
+  * @param imageCode 이미지 코드
    * @hidden
   */
   GetButtonImage(imageCode?: string): HTMLImageElement;
@@ -17,8 +17,8 @@ export interface MetaItemImageManager{
   /** 
    * 그리드 배치 유지 시 그리드 컨트롤에 존재하는 항목에 대한 메타 아이템을 만들 때 해당 아이템의 이미지를 구해주는 메소드
    *
-  * @param isCalcField 
-  * @param categoryType 
+  * @param isCalcField 계산필드 여부
+  * @param categoryType 카테고리 타입
    * @hidden
   */
   GetGridFieldImage(isCalcField?: boolean, categoryType?: enMetaFieldCategory): HTMLImageElement;

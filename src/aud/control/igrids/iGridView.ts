@@ -26,11 +26,23 @@ export interface iGridView{
   */
   UseDatePicker: boolean;
 
+  /**
+   * 시트의 그리드 라인 표시 여부
+  */
+  UseGridlines: boolean;
+
   /** 
    * 모델에서 수정된 내용을 다시 계산합니다.
    *
   */
   Calculate(): void;
+
+  /** 
+   * 특정 시트의 모델을 화면에 출력하기 위해 계산을 합니다.
+   *
+  * @param ws 대상 시트
+  */
+  CalculateWorkSheet(ws: IWorkSheet): void;
 
   /** 
    * 화면을 다시 그리기 위해 Canvas를 갱신합니다.
@@ -64,6 +76,12 @@ export interface iGridView{
   getActiveWorkSheet(): IWorkSheet;
 
   /** 
+   * 디자인 모드 활성화 상태에서 현재 활성화된 워크시트 객체를 반환 합니다.
+   *
+  */
+  getActiveWorkSheet(): IWorkSheet;
+
+  /** 
    * 행/열의 헤더의 표시 상태를 반환 합니다.
    *
   */
@@ -74,6 +92,13 @@ export interface iGridView{
    *
   */
   getWateForRequest(): boolean;
+
+  /** 
+   * 디자인 모드 활성화 상태에서 특정 시트를 활성화 시킨다.
+   *
+  * @param idx  시트의 이름 또는 인덱스(0부터 시작)
+  */
+  setActiveWorkSheet(idx: string|number): boolean;
 
   /** 
    * 행/열의 헤더를 표시할지 여부를 설정합니다.
@@ -87,14 +112,14 @@ export interface iGridView{
    *
    * ClipBoard 데이터를 붙여넣기 할때 발생합니다.
    *
-   * @param args 클립보드 데이터
-   *
    * @example
    * ```js
    * MX_GRID.Viewer().OnBeginClipBoardPaste = function(args){
    *     //paste     
    * };
    * ```
+   * @param args 클립보드 데이터
+   *
    * Target : {@link iGridView}
   */
   OnBeginClipBoardPaste : ( args: {Rows:Array<Array<string>>,Range:ISelectionArea,IgnoreHiddenCells:boolean,Cancel:boolean} ) => void;
@@ -104,8 +129,6 @@ export interface iGridView{
    * @event 
    *
    * 셀이 그려진 다음에 발생합니다.
-   *
-   * @param cell 대상 셀
    *
    * @example
    * ```js
@@ -130,6 +153,8 @@ export interface iGridView{
    *     } 
    * }
    * ```
+   * @param cell 대상 셀
+   *
    * Target : {@link iGridView}
   */
   OnCellDrawed : ( cell: ICell ) => void;
@@ -139,9 +164,6 @@ export interface iGridView{
    * @event 
    *
    * 키보드에서 키를 누를 때 발생합니다.
-   *
-   * @param event  현재 선택된 셀 정보
-   * @param args 직접 처리 여부
    *
    * @example
    * ```js
@@ -157,6 +179,9 @@ export interface iGridView{
    *     }
    * } 
    * ```
+   * @param event  현재 선택된 셀 정보
+   * @param args 직접 처리 여부
+   *
    * Target : {@link iGridView}
   */
   OnKeyDown : ( event: JQuery.KeyDownEvent, args:  { Cell: ICell | null, Handled: boolean } ) => void;
@@ -166,9 +191,6 @@ export interface iGridView{
    * @event 
    *
    * 키보드에서 키를 눌렀다가 뗄 때 발생합니다.
-   *
-   * @param event  현재 선택된 셀 정보
-   * @param args 직접 처리 여부
    *
    * @example
    * ```js
@@ -184,6 +206,9 @@ export interface iGridView{
    *     }
    * } 
    * ```
+   * @param event  현재 선택된 셀 정보
+   * @param args 직접 처리 여부
+   *
    * Target : {@link iGridView}
   */
   OnKeyUp : ( event: JQuery.KeyUpEvent, args:  { Cell: ICell | null, Handled: boolean } ) => void;
@@ -194,14 +219,14 @@ export interface iGridView{
    *
    * 화면이 그려질때마다 발생합니다.
    *
-   * @param args
-   *
    * @example
    * ```js
    * MX_GRID.Viewer().OnUpdated = function (){
    *     //...
    * }
    * ```
+   * @param args
+   *
    * Target : {@link iGridView}
   */
   OnUpdated : (sender : iGridView

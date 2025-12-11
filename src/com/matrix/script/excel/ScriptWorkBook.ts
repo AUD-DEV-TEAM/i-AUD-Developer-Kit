@@ -260,6 +260,22 @@ export interface ScriptWorkBook{
   SaveAsHML(path: string, targetsheets: string): void;
 
   /** 
+   * 현재 엑셀을 아래한글(HWPX)로 변환합니다.
+   *
+  * @param path File path
+  * @param targetsheets List of target sheet names
+  */
+  SaveAsHML(path: string, targetsheets: string[]): void;
+
+  /** 
+   * 현재 엑셀을 아래한글(HWPX)로 변환합니다.
+   *
+  * @param path File path
+  * @param targetsheets List of target sheet names(Enter with , separated)
+  */
+  SaveAsHML(path: string, targetsheets: string): void;
+
+  /** 
    * HTM 파일을 생성합니다.
    *
   * @param path File path
@@ -353,7 +369,7 @@ export interface ScriptWorkBook{
   /** 
    * 현재 엑셀 모델을 MX-GRID 템플릿 파일로 저장 합니다.
    *
-  * @param filePath 
+  * @param filePath 파일 경로
   */
   WriteTemplate(filePath?: string): void;
 
@@ -390,6 +406,18 @@ export interface ScriptWorkBook{
    *
   */
   getHtmlTableConverter(): HTMLTableConverter;
+
+  /** 
+   *  내보내기 시 전체 시트를 내보내기 하는지 여부를 반환 합니다.
+   *
+  */
+  getIsAllSheetExport(): boolean;
+
+  /** 
+   * 디자인 모드로 동작하는지 여부를 반환 합니다.
+   *
+  */
+  getIsDesignMode(): boolean;
 
   /** 
    * json 출력을 지원하는 객체를 생성합니다.
@@ -479,6 +507,22 @@ export interface ScriptWorkBook{
   * @param name  삭제할 시트명
   */
   removeName(name: string): void;
+
+  /** 
+   * 내보내기 시 모든 시트를 내보내기 할 지 여부를 설정합니다.
+모든 시트를 내보내기 할 경우 수식을 포함하여 내보내기가 됩니다.
+   *
+  * @param value 값
+  */
+  setIsAllSheetExport(value: boolean): void;
+
+  /** 
+   * 디자인 모드로 동작할지 여부를 설정합니다.
+디자인 모드는 Client로 출력 시 디자인에 필요한 모든 정보를 출력합니다.
+   *
+  * @param value 콜백 함수
+  */
+  setIsDesignMode(value: boolean): void;
 
   /** 
    * 엑셀 이름정의 또는 셀의 값을 수정합니다.

@@ -256,7 +256,7 @@ export interface ScriptWorkSheet{
   /** 
    * 현재 시트를 활성화 시킵니다.
    *
-  * @param active 
+  * @param active 활성화 여부
   */
   IsActive(active: boolean): void;
 
@@ -681,8 +681,8 @@ export interface ScriptWorkSheet{
   /** 
    * 특정 열의 높이를 pixel 단위로 지정합니다.
    *
-  * @param row 
-  * @param height 
+  * @param row Row
+  * @param height 높이
   */
   setRowHeightByPixel(row?: number, height?: number): void;
 

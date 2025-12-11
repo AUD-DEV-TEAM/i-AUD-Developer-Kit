@@ -4,13 +4,13 @@
 */
 export enum enTreeSortType{
 
-  /**   */
+  /** Asc */
   "Asc" = 0,
 
-  /**   */
+  /** Desc */
   "Desc" = 1,
 
-  /**   */
+  /** None */
   "None" = 2,
 
 }

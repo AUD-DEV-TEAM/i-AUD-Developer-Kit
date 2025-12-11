@@ -1,5 +1,5 @@
 /**
-*  
+* enChartType
 * @enum
 */
 export enum enChartType{

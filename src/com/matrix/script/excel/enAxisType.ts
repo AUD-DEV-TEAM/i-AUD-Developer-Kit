@@ -1,5 +1,5 @@
 /**
-*  
+* enAxisType
 * @enum
 */
 export enum enAxisType{

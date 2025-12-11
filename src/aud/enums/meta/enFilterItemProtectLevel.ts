@@ -7,7 +7,7 @@ export enum enFilterItemProtectLevel{
   /** 제거 보호 (연산자, value 고정) */
   "protectRemove_Value" = 4,
 
-  /**  */
+  /** protectNone */
   "protectNone" = 0,
 
   /** 경고 메세지 */

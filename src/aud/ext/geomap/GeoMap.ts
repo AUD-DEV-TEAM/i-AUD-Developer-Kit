@@ -117,7 +117,7 @@ export interface GeoMap{
   /** 
    * 지도 위에 Overlay 를 추가합니다.
    *
-  * @param options 
+  * @param options 옵션들
   */
   addOverlay(options?: { element: HTMLElement, offset: number[], position: number[], positioning: string, reportCode: string, params: object }): Overlay;
 
@@ -130,7 +130,7 @@ export interface GeoMap{
   /** 
    * AudMap 전용. 매개 변수 featureLabelName과 feature 객체의 LABEL 속성값과 일치하는 feature를 반환합니다.
    *
-  * @param featureLabelName 
+  * @param featureLabelName 라벨 명
   */
   getFeature(featureLabelName: string): any;
 
@@ -152,7 +152,7 @@ export interface GeoMap{
    * AudMap 전용. 매개 변수 dataTable의 각 row의 'LABEL' column의 data와 자신의 LABEL 속성값과 일치하는 featrue의 style 속성을 변경, 설정합니다.
 변경 가능한 속성은 setStyleProperty와 동일합니다.
    *
-  * @param dataTable 
+  * @param dataTable DataTable
   */
   setFeaturesStyleProperties(dataTable: DataTable): void;
 
@@ -164,6 +164,7 @@ export interface GeoMap{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnFeatureClick : (sender : GeoMap
   , args : { 
@@ -187,6 +188,7 @@ export interface GeoMap{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnFeatureMouseOut : (sender : GeoMap
   , args : { 
@@ -210,6 +212,7 @@ export interface GeoMap{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnFeatureMouseOver : (sender : GeoMap
   , args : { 
@@ -232,6 +235,7 @@ export interface GeoMap{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnMapClick : (sender : GeoMap
   , args : { 
@@ -254,6 +258,7 @@ export interface GeoMap{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnMapLoaded : (sender : GeoMap
   , args : { 
@@ -269,6 +274,7 @@ export interface GeoMap{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnMarkerClick : (sender : GeoMap
   , args : { 
@@ -296,6 +302,7 @@ export interface GeoMap{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnMarkerMouseOut : (sender : GeoMap
   , args : { 
@@ -323,6 +330,7 @@ export interface GeoMap{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnMarkerMouseOver : (sender : GeoMap
   , args : { 

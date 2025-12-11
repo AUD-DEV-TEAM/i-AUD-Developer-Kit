@@ -203,6 +203,7 @@ export interface Tree extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnDataBindEnd : (sender : Tree
   , args : { 

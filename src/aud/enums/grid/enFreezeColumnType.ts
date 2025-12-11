@@ -4,16 +4,16 @@
 */
 export enum enFreezeColumnType{
 
-  /**   */
+  /** None */
   "None" = 0,
 
-  /**   */
+  /** Left */
   "Left" = 1,
 
-  /**   */
+  /** Right */
   "Right" = 2,
 
-  /**   */
+  /** Both */
   "Both" = 3,
 
 }

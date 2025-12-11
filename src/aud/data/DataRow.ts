@@ -4,7 +4,7 @@
 export interface DataRow{
 
   /**
-   * 레코드의 상태 수정(U)/삭제(D)/신규(D)
+   * 레코드의 상태 수정(U)/삭제(D)/신규(N)
   */
   RowState: string;
 

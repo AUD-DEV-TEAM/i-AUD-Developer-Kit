@@ -190,7 +190,7 @@ export interface MetaViewManager{
    * ```js
    * AUD.MetaViewManager.SetMergeType("enUnionAll");   
    * ```
-  * @param mergeType 
+  * @param mergeType Merge Type
   */
   SetMergeType(mergeType: enMergeType): void;
 

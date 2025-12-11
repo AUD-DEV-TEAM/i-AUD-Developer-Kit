@@ -1492,8 +1492,6 @@ export interface OlapGrid extends Control{
    *
    * Occurs when the position value of the scroll changes.
    *
-   * @param args
-   *
    * @example
    * ```js
    * var OlapGrid1 = Matrix.getObject("OlapGrid1");
@@ -1507,6 +1505,8 @@ export interface OlapGrid extends Control{
    * 	}catch(e){}
    * }; 
    * ```
+   * @param args
+   *
    * Target : {@link OlapGrid}
   */
   OnScroll : (sender : OlapGrid

@@ -7,10 +7,10 @@ export enum enInitType{
   /** ㅇㅇ */
   "CurrentValue" = 0,
 
-  /**   */
+  /** InitValue */
   "InitValue" = 1,
 
-  /**   */
+  /** None */
   "None" = 2,
 
 }

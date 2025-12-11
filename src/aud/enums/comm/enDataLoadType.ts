@@ -4,13 +4,13 @@
 */
 export enum enDataLoadType{
 
-  /**  */
+  /** None */
   "None" = 0,
 
-  /**   */
+  /** Used */
   "Used" = 1,
 
-  /**   */
+  /** NotUsed */
   "NotUsed" = 2,
 
 }

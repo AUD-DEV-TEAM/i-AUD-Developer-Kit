@@ -47,6 +47,12 @@ export interface ScriptFileInfo{
   getName(): string;
 
   /** 
+   * 현재 파일의 상위 폴더를 반환 합니다.
+   *
+  */
+  getParent(): ScriptFileInfo;
+
+  /** 
    * 파일의 경로를 반환합니다.
    *
   */

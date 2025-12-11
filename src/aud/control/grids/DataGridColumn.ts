@@ -3,6 +3,7 @@ import { DataColumn } from "../../../aud/data/DataColumn";
 import { enDataType } from "../../../aud/enums/comm/enDataType";
 import { enSizeType } from "../../../aud/enums/comm/enSizeType";
 import { enKeyType } from "../../../aud/enums/comm/enKeyType";
+import { enPropFontAlignV } from "../../../aud/enums/comm/enPropFontAlignV";
 import { FilterCondition } from "../../../aud/control/grids/FilterCondition";
 import { enCheckBoxValueType } from "../../../aud/enums/grid/enCheckBoxValueType";
 /**
@@ -111,7 +112,7 @@ export interface DataGridColumn{
   Sortable: boolean;
 
   /**
-   * 데이터 정렬 방식(start:왼쪽정렬/center:중앙정렬/end:오른쪽정렬)
+   * 데이터 가로 정렬 방식(start:왼쪽정렬/center:중앙정렬/end:오른쪽정렬)
   */
   TextPosition: string;
 
@@ -124,6 +125,11 @@ export interface DataGridColumn{
    * 해당 필드의 내보내기 유무
   */
   UseExport: boolean;
+
+  /**
+   * 데이터 세로 정렬 방식(top:상단맞춤/middle:가운데맞춤/bottom:하단맞춤)
+  */
+  VerticalAlign: enPropFontAlignV;
 
   /**
    * 필드 표시 여부

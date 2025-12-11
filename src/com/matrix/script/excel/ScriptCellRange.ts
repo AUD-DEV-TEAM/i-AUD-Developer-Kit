@@ -21,7 +21,7 @@ export interface ScriptCellRange{
   /** 
    * 셀 데이터 특성을 나타내는 문자열을 반환 합니다.
    *
-  * @param ws 
+  * @param ws 워크시트
   */
   getCellType(ws: ScriptWorkSheet): string;
 
@@ -119,7 +119,7 @@ export interface ScriptCellRange{
   /** 
    * 특정 이름을 가진 셀의 사용자 정의 속성을 삭제 합니다.
    *
-  * @param name 
+  * @param name 이름
   */
   removeProperty(name: string): void;
 

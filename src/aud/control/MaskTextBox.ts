@@ -115,8 +115,6 @@ export interface MaskTextBox extends Control{
    *
    * 마스크 텍스트 박스 컨트롤의 key 입력 누르는 동안 발생합니다.
    *
-   * @param args
-   *
    * @example
    * ```js
    *     //텍스트 박스에 Enter 입력 시 조회 하기
@@ -127,6 +125,8 @@ export interface MaskTextBox extends Control{
    *         }
    *     };
    * ```
+   * @param args
+   *
    * Target : {@link MaskTextBox}
   */
   OnTextKeypress : (sender : MaskTextBox

@@ -4,7 +4,7 @@
 */
 export enum enMetaFieldMetaRollupTypeDescription{
 
-  /**  */
+  /** None */
   "None" = 0,
 
   /** 쿼리 단에서 풀리는 계산 필드 */

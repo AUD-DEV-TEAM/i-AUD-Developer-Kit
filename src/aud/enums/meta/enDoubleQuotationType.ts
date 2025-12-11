@@ -4,13 +4,13 @@
 */
 export enum enDoubleQuotationType{
 
-  /**  */
+  /** None */
   "None" = 0,
 
-  /**  */
+  /** All */
   "All" = 1,
 
-  /**  */
+  /** OnlyAlias */
   "OnlyAlias" = 2,
 
 }

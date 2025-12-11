@@ -4,13 +4,13 @@
 */
 export enum enCheckBoxSelectType{
 
-  /**   */
+  /** None */
   "None" = 0,
 
-  /**   */
+  /** Hierachy */
   "Hierachy" = 1,
 
-  /**   */
+  /** SingleNode */
   "SingleNode" = 2,
 
 }

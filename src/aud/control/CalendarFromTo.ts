@@ -10,6 +10,11 @@ export interface CalendarFromTo extends Control{
   DataFormat: string;
 
   /**
+   * 달력에서 요일 표시를 시작할 기준 요일을 지정(기본값: 0, 일요일)
+  */
+  DisplayStartDayOfWeek: number;
+
+  /**
    * From Date형 선택된 날짜
   */
   FromDate: Date;
@@ -18,6 +23,11 @@ export interface CalendarFromTo extends Control{
    * From 날짜를 설정하거나 반환한다.(ViewFormat)
   */
   FromText: string;
+
+  /**
+   * 토/일 강조 색상 적용 여부
+  */
+  HighlightWeekend: boolean;
 
   /**
    * 초기 선택된 날짜
@@ -53,6 +63,11 @@ export interface CalendarFromTo extends Control{
    * To 날짜를 설정하거나 반환한다.(ViewFormat)
   */
   ToText: string;
+
+  /**
+   * Daily 달력에 각 행의 주차를 표시할지 여부
+  */
+  UseWeekNumber: boolean;
 
   /**
    * From 에 선택된 날짜를 DataFormat에 맞춰서 반환한다.

@@ -4,10 +4,10 @@
 */
 export enum enWidthSettingType{
 
-  /**  */
+  /** FitToLength */
   "FitToLength" = 0,
 
-  /**  */
+  /** Pixel */
   "Pixel" = 1,
 
 }

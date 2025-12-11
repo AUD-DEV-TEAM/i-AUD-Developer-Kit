@@ -4,13 +4,13 @@
 */
 export enum enColumnaAliasType{
 
-  /**  */
+  /** None */
   "None" = 0,
 
-  /**  */
+  /** Name */
   "Name" = 1,
 
-  /**  */
+  /** Description */
   "Description" = 2,
 
 }

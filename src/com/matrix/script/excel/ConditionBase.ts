@@ -7,7 +7,7 @@ export interface ConditionBase{
   /** 
    * 조건부 서식이 적용되는 대상 영역을 추가합니다.
    *
-  * @param rangeName 
+  * @param rangeName Range 명
   */
   addRange(rangeName: string): RangeArea;
 

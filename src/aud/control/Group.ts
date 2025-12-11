@@ -14,7 +14,7 @@ export interface Group extends Control{
   /** 
    * Group 에 컨트롤을 추가합니다.
    *
-  * @param control 
+  * @param control 컨트롤
   */
   AddControl(control: Control): void;
 
@@ -29,7 +29,7 @@ export interface Group extends Control{
   /** 
    * 지정한 이름의 컨트롤을 Group 에서 제거합니다.
    *
-  * @param name 
+  * @param name 이름
   */
   RemoveControl(name: string): boolean;
 

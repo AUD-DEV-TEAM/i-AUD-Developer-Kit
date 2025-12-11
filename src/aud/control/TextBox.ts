@@ -108,8 +108,6 @@ export interface TextBox extends Control{
    *
    * 텍스트 박스 컨트롤의 key 입력 누르는 동안 발생합니다.
    *
-   * @param args
-   *
    * @example
    * ```js
    *     //텍스트 박스에 Enter 입력 시 조회 하기
@@ -120,6 +118,8 @@ export interface TextBox extends Control{
    *         }
    *     };
    * ```
+   * @param args
+   *
    * Target : {@link TextBox}
   */
   OnTextKeypress : (sender : TextBox

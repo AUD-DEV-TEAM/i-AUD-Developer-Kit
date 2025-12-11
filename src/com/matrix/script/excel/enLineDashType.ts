@@ -1,5 +1,5 @@
 /**
-*  
+* enLineDashType
 * @enum
 */
 export enum enLineDashType{

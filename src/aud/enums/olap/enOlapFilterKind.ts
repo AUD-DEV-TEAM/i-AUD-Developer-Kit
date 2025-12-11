@@ -4,10 +4,10 @@
 */
 export enum enOlapFilterKind{
 
-  /**   */
+  /** Dimension */
   "Dimension" = 0,
 
-  /**   */
+  /** Measure */
   "Measure" = 1,
 
 }

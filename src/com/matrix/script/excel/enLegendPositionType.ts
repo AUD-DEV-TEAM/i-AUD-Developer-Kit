@@ -1,5 +1,5 @@
 /**
-*  
+* enLegendPositionType
 * @enum
 */
 export enum enLegendPositionType{

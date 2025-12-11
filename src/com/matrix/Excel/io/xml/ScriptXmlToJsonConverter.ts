@@ -20,16 +20,6 @@ export interface ScriptXmlToJsonConverter{
    *
   * @param path XML 의 노드 경로 (eg. Document/Files )
   * @param rule 규칙 부호
-  * ```
-  * 
-  *                     // input 
-  *                     // 0 : "Object"              , "{" 
-  *                     // 1 : "Array"               , "["
-  *                     // 2 : "Attribute"           , ","
-  *                     // 3 : "Ignore"              , "!"
-  *                     // 4 : "IgnoreFirst"        , "!1" 
-  *               })
-  * ```
   * @param name Json으로 변환할 이름
   */
   addRule(path: string, rule: string|number, name: string): void;
@@ -56,7 +46,7 @@ export interface ScriptXmlToJsonConverter{
   /** 
    * JSON 변환 시 포멧팅을 할지 여부를 설정합니다.
    *
-  * @param pretty  
+  * @param pretty 포맷팅 여부
   */
   setFormatPretty(pretty: boolean): void;
 

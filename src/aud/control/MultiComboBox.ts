@@ -316,6 +316,7 @@ export interface MultiComboBox extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnMultiComboBoxNodeClick : (sender : MultiComboBox
   , args : { 
@@ -342,6 +343,7 @@ export interface MultiComboBox extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnNodeClick : (sender : MultiComboBox
   , args : { 

@@ -20,7 +20,7 @@ export interface DiagramControl extends Control{
   /** 
    * 모델 정보 셋팅
    *
-  * @param name 
+  * @param name 이름
   */
   setModelType(name: enDiagramModelType): void;
 
@@ -31,6 +31,7 @@ export interface DiagramControl extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnContextMenuOpening : (sender : DiagramControl
   , args : { 

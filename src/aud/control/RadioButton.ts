@@ -57,12 +57,12 @@ export interface RadioButton extends Control{
    *
    * 라디오 컨트롤의 값이 변경될 경우 발생합니다.
    *
-   * @param args
-   *
    * @example
    * ```js
    * RadioButton.OnValueChange();
    * ```
+   * @param args
+   *
    * Target : {@link RadioButton}
   */
   OnValueChange : (sender : RadioButton

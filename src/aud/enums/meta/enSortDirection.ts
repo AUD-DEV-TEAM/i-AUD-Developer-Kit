@@ -4,10 +4,10 @@
 */
 export enum enSortDirection{
 
-  /**  */
+  /** ASC */
   "ASC" = "sortAscending",
 
-  /**  */
+  /** DESC */
   "DESC" = "sortDescending",
 
 }

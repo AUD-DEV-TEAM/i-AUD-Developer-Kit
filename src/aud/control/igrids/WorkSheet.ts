@@ -19,7 +19,7 @@ export interface WorkSheet{
   /** 
    * 엑셀 영역 그리드 라인 표시 여부 설정
    *
-  * @param display 
+  * @param display Display 여부
   */
   setDisplayGridlines(display: boolean): void;
 
@@ -34,8 +34,8 @@ export interface WorkSheet{
   /** 
    * 문서를 특정 row/colum 사이즈로 생성합니다.
    *
-  * @param rowIndex 
-  * @param colIndex 
+  * @param rowIndex Row Index
+  * @param colIndex Column Index
   */
   setRowColumns(rowIndex: number, colIndex: number): void;
 

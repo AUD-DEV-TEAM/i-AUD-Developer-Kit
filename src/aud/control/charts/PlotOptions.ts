@@ -9,6 +9,12 @@ export interface PlotOptions{
   */
   Animation: number;
 
+  /**
+   * Null 데이터와 상관 없이 선을 연결할지 여부
+(Line 유형 차트에서만 적용됨)
+  */
+  ConnectNulls: boolean;
+
   /** 
    * 차트의 데이터레이블 타입을 설정합니다.
    *

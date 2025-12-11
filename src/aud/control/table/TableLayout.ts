@@ -155,6 +155,7 @@ export interface TableLayout extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnColumnLineDragEnd : (sender : TableLayout
   , args : { 
@@ -185,6 +186,7 @@ export interface TableLayout extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnColumnLineDragStart : (sender : TableLayout
   , args : { 
@@ -219,6 +221,7 @@ export interface TableLayout extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnColumnLineMouseOver : (sender : TableLayout
   , args : { 
@@ -257,6 +260,7 @@ export interface TableLayout extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnRowLineDragEnd : (sender : TableLayout
   , args : { 
@@ -287,6 +291,7 @@ export interface TableLayout extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnRowLineDragStart : (sender : TableLayout
   , args : { 
@@ -321,6 +326,7 @@ export interface TableLayout extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnRowLineMouseOver : (sender : TableLayout
   , args : { 

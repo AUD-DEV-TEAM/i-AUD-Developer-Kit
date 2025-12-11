@@ -4,13 +4,13 @@
 */
 export enum enTreeViewType{
 
-  /**   */
+  /** None */
   "None" = 0,
 
-  /**   */
+  /** MultiCheckBoxList */
   "MultiCheckBoxList" = 1,
 
-  /**   */
+  /** TreeViewList */
   "TreeViewList" = 2,
 
 }

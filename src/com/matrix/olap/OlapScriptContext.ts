@@ -9,8 +9,8 @@ export interface OlapScriptContext{
   /** 
    * 로그 출력 하기
    *
-  * @param code 
-  * @param message 
+  * @param code 코드
+  * @param message 메세지
   */
   WriteLog(code: string, message: string): void;
 

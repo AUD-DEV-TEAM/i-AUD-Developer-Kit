@@ -2,13 +2,14 @@ import { Control } from "../../aud/control/Control";
 import { MenuOption } from "../../aud/control/igrids/MenuOption";
 import { IWorkBook } from "../../aud/control/igrids/IWorkBook";
 import { enExportType } from "../../aud/enums/comm/enExportType";
+import { IWorkSheet } from "../../aud/control/igrids/IWorkSheet";
+import { ICell } from "../../aud/control/igrids/ICell";
 import { iGridView } from "../../aud/control/igrids/iGridView";
 import { Cell } from "../../aud/control/igrids/Cell";
 import { DataTable } from "../../aud/data/DataTable";
 import { Selection } from "../../aud/control/igrids/Selection";
 import { XLS_UTIL } from "../../aud/control/igrids/XLS_UTIL";
 import { WorkBook } from "../../aud/control/igrids/WorkBook";
-import { ICell } from "../../aud/control/igrids/ICell";
 import { IValValidator } from "../../aud/control/igrids/IValValidator";
 import { ContextMenu } from "../../aud/control/ContextMenu";
 /**
@@ -37,6 +38,11 @@ export interface iGrid extends Control{
    * 엑셀 내보내기 시 시트보호 옵션을 적용할지 여부
   */
   EnableSheetProtection: boolean;
+
+  /**
+   * 엑셀의 시트 확대/축소 기능을 적용할지 여부
+  */
+  EnableZoom: boolean;
 
   /**
    * MX-Grid에 표현된 데이터 기준으로 엑셀 내보내기 실행 시 숨겨진 셀을 제거할지 여부를 설정합니다.
@@ -164,8 +170,10 @@ export interface iGrid extends Control{
   * @param row row index
   * @param column column index
   * @param time animation duration
+  * @param marginLeft left margin
+  * @param marginTop top margin
   */
-  ScrollTo(row: number, column: number, time: number): void;
+  ScrollTo(row: number, column: number, time?: number, marginLeft?: number, marginTop?: number): void;
 
   /** 
    * 틀 고정 라인의 색상을 설정합니다.
@@ -210,6 +218,14 @@ export interface iGrid extends Control{
   Validate(): boolean;
 
   /** 
+   * 특정셀의 데이터 정합성을 검사하고 결과를 반환 합니다.
+   *
+  * @param ws 워크 시트 모델
+  * @param cell 셀
+  */
+  ValidateCell(ws: IWorkSheet, cell: ICell): boolean;
+
+  /** 
    * MX-GRID 뷰어 객체
    *
   */
@@ -231,7 +247,7 @@ export interface iGrid extends Control{
   getDataTable(name: string): DataTable;
 
   /** 
-   * 엑셀 내보내기 방식을 설정 반환합니다. (Default, AllSheets)
+   * 엑셀 내보내기 방식을 설정 반환합니다. (Default, AllSheets, AllSheetsWithoutAUDFunction)
    *
   */
   getExcelExportType(): string;
@@ -275,11 +291,34 @@ export interface iGrid extends Control{
   setEditable(editable: boolean): void;
 
   /** 
-   * 엑셀 내보내기 방식을 설정 합니다. (Default, AllSheets)
+   * 엑셀 내보내기 방식을 설정 합니다. (Default, AllSheets,AllSheetsWithoutAUDFunction)
    *
-  * @param type 내보내기 방식(Default, AllSheets)
+  * @param type 내보내기 방식(Default, AllSheets, AllSheetsWithoutAUDFunction)
   */
   setExcelExportType(type: string): void;
+
+  /**
+   * @event 
+   *
+   * MX-Grid의 활성화 시트가 변경된 후 발생합니다.
+   *
+   * @param args
+   *
+   * Target : {@link iGrid}
+  */
+  OnActivateSheetChanged : (sender : iGrid
+  , args : { 
+    /**
+     *  컨트롤 이름
+    */
+    Id: string
+    /**
+     * 활성화된 시트
+    */
+    Sheet: IWorkSheet
+  }
+  ) => void;
+
 
   /**
    * @event 

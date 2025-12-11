@@ -159,6 +159,7 @@ export interface ScatterChart extends Control{
    *
    * @param args
    *
+   * Parameter Info
   */
   OnDataBindEnd : (sender : ScatterChart
   , args : { 

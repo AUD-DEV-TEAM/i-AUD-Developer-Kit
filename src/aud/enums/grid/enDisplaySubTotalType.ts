@@ -4,13 +4,13 @@
 */
 export enum enDisplaySubTotalType{
 
-  /**  */
+  /** Always */
   "Always" = "Always",
 
-  /**  */
+  /** Default */
   "Default" = "Default",
 
-  /**  */
+  /** Hidden */
   "Hidden" = "Hidden",
 
 }

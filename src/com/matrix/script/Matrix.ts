@@ -1,4 +1,5 @@
 import { ScriptWorkBook } from "../../../com/matrix/script/excel/ScriptWorkBook";
+import { Conflux } from "../../../cfx/control/Conflux";
 import { ScriptConnection } from "../../../com/matrix/script/ScriptConnection";
 import { ScriptFTP } from "../../../com/matrix/script/ScriptFTP";
 import { ScriptFileSystemObject } from "../../../com/matrix/script/ScriptFileSystemObject";
@@ -8,6 +9,7 @@ import { JsonFileWriter } from "../../../com/matrix/script/io/JsonFileWriter";
 import { ScriptMatrix } from "../../../com/matrix/script/excel/ScriptMatrix";
 import { OlapScriptContext } from "../../../com/matrix/olap/OlapScriptContext";
 import { ScriptQueryGenerator } from "../../../com/matrix/script/ScriptQueryGenerator";
+import { ReportConflux } from "../../../cfx/rpt/ReportConflux";
 import { ScriptRequestPacket } from "../../../com/matrix/script/ScriptRequestPacket";
 import { ScriptResponsePacket } from "../../../com/matrix/script/ScriptResponsePacket";
 import { ScriptSession } from "../../../com/matrix/script/ScriptSession";
@@ -132,7 +134,7 @@ export interface Matrix{
   /** 
    * 주어진 엑셀파일을 MX-GRID용 문서로 변환한 뒤 해당 파일의 경로를 반환 합니다.
    *
-  * @param xlsFilePath 
+  * @param xlsFilePath XLS 파일 경로
   * @param allSheets 모든 시트를 파싱할지 여부, 기본값은 V로 시작하는 시트와 Active 시트, 수식 참조된 시트만을 대상으로 합니다.
   */
   ParseExcel(xlsFilePath: string, allSheets: boolean): string;
@@ -179,8 +181,8 @@ export interface Matrix{
   /** 
    * 시스템 로그를 작성합니다.
    *
-  * @param log 
-  * @param message 
+  * @param log 로그
+  * @param message 메세지
   */
   WriteLog(log: string, message: string): void;
 
@@ -192,7 +194,7 @@ export interface Matrix{
    * var Conflux = Matrix.getConflux();
    * ```
   */
-  getConflux(): any;
+  getConflux(): Conflux;
 
   /** 
    * 데이터베이스 연결 객체를 반환합니다.
@@ -284,7 +286,7 @@ export interface Matrix{
    * var Conflux = Matrix.getReportConflux();
    * ```
   */
-  getReportConflux(): any;
+  getReportConflux(): ReportConflux;
 
   /** 
    * Request 객체를 반환합니다.
@@ -396,7 +398,7 @@ export interface Matrix{
   /** 
    * 데이터 소스에서  Dynamic SQL 사용 시 반환 SQL을 강제 설정 합니다.
    *
-  * @param sql 
+  * @param sql SQL
   */
   setResultDynamicSQL(sql: string): void;
 

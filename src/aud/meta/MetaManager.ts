@@ -104,8 +104,8 @@ export interface MetaManager{
   /** 
    * layout 정보를 만들어주는 메소드
    *
-  * @param control 
-  * @param resultCallbackFunc 
+  * @param control 컨트롤
+  * @param resultCallbackFunc 콜백 함수
    * @hidden
   */
   ApplyMeta(control: Control, resultCallbackFunc: Function): void;

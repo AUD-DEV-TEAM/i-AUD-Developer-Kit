@@ -1,4 +1,5 @@
 import { Control } from "../../aud/control/Control";
+import { SliderStyle } from "../../aud/control/slider/SliderStyle";
 /**
 * 슬라이더 컨트롤 입니다.
 */
@@ -65,9 +66,19 @@ export interface Slider extends Control{
   UseGrid: boolean;
 
   /**
+   * Shadow 스타일 사용 여부
+  */
+  UseShadow: boolean;
+
+  /**
    * 핸들의 종료 위치 사용 여부
   */
   UseToPoint: boolean;
+
+  /**
+   * 슬라이더 스타일
+  */
+  sliderStyle: SliderStyle;
 
   /**
    * @event 

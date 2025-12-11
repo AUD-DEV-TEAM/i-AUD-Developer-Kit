@@ -82,6 +82,12 @@ export interface ScriptFTP{
   Upload(filePath: string, saveFileNnme: string): void;
 
   /** 
+   * FTP 서버의 작업 폴더 경로를 반환합니다.
+   *
+  */
+  getFolderPath(): string;
+
+  /** 
    * FTP 서버의 작업 폴더 내 파일 리스트를 반환 합니다.
    *
   */
@@ -114,6 +120,18 @@ export interface ScriptFTP{
   * @param path FTP 서버의 파일 경로
   */
   rmFile(path: string): void;
+
+  /** 
+   * 데이터 전송타입을 ASCII로 설정합니다.
+   *
+  */
+  setAsciiFileType(): void;
+
+  /** 
+   * 데이터 전송타입을 BINARY로 설정합니다.
+   *
+  */
+  setBinaryFileType(): void;
 
   /** 
    * FTP 서버의 작업 폴더 경로를 변경합니다.

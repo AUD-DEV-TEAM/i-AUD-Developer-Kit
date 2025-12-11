@@ -40,10 +40,10 @@ export interface MetaManagerModel{
   /** 
    * 언어 코드를 요청하는 메소드
    *
-  * @param strLangList 
-  * @param langRows 
-  * @param callbackFunc 
-  * @param isNormalView 
+  * @param strLangList 다국어 문자열 리스트
+  * @param langRows 문자열 Rows들
+  * @param callbackFunc 콜백함수
+  * @param isNormalView Normal View 여부
    * @hidden
   */
   RequestLanguageListRows(strLangList: string, langRows: any, callbackFunc?: Function, isNormalView?: boolean): void;
