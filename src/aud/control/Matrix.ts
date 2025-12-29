@@ -56,7 +56,7 @@ import { MetaTreeView } from "../../aud/control/MetaTreeView";
 import { DataTable } from "../../aud/data/DataTable";
 import { FileUploadButton } from "../../aud/control/FileUploadButton";
 import { MetaItem } from "../../aud/meta/MetaItem";
-import { FilterInfo } from "../../aud/control/MetaTreeView/FilterInfo";
+import { FilterInfo } from "../../aud/control/metaTreeViews/FilterInfo";
 import { MultiHeaderCell } from "../../aud/control/grids/MultiHeaderCell";
 import { Image } from "../../aud/control/Image";
 import { MaskTextBox } from "../../aud/control/MaskTextBox";
@@ -1630,7 +1630,8 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   /** 
    * 사용자의 로컬의 파일을 서버로 업로드 합니다.
    *
-  * @param folderName 업로드할 위치(reports 폴더 하위 폴더 명을 입력합니다.)
+  * @param folderName 업로드할 파일의 저장 경로
+※ 폴더 경로는 반드시 `_TEMP_` 경로에 지정해야 합니다. ( 권장 경로 : `_TEMP_` )
   * @param filter 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
   * @param tag 사용자 태그
    * @hidden
@@ -1640,7 +1641,8 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   /** 
    * 사용자의 로컬의 파일을 서버로 업로드 합니다.
    *
-  * @param folderName 업로드할 위치(reports 폴더 하위 폴더 명을 입력합니다.)
+  * @param folderName 업로드할 파일의 저장 경로
+※ 폴더 경로는 반드시 `_TEMP_` 경로에 지정해야 합니다. ( 권장 경로 : `_TEMP_` )
   * @param saveName 저장할 파일 명 (한글 및 특수문자 금지)
   * @param filter 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
   * @param callBack CallBack 함수
@@ -1664,7 +1666,8 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   /** 
    * 사용자의 로컬의 파일을 서버로 업로드 합니다.
    *
-  * @param folderName 업로드할 위치(reports 폴더 하위 폴더 명을 입력합니다.)
+  * @param folderName 업로드할 파일의 저장 경로
+※ 폴더 경로는 반드시 `_TEMP_` 경로에 지정해야 합니다. ( 권장 경로 : `_TEMP_` )
   * @param saveName 저장할 파일 명 (한글 및 특수문자 금지)
   * @param filter 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
   * @param limitsize 업로드 제한 사이즈(bytes)
@@ -1689,7 +1692,8 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   /** 
    * 사용자의 로컬의 파일을 서버로 업로드 합니다.
    *
-  * @param folderName 업로드할 위치(reports 폴더 하위 폴더 명을 입력합니다.)
+  * @param folderName 업로드할 파일의 저장 경로
+※ 폴더 경로는 반드시 `_TEMP_` 경로에 지정해야 합니다. ( 권장 경로 : `_TEMP_` )
   * @param saveName 저장할 파일 명 (한글 및 특수문자 금지)
   * @param filter 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
   * @param limitsize 업로드 제한 사이즈(bytes)
@@ -1701,7 +1705,8 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   /** 
    * 사용자의 로컬의 파일을 서버로 업로드 합니다.
    *
-  * @param folderName 업로드할 위치(reports 폴더 하위 폴더 명을 입력합니다.)
+  * @param folderName 업로드할 파일의 저장 경로
+※ 폴더 경로는 반드시 `_TEMP_` 경로에 지정해야 합니다. ( 권장 경로 : `_TEMP_` )
   * @param saveName 저장할 파일 명 (한글 및 특수문자 금지)
   * @param filter 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
   * @param tag 사용자 태그
@@ -1712,7 +1717,8 @@ exportType가 없으면 기본값은 Excel로 출력됩니다.
   /** 
    * 사용자의 로컬의 파일을 서버로 업로드 합니다.
    *
-  * @param folderName 업로드할 위치(reports 폴더 하위 폴더 명을 입력합니다.)
+  * @param folderName 업로드할 파일의 저장 경로
+※ 폴더 경로는 반드시 `_TEMP_` 경로에 지정해야 합니다. ( 권장 경로 : `_TEMP_` )
   * @param filter 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
   * @param callBack CallBack 함수
   * ```

@@ -267,6 +267,19 @@ export interface ScriptWorkSheet{
   IsActive(): boolean;
 
   /** 
+   * 현재 시트의 Visible 속성을 반환 합니다.
+   *
+  */
+  IsVisible(): boolean;
+
+  /** 
+   * 현재 시트의 Visible 속성을 설정합니다.
+   *
+  * @param visible 시트 보이기 여부
+  */
+  IsVisible(visible: boolean): void;
+
+  /** 
    * 셀을 병합 합니다.
    *
   * @param beginRow 시작 열 번호(1부터 시작 됨)

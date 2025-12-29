@@ -35,7 +35,7 @@ export interface IRow{
   Top: number;
 
   /**
-   * 높이의 단위 percent=1 , fix=0
+   * 높이의 단위 percent=1 , pixel=0
   */
   Unit: number;
 

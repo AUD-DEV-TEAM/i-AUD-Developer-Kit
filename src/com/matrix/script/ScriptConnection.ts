@@ -122,6 +122,14 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   ExecuteDataTableLimit(sql: string, limitRows: number): ScriptDataTable;
 
   /** 
+   * 프로시저 실행 결과를 데이터 테이블 유형으로 반환합니다.
+   *
+  * @param sql 실행할 SQL
+  * @param limitRows 제한할 레코드 수량
+  */
+  ExecuteProcedure(sql: string, limitRows: number): ScriptDataTable;
+
+  /** 
    * SQL 실행한 ResuletSet을 반환 합니다.
    *
    * @example

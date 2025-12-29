@@ -56,6 +56,13 @@ export interface ScriptQueryGenerator{
   getQueryParameters(sql: string): string[];
 
   /** 
+   * 주어진 SQL 문이 프로시저 호출 방식인지 판단합니다.
+   *
+  * @param sql SQL
+  */
+  isProcedure(sql: string): boolean;
+
+  /** 
    * 데이터 베이스 연결 옵션에서 인용 기호(")의  삭제 옵션이 활성화된 경우 주어진 쿼리에서 인용 기호(")를 삭제 한 쿼리를 반환 합니다.
    *
   * @param sql SQL

@@ -1,5 +1,5 @@
 import { TreeView } from "../../aud/control/TreeView";
-import { FilterInfo } from "../../aud/control/MetaTreeView/FilterInfo";
+import { FilterInfo } from "../../aud/control/metaTreeViews/FilterInfo";
 import { TreeViewNode } from "../../aud/control/treeviews/TreeViewNode";
 import { DataRow } from "../../aud/data/DataRow";
 /**

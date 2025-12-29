@@ -27,6 +27,11 @@ export interface DataGrid extends Grid{
   PagingPosition: enVerticalPositionType;
 
   /**
+   * 내보내기 시 세로 병합(MergeRule)과 가로 병합(필드 별 병합용 참조 필드)을 모두 해제합니다.
+  */
+  UseExportDisableMergeRule: boolean;
+
+  /**
    * 페이징 사용 유무
   */
   UsePaging: boolean;

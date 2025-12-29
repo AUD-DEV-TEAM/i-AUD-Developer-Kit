@@ -2,7 +2,7 @@ import { Control } from "../../aud/control/Control";
 import { ContextMenu } from "../../aud/control/ContextMenu";
 import { DataSet } from "../../aud/data/DataSet";
 import { TreeViewNode } from "../../aud/control/treeviews/TreeViewNode";
-import { SelectionModel } from "../../aud/control/treeview/SelectionModel";
+import { SelectionModel } from "../../aud/control/treeviews/SelectionModel";
 import { enMetaItemDropType } from "../../aud/enums/treeview/enMetaItemDropType";
 /**
 * TreeView 객체

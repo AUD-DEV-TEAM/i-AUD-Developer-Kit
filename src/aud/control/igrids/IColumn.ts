@@ -19,7 +19,7 @@ export interface IColumn{
   Left: number;
 
   /**
-   *  너비를 표현 방식 percent=1 , fix=0 
+   *  너비를 표현 방식 percent=1 , pixel=0 
   */
   Unit: number;
 

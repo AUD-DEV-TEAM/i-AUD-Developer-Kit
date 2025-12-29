@@ -1816,6 +1816,43 @@ export interface Grid extends Control{
   /**
    * @event 
    *
+   * [Delete] 키를 이용해 그리드의 선택된 셀들의 값을 지울 때 발생합니다.
+   *
+   * @example
+   * ```js
+   * Matrix.getObject("DataGrid").OnSelectedCellsDeleted = function(s, e){
+   * 	e.Cancel = true;
+   * }
+   * ```
+   * @param args
+   *
+   * Target : Grid
+  */
+  OnSelectedCellsDeleted : (sender : Grid
+  , args : { 
+    /**
+     * 컨트롤 이름
+    */
+    Id: string
+    /**
+     * 이 값을 true로 설정하시면 선택된 셀들의 데이터 삭제가 취소됩니다.
+    */
+    Cancel: boolean
+    /**
+     * 현재 선택된 셀의 목록
+    */
+    SelectedCells: DataGridCell[]
+    /**
+     * 현재 선택된 셀
+    */
+    SelectedCell: DataGridCell
+  }
+  ) => void;
+
+
+  /**
+   * @event 
+   *
    * [Ctrl + V] 키를 이용해 클립보드에 데이터를 붙여넣기 실행 시 발생합니다.
    *
    * @param args

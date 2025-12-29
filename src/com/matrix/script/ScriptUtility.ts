@@ -966,6 +966,13 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   getEncryptAES(fureText: string, key: string): string;
 
   /** 
+   * 엑셀 파일 전체 시트의 이름 목록을 반환 합니다.
+   *
+  * @param xlsPath Excel 파일 경로
+  */
+  getExcelWorkSheets(xlsPath: string): string[];
+
+  /** 
    * 주어진 파일에  대한 MD5 해시 코드를 반환 합니다.
    *
   * @param filePath File path
