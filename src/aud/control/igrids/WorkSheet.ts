@@ -2,7 +2,7 @@ import { FreezePanes } from "../../../aud/control/igrids/FreezePanes";
 /**
 * 엑셀 시트 모델
 */
-export interface WorkSheet{
+export interface WorkSheet{ 
 
   /** 
    * 엑셀 영역 그리드 라인 표시 여부 반환

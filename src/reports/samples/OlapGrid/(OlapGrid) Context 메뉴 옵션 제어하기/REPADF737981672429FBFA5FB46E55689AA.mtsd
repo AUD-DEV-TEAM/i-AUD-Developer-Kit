@@ -1,0 +1,3769 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPADF737981672429FBFA5FB46E55689AA",
+    "FolderCode": "FLD5390E61749BE4E7FB7CC1146EF15C60B",
+    "SavePath": "FLD5390E61749BE4E7FB7CC1146EF15C60B/REPADF737981672429FBFA5FB46E55689AA.mtsd",
+    "ReportName": "(OlapGrid) Context 메뉴 옵션 제어하기",
+    "Writer": "yglee",
+    "WriteDate": "2019-12-04 09:50:28",
+    "Editor": "yglee",
+    "EditDate": "2021-01-04 22:04:22",
+    "TabPosition": 0,
+    "TabHeight": 28,
+    "UseLayout": false,
+    "DocumentVersion": "2.0.0.1",
+    "Description": ""
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DSA1B4E38A3211484093CC21DAA7C7E8B2",
+        "Name": "Data1",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "woDM3YZ10KzGc8EMjwzCXHgetG8B8Gy6chWbLpf42RP0ltfRiD4V0QTp/YYjDbrYrpMV2QRN7O1l4/0JGq0xNoSnpF+Ou/vg0Hv63TXUE5bLbanm9mZ0MUdL7kLHylMSrwQsF4jKngxkZ+S5gbTfG1z/vnhuOl5h708r0jpg6IiLISoSgkoKg+20c0wwUGia1WhgoLbt5hihGy1oPszKny8RbOTbnYHdpslQRct74efzvS74zTgsx5vZI8pYqgvYsT+tRAjoaWh0/DLMqCgAJOeLRtk3gVUQgoIMn4rxfbAXZVCQTtcjByjzgLUx9PjF0k8uy3WMbEIydIPZe6cwBK7m3Z0/pirGTONF+545HLS5JMzCqnW/3juwI4yUK/L/",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "시도별",
+            "Type": "String"
+          },
+          {
+            "Name": "발주년",
+            "Type": "String"
+          },
+          {
+            "Name": "발주월",
+            "Type": "String"
+          },
+          {
+            "Name": "발주자별",
+            "Type": "String"
+          },
+          {
+            "Name": "데이터",
+            "Type": "Numeric"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": " \r\nvar OlapGrid = null;  \r\nvar tbxDebug = null; \r\n\r\nvar initControlVariables = function(){\r\n \r\n\tOlapGrid = Matrix.getObject(\"OlapGrid\");  \r\n\ttbxDebug = Matrix.getObject(\"tbxDebug\");  \r\n};\r\n /*****************************************\r\n* 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n* * arguments :  \r\n*****************************************/\r\n var OnDocumentLoadComplete  = function(sender, args)\r\n {\r\n \tinitControlVariables();\r\n };\r\n/*****************************************\r\n* 체크박스 컨트롤의 값이 변경될 경우 발생합니다.\r\n* * arguments :  \r\n*\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n*\t\t bool\tIsChecked (Readonly:False) : 체크 상태 \r\n*****************************************/\r\n var OnCheckValueChange  = function(sender, args)\r\n { \r\n \tswitch(args.Id)\r\n\t{\r\n\t\tcase  \"DisplayRowSubTotal\":\r\n\t\tcase  \"DisplayRowGrandTotal\":\r\n\t\tcase  \"DisplayColumnSubTotal\":\r\n\t\tcase  \"DisplayColumnGrandTotal\":\t\t \r\n\t\t\tvar option = OlapGrid.getGlobalOption();\r\n\t\t\toption[args.Id] = args.IsChecked;\r\n\t\t\ttbxDebug.Text = \"//Script 사용 예제 \"\r\n\t\t\t\t\t\t+\"\\n// \" + Matrix.getObject(args.Id).Text\r\n\t\t\t\t\t\t+ \"\\n var option = OlapGrid.getMenuOption();\"\r\n\t\t\t\t\t\t+ \"\\n  option.\" +  args.Id + \" = \" + args.IsChecked + \";\";\r\n\t\t\r\n\t\t\tOlapGrid.Refresh();\r\n\t\t\tbreak;\r\n\t\t\r\n\t\tdefault:\r\n\t\t\tvar option = OlapGrid.getMenuOption();\r\n\t\t\toption[args.Id] = args.IsChecked;\t\t\t\r\n\t\t\ttbxDebug.Text = \"//Script 사용 예제 \"\r\n\t\t\t\t\t\t+\"\\n// \" + Matrix.getObject(args.Id).Text\r\n\t\t\t\t\t\t+ \"\\n var option = OlapGrid.getMenuOption();\"\r\n\t\t\t\t\t\t+ \"\\n  option.\" +  args.Id + \" = \" + args.IsChecked + \";\";\r\n\t\t\tbreak;\r\n\t\r\n\t}\r\n \r\n \t \r\n };\r\n ",
+  "ServerScriptText": [],
+  "Forms": [
+    {
+      "Id": "Formcc1ad9b7-4468-c137-0b09-a03b784cfaf3",
+      "Name": "Form1",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Border": {
+          "ColorR": "204",
+          "ColorG": "204",
+          "ColorB": "204",
+          "ColorA": "1",
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": "255",
+          "ColorG": "255",
+          "ColorB": "255",
+          "ColorA": "1"
+        }
+      },
+      "Elements": [
+        {
+          "DataSource": "DSA1B4E38A3211484093CC21DAA7C7E8B2",
+          "AutoRefresh": true,
+          "DoRefresh": true,
+          "DoExport": true,
+          "iOLAPView": {
+            "Options": {
+              "ViewType": "0",
+              "IsExpandAll": true,
+              "ShowExpandButtons": true,
+              "EmptyCellText": "-",
+              "NotAvaliableCellText": "N/A",
+              "ZeroDivisioinCellText": "#DIV/0!",
+              "ErrorCellText": "NG",
+              "RowGrandTotalText": "Grand Total",
+              "ColumnGrandTotalText": "Grand Total",
+              "RowTotalText": " Total",
+              "ColumnTotalText": " Total",
+              "RowTotalLocation": 1,
+              "ColumnTotalLocation": 0,
+              "RowGrandTotalLocation": 0,
+              "ColumnGrandTotalLocation": 0,
+              "DisplayColumnSubTotal": true,
+              "HideTotalChildIsOneColumn": false,
+              "HideTotalChildIsOneRow": false,
+              "DisplayRowSubTotal": true,
+              "DisplayColumnGrandTotal": true,
+              "DisplayRowGrandTotal": true,
+              "ShowFilterArea": true,
+              "ShowColumnrArea": true,
+              "ShowRowArea": true,
+              "ShowDataArea": true,
+              "UseMultiHeader": false,
+              "RowAreaText": "Row Area",
+              "ColumnAreaText": "Column Area",
+              "DataAreaText": "Data Area",
+              "FilterAreaText": "Filter Area",
+              "MeasuresText": "Measures",
+              "AutoSelection": false,
+              "AutoSelectionRangeLeft": 0,
+              "AutoSelectionRangeTop": 0,
+              "AutoSelectionRangeRight": 0,
+              "AutoSelectionRangeBottom": 0,
+              "HideHorizontalScrollBar": false,
+              "HideVerticalScrollBar": false,
+              "DisableClipBoard": false,
+              "CellHeight": 23,
+              "HeaderCellHeight": 23,
+              "CanResizeCellWidth": true,
+              "RowHeaderUnFix": false,
+              "MeasuresCreateArea": 2,
+              "TreeHeaderWidth": 230,
+              "TreeIndentWidth": 20,
+              "ExportOption": {
+                "ExportSheetSize": 1000000,
+                "ExportDisableRowMerge": false,
+                "UseServerExport": false
+              },
+              "PagerInfo": {
+                "PageSize": 100,
+                "UsePaging": true
+              },
+              "Style": {
+                "ColumnHeaderVerticalAlignment": 0,
+                "RowHeaderVerticalAlignment": 0,
+                "LineColor": "#B7C8D9",
+                "BackgroundColor": "#fff"
+              },
+              "CacheOption": {
+                "CacheMode": 1,
+                "ExpiredMinutes": 480,
+                "UpdateMinutes": 60,
+                "UseHybrid": true,
+                "HybridSort": false
+              }
+            },
+            "Fields": [
+              {
+                "Key": "시도별",
+                "Caption": "시도별",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "",
+                "Formula": "",
+                "Formula2": "",
+                "Width": 100,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 1,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 1,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                }
+              },
+              {
+                "Key": "발주년",
+                "Caption": "발주년",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 1,
+                "Area": 2,
+                "SummaryType": 5,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "",
+                "Formula": "",
+                "Formula2": "",
+                "Width": 100,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 1,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 1,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                }
+              },
+              {
+                "Key": "데이터",
+                "Caption": "데이터",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 2,
+                "Area": 4,
+                "SummaryType": 1,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "{0:N0}",
+                "Formula": "",
+                "Formula2": "",
+                "Width": 100,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 0,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 0,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                }
+              },
+              {
+                "Key": "발주월",
+                "Caption": "발주월",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 1,
+                "Area": 3,
+                "SummaryType": 5,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "",
+                "Formula": "",
+                "Formula2": "",
+                "Width": 100,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 1,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 1,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                }
+              },
+              {
+                "Key": "발주자별",
+                "Caption": "발주자별",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "",
+                "Formula": "",
+                "Formula2": "",
+                "Width": 100,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 1,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 1,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                }
+              }
+            ],
+            "MultiHeaderCells": [
+              [
+                {
+                  "Text": "#1",
+                  "Align": 0,
+                  "RowSpan": 3,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "#2",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 4,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "R:0,C:2",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "R:0,C:3",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "R:0,C:4",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                }
+              ],
+              [
+                {
+                  "Text": "R:1,C:0",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "#3",
+                  "Align": 2,
+                  "RowSpan": 2,
+                  "ColSpan": 1,
+                  "BackColor": "#FF0000",
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "#4",
+                  "Align": 0,
+                  "RowSpan": 2,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "#5",
+                  "Align": 0,
+                  "RowSpan": 2,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "#6",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BackColor": "#FF00FF",
+                  "BoxStyleKey": ""
+                }
+              ],
+              [
+                {
+                  "Text": "R:2,C:0",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "R:2,C:1",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "R:2,C:2",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "R:2,C:3",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "#7",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BackColor": "#00FF00",
+                  "BoxStyleKey": ""
+                }
+              ]
+            ]
+          },
+          "ExtraOption": {
+            "UseMeta": false,
+            "UseChartSourceTotal": false,
+            "UseChartSourceGrandTotal": false,
+            "ChartLabelDepth": -1,
+            "ConditionalStyleName": "",
+            "BackgroundColorBoxStyleKey": "",
+            "EtcExportData": true,
+            "EtcExportExcel": true,
+            "EtcExportCSV": true,
+            "EtcExportText": true,
+            "EtcExpandAll": true,
+            "EtcExpandAllClose": true,
+            "EtcFormat": true,
+            "EtcVisibleTotal": true,
+            "EtcSort": true,
+            "EtcFilterClean": true,
+            "EtcSwitchRowAndColumn": true,
+            "EtcLayoutEditor": true,
+            "EtcProperties": true,
+            "EtcAnalysisItemsSettings": false,
+            "EtcFormulaEditor": true,
+            "EtcCustomDimensionFields": true,
+            "EtcHiding": true,
+            "EtcStyle": true,
+            "EtcMultiHeader": true,
+            "EtcCacheInfo": true,
+            "EtcFieldGroup": true,
+            "EtcFilterManager": true
+          },
+          "Type": "OlapGrid",
+          "Id": "OlapGrid1575441671889",
+          "Name": "OlapGrid",
+          "Position": {
+            "Left": 3,
+            "Top": 299,
+            "Width": 1491,
+            "Height": 443,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": true,
+              "Margin": "3",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "3",
+              "_compileMargin": [
+                3,
+                3,
+                3,
+                3
+              ]
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "Border",
+                  "Font",
+                  "StyleType",
+                  "BoxStyle",
+                  "Background"
+                ]
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "0",
+                "G": "0",
+                "B": "0",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "top"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "Border",
+                  "Font",
+                  "StyleType",
+                  "BoxStyle",
+                  "Background"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "분석 항목 설정 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox135f0af0-6ac5-08e4-12c6-9bf1882a5a4b",
+          "Name": "AnalysisItemsSettings",
+          "Position": {
+            "Left": 27,
+            "Top": 59,
+            "Width": 206,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "행/열 변경 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox0b044209-7913-738e-8cae-a91e54847a4e",
+          "Name": "AxisChange",
+          "Position": {
+            "Left": 27,
+            "Top": 82,
+            "Width": 206,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "필터 제거 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox87437192-2449-7b88-96e0-30aaa2d8c0e1",
+          "Name": "ClearFilter",
+          "Position": {
+            "Left": 27,
+            "Top": 105,
+            "Width": 206,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "전체 축소 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBoxd1ceaeb3-07e1-b42f-9f36-70e7644e0c3d",
+          "Name": "CollapsedAll",
+          "Position": {
+            "Left": 27,
+            "Top": 151,
+            "Width": 206,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "컨트롤 속성 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBoxc9f01d95-6e75-8ac7-94bf-1783d3fd9fa8",
+          "Name": "ControlProperties",
+          "Position": {
+            "Left": 284,
+            "Top": 124,
+            "Width": 206,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "사용자 정의 항목 관리 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBoxe2bdd616-17cc-d1b5-c544-67835ba0eafb",
+          "Name": "CustomDimension",
+          "Position": {
+            "Left": 27,
+            "Top": 197,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "전체 확장 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox8832b2b6-8e22-4c94-04a9-34758f1fc6ef",
+          "Name": "ExpandAll",
+          "Position": {
+            "Left": 27,
+            "Top": 174,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "CSV Export 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBoxbd5a808e-4462-ad46-2d4f-5ea311094270",
+          "Name": "ExportCSV",
+          "Position": {
+            "Left": 27,
+            "Top": 220,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "Excel Export  메뉴활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox736e1041-fd6d-8208-7976-5047e01f80f2",
+          "Name": "ExportExcel",
+          "Position": {
+            "Left": 27,
+            "Top": 243,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "Text Export 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox19f9a7eb-fc5c-9481-35a0-fbb98dce29c0",
+          "Name": "ExportText",
+          "Position": {
+            "Left": 27,
+            "Top": 266,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "서식 설정 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBoxe7f75619-7dbf-39d6-4bf2-daa1ddb6e850",
+          "Name": "Format",
+          "Position": {
+            "Left": 284,
+            "Top": 147,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "계산 수식 편집기 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox5df9a5b2-f9e3-13bb-2894-6e2d4e2a7d93",
+          "Name": "FormulaEdit",
+          "Position": {
+            "Left": 284,
+            "Top": 170,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "메타큐브 연계 기능 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox814732f3-b011-c288-7719-c04209b3e248",
+          "Name": "HideMetaCube",
+          "Position": {
+            "Left": 284,
+            "Top": 193,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "배치 관리자 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox5001a15a-fad0-0845-38d9-65aac18ffa4e",
+          "Name": "LayoutManager",
+          "Position": {
+            "Left": 284,
+            "Top": 216,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "멀티 헤더 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBoxee43729c-ed28-dcc2-b45a-8149f13958f7",
+          "Name": "MultiHeader",
+          "Position": {
+            "Left": 284,
+            "Top": 239,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "Measure 필드 숨김 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox0c453e92-b8e6-f2a5-bdaf-48510ae49659",
+          "Name": "Hiding",
+          "Position": {
+            "Left": 285,
+            "Top": 262,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "Style 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBoxd01a1a99-3b93-3f27-e1fd-56caf8ffbe23",
+          "Name": "Style",
+          "Position": {
+            "Left": 284,
+            "Top": 55,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "정렬 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBoxd41af6a7-fcb1-e6be-530d-99d661148d52",
+          "Name": "Sort",
+          "Position": {
+            "Left": 284,
+            "Top": 78,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "그룹 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox74e1d102-c2b9-2c0d-55aa-e92efe5e536d",
+          "Name": "FieldGroup",
+          "Position": {
+            "Left": 284,
+            "Top": 101,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "필터 관리 메뉴 활성화 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox043e451e-d256-b9b9-c0ed-46610d265621",
+          "Name": "FilterManager",
+          "Position": {
+            "Left": 27,
+            "Top": 128,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "Formula": "",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "MxBinding": "",
+          "Value": "//Script 사용 예제 \n// Column 합계 표시 여부\n var option = OlapGrid.getMenuOption();\n  option.DisplayColumnGrandTotal = true;",
+          "Text": "//Script 사용 예제 \n// Column 합계 표시 여부\n var option = OlapGrid.getMenuOption();\n  option.DisplayColumnGrandTotal = true;",
+          "Type": "RichTextBox",
+          "Id": "RichTextBox8cf239da-01da-3693-631d-d30da8d22559",
+          "Name": "tbxDebug",
+          "Position": {
+            "Left": 689,
+            "Top": 47,
+            "Width": 805,
+            "Height": 239,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "3",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "3",
+              "_compileMargin": [
+                3,
+                3,
+                3,
+                3
+              ]
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "Font.VerticalAlignment"
+                ],
+                "DefaultStyle": "RichTextBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "0",
+                "G": "0",
+                "B": "0",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "top"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "Font.VerticalAlignment"
+                ],
+                "DefaultStyle": "RichTextBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "Row 소계 표시 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox6f47b882-f741-eb53-a5f0-0694cb8e5b5f",
+          "Name": "DisplayRowSubTotal",
+          "Position": {
+            "Left": 536,
+            "Top": 47,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "Row 합계 표시 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox12cb9de1-156d-f1f4-871a-fc2407e227d2",
+          "Name": "DisplayRowGrandTotal",
+          "Position": {
+            "Left": 536,
+            "Top": 70,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "Column 소계 표시 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBoxb4e24c72-3cc6-90b7-7817-30a4c5e5baca",
+          "Name": "DisplayColumnSubTotal",
+          "Position": {
+            "Left": 536,
+            "Top": 93,
+            "Width": 246,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "Column 합계 표시 여부",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": true,
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Type": "CheckBox",
+          "Id": "CheckBox27174bbb-b6e3-76ea-e779-b3ce3e051230",
+          "Name": "DisplayColumnGrandTotal",
+          "Position": {
+            "Left": 536,
+            "Top": 116,
+            "Width": 206,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "204",
+                "G": "204",
+                "B": "204",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [
+                  "BoxStyle",
+                  "Background",
+                  "Border"
+                ],
+                "DefaultStyle": "CheckBox"
+              }
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "UseTooltip": true,
+          "Text": "   OlapGrid 컨트롤의  Context Menu에 대한 제어 샘플입니다.  ",
+          "Cursor": "default",
+          "Formula": "",
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "MxBinding": "",
+          "Type": "Label",
+          "Id": "Label5ab9e071-7785-aea8-430d-53874dc442cf",
+          "Name": "Label",
+          "Position": {
+            "Left": 3,
+            "Top": 3,
+            "Width": 1491,
+            "Height": 41,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": true,
+              "Bottom": false,
+              "Margin": "3",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "3",
+              "_compileMargin": [
+                3,
+                3,
+                3,
+                3
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "102",
+                "G": "102",
+                "B": "102",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Label"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "67",
+                "G": "67",
+                "B": "67",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Label"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "{}"
+}
