@@ -1,0 +1,39 @@
+{
+  "name": "mtsd-validator",
+  "version": "1.0.0",
+  "description": "i-AUD MTSD 파일 구조 및 컨트롤 속성 Validation 도구",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "mtsd-validator": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/cli.js",
+    "dev": "ts-node src/cli.ts",
+    "test": "ts-node src/cli.ts ../../src/reports/samples/**/*.mtsd --recursive",
+    "test:single": "ts-node src/cli.ts",
+    "lint": "tsc --noEmit"
+  },
+  "keywords": [
+    "i-aud",
+    "mtsd",
+    "validator",
+    "validation",
+    "control"
+  ],
+  "author": "i-AUD Developer Kit",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ]
+}
