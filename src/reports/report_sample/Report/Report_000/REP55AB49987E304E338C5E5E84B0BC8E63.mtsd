@@ -1,0 +1,148 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REP55AB49987E304E338C5E5E84B0BC8E63",
+    "FolderCode": "FLD7190182311FF4E9F8D6FE930FBD2A636",
+    "SavePath": "FLD7190182311FF4E9F8D6FE930FBD2A636/REP55AB49987E304E338C5E5E84B0BC8E63.mtsd",
+    "ReportName": "Report_000",
+    "Writer": "kimje1342",
+    "WriteDate": "2026-01-20 12:47:50",
+    "Editor": "kimje1342",
+    "EditDate": "2026-01-20 12:47:50",
+    "TabPosition": 0,
+    "DocumentVersion": "3.0.0.0",
+    "Description": "Sub Report",
+    "RefreshType": 0
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DSA59BDFF2EFBF4B158B9CE0D21B045485",
+        "Name": "Data1",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "DB9CE936AD5DDA4B8F9E4F9FB05C25116B",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "PVqQc6Tz+HKlJKyQ4WQM1MG7V8NiO5RGM7yIVJHWRSm2ULRIe6/+turNmfnvQ0YAXDjz5kYn7A3wC/q1eHKJXI9Q5U+AW+33NGn+LFAKKjMw2ujEhQg19kq//6Nv1/N1vG7VbQGoQY1Mh6N59LVi649Q5U+AW+33NGn+LFAKKjMw2ujEhQg19kq//6Nv1/N19HGiTD8FMcOm1vix5jybqYIkn81LeC7xNXyzMSggotcqoiBaE3aSXUqPDHnhnDq5",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "이름",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "var RichTextBox = Matrix.getObject(\"RichTextBox\");\r\nvar getParam = null;\r\n\r\n/**************************************\r\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n * * arguments :  \r\n**************************************/\r\n var OnDocumentLoadComplete  = function(sender, args){\r\n \tgetParam = Matrix.GetDialogRequestParams() ?\r\n\t\t\t\t\tMatrix.GetDialogRequestParams() : Matrix.GetGlobalParams().GetParams(); \r\n\t\r\n \t//console.log(getParam);\r\n  \tfor(var i=0; i<getParam.length; i++){\r\n\t\tRichTextBox.Text += getParam[i].Name + \" : \" + getParam[i].Value + \"\\n\";\r\n\t}\r\n };",
+  "ServerScriptText": [],
+  "Forms": [
+    {
+      "Id": "Form3706A6BA60042AD5936E68A096E6F5AD",
+      "Name": "Form1",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "Formula": "",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "MxBinding": "",
+          "Value": "",
+          "Text": "",
+          "Type": "RichTextBox",
+          "Id": "RichTextBox68D7CC78EC7697143E87A6F84252EED7",
+          "Name": "RichTextBox",
+          "Position": {
+            "Left": 10,
+            "Top": 10,
+            "Width": 481,
+            "Height": 241,
+            "ZIndex": 3,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {}
+}
