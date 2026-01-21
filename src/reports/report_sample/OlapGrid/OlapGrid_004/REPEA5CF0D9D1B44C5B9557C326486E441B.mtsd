@@ -1,0 +1,1312 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPEA5CF0D9D1B44C5B9557C326486E441B",
+    "FolderCode": "FLD3A0EB0AA207A45DA98FAB4D0BA96EAAD",
+    "SavePath": "FLD3A0EB0AA207A45DA98FAB4D0BA96EAAD/REPEA5CF0D9D1B44C5B9557C326486E441B.mtsd",
+    "ReportName": "OlapGrid_004",
+    "Writer": "kimje1342",
+    "WriteDate": "2026-01-20 14:33:03",
+    "Editor": "kimje1342",
+    "EditDate": "2026-01-20 14:33:03",
+    "TabPosition": 0,
+    "DocumentVersion": "3.0.0.0",
+    "Description": "OlapGrid 다운로드",
+    "RefreshType": 0
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DSE2C3DFF51B244F6385BE87C88AC9D450",
+        "Name": "OLAP_EXPORT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "X6a1rNcP9osjBEqfDNbiF3NmWiu/qy+axuf5HB1ocIxzwe1H+bFmIKqVcaIkkzHv",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "CUSTOMER_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "CUSTOMER_UNIQUE_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "CUSTOMER_ZIP_CODE_PREFIX",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "CUSTOMER_CITY",
+            "Type": "String"
+          },
+          {
+            "Name": "CUSTOMER_STATE",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "var OLAP_EXPORT \t= Matrix.getObject(\"OLAP_EXPORT\");\r\n\r\n\r\n/**************************************\r\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n *\t\t string\tText (Readonly:False) : 라벨 값 \r\n**************************************/\r\n var OnButtonClick  = function(sender, args){\r\n\tswitch(args.Id){\r\n\t\tcase \"BTN_EXP_XLSX\":\r\n\t\t\tMatrix.ExcelExportServiceCall(WORKBOOK ,null ,function(e){\r\n\t\t\t\tif(e.Success == false){\r\n\t\t\t\t\talert(\"export fail\" + e.Message);\r\n\t\t\t\t\treturn;\r\n\t\t\t\t}\r\n\t\t\t\r\n\t\t\t\t// download file\r\n\t\t\t\tvar row = e.DataSet.GetTable(0).GetRow(0);\r\n\t\t\t\tvar folderName = row.GetValue(\"FolderName\");\r\n\t\t\t\tvar fileName = row.GetValue(\"FileName\");\r\n\t\t\t\tvar nowText = Matrix.GetDateTime().ToString(\"yyyyMMdd_HHmmss\");\r\n\t\t\t\tvar newFileName = Matrix.GetReportInfo().NAME + \"_\" + nowText + \".xlsx\";\r\n\t\t\t\r\n\t\t\t\tMatrix.DownloadFile(folderName + \"/\" ,fileName ,newFileName ,true);\r\n\t\t\t});\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase \"BTN_EXP_HTM\":\r\n\t\t\tMatrix.HTMLExportServiceCall(WORKBOOK ,null ,function(e){\r\n              \tif(e.Success == false){\r\n              \t\talert(\"export fail\" + e.Message);\r\n              \t\treturn;\r\n              \t}\r\n              \r\n              \t// download file\r\n              \tvar row = e.DataSet.GetTable(0).GetRow(0);\r\n              \tvar folderName = row.GetValue(\"FolderName\");\r\n              \tvar fileName = row.GetValue(\"FileName\");\r\n              \tvar nowText = Matrix.GetDateTime().ToString(\"yyyyMMdd_HHmmss\");\r\n              \tvar newFileName = Matrix.GetReportInfo().NAME + \"_\" + nowText + \".htm\";\r\n              \r\n              \tMatrix.DownloadFile(folderName + \"/\" ,fileName ,newFileName ,true);\r\n            });\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase \"BTN_EXP_DOCX\":\r\n\t\t\tMatrix.WordExportServiceCall(WORKBOOK ,null ,function(e){\r\n              \tif(e.Success == false){\r\n              \t\talert(\"export fail\" + e.Message);\r\n              \t\treturn;\r\n              \t}\r\n              \r\n              \t// download file\r\n              \tvar row = e.DataSet.GetTable(0).GetRow(0);\r\n              \tvar folderName = row.GetValue(\"FolderName\");\r\n              \tvar fileName = row.GetValue(\"FileName\");\r\n\t\t\t\tvar nowText = Matrix.GetDateTime().ToString(\"yyyyMMdd_HHmmss\");\r\n              \tvar newFileName = Matrix.GetReportInfo().NAME + \"_\" + nowText + \".docx\";\r\n              \r\n              \tMatrix.DownloadFile(folderName + \"/\" ,fileName ,newFileName ,true);\r\n            });\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase \"BTN_EXP_HWP\":\r\n\t\t\tMatrix.HMLExportServiceCall(WORKBOOK ,null ,function(e){\r\n             \tif(e.Success == false){\r\n             \t\talert(\"export fail\" + e.Message);\r\n             \t\treturn;\r\n             \t}\r\n             \r\n             \t// download file\r\n             \tvar row = e.DataSet.GetTable(0).GetRow(0);\r\n             \tvar folderName = row.GetValue(\"FolderName\");\r\n             \tvar fileName = row.GetValue(\"FileName\");\r\n\t\t\t\tvar nowText = Matrix.GetDateTime().ToString(\"yyyyMMdd_HHmmss\");\r\n             \tvar newFileName = Matrix.GetReportInfo().NAME + \"_\" + nowText + \".hwp\";\r\n             \r\n             \tMatrix.DownloadFile(folderName + \"/\" ,fileName ,newFileName ,true);\r\n            });\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase \"BTN_EXP_PDF\":\r\n\t\t\tMatrix.PDFExportServiceCall(WORKBOOK ,null ,function(e){\r\n             \tif(e.Success == false){\r\n             \t\talert(\"export fail\" + e.Message);\r\n             \t\treturn;\r\n             \t}\r\n             \r\n             \t// download file\r\n             \tvar row = e.DataSet.GetTable(0).GetRow(0);\r\n             \tvar folderName = row.GetValue(\"FolderName\");\r\n             \tvar fileName = row.GetValue(\"FileName\");\r\n\t\t\t\tvar nowText = Matrix.GetDateTime().ToString(\"yyyyMMdd_HHmmss\");\r\n             \tvar newFileName = Matrix.GetReportInfo().NAME + \"_\" + nowText + \".pdf\";\r\n             \r\n             \tMatrix.DownloadFile(folderName + \"/\" ,fileName ,newFileName ,true);\r\n            });\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase \"BTN_EXP_CSV\":\r\n\t\t\t//Matrix.ExportServiceCall(OLAP_EXPORT.Name ,0);\r\n\t\t\tbreak;\r\n\t\t\r\n\t\tcase \"BTN_EXP_TXT\":\r\n\t\t\t//Matrix.ExportServiceCall(OLAP_EXPORT.Name ,1);\r\n\t\t\tbreak;\r\n\t}\r\n };\r\n\t\t\r\nvar WORKBOOK = {\r\n    \"FontName\": \"맑은 고딕\",\r\n    \"FontSize\": 11,\r\n    \"WorkSheets\": [\r\n        {\r\n            \"Name\": OLAP_EXPORT.Name,\r\n            \"DisplayGridlines\": \"false\",\r\n\t\t\t\"Rows\": [\r\n                {\r\n                    \"Index\": 1,\r\n                    \"Height\": 9.95\r\n                },\r\n                {\r\n                    \"Index\": 2,\r\n                    \"Height\": 16.5\r\n                },\r\n                {\r\n                    \"Index\": 3,\r\n                    \"Height\": 16.5\r\n                },\r\n                {\r\n                    \"Index\": 4,\r\n                    \"Height\": 16.5\r\n                }\r\n            ],\r\n\t\t\t\"Columns\": [\r\n                {\r\n                    \"Index\": 1,\r\n                    \"Width\": 1.0,\r\n                    \"PixelWidth\": 13\r\n                },\r\n                {\r\n                    \"Index\": 2,\r\n                    \"Width\": 8.375,\r\n                    \"PixelWidth\": 72\r\n                },\r\n                {\r\n                    \"Index\": 3,\r\n                    \"Width\": 8.375,\r\n                    \"PixelWidth\": 72\r\n                }\r\n            ],\r\n            \"Ranges\": [\r\n                {\r\n                    \"Range\": \"B2\",\r\n                    \"Type\": 0,\r\n                    \"Value\": \"보고서명 : \" + Matrix.GetReportInfo().NAME\r\n                },\r\n                {\r\n                    \"Range\": \"B3\",\r\n                    \"Type\": 0,\r\n                    \"Value\": \"사용자명 : \" + Matrix.GetUserInfo().UserName\r\n                },\r\n                {\r\n                    \"Range\": \"B4\",\r\n                    \"Type\": 0,\r\n                    \"Value\": \"다운로드 시간\" + Matrix.GetDateTime().ToString(\"yyyy-MM-dd HH:mm:ss\")\r\n                }\r\n            ],\r\n            \"Controls\": [\r\n                { \"Name\": OLAP_EXPORT.Name, \"Range\": \"B6\" }\r\n            ]\r\n        }\r\n    ]\r\n};\r\n\r\n\r\n/**************************************\r\n * 트리컨트롤의 노드를 클릭했을때 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t aud.control.matrixTree.MTXTreeNode\tNode (Readonly:False) : 선택된 노드 \r\n**************************************/\r\n var OnTreeNodeClick  = function(sender, args){\r\n \tif(args.Id == \"Tree\" && args.Node.Childs.length > 0){\r\n\t\tif(args.Node.IsExpand) args.Node.Collapsed(true);\r\n\t\telse args.Node.ExpandCollapsed();\r\n\t}\r\n };",
+  "ServerScriptText": [],
+  "Forms": [
+    {
+      "Id": "Form855C7346DC127BE8A0EDBF3377ED8E2D",
+      "Name": "Form1",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "ChildElements": [
+            {
+              "InitDate": "NOW()",
+              "DataFormat": "yyyy",
+              "FormatLanguageCode": "",
+              "IsReadOnly": false,
+              "Text": "2026",
+              "MinDate": "DATE(F,F,F)",
+              "MaxDate": "DATE(L,L,L)",
+              "MxBinding": "",
+              "UseWeekNumberDefined": false,
+              "HighlightWeekendDefined": false,
+              "DisplayStartDayOfWeekDefined": false,
+              "ViewFormat": "yyyy",
+              "Date": 1768886059309,
+              "Type": "CalendarYear",
+              "Id": "CalendarYearC0180098092971939D3BE20497EAE886",
+              "Name": "VS_YEAR",
+              "InGroup": "HEADER",
+              "Visible": false,
+              "Position": {
+                "Left": 692,
+                "Top": 11,
+                "Width": 120,
+                "Height": 25,
+                "ZIndex": 4,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 204,
+                    "G": 204,
+                    "B": 204,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 0,
+                    "G": 0,
+                    "B": 0,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": false,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "top",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "htm",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "Button2C58E7C67566706DDCC45E5791D9B597",
+              "Name": "BTN_EXP_HTM",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1184,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 155,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,345,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "docx",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "Button7A52A3D08B8AF8766F2614D3C4AEE751",
+              "Name": "BTN_EXP_DOCX",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1249,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 153,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,280,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "hwp",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "Button5A7EDAC6C624171C07A27F6D5FDCE22C",
+              "Name": "BTN_EXP_HWP",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1314,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 0,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,215,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "xlsx",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "Button3C8029C5C28462434B0EFA5957761443",
+              "Name": "BTN_EXP_XLSX",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1119,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 154,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,410,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "pdf",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "ButtonE9763651CFEC6661CBA1CAA35A8A09F0",
+              "Name": "BTN_EXP_PDF",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1379,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 156,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,150,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "csv",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "ButtonE00663DC8B03A8D8907F84AF4EEE29FA",
+              "Name": "BTN_EXP_CSV",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1444,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 157,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,85,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "txt",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "Button117A7BFF4A19AC6175BDFA00EB719EB1",
+              "Name": "BTN_EXP_TXT",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1509,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 158,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,20,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            }
+          ],
+          "Type": "Group",
+          "Id": "GroupF48E450533B7EF09DE707540C0D50B86",
+          "Name": "HEADER",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1589,
+            "Height": 50,
+            "ZIndex": 8,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "0,0,0,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "DataSource": "DSE2C3DFF51B244F6385BE87C88AC9D450",
+          "AutoRefresh": true,
+          "DoRefresh": true,
+          "DoExport": true,
+          "iOLAPView": {
+            "Options": {
+              "ViewType": 0,
+              "IsExpandAll": true,
+              "ShowExpandButtons": true,
+              "EmptyCellText": "-",
+              "NotAvaliableCellText": "N/A",
+              "ZeroDivisioinCellText": "#DIV/0!",
+              "ErrorCellText": "NG",
+              "RowGrandTotalText": "Grand Total",
+              "ColumnGrandTotalText": "Grand Total",
+              "RowTotalText": " Total",
+              "ColumnTotalText": " Total",
+              "RowTotalLocation": 0,
+              "ColumnTotalLocation": 0,
+              "RowGrandTotalLocation": 0,
+              "ColumnGrandTotalLocation": 0,
+              "DisplayColumnSubTotal": false,
+              "HideTotalChildIsOneColumn": false,
+              "HideTotalChildIsOneRow": false,
+              "HideEmptyMeasureRows": false,
+              "HideEmptyMeasureColumns": false,
+              "DisplayRowSubTotal": false,
+              "DisplayColumnGrandTotal": false,
+              "DisplayRowGrandTotal": false,
+              "ShowFilterArea": true,
+              "ShowColumnrArea": true,
+              "ShowRowArea": true,
+              "ShowDataArea": true,
+              "UseMultiHeader": false,
+              "RowAreaText": "Row Area",
+              "ColumnAreaText": "Column Area",
+              "DataAreaText": "Data Area",
+              "FilterAreaText": "Filter Area",
+              "MeasuresText": "Measures",
+              "AutoSelection": false,
+              "AutoSelectionRangeLeft": 0,
+              "AutoSelectionRangeTop": 0,
+              "AutoSelectionRangeRight": 0,
+              "AutoSelectionRangeBottom": 0,
+              "HideHorizontalScrollBar": false,
+              "HideVerticalScrollBar": false,
+              "DisableClipBoard": false,
+              "CellHeight": 23,
+              "HeaderCellHeight": 23,
+              "CanResizeCellWidth": true,
+              "RowHeaderUnFix": false,
+              "MeasuresCreateArea": 2,
+              "TreeHeaderWidth": 300,
+              "TreeIndentWidth": 20,
+              "DisableColumnSort": false,
+              "MergeColumnHeaders": false,
+              "MergeRowHeaders": false,
+              "OptimizingHybridFilter": false,
+              "AutoHideGrandTotalRow": false,
+              "AutoHideGrandTotalColumn": false,
+              "ExportOption": {
+                "ExportSheetSize": 1000000,
+                "ExportDisableRowMerge": false,
+                "UseServerExport": true
+              },
+              "PagerInfo": {
+                "PageSize": 0,
+                "UsePaging": false,
+                "IgnoreTotalCount": false
+              },
+              "Style": {
+                "ColumnHeaderVerticalAlignment": 0,
+                "RowHeaderVerticalAlignment": 0,
+                "LineColor": "",
+                "BackgroundColor": ""
+              },
+              "CacheOption": {
+                "CacheMode": 1,
+                "ExpiredMinutes": 480,
+                "UpdateMinutes": 60,
+                "UseHybrid": false,
+                "HybridSort": false
+              }
+            },
+            "TopFilter": {
+              "Dimension": "",
+              "Measure": "",
+              "Rank": 10,
+              "IsTop": true,
+              "GroupBy": []
+            },
+            "PreFilters": [],
+            "Fields": [
+              {
+                "Key": "CUSTOMER_STATE",
+                "Caption": "CUSTOMER_STATE",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "",
+                "Formula": "",
+                "Formula2": "",
+                "RefFormula": "",
+                "Width": 100,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 1,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 1,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                },
+                "RelationFields": []
+              },
+              {
+                "Key": "CUSTOMER_UNIQUE_ID",
+                "Caption": "CUSTOMER_UNIQUE_ID",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 1,
+                "Area": 3,
+                "SummaryType": 5,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "",
+                "Formula": "",
+                "Formula2": "",
+                "RefFormula": "",
+                "Width": 300,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 1,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 1,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                },
+                "RelationFields": []
+              },
+              {
+                "Key": "CUSTOMER_ZIP_CODE_PREFIX",
+                "Caption": "CUSTOMER_ZIP_CODE_PREFIX",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 2,
+                "Area": 4,
+                "SummaryType": 0,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "{0:N0}",
+                "Formula": "",
+                "Formula2": "",
+                "RefFormula": "",
+                "Width": 216,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 0,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 0,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                },
+                "RelationFields": []
+              },
+              {
+                "Key": "CUSTOMER_CITY",
+                "Caption": "CUSTOMER_CITY",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "",
+                "Formula": "",
+                "Formula2": "",
+                "RefFormula": "",
+                "Width": 100,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 1,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 1,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                },
+                "RelationFields": []
+              },
+              {
+                "Key": "CUSTOMER_ID",
+                "Caption": "CUSTOMER_ID",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 1,
+                "Area": 3,
+                "SummaryType": 5,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "",
+                "Formula": "",
+                "Formula2": "",
+                "RefFormula": "",
+                "Width": 300,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 1,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 1,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                },
+                "RelationFields": []
+              }
+            ],
+            "MultiHeaderCells": []
+          },
+          "ExtraOption": {
+            "CurrentPageSize": 100,
+            "UseMeta": false,
+            "UseChartSourceTotal": false,
+            "UseChartSourceGrandTotal": false,
+            "UseChartSourceReverse": false,
+            "ChartLabelDepth": -1,
+            "ConditionalStyleName": "",
+            "BackgroundColorBoxStyleKey": "",
+            "EtcExportData": true,
+            "EtcExportExcel": true,
+            "EtcExportCSV": true,
+            "EtcExportText": true,
+            "EtcExpandAll": true,
+            "EtcExpandAllClose": true,
+            "EtcFormat": true,
+            "EtcVisibleTotal": true,
+            "EtcSort": true,
+            "EtcFilterClean": true,
+            "EtcSwitchRowAndColumn": true,
+            "EtcLayoutEditor": true,
+            "EtcProperties": true,
+            "EtcAnalysisItemsSettings": true,
+            "EtcFormulaEditor": true,
+            "EtcCustomDimensionFields": true,
+            "EtcHiding": false,
+            "EtcStyle": true,
+            "EtcMultiHeader": true,
+            "EtcCacheInfo": true,
+            "EtcFieldGroup": true,
+            "EtcFilterManager": true,
+            "EtcTopFilter": true
+          },
+          "Type": "OlapGrid",
+          "Id": "OlapGrid1768886071166",
+          "Name": "OLAP_EXPORT",
+          "Position": {
+            "Left": 20,
+            "Top": 80,
+            "Width": 1549,
+            "Height": 776,
+            "ZIndex": 158,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": true,
+              "Margin": "20,0,20,20",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {}
+}
