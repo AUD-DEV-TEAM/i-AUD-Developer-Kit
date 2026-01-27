@@ -1,0 +1,1206 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPE82644352983483DB7FDC77BEA3CE78C",
+    "FolderCode": "FLDAE67F7BE64C64D8BB577AE503A160C0D",
+    "SavePath": "FLDAE67F7BE64C64D8BB577AE503A160C0D/REPE82644352983483DB7FDC77BEA3CE78C.mtsd",
+    "ReportName": "DataGrid_004",
+    "Writer": "kimje1342",
+    "WriteDate": "2026-01-21 15:12:42",
+    "Editor": "kimje1342",
+    "EditDate": "2026-01-21 15:12:42",
+    "TabPosition": 0,
+    "UseLayout": false,
+    "DocumentVersion": "3.0.0.0",
+    "Description": "다운로드",
+    "RefreshType": 0
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS3C7B21E211A1443EA2EF4F4C1A2A985F",
+        "Name": "DG_EXPORT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "X6a1rNcP9osjBEqfDNbiF3NmWiu/qy+axuf5HB1ocIzmu/p+ls7SxeRtjUNyy3xnop1MkJ0ynTz1gXxQYxZ0Ecx9CLicl6nUwdxhKusWQEc=",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "CUSTOMER_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "CUSTOMER_UNIQUE_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "CUSTOMER_ZIP_CODE_PREFIX",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "CUSTOMER_CITY",
+            "Type": "String"
+          },
+          {
+            "Name": "CUSTOMER_STATE",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "var DG_EXPORT = Matrix.getObject(\"DG_EXPORT\");\r\nvar WORKBOOK = {\r\n    \"FontName\": \"맑은 고딕\",\r\n    \"FontSize\": 11,\r\n    \"WorkSheets\": [\r\n        {\r\n            \"Name\": DG_EXPORT.Name,\r\n            \"DisplayGridlines\": \"false\",\r\n            \"Rows\": [\r\n                { \"Index\": 1, \"Height\": 9.95 },\r\n                { \"Index\": 2, \"Height\": 16.5 },\r\n                { \"Index\": 3, \"Height\": 16.5 },\r\n                { \"Index\": 4, \"Height\": 16.5 }\r\n            ],\r\n            \"Columns\": [\r\n                { \"Index\": 1, \"Width\": 1.0, \"PixelWidth\": 13 },\r\n                { \"Index\": 2, \"Width\": 8.375, \"PixelWidth\": 72 },\r\n                { \"Index\": 3, \"Width\": 8.375, \"PixelWidth\": 72 }\r\n            ],\r\n            \"Ranges\": [\r\n                { \"Range\": \"B2\", \"Type\": 0, \"Value\": \"보고서명 : \" + Matrix.GetReportInfo().NAME },\r\n                { \"Range\": \"B3\", \"Type\": 0, \"Value\": \"사용자명 : \" + Matrix.GetUserInfo().UserName },\r\n                { \"Range\": \"B4\", \"Type\": 0, \"Value\": \"다운로드 시간\" + Matrix.GetDateTime().ToString(\"yyyy-MM-dd HH:mm:ss\") }\r\n            ],\r\n            \"Controls\": [\r\n                { \"Name\": DG_EXPORT.Name, \"Range\": \"B6\" }\r\n            ]\r\n        }\r\n    ]\r\n};\r\n/**************************************\r\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤이름\r\n *\t\t string\tText (Readonly:False) : 라벨 값\r\n **************************************/\r\nvar OnButtonClick = function (_sender, args) {\r\n    switch (args.Id) {\r\n        case \"BTN_EXP_XLSX\":\r\n            Matrix.ExcelExportServiceCall(WORKBOOK, null, function (e) {\r\n                if (e.Success == false) {\r\n                    alert(\"export fail\" + e.Message);\r\n                    return;\r\n                }\r\n                var row = e.DataSet.GetTable(0).GetRow(0);\r\n                var folderName = row.GetValue(\"FolderName\");\r\n                var fileName = row.GetValue(\"FileName\");\r\n                var nowText = Matrix.GetDateTime().ToString(\"yyyyMMdd_HHmmss\");\r\n                var newFileName = Matrix.GetReportInfo().NAME + \"_\" + nowText + \".xlsx\";\r\n                Matrix.DownloadFile(folderName + \"/\", fileName, newFileName, true);\r\n            });\r\n            break;\r\n        case \"BTN_EXP_HTM\":\r\n            Matrix.HTMLExportServiceCall(WORKBOOK, null, function (e) {\r\n                if (e.Success == false) {\r\n                    alert(\"export fail\" + e.Message);\r\n                    return;\r\n                }\r\n                var row = e.DataSet.GetTable(0).GetRow(0);\r\n                var folderName = row.GetValue(\"FolderName\");\r\n                var fileName = row.GetValue(\"FileName\");\r\n                var nowText = Matrix.GetDateTime().ToString(\"yyyyMMdd_HHmmss\");\r\n                var newFileName = Matrix.GetReportInfo().NAME + \"_\" + nowText + \".htm\";\r\n                Matrix.DownloadFile(folderName + \"/\", fileName, newFileName, true);\r\n            });\r\n            break;\r\n        case \"BTN_EXP_DOCX\":\r\n            Matrix.WordExportServiceCall(WORKBOOK, null, function (e) {\r\n                if (e.Success == false) {\r\n                    alert(\"export fail\" + e.Message);\r\n                    return;\r\n                }\r\n                var row = e.DataSet.GetTable(0).GetRow(0);\r\n                var folderName = row.GetValue(\"FolderName\");\r\n                var fileName = row.GetValue(\"FileName\");\r\n                var nowText = Matrix.GetDateTime().ToString(\"yyyyMMdd_HHmmss\");\r\n                var newFileName = Matrix.GetReportInfo().NAME + \"_\" + nowText + \".docx\";\r\n                Matrix.DownloadFile(folderName + \"/\", fileName, newFileName, true);\r\n            });\r\n            break;\r\n        case \"BTN_EXP_HWP\":\r\n            Matrix.HMLExportServiceCall(WORKBOOK, null, function (e) {\r\n                if (e.Success == false) {\r\n                    alert(\"export fail\" + e.Message);\r\n                    return;\r\n                }\r\n                var row = e.DataSet.GetTable(0).GetRow(0);\r\n                var folderName = row.GetValue(\"FolderName\");\r\n                var fileName = row.GetValue(\"FileName\");\r\n                var nowText = Matrix.GetDateTime().ToString(\"yyyyMMdd_HHmmss\");\r\n                var newFileName = Matrix.GetReportInfo().NAME + \"_\" + nowText + \".hwp\";\r\n                Matrix.DownloadFile(folderName + \"/\", fileName, newFileName, true);\r\n            });\r\n            break;\r\n        case \"BTN_EXP_PDF\":\r\n            Matrix.PDFExportServiceCall(WORKBOOK, null, function (e) {\r\n                if (e.Success == false) {\r\n                    alert(\"export fail\" + e.Message);\r\n                    return;\r\n                }\r\n                var row = e.DataSet.GetTable(0).GetRow(0);\r\n                var folderName = row.GetValue(\"FolderName\");\r\n                var fileName = row.GetValue(\"FileName\");\r\n                var nowText = Matrix.GetDateTime().ToString(\"yyyyMMdd_HHmmss\");\r\n                var newFileName = Matrix.GetReportInfo().NAME + \"_\" + nowText + \".pdf\";\r\n                Matrix.DownloadFile(folderName + \"/\", fileName, newFileName, true);\r\n            });\r\n            break;\r\n        case \"BTN_EXP_CSV\":\r\n            Matrix.ExportServiceCall(DG_EXPORT.Name, 0);\r\n            break;\r\n        case \"BTN_EXP_TXT\":\r\n            Matrix.ExportServiceCall(DG_EXPORT.Name, 1);\r\n            break;\r\n    }\r\n};\r\n",
+  "ServerScriptText": [],
+  "Forms": [
+    {
+      "Id": "Form9F851744B612D71A73964364F2A329F3",
+      "Name": "Form1",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "Type": "DataGrid",
+          "Id": "DataGridC8EE4950B2D60DC7BC342AA74004B0B7",
+          "Name": "DG_EXPORT",
+          "Visible": true,
+          "Position": {
+            "Left": 20,
+            "Top": 70,
+            "Width": 1569,
+            "Height": 781,
+            "ZIndex": 274,
+            "TabIndex": 0,
+            "Docking": {
+              "Margin": "20,0,20,20",
+              "MinHeight": 0,
+              "MinWidth": 0,
+              "Left": true,
+              "Right": true,
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Thickness": "1,1,1,1"
+            },
+            "VerticalBorder": {
+              "Thickness": 1
+            },
+            "HorizontalBorder": {
+              "Thickness": 1
+            },
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "top"
+            }
+          },
+          "CellMargin": "5,5,5,5",
+          "DataSource": "DS3C7B21E211A1443EA2EF4F4C1A2A985F",
+          "AutoRefresh": true,
+          "SelectRule": 2,
+          "NaNCellText": "-",
+          "ColumnHeaderHeight": 28,
+          "RowHeight": 24,
+          "Editable": true,
+          "ExportCount": 1000000,
+          "FontFamily": "inherit",
+          "FontSize": 12,
+          "UsePPTExport": false,
+          "FrozenLineBrush": {
+            "Type": 0,
+            "Color": {
+              "R": 127,
+              "G": 127,
+              "B": 127,
+              "A": 1
+            }
+          },
+          "Columns": [
+            {
+              "Name": "CUSTOMER_ID",
+              "Caption": "CUSTOMER_ID",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "GridColumnWidthType": 1,
+              "KeyType": 2,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "CUSTOMER_UNIQUE_ID",
+              "Caption": "CUSTOMER_UNIQUE_ID",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "GridColumnWidthType": 1,
+              "KeyType": 2,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "CUSTOMER_ZIP_CODE_PREFIX",
+              "Caption": "CUSTOMER_ZIP_CODE_PREFIX",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "GridColumnWidthType": 1,
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "CUSTOMER_CITY",
+              "Caption": "CUSTOMER_CITY",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "GridColumnWidthType": 1,
+              "KeyType": 2,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "CUSTOMER_STATE",
+              "Caption": "CUSTOMER_STATE",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "GridColumnWidthType": 1,
+              "KeyType": 2,
+              "HeaderPosition": "center"
+            }
+          ],
+          "UsePaging": true
+        },
+        {
+          "ChildElements": [
+            {
+              "LanguageCode": "",
+              "Value": "htm",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "Button2C58E7C67566706DDCC45E5791D9B597",
+              "Name": "BTN_EXP_HTM",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1204,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 155,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,345,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "docx",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "Button7A52A3D08B8AF8766F2614D3C4AEE751",
+              "Name": "BTN_EXP_DOCX",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1269,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 153,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,280,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "hwp",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "Button5A7EDAC6C624171C07A27F6D5FDCE22C",
+              "Name": "BTN_EXP_HWP",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1334,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 0,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,215,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "xlsx",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "Button3C8029C5C28462434B0EFA5957761443",
+              "Name": "BTN_EXP_XLSX",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1139,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 154,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,410,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "pdf",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "ButtonE9763651CFEC6661CBA1CAA35A8A09F0",
+              "Name": "BTN_EXP_PDF",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1399,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 156,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,150,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "csv",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "ButtonE00663DC8B03A8D8907F84AF4EEE29FA",
+              "Name": "BTN_EXP_CSV",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1464,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 157,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,85,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "txt",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "Button117A7BFF4A19AC6175BDFA00EB719EB1",
+              "Name": "BTN_EXP_TXT",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1529,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 158,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,20,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Text": "DataGrid 다운로드",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": true,
+              "Margin": {
+                "Left": 3,
+                "Top": 0,
+                "Right": 3,
+                "Bottom": 0,
+                "Text": "3,0,3,0"
+              },
+              "Type": "Label",
+              "Id": "LabelD848DF0B8D4F2EFCC1D846772C42717A",
+              "Name": "LBL_TTL",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 20,
+                "Top": 12,
+                "Width": 355,
+                "Height": 26,
+                "ZIndex": 9,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "20,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 85,
+                    "G": 142,
+                    "B": 213,
+                    "A": 1
+                  },
+                  "LineType": "none",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 48,
+                    "G": 48,
+                    "B": 49,
+                    "A": 1
+                  },
+                  "Size": 16,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            }
+          ],
+          "Type": "Group",
+          "Id": "GroupF48E450533B7EF09DE707540C0D50B86",
+          "Name": "HEADER",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1609,
+            "Height": 50,
+            "ZIndex": 7,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "0,0,0,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [
+    {
+      "ACTIVE_ITEM_ID": "19963838CA2FC8432FA833717C5673975EA6",
+      "ID": "28210EFF2F94B4498268C4275972612694A9",
+      "NAME": "PLAN_1",
+      "VERSION": "2",
+      "ExecutionItems": [
+        {
+          "SQLs": [],
+          "ID": "19963838CA2FC8432FA833717C5673975EA6",
+          "TYPE": "GRID",
+          "NAME": "DataGrid_1",
+          "DATA_CONTROL": "DataGrid",
+          "TABLE_NAME": "test_employee_info",
+          "RUN_TYPE": "Default",
+          "UPDATE_COMMAND_TYPE": "Auto",
+          "INSERT_COMMAND_TYPE": "Auto",
+          "DELETE_COMMAND_TYPE": "Auto",
+          "FIELDS": [
+            {
+              "NAME": "SEQ",
+              "DESCRIPTION": "",
+              "KEY_TYPE": 0,
+              "DATA_TYPE": 0,
+              "SAVE_MODE": 0,
+              "CONNECTION_COLUMN": "SEQ",
+              "CUSTOM_SCRIPT": "(SELECT COALESCE(MAX(SEQ)+1,1) FROM TEST_EMPLOYEE_INFO)"
+            },
+            {
+              "NAME": "EMP_NO",
+              "DESCRIPTION": "",
+              "KEY_TYPE": 3,
+              "DATA_TYPE": 1,
+              "SAVE_MODE": 0,
+              "CONNECTION_COLUMN": "EMP_NO",
+              "CUSTOM_SCRIPT": ""
+            },
+            {
+              "NAME": "EMP_NAME",
+              "DESCRIPTION": "",
+              "KEY_TYPE": 1,
+              "DATA_TYPE": 1,
+              "SAVE_MODE": 0,
+              "CONNECTION_COLUMN": "EMP_NAME",
+              "CUSTOM_SCRIPT": ""
+            },
+            {
+              "NAME": "POSITION",
+              "DESCRIPTION": "",
+              "KEY_TYPE": 1,
+              "DATA_TYPE": 1,
+              "SAVE_MODE": 0,
+              "CONNECTION_COLUMN": "POSITION",
+              "CUSTOM_SCRIPT": ""
+            },
+            {
+              "NAME": "SALARY",
+              "DESCRIPTION": "",
+              "KEY_TYPE": 1,
+              "DATA_TYPE": 0,
+              "SAVE_MODE": 0,
+              "CONNECTION_COLUMN": "SALARY",
+              "CUSTOM_SCRIPT": ""
+            },
+            {
+              "NAME": "CREATED_AT",
+              "DESCRIPTION": "",
+              "KEY_TYPE": 1,
+              "DATA_TYPE": 3,
+              "SAVE_MODE": 1,
+              "CONNECTION_COLUMN": "CREATED_AT",
+              "CUSTOM_SCRIPT": ""
+            },
+            {
+              "NAME": "CREATED_BY",
+              "DESCRIPTION": "",
+              "KEY_TYPE": 1,
+              "DATA_TYPE": 4,
+              "SAVE_MODE": 1,
+              "CONNECTION_COLUMN": "CREATED_BY",
+              "CUSTOM_SCRIPT": ""
+            },
+            {
+              "NAME": "UPDATED_AT",
+              "DESCRIPTION": "",
+              "KEY_TYPE": 1,
+              "DATA_TYPE": 3,
+              "SAVE_MODE": 0,
+              "CONNECTION_COLUMN": "UPDATED_AT",
+              "CUSTOM_SCRIPT": ""
+            },
+            {
+              "NAME": "UPDATED_BY",
+              "DESCRIPTION": "",
+              "KEY_TYPE": 1,
+              "DATA_TYPE": 4,
+              "SAVE_MODE": 0,
+              "CONNECTION_COLUMN": "UPDATED_BY",
+              "CUSTOM_SCRIPT": ""
+            }
+          ],
+          "COLUMNS": [
+            {
+              "ATTR_COMMENTS": "",
+              "ATTR_NAME": "SEQ",
+              "ATTR_LENGTH": "19",
+              "ATTR_TYPE": "int8",
+              "ATTR_ISNULL": "N",
+              "ATTR_KEY_YESNO": "Y"
+            },
+            {
+              "ATTR_COMMENTS": "",
+              "ATTR_NAME": "EMP_NO",
+              "ATTR_LENGTH": "20",
+              "ATTR_TYPE": "varchar",
+              "ATTR_ISNULL": "N",
+              "ATTR_KEY_YESNO": "N"
+            },
+            {
+              "ATTR_COMMENTS": "",
+              "ATTR_NAME": "EMP_NAME",
+              "ATTR_LENGTH": "50",
+              "ATTR_TYPE": "varchar",
+              "ATTR_ISNULL": "N",
+              "ATTR_KEY_YESNO": "N"
+            },
+            {
+              "ATTR_COMMENTS": "",
+              "ATTR_NAME": "POSITION",
+              "ATTR_LENGTH": "30",
+              "ATTR_TYPE": "varchar",
+              "ATTR_ISNULL": "N",
+              "ATTR_KEY_YESNO": "N"
+            },
+            {
+              "ATTR_COMMENTS": "",
+              "ATTR_NAME": "SALARY",
+              "ATTR_LENGTH": "15",
+              "ATTR_TYPE": "numeric",
+              "ATTR_ISNULL": "N",
+              "ATTR_KEY_YESNO": "N"
+            },
+            {
+              "ATTR_COMMENTS": "",
+              "ATTR_NAME": "CREATED_AT",
+              "ATTR_LENGTH": "29",
+              "ATTR_TYPE": "timestamp",
+              "ATTR_ISNULL": "N",
+              "ATTR_KEY_YESNO": "N"
+            },
+            {
+              "ATTR_COMMENTS": "",
+              "ATTR_NAME": "CREATED_BY",
+              "ATTR_LENGTH": "50",
+              "ATTR_TYPE": "varchar",
+              "ATTR_ISNULL": "N",
+              "ATTR_KEY_YESNO": "N"
+            },
+            {
+              "ATTR_COMMENTS": "",
+              "ATTR_NAME": "UPDATED_AT",
+              "ATTR_LENGTH": "29",
+              "ATTR_TYPE": "timestamp",
+              "ATTR_ISNULL": "N",
+              "ATTR_KEY_YESNO": "N"
+            },
+            {
+              "ATTR_COMMENTS": "",
+              "ATTR_NAME": "UPDATED_BY",
+              "ATTR_LENGTH": "50",
+              "ATTR_TYPE": "varchar",
+              "ATTR_ISNULL": "N",
+              "ATTR_KEY_YESNO": "N"
+            }
+          ],
+          "CONNECTION_CODE": "MTXRPTY",
+          "CONNECTION_NAME": "dbes_dev",
+          "SCHEMA": {
+            "ENTITY_COMMENTS": "",
+            "TYPE_NO": "1",
+            "IMAGE_NAME": "/table.png",
+            "ENTITY_ENC_CODE": "RDdkYGqW2SFl3VvjPbE5CZ59qXfYXhNaWtolcuPZZvk=",
+            "P_ENTITY_CODE": "",
+            "ENTITY_CODE": "dbes_dev.dbes.test_employee_info",
+            "ENTITY_NAME": "test_employee_info"
+          }
+        }
+      ]
+    }
+  ],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {},
+  "WORK_FLOW": {
+    "Version": 1,
+    "UseEvent": true,
+    "Nodes": [],
+    "Links": [],
+    "MAP_NODES": {},
+    "MAP_LINKS": {}
+  }
+}
