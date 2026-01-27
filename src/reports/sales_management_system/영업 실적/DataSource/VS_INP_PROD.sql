@@ -1,0 +1,3 @@
+SELECT PROD_ID AS "상품코드"
+	 , PROD_NAME AS "상품명"
+  FROM SM_PRODUCT

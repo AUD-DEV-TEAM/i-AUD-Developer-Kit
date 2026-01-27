@@ -1,0 +1,3 @@
+SELECT EMP_ID AS "담당자 ID"
+	 , EMP_NAME AS "담당자명"
+  FROM SM_EMPLOYEE
