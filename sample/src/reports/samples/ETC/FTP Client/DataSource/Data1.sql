@@ -1,4 +1,0 @@
-@@TAB
-CODE
-FTP
-S-FTP
