@@ -1,0 +1,1 @@
+SELECT option_code FROM MTX_OPTION

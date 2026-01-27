@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영업관리 시스템 - 실적 분석</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="layout">
+        <!-- 사이드바 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>영업관리 시스템</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="../index.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>대시보드</span>
+                </a>
+                <a href="employees.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>직원 관리</span>
+                </a>
+                <a href="employees-type1.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>직원 관리 (유형1)</span>
+                </a>
+                <a href="employees-type2.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>직원 관리 (유형2)</span>
+                </a>
+                <a href="customers.html" class="nav-item">
+                    <span class="nav-icon">🏢</span>
+                    <span>고객 관리</span>
+                </a>
+                <a href="products.html" class="nav-item">
+                    <span class="nav-icon">📦</span>
+                    <span>제품 관리</span>
+                </a>
+                <a href="common-code.html" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>공통코드 관리</span>
+                </a>
+                <a href="bi-sales.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span>매출 분석</span>
+                </a>
+                <a href="bi-performance.html" class="nav-item active">
+                    <span class="nav-icon">🎯</span>
+                    <span>실적 분석</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- 메인 콘텐츠 -->
+        <main class="main-content">
+            <header class="header">
+                <h2>실적 분석 대시보드</h2>
+                <div class="header-actions">
+                    <label for="periodFilter" style="margin-right: 8px;">기간</label>
+                    <select id="periodFilter" class="form-control" style="width: 150px;">
+                        <option value="month">월간</option>
+                        <option value="quarter">분기</option>
+                        <option value="year">연간</option>
+                    </select>
+                    <label for="deptFilter" style="margin-left: 16px; margin-right: 8px;">부서</label>
+                    <select id="deptFilter" class="form-control" style="width: 150px;">
+                        <option value="">전체 부서</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="updateDashboard()">조회</button>
+                </div>
+            </header>
+
+            <div class="content">
+                <!-- 팀별 실적 요약 -->
+                <div class="bi-grid mb-3">
+                    <div class="bi-card col-3 kpi-card">
+                        <div class="kpi-icon blue">👥</div>
+                        <div class="kpi-value" id="kpiTeamCount">0</div>
+                        <div class="kpi-label">영업 팀 수</div>
+                    </div>
+                    <div class="bi-card col-3 kpi-card">
+                        <div class="kpi-icon green">🏆</div>
+                        <div class="kpi-value" id="kpiTopTeam">-</div>
+                        <div class="kpi-label">최고 실적 팀</div>
+                    </div>
+                    <div class="bi-card col-3 kpi-card">
+                        <div class="kpi-icon orange">⭐</div>
+                        <div class="kpi-value" id="kpiTopEmployee">-</div>
+                        <div class="kpi-label">이달의 MVP</div>
+                    </div>
+                    <div class="bi-card col-3 kpi-card">
+                        <div class="kpi-icon red">📊</div>
+                        <div class="kpi-value" id="kpiAvgAchieve">0%</div>
+                        <div class="kpi-label">평균 달성률</div>
+                    </div>
+                </div>
+
+                <div class="bi-grid mb-3">
+                    <!-- 팀별 실적 비교 -->
+                    <div class="bi-card col-6">
+                        <div class="bi-header">
+                            <h4>팀별 실적 비교</h4>
+                        </div>
+                        <div class="bi-body">
+                            <div class="chart-placeholder" style="height: 200px;">
+                                <div class="chart-icon">📊</div>
+                                <div>막대 차트 영역</div>
+                            </div>
+                            <table class="bi-table mt-2">
+                                <thead>
+                                    <tr>
+                                        <th>팀명</th>
+                                        <th class="number">목표</th>
+                                        <th class="number">실적</th>
+                                        <th class="number">달성률</th>
+                                        <th>현황</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="teamCompareBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 직원별 실적 순위 -->
+                    <div class="bi-card col-6">
+                        <div class="bi-header">
+                            <h4>직원별 실적 순위 TOP 10</h4>
+                        </div>
+                        <div class="bi-body" style="padding: 0;">
+                            <table class="bi-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50px;">순위</th>
+                                        <th>직원명</th>
+                                        <th>부서/팀</th>
+                                        <th class="number">실적</th>
+                                        <th class="number">달성률</th>
+                                        <th>변동</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="employeeRankBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bi-grid mb-3">
+                    <!-- 목표 대비 실적 추이 -->
+                    <div class="bi-card col-8">
+                        <div class="bi-header">
+                            <h4>목표 대비 실적 추이</h4>
+                            <div class="tab-filter">
+                                <button class="active">전체</button>
+                                <button>영업1팀</button>
+                                <button>영업2팀</button>
+                                <button>영업3팀</button>
+                            </div>
+                        </div>
+                        <div class="bi-body">
+                            <div class="chart-placeholder">
+                                <div class="chart-icon">📈</div>
+                                <div>목표/실적 라인 차트 영역</div>
+                            </div>
+                        </div>
+                        <div class="bi-footer">
+                            <span>🔵 목표</span> &nbsp;|&nbsp; <span>🟢 실적</span> &nbsp;|&nbsp;
+                            <span class="positive">■ 초과달성</span> &nbsp;|&nbsp; <span class="negative">■ 미달성</span>
+                        </div>
+                    </div>
+
+                    <!-- 실적 달성률 분포 -->
+                    <div class="bi-card col-4">
+                        <div class="bi-header">
+                            <h4>실적 달성률 분포</h4>
+                        </div>
+                        <div class="bi-body">
+                            <div class="chart-placeholder" style="height: 180px;">
+                                <div class="chart-icon">📊</div>
+                                <div>히스토그램 영역</div>
+                            </div>
+
+                            <div class="mt-2">
+                                <div class="flex-between mb-1">
+                                    <span>120% 이상 (초과달성)</span>
+                                    <span class="badge badge-success">3명</span>
+                                </div>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar green" style="width: 15%;"></div>
+                                </div>
+
+                                <div class="flex-between mb-1">
+                                    <span>100~120% (목표달성)</span>
+                                    <span class="badge badge-primary">8명</span>
+                                </div>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar blue" style="width: 40%;"></div>
+                                </div>
+
+                                <div class="flex-between mb-1">
+                                    <span>80~100% (근접)</span>
+                                    <span class="badge badge-warning">6명</span>
+                                </div>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar orange" style="width: 30%;"></div>
+                                </div>
+
+                                <div class="flex-between mb-1">
+                                    <span>80% 미만 (미달)</span>
+                                    <span class="badge badge-danger">3명</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar red" style="width: 15%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bi-grid">
+                    <!-- 신규 고객 획득 현황 -->
+                    <div class="bi-card col-4">
+                        <div class="bi-header">
+                            <h4>신규 고객 획득</h4>
+                        </div>
+                        <div class="bi-body">
+                            <div class="kpi-card" style="padding: 16px;">
+                                <div class="kpi-value">24</div>
+                                <div class="kpi-label">이번 달 신규 고객</div>
+                                <div class="kpi-change up">▲ 8 전월 대비</div>
+                            </div>
+
+                            <table class="bi-table mt-2">
+                                <thead>
+                                    <tr>
+                                        <th>직원</th>
+                                        <th class="number">신규고객</th>
+                                        <th class="number">계약액</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>김영업</td>
+                                        <td class="number">5</td>
+                                        <td class="number">₩450M</td>
+                                    </tr>
+                                    <tr>
+                                        <td>이판매</td>
+                                        <td class="number">4</td>
+                                        <td class="number">₩380M</td>
+                                    </tr>
+                                    <tr>
+                                        <td>박거래</td>
+                                        <td class="number">4</td>
+                                        <td class="number">₩320M</td>
+                                    </tr>
+                                    <tr>
+                                        <td>최성과</td>
+                                        <td class="number">3</td>
+                                        <td class="number">₩280M</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 활동 지표 -->
+                    <div class="bi-card col-4">
+                        <div class="bi-header">
+                            <h4>영업 활동 지표</h4>
+                        </div>
+                        <div class="bi-body">
+                            <table class="bi-table">
+                                <thead>
+                                    <tr>
+                                        <th>지표</th>
+                                        <th class="number">이번달</th>
+                                        <th class="number">전월</th>
+                                        <th class="number">증감</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>고객 미팅</td>
+                                        <td class="number">156</td>
+                                        <td class="number">142</td>
+                                        <td class="number positive">+14</td>
+                                    </tr>
+                                    <tr>
+                                        <td>제안서 제출</td>
+                                        <td class="number">48</td>
+                                        <td class="number">52</td>
+                                        <td class="number negative">-4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>견적 발송</td>
+                                        <td class="number">89</td>
+                                        <td class="number">76</td>
+                                        <td class="number positive">+13</td>
+                                    </tr>
+                                    <tr>
+                                        <td>계약 체결</td>
+                                        <td class="number">32</td>
+                                        <td class="number">28</td>
+                                        <td class="number positive">+4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>수금 완료</td>
+                                        <td class="number">28</td>
+                                        <td class="number">31</td>
+                                        <td class="number negative">-3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="mt-2">
+                                <div class="flex-between mb-1">
+                                    <span>계약 전환율</span>
+                                    <strong>36.0%</strong>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar blue" style="width: 36%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 실적 알림 -->
+                    <div class="bi-card col-4">
+                        <div class="bi-header">
+                            <h4>실적 알림</h4>
+                        </div>
+                        <div class="bi-body" style="padding: 0;">
+                            <div style="max-height: 350px; overflow-y: auto;">
+                                <div class="list-item" style="padding: 12px 16px; border-left: 3px solid var(--success-color);">
+                                    <div class="list-item-content">
+                                        <div class="list-item-title">🎉 김영업님 목표 달성!</div>
+                                        <div class="list-item-subtitle">월간 목표 120% 달성</div>
+                                    </div>
+                                    <div class="list-item-date">10분 전</div>
+                                </div>
+                                <div class="list-item" style="padding: 12px 16px; border-left: 3px solid var(--primary-color);">
+                                    <div class="list-item-content">
+                                        <div class="list-item-title">📝 신규 계약 체결</div>
+                                        <div class="list-item-subtitle">ABC기업 - ₩150,000,000</div>
+                                    </div>
+                                    <div class="list-item-date">1시간 전</div>
+                                </div>
+                                <div class="list-item" style="padding: 12px 16px; border-left: 3px solid var(--warning-color);">
+                                    <div class="list-item-content">
+                                        <div class="list-item-title">⚠️ 목표 미달 경고</div>
+                                        <div class="list-item-subtitle">영업3팀 달성률 75%</div>
+                                    </div>
+                                    <div class="list-item-date">2시간 전</div>
+                                </div>
+                                <div class="list-item" style="padding: 12px 16px; border-left: 3px solid var(--success-color);">
+                                    <div class="list-item-content">
+                                        <div class="list-item-title">🏆 이번 주 MVP</div>
+                                        <div class="list-item-subtitle">박거래님 - 주간 1위</div>
+                                    </div>
+                                    <div class="list-item-date">3시간 전</div>
+                                </div>
+                                <div class="list-item" style="padding: 12px 16px; border-left: 3px solid var(--danger-color);">
+                                    <div class="list-item-content">
+                                        <div class="list-item-title">❌ 계약 취소</div>
+                                        <div class="list-item-subtitle">XYZ상사 - 고객 사정</div>
+                                    </div>
+                                    <div class="list-item-date">5시간 전</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/mock-data.js"></script>
+    <script src="../js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initPage();
+        });
+
+        function initPage() {
+            // 부서 필터 초기화
+            populateDepartmentSelect('deptFilter');
+
+            updateDashboard();
+        }
+
+        function updateDashboard() {
+            renderKPI();
+            renderTeamCompare();
+            renderEmployeeRank();
+        }
+
+        function renderKPI() {
+            // 팀 수 (영업팀만)
+            const salesTeams = DEPARTMENTS.filter(d => d.DEPT_NM.includes('영업'));
+            document.getElementById('kpiTeamCount').textContent = salesTeams.length + '개';
+
+            // 최고 실적 팀
+            if (TEAM_PERFORMANCE.length > 0) {
+                const topTeam = TEAM_PERFORMANCE.reduce((max, t) => t.sales > max.sales ? t : max);
+                document.getElementById('kpiTopTeam').textContent = topTeam.team;
+            }
+
+            // MVP
+            if (EMPLOYEE_PERFORMANCE.length > 0) {
+                document.getElementById('kpiTopEmployee').textContent = EMPLOYEE_PERFORMANCE[0].name;
+            }
+
+            // 평균 달성률
+            if (TEAM_PERFORMANCE.length > 0) {
+                const avgRate = TEAM_PERFORMANCE.reduce((sum, t) => {
+                    return sum + (t.target > 0 ? t.sales / t.target * 100 : 0);
+                }, 0) / TEAM_PERFORMANCE.length;
+                document.getElementById('kpiAvgAchieve').textContent = formatPercent(avgRate);
+            }
+        }
+
+        function renderTeamCompare() {
+            const tbody = document.getElementById('teamCompareBody');
+            tbody.innerHTML = '';
+
+            TEAM_PERFORMANCE.forEach(team => {
+                const rate = team.target > 0 ? (team.sales / team.target * 100) : 0;
+                const rateClass = rate >= 100 ? 'positive' : (rate >= 80 ? '' : 'negative');
+                const barWidth = Math.min(rate, 120);
+                const barColor = rate >= 100 ? 'green' : (rate >= 80 ? 'orange' : 'red');
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${team.team}</strong></td>
+                    <td class="number">${formatCurrency(team.target)}</td>
+                    <td class="number">${formatCurrency(team.sales)}</td>
+                    <td class="number ${rateClass}"><strong>${formatPercent(rate)}</strong></td>
+                    <td>
+                        <div class="mini-bar">
+                            <div class="bar ${barColor}" style="width: ${barWidth}px;"></div>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderEmployeeRank() {
+            const tbody = document.getElementById('employeeRankBody');
+            tbody.innerHTML = '';
+
+            EMPLOYEE_PERFORMANCE.slice(0, 10).forEach((emp, idx) => {
+                const changes = ['▲2', '▼1', '-', '▲3', '▼2', '▲1', '-', '▲4', '▼1', '▲2'];
+                const changeClass = changes[idx].includes('▲') ? 'positive' : (changes[idx].includes('▼') ? 'negative' : '');
+                const rate = Math.floor(Math.random() * 40) + 80; // 임시 달성률
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${idx + 1}</strong></td>
+                    <td><strong>${emp.name}</strong></td>
+                    <td>${emp.team}</td>
+                    <td class="number"><strong>${formatCurrency(emp.sales)}</strong></td>
+                    <td class="number ${rate >= 100 ? 'positive' : ''}">${rate}%</td>
+                    <td class="${changeClass}">${changes[idx]}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    </script>
+</body>
+</html>

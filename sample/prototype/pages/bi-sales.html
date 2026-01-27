@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영업관리 시스템 - 매출 분석</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="layout">
+        <!-- 사이드바 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>영업관리 시스템</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="../index.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>대시보드</span>
+                </a>
+                <a href="employees.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>직원 관리</span>
+                </a>
+                <a href="employees-type1.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>직원 관리 (유형1)</span>
+                </a>
+                <a href="employees-type2.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>직원 관리 (유형2)</span>
+                </a>
+                <a href="customers.html" class="nav-item">
+                    <span class="nav-icon">🏢</span>
+                    <span>고객 관리</span>
+                </a>
+                <a href="products.html" class="nav-item">
+                    <span class="nav-icon">📦</span>
+                    <span>제품 관리</span>
+                </a>
+                <a href="common-code.html" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>공통코드 관리</span>
+                </a>
+                <a href="bi-sales.html" class="nav-item active">
+                    <span class="nav-icon">📈</span>
+                    <span>매출 분석</span>
+                </a>
+                <a href="bi-performance.html" class="nav-item">
+                    <span class="nav-icon">🎯</span>
+                    <span>실적 분석</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- 메인 콘텐츠 -->
+        <main class="main-content">
+            <header class="header">
+                <h2>매출 분석 대시보드</h2>
+                <div class="header-actions">
+                    <label for="yearMonthFilter" style="margin-right: 8px;">연월</label>
+                    <input type="text" id="yearMonthFilter" class="form-control" style="width: 150px;" value="2024-01" placeholder="YYYY-MM" pattern="\d{4}-\d{2}">
+                    <button class="btn btn-primary" onclick="updateDashboard()">조회</button>
+                    <button class="btn btn-outline">PDF 내보내기</button>
+                    <button class="btn btn-outline">Excel 다운로드</button>
+                </div>
+            </header>
+
+            <div class="content">
+                <!-- KPI 카드 그리드 -->
+                <div class="bi-grid mb-3">
+                    <!-- KPI 카드들 -->
+                    <div class="bi-card col-3 kpi-card">
+                        <div class="kpi-icon blue">💰</div>
+                        <div class="kpi-value" id="kpiTotalSales">₩0</div>
+                        <div class="kpi-label">총 매출액</div>
+                        <div class="kpi-change up">▲ 12.5% 전년 대비</div>
+                    </div>
+                    <div class="bi-card col-3 kpi-card">
+                        <div class="kpi-icon green">📦</div>
+                        <div class="kpi-value" id="kpiTotalQty">0</div>
+                        <div class="kpi-label">총 판매수량</div>
+                        <div class="kpi-change up">▲ 8.3% 전년 대비</div>
+                    </div>
+                    <div class="bi-card col-3 kpi-card">
+                        <div class="kpi-icon orange">🧾</div>
+                        <div class="kpi-value" id="kpiAvgOrder">₩0</div>
+                        <div class="kpi-label">평균 주문금액</div>
+                        <div class="kpi-change down">▼ 2.1% 전년 대비</div>
+                    </div>
+                    <div class="bi-card col-3 kpi-card">
+                        <div class="kpi-icon purple">🏆</div>
+                        <div class="kpi-value" id="kpiAchievement">0%</div>
+                        <div class="kpi-label">목표 달성률</div>
+                        <div class="kpi-change up">▲ 5.2% 전년 대비</div>
+                    </div>
+                </div>
+
+                <div class="bi-grid mb-3">
+                    <!-- 월별 매출 추이 -->
+                    <div class="bi-card col-8">
+                        <div class="bi-header">
+                            <h4>월별 매출 추이</h4>
+                            <div class="tab-filter">
+                                <button class="active">매출액</button>
+                                <button>판매수량</button>
+                                <button>주문건수</button>
+                            </div>
+                        </div>
+                        <div class="bi-body">
+                            <div class="chart-placeholder">
+                                <div class="chart-icon">📊</div>
+                                <div>월별 매출 추이 차트 영역</div>
+                                <div style="font-size: 0.75rem; margin-top: 8px;">실제 구현 시 Chart.js 또는 ApexCharts 사용</div>
+                            </div>
+                            <!-- 간단한 테이블 형태 데이터 표시 -->
+                            <table class="bi-table mt-2">
+                                <thead>
+                                    <tr>
+                                        <th>월</th>
+                                        <th class="number">매출액</th>
+                                        <th class="number">목표</th>
+                                        <th class="number">달성률</th>
+                                        <th>추이</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="monthlyTrendBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 카테고리별 매출 -->
+                    <div class="bi-card col-4">
+                        <div class="bi-header">
+                            <h4>카테고리별 매출 비중</h4>
+                        </div>
+                        <div class="bi-body">
+                            <div class="chart-placeholder" style="height: 180px;">
+                                <div class="chart-icon">🥧</div>
+                                <div>도넛 차트 영역</div>
+                            </div>
+                            <ul class="ranking-list" id="categoryRankingList">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bi-grid mb-3">
+                    <!-- 고객별 매출 TOP 10 -->
+                    <div class="bi-card col-6">
+                        <div class="bi-header">
+                            <h4>고객별 매출 TOP 10</h4>
+                            <button class="btn btn-sm btn-outline">상세보기</button>
+                        </div>
+                        <div class="bi-body" style="padding: 0;">
+                            <table class="bi-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50px;">순위</th>
+                                        <th>고객명</th>
+                                        <th>고객유형</th>
+                                        <th class="number">매출액</th>
+                                        <th class="number">비중</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="customerRankingBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 제품별 매출 TOP 10 -->
+                    <div class="bi-card col-6">
+                        <div class="bi-header">
+                            <h4>제품별 매출 TOP 10</h4>
+                            <button class="btn btn-sm btn-outline">상세보기</button>
+                        </div>
+                        <div class="bi-body" style="padding: 0;">
+                            <table class="bi-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50px;">순위</th>
+                                        <th>제품명</th>
+                                        <th>카테고리</th>
+                                        <th class="number">판매수량</th>
+                                        <th class="number">매출액</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productRankingBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bi-grid">
+                    <!-- 지역별 매출 분포 -->
+                    <div class="bi-card col-4">
+                        <div class="bi-header">
+                            <h4>지역별 매출 분포</h4>
+                        </div>
+                        <div class="bi-body">
+                            <div class="chart-placeholder" style="height: 200px;">
+                                <div class="chart-icon">🥧</div>
+                                <div>도넛 차트 영역</div>
+                            </div>
+                            <table class="bi-table mt-2">
+                                <thead>
+                                    <tr>
+                                        <th>지역</th>
+                                        <th class="number">매출액</th>
+                                        <th class="number">비중</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>서울/경기</td><td class="number">₩2,450,000,000</td><td class="number">45.2%</td></tr>
+                                    <tr><td>부산/경남</td><td class="number">₩980,000,000</td><td class="number">18.1%</td></tr>
+                                    <tr><td>대구/경북</td><td class="number">₩720,000,000</td><td class="number">13.3%</td></tr>
+                                    <tr><td>대전/충청</td><td class="number">₩650,000,000</td><td class="number">12.0%</td></tr>
+                                    <tr><td>기타</td><td class="number">₩620,000,000</td><td class="number">11.4%</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 시간대별 매출 -->
+                    <div class="bi-card col-4">
+                        <div class="bi-header">
+                            <h4>요일별 매출 패턴</h4>
+                        </div>
+                        <div class="bi-body">
+                            <div class="chart-placeholder" style="height: 200px;">
+                                <div class="chart-icon">📊</div>
+                                <div>막대 차트 영역</div>
+                            </div>
+                            <table class="bi-table mt-2">
+                                <thead>
+                                    <tr>
+                                        <th>요일</th>
+                                        <th class="number">주문건수</th>
+                                        <th class="number">매출액</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>월요일</td><td class="number">245</td><td class="number">₩890,000,000</td></tr>
+                                    <tr><td>화요일</td><td class="number">312</td><td class="number">₩1,120,000,000</td></tr>
+                                    <tr><td>수요일</td><td class="number">298</td><td class="number">₩1,050,000,000</td></tr>
+                                    <tr><td>목요일</td><td class="number">276</td><td class="number">₩980,000,000</td></tr>
+                                    <tr><td>금요일</td><td class="number">334</td><td class="number">₩1,280,000,000</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 매출 목표 달성 현황 -->
+                    <div class="bi-card col-4">
+                        <div class="bi-header">
+                            <h4>분기별 목표 달성</h4>
+                        </div>
+                        <div class="bi-body">
+                            <div class="gauge-container">
+                                <div class="gauge-chart">
+                                    <div class="gauge-value">87%</div>
+                                </div>
+                                <div class="gauge-label">연간 목표 달성률</div>
+                            </div>
+
+                            <table class="bi-table">
+                                <thead>
+                                    <tr>
+                                        <th>분기</th>
+                                        <th class="number">목표</th>
+                                        <th class="number">실적</th>
+                                        <th class="number">달성률</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Q1</td>
+                                        <td class="number">₩1,200M</td>
+                                        <td class="number">₩1,150M</td>
+                                        <td class="number positive">95.8%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Q2</td>
+                                        <td class="number">₩1,400M</td>
+                                        <td class="number">₩1,520M</td>
+                                        <td class="number positive">108.6%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Q3</td>
+                                        <td class="number">₩1,300M</td>
+                                        <td class="number">₩1,180M</td>
+                                        <td class="number negative">90.8%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Q4</td>
+                                        <td class="number">₩1,500M</td>
+                                        <td class="number">₩1,420M</td>
+                                        <td class="number positive">94.7%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/mock-data.js"></script>
+    <script src="../js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDashboard();
+        });
+
+        function updateDashboard() {
+            renderKPI();
+            renderMonthlyTrend();
+            renderCategoryRanking();
+            renderCustomerRanking();
+            renderProductRanking();
+        }
+
+        function renderKPI() {
+            const totalSales = SALES_PERFORMANCE.reduce((sum, p) => sum + p.SALE_AMT, 0);
+            const totalQty = SALES_PERFORMANCE.reduce((sum, p) => sum + p.SALE_QTY, 0);
+            const avgOrder = SALES_PERFORMANCE.length > 0 ? totalSales / SALES_PERFORMANCE.length : 0;
+            const totalTarget = SALES_PLANS.reduce((sum, p) => sum + p.PLAN_AMT, 0);
+            const achievement = totalTarget > 0 ? (totalSales / totalTarget * 100) : 0;
+
+            document.getElementById('kpiTotalSales').textContent = formatCurrency(totalSales);
+            document.getElementById('kpiTotalQty').textContent = formatNumber(totalQty) + '개';
+            document.getElementById('kpiAvgOrder').textContent = formatCurrency(Math.round(avgOrder));
+            document.getElementById('kpiAchievement').textContent = formatPercent(achievement);
+        }
+
+        function renderMonthlyTrend() {
+            const tbody = document.getElementById('monthlyTrendBody');
+            tbody.innerHTML = '';
+
+            MONTHLY_SALES.forEach((item, idx) => {
+                const rate = item.target > 0 ? (item.sales / item.target * 100) : 0;
+                const rateClass = rate >= 100 ? 'positive' : (rate >= 90 ? '' : 'negative');
+                const prevSales = idx > 0 ? MONTHLY_SALES[idx - 1].sales : item.sales;
+                const trend = item.sales >= prevSales ? '📈' : '📉';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.month}</td>
+                    <td class="number">${formatCurrency(item.sales)}</td>
+                    <td class="number">${formatCurrency(item.target)}</td>
+                    <td class="number ${rateClass}">${formatPercent(rate)}</td>
+                    <td style="text-align: center;">${trend}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderCategoryRanking() {
+            const list = document.getElementById('categoryRankingList');
+            list.innerHTML = '';
+
+            const total = CATEGORY_SALES.reduce((sum, c) => sum + c.sales, 0);
+
+            CATEGORY_SALES.slice(0, 5).forEach((item, idx) => {
+                const ratio = total > 0 ? (item.sales / total * 100) : 0;
+                const rankClass = idx === 0 ? 'top-1' : (idx === 1 ? 'top-2' : (idx === 2 ? 'top-3' : ''));
+
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span class="rank ${rankClass}">${idx + 1}</span>
+                    <div class="info">
+                        <div class="name">${item.category}</div>
+                        <div class="sub">${formatCurrency(item.sales)}</div>
+                    </div>
+                    <div class="value">${formatPercent(ratio)}</div>
+                `;
+                list.appendChild(li);
+            });
+        }
+
+        function renderCustomerRanking() {
+            const tbody = document.getElementById('customerRankingBody');
+            tbody.innerHTML = '';
+
+            // 고객별 매출 집계
+            const customerSales = {};
+            SALES_PERFORMANCE.forEach(p => {
+                if (!customerSales[p.CUST_ID]) {
+                    customerSales[p.CUST_ID] = 0;
+                }
+                customerSales[p.CUST_ID] += p.SALE_AMT;
+            });
+
+            const total = Object.values(customerSales).reduce((sum, v) => sum + v, 0);
+            const sortedCustomers = Object.entries(customerSales)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+
+            sortedCustomers.forEach(([custId, sales], idx) => {
+                const cust = CUSTOMERS.find(c => c.CUST_ID === custId);
+                const ratio = total > 0 ? (sales / total * 100) : 0;
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${idx + 1}</strong></td>
+                    <td>${cust ? cust.CUST_NM : custId}</td>
+                    <td>${cust ? getCodeName('CUST_TYPE', cust.CUST_TYPE) : '-'}</td>
+                    <td class="number"><strong>${formatCurrency(sales)}</strong></td>
+                    <td class="number">${formatPercent(ratio)}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderProductRanking() {
+            const tbody = document.getElementById('productRankingBody');
+            tbody.innerHTML = '';
+
+            // 제품별 매출 집계
+            const productSales = {};
+            const productQty = {};
+            SALES_PERFORMANCE.forEach(p => {
+                if (!productSales[p.PROD_ID]) {
+                    productSales[p.PROD_ID] = 0;
+                    productQty[p.PROD_ID] = 0;
+                }
+                productSales[p.PROD_ID] += p.SALE_AMT;
+                productQty[p.PROD_ID] += p.SALE_QTY;
+            });
+
+            const sortedProducts = Object.entries(productSales)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+
+            sortedProducts.forEach(([prodId, sales], idx) => {
+                const prod = PRODUCTS.find(p => p.PROD_ID === prodId);
+                const qty = productQty[prodId] || 0;
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${idx + 1}</strong></td>
+                    <td>${prod ? prod.PROD_NM : prodId}</td>
+                    <td>${prod ? getCodeName('PROD_CATEGORY', prod.CATEGORY) : '-'}</td>
+                    <td class="number">${formatNumber(qty)}</td>
+                    <td class="number"><strong>${formatCurrency(sales)}</strong></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    </script>
+</body>
+</html>

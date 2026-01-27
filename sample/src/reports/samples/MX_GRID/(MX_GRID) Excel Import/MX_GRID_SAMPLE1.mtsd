@@ -1,0 +1,320 @@
+{
+  "ReportInfo": {
+    "ReportCode": "MX_GRID_SAMPLE1",
+    "FolderCode": "FLD72470E8B43AE41C796541322C57190D2",
+    "SavePath": "FLD72470E8B43AE41C796541322C57190D2/MX_GRID_SAMPLE1.mtsd",
+    "ReportName": "MX_GRID 서버에 업로드된 엑셀 열기",
+    "Writer": "yglee",
+    "WriteDate": "2025-06-05 16:10:14",
+    "Editor": "yglee",
+    "EditDate": "2025-06-05 16:10:14",
+    "TabPosition": 0,
+    "UsePersonalConditions": true,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS75CD4E2CA41441A0A3B245F1D3516F3A",
+        "Name": "Data1",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "AYvnqTkb8O5UnoLBJ/woMX9J2RptpHeyRaRzr6snByTRosK0gI++mncfj1uFlO1CFhwnrrNVmYdC73Af+F5+Aac7EBuO3Hx086TZuOUXErV2tcp+YNqnqYh0NT25uvDn2CszMLiFE4DCWJg1FppUkKq5u/VIdP1xlU9Snp9b4cEQffhRletV4LrGs6LiqfqHusmvUmdYlJNxM8t0gfB8Q3kvPocIepsXtihXNG9sdhFxlaqrssTCcddedYS1ga8xzYvcJevkfIhUsIivkiXb/u0NuZQrboq74XTsGWoowbk3cl9mCGe1JOgywfEERSwlGPe67xxVJ6A5s5hN9EDU80BCw2Loa5W/Dw/nyQ2a6ASFtwjOdoYXCXibkPFOTmuTLkWh/u40XlDgVjtGA/8w+TTc77vWAGBODOQ0AD5FWHE3X//M7F2YZCganYZoSIIAAp+Yss6SU1j1dSXg7Qg0RaDii8bp6AyN97KmVZMoxuI=",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "USER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "META_FILE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "D1",
+            "Type": "String"
+          },
+          {
+            "Name": "D2",
+            "Type": "String"
+          },
+          {
+            "Name": "D3",
+            "Type": "String"
+          },
+          {
+            "Name": "D4",
+            "Type": "String"
+          },
+          {
+            "Name": "D5",
+            "Type": "String"
+          },
+          {
+            "Name": "M1",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "M2",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "M3",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "M4",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "M5",
+            "Type": "Numeric"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "var mainView = Matrix.getObject(\"mainView\");\r\nvar btnUpload = Matrix.getObject(\"btnUpload\");\r\n/**\r\n * 사용자 엑셀을 업로드 처리\r\n */\r\nvar UploadUserExcel = function () {\r\n    Matrix.UploadLocalFile(\"_TEMP_\", \"*.xlsx\", function (p) {\r\n        if (p.Success == false) {\r\n            Matrix.Alert(p.Message);\r\n            return;\r\n        }\r\n        Matrix.AddGlobalParams(\"VS_USER_UPLOAD_FILE_NAME\", p.SaveFileName, 1);\r\n        Matrix.RunScript(\"\", \"IMPORT_USER_EXCEL\", function (p) {\r\n            if (p.Success == false) {\r\n                Matrix.Alert(p.Message);\r\n                return;\r\n            }\r\n            var ds = p.DataSet;\r\n            mainView.TemplateCode = ds.XLS_PATH;\r\n            mainView.Refresh();\r\n        });\r\n        Matrix.RemoveGlobalParams(\"VS_USER_UPLOAD_FILE_NAME\");\r\n    });\r\n};\r\n//버튼 클릭으로 엑셀 파일 업로드 처리\r\nbtnUpload.OnClick = function (sender, args) {\r\n    UploadUserExcel();\r\n};\r\n",
+  "ServerScriptText": [
+    {
+      "Name": "IMPORT_USER_EXCEL",
+      "Key": "BIZCBB7F1D879844A488BCFAE9F5B2F81EF",
+      "Encrypted": true,
+      "ScriptText": "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"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "Form23A21126C0AA937E819A56DF1711DABC",
+      "Name": "Form1",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "ServerScript": "",
+          "AutoRefresh": true,
+          "DoRefresh": true,
+          "DoExport": true,
+          "TemplateCode": "@TEMP_DESIGN@T588A7420189A496D92E816E6847A14B0",
+          "ActiveSheet": "",
+          "UseMultiSheet": false,
+          "FreezeLineThickness": 1,
+          "ParentGridName": "",
+          "DisableScrollBar": false,
+          "LimitOfBinding": 1000,
+          "ExcelExportType": "Default",
+          "SelectedColor": {
+            "R": 198,
+            "G": 217,
+            "B": 241,
+            "A": 0.5
+          },
+          "FreezeLineColor": {
+            "R": 127,
+            "G": 127,
+            "B": 127,
+            "A": 1
+          },
+          "SelectionBorderColor": "rgba(234, 86, 64, 0.5)",
+          "SelectionMode": 0,
+          "Controls": [],
+          "MenuOption": {
+            "VisibleExcel": true,
+            "VisibleHTML": true,
+            "VisiblePDF": true
+          },
+          "MoveAfterReturn": 1,
+          "Type": "iGrid",
+          "Id": "iGrid1739927711292",
+          "Name": "mainView",
+          "Position": {
+            "Left": 0,
+            "Top": 47,
+            "Width": 1737,
+            "Height": 937,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": true,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Value": "Excel Upload",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "Type": "Button",
+          "Id": "Button342C0A51F5C8A62D18260CC43EC8D23A",
+          "Name": "btnUpload",
+          "Position": {
+            "Left": 1612,
+            "Top": 16,
+            "Width": 96,
+            "Height": 23,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,29,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 249,
+                "G": 249,
+                "B": 251,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 126,
+                "G": 155,
+                "B": 246,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {},
+  "PersonalConditions": {
+    "list": [],
+    "useAll": true
+  }
+}

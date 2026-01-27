@@ -1,0 +1,2511 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPD8CE2ACC617D4E7FB106352FCEE15593",
+    "FolderCode": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD",
+    "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REPD8CE2ACC617D4E7FB106352FCEE15593.mtsd",
+    "ReportName": "(OlapGrid) Write-Back-ServerScript",
+    "Writer": "choehanna",
+    "WriteDate": "2025-04-07 09:53:26",
+    "Editor": "choehanna",
+    "EditDate": "2025-04-07 09:53:26",
+    "TabPosition": 1,
+    "UseLayout": false,
+    "UsePersonalConditions": false,
+    "DocumentVersion": "3.0.0.0"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS",
+        "Name": "Data1",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "VatCXgm4IcrkvM4YCZI+uhslExmxVCokCMTJ7kZfOL1sF1035snPa8SYo3X/bgl6",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "P1",
+            "Type": "String"
+          },
+          {
+            "Name": "D1",
+            "Type": "String"
+          },
+          {
+            "Name": "D2",
+            "Type": "String"
+          },
+          {
+            "Name": "D3",
+            "Type": "String"
+          },
+          {
+            "Name": "D4",
+            "Type": "String"
+          },
+          {
+            "Name": "D5",
+            "Type": "String"
+          },
+          {
+            "Name": "D6",
+            "Type": "String"
+          },
+          {
+            "Name": "D7",
+            "Type": "String"
+          },
+          {
+            "Name": "D8",
+            "Type": "String"
+          },
+          {
+            "Name": "M1",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "M2",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "M3",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DS1",
+        "Name": "Data2",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "FILE_DATA_BASE",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "7Zdi74/xLoVGxLLZK9lcY6rvHXAt3HllAmlUXMW12ElN+L0TPEj6g3T9JSVAkuXb9zIuMN8Zq2LDP2zA2s2yZOEJtmC0cWLt8JA81RpErKsuH79FFnwBg1l9cbaNBNldFvupPZp31HDVDqgMx0khIQ==",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "CODE",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "TEXT",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "var btnCalculate = null;\r\nvar btnUpate = null;\r\nvar chkEnableCreateRecord = null;\r\nvar chkManualUpdate = null;\r\nvar DataGrid = null;\r\nvar DataGrid = null;\r\nvar MXGrid = null;\r\nvar OlapGrid = null;\r\nvar VN_BAEBUN_TYPE = null;\r\nvar tbxLockCellFormula = null;\r\nvar initControlVariables = function () {\r\n    btnCalculate = Matrix.getObject(\"btnCalculate\");\r\n    btnUpate = Matrix.getObject(\"btnUpate\");\r\n    chkEnableCreateRecord = Matrix.getObject(\"chkEnableCreateRecord\");\r\n    chkManualUpdate = Matrix.getObject(\"chkManualUpdate\");\r\n    DataGrid = Matrix.getObject(\"DataGrid\");\r\n    DataGrid = Matrix.getObject(\"DataGrid\");\r\n    MXGrid = Matrix.getObject(\"MXGrid\");\r\n    OlapGrid = Matrix.getObject(\"OlapGrid\");\r\n    VN_BAEBUN_TYPE = Matrix.getObject(\"VN_BAEBUN_TYPE\");\r\n    tbxLockCellFormula = Matrix.getObject(\"tbxLockCellFormula\");\r\n    tbxLockCellFormula.OnTextChange = function (s, e) {\r\n        OlapGrid.setLockCellFormula(tbxLockCellFormula.Text);\r\n    };\r\n};\r\n/**\r\n * Write-Back 기능 활성화 하기\r\n**/\r\nvar initWriteBack = function () {\r\n    OlapGrid.Options.EnableWriteBack = true; //Write-back 활성화\r\n    OlapGrid.Options.EnableCreateRecord = false; //레코드가 없는 셀의 경우 데이터 생성 여부\r\n    OlapGrid.Options.ManualUpdate = false; //수동 계산 실행 여\r\n    OlapGrid.setLockCellFormula(tbxLockCellFormula.Text);\r\n};\r\n/*****************************************\r\n* 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n* * arguments :\r\n*****************************************/\r\nvar OnDocumentLoadComplete = function (sender, args) {\r\n    initControlVariables();\r\n    initWriteBack();\r\n};\r\n/*****************************************\r\n* 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n* * arguments :\r\n*\t\t string\tId (Readonly:False) : 컨트롤이름\r\n*\t\t string\tText (Readonly:False) : 라벨 값\r\n*****************************************/\r\nvar OnButtonClick = function (sender, args) {\r\n    if (args.Id == \"btnCalculate\") {\r\n        if (OlapGrid.CanCalculateWriteBack()) { //계산할 대상이 있으면..\r\n            OlapGrid.CalculateWriteBack();\r\n        }\r\n    }\r\n    else if (args.Id == \"btnUpate\") {\r\n        if (OlapGrid.IsModified() == false) { //계산할 대상이 있으면..\r\n            Matrix.Information(\"계산하지 않은 셀이 존재합니다. 계산을 먼저 수행해 주세요.\", \"i-AUD\");\r\n            return;\r\n        }\r\n        if (OlapGrid.CanCalculateWriteBack()) { //계산할 대상이 있으면..\r\n            Matrix.Information(\"계산하지 않은 셀이 존재합니다. 계산을 먼저 수행해 주세요.\", \"i-AUD\");\r\n            return;\r\n        }\r\n        Matrix.RunScript(\"OlapGrid\", \"Service1\", function (p) {\r\n            if (p.Success == false) {\r\n                Matrix.Alert(p.Message);\r\n                return;\r\n            }\r\n            //alert(\"정상적으로 처리되었습니다.\");\r\n            Matrix.doRefresh(\"OlapGrid\");\r\n        });\r\n    }\r\n};\r\n/*****************************************\r\n* 콤보박스 컨트롤의 값이 변경될때 발생합니다.\r\n* * arguments :\r\n*\t\t string\tId (Readonly:False) : 컨트롤이름\r\n*\t\t string\tValue (Readonly:False) : 컨트롤 값\r\n*****************************************/\r\nvar OnComboBoxValueChanged = function (sender, args) {\r\n    var fld = OlapGrid.getField(\"M1\");\r\n    fld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n    fld.EditPrecision = 0; //소수점 자리수\r\n    //fld.EditMethodRef = \"M2\";//참조 필드(가중치 기준 필드)\r\n    fld = OlapGrid.getField(\"M2\");\r\n    fld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n    fld.EditPrecision = 0; //소수점 자리수\r\n    fld = OlapGrid.getField(\"M3\");\r\n    fld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n    fld.EditPrecision = 0; //소수점 자리수\r\n};\r\n/*****************************************\r\n* 체크박스 컨트롤의 값이 변경될 경우 발생합니다.\r\n* * arguments :\r\n*\t\t string\tId (Readonly:False) : 컨트롤이름\r\n*\t\t bool\tIsChecked (Readonly:False) : 체크 상태\r\n*****************************************/\r\nvar OnCheckValueChange = function (sender, args) {\r\n    if (args.Id == \"chkManualUpdate\") {\r\n        OlapGrid.Options.ManualUpdate = args.IsChecked;\r\n    }\r\n    else if (args.Id == \"chkEnableCreateRecord\") {\r\n        OlapGrid.Options.EnableCreateRecord = args.IsChecked;\r\n    }\r\n};\r\n/*****************************************\r\n* 데이터 셀 수정 모드로 진입할 때 발생합니다.\r\n* * arguments :\r\n*\t\t string\tId (Readonly:True) : 컨트롤 명\r\n*\t\t iOLAP.ScriptDataCell\tCell (Readonly:True) : 데이터 셀 객체\r\n*\t\t bool\tCancel (Readonly:False) : 이 값을 true 로 설정 할 경우 수정 모드로 진입이 취소됩니다.\r\n*****************************************/\r\nvar OnOlapDataCellStartEdit = function (sender, args) {\r\n};\r\n/*****************************************\r\n* 데이터 셀을 수정 후에 발생합니다.\r\n* * arguments :\r\n*\t\t string\tId (Readonly:True) : 컨트롤 명\r\n*\t\t iOLAP.ScriptDataCell\tCell (Readonly:True) : 데이터 셀 객체\r\n*\t\t double\tBeforeValue (Readonly:True) : 수정 전 값\r\n*\t\t double\tAfterValue (Readonly:True) : 수정 후 값\r\n*\t\t double\tLockedValue (Readonly:True) : 잠긴 레코드의 값\r\n*\t\t bool\tCancel (Readonly:False) : 이 값을 true 로 설정 할 경우 수정 작업이 취소됩니다.\r\n*****************************************/\r\nvar OnOlapDataCellEndEdit = function (sender, args) {\r\n    if (args.LockedValue > args.AfterValue) {\r\n        args.Cancel = true;\r\n        var fmtValue = Matrix.getFormatConverter(args.Cell.Field.Format).Convert(args.LockedValue).Value;\r\n        Matrix.Information(\"잠금으로 설정한 값(\" + fmtValue + \")보다 큰 값을 입력해 주세요.\", \"i-AUD\");\r\n    }\r\n};\r\n",
+  "ServerScriptText": [
+    {
+      "Name": "Service1",
+      "Key": "BIZ",
+      "Encrypted": false,
+      "ScriptText": "// Please do not modify or delete the following variables: \"CALL_BACK\", \"Matrix\". \r\nvar req = Matrix.getRequest();\r\nvar res = Matrix.getResponse();\r\nvar session = Matrix.getSession();\r\nvar util = Matrix.getUtility();\r\nvar fso = Matrix.getFileSystemObject();\r\nvar con = Matrix.getConnection();\r\n/*************************************************************\r\n * SAMPLE #1 single table insert\r\n *************************************************************/\r\nvar sql = \"\";\r\nvar status = \"\";\r\nvar row = null;\r\nvar stmt = null;\r\nvar stmtInsert = null;\r\nvar ROW_IDX = 0;\r\ntry {\r\n    //connection\r\n    con.Connect(\"MTXRPTY\"); // set target dbms connection code\r\n    con.BeginTransaction(); // begin transaction\t \r\n    //------------------------------------------------------\r\n    // save table data\r\n    //------------------------------------------------------\t\r\n    var table = req.getTable(\"OlapGrid\"); //get grid's work data\r\n    sql = \"UPDATE MEX_USER_CRUD_DATA SET  M1=?, M2=?, M3=?  WHERE P1=?\";\r\n    stmt = con.PreparedStatement(sql);\r\n    sql = \" INSERT INTO MEX_USER_CRUD_DATA(P1,D1,D2,D3,D4,D5,D6,D7,D8,M1,M2,M3) \"\r\n        + \"                    VALUES (?, ?,?,?,?,?,?,?,?,?,?,?)\";\r\n    stmtInsert = con.PreparedStatement(sql);\r\n    /* OLAP은 데이터가 많을 수 있으므로 Callback를 수행한다.  */\r\n    table.FetchRows(CALL_BACK(function (row) {\r\n        ROW_IDX++;\r\n        status = row.getRowStatus();\r\n        var IDX = 0;\r\n        if (status == \"U\") {\r\n            stmt.setDouble(++IDX, row.getDouble(\"M1\"));\r\n            stmt.setDouble(++IDX, row.getDouble(\"M2\"));\r\n            stmt.setDouble(++IDX, row.getDouble(\"M3\"));\r\n            stmt.setString(++IDX, row.getString(\"P1\"));\r\n            stmt.addBatch();\r\n        }\r\n        else if (status == \"N\") {\r\n            stmtInsert.setString(++IDX, util.getUniqueKey(\"P\")); //primary key\r\n            stmtInsert.setString(++IDX, row.getString(\"D1\"));\r\n            stmtInsert.setString(++IDX, row.getString(\"D2\"));\r\n            stmtInsert.setString(++IDX, row.getString(\"D3\"));\r\n            stmtInsert.setString(++IDX, row.getString(\"D4\"));\r\n            stmtInsert.setString(++IDX, row.getString(\"D5\"));\r\n            stmtInsert.setString(++IDX, row.getString(\"D6\"));\r\n            stmtInsert.setString(++IDX, row.getString(\"D7\"));\r\n            stmtInsert.setString(++IDX, row.getString(\"D8\"));\r\n            stmtInsert.setDouble(++IDX, row.getDouble(\"M1\"));\r\n            stmtInsert.setDouble(++IDX, row.getDouble(\"M2\"));\r\n            stmtInsert.setDouble(++IDX, row.getDouble(\"M3\"));\r\n            stmtInsert.addBatch();\r\n        }\r\n        if (ROW_IDX > 100) {\r\n            stmt.executeBatch();\r\n            stmtInsert.executeBatch();\r\n            ROW_IDX = 0;\r\n        }\r\n        return null;\r\n    }));\r\n    stmt.executeBatch();\r\n    stmtInsert.executeBatch();\r\n    // COMMIT\r\n    con.CommitTransaction();\r\n    con.DisConnect();\r\n    con = null;\r\n}\r\ncatch (e) {\r\n    Matrix.WriteLog(\"ERROR\" + e.message);\r\n    if (con != null) {\r\n        try {\r\n            con.RollBackTransaction();\r\n            con.DisConnect();\r\n            con = null;\r\n        }\r\n        catch (e) {\r\n        }\r\n    }\r\n    Matrix.ThrowException(\"Server Exception:\" + e.message);\r\n}\r\nfinally {\r\n    if (stmt != null) {\r\n        try {\r\n            stmt.Close();\r\n            stmt = null;\r\n        }\r\n        catch (e) {\r\n        }\r\n    }\r\n    if (con != null) {\r\n        try {\r\n            //con.RollBackTransaction();\r\n            con.DisConnect();\r\n            con = null;\r\n        }\r\n        catch (e) {\r\n        }\r\n    }\r\n}\r\n"
+    },
+    {
+      "Name": "OLAP_WRITE_BACK",
+      "Key": "BIZ96A72586850C4566A03AFD60B4C192E0",
+      "Encrypted": false,
+      "ScriptText": "//------------------------------------\r\n// OLAP Write-Back에서는 OlapContext만 사용할 수 있습니다.\r\n// OLAP Context\r\nvar OLAPContext = Matrix.getOlapScriptContext();\r\n/**\r\n * 데이터 수정 하기\r\n * 균등 배분 예시\r\n * @param cell\r\n * @param rows\r\n * @param dataField\r\n */\r\nvar UpdateCellValue = function (cell, rows, dataField) {\r\n    var unLockedRows = []; //Lock이 아닌 Row 목록\r\n    var editRow;\r\n    var lockedValue = 0.0; //Lock된 Row의 값\r\n    var beforeValue = 0.0; //수정전 값\r\n    var fldValue = 0.0;\r\n    var dataColumnIndex = dataField.DataColumnIndex; //수정된 데이터 셀의 DataColumnIndex\r\n    var row;\r\n    for (var r = 0, r2 = rows.length; r < r2; r++) {\r\n        row = rows[r]; //데이터 셀을 구성하는 Row\t\t\r\n        fldValue = row.getNumber(dataColumnIndex); //수정된 데이터 셀의 값\r\n        if (isNaN(fldValue) == true) { //수정된 데이터 셀의 값이 NaN일 경우\r\n            fldValue = 0.0;\r\n        }\r\n        beforeValue += fldValue; //수정전 값 누적\r\n        if (row.IsLockColumn(dataColumnIndex) == false) { //Lock이 아닐 경우에만 수정\r\n            unLockedRows.push({ \"Row\": row, \"Value\": fldValue }); //Lock이 아닌 Row 목록에 추가\r\n        }\r\n        else {\r\n            lockedValue += fldValue;\r\n        }\r\n    }\r\n    if (unLockedRows.length == 0) {\r\n        return; //모두 잠김 셀 이라면 수정하지 않음.\r\n    }\r\n    //잠김셀의 값의 합이 입력된 값보다 작은경우 (수정할 수 없다, 값이 음수 이상이어야 한다.)\r\n    if (lockedValue > cell.After) {\r\n        throw \"Enter a value that is greater than the sum of the lock cells.(Lock:\" + lockedValue + \", Input:\" + cell.After + \")\";\r\n    }\r\n    //가감해야 하는 값 \r\n    var diff = cell.After - beforeValue;\r\n    var diviedValue = diff / unLockedRows.length; //균등 배분 값\r\n    OLAPContext.WriteLog(\"OLAP_WRITE_BACK\", \"diviedValue:\" + diviedValue + \", diff:\" + diff\r\n        + \", beforeValue:\" + beforeValue\r\n        + \", lockedValue:\" + lockedValue\r\n        + \", cell.After:\" + cell.After\r\n        + \", unLockedRows.length:\" + unLockedRows.length);\r\n    //균등 배분\r\n    for (var i = 0, i2 = unLockedRows.length; i < i2; i++) {\r\n        editRow = unLockedRows[i]; //Lock이 아닌 Row \r\n        if (editRow.Value + diviedValue < 0) { //균등 배분값을 더했을때 0보다 작으면 해당 값 만큼 빼준다.\r\n            diff -= editRow.Value;\r\n            editRow.Value = 0.0;\r\n            editRow.Row.setNumber(dataColumnIndex, 0.0);\r\n        }\r\n        else {\r\n            //균등 배분값을 더한 값으로 수정\r\n            diff -= diviedValue;\r\n            editRow.Value += diviedValue;\r\n            editRow.Row.setNumber(dataColumnIndex, editRow.Value);\r\n        }\r\n    }\r\n    if (diff > 0) {\r\n        //끝전 처리 (큰 데이터에 묻힌다.)\r\n        var sortRows = unLockedRows.sort(function (a, b) {\r\n            return b.Value - a.Value;\r\n        }); //정렬\r\n        //0보다 큰 값들.\r\n        var sumValue = 0.0;\r\n        unLockedRows = [];\r\n        for (var i = 0, i2 = sortRows.length; i < i2; i++) {\r\n            if (sortRows[i].Value <= 0) {\r\n                break;\r\n            }\r\n            sumValue += sortRows[i].Value;\r\n            unLockedRows.push(sortRows[i]);\r\n        }\r\n        for (var i = 0, i2 = unLockedRows.length; i < i2; i++) {\r\n            editRow = unLockedRows[i]; //Lock이 아닌 Row \r\n            if (diff <= 0) {\r\n                break;\r\n            }\r\n            //비율에 맞춰서 차감\r\n            if (editRow.Value > 0) {\r\n                var editValue = diff * (editRow.Value / sumValue); //비율에 맞춰서 차감\r\n                diff -= editValue;\r\n                unLockedRows[i].Value -= editValue;\r\n                editRow.Row.setNumber(dataColumnIndex, editRow.Value);\r\n            }\r\n        }\r\n    }\r\n};\r\nvar editCells = OLAPContext.getEditCells(); //수정된 데이터 셀\r\nvar rows; //데이터셀을 구성하는 Rows\r\nvar dataCell; //수정된 데이터 셀\r\nvar dataField; //수정된 데이터 셀의 필드 정보\r\nvar beforeValue; //수정전 값\r\nvar afterValue; //수정후 값\r\nfor (var c = 0, c2 = editCells.length; c < c2; c++) {\r\n    dataCell = editCells[c]; //수정된 데이터 셀\r\n    rows = OLAPContext.getRows(dataCell); //수정된 데이터 셀을 구성하는 Rows\r\n    dataField = OLAPContext.getField(dataCell.Field); //수정된 데이터 셀의 필드 정보\r\n    beforeValue = dataCell.Before; //수정전 값\r\n    afterValue = dataCell.After; //수정후 값\r\n    if (beforeValue != afterValue) {\r\n        UpdateCellValue(dataCell, rows, dataField); //수정된 데이터 셀의 값 업데이트\r\n        //행을 추가하고 싶은경우...\r\n        //let row = OLAPContext.addRow(dataCell);//수정된 데이터 셀 기준으로 Row 추가\r\n        //row.setString(OLAPContext.getField(\"D7\").DataColumnIndex, \"추가\");\t\t\r\n        //row.setNumber(dataField.DataColumnIndex, 100);\r\n    }\r\n}\r\n"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "Formc911a14a-e832-bcd8-df27-ace611f66cb1",
+      "Name": "Smaple",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 2,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "ServerScript": "",
+          "AutoRefresh": false,
+          "DoRefresh": true,
+          "DoExport": true,
+          "TemplateCode": "",
+          "ActiveSheet": "",
+          "UseMultiSheet": false,
+          "FreezeLineThickness": 1,
+          "ParentGridName": "",
+          "DisableScrollBar": false,
+          "LimitOfBinding": 1000,
+          "SelectedColor": {
+            "R": 198,
+            "G": 217,
+            "B": 241,
+            "A": 0.5
+          },
+          "FreezeLineColor": {
+            "R": 127,
+            "G": 127,
+            "B": 127,
+            "A": 1
+          },
+          "SelectionBorderColor": "rgba(234, 86, 64, 0.5)",
+          "SelectionMode": 0,
+          "Controls": [
+            {
+              "DataSource": "DS",
+              "ServerScript": "OLAP_WRITE_BACK",
+              "AutoRefresh": false,
+              "DoRefresh": true,
+              "DoExport": true,
+              "iOLAPView": {
+                "Options": {
+                  "ViewType": 0,
+                  "IsExpandAll": true,
+                  "ShowExpandButtons": true,
+                  "EmptyCellText": "-",
+                  "NotAvaliableCellText": "N/A",
+                  "ZeroDivisioinCellText": "#DIV/0!",
+                  "ErrorCellText": "NG",
+                  "RowGrandTotalText": "Grand Total",
+                  "ColumnGrandTotalText": "Grand Total",
+                  "RowTotalText": " Total",
+                  "ColumnTotalText": " Total",
+                  "RowTotalLocation": 1,
+                  "ColumnTotalLocation": 0,
+                  "RowGrandTotalLocation": 1,
+                  "ColumnGrandTotalLocation": 0,
+                  "DisplayColumnSubTotal": false,
+                  "HideTotalChildIsOneColumn": true,
+                  "HideTotalChildIsOneRow": true,
+                  "HideEmptyMeasureRows": false,
+                  "HideEmptyMeasureColumns": false,
+                  "DisplayRowSubTotal": true,
+                  "DisplayColumnGrandTotal": true,
+                  "DisplayRowGrandTotal": true,
+                  "ShowFilterArea": true,
+                  "ShowColumnrArea": true,
+                  "ShowRowArea": true,
+                  "ShowDataArea": true,
+                  "UseMultiHeader": false,
+                  "RowAreaText": "Row Area",
+                  "ColumnAreaText": "Column Area",
+                  "DataAreaText": "Data Area",
+                  "FilterAreaText": "Filter Area",
+                  "MeasuresText": "Measures",
+                  "AutoSelection": false,
+                  "AutoSelectionRangeLeft": 0,
+                  "AutoSelectionRangeTop": 0,
+                  "AutoSelectionRangeRight": 0,
+                  "AutoSelectionRangeBottom": 0,
+                  "HideHorizontalScrollBar": false,
+                  "HideVerticalScrollBar": false,
+                  "DisableClipBoard": false,
+                  "CellHeight": 23,
+                  "HeaderCellHeight": 23,
+                  "CanResizeCellWidth": true,
+                  "RowHeaderUnFix": false,
+                  "MeasuresCreateArea": 2,
+                  "TreeHeaderWidth": 300,
+                  "TreeIndentWidth": 20,
+                  "DisableColumnSort": false,
+                  "EnableWriteBack": true,
+                  "EnableCreateRecord": false,
+                  "ManualUpdate": false,
+                  "MergeColumnHeaders": false,
+                  "MergeRowHeaders": false,
+                  "OptimizingHybridFilter": false,
+                  "AutoHideGrandTotalRow": false,
+                  "AutoHideGrandTotalColumn": false,
+                  "ExportOption": {
+                    "ExportSheetSize": 1000000,
+                    "ExportDisableRowMerge": false,
+                    "UseServerExport": true
+                  },
+                  "PagerInfo": {
+                    "PageSize": 0,
+                    "UsePaging": false,
+                    "IgnoreTotalCount": false
+                  },
+                  "Style": {
+                    "ColumnHeaderVerticalAlignment": 0,
+                    "RowHeaderVerticalAlignment": 0,
+                    "LineColor": "rgba(152,183,216,1)",
+                    "BackgroundColor": ""
+                  },
+                  "CacheOption": {
+                    "CacheMode": 1,
+                    "ExpiredMinutes": 480,
+                    "UpdateMinutes": 60,
+                    "UseHybrid": false,
+                    "HybridSort": false
+                  }
+                },
+                "TopFilter": {
+                  "Dimension": "",
+                  "Measure": "",
+                  "Rank": 10,
+                  "IsTop": true,
+                  "GroupBy": []
+                },
+                "PreFilters": [],
+                "Fields": [
+                  {
+                    "Key": "D5",
+                    "Caption": "D5",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 1,
+                    "Area": 1,
+                    "SummaryType": 5,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 200,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 1,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 0,
+                    "DataType": 1,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "#MEASURES_HEADER#",
+                    "Caption": "Measures",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 2,
+                    "Area": 2,
+                    "SummaryType": 0,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 100,
+                    "Unit": 1,
+                    "CreateType": 1,
+                    "SortType": 0,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": false,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": false,
+                    "KeyType": 0,
+                    "DataType": 0,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "P1",
+                    "Caption": "P1",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 1,
+                    "Area": 3,
+                    "SummaryType": 5,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 100,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 1,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 3,
+                    "DataType": 1,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "M1",
+                    "Caption": "M1",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 2,
+                    "Area": 4,
+                    "SummaryType": 1,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "{0:N0}",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 159,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 0,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 2,
+                    "DataType": 0,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "EditMethod": 3,
+                    "EditPrecision": 0,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "D6",
+                    "Caption": "D6",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 1,
+                    "Area": 1,
+                    "SummaryType": 5,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 254,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 1,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 0,
+                    "DataType": 1,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "M3",
+                    "Caption": "M3",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 2,
+                    "Area": 3,
+                    "SummaryType": 1,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "{0:N0}",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 100,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 0,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 2,
+                    "DataType": 0,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "EditMethod": 3,
+                    "EditPrecision": 0,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "M2",
+                    "Caption": "M2",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 2,
+                    "Area": 4,
+                    "SummaryType": 1,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "{0:N0}",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 100,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 0,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 2,
+                    "DataType": 0,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "EditMethod": 3,
+                    "EditPrecision": 0,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "D7",
+                    "Caption": "D7",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 1,
+                    "Area": 1,
+                    "SummaryType": 5,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 209,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 1,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 0,
+                    "DataType": 1,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "D8",
+                    "Caption": "D8",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 1,
+                    "Area": 3,
+                    "SummaryType": 5,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 100,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 1,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 0,
+                    "DataType": 1,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "D4",
+                    "Caption": "D4",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 1,
+                    "Area": 3,
+                    "SummaryType": 5,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 273,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 1,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 0,
+                    "DataType": 1,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": false,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "D3",
+                    "Caption": "D3",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 1,
+                    "Area": 3,
+                    "SummaryType": 5,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 164,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 1,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 0,
+                    "DataType": 1,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": false,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "D2",
+                    "Caption": "D2",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 1,
+                    "Area": 3,
+                    "SummaryType": 5,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 100,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 1,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 0,
+                    "DataType": 1,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": false,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "D1",
+                    "Caption": "D1",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 1,
+                    "Area": 3,
+                    "SummaryType": 5,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 77,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 1,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 0,
+                    "DataType": 1,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": false,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  }
+                ],
+                "MultiHeaderCells": []
+              },
+              "ExtraOption": {
+                "CurrentPageSize": 100,
+                "UseMeta": false,
+                "UseChartSourceTotal": false,
+                "UseChartSourceGrandTotal": false,
+                "UseChartSourceReverse": false,
+                "ChartLabelDepth": -1,
+                "ConditionalStyleName": "",
+                "BackgroundColorBoxStyleKey": "",
+                "EtcExportData": true,
+                "EtcExportExcel": true,
+                "EtcExportCSV": true,
+                "EtcExportText": true,
+                "EtcExpandAll": true,
+                "EtcExpandAllClose": true,
+                "EtcFormat": true,
+                "EtcVisibleTotal": true,
+                "EtcSort": true,
+                "EtcFilterClean": true,
+                "EtcSwitchRowAndColumn": true,
+                "EtcLayoutEditor": true,
+                "EtcProperties": true,
+                "EtcAnalysisItemsSettings": true,
+                "EtcFormulaEditor": true,
+                "EtcCustomDimensionFields": true,
+                "EtcHiding": false,
+                "EtcStyle": true,
+                "EtcMultiHeader": true,
+                "EtcCacheInfo": true,
+                "EtcFieldGroup": true,
+                "EtcFilterManager": true,
+                "EtcTopFilter": true
+              },
+              "Type": "OlapGrid",
+              "Id": "OlapGrid1643090455349",
+              "Name": "OlapGrid",
+              "Position": {
+                "Left": 4,
+                "Top": 89,
+                "Width": 1855,
+                "Height": 793,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,3",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 204,
+                    "G": 204,
+                    "B": 204,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 0,
+                    "G": 0,
+                    "B": 0,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": false,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "top",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "ChildElements": [
+                {
+                  "Type": "DataGrid",
+                  "Id": "GRID28ea8c51-b475-6fff-2d6c-ed76ae09dfc4",
+                  "Name": "DataGrid",
+                  "Visible": true,
+                  "Position": {
+                    "Left": 0,
+                    "Top": -416,
+                    "Width": 1697,
+                    "Height": 440,
+                    "ZIndex": 3,
+                    "TabIndex": 0,
+                    "Docking": {
+                      "Margin": "0",
+                      "MinHeight": 0,
+                      "MinWidth": 0,
+                      "Left": true,
+                      "Right": true,
+                      "Bottom": true
+                    }
+                  },
+                  "Style": {
+                    "Type": 2,
+                    "Border": {
+                      "Type": 0,
+                      "Color": {
+                        "R": 187,
+                        "G": 199,
+                        "B": 211,
+                        "A": 1
+                      },
+                      "Thickness": "1,1,1,1"
+                    },
+                    "VerticalBorder": {
+                      "Type": 0,
+                      "Color": {
+                        "R": 187,
+                        "G": 199,
+                        "B": 211,
+                        "A": 1
+                      },
+                      "Thickness": 1
+                    },
+                    "HorizontalBorder": {
+                      "Type": 0,
+                      "Color": {
+                        "R": 187,
+                        "G": 199,
+                        "B": 211,
+                        "A": 1
+                      },
+                      "Thickness": 1
+                    },
+                    "Background": {
+                      "Color": {
+                        "R": 255,
+                        "G": 255,
+                        "B": 255,
+                        "A": 1
+                      }
+                    },
+                    "Font": {
+                      "Bold": false,
+                      "Color": {
+                        "R": 0,
+                        "G": 0,
+                        "B": 0,
+                        "A": 1
+                      },
+                      "Family": "맑은 고딕",
+                      "HorizontalAlignment": "left",
+                      "Italic": false,
+                      "Size": 12,
+                      "UnderLine": false,
+                      "VerticalAlignment": "top"
+                    }
+                  },
+                  "CellMargin": "5,5,5,5",
+                  "DataSource": "DS",
+                  "DoRefresh": false,
+                  "ColumnHeaderHeight": 23,
+                  "RowHeight": 23,
+                  "ExportCount": 0,
+                  "FontFamily": "inherit",
+                  "FontSize": 12,
+                  "UsePPTExport": false,
+                  "FrozenLineBrush": {
+                    "Type": 0,
+                    "Color": {
+                      "R": 127,
+                      "G": 127,
+                      "B": 127,
+                      "A": 1
+                    }
+                  },
+                  "Columns": [
+                    {
+                      "Name": "P1",
+                      "Caption": "P1",
+                      "Width": 100,
+                      "Validator": {
+                        "ValidateType": 0,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
+                      "KeyType": 2,
+                      "HeaderPosition": "center"
+                    },
+                    {
+                      "Name": "D1",
+                      "Caption": "D1",
+                      "Width": 306,
+                      "Validator": {
+                        "ValidateType": 0,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
+                      "KeyType": 2,
+                      "HeaderPosition": "center"
+                    },
+                    {
+                      "Name": "D2",
+                      "Caption": "D2",
+                      "Width": 100,
+                      "Validator": {
+                        "ValidateType": 0,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
+                      "KeyType": 2,
+                      "HeaderPosition": "center"
+                    },
+                    {
+                      "Name": "D3",
+                      "Caption": "D3",
+                      "Width": 100,
+                      "Validator": {
+                        "ValidateType": 0,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
+                      "KeyType": 2,
+                      "HeaderPosition": "center"
+                    },
+                    {
+                      "Name": "D4",
+                      "Caption": "D4",
+                      "Width": 100,
+                      "Validator": {
+                        "ValidateType": 0,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
+                      "KeyType": 2,
+                      "HeaderPosition": "center"
+                    },
+                    {
+                      "Name": "D5",
+                      "Caption": "D5",
+                      "Width": 100,
+                      "Validator": {
+                        "ValidateType": 0,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
+                      "KeyType": 2,
+                      "HeaderPosition": "center"
+                    },
+                    {
+                      "Name": "D6",
+                      "Caption": "D6",
+                      "Width": 100,
+                      "Validator": {
+                        "ValidateType": 0,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
+                      "KeyType": 2,
+                      "HeaderPosition": "center"
+                    },
+                    {
+                      "Name": "D7",
+                      "Caption": "D7",
+                      "Width": 100,
+                      "Validator": {
+                        "ValidateType": 0,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
+                      "KeyType": 2,
+                      "HeaderPosition": "center"
+                    },
+                    {
+                      "Name": "D8",
+                      "Caption": "D8",
+                      "Width": 100,
+                      "Validator": {
+                        "ValidateType": 0,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
+                      "KeyType": 2,
+                      "HeaderPosition": "center"
+                    },
+                    {
+                      "Name": "M1",
+                      "Caption": "M1",
+                      "Width": 100,
+                      "Validator": {
+                        "ValidateType": 0,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
+                      "ColumnType": 3,
+                      "Format": "{0:N0}",
+                      "KeyType": 2,
+                      "DataType": 0,
+                      "HeaderPosition": "center",
+                      "TextPosition": "end",
+                      "DisplaySubTotalType": "Hidden",
+                      "CalcSubTotalType": "Sum"
+                    },
+                    {
+                      "Name": "M2",
+                      "Caption": "M2",
+                      "Width": 100,
+                      "Validator": {
+                        "ValidateType": 0,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
+                      "ColumnType": 3,
+                      "Format": "{0:N0}",
+                      "KeyType": 2,
+                      "DataType": 0,
+                      "HeaderPosition": "center",
+                      "TextPosition": "end",
+                      "DisplaySubTotalType": "Hidden",
+                      "CalcSubTotalType": "Sum"
+                    },
+                    {
+                      "Name": "M3",
+                      "Caption": "M3",
+                      "Width": 100,
+                      "Validator": {
+                        "ValidateType": 0,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
+                      "ColumnType": 3,
+                      "Format": "{0:N0}",
+                      "KeyType": 2,
+                      "DataType": 0,
+                      "HeaderPosition": "center",
+                      "TextPosition": "end",
+                      "DisplaySubTotalType": "Hidden",
+                      "CalcSubTotalType": "Sum"
+                    }
+                  ]
+                },
+                {
+                  "LanguageCode": "",
+                  "Text": " Drill To Detail (데이터 베이스 기준)",
+                  "Cursor": "default",
+                  "Formula": "",
+                  "MxBinding": "",
+                  "MxBindingUseStyle": false,
+                  "UseTooltip": true,
+                  "Margin": {
+                    "Left": 0,
+                    "Top": 0,
+                    "Right": 0,
+                    "Bottom": 0,
+                    "Text": "0,0,0,0"
+                  },
+                  "Type": "Label",
+                  "Id": "Labele438210e-aec3-b075-96e9-a38abb73d613",
+                  "Name": "Label",
+                  "InGroup": "Group",
+                  "Position": {
+                    "Left": 0,
+                    "Top": 0,
+                    "Width": 1697,
+                    "Height": 24,
+                    "ZIndex": 5,
+                    "TabIndex": 0,
+                    "Docking": {
+                      "Left": true,
+                      "Right": true,
+                      "Top": true,
+                      "Bottom": false,
+                      "Margin": "0",
+                      "HoldSize": false,
+                      "MinWidth": 0,
+                      "MinHeight": 0
+                    }
+                  },
+                  "Style": {
+                    "Type": 2,
+                    "BoxStyle": "",
+                    "Background": {
+                      "Color": {
+                        "R": 207,
+                        "G": 226,
+                        "B": 243,
+                        "A": 1
+                      }
+                    },
+                    "Border": {
+                      "Color": {
+                        "R": 85,
+                        "G": 142,
+                        "B": 213,
+                        "A": 1
+                      },
+                      "LineType": "none",
+                      "Thickness": "1,1,1,1",
+                      "CornerRadius": "0,0,0,0"
+                    },
+                    "Font": {
+                      "Color": {
+                        "R": 12,
+                        "G": 56,
+                        "B": 134,
+                        "A": 1
+                      },
+                      "Size": 12,
+                      "Family": "inherit",
+                      "Bold": true,
+                      "Italic": false,
+                      "UnderLine": false,
+                      "HorizontalAlignment": "left",
+                      "VerticalAlignment": "middle",
+                      "TempFontFamily": "맑은 고딕"
+                    }
+                  }
+                }
+              ],
+              "Type": "Group",
+              "Id": "Group1643090538332",
+              "Name": "Group",
+              "Visible": false,
+              "Position": {
+                "Left": 3,
+                "Top": 978,
+                "Width": 1714,
+                "Height": 3,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,3,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 103,
+                    "G": 144,
+                    "B": 190,
+                    "A": 1
+                  },
+                  "LineType": "none",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 0,
+                    "G": 0,
+                    "B": 0,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": false,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "top",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            }
+          ],
+          "MenuOption": {
+            "VisibleExcel": true,
+            "VisibleHTML": true,
+            "VisiblePDF": true
+          },
+          "MoveAfterReturn": 1,
+          "Type": "iGrid",
+          "Id": "iGrid1643090481562",
+          "Name": "MXGrid",
+          "Position": {
+            "Left": 3,
+            "Top": 88,
+            "Width": 1872,
+            "Height": 793,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": true,
+              "Margin": "3",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": "Custom",
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "수동 업데이트",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": false,
+          "Type": "CheckBox",
+          "Id": "CheckBoxe16c811f-ea63-7f4f-88c9-cf44e107c08b",
+          "Name": "chkManualUpdate",
+          "Position": {
+            "Left": 288,
+            "Top": 9,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "빈셀 데이터 자동 생성",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": false,
+          "Type": "CheckBox",
+          "Id": "CheckBox9d134046-ae6d-ebef-a3f2-e7cd8f6fb291",
+          "Name": "chkEnableCreateRecord",
+          "Position": {
+            "Left": 401,
+            "Top": 10,
+            "Width": 148,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "DataSource": "DS1",
+          "Value": "3",
+          "Text": "가중치 배분(force)",
+          "InitType": 0,
+          "RefreshType": 1,
+          "IsReadOnly": false,
+          "SortType": 0,
+          "AutoRefresh": true,
+          "AfterRefresh": "",
+          "UseAllItems": false,
+          "UseAllItemsText": "전체",
+          "DisplayType": 1,
+          "DataSourceInfo": {
+            "LabelField": "",
+            "ValueField": ""
+          },
+          "InitValue": "3",
+          "UseTooltip": true,
+          "Type": "ComboBox",
+          "Id": "ComboBox5e72f37a-e4a3-65c1-bf2d-9f8f6a15b212",
+          "Name": "VN_BAEBUN_TYPE",
+          "Position": {
+            "Left": 86,
+            "Top": 6,
+            "Width": 154,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": " 배분 방식",
+          "Cursor": "default",
+          "Formula": "",
+          "MxBinding": "",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Top": 0,
+            "Right": 0,
+            "Bottom": 0,
+            "Text": "0,0,0,0"
+          },
+          "Type": "Label",
+          "Id": "Label75c3a4d1-9c96-2c7c-b19d-88a445adc3c5",
+          "Name": "Label1",
+          "Position": {
+            "Left": 14,
+            "Top": 4,
+            "Width": 69,
+            "Height": 23,
+            "ZIndex": 5,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Value": "저장",
+          "Cursor": "pointer",
+          "UseTooltip": true,
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0",
+            "Inset": false
+          },
+          "HasNewRadius": false,
+          "Type": "Button",
+          "Id": "Buttonb7166246-3e8e-ad6f-17e3-048d19c03416",
+          "Name": "btnUpate",
+          "Position": {
+            "Left": 638,
+            "Top": 6,
+            "Width": 60,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 46,
+                "G": 87,
+                "B": 160,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 12,
+                "G": 56,
+                "B": 134,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "1"
+            },
+            "Font": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Value": "계산하기",
+          "Cursor": "pointer",
+          "UseTooltip": true,
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0",
+            "Inset": false
+          },
+          "HasNewRadius": false,
+          "Type": "Button",
+          "Id": "Button9b0e582f-8ab1-2314-9386-809ab2958498",
+          "Name": "btnCalculate",
+          "Position": {
+            "Left": 567,
+            "Top": 6,
+            "Width": 60,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 46,
+                "G": 87,
+                "B": 160,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 12,
+                "G": 56,
+                "B": 134,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "1"
+            },
+            "Font": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "Formula": "",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "MxBinding": "",
+          "Value": "[D8] = \"입고\"",
+          "Text": "[D8] = \"입고\"",
+          "Type": "RichTextBox",
+          "Id": "RichTextBox1cb4d93d-f006-30a3-6352-263bacc521d4",
+          "Name": "tbxLockCellFormula",
+          "Position": {
+            "Left": 85,
+            "Top": 34,
+            "Width": 269,
+            "Height": 47,
+            "ZIndex": 5,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "셀 잠금 수식",
+          "Cursor": "default",
+          "Formula": "",
+          "MxBinding": "",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Top": 0,
+            "Right": 0,
+            "Bottom": 0,
+            "Text": "0,0,0,0"
+          },
+          "Type": "Label",
+          "Id": "Label31174719-778c-6d16-c726-cdb4bbf02ce1",
+          "Name": "Label2",
+          "Position": {
+            "Left": 15,
+            "Top": 35,
+            "Width": 69,
+            "Height": 23,
+            "ZIndex": 5,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Id": "Form3daf703d-9a1e-d517-cb87-020a7c9e7286",
+      "Name": "Write-Back 가이드",
+      "Activated": false,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 2,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "ServerScript": "",
+          "AutoRefresh": true,
+          "DoRefresh": false,
+          "DoExport": true,
+          "TemplateCode": "3DA83891F15444B38AED2BBE3F2F29DD",
+          "ActiveSheet": "",
+          "UseMultiSheet": false,
+          "FreezeLineThickness": 1,
+          "ParentGridName": "",
+          "DisableScrollBar": false,
+          "LimitOfBinding": 1000,
+          "SelectedColor": {
+            "R": 198,
+            "G": 217,
+            "B": 241,
+            "A": 0.5
+          },
+          "FreezeLineColor": {
+            "R": 127,
+            "G": 127,
+            "B": 127,
+            "A": 1
+          },
+          "SelectionBorderColor": "rgba(234, 86, 64, 0.5)",
+          "SelectionMode": 0,
+          "Controls": [],
+          "MenuOption": {
+            "VisibleExcel": true,
+            "VisibleHTML": true,
+            "VisiblePDF": true
+          },
+          "MoveAfterReturn": 1,
+          "Type": "iGrid",
+          "Id": "iGrid1643118662708",
+          "Name": "MXGrid1",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1898,
+            "Height": 937,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": true,
+              "Bottom": true,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [
+    {
+      "EVENT_YN": "N",
+      "CREATE_USER": "yglee",
+      "MODULE_DESCRIPTION": "상/하 컨트롤을 Resize할 수 있는 Splitter를 넣습니다.",
+      "SCRIPT_TEXT": "  var igrid = Matrix.getObject(arguments[0]);\n \tvar ctlTop = Matrix.getObject(arguments[1]);\n \tvar ctlBottom = Matrix.getObject(arguments[2]);\n \tvar splitterColor = arguments[3];\n\tvar SPLITTER_COLOR = \"#FF95B3D7\";\n\tif(!igrid || !ctlTop || !ctlBottom) return;\n\t\n\t\n\tif(ctlTop.ZIndex <=  igrid.ZIndex){\n\t\tctlTop.ZIndex =  igrid.ZIndex + 2;\n    ctlTop.Update();\n\t}\n\t ctlTop.Docking.Margin = \"0,0,0,3\";\n  \n\tif(ctlBottom.ZIndex <=  igrid.ZIndex){\n\t\tctlBottom.ZIndex =  igrid.ZIndex + 2;\n    ctlBottom.Update();\n\t}\n\tctlBottom.Docking.Margin = \"0,3,0,0\";\n  igrid.Style.Type=\"Custom\";\n  igrid.Style.Border.LineType =\"none\";\n  igrid.Update();\n\t\n\tif(splitterColor){\n    splitterColor = splitterColor.trim();\n\t\tif(splitterColor.indexOf(\"#\") == 0){\n\t\t\tSPLITTER_COLOR = \"#FF\" + splitterColor.substring(1,splitterColor.length);\t\t\t\n\t\t}\n\t}\n   var h1 = ctlTop.Height  + 3;\n   var h2 = 23;//ctlBottom.Height;\n   \tvar json = {\n\t\t\t\"DefaultFontName\":\"맑은 고딕\"\n\t\t\t,\"DefaultFontSize\":15\n\t\t\t,\"OriginFontSize\":11\n\t\t\t,\"Styles\":{\n\t\t\t\t\"S0\":{\"text-align\":\"left\",\"vertical-align\":\"middle\"},\n\t\t\t\t\"S1\":{\"border-bottom\":\"Thick,\" + SPLITTER_COLOR},\n\t\t\t\t\"S2\":{\"border-top\":\"Thick,\" + SPLITTER_COLOR}\n\t\t\t},\n\t\t\t\"Tables\":[\n\t\t\t{\n\t\t\t\t\"FreezePanes\":{\"Row\":-1, \"Column\":-1} \n\t\t\t\t,\"Columns\":[\n\t\t\t\t\t{\"Index\": 1 , \"width\":502,\"W\":62.13 , \"Unit\":1 }\n\t\t\t\t\t]\n\t\t\t\t, \"Rows\":[\n\t\t\t\t\t{\"R\":1,\"Height\":h1,\"height\":h1,\"Resize\":2,\"H\":122.25 \n\t\t\t\t\t,\"Cells\":[\n\t\t\t\t\t{\"Range\":\"A1\",\"R\":1,\"C\":1,\"class\":\"S1\",\"Type\":\"Empty\",\"CTL\":ctlTop.Name}\n\t\t\t\t\t]}\n\t\t\t\t\t,{\"R\":2,\"Height\":h2,\"height\":h2,\"Resize\":2,\"H\":122.25,\"Unit\":1\n\t\t\t\t\t,\"Cells\":[\n\t\t\t\t\t{\"Range\":\"A2\",\"R\":2,\"C\":1,\"class\":\"S2\",\"Type\":\"Empty\",\"CTL\":ctlBottom.Name}\n\t\t\t\t\t]}\n\t\t\t\t\t]\n\t\t\t\t\t,\"UsageExpand\":false\n\t\t\t\t\t,\"HasPerCol\":true\n\t\t\t\t\t,\"HasPerRow\":true\n\t\t\t\t\t \n\t\t\t\t}\n\t\t\t]\n\t\t};   \n\tigrid.ApplyDataSource(json);",
+      "WF_YN": "Y",
+      "RESULT_TYPE": "",
+      "MODULE_SUBJECT": "Splitter 상/하 (MX-Grid 사용)",
+      "MODULE_TYPE": "",
+      "CREATE_DATE": "2021-01-19 00:17:53",
+      "DELETE_FLAG": "Y",
+      "MODULE_SEQ": "8",
+      "ORIGINAL_MODULE_CODE": "",
+      "MODIFY_DATE": "2022-06-30 17:46:06",
+      "MODULE_CODE": "MODA673ED75A2354FDB9F82AF23B78BA50F",
+      "EDIT_AUTHORITY": "-1",
+      "MODIFY_USER": "yglee"
+    },
+    {
+      "EVENT_YN": "N",
+      "CREATE_USER": "yglee",
+      "MODULE_DESCRIPTION": "OlapGrid의 Drill To Detail 데이터를 그리드에 출력합니다.\n(이 모듈은 OnDocumentLoadComplete에 지정하십시요.)",
+      "SCRIPT_TEXT": "   \tvar args =  arguments[arguments.length -1];\n\tif(args != null && args.Id){\n\t\tif(Matrix.getObject(args.Id) != null){\n\t\talert(\"이 모듈은 컨트롤의 이벤트에 등록 하실 수 없습니다.\\n모듈로 사용하시거나 Report Open 이벤트에서 사용하시기 바랍니다.\");\n\t\treturn;\n\t\t}\n\t}\n\tvar olap =  Matrix.getObject(arguments[0]);\n\tif(!olap) return;\n\tvar grid =  Matrix.getObject(arguments[1]);\n\tif(!olap) return;\n\tolap.OnDataCellDoubleClick = function(sender, args){ \t\n\t\n\t\tvar ds = Matrix.getControlDataSource(olap.Name);\n\t\tif(ds){\n\t\t\tif(ds.useMeta == \"True\"){\n\t\t\t\t  var xml = olap.getDrillToDetailXml(args.DataCell);\n\t\t\t\t  Matrix.DrillToDetail(olap, xml, grid.Name);\n\t\t\t}else{\n\t\t\t\t  olap.ExecuteDrillToDetail(args.DataCell ,grid.Name);\n\t\t\t}\n\t\t}\t\n\t\t\n\t};",
+      "WF_YN": "Y",
+      "RESULT_TYPE": "",
+      "MODULE_SUBJECT": "OlapGrid Drill To Detail ",
+      "MODULE_TYPE": "",
+      "CREATE_DATE": "2020-12-30 00:49:25",
+      "DELETE_FLAG": "N",
+      "MODULE_SEQ": "19",
+      "ORIGINAL_MODULE_CODE": "",
+      "MODIFY_DATE": "2022-07-01 05:46:06",
+      "MODULE_CODE": "MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8",
+      "EDIT_AUTHORITY": "-1",
+      "MODIFY_USER": "yglee"
+    }
+  ],
+  "WorkFlowInfo": "{\"Document\":{\"Name\":\"Report\",\"Events\":[{\"Name\":\"OnDocumentLoadComplete\",\"Flow\":{\"Actions\":[{\"Name\":\"Module\",\"Parameters\":[\"Splitter 상/하 (MX-Grid 사용)\",\"{\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"MODULE_SUBJECT\\\":\\\"Splitter 상/하 (MX-Grid 사용)\\\",\\\"MODULE_PARAMS\\\":[{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"1\\\",\\\"PARAM_DESCRIPTION\\\":\\\"Splitter로 사용할 MX-Grid 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"MXGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"2\\\",\\\"PARAM_DESCRIPTION\\\":\\\"상단에 배치할 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"OlapGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"3\\\",\\\"PARAM_DESCRIPTION\\\":\\\"하단에 배치할 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"Group\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"Y\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP001\\\",\\\"PARAM_SEQ\\\":\\\"4\\\",\\\"PARAM_DESCRIPTION\\\":\\\"Splitter의 색상을 입력해 주세요.(eg.#efefef) \\\\n입력하지 않을 경우 기본값이 적용됩니다.\\\",\\\"Value\\\":\\\"\\\"}],\\\"MODULE_TYPE\\\":\\\"\\\"}\"]},{\"Name\":\"Module\",\"Parameters\":[\"OlapGrid Drill To Detail \",\"{\\\"MODULE_CODE\\\":\\\"MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8\\\",\\\"MODULE_SUBJECT\\\":\\\"OlapGrid Drill To Detail \\\",\\\"MODULE_PARAMS\\\":[{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"1\\\",\\\"PARAM_DESCRIPTION\\\":\\\"OlapGrid 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"OlapGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"2\\\",\\\"PARAM_DESCRIPTION\\\":\\\"상세 데이터를 출력할 데이터 그리드를 선택해 주세요.\\\",\\\"Value\\\":\\\"DataGrid\\\"}],\\\"MODULE_TYPE\\\":\\\"\\\"}\"]}],\"IsChecked\":true,\"SourceXML\":\"<Activity x:Class=\\\"Report(Open)_OnDocumentLoadComplete\\\" sap:VirtualizedContainerService.HintSize=\\\"276,342\\\" mva:VisualBasic.Settings=\\\"Assembly references and imported namespaces for internal implementation\\\" xmlns=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities\\\" xmlns:mva=\\\"clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities\\\" xmlns:sads=\\\"http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger\\\" xmlns:sap=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation\\\" xmlns:scg=\\\"clr-namespace:System.Collections.Generic;assembly=mscorlib\\\" xmlns:wa=\\\"clr-namespace:WorkFlow.Activities;assembly=WorkFlow\\\" xmlns:x=\\\"http://schemas.microsoft.com/winfx/2006/xaml\\\">\\r\\n  <Sequence DisplayName=\\\"Report(Open)_OnDocumentLoadComplete\\\" sap:VirtualizedContainerService.HintSize=\\\"236,302\\\">\\r\\n    <sap:WorkflowViewStateService.ViewState>\\r\\n      <scg:Dictionary x:TypeArguments=\\\"x:String, x:Object\\\">\\r\\n        <x:Boolean x:Key=\\\"IsExpanded\\\">True</x:Boolean>\\r\\n      </scg:Dictionary>\\r\\n    </sap:WorkflowViewStateService.ViewState>\\r\\n    <wa:Module ConditionExpression=\\\"{x:Null}\\\" ConditionToolTipText=\\\"\\\" DiagramText=\\\"Module\\\" DisplayName=\\\"Module\\\" Expand=\\\"False\\\" FunctionName=\\\"_AUD_Module\\\" sap:VirtualizedContainerService.HintSize=\\\"214,69\\\" ModuleJson=\\\"{}{&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;MODULE_SUBJECT&quot;:&quot;Splitter 상/하 (MX-Grid 사용)&quot;,&quot;MODULE_PARAMS&quot;:[{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;1&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;Splitter로 사용할 MX-Grid 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;MXGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;2&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;상단에 배치할 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;OlapGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;3&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;하단에 배치할 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;Group&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;Y&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP001&quot;,&quot;PARAM_SEQ&quot;:&quot;4&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;Splitter의 색상을 입력해 주세요.(eg.#efefef) \\\\n입력하지 않을 경우 기본값이 적용됩니다.&quot;,&quot;Value&quot;:&quot;&quot;}],&quot;MODULE_TYPE&quot;:&quot;&quot;}\\\" ModuleName=\\\"Splitter 상/하 (MX-Grid 사용)\\\" Result=\\\"{x:Null}\\\">\\r\\n      <wa:Module.ElseBody>\\r\\n        <Sequence DisplayName=\\\"Else 동작\\\" />\\r\\n      </wa:Module.ElseBody>\\r\\n      <wa:Module.TrueBody>\\r\\n        <Sequence DisplayName=\\\"True 동작\\\" />\\r\\n      </wa:Module.TrueBody>\\r\\n    </wa:Module>\\r\\n    <wa:Module ConditionExpression=\\\"{x:Null}\\\" ConditionToolTipText=\\\"\\\" DiagramText=\\\"Module\\\" DisplayName=\\\"Module\\\" Expand=\\\"False\\\" FunctionName=\\\"_AUD_Module\\\" sap:VirtualizedContainerService.HintSize=\\\"214,69\\\" ModuleJson=\\\"{}{&quot;MODULE_CODE&quot;:&quot;MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8&quot;,&quot;MODULE_SUBJECT&quot;:&quot;OlapGrid Drill To Detail &quot;,&quot;MODULE_PARAMS&quot;:[{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;1&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;OlapGrid 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;OlapGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;2&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;상세 데이터를 출력할 데이터 그리드를 선택해 주세요.&quot;,&quot;Value&quot;:&quot;DataGrid&quot;}],&quot;MODULE_TYPE&quot;:&quot;&quot;}\\\" ModuleName=\\\"OlapGrid Drill To Detail \\\" Result=\\\"{x:Null}\\\">\\r\\n      <wa:Module.ElseBody>\\r\\n        <Sequence DisplayName=\\\"Else 동작\\\" />\\r\\n      </wa:Module.ElseBody>\\r\\n      <wa:Module.TrueBody>\\r\\n        <Sequence DisplayName=\\\"True 동작\\\" />\\r\\n      </wa:Module.TrueBody>\\r\\n    </wa:Module>\\r\\n  </Sequence>\\r\\n</Activity>\"}}]},\"Object\":{\"Name\":\"Object\"}}",
+  "schModel": {},
+  "WORK_FLOW": {
+    "Version": 1,
+    "UseEvent": true,
+    "Nodes": [
+      {
+        "ID": "MIG_1",
+        "Type": "Report",
+        "ModuleCode": "",
+        "Name": "Report",
+        "Description": "",
+        "Left": 10,
+        "Top": 10,
+        "Width": 200,
+        "Height": 207,
+        "ControlType": "Report",
+        "Collapsed": true,
+        "Parameters": [
+          {
+            "ID": "OnDocumentLoadComplete",
+            "Name": "OnDocumentLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnLoadComplete",
+            "Name": "OnLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnExecuteStart",
+            "Name": "OnExecuteStart",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnRefreshComplete",
+            "Name": "OnRefreshComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnActiveSheetChange",
+            "Name": "OnActiveSheetChange",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnDestroy",
+            "Name": "OnDestroy",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnViewerSizeChange",
+            "Name": "OnViewerSizeChange",
+            "Value": null,
+            "Description": ""
+          }
+        ]
+      },
+      {
+        "ID": "MIG_2",
+        "Type": "Module",
+        "ModuleCode": "MODA673ED75A2354FDB9F82AF23B78BA50F",
+        "Name": "Splitter 상/하 (MX-Grid 사용)",
+        "Description": "",
+        "Left": 260,
+        "Top": 10,
+        "Width": 200,
+        "Height": 200,
+        "ControlType": "",
+        "Collapsed": false,
+        "Parameters": [
+          {
+            "ID": "P1",
+            "Name": "Splitter로 사용할 MX-Grid 컨트롤을 선택해 주세요.",
+            "Value": "MXGrid",
+            "Description": "Splitter로 사용할 MX-Grid 컨트롤을 선택해 주세요."
+          },
+          {
+            "ID": "P2",
+            "Name": "상단에 배치할 컨트롤을 선택해 주세요.",
+            "Value": "OlapGrid",
+            "Description": "상단에 배치할 컨트롤을 선택해 주세요."
+          },
+          {
+            "ID": "P3",
+            "Name": "하단에 배치할 컨트롤을 선택해 주세요.",
+            "Value": "Group",
+            "Description": "하단에 배치할 컨트롤을 선택해 주세요."
+          },
+          {
+            "ID": "P4",
+            "Name": "Splitter의 색상을 입력해 주세요.(eg.#efefef) \n입력하지 않을 경우 기본값이 적용됩니다.",
+            "Value": "",
+            "Description": "Splitter의 색상을 입력해 주세요.(eg.#efefef) \n입력하지 않을 경우 기본값이 적용됩니다."
+          }
+        ]
+      },
+      {
+        "ID": "MIG_3",
+        "Type": "Module",
+        "ModuleCode": "MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8",
+        "Name": "OlapGrid Drill To Detail ",
+        "Description": "",
+        "Left": 510,
+        "Top": 10,
+        "Width": 200,
+        "Height": 200,
+        "ControlType": "",
+        "Collapsed": false,
+        "Parameters": [
+          {
+            "ID": "P1",
+            "Name": "OlapGrid 컨트롤을 선택해 주세요.",
+            "Value": "OlapGrid",
+            "Description": "OlapGrid 컨트롤을 선택해 주세요."
+          },
+          {
+            "ID": "P2",
+            "Name": "상세 데이터를 출력할 데이터 그리드를 선택해 주세요.",
+            "Value": "DataGrid",
+            "Description": "상세 데이터를 출력할 데이터 그리드를 선택해 주세요."
+          }
+        ]
+      }
+    ],
+    "Links": [
+      {
+        "ID": "MIG_1.OnDocumentLoadComplete~MIG_2",
+        "From": "MIG_1",
+        "To": "MIG_2",
+        "FromParam": "OnDocumentLoadComplete",
+        "Type": 0
+      },
+      {
+        "ID": "MIG_2~MIG_3",
+        "From": "MIG_2",
+        "To": "MIG_3",
+        "FromParam": null,
+        "Type": 0
+      }
+    ]
+  }
+}

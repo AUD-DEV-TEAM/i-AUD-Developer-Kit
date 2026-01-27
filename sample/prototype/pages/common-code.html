@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영업관리 시스템 - 공통코드 관리</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="layout">
+        <!-- 사이드바 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>영업관리 시스템</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="../index.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>대시보드</span>
+                </a>
+                <a href="employees.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>직원 관리</span>
+                </a>
+                <a href="employees-type1.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>직원 관리 (유형1)</span>
+                </a>
+                <a href="employees-type2.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>직원 관리 (유형2)</span>
+                </a>
+                <a href="customers.html" class="nav-item">
+                    <span class="nav-icon">🏢</span>
+                    <span>고객 관리</span>
+                </a>
+                <a href="products.html" class="nav-item">
+                    <span class="nav-icon">📦</span>
+                    <span>제품 관리</span>
+                </a>
+                <a href="common-code.html" class="nav-item active">
+                    <span class="nav-icon">⚙️</span>
+                    <span>공통코드 관리</span>
+                </a>
+                <a href="bi-sales.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span>매출 분석</span>
+                </a>
+                <a href="bi-performance.html" class="nav-item">
+                    <span class="nav-icon">🎯</span>
+                    <span>실적 분석</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- 메인 콘텐츠 -->
+        <main class="main-content">
+            <header class="header">
+                <h2>공통코드 관리</h2>
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="openAddGroupModal()">+ 그룹 추가</button>
+                    <button class="btn btn-primary" onclick="openAddCodeModal()">+ 코드 추가</button>
+                </div>
+            </header>
+
+            <div class="content">
+                <!-- 듀얼 패널 레이아웃: 좌측 그룹 + 우측 상세 코드 -->
+                <div class="dual-panel-layout">
+                    <!-- 좌측: 코드 그룹 목록 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>코드 그룹</h3>
+                            <span class="badge badge-primary" id="groupCount">0</span>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>그룹코드</th>
+                                        <th>그룹명</th>
+                                        <th>코드수</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="groupTableBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 우측: 상세 코드 목록 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>상세 코드 - <span id="selectedGroupName">그룹을 선택하세요</span></h3>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="badge badge-secondary" id="codeCount">0</span>
+                                <button class="btn btn-danger btn-sm" onclick="deleteSelectedCodes()">삭제</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="checkAllCodes" onclick="toggleAllCodeCheckboxes()"></th>
+                                        <th>코드</th>
+                                        <th>코드명</th>
+                                        <th>정렬순서</th>
+                                        <th>사용여부</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="codeTableBody">
+                                    <tr>
+                                        <td colspan="5" class="text-center text-muted" style="padding: 40px;">
+                                            좌측에서 코드 그룹을 선택하세요
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 그룹 추가 모달 -->
+    <div class="modal" id="groupModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="groupModalTitle">코드 그룹 추가</h3>
+                <button class="modal-close" onclick="closeModal('groupModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="groupForm">
+                    <input type="hidden" id="editGroupCd">
+                    <div class="form-group">
+                        <label class="form-label">그룹코드 *</label>
+                        <input type="text" id="groupCd" class="form-control" required placeholder="예: NEW_CODE_TYPE">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">그룹명 *</label>
+                        <input type="text" id="groupNm" class="form-control" required placeholder="예: 새로운 코드 유형">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">설명</label>
+                        <textarea id="groupDesc" class="form-control" rows="3" placeholder="그룹에 대한 설명"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('groupModal')">취소</button>
+                <button class="btn btn-primary" onclick="saveGroup()">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 코드 추가/수정 모달 -->
+    <div class="modal" id="codeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="codeModalTitle">코드 추가</h3>
+                <button class="modal-close" onclick="closeModal('codeModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="codeForm">
+                    <input type="hidden" id="editCodeOriginal">
+                    <div class="form-group">
+                        <label class="form-label">그룹코드</label>
+                        <input type="text" id="codeGroupCd" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">코드 *</label>
+                        <input type="text" id="code" class="form-control" required placeholder="예: NEW_VALUE">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">코드명 *</label>
+                        <input type="text" id="codeNm" class="form-control" required placeholder="예: 새로운 값">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">정렬순서</label>
+                        <input type="number" id="sortOrder" class="form-control" value="1" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">사용여부</label>
+                        <select id="useYn" class="form-control">
+                            <option value="Y">사용</option>
+                            <option value="N">미사용</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('codeModal')">취소</button>
+                <button class="btn btn-primary" onclick="saveCode()">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/mock-data.js"></script>
+    <script src="../js/common.js"></script>
+    <script>
+        let selectedGroupCd = null;
+        let codeGroups = [];
+        let detailCodes = {};
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initPage();
+        });
+
+        function initPage() {
+            // COMMON_CODES에서 그룹 목록과 상세 코드 구성
+            buildCodeStructure();
+            loadGroups();
+        }
+
+        function buildCodeStructure() {
+            // COMMON_CODES 객체에서 그룹과 코드 추출
+            codeGroups = [];
+            detailCodes = {};
+
+            for (const groupCd in COMMON_CODES) {
+                const codes = COMMON_CODES[groupCd];
+                if (codes && codes.length > 0) {
+                    // 첫 번째 항목에서 그룹 정보 추출 (또는 그룹코드 자체 사용)
+                    const groupInfo = {
+                        GROUP_CD: groupCd,
+                        GROUP_NM: getGroupName(groupCd),
+                        CODE_COUNT: codes.length
+                    };
+                    codeGroups.push(groupInfo);
+                    detailCodes[groupCd] = codes.map((c, idx) => ({
+                        ...c,
+                        SORT_ORDER: idx + 1,
+                        USE_YN: 'Y'
+                    }));
+                }
+            }
+        }
+
+        function getGroupName(groupCd) {
+            const groupNames = {
+                'EMP_STATUS': '직원 상태',
+                'POSITION': '직급',
+                'CUST_TYPE': '고객 유형',
+                'CUST_GRADE': '고객 등급',
+                'CUST_STATUS': '고객 상태',
+                'PROD_CATEGORY': '제품 카테고리',
+                'PROD_STATUS': '제품 상태',
+                'UNIT': '단위',
+                'WAREHOUSE': '창고',
+                'PLAN_STATUS': '계획 상태',
+                'PERF_STATUS': '실적 상태'
+            };
+            return groupNames[groupCd] || groupCd;
+        }
+
+        function loadGroups() {
+            const tbody = document.getElementById('groupTableBody');
+            document.getElementById('groupCount').textContent = codeGroups.length;
+
+            tbody.innerHTML = '';
+            codeGroups.forEach(group => {
+                const tr = document.createElement('tr');
+                tr.className = group.GROUP_CD === selectedGroupCd ? 'selected' : '';
+                tr.onclick = () => selectGroup(group.GROUP_CD);
+                tr.innerHTML = `
+                    <td><strong>${group.GROUP_CD}</strong></td>
+                    <td>${group.GROUP_NM}</td>
+                    <td><span class="badge badge-secondary">${group.CODE_COUNT}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function selectGroup(groupCd) {
+            selectedGroupCd = groupCd;
+            const group = codeGroups.find(g => g.GROUP_CD === groupCd);
+
+            document.getElementById('selectedGroupName').textContent = group ? group.GROUP_NM : groupCd;
+
+            loadCodes();
+            loadGroups(); // 선택 표시 갱신
+        }
+
+        function loadCodes() {
+            const tbody = document.getElementById('codeTableBody');
+
+            if (!selectedGroupCd || !detailCodes[selectedGroupCd]) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="text-center text-muted" style="padding: 40px;">
+                            좌측에서 코드 그룹을 선택하세요
+                        </td>
+                    </tr>
+                `;
+                document.getElementById('codeCount').textContent = '0';
+                document.getElementById('checkAllCodes').checked = false;
+                return;
+            }
+
+            const codes = detailCodes[selectedGroupCd];
+            document.getElementById('codeCount').textContent = codes.length;
+            document.getElementById('checkAllCodes').checked = false;
+
+            tbody.innerHTML = '';
+            codes.forEach(code => {
+                const tr = document.createElement('tr');
+                tr.style.cursor = 'pointer';
+                tr.ondblclick = () => editCode(code.CODE);
+                tr.innerHTML = `
+                    <td><input type="checkbox" class="code-checkbox" value="${code.CODE}"></td>
+                    <td><strong>${code.CODE}</strong></td>
+                    <td>${code.CODE_NM}</td>
+                    <td>${code.SORT_ORDER || '-'}</td>
+                    <td>${code.USE_YN === 'Y' ? '<span class="badge badge-success">사용</span>' : '<span class="badge badge-danger">미사용</span>'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function openAddGroupModal() {
+            document.getElementById('groupModalTitle').textContent = '코드 그룹 추가';
+            document.getElementById('groupForm').reset();
+            document.getElementById('editGroupCd').value = '';
+            document.getElementById('groupCd').readOnly = false;
+            openModal('groupModal');
+        }
+
+        function saveGroup() {
+            const groupCd = document.getElementById('groupCd').value.trim().toUpperCase();
+            const groupNm = document.getElementById('groupNm').value.trim();
+            const isEdit = document.getElementById('editGroupCd').value;
+
+            if (!groupCd || !groupNm) {
+                showAlert('필수 항목을 입력해주세요.');
+                return;
+            }
+
+            if (!isEdit) {
+                // 새 그룹 추가
+                if (codeGroups.find(g => g.GROUP_CD === groupCd)) {
+                    showAlert('이미 존재하는 그룹코드입니다.');
+                    return;
+                }
+
+                codeGroups.push({
+                    GROUP_CD: groupCd,
+                    GROUP_NM: groupNm,
+                    CODE_COUNT: 0
+                });
+                detailCodes[groupCd] = [];
+                COMMON_CODES[groupCd] = [];
+
+                showAlert('그룹이 추가되었습니다.');
+            }
+
+            closeModal('groupModal');
+            loadGroups();
+        }
+
+        function openAddCodeModal() {
+            if (!selectedGroupCd) {
+                showAlert('먼저 코드 그룹을 선택해주세요.');
+                return;
+            }
+
+            document.getElementById('codeModalTitle').textContent = '코드 추가';
+            document.getElementById('codeForm').reset();
+            document.getElementById('editCodeOriginal').value = '';
+            document.getElementById('codeGroupCd').value = selectedGroupCd;
+            document.getElementById('code').readOnly = false;
+            document.getElementById('sortOrder').value = (detailCodes[selectedGroupCd]?.length || 0) + 1;
+            openModal('codeModal');
+        }
+
+        function editCode(code) {
+            const codeData = detailCodes[selectedGroupCd]?.find(c => c.CODE === code);
+            if (!codeData) return;
+
+            document.getElementById('codeModalTitle').textContent = '코드 수정';
+            document.getElementById('editCodeOriginal').value = code;
+            document.getElementById('codeGroupCd').value = selectedGroupCd;
+            document.getElementById('code').value = codeData.CODE;
+            document.getElementById('code').readOnly = true;
+            document.getElementById('codeNm').value = codeData.CODE_NM;
+            document.getElementById('sortOrder').value = codeData.SORT_ORDER || 1;
+            document.getElementById('useYn').value = codeData.USE_YN || 'Y';
+
+            openModal('codeModal');
+        }
+
+        function saveCode() {
+            const originalCode = document.getElementById('editCodeOriginal').value;
+            const code = document.getElementById('code').value.trim().toUpperCase();
+            const codeNm = document.getElementById('codeNm').value.trim();
+            const sortOrder = parseInt(document.getElementById('sortOrder').value) || 1;
+            const useYn = document.getElementById('useYn').value;
+
+            if (!code || !codeNm) {
+                showAlert('필수 항목을 입력해주세요.');
+                return;
+            }
+
+            if (originalCode) {
+                // 수정
+                const idx = detailCodes[selectedGroupCd].findIndex(c => c.CODE === originalCode);
+                if (idx !== -1) {
+                    detailCodes[selectedGroupCd][idx] = {
+                        ...detailCodes[selectedGroupCd][idx],
+                        CODE_NM: codeNm,
+                        SORT_ORDER: sortOrder,
+                        USE_YN: useYn
+                    };
+                    // COMMON_CODES도 업데이트
+                    COMMON_CODES[selectedGroupCd][idx] = {
+                        CODE: code,
+                        CODE_NM: codeNm
+                    };
+                }
+                showAlert('코드가 수정되었습니다.');
+            } else {
+                // 추가
+                if (detailCodes[selectedGroupCd].find(c => c.CODE === code)) {
+                    showAlert('이미 존재하는 코드입니다.');
+                    return;
+                }
+
+                const newCode = {
+                    CODE: code,
+                    CODE_NM: codeNm,
+                    SORT_ORDER: sortOrder,
+                    USE_YN: useYn
+                };
+                detailCodes[selectedGroupCd].push(newCode);
+                COMMON_CODES[selectedGroupCd].push({ CODE: code, CODE_NM: codeNm });
+
+                // 그룹 코드 수 업데이트
+                const groupIdx = codeGroups.findIndex(g => g.GROUP_CD === selectedGroupCd);
+                if (groupIdx !== -1) {
+                    codeGroups[groupIdx].CODE_COUNT = detailCodes[selectedGroupCd].length;
+                }
+
+                showAlert('코드가 추가되었습니다.');
+            }
+
+            closeModal('codeModal');
+            loadGroups();
+            loadCodes();
+        }
+
+        function deleteCode(code) {
+            if (!showConfirm('정말 삭제하시겠습니까?')) return;
+
+            const idx = detailCodes[selectedGroupCd].findIndex(c => c.CODE === code);
+            if (idx !== -1) {
+                detailCodes[selectedGroupCd].splice(idx, 1);
+                COMMON_CODES[selectedGroupCd].splice(idx, 1);
+
+                // 그룹 코드 수 업데이트
+                const groupIdx = codeGroups.findIndex(g => g.GROUP_CD === selectedGroupCd);
+                if (groupIdx !== -1) {
+                    codeGroups[groupIdx].CODE_COUNT = detailCodes[selectedGroupCd].length;
+                }
+
+                showAlert('삭제되었습니다.');
+                loadGroups();
+                loadCodes();
+            }
+        }
+
+        function toggleAllCodeCheckboxes() {
+            const checkAll = document.getElementById('checkAllCodes');
+            const checkboxes = document.querySelectorAll('.code-checkbox');
+            checkboxes.forEach(cb => cb.checked = checkAll.checked);
+        }
+
+        function deleteSelectedCodes() {
+            const checkboxes = document.querySelectorAll('.code-checkbox:checked');
+            if (checkboxes.length === 0) {
+                showAlert('삭제할 항목을 선택해주세요.');
+                return;
+            }
+
+            if (!showConfirm(`선택한 ${checkboxes.length}개 항목을 삭제하시겠습니까?`)) return;
+
+            const codesToDelete = Array.from(checkboxes).map(cb => cb.value);
+            codesToDelete.forEach(code => {
+                const idx = detailCodes[selectedGroupCd].findIndex(c => c.CODE === code);
+                if (idx !== -1) {
+                    detailCodes[selectedGroupCd].splice(idx, 1);
+                    COMMON_CODES[selectedGroupCd].splice(idx, 1);
+                }
+            });
+
+            // 그룹 코드 수 업데이트
+            const groupIdx = codeGroups.findIndex(g => g.GROUP_CD === selectedGroupCd);
+            if (groupIdx !== -1) {
+                codeGroups[groupIdx].CODE_COUNT = detailCodes[selectedGroupCd].length;
+            }
+
+            document.getElementById('checkAllCodes').checked = false;
+            showAlert('삭제되었습니다.');
+            loadGroups();
+            loadCodes();
+        }
+    </script>
+</body>
+</html>

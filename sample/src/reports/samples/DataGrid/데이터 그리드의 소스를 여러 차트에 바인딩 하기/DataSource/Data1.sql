@@ -1,0 +1,9 @@
+SELECT "T1"."D3" AS "제품명" -- 제품명
+,SUM("T1"."M2") AS "판매수량" -- 판매수량
+,SUM("T1"."M3") AS "판매금액" -- 판매금액
+
+ FROM   MEX_USER_FILE_DATA "T1" 
+ WHERE (1=1
+ AND "T1"."META_FILE_CODE" = 'RPTEB418D642F424C949D1598B07F5279F7' 
+)
+ GROUP BY "T1"."D3"

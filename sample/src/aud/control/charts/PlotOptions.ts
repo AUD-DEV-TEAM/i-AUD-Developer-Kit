@@ -1,0 +1,25 @@
+import { enChartDataLabelType } from "../../../aud/enums/chart/enChartDataLabelType";
+/**
+* 기본 차트의 데이터 표시 영역에 대한 정보를 제공합니다.
+*/
+export interface PlotOptions{
+
+  /**
+   * 계열 표시 효과 시간(milliseconds)
+  */
+  Animation: number;
+
+  /**
+   * Null 데이터와 상관 없이 선을 연결할지 여부
+(Line 유형 차트에서만 적용됨)
+  */
+  ConnectNulls: boolean;
+
+  /** 
+   * 차트의 데이터레이블 타입을 설정합니다.
+   *
+  * @param type 0:None, 1:Value, 2:ValueLabel
+  */
+  SetDataLabelsType(type: enChartDataLabelType): void;
+
+}

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영업관리 시스템 - 직원 관리 (유형1)</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="layout">
+        <!-- 사이드바 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>영업관리 시스템</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="../index.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>대시보드</span>
+                </a>
+                <a href="employees.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>직원 관리</span>
+                </a>
+                <a href="employees-type1.html" class="nav-item active">
+                    <span class="nav-icon">👥</span>
+                    <span>직원 관리 (유형1)</span>
+                </a>
+                <a href="employees-type2.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>직원 관리 (유형2)</span>
+                </a>
+                <a href="customers.html" class="nav-item">
+                    <span class="nav-icon">🏢</span>
+                    <span>고객 관리</span>
+                </a>
+                <a href="products.html" class="nav-item">
+                    <span class="nav-icon">📦</span>
+                    <span>제품 관리</span>
+                </a>
+                <a href="common-code.html" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>공통코드 관리</span>
+                </a>
+                <a href="bi-sales.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span>매출 분석</span>
+                </a>
+                <a href="bi-performance.html" class="nav-item">
+                    <span class="nav-icon">🎯</span>
+                    <span>실적 분석</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- 메인 콘텐츠 -->
+        <main class="main-content">
+            <header class="header">
+                <h2>직원 관리 (유형1: 그리드+폼 분할)</h2>
+            </header>
+
+            <div class="content">
+                <!-- 마스터-디테일 레이아웃 -->
+                <div class="master-detail-layout">
+                    <!-- 좌측: 그리드 -->
+                    <div class="master-panel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>직원 목록 (<span id="totalCount">0</span>명)</h3>
+                                <div style="display: flex; gap: 8px; align-items: center;">
+                                    <label for="searchKeyword" style="white-space: nowrap;">이름</label>
+                                    <div class="search-box" style="width: 200px;">
+                                        <input type="text" id="searchKeyword" placeholder="이름 검색...">
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" onclick="searchEmployees()">조회</button>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteSelectedEmployees()">삭제</button>
+                                </div>
+                            </div>
+                            <div class="card-body" style="padding: 0;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th><input type="checkbox" id="checkAll" onclick="toggleAllCheckboxes()"></th>
+                                            <th>사번</th>
+                                            <th>이름</th>
+                                            <th>부서</th>
+                                            <th>직급</th>
+                                            <th>이메일</th>
+                                            <th>연락처</th>
+                                            <th>입사일</th>
+                                            <th>상태</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="employeeTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 우측: 입력/수정 폼 -->
+                    <div class="detail-panel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 id="formTitle">직원 정보</h3>
+                            </div>
+                            <div class="card-body">
+                                <form id="employeeForm">
+                                    <input type="hidden" id="editMode" value="new">
+                                    <input type="hidden" id="editEmpId">
+
+                                    <div class="form-group">
+                                        <label class="form-label">사번</label>
+                                        <input type="text" id="empId" class="form-control" readonly placeholder="자동 생성">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">이름 *</label>
+                                        <input type="text" id="empNm" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">부서 *</label>
+                                        <select id="deptId" class="form-control" required>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">직급 *</label>
+                                        <select id="position" class="form-control" required>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">이메일</label>
+                                        <input type="email" id="email" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">연락처</label>
+                                        <input type="tel" id="phone" class="form-control" placeholder="010-0000-0000">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">입사일 *</label>
+                                        <input type="date" id="hireDate" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">상태 *</label>
+                                        <select id="empStatus" class="form-control" required>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="panel-footer">
+                                <button class="btn btn-outline" onclick="resetForm()">초기화</button>
+                                <button class="btn btn-danger" id="deleteBtn" onclick="deleteEmployee()" style="display: none;">삭제</button>
+                                <button class="btn btn-primary" onclick="saveEmployee()">저장</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/mock-data.js"></script>
+    <script src="../js/common.js"></script>
+    <script>
+        let selectedEmpId = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initPage();
+        });
+
+        function initPage() {
+            // 셀렉트박스 초기화
+            populateDepartmentSelect('deptId', false);
+            populateSelectFromCode('position', 'POSITION', false);
+            populateSelectFromCode('empStatus', 'EMP_STATUS', false);
+
+            // 데이터 로드
+            loadEmployees();
+        }
+
+        function loadEmployees() {
+            renderTable(EMPLOYEES);
+        }
+
+        function searchEmployees() {
+            const keyword = document.getElementById('searchKeyword').value.toLowerCase();
+            const filtered = EMPLOYEES.filter(emp =>
+                emp.EMP_NM.toLowerCase().includes(keyword) ||
+                emp.EMP_ID.toLowerCase().includes(keyword)
+            );
+            renderTable(filtered);
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById('employeeTableBody');
+            document.getElementById('totalCount').textContent = data.length;
+
+            tbody.innerHTML = '';
+            data.forEach(emp => {
+                const tr = document.createElement('tr');
+                tr.className = emp.EMP_ID === selectedEmpId ? 'selected' : '';
+                tr.onclick = (e) => {
+                    if (e.target.type !== 'checkbox') selectEmployee(emp.EMP_ID);
+                };
+                tr.innerHTML = `
+                    <td><input type="checkbox" class="row-checkbox" value="${emp.EMP_ID}" onclick="event.stopPropagation()"></td>
+                    <td>${emp.EMP_ID}</td>
+                    <td>${emp.EMP_NM}</td>
+                    <td>${getDepartmentName(emp.DEPT_ID)}</td>
+                    <td>${getCodeName('POSITION', emp.POSITION)}</td>
+                    <td>${emp.EMAIL || '-'}</td>
+                    <td>${emp.PHONE || '-'}</td>
+                    <td>${formatDate(emp.HIRE_DT)}</td>
+                    <td>${createStatusBadge(emp.EMP_STATUS)}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function selectEmployee(empId) {
+            selectedEmpId = empId;
+            const emp = EMPLOYEES.find(e => e.EMP_ID === empId);
+            if (!emp) return;
+
+            document.getElementById('formTitle').textContent = '직원 수정';
+            document.getElementById('editMode').value = 'edit';
+            document.getElementById('editEmpId').value = emp.EMP_ID;
+            document.getElementById('empId').value = emp.EMP_ID;
+            document.getElementById('empNm').value = emp.EMP_NM;
+            document.getElementById('deptId').value = emp.DEPT_ID;
+            document.getElementById('position').value = emp.POSITION;
+            document.getElementById('email').value = emp.EMAIL || '';
+            document.getElementById('phone').value = emp.PHONE || '';
+            document.getElementById('hireDate').value = emp.HIRE_DT;
+            document.getElementById('empStatus').value = emp.EMP_STATUS;
+            document.getElementById('deleteBtn').style.display = 'inline-flex';
+
+            // 테이블 선택 표시 갱신
+            searchEmployees();
+        }
+
+        function newEmployee() {
+            resetForm();
+            document.getElementById('empNm').focus();
+        }
+
+        function resetForm() {
+            selectedEmpId = null;
+            document.getElementById('formTitle').textContent = '직원 등록';
+            document.getElementById('editMode').value = 'new';
+            document.getElementById('employeeForm').reset();
+            document.getElementById('editEmpId').value = '';
+            document.getElementById('empId').value = '';
+            document.getElementById('deleteBtn').style.display = 'none';
+            searchEmployees();
+        }
+
+        function saveEmployee() {
+            const editMode = document.getElementById('editMode').value;
+            const formData = {
+                EMP_NM: document.getElementById('empNm').value,
+                DEPT_ID: document.getElementById('deptId').value,
+                POSITION: document.getElementById('position').value,
+                EMAIL: document.getElementById('email').value,
+                PHONE: document.getElementById('phone').value,
+                HIRE_DT: document.getElementById('hireDate').value,
+                EMP_STATUS: document.getElementById('empStatus').value
+            };
+
+            if (!formData.EMP_NM || !formData.DEPT_ID || !formData.POSITION || !formData.HIRE_DT) {
+                showAlert('필수 항목을 입력해주세요.');
+                return;
+            }
+
+            if (editMode === 'edit') {
+                const empId = document.getElementById('editEmpId').value;
+                const index = EMPLOYEES.findIndex(e => e.EMP_ID === empId);
+                if (index !== -1) {
+                    EMPLOYEES[index] = { ...EMPLOYEES[index], ...formData };
+                }
+                showAlert('직원 정보가 수정되었습니다.');
+            } else {
+                const newEmpId = 'EMP' + String(EMPLOYEES.length + 1).padStart(3, '0');
+                EMPLOYEES.push({
+                    EMP_ID: newEmpId,
+                    ...formData,
+                    CREATED_AT: new Date().toISOString(),
+                    CREATED_BY: 'admin'
+                });
+                showAlert('직원이 등록되었습니다.');
+            }
+
+            resetForm();
+            loadEmployees();
+        }
+
+        function deleteEmployee() {
+            if (!selectedEmpId) return;
+            if (!showConfirm('정말 삭제하시겠습니까?')) return;
+
+            const index = EMPLOYEES.findIndex(e => e.EMP_ID === selectedEmpId);
+            if (index !== -1) {
+                EMPLOYEES.splice(index, 1);
+                showAlert('삭제되었습니다.');
+                resetForm();
+                loadEmployees();
+            }
+        }
+
+        function toggleAllCheckboxes() {
+            const checkAll = document.getElementById('checkAll');
+            const checkboxes = document.querySelectorAll('.row-checkbox');
+            checkboxes.forEach(cb => cb.checked = checkAll.checked);
+        }
+
+        function deleteSelectedEmployees() {
+            const checkboxes = document.querySelectorAll('.row-checkbox:checked');
+            if (checkboxes.length === 0) {
+                showAlert('삭제할 항목을 선택해주세요.');
+                return;
+            }
+
+            if (!showConfirm(`선택한 ${checkboxes.length}개 항목을 삭제하시겠습니까?`)) return;
+
+            const idsToDelete = Array.from(checkboxes).map(cb => cb.value);
+            idsToDelete.forEach(empId => {
+                const index = EMPLOYEES.findIndex(e => e.EMP_ID === empId);
+                if (index !== -1) {
+                    EMPLOYEES.splice(index, 1);
+                }
+            });
+
+            document.getElementById('checkAll').checked = false;
+            showAlert('삭제되었습니다.');
+            resetForm();
+            loadEmployees();
+        }
+    </script>
+</body>
+</html>

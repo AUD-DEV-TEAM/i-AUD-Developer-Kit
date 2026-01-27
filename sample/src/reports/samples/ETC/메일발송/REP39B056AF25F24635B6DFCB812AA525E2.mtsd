@@ -1,0 +1,951 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REP39B056AF25F24635B6DFCB812AA525E2",
+    "FolderCode": "MYDOCUMENT.sblim1417",
+    "SavePath": "MYDOCUMENT.sblim1417/REP39B056AF25F24635B6DFCB812AA525E2.mtsd",
+    "ReportName": "메일발송",
+    "Writer": "user",
+    "WriteDate": "2025-01-13 00:00:00",
+    "Editor": "user",
+    "EditDate": "2025-01-13 00:00:00",
+    "TabPosition": 0,
+    "UseLayout": false,
+    "UsePersonalConditions": false,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": []
+  },
+  "ScriptText": "/**\n * 메일 발송 클라이언트 스크립트\n *\n * 사용자로부터 메일 정보를 입력받아 서버로 전송하여 메일을 발송합니다.\n */\n// Matrix 변수 선언 (필수)\n// 컨트롤 변수 선언\nvar txtSubject;\nvar txtTo;\nvar txtCc;\nvar txtBcc;\nvar txtBody;\nvar chkHtml;\nvar btnSend;\nvar btnClear;\n/**\n * 문서 로드 완료 시 초기화\n */\nMatrix.OnDocumentLoadComplete = function (_sender, _args) {\n    // 컨트롤 바인딩\n    txtSubject = Matrix.getObject(\"txtSubject\");\n    txtTo = Matrix.getObject(\"txtTo\");\n    txtCc = Matrix.getObject(\"txtCc\");\n    txtBcc = Matrix.getObject(\"txtBcc\");\n    txtBody = Matrix.getObject(\"txtBody\");\n    chkHtml = Matrix.getObject(\"chkHtml\");\n    btnSend = Matrix.getObject(\"btnSend\");\n    btnClear = Matrix.getObject(\"btnClear\");\n    // 이벤트 등록\n    btnSend.OnClick = btnSendOnClick;\n    btnClear.OnClick = btnClearOnClick;\n    // 초기값 설정\n    initializeForm();\n};\n/**\n * 폼 초기화\n */\nfunction initializeForm() {\n    // 플레이스홀더 설정 (가능한 경우)\n    // 테스트용 기본값 (개발 시에만 사용)\n    // txtSubject.Text = \"테스트 메일\";\n    // txtTo.Text = \"test@example.com\";\n}\n/**\n * 메일 발송 버튼 클릭 이벤트\n */\nvar btnSendOnClick = function (_sender, _args) {\n    // 유효성 검사\n    if (!validateForm()) {\n        return;\n    }\n    // 확인 메시지\n    Matrix.Confirm(\"메일을 발송하시겠습니까?\", \"메일 발송\", function (ok) {\n        if (ok) {\n            sendEmail();\n        }\n    }, 0);\n};\n/**\n * 초기화 버튼 클릭 이벤트\n */\nvar btnClearOnClick = function (_sender, _args) {\n    Matrix.Confirm(\"입력한 내용을 모두 지우시겠습니까?\", \"확인\", function (ok) {\n        if (ok) {\n            clearForm();\n        }\n    }, 0);\n};\n/**\n * 폼 유효성 검사\n */\nfunction validateForm() {\n    // 제목 검사\n    if (!txtSubject.Text || txtSubject.Text.trim() === \"\") {\n        Matrix.Alert(\"메일 제목을 입력해주세요.\");\n        txtSubject.Focus();\n        return false;\n    }\n    // 받는 사람 검사\n    if (!txtTo.Text || txtTo.Text.trim() === \"\") {\n        Matrix.Alert(\"받는 사람을 입력해주세요.\");\n        txtTo.Focus();\n        return false;\n    }\n    // 본문 검사\n    if (!txtBody.Text || txtBody.Text.trim() === \"\") {\n        Matrix.Alert(\"메일 본문을 입력해주세요.\");\n        txtBody.Focus();\n        return false;\n    }\n    // 이메일 형식 검증\n    var emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;\n    // 받는 사람 이메일 검증\n    var toEmails = txtTo.Text.split(',').map(function (e) { return e.trim(); });\n    for (var i = 0; i < toEmails.length; i++) {\n        if (!emailPattern.test(toEmails[i])) {\n            Matrix.Alert(\"받는 사람 이메일 주소 형식이 올바르지 않습니다: \" + toEmails[i]);\n            txtTo.Focus();\n            return false;\n        }\n    }\n    // 참조(CC) 이메일 검증\n    if (txtCc.Text && txtCc.Text.trim() !== \"\") {\n        var ccEmails = txtCc.Text.split(',').map(function (e) { return e.trim(); });\n        for (var i = 0; i < ccEmails.length; i++) {\n            if (ccEmails[i] && !emailPattern.test(ccEmails[i])) {\n                Matrix.Alert(\"참조(CC) 이메일 주소 형식이 올바르지 않습니다: \" + ccEmails[i]);\n                txtCc.Focus();\n                return false;\n            }\n        }\n    }\n    // 숨은참조(BCC) 이메일 검증\n    if (txtBcc.Text && txtBcc.Text.trim() !== \"\") {\n        var bccEmails = txtBcc.Text.split(',').map(function (e) { return e.trim(); });\n        for (var i = 0; i < bccEmails.length; i++) {\n            if (bccEmails[i] && !emailPattern.test(bccEmails[i])) {\n                Matrix.Alert(\"숨은참조(BCC) 이메일 주소 형식이 올바르지 않습니다: \" + bccEmails[i]);\n                txtBcc.Focus();\n                return false;\n            }\n        }\n    }\n    return true;\n}\n/**\n * 메일 발송\n */\nfunction sendEmail() {\n    // 파라미터 준비\n    var paramList = {\n        \"VS_SUBJECT\": txtSubject.Text.trim(),\n        \"VS_TO\": txtTo.Text.trim(),\n        \"VS_CC\": txtCc.Text ? txtCc.Text.trim() : \"\",\n        \"VS_BCC\": txtBcc.Text ? txtBcc.Text.trim() : \"\",\n        \"VS_BODY\": txtBody.Text.trim(),\n        \"VS_IS_HTML\": chkHtml.Checked ? \"Y\" : \"N\"\n    };\n    // 서버 스크립트 호출\n    Matrix.RunScriptEx([], \"sendEmail\", paramList, function (p) {\n        if (p.Success === false) {\n            Matrix.Alert(\"메일 발송 실패: \" + p.Message);\n            return;\n        }\n        // 성공 메시지\n        Matrix.Alert(\"메일이 성공적으로 발송되었습니다.\");\n        // 폼 초기화 여부 확인\n        Matrix.Confirm(\"입력한 내용을 초기화하시겠습니까?\", \"확인\", function (ok) {\n            if (ok) {\n                clearForm();\n            }\n        }, 0);\n    });\n}\n/**\n * 폼 초기화\n */\nfunction clearForm() {\n    txtSubject.Text = \"\";\n    txtTo.Text = \"\";\n    txtCc.Text = \"\";\n    txtBcc.Text = \"\";\n    txtBody.Text = \"\";\n    chkHtml.Checked = false;\n    txtSubject.Focus();\n}\n",
+  "ServerScriptText": [
+    {
+      "Name": "sendEmail",
+      "Key": "sendEmail",
+      "Encrypted": false,
+      "ScriptText": "/**\n * 메일 발송 서버 스크립트\n *\n * ScriptUtility의 SendMail API를 사용하여 메일을 발송합니다.\n * SMTP 서버 설정은 환경에 맞게 수정이 필요합니다.\n */\n// 필수 변수 선언 (삭제/수정 금지)\n// 핵심 객체 초기화\nvar req = Matrix.getRequest(); // 클라이언트 요청\nvar res = Matrix.getResponse(); // 클라이언트 응답\nvar util = Matrix.getUtility(); // 유틸리티\n/**\n * SMTP 설정\n * 실제 운영 환경에서는 환경 변수나 설정 파일, DB에서 읽어오는 것을 권장합니다.\n */\nvar SMTP_CONFIG = {\n    host: \"smtp.gmail.com\", // SMTP 서버 주소\n    port: \"587\", // SMTP 포트 (587: TLS, 465: SSL, 25: 일반)\n    useSSL: false, // SSL 사용 여부 (587 포트는 false, 465 포트는 true)\n    username: \"your-email@gmail.com\", // 발신자 이메일 (SMTP 인증 계정)\n    password: \"your-app-password\", // 발신자 비밀번호 (Gmail의 경우 앱 비밀번호 사용)\n    fromEmail: \"your-email@gmail.com\", // 발신자 이메일 주소\n    fromName: \"i-AUD Mail System\" // 발신자 이름\n};\ntry {\n    // 파라미터 추출\n    var subject = req.getParam(\"VS_SUBJECT\");\n    var to = req.getParam(\"VS_TO\");\n    var cc = req.getParam(\"VS_CC\");\n    var bcc = req.getParam(\"VS_BCC\");\n    var body = req.getParam(\"VS_BODY\");\n    var isHtmlStr = req.getParam(\"VS_IS_HTML\");\n    var isHtml = (isHtmlStr === \"Y\" || isHtmlStr === \"true\");\n    // 파라미터 검증\n    if (!subject || subject.trim() === \"\") {\n        Matrix.ThrowException(\"메일 제목이 없습니다.\");\n    }\n    if (!to || to.trim() === \"\") {\n        Matrix.ThrowException(\"받는 사람이 없습니다.\");\n    }\n    if (!body || body.trim() === \"\") {\n        Matrix.ThrowException(\"메일 본문이 없습니다.\");\n    }\n    // 로그 기록\n    Matrix.WriteLog(\"=== 메일 발송 시작 ===\");\n    Matrix.WriteLog(\"제목: \" + subject);\n    Matrix.WriteLog(\"받는사람: \" + to);\n    Matrix.WriteLog(\"참조: \" + cc);\n    Matrix.WriteLog(\"숨은참조: \" + bcc);\n    Matrix.WriteLog(\"HTML 형식: \" + isHtml);\n    // 메일 옵션 설정\n    var params = [];\n    // HTML 형식 설정\n    if (isHtml) {\n        params.push(\"CONTENT_TYPE=text/html\");\n    }\n    else {\n        params.push(\"CONTENT_TYPE=text/plain\");\n    }\n    // 발신자 이름 설정\n    params.push(\"FROM_NAME=\" + SMTP_CONFIG.fromName);\n    // TLS 사용 설정 (587 포트의 경우)\n    if (!SMTP_CONFIG.useSSL && SMTP_CONFIG.port === \"587\") {\n        params.push(\"USE_TLS=true\");\n    }\n    // 첨부파일 (현재는 없음)\n    var attachFiles = [];\n    // 메일 발송 (util.SendMail API 사용)\n    var success = util.SendMail(SMTP_CONFIG.host, // SMTP 서버 주소\n    SMTP_CONFIG.port, // SMTP 포트\n    SMTP_CONFIG.useSSL, // SSL 사용 여부\n    SMTP_CONFIG.username, // SMTP 인증 계정\n    SMTP_CONFIG.password, // SMTP 인증 비밀번호\n    SMTP_CONFIG.fromEmail, // 발신자 이메일\n    to, // 받는 사람\n    cc || \"\", // 참조 (빈 문자열 가능)\n    bcc || \"\", // 숨은참조 (빈 문자열 가능)\n    subject, // 제목\n    body, // 본문\n    params, // 메일 옵션\n    attachFiles // 첨부파일\n    );\n    if (success) {\n        // 로그 기록\n        Matrix.WriteLog(\"메일 발송 성공\");\n        Matrix.WriteLog(\"===================\");\n        // 성공 응답\n        res.WriteResponseText(\"SUCCESS\");\n    }\n    else {\n        Matrix.ThrowException(\"메일 발송에 실패했습니다.\");\n    }\n}\ncatch (e) {\n    // 오류 로깅\n    Matrix.WriteLog(\"메일 발송 오류: \" + e.message);\n    if (e.stack) {\n        Matrix.WriteLog(e.stack);\n    }\n    // 오류 응답\n    Matrix.ThrowException(\"메일 발송 중 오류가 발생했습니다: \" + e.message);\n}\n"
+    },
+    {
+      "Name": "sendEmailTest",
+      "Key": "sendEmailTest",
+      "Encrypted": false,
+      "ScriptText": "/**\n * 메일 발송 테스트 서버 스크립트\n *\n * 실제 메일을 발송하지 않고 로그만 출력하는 테스트용 스크립트입니다.\n * SMTP 서버 설정 없이 메일 발송 기능을 테스트할 수 있습니다.\n */\n// 필수 변수 선언 (삭제/수정 금지)\n// 핵심 객체 초기화\nvar req = Matrix.getRequest(); // 클라이언트 요청\nvar res = Matrix.getResponse(); // 클라이언트 응답\ntry {\n    // 파라미터 추출\n    var subject = req.getParam(\"VS_SUBJECT\");\n    var to = req.getParam(\"VS_TO\");\n    var cc = req.getParam(\"VS_CC\");\n    var bcc = req.getParam(\"VS_BCC\");\n    var body = req.getParam(\"VS_BODY\");\n    var isHtmlStr = req.getParam(\"VS_IS_HTML\");\n    var isHtml = (isHtmlStr === \"Y\" || isHtmlStr === \"true\");\n    // 파라미터 검증\n    if (!subject || subject.trim() === \"\") {\n        Matrix.ThrowException(\"메일 제목이 없습니다.\");\n    }\n    if (!to || to.trim() === \"\") {\n        Matrix.ThrowException(\"받는 사람이 없습니다.\");\n    }\n    if (!body || body.trim() === \"\") {\n        Matrix.ThrowException(\"메일 본문이 없습니다.\");\n    }\n    // 로그 출력\n    Matrix.WriteLog(\"========================================\");\n    Matrix.WriteLog(\"=== 메일 발송 테스트 (실제 발송 안함) ===\");\n    Matrix.WriteLog(\"========================================\");\n    Matrix.WriteLog(\"제목: \" + subject);\n    Matrix.WriteLog(\"받는사람: \" + to);\n    if (cc && cc.trim() !== \"\") {\n        Matrix.WriteLog(\"참조(CC): \" + cc);\n    }\n    if (bcc && bcc.trim() !== \"\") {\n        Matrix.WriteLog(\"숨은참조(BCC): \" + bcc);\n    }\n    Matrix.WriteLog(\"HTML 형식: \" + isHtml);\n    Matrix.WriteLog(\"----------------------------------------\");\n    Matrix.WriteLog(\"본문:\");\n    Matrix.WriteLog(body);\n    Matrix.WriteLog(\"========================================\");\n    // 성공 응답\n    res.WriteResponseText(\"SUCCESS\");\n}\ncatch (e) {\n    // 오류 로깅\n    Matrix.WriteLog(\"테스트 오류: \" + e.message);\n    if (e.stack) {\n        Matrix.WriteLog(e.stack);\n    }\n    // 오류 응답\n    Matrix.ThrowException(\"테스트 실패: \" + e.message);\n}\n"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "FormMain",
+      "Name": "Form1",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "LanguageCode": "",
+          "Text": "메일 제목:",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "Label_Subject",
+          "Name": "lblSubject",
+          "Visible": true,
+          "Position": {
+            "Left": 20,
+            "Top": 20,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "",
+          "Value": "",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "InputType": 0,
+          "Formula": "",
+          "MxBinding": "",
+          "Type": "TextBox",
+          "Id": "TextBox_Subject",
+          "Name": "txtSubject",
+          "Visible": true,
+          "Position": {
+            "Left": 130,
+            "Top": 20,
+            "Width": 500,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 1,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "받는 사람:",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "Label_To",
+          "Name": "lblTo",
+          "Visible": true,
+          "Position": {
+            "Left": 20,
+            "Top": 55,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 2,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "",
+          "Value": "",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "InputType": 0,
+          "Formula": "",
+          "MxBinding": "",
+          "Type": "TextBox",
+          "Id": "TextBox_To",
+          "Name": "txtTo",
+          "Visible": true,
+          "Position": {
+            "Left": 130,
+            "Top": 55,
+            "Width": 500,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 3,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "참조(CC):",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "Label_Cc",
+          "Name": "lblCc",
+          "Visible": true,
+          "Position": {
+            "Left": 20,
+            "Top": 90,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 4,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "",
+          "Value": "",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "InputType": 0,
+          "Formula": "",
+          "MxBinding": "",
+          "Type": "TextBox",
+          "Id": "TextBox_Cc",
+          "Name": "txtCc",
+          "Visible": true,
+          "Position": {
+            "Left": 130,
+            "Top": 90,
+            "Width": 500,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 5,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "숨은참조(BCC):",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "Label_Bcc",
+          "Name": "lblBcc",
+          "Visible": true,
+          "Position": {
+            "Left": 20,
+            "Top": 125,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 6,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "",
+          "Value": "",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "InputType": 0,
+          "Formula": "",
+          "MxBinding": "",
+          "Type": "TextBox",
+          "Id": "TextBox_Bcc",
+          "Name": "txtBcc",
+          "Visible": true,
+          "Position": {
+            "Left": 130,
+            "Top": 125,
+            "Width": 500,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 7,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "메일 본문:",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "Label_Body",
+          "Name": "lblBody",
+          "Visible": true,
+          "Position": {
+            "Left": 20,
+            "Top": 160,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 8,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "",
+          "Value": "",
+          "IsReadOnly": false,
+          "Type": "RichTextBox",
+          "Id": "RichTextBox_Body",
+          "Name": "txtBody",
+          "Visible": true,
+          "Position": {
+            "Left": 20,
+            "Top": 190,
+            "Width": 610,
+            "Height": 250,
+            "ZIndex": 0,
+            "TabIndex": 9,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "HTML 형식으로 발송",
+          "Checked": false,
+          "Type": "CheckBox",
+          "Id": "CheckBox_Html",
+          "Name": "chkHtml",
+          "Visible": true,
+          "Position": {
+            "Left": 20,
+            "Top": 455,
+            "Width": 150,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 10,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "발송",
+          "Value": "발송",
+          "Type": "Button",
+          "Id": "Button_Send",
+          "Name": "btnSend",
+          "Visible": true,
+          "Position": {
+            "Left": 450,
+            "Top": 495,
+            "Width": 80,
+            "Height": 30,
+            "ZIndex": 0,
+            "TabIndex": 11,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 46,
+                "G": 87,
+                "B": 160,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 12,
+                "G": 56,
+                "B": 134,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "center",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "취소",
+          "Value": "취소",
+          "Type": "Button",
+          "Id": "Button_Clear",
+          "Name": "btnClear",
+          "Visible": true,
+          "Position": {
+            "Left": 550,
+            "Top": 495,
+            "Width": 80,
+            "Height": 30,
+            "ZIndex": 0,
+            "TabIndex": 12,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 128,
+                "G": 128,
+                "B": 128,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 96,
+                "G": 96,
+                "B": 96,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "center",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "PersonalConditions": {
+    "list": [],
+    "useAll": true
+  }
+}

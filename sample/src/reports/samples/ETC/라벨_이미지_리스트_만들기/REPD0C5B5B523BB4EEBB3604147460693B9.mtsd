@@ -1,0 +1,289 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPD0C5B5B523BB4EEBB3604147460693B9",
+    "FolderCode": "FLD529700487588439380E5CCBE9AAF54FB",
+    "SavePath": "FLD529700487588439380E5CCBE9AAF54FB/REPD0C5B5B523BB4EEBB3604147460693B9.mtsd",
+    "ReportName": "라벨을 이용한 SELECTOR 개발",
+    "Writer": "yglee",
+    "WriteDate": "2025-06-12 17:15:26",
+    "Editor": "yglee",
+    "EditDate": "2025-06-12 17:15:26",
+    "TabPosition": 2,
+    "UsePersonalConditions": true,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0
+  },
+  "DataSources": {
+    "Datas": []
+  },
+  "ScriptText": "var LineStyleComboList = /** @class */ (function () {\r\n    function LineStyleComboList() {\r\n        this.mSelectedColor = \"#D2DEFF\";\r\n        this.mMoueOverColor = \"#EEEEF3\";\r\n        this.mNodeColor = \"#ffffff\";\r\n        this.Items = null;\r\n        this.mValue = \"\";\r\n        this.mDatas = null;\r\n        this.mControl = Matrix.getObject(\"popup_line_styles\");\r\n        this.img_selected_line_style = Matrix.getObject(\"img_selected_line_style\");\r\n        this.combobutton_line_style = Matrix.getObject(\"combobutton_line_style\");\r\n        this.mElement = this.mControl.Element;\r\n        this.init();\r\n    }\r\n    LineStyleComboList.prototype.init = function () {\r\n        //label 컨트롤 resize override\r\n        var _this = this;\r\n        this.mControl.ZIndex = 999;\r\n        this.Hide();\r\n        this.mControl.Resize = (function (original) {\r\n            return function () {\r\n                original.call(this);\r\n                _this.Update();\r\n            };\r\n        })(this.mControl.Resize);\r\n        // event\r\n        this.combobutton_line_style.OnClick = function (sender, args) {\r\n            debugger;\r\n            _this.Show();\r\n        };\r\n        //아이템 넣기\r\n        _this.setItems([\"Hair\", \"Thin\", \"Dotted\", \"DashDotDot\", \"DashDot\",\r\n            \"Dashed\", \"MediumDashDotDot\", \"SlantDashDot\",\r\n            \"Medium\", \"MediumDashDot\", \"MediumDashed\", \"Double\", \"Thick\"]);\r\n        //문서 클릭 시 닫기                \r\n        parent.document.addEventListener(\"click\", function (event) {\r\n            var visualElements = [_this.mControl.Element,\r\n                _this.combobutton_line_style.Element];\r\n            for (var i = 0, i2 = visualElements.length; i < i2; i++) {\r\n                if (visualElements[i].contains(event.target)) {\r\n                    return;\r\n                }\r\n            }\r\n            _this.Hide();\r\n        });\r\n        parent.document.addEventListener(\"keydown\", function (ev) {\r\n            if (ev.key == \"Escape\") {\r\n                _this.Hide();\r\n            }\r\n        });\r\n    };\r\n    LineStyleComboList.prototype.Update = function () {\r\n        if (this.Items) {\r\n            var width = this.mElement.offsetWidth;\r\n            for (var key in this.Items) {\r\n                this.Items[key].Div.style.width = (width - 6) + \"px\";\r\n            }\r\n        }\r\n    };\r\n    LineStyleComboList.prototype.Calculate = function () {\r\n        var width = this.mElement.offsetWidth;\r\n        this.Items = {};\r\n        if (this.mDatas) {\r\n            for (var r = 0, r2 = this.mDatas.length; r < r2; r++) {\r\n                this.Items[this.mDatas[r]] = { \"Name\": this.mDatas[r], \"Div\": this.createNode(this.mElement, width, this.mDatas[r]) };\r\n            }\r\n        }\r\n    };\r\n    LineStyleComboList.prototype.Show = function () {\r\n        this.mControl.Visible = true;\r\n    };\r\n    LineStyleComboList.prototype.Hide = function () {\r\n        this.mControl.Visible = false;\r\n    };\r\n    /**\r\n     * 모두 삭제\r\n     */\r\n    LineStyleComboList.prototype.Clear = function () {\r\n        var div = this.mElement;\r\n        while (div.firstChild) {\r\n            div.removeChild(div.firstChild);\r\n        }\r\n        div.style.overflowY = \"auto\";\r\n        //1개는 넣어 준다.\r\n        var newDiv = document.createElement(\"div\");\r\n        newDiv.style.display = \"none\";\r\n        div.appendChild(newDiv);\r\n    };\r\n    LineStyleComboList.prototype.notifyOnItemSelected = function (text) {\r\n        if (this.OnItemSelected) {\r\n            this.OnItemSelected(text);\r\n        }\r\n    };\r\n    LineStyleComboList.prototype.getValue = function () {\r\n        return this.mValue;\r\n    };\r\n    /**\r\n     * 특정 아이템 선택\r\n     * @param text\r\n     */\r\n    LineStyleComboList.prototype.Value = function (text) {\r\n        if (text == null) {\r\n            text = \"\";\r\n        }\r\n        this.mValue = text;\r\n        if (this.mSelectedItem) {\r\n            this.mSelectedItem.Selected = false;\r\n            this.mSelectedItem.Div.style.background = this.mNodeColor;\r\n            this.mSelectedItem.Div.removeAttribute(\"SELECTED\");\r\n            this.mSelectedItem = null;\r\n        }\r\n        this.img_selected_line_style.ImageSaveName = \"/XLS/combo_Thin.png\";\r\n        if (this.Items) {\r\n            var item = this.Items[text];\r\n            if (item) {\r\n                item.Selected = true;\r\n                item.Div.style.background = this.mSelectedColor;\r\n                item.Div.setAttribute(\"SELECTED\", \"Y\");\r\n                this.mSelectedItem = item;\r\n                this.img_selected_line_style.ImageSaveName = \"/XLS/combo_\" + text + \".png\";\r\n            }\r\n        }\r\n    };\r\n    LineStyleComboList.prototype.setItems = function (items) {\r\n        this.mDatas = items;\r\n        this.Clear();\r\n        this.Calculate();\r\n    };\r\n    LineStyleComboList.prototype.createNode = function (pNode, width, text) {\r\n        var _this = this;\r\n        //1.div 만들기\r\n        var newDiv = document.createElement(\"div\");\r\n        newDiv.style.border = \"none\"; //\"1px solid #a8bdd7\";\r\n        newDiv.style.width = (width - 6) + \"px\";\r\n        newDiv.style.height = \"23px\";\r\n        newDiv.style.marginTop = \"2\";\r\n        newDiv.style.marginLeft = \"3\";\r\n        newDiv.addEventListener(\"mouseover\", function () {\r\n            newDiv.style.backgroundColor = _this.mMoueOverColor;\r\n        });\r\n        // 마우스를 뗐을 때\r\n        newDiv.addEventListener(\"mouseout\", function () {\r\n            if (newDiv.getAttribute(\"SELECTED\") != \"Y\") {\r\n                newDiv.style.backgroundColor = _this.mNodeColor;\r\n            }\r\n            else {\r\n                newDiv.style.backgroundColor = _this.mSelectedColor;\r\n            }\r\n        });\r\n        // 클릭: 연한 초록\r\n        newDiv.addEventListener(\"click\", function () {\r\n            _this.Value(text);\r\n            _this.notifyOnItemSelected(text);\r\n            _this.Hide();\r\n        });\r\n        // 2. 이미지 생성\r\n        var newImg = document.createElement(\"img\");\r\n        newImg.src = Matrix.GetGlobalConfig().CONTEXT_PATH + \"/servlet/Download.maf?flag=9&resourceno=\" + encodeURIComponent(\"WEB_IMAGES/XLS/\" + text + \".png\");\r\n        // 3. div에 이미지 추가\r\n        newDiv.appendChild(newImg);\r\n        // 4. 특정 div 아래에 추가\r\n        pNode.appendChild(newDiv);\r\n        return newDiv;\r\n    };\r\n    return LineStyleComboList;\r\n}());\r\nvar combo = new LineStyleComboList();\r\ncombo.OnItemSelected = function (text) {\r\n    alert(text);\r\n};\r\n",
+  "ServerScriptText": [],
+  "Forms": [
+    {
+      "Id": "FormF4167100B7495FB2B459FDA43A6D8D89",
+      "Name": "Form1",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "LanguageCode": "",
+          "Text": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "Label5CC9B72CC2B07D22347B71A9F905DC51",
+          "Name": "popup_line_styles",
+          "Visible": false,
+          "Position": {
+            "Left": 265,
+            "Top": 147,
+            "Width": 103,
+            "Height": 328,
+            "ZIndex": 999,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "Cursor": "pointer",
+          "Image": {
+            "ImageCode": "/XLS/combo_container.png",
+            "FolderCode": "WEB_IMAGES",
+            "SaveName": "/XLS/combo_container.png"
+          },
+          "OnImage": {
+            "FolderCode": "WEB_IMAGES",
+            "SaveName": ""
+          },
+          "Type": "Image",
+          "Id": "ImageD8CBEBBD9B2013DDA62241B0018C5442",
+          "Name": "combobutton_line_style",
+          "Position": {
+            "Left": 264,
+            "Top": 122,
+            "Width": 52,
+            "Height": 24,
+            "ZIndex": 2,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "Cursor": "default",
+          "Image": {
+            "ImageCode": "/XLS/combo_DashDot.png",
+            "FolderCode": "WEB_IMAGES",
+            "SaveName": "/XLS/combo_DashDotDot.png",
+            "Base64Text": ""
+          },
+          "OnImage": {
+            "FolderCode": "WEB_IMAGES",
+            "SaveName": ""
+          },
+          "Type": "Image",
+          "Id": "ImageB1EBE47060B0E8B08DD6BABF0371BCB0",
+          "Name": "img_selected_line_style",
+          "Position": {
+            "Left": 268,
+            "Top": 132,
+            "Width": 26,
+            "Height": 4,
+            "ZIndex": 3,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {},
+  "PersonalConditions": {
+    "list": [],
+    "useAll": true
+  }
+}
