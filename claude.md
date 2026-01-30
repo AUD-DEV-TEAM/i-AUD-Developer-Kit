@@ -43,7 +43,8 @@ i-AUD-Developer-Kit/
 │       ├── iaud-project-guide/        # 프로젝트 구조 가이드
 │       ├── iaud-client-script/        # 클라이언트 스크립트 가이드
 │       ├── iaud-server-script/        # 서버 스크립트 가이드
-│       └── iaud-report-structure/     # 보고서 구조 가이드
+│       ├── iaud-report-structure/     # 보고서 구조 가이드
+│       └── iaud-module-create/        # 모듈 생성 가이드
 ├── src/
 │   ├── com/                   # 서버 스크립트 API (Rhino)
 │   │   └── matrix/
@@ -100,6 +101,7 @@ i-AUD-Developer-Kit/
 | `/iaud-client-script` | 클라이언트 스크립트 개발 가이드 (브라우저) | UI 컨트롤 조작, 버튼 이벤트, 그리드 조작이 필요할 때 |
 | `/iaud-server-script` | 서버 스크립트 개발 가이드 (Rhino) | DB 조회, 파일 처리, 비즈니스 로직 구현이 필요할 때 |
 | `/iaud-report-structure` | 보고서 구조 가이드 (.aud.json, .mtsd) | 보고서 파일 구조, 데이터소스, 서비스 구성을 알아야 할 때 |
+| `/iaud-module-create` | 모듈 생성 가이드 (.module.json) | 프로세스 봇 모듈을 만들어야 할 때 |
 
 ### Skill 사용 예시
 
@@ -112,6 +114,9 @@ i-AUD-Developer-Kit/
 
 질문: ".aud.json 파일은 무엇인가요?"
 → /iaud-report-structure 스킬 참조
+
+질문: "그리드를 꾸미는 모듈을 만들어줘"
+→ /iaud-module-create 스킬 참조
 ```
 
 ---
