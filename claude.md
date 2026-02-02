@@ -44,7 +44,8 @@ i-AUD-Developer-Kit/
 │       ├── iaud-client-script/        # 클라이언트 스크립트 가이드
 │       ├── iaud-server-script/        # 서버 스크립트 가이드
 │       ├── iaud-report-structure/     # 보고서 구조 가이드
-│       └── iaud-module-create/        # 모듈 생성 가이드
+│       ├── iaud-module-create/        # 모듈 생성 가이드
+│       └── iaud-sql-guide/            # DataSource SQL 작성 가이드
 ├── src/
 │   ├── com/                   # 서버 스크립트 API (Rhino)
 │   │   └── matrix/
@@ -102,6 +103,7 @@ i-AUD-Developer-Kit/
 | `/iaud-server-script` | 서버 스크립트 개발 가이드 (Rhino) | DB 조회, 파일 처리, 비즈니스 로직 구현이 필요할 때 |
 | `/iaud-report-structure` | 보고서 구조 가이드 (.aud.json, .mtsd) | 보고서 파일 구조, 데이터소스, 서비스 구성을 알아야 할 때 |
 | `/iaud-module-create` | 모듈 생성 가이드 (.module.json) | 프로세스 봇 모듈을 만들어야 할 때 |
+| `/iaud-sql-guide` | DataSource SQL 작성 가이드 | SQL 파라미터 바인딩, 변수 치환, Dynamic SQL 작성이 필요할 때 |
 
 ### Skill 사용 예시
 
@@ -117,6 +119,9 @@ i-AUD-Developer-Kit/
 
 질문: "그리드를 꾸미는 모듈을 만들어줘"
 → /iaud-module-create 스킬 참조
+
+질문: "SQL에서 파라미터 바인딩은 어떻게 하나요?"
+→ /iaud-sql-guide 스킬 참조
 ```
 
 ---
@@ -226,11 +231,15 @@ try {
 ### SQL 파라미터 바인딩
 
 ```sql
-SELECT * FROM TABLE
+SELECT * FROM EMP
 WHERE 1=1
-    #[VS_KEYWORD]#        -- 문자열 파라미터
-    ##[VS_AMOUNT]##       -- 숫자 파라미터
+  AND DEPT_CODE = :VS_DEPT_CODE          -- 문자열: 자동으로 '따옴표' 감싸짐
+  AND AMOUNT > :VN_MIN_AMOUNT            -- 숫자: 따옴표 없이 값 그대로 치환
+  AND USER_NAME = @:VS_USER_NAME         -- @: 빈 값이면 해당 라인 삭제
+  AND SEARCH_NAME LIKE %:VS_KEYWORD%     -- %: LIKE 와일드카드 자동 포함
 ```
+
+> 상세 규칙(IN절, Dynamic SQL, 프로시저 등)은 `/iaud-sql-guide` 스킬을 참조하세요.
 
 ---
 
@@ -307,6 +316,7 @@ TypeScript 인터페이스 정의: `src/com/`
 - 클라이언트 개발 질문 → `/iaud-client-script` 참조
 - 서버 개발 질문 → `/iaud-server-script` 참조
 - 보고서 구조 질문 → `/iaud-report-structure` 참조
+- SQL 작성 질문 → `/iaud-sql-guide` 참조
 
 ### 4. 일반적인 작업 패턴
 
