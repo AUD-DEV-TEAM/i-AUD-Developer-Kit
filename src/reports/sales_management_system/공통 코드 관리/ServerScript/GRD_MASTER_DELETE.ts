@@ -2,61 +2,42 @@ import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
 import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection";
 import { ScriptQueryGenerator } from "@AUD_SERVER/matrix/script/ScriptQueryGenerator";
 
- // Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
-let CALL_BACK : Function;
-let Matrix : Matrix;
+// Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
+let CALL_BACK: Function;
+let Matrix: Matrix;
 
-/*************************************************************
- * SAMPLE #1 single table insert
- *************************************************************/
+const req = Matrix.getRequest();
+const table = req.getTable("GRD_MASTER");
+const gen = Matrix.getQueryGenerator();
+let con = Matrix.getConnection();
 
-const req = Matrix.getRequest(); // request
-const table = req.getTable("GRD_MASTER"); //get grid's work data
+try {
+	con.Connect("AUD_SAMPLE_DB");
+	con.BeginTransaction();
 
-let con = Matrix.getConnection(); // dbms connection
-const gen = Matrix.getQueryGenerator(); // query generator
-let sql = "";
-let status = "";
-let row = null;
+	for (let r = 0; r < table.getRowCount(); r++) {
+		const row = table.getRow(r);
+		const status = row.getRowStatus();
 
-try{
-	//connection
-	con.Connect("AUD_SAMPLE_DB");// set target dbms connection code
-	con.BeginTransaction();  // begin transaction	 
-	 
-	//------------------------------------------------------
-	// save table data
-	//------------------------------------------------------
-	for(let r=0;r<table.getRowCount();r++){
-		row = table.getRow(r);
-		status = row.getRowStatus(); 
-		
-		// auto generation dml sql
-		/*if(status == "N"){ // create
-			sql = gen.getDMLCommand(table ,row ,"TABLE_NAME", con.getDbType());			
-		}else if(status == "U"){ // update		
-			sql = gen.getDMLCommand(table ,row ,"TABLE_NAME", con.getDbType());		
-		}else */if(status == "D"){// delete		
-			sql = gen.getDMLCommand(table ,row ,"SM_COMMON_CODE", con.getDbType());
-		}			
-		Matrix.WriteLog(sql);
-		con.ExecuteUpdate(sql);
-		
-	}  
-	// COMMIT
+		if (status == "D") {
+			const sql = gen.getDMLCommand(table, row, "SM_COMMON_CODE", con.getDbType());
+			Matrix.WriteLog(sql);
+			con.ExecuteUpdate(sql);
+		}
+	}
+
 	con.CommitTransaction();
 	con.DisConnect();
-	con = null;	
-	
-}catch(e){
-	Matrix.WriteLog("ERROR" + e.message); 
-	if(con != null){
-		try{
+	con = null;
+
+} catch(e) {
+	Matrix.WriteLog("ERROR" + e.message);
+	if (con != null) {
+		try {
 			con.RollBackTransaction();
 			con.DisConnect();
 			con = null;
-		}catch(e){
-		}
-	} 
+		} catch(e) {}
+	}
 	Matrix.ThrowException("Server Exception:" + e.message);
 }
