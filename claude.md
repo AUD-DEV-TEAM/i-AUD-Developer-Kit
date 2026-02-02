@@ -46,7 +46,8 @@ i-AUD-Developer-Kit/
 │       ├── iaud-report-structure/     # 보고서 구조 가이드
 │       ├── iaud-module-create/        # 모듈 생성 가이드
 │       ├── iaud-sql-guide/            # DataSource SQL 작성 가이드
-│       └── iaud-olap-formula/         # OLAP 수식 작성 가이드
+│       ├── iaud-olap-formula/         # OLAP 수식 작성 가이드
+│       └── iaud-formula/              # 계산수식(Formula) 작성 가이드
 ├── src/
 │   ├── com/                   # 서버 스크립트 API (Rhino)
 │   │   └── matrix/
@@ -106,6 +107,7 @@ i-AUD-Developer-Kit/
 | `/iaud-module-create` | 모듈 생성 가이드 (.module.json) | 프로세스 봇 모듈을 만들어야 할 때 |
 | `/iaud-sql-guide` | DataSource SQL 작성 가이드 | SQL 파라미터 바인딩, 변수 치환, Dynamic SQL 작성이 필요할 때 |
 | `/iaud-olap-formula` | OLAP 수식 작성 가이드 | OlapGrid 계산 필드, ForAll/ForEach, 조건부 서식 수식 작성이 필요할 때 |
+| `/iaud-formula` | 계산수식(Formula) 작성 가이드 | 컨트롤 수식, SUMIF, 그리드 컬럼 수식, 컨트롤 참조 연산이 필요할 때 |
 
 ### Skill 사용 예시
 
@@ -127,6 +129,9 @@ i-AUD-Developer-Kit/
 
 질문: "OLAP 그리드에 계산 필드 수식을 어떻게 작성하나요?"
 → /iaud-olap-formula 스킬 참조
+
+질문: "데이터그리드 컬럼에 수식을 넣고 싶어요" / "라벨에 그리드 합계를 표시하려면?"
+→ /iaud-formula 스킬 참조
 ```
 
 ---
@@ -324,6 +329,7 @@ TypeScript 인터페이스 정의: `src/com/`
 - 보고서 구조 질문 → `/iaud-report-structure` 참조
 - SQL 작성 질문 → `/iaud-sql-guide` 참조
 - OLAP 수식 질문 → `/iaud-olap-formula` 참조
+- 컨트롤 계산수식 질문 → `/iaud-formula` 참조
 
 ### 4. 일반적인 작업 패턴
 
