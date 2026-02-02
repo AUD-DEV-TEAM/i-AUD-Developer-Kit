@@ -78,13 +78,13 @@
                 <!-- 검색 필터 -->
                 <div class="card" style="margin-bottom: 20px;">
                     <div class="card-body">
-                        <div class="search-form" style="align-items: flex-end;">
-                            <div class="form-group">
+                        <div style="display: flex; align-items: flex-end; justify-content: space-between;">
+                            <div class="form-group" style="margin-bottom: 0;">
                                 <label for="searchYear">연도</label>
-                                <input type="text" id="searchYear" class="form-control" value="2024" placeholder="YYYY" pattern="\d{4}" style="width: 100px;">
+                                <input type="number" id="searchYear" class="form-control" value="2025" min="2000" max="2099" style="width: 120px;" lang="en">
                             </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary" onclick="searchDashboard()">조회</button>
+                            <div>
+                                <button class="btn btn-primary" onclick="searchDashboard()">검색</button>
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                         </div>
                         <div class="card-body">
                             <div class="summary-value" id="totalSales">-</div>
-                            <div class="summary-label">2024년 누적</div>
+                            <div class="summary-label">총 재고 품목</div>
                         </div>
                     </div>
                     <div class="card summary-card">
@@ -115,7 +115,7 @@
                             <h3>활성 고객</h3>
                         </div>
                         <div class="card-body">
-                            <div class="summary-value" id="activeCustomers">-</div>
+                            <div class="summary-value text-danger" id="activeCustomers">-</div>
                             <div class="summary-label">거래 고객 수</div>
                         </div>
                     </div>
@@ -163,8 +163,8 @@
                                     <thead>
                                         <tr>
                                             <th>카테고리</th>
-                                            <th>매출액</th>
-                                            <th>비율</th>
+                                            <th class="number">매출액</th>
+                                            <th class="number">비율</th>
                                         </tr>
                                     </thead>
                                     <tbody id="categorySalesBody">

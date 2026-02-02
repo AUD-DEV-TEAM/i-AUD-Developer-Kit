@@ -32,7 +32,7 @@ function searchDashboard() {
 }
 
 function renderDashboard() {
-    const searchYear = document.getElementById('searchYear')?.value || '2024';
+    const searchYear = document.getElementById('searchYear')?.value || '2025';
     const searchDept = document.getElementById('searchDept')?.value || '';
 
     renderSummaryCards(searchYear, searchDept);
@@ -45,12 +45,6 @@ function renderDashboard() {
 
 // 요약 카드 렌더링
 function renderSummaryCards(year, deptId) {
-    // 연도 라벨 업데이트
-    const summaryLabel = document.querySelector('.summary-card .summary-label');
-    if (summaryLabel) {
-        summaryLabel.textContent = year + '년 누적';
-    }
-
     document.getElementById('totalSales').textContent = formatCurrency(DASHBOARD_SUMMARY.totalSales);
     document.getElementById('achievementRate').textContent = formatPercent(DASHBOARD_SUMMARY.achievementRate);
     document.getElementById('activeCustomers').textContent = formatNumber(DASHBOARD_SUMMARY.activeCustomers) + '개사';
@@ -65,14 +59,12 @@ function renderMonthlySales(year, deptId) {
     tbody.innerHTML = '';
     MONTHLY_SALES.forEach(item => {
         const rate = item.target > 0 ? (item.sales / item.target * 100) : 0;
-        const rateClass = rate >= 100 ? 'text-success' : (rate >= 80 ? 'text-warning' : 'text-danger');
-
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>${item.month}</td>
             <td>${formatCurrency(item.sales)}</td>
             <td>${formatCurrency(item.target)}</td>
-            <td class="${rateClass}">${formatPercent(rate)}</td>
+            <td>${formatPercent(rate)}</td>
         `;
         tbody.appendChild(tr);
     });
@@ -92,12 +84,14 @@ function renderCategorySales(year, deptId) {
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>${item.category}</td>
-            <td>${formatCurrency(item.sales)}</td>
-            <td>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: ${ratio}%"></div>
+            <td class="number">${formatCurrency(item.sales)}</td>
+            <td class="number" style="width: 180px;">
+                <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px;">
+                    <div style="width: 80px; height: 12px; background: #e2e8f0; border-radius: 2px; overflow: hidden;">
+                        <div style="width: ${ratio}%; height: 100%; background: #7c93c3; border-radius: 2px;"></div>
+                    </div>
+                    <span>${formatPercent(ratio)}</span>
                 </div>
-                <span>${formatPercent(ratio)}</span>
             </td>
         `;
         tbody.appendChild(tr);
@@ -112,14 +106,12 @@ function renderTeamPerformance(year, deptId) {
     tbody.innerHTML = '';
     TEAM_PERFORMANCE.forEach(item => {
         const rate = item.target > 0 ? (item.sales / item.target * 100) : 0;
-        const rateClass = rate >= 100 ? 'text-success' : (rate >= 80 ? 'text-warning' : 'text-danger');
-
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>${item.team}</td>
             <td>${formatCurrency(item.target)}</td>
             <td>${formatCurrency(item.sales)}</td>
-            <td class="${rateClass}"><strong>${formatPercent(rate)}</strong></td>
+            <td><strong>${formatPercent(rate)}</strong></td>
         `;
         tbody.appendChild(tr);
     });

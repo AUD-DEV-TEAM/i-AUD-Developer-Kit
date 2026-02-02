@@ -151,7 +151,7 @@
                     <div class="bi-card col-6">
                         <div class="bi-header">
                             <h4>고객별 매출 TOP 10</h4>
-                            <button class="btn btn-sm btn-outline">상세보기</button>
+                            <button class="btn btn-sm btn-outline" onclick="showDetail('customer')">상세보기</button>
                         </div>
                         <div class="bi-body" style="padding: 0;">
                             <table class="bi-table">
@@ -174,7 +174,7 @@
                     <div class="bi-card col-6">
                         <div class="bi-header">
                             <h4>제품별 매출 TOP 10</h4>
-                            <button class="btn btn-sm btn-outline">상세보기</button>
+                            <button class="btn btn-sm btn-outline" onclick="showDetail('product')">상세보기</button>
                         </div>
                         <div class="bi-body" style="padding: 0;">
                             <table class="bi-table">
@@ -259,11 +259,15 @@
                             <h4>분기별 목표 달성</h4>
                         </div>
                         <div class="bi-body">
-                            <div class="gauge-container">
-                                <div class="gauge-chart">
-                                    <div class="gauge-value">87%</div>
-                                </div>
-                                <div class="gauge-label">연간 목표 달성률</div>
+                            <div class="chart-placeholder" style="height: 220px;">
+                                <div class="chart-icon">🥧</div>
+                                <div>파이 차트 영역</div>
+                            </div>
+                            <div style="display: flex; justify-content: center; gap: 16px; margin: 12px 0; font-size: 0.8rem; color: var(--text-secondary);">
+                                <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#8b9dc3;margin-right:4px;"></span>Q1</span>
+                                <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#b0bec5;margin-right:4px;"></span>Q2</span>
+                                <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c5e1a5;margin-right:4px;"></span>Q3</span>
+                                <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ffe082;margin-right:4px;"></span>Q4</span>
                             </div>
 
                             <table class="bi-table">
@@ -278,27 +282,27 @@
                                 <tbody>
                                     <tr>
                                         <td>Q1</td>
-                                        <td class="number">₩1,200M</td>
-                                        <td class="number">₩1,150M</td>
-                                        <td class="number positive">95.8%</td>
+                                        <td class="number">₩133,282M</td>
+                                        <td class="number">₩1,001M</td>
+                                        <td class="number">0.8%</td>
                                     </tr>
                                     <tr>
                                         <td>Q2</td>
-                                        <td class="number">₩1,400M</td>
-                                        <td class="number">₩1,520M</td>
-                                        <td class="number positive">108.6%</td>
+                                        <td class="number">₩56,664M</td>
+                                        <td class="number">₩509M</td>
+                                        <td class="number">0.9%</td>
                                     </tr>
                                     <tr>
                                         <td>Q3</td>
-                                        <td class="number">₩1,300M</td>
-                                        <td class="number">₩1,180M</td>
-                                        <td class="number negative">90.8%</td>
+                                        <td class="number">₩16,645M</td>
+                                        <td class="number">₩476M</td>
+                                        <td class="number">2.9%</td>
                                     </tr>
                                     <tr>
                                         <td>Q4</td>
-                                        <td class="number">₩1,500M</td>
-                                        <td class="number">₩1,420M</td>
-                                        <td class="number positive">94.7%</td>
+                                        <td class="number">₩19,698M</td>
+                                        <td class="number">₩624M</td>
+                                        <td class="number">3.2%</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -307,6 +311,22 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- 상세보기 모달 -->
+    <div class="modal" id="detailModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3 id="detailModalTitle">상세보기</h3>
+                <button class="modal-close" onclick="closeModal('detailModal')">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 0; max-height: 500px; overflow: auto;">
+                <table class="table" id="detailModalTable">
+                    <thead id="detailModalHead"></thead>
+                    <tbody id="detailModalBody"></tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <script src="../js/mock-data.js"></script>
@@ -450,6 +470,71 @@
                 `;
                 tbody.appendChild(tr);
             });
+        }
+
+        function showDetail(type) {
+            const thead = document.getElementById('detailModalHead');
+            const tbody = document.getElementById('detailModalBody');
+            thead.innerHTML = '';
+            tbody.innerHTML = '';
+
+            if (type === 'customer') {
+                document.getElementById('detailModalTitle').textContent = '고객별 매출 상세';
+                thead.innerHTML = '<tr><th style="width:50px;">순위</th><th>고객명</th><th>고객유형</th><th class="number">매출액</th><th class="number">비중</th></tr>';
+
+                const customerSales = {};
+                SALES_PERFORMANCE.forEach(p => {
+                    if (!customerSales[p.CUST_ID]) customerSales[p.CUST_ID] = 0;
+                    customerSales[p.CUST_ID] += p.SALE_AMT;
+                });
+                const total = Object.values(customerSales).reduce((sum, v) => sum + v, 0);
+                const sorted = Object.entries(customerSales).sort((a, b) => b[1] - a[1]);
+
+                sorted.forEach(([custId, sales], idx) => {
+                    const cust = CUSTOMERS.find(c => c.CUST_ID === custId);
+                    const ratio = total > 0 ? (sales / total * 100) : 0;
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><strong>${idx + 1}</strong></td>
+                        <td>${cust ? cust.CUST_NM : custId}</td>
+                        <td>${cust ? getCodeName('CUST_TYPE', cust.CUST_TYPE) : '-'}</td>
+                        <td class="number"><strong>${formatCurrency(sales)}</strong></td>
+                        <td class="number">${formatPercent(ratio)}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } else if (type === 'product') {
+                document.getElementById('detailModalTitle').textContent = '제품별 매출 상세';
+                thead.innerHTML = '<tr><th style="width:50px;">순위</th><th>제품명</th><th>카테고리</th><th class="number">판매수량</th><th class="number">매출액</th></tr>';
+
+                const productSales = {};
+                const productQty = {};
+                SALES_PERFORMANCE.forEach(p => {
+                    if (!productSales[p.PROD_ID]) {
+                        productSales[p.PROD_ID] = 0;
+                        productQty[p.PROD_ID] = 0;
+                    }
+                    productSales[p.PROD_ID] += p.SALE_AMT;
+                    productQty[p.PROD_ID] += p.SALE_QTY;
+                });
+                const sorted = Object.entries(productSales).sort((a, b) => b[1] - a[1]);
+
+                sorted.forEach(([prodId, sales], idx) => {
+                    const prod = PRODUCTS.find(p => p.PROD_ID === prodId);
+                    const qty = productQty[prodId] || 0;
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><strong>${idx + 1}</strong></td>
+                        <td>${prod ? prod.PROD_NM : prodId}</td>
+                        <td>${prod ? getCodeName('PROD_CATEGORY', prod.CATEGORY) : '-'}</td>
+                        <td class="number">${formatNumber(qty)}</td>
+                        <td class="number"><strong>${formatCurrency(sales)}</strong></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+
+            openModal('detailModal');
         }
     </script>
 </body>

@@ -70,7 +70,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h3>코드 그룹</h3>
-                            <span class="badge badge-primary" id="groupCount">0</span>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="badge badge-primary" id="groupCount">0</span>
+                                <button class="btn btn-danger btn-sm" onclick="deleteSelectedGroups()">삭제</button>
+                            </div>
                         </div>
                         <div class="card-body">
                             <table class="table">
@@ -126,7 +129,7 @@
     <div class="modal" id="groupModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="groupModalTitle">코드 그룹 추가</h3>
+                <h3 id="groupModalTitle">그룹 추가</h3>
                 <button class="modal-close" onclick="closeModal('groupModal')">&times;</button>
             </div>
             <div class="modal-body">
@@ -148,7 +151,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-outline" onclick="closeModal('groupModal')">취소</button>
-                <button class="btn btn-primary" onclick="saveGroup()">저장</button>
+                <button class="btn btn-primary" onclick="saveGroup()">추가</button>
             </div>
         </div>
     </div>
@@ -167,30 +170,34 @@
                         <label class="form-label">그룹코드</label>
                         <input type="text" id="codeGroupCd" class="form-control" readonly>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">코드 *</label>
-                        <input type="text" id="code" class="form-control" required placeholder="예: NEW_VALUE">
+                    <div class="form-row" style="grid-template-columns: 1fr 1fr;">
+                        <div class="form-group">
+                            <label class="form-label">코드 *</label>
+                            <input type="text" id="code" class="form-control" required placeholder="예: NEW_VALUE">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">코드명 *</label>
+                            <input type="text" id="codeNm" class="form-control" required placeholder="예: 새로운 값">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">코드명 *</label>
-                        <input type="text" id="codeNm" class="form-control" required placeholder="예: 새로운 값">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">정렬순서</label>
-                        <input type="number" id="sortOrder" class="form-control" value="1" min="1">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">사용여부</label>
-                        <select id="useYn" class="form-control">
-                            <option value="Y">사용</option>
-                            <option value="N">미사용</option>
-                        </select>
+                    <div class="form-row" style="grid-template-columns: 1fr 1fr;">
+                        <div class="form-group">
+                            <label class="form-label">정렬순서</label>
+                            <input type="number" id="sortOrder" class="form-control" value="1" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">사용여부</label>
+                            <select id="useYn" class="form-control">
+                                <option value="Y">사용</option>
+                                <option value="N">미사용</option>
+                            </select>
+                        </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-outline" onclick="closeModal('codeModal')">취소</button>
-                <button class="btn btn-primary" onclick="saveCode()">저장</button>
+                <button class="btn btn-primary" onclick="saveCode()">추가</button>
             </div>
         </div>
     </div>
@@ -238,17 +245,16 @@
 
         function getGroupName(groupCd) {
             const groupNames = {
-                'EMP_STATUS': '직원 상태',
-                'POSITION': '직급',
-                'CUST_TYPE': '고객 유형',
                 'CUST_GRADE': '고객 등급',
-                'CUST_STATUS': '고객 상태',
-                'PROD_CATEGORY': '제품 카테고리',
-                'PROD_STATUS': '제품 상태',
-                'UNIT': '단위',
-                'WAREHOUSE': '창고',
+                'CUST_TYPE': '고객 유형',
+                'EMP_STATUS': '재직 상태',
+                'JOB_GRADE': '직급',
+                'JOB_ROLE': '담당 직무',
+                'PAY_METHOD': '결제 수단',
                 'PLAN_STATUS': '계획 상태',
-                'PERF_STATUS': '실적 상태'
+                'PROD_CATEGORY': '상품 카테고리',
+                'SALES_STATUS': '판매 진행 상태',
+                'STD_UNIT': '재고 관리 단위'
             };
             return groupNames[groupCd] || groupCd;
         }
@@ -265,7 +271,7 @@
                 tr.innerHTML = `
                     <td><strong>${group.GROUP_CD}</strong></td>
                     <td>${group.GROUP_NM}</td>
-                    <td><span class="badge badge-secondary">${group.CODE_COUNT}</span></td>
+                    <td class="number">${group.CODE_COUNT}</td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -471,6 +477,26 @@
             const checkAll = document.getElementById('checkAllCodes');
             const checkboxes = document.querySelectorAll('.code-checkbox');
             checkboxes.forEach(cb => cb.checked = checkAll.checked);
+        }
+
+        function deleteSelectedGroups() {
+            if (!selectedGroupCd) {
+                showAlert('삭제할 그룹을 선택해주세요.');
+                return;
+            }
+            if (!showConfirm('선택한 그룹을 삭제하시겠습니까?')) return;
+
+            const idx = codeGroups.findIndex(g => g.GROUP_CD === selectedGroupCd);
+            if (idx !== -1) {
+                codeGroups.splice(idx, 1);
+                delete detailCodes[selectedGroupCd];
+                delete COMMON_CODES[selectedGroupCd];
+            }
+            selectedGroupCd = null;
+            document.getElementById('selectedGroupName').textContent = '그룹을 선택하세요';
+            showAlert('삭제되었습니다.');
+            loadGroups();
+            loadCodes();
         }
 
         function deleteSelectedCodes() {

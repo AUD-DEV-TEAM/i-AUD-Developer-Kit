@@ -66,12 +66,6 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="searchStatus">판매상태</label>
-                                <select id="searchStatus" class="form-control">
-                                    <option value="">전체</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label for="searchKeyword">검색어</label>
                                 <input type="text" id="searchKeyword" class="form-control" placeholder="제품명, 제품코드로 검색">
                             </div>
@@ -100,7 +94,6 @@
                                     <th>단가</th>
                                     <th>원가</th>
                                     <th>단위</th>
-                                    <th>상태</th>
                                 </tr>
                             </thead>
                             <tbody id="productTableBody">
@@ -123,42 +116,32 @@
             <div class="modal-body">
                 <form id="productForm">
                     <input type="hidden" id="editProdId">
+                    <input type="hidden" id="prodId">
                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="prodId">제품ID</label>
-                            <input type="text" id="prodId" class="form-control" readonly placeholder="자동 생성">
-                        </div>
                         <div class="form-group">
                             <label for="prodNm">제품명 *</label>
                             <input type="text" id="prodNm" class="form-control" required>
                         </div>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group">
                             <label for="category">카테고리 *</label>
                             <select id="category" class="form-control" required>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="unitPrice">단가 *</label>
-                            <input type="number" id="unitPrice" class="form-control" required min="0">
-                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="costPrice">원가</label>
-                            <input type="number" id="costPrice" class="form-control" min="0">
+                            <label for="unitPrice">단가 *</label>
+                            <input type="number" id="unitPrice" class="form-control" required min="0" value="0">
                         </div>
+                        <div class="form-group">
+                            <label for="costPrice">원가 *</label>
+                            <input type="number" id="costPrice" class="form-control" min="0" value="0">
+                        </div>
+                    </div>
+                    <div class="form-row">
                         <div class="form-group">
                             <label for="unit">단위 *</label>
                             <select id="unit" class="form-control" required>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="prodStatus">상태 *</label>
-                            <select id="prodStatus" class="form-control" required>
                             </select>
                         </div>
                         <div class="form-group">
@@ -168,7 +151,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-outline" onclick="closeModal('productModal')">취소</button>
-                <button class="btn btn-primary" onclick="saveProduct()">저장</button>
+                <button class="btn btn-primary" onclick="saveProduct()">추가</button>
             </div>
         </div>
     </div>
@@ -187,12 +170,10 @@
         function initPage() {
             // 검색 셀렉트박스 초기화
             populateSelectFromCode('searchCategory', 'PROD_CATEGORY');
-            populateSelectFromCode('searchStatus', 'PROD_STATUS');
 
             // 폼 셀렉트박스 초기화
             populateSelectFromCode('category', 'PROD_CATEGORY', false);
             populateSelectFromCode('unit', 'UNIT', false);
-            populateSelectFromCode('prodStatus', 'PROD_STATUS', false);
 
             // 데이터 로드
             loadProducts();
@@ -205,12 +186,10 @@
 
         function searchProducts() {
             const category = document.getElementById('searchCategory').value;
-            const status = document.getElementById('searchStatus').value;
             const keyword = document.getElementById('searchKeyword').value.toLowerCase();
 
             filteredData = PRODUCTS.filter(prod => {
                 if (category && prod.CATEGORY !== category) return false;
-                if (status && prod.PROD_STATUS !== status) return false;
                 if (keyword) {
                     const searchFields = [prod.PROD_ID, prod.PROD_NM].join(' ').toLowerCase();
                     if (!searchFields.includes(keyword)) return false;
@@ -224,7 +203,6 @@
 
         function resetSearch() {
             document.getElementById('searchCategory').value = '';
-            document.getElementById('searchStatus').value = '';
             document.getElementById('searchKeyword').value = '';
             loadProducts();
         }
@@ -253,7 +231,6 @@
                     <td>${formatCurrency(prod.UNIT_PRICE)}</td>
                     <td>${formatCurrency(prod.COST_PRICE)}</td>
                     <td>${getCodeName('UNIT', prod.UNIT)}</td>
-                    <td>${createStatusBadge(prod.PROD_STATUS)}</td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -278,7 +255,6 @@
             document.getElementById('unitPrice').value = prod.UNIT_PRICE;
             document.getElementById('costPrice').value = prod.COST_PRICE || '';
             document.getElementById('unit').value = prod.UNIT;
-            document.getElementById('prodStatus').value = prod.PROD_STATUS;
 
             openModal('productModal');
         }
@@ -290,8 +266,7 @@
                 CATEGORY: document.getElementById('category').value,
                 UNIT_PRICE: parseInt(document.getElementById('unitPrice').value),
                 COST_PRICE: parseInt(document.getElementById('costPrice').value) || null,
-                UNIT: document.getElementById('unit').value,
-                PROD_STATUS: document.getElementById('prodStatus').value
+                UNIT: document.getElementById('unit').value
             };
 
             if (!formData.PROD_NM || !formData.CATEGORY || !formData.UNIT_PRICE || !formData.UNIT) {

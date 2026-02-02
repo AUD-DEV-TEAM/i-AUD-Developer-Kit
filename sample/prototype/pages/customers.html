@@ -49,192 +49,118 @@
         <main class="main-content">
             <header class="header">
                 <h2>고객 관리</h2>
-                <div class="header-actions">
-                    <button class="btn btn-primary" onclick="openModal('customerModal')">+ 고객 등록</button>
-                </div>
             </header>
 
             <div class="content">
-                <!-- 검색 필터 -->
-                <div class="card">
-                    <div class="card-body">
-                        <div class="search-form">
-                            <div class="form-group">
-                                <label for="searchType">고객유형</label>
-                                <select id="searchType" class="form-control">
-                                    <option value="">전체</option>
-                                </select>
+                <div class="master-detail-layout">
+                    <!-- 좌측: 고객 목록 -->
+                    <div class="master-panel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>고객 목록 (<span id="totalCount">0</span>개사)</h3>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <input type="text" id="searchKeyword" class="form-control" style="width: 220px;" placeholder="고객명, 사업자번호로 검색">
+                                    <button class="btn btn-primary btn-sm" onclick="searchCustomers()">검색</button>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteSelectedCustomers()">삭제</button>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="searchGrade">고객등급</label>
-                                <select id="searchGrade" class="form-control">
-                                    <option value="">전체</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="searchStatus">상태</label>
-                                <select id="searchStatus" class="form-control">
-                                    <option value="">전체</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="searchKeyword">검색어</label>
-                                <input type="text" id="searchKeyword" class="form-control" placeholder="고객명, 사업자번호로 검색">
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary" onclick="searchCustomers()">검색</button>
-                                <button class="btn btn-outline" onclick="resetSearch()">초기화</button>
+                            <div class="card-body" style="padding: 0; overflow: auto;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 40px;"><input type="checkbox" id="checkAll" onclick="toggleAllCheckboxes()"></th>
+                                            <th>고객ID</th>
+                                            <th>고객명</th>
+                                            <th>유형</th>
+                                            <th>등급</th>
+                                            <th>사업자번호</th>
+                                            <th>연락처</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="customerTableBody">
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 고객 목록 -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3>고객 목록 (<span id="totalCount">0</span>개사)</h3>
-                        <button class="btn btn-danger" onclick="deleteSelectedCustomers()">삭제</button>
-                    </div>
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th><input type="checkbox" id="checkAll" onclick="toggleAllCheckboxes()"></th>
-                                    <th>고객ID</th>
-                                    <th>고객명</th>
-                                    <th>유형</th>
-                                    <th>등급</th>
-                                    <th>사업자번호</th>
-                                    <th>담당자</th>
-                                    <th>연락처</th>
-                                    <th>상태</th>
-                                </tr>
-                            </thead>
-                            <tbody id="customerTableBody">
-                            </tbody>
-                        </table>
-                        <div class="pagination" id="pagination"></div>
+                    <!-- 우측: 고객 등록/수정 폼 -->
+                    <div class="detail-panel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 id="formTitle">고객 등록</h3>
+                            </div>
+                            <div class="card-body">
+                                <form id="customerForm">
+                                    <input type="hidden" id="editCustId">
+                                    <div class="form-row" style="grid-template-columns: 1fr 1fr;">
+                                        <div class="form-group">
+                                            <label class="form-label">고객명 *</label>
+                                            <input type="text" id="custNm" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">고객유형 *</label>
+                                            <select id="custType" class="form-control" required>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row" style="grid-template-columns: 1fr 1fr;">
+                                        <div class="form-group">
+                                            <label class="form-label">고객등급 *</label>
+                                            <select id="custGrade" class="form-control" required>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">외상 가능 한도 금액</label>
+                                            <input type="number" id="creditLimit" class="form-control" value="0" min="0">
+                                        </div>
+                                    </div>
+                                    <div class="form-row" style="grid-template-columns: 1fr 1fr;">
+                                        <div class="form-group">
+                                            <label class="form-label">사업자번호</label>
+                                            <input type="text" id="bizNo" class="form-control" placeholder="000-00-00000">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">연락처</label>
+                                            <input type="tel" id="contactPhone" class="form-control" placeholder="010-0000-0000">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">이메일</label>
+                                        <input type="email" id="contactEmail" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">사업장 주소</label>
+                                        <input type="text" id="address" class="form-control">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="panel-footer">
+                                <button class="btn btn-outline" onclick="resetForm()">초기화</button>
+                                <button class="btn btn-primary" onclick="saveCustomer()">저장</button>
+                                <button class="btn btn-primary" onclick="addNewCustomer()">추가</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- 고객 등록/수정 모달 -->
-    <div class="modal" id="customerModal">
-        <div class="modal-content modal-lg">
-            <div class="modal-header">
-                <h3 id="modalTitle">고객 등록</h3>
-                <button class="modal-close" onclick="closeModal('customerModal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="customerForm">
-                    <input type="hidden" id="editCustId">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="custId">고객ID</label>
-                            <input type="text" id="custId" class="form-control" readonly placeholder="자동 생성">
-                        </div>
-                        <div class="form-group">
-                            <label for="custNm">고객명 *</label>
-                            <input type="text" id="custNm" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="custType">유형 *</label>
-                            <select id="custType" class="form-control" required>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="custGrade">등급 *</label>
-                            <select id="custGrade" class="form-control" required>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="bizNo">사업자번호</label>
-                            <input type="text" id="bizNo" class="form-control" placeholder="000-00-00000">
-                        </div>
-                        <div class="form-group">
-                            <label for="contactNm">담당자</label>
-                            <input type="text" id="contactNm" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="contactPhone">연락처</label>
-                            <input type="tel" id="contactPhone" class="form-control" placeholder="010-0000-0000">
-                        </div>
-                        <div class="form-group">
-                            <label for="custStatus">상태 *</label>
-                            <select id="custStatus" class="form-control" required>
-                            </select>
-                        </div>
-                    </div>
-                    <hr style="margin: 16px 0; border: none; border-top: 1px solid #e0e0e0;">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="ceoNm">대표자명</label>
-                            <input type="text" id="ceoNm" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="contactEmail">담당자 이메일</label>
-                            <input type="email" id="contactEmail" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="empId">담당 영업사원</label>
-                            <select id="empId" class="form-control">
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="address">주소</label>
-                            <input type="text" id="address" class="form-control">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-outline" onclick="closeModal('customerModal')">취소</button>
-                <button class="btn btn-primary" onclick="saveCustomer()">저장</button>
-            </div>
-        </div>
-    </div>
-
     <script src="../js/mock-data.js"></script>
     <script src="../js/common.js"></script>
     <script>
-        let currentPage = 1;
-        const pageSize = 10;
         let filteredData = [];
+        let selectedCustId = null;
 
         document.addEventListener('DOMContentLoaded', function() {
             initPage();
         });
 
         function initPage() {
-            // 검색 셀렉트박스 초기화
-            populateSelectFromCode('searchType', 'CUST_TYPE');
-            populateSelectFromCode('searchGrade', 'CUST_GRADE');
-            populateSelectFromCode('searchStatus', 'CUST_STATUS');
-
             // 폼 셀렉트박스 초기화
             populateSelectFromCode('custType', 'CUST_TYPE', false);
             populateSelectFromCode('custGrade', 'CUST_GRADE', false);
-            populateSelectFromCode('custStatus', 'CUST_STATUS', false);
-
-            // 담당 영업사원 셀렉트박스
-            const empSelect = document.getElementById('empId');
-            empSelect.innerHTML = '<option value="">선택</option>';
-            EMPLOYEES.filter(e => e.EMP_STATUS === 'ACTIVE').forEach(emp => {
-                const option = document.createElement('option');
-                option.value = emp.EMP_ID;
-                option.textContent = `${emp.EMP_NM} (${getDepartmentName(emp.DEPT_ID)})`;
-                empSelect.appendChild(option);
-            });
 
             // 데이터 로드
             loadCustomers();
@@ -246,107 +172,74 @@
         }
 
         function searchCustomers() {
-            const custType = document.getElementById('searchType').value;
-            const custGrade = document.getElementById('searchGrade').value;
-            const custStatus = document.getElementById('searchStatus').value;
             const keyword = document.getElementById('searchKeyword').value.toLowerCase();
 
-            filteredData = CUSTOMERS.filter(cust => {
-                if (custType && cust.CUST_TYPE !== custType) return false;
-                if (custGrade && cust.CUST_GRADE !== custGrade) return false;
-                if (custStatus && cust.CUST_STATUS !== custStatus) return false;
-                if (keyword) {
-                    const searchFields = [cust.CUST_NM, cust.BIZ_NO].join(' ').toLowerCase();
-                    if (!searchFields.includes(keyword)) return false;
-                }
-                return true;
+            if (!keyword) {
+                loadCustomers();
+                return;
+            }
+
+            filteredData = CUSTOMERS.filter(function(cust) {
+                var searchFields = [cust.CUST_NM, cust.BIZ_NO || ''].join(' ').toLowerCase();
+                return searchFields.indexOf(keyword) !== -1;
             });
 
-            currentPage = 1;
             renderTable();
         }
 
-        function resetSearch() {
-            document.getElementById('searchType').value = '';
-            document.getElementById('searchGrade').value = '';
-            document.getElementById('searchStatus').value = '';
-            document.getElementById('searchKeyword').value = '';
-            loadCustomers();
-        }
-
         function renderTable() {
-            const tbody = document.getElementById('customerTableBody');
-            const totalCount = document.getElementById('totalCount');
+            var tbody = document.getElementById('customerTableBody');
+            var totalCount = document.getElementById('totalCount');
 
             totalCount.textContent = filteredData.length;
 
-            // 페이지네이션 계산
-            const startIndex = (currentPage - 1) * pageSize;
-            const endIndex = startIndex + pageSize;
-            const pageData = filteredData.slice(startIndex, endIndex);
-
             tbody.innerHTML = '';
-            pageData.forEach(cust => {
-                const tr = document.createElement('tr');
+            filteredData.forEach(function(cust) {
+                var tr = document.createElement('tr');
                 tr.style.cursor = 'pointer';
-                tr.ondblclick = () => editCustomer(cust.CUST_ID);
-                tr.innerHTML = `
-                    <td><input type="checkbox" class="row-checkbox" value="${cust.CUST_ID}"></td>
-                    <td>${cust.CUST_ID}</td>
-                    <td>${cust.CUST_NM}</td>
-                    <td>${getCodeName('CUST_TYPE', cust.CUST_TYPE)}</td>
-                    <td>${createStatusBadge(cust.CUST_GRADE)}</td>
-                    <td>${cust.BIZ_NO || '-'}</td>
-                    <td>${cust.CONTACT_NM || '-'}</td>
-                    <td>${cust.CONTACT_PHONE || '-'}</td>
-                    <td>${createStatusBadge(cust.CUST_STATUS)}</td>
-                `;
+                tr.className = cust.CUST_ID === selectedCustId ? 'selected' : '';
+                tr.onclick = function() { selectCustomer(cust.CUST_ID); };
+                tr.innerHTML =
+                    '<td><input type="checkbox" class="row-checkbox" value="' + cust.CUST_ID + '" onclick="event.stopPropagation()"></td>' +
+                    '<td>' + cust.CUST_ID + '</td>' +
+                    '<td>' + cust.CUST_NM + '</td>' +
+                    '<td>' + getCodeName('CUST_TYPE', cust.CUST_TYPE) + '</td>' +
+                    '<td>' + cust.CUST_GRADE + '</td>' +
+                    '<td>' + (cust.BIZ_NO || '') + '</td>' +
+                    '<td>' + (cust.CONTACT_PHONE || '') + '</td>';
                 tbody.appendChild(tr);
-            });
-
-            // 페이지네이션 렌더링
-            const totalPages = Math.ceil(filteredData.length / pageSize);
-            createPagination('pagination', currentPage, totalPages, (page) => {
-                currentPage = page;
-                renderTable();
             });
         }
 
-        function editCustomer(custId) {
-            const cust = CUSTOMERS.find(c => c.CUST_ID === custId);
+        function selectCustomer(custId) {
+            selectedCustId = custId;
+            var cust = CUSTOMERS.find(function(c) { return c.CUST_ID === custId; });
             if (!cust) return;
 
-            document.getElementById('modalTitle').textContent = '고객 수정';
+            document.getElementById('formTitle').textContent = '고객 등록';
             document.getElementById('editCustId').value = cust.CUST_ID;
-            document.getElementById('custId').value = cust.CUST_ID;
             document.getElementById('custNm').value = cust.CUST_NM;
             document.getElementById('custType').value = cust.CUST_TYPE;
             document.getElementById('custGrade').value = cust.CUST_GRADE;
-            document.getElementById('custStatus').value = cust.CUST_STATUS;
+            document.getElementById('creditLimit').value = cust.CREDIT_LIMIT || 0;
             document.getElementById('bizNo').value = cust.BIZ_NO || '';
-            document.getElementById('ceoNm').value = cust.CEO_NM || '';
-            document.getElementById('contactNm').value = cust.CONTACT_NM || '';
             document.getElementById('contactPhone').value = cust.CONTACT_PHONE || '';
             document.getElementById('contactEmail').value = cust.CONTACT_EMAIL || '';
-            document.getElementById('empId').value = cust.EMP_ID || '';
             document.getElementById('address').value = cust.ADDRESS || '';
 
-            openModal('customerModal');
+            renderTable();
         }
 
         function saveCustomer() {
-            const custId = document.getElementById('editCustId').value;
-            const formData = {
+            var custId = document.getElementById('editCustId').value;
+            var formData = {
                 CUST_NM: document.getElementById('custNm').value,
                 CUST_TYPE: document.getElementById('custType').value,
                 CUST_GRADE: document.getElementById('custGrade').value,
-                CUST_STATUS: document.getElementById('custStatus').value,
+                CREDIT_LIMIT: parseInt(document.getElementById('creditLimit').value) || 0,
                 BIZ_NO: document.getElementById('bizNo').value,
-                CEO_NM: document.getElementById('ceoNm').value,
-                CONTACT_NM: document.getElementById('contactNm').value,
                 CONTACT_PHONE: document.getElementById('contactPhone').value,
                 CONTACT_EMAIL: document.getElementById('contactEmail').value,
-                EMP_ID: document.getElementById('empId').value,
                 ADDRESS: document.getElementById('address').value
             };
 
@@ -356,62 +249,86 @@
             }
 
             if (custId) {
-                // 수정
-                const index = CUSTOMERS.findIndex(c => c.CUST_ID === custId);
+                var index = CUSTOMERS.findIndex(function(c) { return c.CUST_ID === custId; });
                 if (index !== -1) {
-                    CUSTOMERS[index] = { ...CUSTOMERS[index], ...formData };
+                    for (var key in formData) {
+                        CUSTOMERS[index][key] = formData[key];
+                    }
                 }
                 showAlert('고객 정보가 수정되었습니다.');
             } else {
-                // 등록
-                const newCustId = 'CUST' + String(CUSTOMERS.length + 1).padStart(3, '0');
-                CUSTOMERS.push({
-                    CUST_ID: newCustId,
-                    ...formData,
-                    CREATED_AT: new Date().toISOString(),
-                    CREATED_BY: 'admin'
-                });
-                showAlert('고객이 등록되었습니다.');
+                addNewCustomer();
+                return;
             }
 
-            closeModal('customerModal');
+            loadCustomers();
+        }
+
+        function addNewCustomer() {
+            var formData = {
+                CUST_NM: document.getElementById('custNm').value,
+                CUST_TYPE: document.getElementById('custType').value,
+                CUST_GRADE: document.getElementById('custGrade').value,
+                CREDIT_LIMIT: parseInt(document.getElementById('creditLimit').value) || 0,
+                BIZ_NO: document.getElementById('bizNo').value,
+                CONTACT_PHONE: document.getElementById('contactPhone').value,
+                CONTACT_EMAIL: document.getElementById('contactEmail').value,
+                ADDRESS: document.getElementById('address').value
+            };
+
+            if (!formData.CUST_NM || !formData.CUST_TYPE || !formData.CUST_GRADE) {
+                showAlert('필수 항목을 입력해주세요.');
+                return;
+            }
+
+            var newCustId = 'CUST' + String(CUSTOMERS.length + 1).padStart(3, '0');
+            formData.CUST_ID = newCustId;
+            formData.CREATED_AT = new Date().toISOString();
+            formData.CREATED_BY = 'admin';
+            CUSTOMERS.push(formData);
+
+            showAlert('고객이 등록되었습니다.');
             resetForm();
             loadCustomers();
         }
 
         function toggleAllCheckboxes() {
-            const checkAll = document.getElementById('checkAll');
-            const checkboxes = document.querySelectorAll('.row-checkbox');
-            checkboxes.forEach(cb => cb.checked = checkAll.checked);
+            var checkAll = document.getElementById('checkAll');
+            var checkboxes = document.querySelectorAll('.row-checkbox');
+            checkboxes.forEach(function(cb) { cb.checked = checkAll.checked; });
         }
 
         function deleteSelectedCustomers() {
-            const checkboxes = document.querySelectorAll('.row-checkbox:checked');
+            var checkboxes = document.querySelectorAll('.row-checkbox:checked');
             if (checkboxes.length === 0) {
                 showAlert('삭제할 항목을 선택해주세요.');
                 return;
             }
 
-            if (!showConfirm(`선택한 ${checkboxes.length}개 항목을 삭제하시겠습니까?`)) return;
+            if (!showConfirm('선택한 ' + checkboxes.length + '개 항목을 삭제하시겠습니까?')) return;
 
-            const idsToDelete = Array.from(checkboxes).map(cb => cb.value);
-            idsToDelete.forEach(custId => {
-                const index = CUSTOMERS.findIndex(c => c.CUST_ID === custId);
+            var idsToDelete = Array.from(checkboxes).map(function(cb) { return cb.value; });
+            idsToDelete.forEach(function(custId) {
+                var index = CUSTOMERS.findIndex(function(c) { return c.CUST_ID === custId; });
                 if (index !== -1) {
                     CUSTOMERS.splice(index, 1);
                 }
             });
 
             document.getElementById('checkAll').checked = false;
+            selectedCustId = null;
             showAlert('삭제되었습니다.');
+            resetForm();
             loadCustomers();
         }
 
         function resetForm() {
-            document.getElementById('modalTitle').textContent = '고객 등록';
+            document.getElementById('formTitle').textContent = '고객 등록';
             document.getElementById('customerForm').reset();
             document.getElementById('editCustId').value = '';
-            document.getElementById('custId').value = '';
+            document.getElementById('creditLimit').value = '0';
+            selectedCustId = null;
+            renderTable();
         }
     </script>
 </body>

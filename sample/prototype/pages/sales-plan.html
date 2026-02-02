@@ -71,7 +71,7 @@
                             <h3>확정 계획</h3>
                         </div>
                         <div class="card-body">
-                            <div class="summary-value text-success" id="confirmedPlans">-</div>
+                            <div class="summary-value" id="confirmedPlans">-</div>
                             <div class="summary-label">확정 상태</div>
                         </div>
                     </div>
@@ -100,8 +100,8 @@
                     <div class="card-body">
                         <div class="search-form">
                             <div class="form-group">
-                                <label for="searchYm">계획년월</label>
-                                <input type="month" id="searchYm" class="form-control">
+                                <label for="searchYm">계획연월</label>
+                                <input type="month" id="searchYm" class="form-control" lang="en">
                             </div>
                             <div class="form-group">
                                 <label for="searchEmployee">담당자</label>
@@ -135,7 +135,7 @@
                                 <tr>
                                     <th><input type="checkbox" id="checkAll" onclick="toggleAllCheckboxes()"></th>
                                     <th>계획ID</th>
-                                    <th>계획년월</th>
+                                    <th>계획연월</th>
                                     <th>담당자</th>
                                     <th>제품</th>
                                     <th>계획 수량</th>
@@ -165,12 +165,12 @@
                     <input type="hidden" id="editPlanId">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="planId">계획ID</label>
+                            <label for="planId">계획ID *</label>
                             <input type="text" id="planId" class="form-control" readonly placeholder="자동 생성">
                         </div>
                         <div class="form-group">
-                            <label for="planYm">계획년월 *</label>
-                            <input type="month" id="planYm" class="form-control" required>
+                            <label for="planYm">계획연월 *</label>
+                            <input type="month" id="planYm" class="form-control" required lang="en">
                         </div>
                     </div>
                     <div class="form-row">
@@ -188,11 +188,11 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="planQty">계획 수량 *</label>
-                            <input type="number" id="planQty" class="form-control" required min="1" onchange="updatePlanAmount()">
+                            <input type="number" id="planQty" class="form-control" required min="0" value="0" onchange="updatePlanAmount()">
                         </div>
                         <div class="form-group">
                             <label for="planAmt">계획 금액</label>
-                            <input type="text" id="planAmt" class="form-control" readonly>
+                            <input type="number" id="planAmt" class="form-control" value="0" readonly>
                         </div>
                     </div>
                     <div class="form-row">
@@ -208,7 +208,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-outline" onclick="closeModal('planModal')">취소</button>
-                <button class="btn btn-primary" onclick="savePlan()">저장</button>
+                <button class="btn btn-primary" onclick="savePlan()">추가</button>
             </div>
         </div>
     </div>
