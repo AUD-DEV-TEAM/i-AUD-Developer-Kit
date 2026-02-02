@@ -29,13 +29,14 @@ try{
 
 	stmt = con.PreparedStatement(sql);
 	
-	stmt.setString(1,req.getParam('VS_INP_PROD'));	// PROD_NAME
-	stmt.setString(2,req.getParam('VS_INP_CAT')); 	// CATEGORY
-	stmt.setInt(3,req.getParam('VS_INP_PRICE')); 	// STD_PRICE
-	stmt.setInt(4,req.getParam('VS_INP_COST')); 	// COST_PRICE
-	stmt.setString(5,req.getParam('VS_INP_UNIT')); 	// STD_UNIT
-	stmt.setString(6,req.getUserCode()); 			// CREATED_BY
-	stmt.setString(7,req.getParam('VS_PROD_ID')); 	// PROD_ID
+	let IDX = 0;
+	stmt.setString(++IDX,req.getParam('VS_INP_PROD'));		// PROD_NAME
+	stmt.setString(++IDX,req.getParam('VS_INP_CAT'));		// CATEGORY
+	stmt.setInt(++IDX,req.getParam('VS_INP_PRICE'));		// STD_PRICE
+	stmt.setInt(++IDX,req.getParam('VS_INP_COST'));			// COST_PRICE
+	stmt.setString(++IDX,req.getParam('VS_INP_UNIT'));		// STD_UNIT
+	stmt.setString(++IDX,req.getUserCode());				// UPDATED_BY
+	stmt.setString(++IDX,req.getParam('VS_PROD_ID'));		// PROD_ID
 	
 	Matrix.WriteLog(sql);
 	stmt.executeUpdate();

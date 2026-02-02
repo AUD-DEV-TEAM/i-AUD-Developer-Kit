@@ -6,6 +6,8 @@ import { Button } from "@AUD_CLIENT/control/Button";
 import { TextBox } from "@AUD_CLIENT/control/TextBox";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
 import { Group } from "@AUD_CLIENT/control/Group";
+import { CalendarYM } from "@AUD_CLIENT/control/CalendarYM";
+import { MultiComboBox } from "@AUD_CLIENT/control/MultiComboBox";
 
 let Matrix : Matrix;
 
@@ -46,7 +48,7 @@ let popup: any = null;
 **************************************/
  var OnMultiComboBoxExecuteStart  = function(sender, args){
  	if(['VS_PIC', 'VS_STATUS'].includes(args.Id)){
-		Matrix.getObject(args.Id).CheckAll();
+		(Matrix.getObject(args.Id) as MultiComboBox).CheckAll();
 	}
  };
 
@@ -61,7 +63,7 @@ let popup: any = null;
  	switch(args.Id){
 		case 'BTN_ADD':	// 계획 등록 (Form: 영업 계획)
 			setInputValue(false); // Input 컨트롤 초기화
-			Matrix.SetGlobalParams('PLAN_ID',false);
+			Matrix.SetGlobalParams('PLAN_ID','');
 			BTN_SAV.Text = '추가';
 
 			popup = Matrix.ShowWindow("계획 등록",0,0,460,415,true,false,"계획 등록",true,'#ffffff',0,false,false);
@@ -74,7 +76,7 @@ let popup: any = null;
 
 		case 'BTN_RESET': // 초기화 (Form: 영업 계획)
 			['VS_PIC', 'VS_STATUS'].forEach(function(i){
-				Matrix.getObject(i).CheckAll();
+				(Matrix.getObject(i) as MultiComboBox).CheckAll();
 			});
 			break;
 

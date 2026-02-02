@@ -44,12 +44,13 @@ try{
 	
 	stmt = con.PreparedStatement(sql);
 	
-	stmt.setString(1,req.getParam('VS_INP_PROD'));	// PROD_NAME
-	stmt.setString(2,req.getParam('VS_INP_CAT')); 	// CATEGORY
-	stmt.setInt(3,req.getParam('VS_INP_PRICE')); 	// STD_PRICE
-	stmt.setInt(4,req.getParam('VS_INP_COST')); 	// COST_PRICE
-	stmt.setString(5,req.getParam('VS_INP_UNIT')); 	// STD_UNIT
-	stmt.setString(6,req.getUserCode()); 			// CREATED_BY
+	let IDX = 0;
+	stmt.setString(++IDX,req.getParam('VS_INP_PROD'));		// PROD_NAME
+	stmt.setString(++IDX,req.getParam('VS_INP_CAT'));		// CATEGORY
+	stmt.setInt(++IDX,req.getParam('VS_INP_PRICE'));		// STD_PRICE
+	stmt.setInt(++IDX,req.getParam('VS_INP_COST'));			// COST_PRICE
+	stmt.setString(++IDX,req.getParam('VS_INP_UNIT'));		// STD_UNIT
+	stmt.setString(++IDX,req.getUserCode());				// CREATED_BY
 	
 	Matrix.WriteLog(sql);
 	stmt.executeUpdate();

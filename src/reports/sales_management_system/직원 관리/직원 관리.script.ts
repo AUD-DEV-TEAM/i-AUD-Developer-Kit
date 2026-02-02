@@ -4,6 +4,8 @@ import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
 import { Button } from "@AUD_CLIENT/control/Button";
 import { TextBox } from "@AUD_CLIENT/control/TextBox";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
+import { Calendar } from "@AUD_CLIENT/control/Calendar";
+import { MultiComboBox } from "@AUD_CLIENT/control/MultiComboBox";
 
 let Matrix : Matrix;
 
@@ -46,7 +48,7 @@ var OnDocumentLoadComplete = function(sender, args){
  **************************************/
 var OnMultiComboBoxExecuteStart = function(sender, args){
 	if(['VS_DEPT','VS_POSITION','VS_STATUS'].includes(args.Id)){
-		Matrix.getObject(args.Id).CheckAll();
+		(Matrix.getObject(args.Id) as MultiComboBox).CheckAll();
 	}
 };
 
@@ -61,7 +63,7 @@ var OnButtonClick = function(sender, args){
 	switch(args.Id){
 		case 'BTN_ADD':	// 직원 등록 (Form: 직원 관리)
 			setInputValue(null); // Input 컨트롤 초기화
-			Matrix.SetGlobalParams('VS_EMP_ID',false);
+			Matrix.SetGlobalParams('VS_EMP_ID','');
 			BTN_SAV.Text = '추가';
 
 			popup = Matrix.ShowWindow("직원 등록",0,0,460,415,true,false,"직원 등록",true,'#ffffff',0,false,false);
@@ -74,7 +76,7 @@ var OnButtonClick = function(sender, args){
 
 		case 'BTN_RESET': // 초기화 (Form: 직원 관리)
 			['VS_DEPT','VS_POSITION','VS_STATUS'].forEach(function(i){
-				Matrix.getObject(i).CheckAll();
+				(Matrix.getObject(i) as MultiComboBox).CheckAll();
 			});
 			VS_KEYWORD.Text = '';
 			break;

@@ -33,16 +33,17 @@ try{
 			
 	stmt = con.PreparedStatement(sql);
 	
-	stmt.setString(1,req.getParam('VS_INP_NAME'));	// CUST_NAME
-	stmt.setString(2,req.getParam('VS_INP_REG_NO'));// BIZ_REG_NO
-	stmt.setString(3,req.getParam('VS_INP_TYPE')); 	// CUST_TYPE
-	stmt.setString(4,req.getParam('VS_INP_GRADE')); // CUST_GRADE
-	stmt.setInt(5,req.getParam('VN_INP_LIMIT'));	// CREDIT_LIMIT
-	stmt.setString(6,req.getParam('VS_INP_PHONE')); // PHONE
-	stmt.setString(7,req.getParam('VS_INP_EMAIL')); // EMAIL
-	stmt.setString(8,req.getParam('VS_INP_MAIN')); 	// ADDR_MAIN
-	stmt.setString(9,req.getUserCode()); 			// CREATED_BY
-	stmt.setString(10,req.getParam('VS_CUST_ID')); 	// CUST_ID
+	let IDX = 0;
+	stmt.setString(++IDX,req.getParam('VS_INP_NAME'));		// CUST_NAME
+	stmt.setString(++IDX,req.getParam('VS_INP_REG_NO'));	// BIZ_REG_NO
+	stmt.setString(++IDX,req.getParam('VS_INP_TYPE'));		// CUST_TYPE
+	stmt.setString(++IDX,req.getParam('VS_INP_GRADE'));		// CUST_GRADE
+	stmt.setInt(++IDX,req.getParam('VN_INP_LIMIT'));		// CREDIT_LIMIT
+	stmt.setString(++IDX,req.getParam('VS_INP_PHONE'));		// PHONE
+	stmt.setString(++IDX,req.getParam('VS_INP_EMAIL'));		// EMAIL
+	stmt.setString(++IDX,req.getParam('VS_INP_MAIN'));		// ADDR_MAIN
+	stmt.setString(++IDX,req.getUserCode());				// UPDATED_BY
+	stmt.setString(++IDX,req.getParam('VS_CUST_ID'));		// CUST_ID
 	
 	Matrix.WriteLog(sql);
 	stmt.executeUpdate();

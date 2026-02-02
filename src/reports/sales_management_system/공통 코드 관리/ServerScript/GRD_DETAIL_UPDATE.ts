@@ -24,12 +24,13 @@ try {
 
 	const stmt = con.PreparedStatement(sql);
 
-	stmt.setString(1, req.getParam('VS_CODE_NAME'));   // CODE_NAME
-	stmt.setInt(2, Number(req.getParam('VN_SORT')));   // SORT_ORDER
-	stmt.setString(3, req.getParam('VS_USE_YN'));      // USE_YN
-	stmt.setString(4, req.getUserCode());              // UPDATED_BY
-	stmt.setString(5, req.getParam('VS_GROUP_CODE'));  // GROUP_CD
-	stmt.setString(6, req.getParam('VS_INP_CODE'));    // CODE
+	let IDX = 0;
+	stmt.setString(++IDX, req.getParam('VS_CODE_NAME'));	// CODE_NAME
+	stmt.setInt(++IDX, Number(req.getParam('VN_SORT')));	// SORT_ORDER
+	stmt.setString(++IDX, req.getParam('VS_USE_YN'));		// USE_YN
+	stmt.setString(++IDX, req.getUserCode());				// UPDATED_BY
+	stmt.setString(++IDX, req.getParam('VS_GROUP_CODE'));	// GROUP_CD
+	stmt.setString(++IDX, req.getParam('VS_INP_CODE'));		// CODE
 
 	Matrix.WriteLog(sql);
 	stmt.executeUpdate();

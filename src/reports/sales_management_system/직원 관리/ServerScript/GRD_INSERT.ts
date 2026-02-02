@@ -48,14 +48,15 @@ try{
 	
 	stmt = con.PreparedStatement(sql);
 	
-	stmt.setString(1,req.getParam('VS_INP_NAME'));		// EMP_NAME
-	stmt.setString(2,req.getParam('VS_INP_DEPT'));		// DEPT_ID
-	stmt.setString(3,req.getParam('VS_INP_POSITION')); 	// JOB_GRADE
-	stmt.setString(4,req.getParam('VS_INP_STATUS')); 	// EMP_STATUS
-	stmt.setString(5,req.getParam('VS_INP_EMAIL')); 	// EMAIL
-	stmt.setString(6,req.getParam('VS_INP_PHONE')); 	// PHONE
-	stmt.setString(7,req.getParam('VS_INP_HIRE')); 		// HIRE_DATE
-	stmt.setString(8,req.getUserCode()); 				// CREATED_BY
+	let IDX = 0;
+	stmt.setString(++IDX,req.getParam('VS_INP_NAME'));		// EMP_NAME
+	stmt.setString(++IDX,req.getParam('VS_INP_DEPT'));		// DEPT_ID
+	stmt.setString(++IDX,req.getParam('VS_INP_POSITION'));	// JOB_GRADE
+	stmt.setString(++IDX,req.getParam('VS_INP_STATUS'));	// EMP_STATUS
+	stmt.setString(++IDX,req.getParam('VS_INP_EMAIL'));		// EMAIL
+	stmt.setString(++IDX,req.getParam('VS_INP_PHONE'));		// PHONE
+	stmt.setString(++IDX,req.getParam('VS_INP_HIRE'));		// HIRE_DATE
+	stmt.setString(++IDX,req.getUserCode());				// CREATED_BY
 	
 	Matrix.WriteLog(sql);
 	stmt.executeUpdate();

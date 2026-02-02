@@ -5,6 +5,7 @@ import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
 import { Button } from "@AUD_CLIENT/control/Button";
 import { TextBox } from "@AUD_CLIENT/control/TextBox";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
+import { MultiComboBox } from "@AUD_CLIENT/control/MultiComboBox";
 
 let Matrix : Matrix;
 
@@ -61,7 +62,7 @@ let popup: any = null;
  	switch(args.Id){
 		case 'BTN_ADD':	// 제품 등록 (Form: 제품 관리)
 			setInputValue(null); // Input 컨트롤 초기화
-			Matrix.SetGlobalParams('PROD_ID',false);
+			Matrix.SetGlobalParams('PROD_ID','');
 			BTN_SAV.Text = '추가';
 
 			popup = Matrix.ShowWindow("제품 등록",0,0,460,415,true,false,"제품 등록",true,'#ffffff',0,false,false);
@@ -73,7 +74,7 @@ let popup: any = null;
 			break;
 
 		case 'BTN_RESET': // 초기화 (Form: 제품 관리)
-			(Matrix.getObject('VS_CAT') as ComboBox).CheckAll();
+			(Matrix.getObject('VS_CAT') as MultiComboBox).CheckAll();
 			VS_KEYWORD.Text = '';
 			break;
 

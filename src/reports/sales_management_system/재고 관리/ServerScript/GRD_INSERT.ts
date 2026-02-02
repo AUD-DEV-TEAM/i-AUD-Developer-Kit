@@ -42,11 +42,12 @@ try{
 	
 	stmt = con.PreparedStatement(sql);
 	
-	stmt.setString(1,req.getParam('VS_INP_PRODUCT'));	// PROD_ID
-	stmt.setString(2,req.getParam('VS_INP_STORAGE')); 	// STORAGE_LOC
-	stmt.setInt(3,req.getParam('VN_INP_CURR')); 		// CURR_QTY
-	stmt.setInt(4,req.getParam('VN_INP_SAFE')); 		// SAFE_QTY
-	stmt.setString(5,req.getUserCode()); 				// CREATED_BY
+	let IDX = 0;
+	stmt.setString(++IDX,req.getParam('VS_INP_PRODUCT'));	// PROD_ID
+	stmt.setString(++IDX,req.getParam('VS_INP_STORAGE'));	// STORAGE_LOC
+	stmt.setInt(++IDX,req.getParam('VN_INP_CURR'));			// CURR_QTY
+	stmt.setInt(++IDX,req.getParam('VN_INP_SAFE'));			// SAFE_QTY
+	stmt.setString(++IDX,req.getUserCode());				// CREATED_BY
 	
 	Matrix.WriteLog(sql);
 	stmt.executeUpdate();

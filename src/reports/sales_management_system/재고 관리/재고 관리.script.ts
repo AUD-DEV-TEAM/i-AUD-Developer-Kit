@@ -6,6 +6,7 @@ import { Button } from "@AUD_CLIENT/control/Button";
 import { TextBox } from "@AUD_CLIENT/control/TextBox";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
 import { Group } from "@AUD_CLIENT/control/Group";
+import { MultiComboBox } from "@AUD_CLIENT/control/MultiComboBox";
 
 let Matrix : Matrix;
 
@@ -51,7 +52,7 @@ var OnDocumentLoadComplete = function(sender, args) {
 **************************************/
 var OnMultiComboBoxExecuteStart = function(sender, args) {
 	if (['VS_CATEGORY', 'VS_WAREHOUSE'].includes(args.Id)) {
-		(Matrix.getObject(args.Id) as ComboBox).CheckAll();
+		(Matrix.getObject(args.Id) as MultiComboBox).CheckAll();
 	}
 };
 
@@ -66,7 +67,7 @@ var OnButtonClick = function(sender, args) {
 	switch (args.Id) {
 		case 'BTN_ADD':	// 재고 등록 (Form: 재고 관리)
 			setInputValue(null);
-			Matrix.SetGlobalParams('INV_ID', false);
+			Matrix.SetGlobalParams('INV_ID', '');
 			BTN_SAV.Text = '추가';
 
 			popup = Matrix.ShowWindow("재고 등록", 0, 0, 460, 265, true, false, "재고 등록", true, '#ffffff', 0, false, false);
@@ -108,7 +109,7 @@ var OnButtonClick = function(sender, args) {
 
 		case 'BTN_RESET': // 초기화 (Form: 재고 관리)
 			['VS_CATEGORY', 'VS_WAREHOUSE', 'VS_STATUS'].forEach(function(i) {
-				(Matrix.getObject(i) as ComboBox).CheckAll();
+				(Matrix.getObject(i) as MultiComboBox).CheckAll();
 			});
 			VS_KEYWORD.Text = '';
 			break;

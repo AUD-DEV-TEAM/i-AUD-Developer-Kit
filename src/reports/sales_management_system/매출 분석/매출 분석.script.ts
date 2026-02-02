@@ -3,6 +3,7 @@ import { Label } from "@AUD_CLIENT/control/Label";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
 import { Group } from "@AUD_CLIENT/control/Group";
 import { Chart } from "@AUD_CLIENT/control/Chart";
+import { PiePlotOptions } from "@AUD_CLIENT/control/charts/PiePlotOptions";
 
 let Matrix : Matrix;
 
@@ -14,8 +15,8 @@ let popup: any = null;
  * * arguments :
 **************************************/
  var OnDocumentLoadComplete  = function(sender, args){
- 	Matrix.SetVariable('VN_RANK_CST',1);
- 	Matrix.SetVariable('VN_RANK_PRD',1);
+ 	Matrix.SetVariable('VN_RANK_CST','1');
+ 	Matrix.SetVariable('VN_RANK_PRD','1');
  };
 
 
@@ -27,7 +28,7 @@ let popup: any = null;
 **************************************/
  var OnDataBindEnd  = function(sender, args){
  	if(['CHT_2','CHT_3','CHT_5'].includes(args.Id)){
-		(Matrix.getObject(args.Id) as Chart).PlotOptions.DataLabelsDistance = 0;
+		((Matrix.getObject(args.Id) as Chart).PlotOptions as unknown as PiePlotOptions).DataLabelsDistance = 0;
 
 	}else if(args.Id == 'GRD_TOTAL'){
 		if(!args.RecordCount){
@@ -76,7 +77,7 @@ let popup: any = null;
  var OnButtonClick  = function(sender, args){
  	switch(args.Id){
 		case 'BTN_REF': // 조회
-			Matrix.doRefresh();
+			Matrix.doRefresh('');
 			break;
 
 		case 'BTN_EXP_PDF': // PDF 내보내기
@@ -88,7 +89,7 @@ let popup: any = null;
 			break;
 
 		case 'BTN_DETAIL_CST':
-			Matrix.SetVariable('VN_RANK_CST',10);
+			Matrix.SetVariable('VN_RANK_CST','10');
 			Matrix.doRefresh('GRD_3_DTL');
 
 			popup = Matrix.ShowWindow("고객별 매출 상세",0,0,590,573,true,false,"고객별 매출 TOP 10",true,'#ffffff',0,false,false);
@@ -96,7 +97,7 @@ let popup: any = null;
 			break;
 
 		case 'BTN_DETAIL_PRD':
-			Matrix.SetVariable('VN_RANK_PRD',10);
+			Matrix.SetVariable('VN_RANK_PRD','10');
 			Matrix.doRefresh('GRD_4_DTL');
 
 			popup = Matrix.ShowWindow("제품별 매출 상세",0,0,680,573,true,false,"제품별 매출 TOP 10",true,'#ffffff',0,false,false);

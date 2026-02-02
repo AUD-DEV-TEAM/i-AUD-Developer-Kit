@@ -46,15 +46,16 @@ try{
 
 	stmt = con.PreparedStatement(sql);
 
-	stmt.setString(1,req.getParam('VS_INP_ID')); 	// PLAN_ID
-	stmt.setString(2,req.getParam('VS_INP_YM')); 	// PLAN_YEAR
-	stmt.setString(3,req.getParam('VS_INP_YM')); 	// PLAN_MONTH
-	stmt.setString(4,req.getParam('VS_INP_PIC')); 	// EMP_ID
-	stmt.setString(5,req.getParam('VS_INP_PROD')); 	// PROD_ID
-	stmt.setInt(6,req.getParam('VN_INP_QTY')); 		// TARGET_QTY
-	stmt.setInt(7,req.getParam('VN_INP_AMT')); 		// TARGET_AMT
-	stmt.setString(8,req.getParam('VS_INP_STATUS'));// PLAN_STATUS
-	stmt.setString(9,req.getUserCode()); 			// CREATED_BY
+	let IDX = 0;
+	stmt.setString(++IDX,req.getParam('VS_INP_ID'));		// PLAN_ID
+	stmt.setString(++IDX,req.getParam('VS_INP_YM'));		// PLAN_YEAR
+	stmt.setString(++IDX,req.getParam('VS_INP_YM'));		// PLAN_MONTH
+	stmt.setString(++IDX,req.getParam('VS_INP_PIC'));		// EMP_ID
+	stmt.setString(++IDX,req.getParam('VS_INP_PROD'));		// PROD_ID
+	stmt.setInt(++IDX,req.getParam('VN_INP_QTY'));			// TARGET_QTY
+	stmt.setInt(++IDX,req.getParam('VN_INP_AMT'));			// TARGET_AMT
+	stmt.setString(++IDX,req.getParam('VS_INP_STATUS'));	// PLAN_STATUS
+	stmt.setString(++IDX,req.getUserCode());				// CREATED_BY
 
 	Matrix.WriteLog(sql);
 	stmt.executeUpdate();
