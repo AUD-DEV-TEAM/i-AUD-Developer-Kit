@@ -1,6 +1,10 @@
-var LBL_TTL_3 		= Matrix.getObject('LBL_TTL_3');
-var LBL_INIT 		= Matrix.getObject('LBL_INIT');
-
+/* init controls */
+var GRD_MASTER 		  = Matrix.getObject('GRD_MASTER');
+var GRD_DETAIL 		  = Matrix.getObject('GRD_DETAIL');
+var LBL_TTL_3 		  = Matrix.getObject('LBL_TTL_3');
+var LBL_INIT 		  = Matrix.getObject('LBL_INIT');
+var BTN_CD_SAV		  = Matrix.getObject('BTN_CD_SAV');		  // 저장 버튼 (Form: 코드 추가)
+var popup 			  = null; // '그룹 추가', '코드 추가' Form을 오픈할 팝업
 
 /* '그룹 추가' Form의 입력 컨트롤 */
 var VS_INP_GROUP_CODE = Matrix.getObject('VS_INP_GROUP_CODE'); // 그룹코드
@@ -14,18 +18,21 @@ var VS_CODE_NAME	  = Matrix.getObject('VS_CODE_NAME');	  // 이메일
 var VN_SORT 		  = Matrix.getObject('VN_SORT');		  // 이메일
 var VS_USE_YN 		  = Matrix.getObject('VS_USE_YN');		  // 사업장주소
 
-var popup 			  = null; // '그룹 추가', '코드 추가' Form을 오픈할 팝업
-
-
 /**************************************
  * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.
  * * arguments :  
 **************************************/
  var OnDocumentLoadComplete  = function(sender, args){
+ 	/* Primary 세팅 */
+	GRD_MASTER.GetField('GROUP_CD').KeyType = 3;
+	GRD_DETAIL.GetField('CODE').KeyType = 3;
+ 
  	/* 초기 세팅 */
  	Matrix.getObject('LBL_DTL_CNT').Text = '0';
+	Matrix.SetGlobalParams('VS_GROUP_CD',null);
 	LBL_TTL_3.Text = '  상세 코드 – 그룹을 선택하세요';
 	LBL_INIT.Visible = true;
+	VS_GROUP_CODE.IsReadOnly = true;
  	
 	/* Placeholder 설정 */
 	VS_INP_GROUP_CODE.UsePlaceholder = true;
@@ -39,7 +46,6 @@ var popup 			  = null; // '그룹 추가', '코드 추가' Form을 오픈할 팝
 	VS_INP_CODE_DESC.SetPlaceholder(' 그룹에 대한 설명');
 	VS_INP_CODE.SetPlaceholder(' 예: NEW_VALUE');
 	VS_CODE_NAME.SetPlaceholder(' 예: 새로운 값');
-	
  };
  
 
@@ -52,9 +58,7 @@ var popup 			  = null; // '그룹 추가', '코드 추가' Form을 오픈할 팝
  var OnButtonClick  = function(sender, args){
  	switch(args.Id){
 		case 'BTN_MST_ADD': // 그룹 추가
-			VS_INP_GROUP_CODE.Text = '';
-			VS_INP_GROUP_NAME.Text = '';
-			VS_INP_CODE_DESC.Text = '';
+			setInputValue('GRD_MASTER'); // Input 컨트롤 초기화
 			
 			popup = Matrix.ShowWindow("그룹 추가",0,0,460,415,true,false,"그룹 추가",true,'#ffffff',0,false,false);
 			popup.MoveToCenter();
@@ -66,43 +70,110 @@ var popup 			  = null; // '그룹 추가', '코드 추가' Form을 오픈할 팝
 				return;
 			}
 			
-			Matrix.Execute('GET_MAX_SORT' ,function(p){
-				if(p.Success == false){
-					Matrix.Alert(p.Message);
-					return;
+			setInputValue(null);
+			BTN_CD_SAV.Text = '추가';
+			VS_INP_CODE.IsReadOnly = false;
+			VS_INP_CODE.Style.Background.Color.SetRGBA('255' ,'255' ,'255' ,'1');
+			break;
+			
+		case 'BTN_MST_DEL': // 삭제 (코드 그룹)			
+			if(!GRD_MASTER.GetCurrentRow()){
+				Matrix.Information('삭제할 코드 그룹 선택 후 다시 시도하세요','안내');
+				return;				
+			}else GRD_MASTER.GetCurrentRow().Data.RowState = 'D';
+			
+			if(GRD_MASTER.GetCurrentRow().GetValue('CODE') > 0){
+				Matrix.Information('모든 상세 코드를 삭제한 후 다시 시도하세요','안내');
+				return;
+			}
+			
+			Matrix.Confirm('[ '+Matrix.GetGlobalParamValue('VS_GROUP_CD')+' ] 그룹코드를 삭제하시겠습니까?','안내' ,function(ok){
+               	if(ok){
+					Matrix.RunScript('GRD_MASTER','GRD_MASTER_DELETE' ,function(p){
+						if(p.Success == false){
+						Matrix.Alert(p.Message);
+						return;
+					}
+						Matrix.doRefresh('GRD_MASTER');
+						Matrix.Information('삭제 완료되었습니다.','안내');
+						Matrix.SetGlobalParams('VS_GROUP_CD',null);
+					});
+             	}else GRD_MASTER.ClearRowState(false);
+            } ,0);
+			
+			break;
+			
+		case 'BTN_DTL_DEL': // 삭제 (상세 코드)
+			var checkCount = 0;
+			for(var i=0; i<GRD_DETAIL.GetRowCount(); i++){
+				if(GRD_DETAIL.getRowValue(i,'CHK') == 'Y'){
+					GRD_DETAIL.ChangeRowStateAt(i,'D');
+					checkCount++;
 				}
-				var  dt = p.DataTable;
-				
-				VS_GROUP_CODE.Text = Matrix.GetGlobalParamValue('VS_GROUP_CD');
-				VS_INP_CODE.Text = '';
-				VS_CODE_NAME.Text = '';
-				VN_SORT.Text = dt.getData(0,'MAX_SORT');
-				VS_USE_YN.Value = 'Y';
-				
-				popup = Matrix.ShowWindow("코드 추가",0,0,460,510,true,false,"코드 추가",true,'#ffffff',0,false,false);
-				popup.MoveToCenter();
-           	});
+			}
+			
+			if(!checkCount){
+				Matrix.Information('삭제할 항목을 선택하세요','안내');
+				return;
+			}
+			
+			Matrix.Confirm('선택한 항목을 삭제하시겠습니까?','안내' ,function(ok){
+               	if(ok){
+					Matrix.RunScript('GRD_DETAIL','GRD_DETAIL_DELETE' ,function(p){
+						if(p.Success == false){
+						Matrix.Alert(p.Message);
+						return;
+					}
+						Matrix.doRefresh('GRD_MASTER,GRD_DETAIL');
+						Matrix.Information('삭제 완료되었습니다.','안내');
+					});
+             	}else GRD_DETAIL.ClearRowState(false);
+            } ,0);
 			break;
 		
 		case 'BTN_GRP_CNC': // 취소 (Form: '그룹 추가')
 			popup.Close();
 			break;
 		
+		case 'BTN_GRP_SAV': // 추가 (Form: '그룹 추가')
+			var fields = [VS_INP_GROUP_CODE.Text,VS_INP_GROUP_NAME.Text];
+			if(isInvalidInput(fields)){
+				Matrix.Information('필수 입력 항목을 확인해주세요','안내');
+				return;
+			}
+			
+			Matrix.RunScript('','GRD_MASTER_INSERT' ,function(p){
+            	if(p.Success == false){
+           		Matrix.Alert(p.Message);
+           		return;
+           	}
+				Matrix.doRefresh('GRD_MASTER');
+				Matrix.Information('추가 완료되었습니다.','안내');
+				popup.Close();
+            });
+			break;
+		
 		case 'BTN_CD_CNC': // 취소 (Form: '코드 추가')
 			popup.Close();
 			break;
-			
-		case 'BTN_MST_DEL': // 삭제 (코드 그룹)
-			var GRD_MASTER = Matrix.getObject('GRD_MASTER');
-			
-			if(!GRD_MASTER.GetCurrentRow()){
-				Matrix.Information('삭제할 코드 그룹 선택 후 다시 시도하세요','안내');
-				return;				
-			}
-			if(GRD_MASTER.GetCurrentRow().GetValue('CODE') > 1){
-				Matrix.Information('모든 상세 코드를 삭제한 후 다시 시도하세요','안내');
+		
+		case 'BTN_CD_SAV': // 추가 (Form: '코드 추가')
+			var fields = [VS_INP_CODE.Text,VS_CODE_NAME.Text];
+			if(isInvalidInput(fields)){
+				Matrix.Information('필수 입력 항목을 확인해주세요','안내');
 				return;
 			}
+			
+			var scriptName = BTN_CD_SAV.Text=='저장' ? 'GRD_DETAIL_UPDATE' : 'GRD_DETAIL_INSERT';
+			Matrix.RunScript('',scriptName ,function(p){
+            	if(p.Success == false){
+           		Matrix.Alert(p.Message);
+           		return;
+           	}
+				Matrix.doRefresh('GRD_DETAIL');
+				Matrix.Information(BTN_CD_SAV.Text+' 완료되었습니다.','안내');
+				popup.Close();
+            });
 			break;
 	}
  };
@@ -155,15 +226,12 @@ var popup 			  = null; // '그룹 추가', '코드 추가' Form을 오픈할 팝
 **************************************/
  var OnCellDoubleClick  = function(sender, args){
  	if(args.Id == 'GRD_DETAIL'){
-		var getRow = args.Row;
+		setInputValue(args.Row);
+		BTN_CD_SAV.Text = '저장';
+		VS_INP_CODE.IsReadOnly = true;
+		VS_INP_CODE.Style.Background.Color.SetRGBA('217' ,'217' ,'217' ,'0.3');
 		
-		VS_GROUP_CODE.Text = Matrix.GetGlobalParamValue('VS_GROUP_CD');
-		VS_INP_CODE.Text = getRow.GetValue('CODE');
-		VS_CODE_NAME.Text = getRow.GetValue('CODE_NAME');
-		VN_SORT.Text = getRow.GetValue('SORT_ORDER');
-		VS_USE_YN.Value = getRow.GetValue('USE_YN_CODE');
-		
-		popup = Matrix.ShowWindow("코드 추가",0,0,460,510,true,false,"코드 추가",true,'#ffffff',0,false,false);
+		popup = Matrix.ShowWindow("코드 추가",0,0,460,350,true,false,"코드 수정",true,'#ffffff',0,false,false);
 		popup.MoveToCenter();
 	}
  };
@@ -188,3 +256,44 @@ var popup 			  = null; // '그룹 추가', '코드 추가' Form을 오픈할 팝
 		GRD.Update();
 	}
  };
+ 
+ 
+ var setInputValue = function(row){
+ 	if(row == 'GRD_MASTER'){
+		VS_INP_GROUP_CODE.Text = '';
+		VS_INP_GROUP_NAME.Text = '';
+		VS_INP_CODE_DESC.Text  = '';
+		
+	}else if(typeof row === 'object' && row !== null){
+		VS_GROUP_CODE.Text = Matrix.GetGlobalParamValue('VS_GROUP_CD');
+		VS_INP_CODE.Text   = row.GetValue('CODE');
+		VS_CODE_NAME.Text  = row.GetValue('CODE_NAME');
+		VN_SORT.Text 	   = row.GetValue('SORT_ORDER');
+		VS_USE_YN.Value    = row.GetValue('USE_YN_CODE');
+	
+	}else{
+		Matrix.Execute('GET_MAX_SORT' ,function(p){
+			if(p.Success == false){
+				Matrix.Alert(p.Message);
+				return;
+			}
+			var  dt = p.DataTable;
+			
+			VS_GROUP_CODE.Text = Matrix.GetGlobalParamValue('VS_GROUP_CD');
+			VS_INP_CODE.Text   = '';
+			VS_CODE_NAME.Text  = '';
+			VN_SORT.Text	   = dt.getData(0,'MAX_SORT');
+			VS_USE_YN.Value    = 'Y';
+			
+			popup = Matrix.ShowWindow("코드 추가",0,0,460,350,true,false,"코드 추가",true,'#ffffff',0,false,false);
+			popup.MoveToCenter();
+		});
+	}
+ };
+ 
+ 
+var isInvalidInput = function(fields) {
+	return fields.some(function(v) {
+		return v === null || v === undefined || v === '';
+	});
+};

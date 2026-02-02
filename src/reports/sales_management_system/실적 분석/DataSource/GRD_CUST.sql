@@ -22,4 +22,4 @@ SELECT
             ELSE 0
         END
      ) AS DIFF
-  FROM SM_CUSTOMER
+FROM SM_CUSTOMER

@@ -22,6 +22,12 @@ var popup = null;
 		Matrix.getObject(args.Id).PlotOptions.DataLabelsDistance = 0;
 	
 	}else if(args.Id == 'GRD_TOTAL'){
+		if(!args.RecordCount){
+			['1','2','3','4'].forEach(function(i){
+				Matrix.getObject('LBL_TOTAL_VAL_' + i).Text = '';
+			});
+		}
+	
 		['1','2','3','4'].forEach(function(i){
 			var lbl = Matrix.getObject('LBL_RATE_' + i);
 			var val = Number(lbl.Value);

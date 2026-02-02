@@ -5,9 +5,9 @@
     "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REPE2F3636996B9460589C4C73931B14699.mtsd",
     "ReportName": "공통 코드 관리",
     "Writer": "kimje1342",
-    "WriteDate": "2026-01-26 16:28:55",
+    "WriteDate": "2026-02-02 13:31:24",
     "Editor": "kimje1342",
-    "EditDate": "2026-01-26 16:28:55",
+    "EditDate": "2026-02-02 13:31:24",
     "TabPosition": 0,
     "DocumentVersion": "3.0.0.0",
     "RefreshType": 0
@@ -22,7 +22,7 @@
         "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
-        "SQL": "RajLu2YuQLqSHuH8eoLLM2Ig+t0WsSbD+JelvPwdKTDmVIpNZMF0wzKzqORqkEcQBJ2AjUgWhIpB3aJg1Y7AyuNDzqOhUMVbHmPZX/REqU+A16xtv4V1SfKkbt8jvnCJG/v9TOTXLTnTXWmcHUKGAQI9lkD3LJ0bn5GGm4V7oZTX2NKlLy62i13QhSvdhrVv9JhkAyiMCn6VMF/CCdx1fMbcOtdwsJAgcXHBlD6yqsNIf4SEf3+IF9jgSmdTLn4iFkEBYmqhUVTvbzTA0hzzHXeUaht+o4TZBPHwGfa1CmaPNnPJVe5oB5rXopFmV1Vma8fnY6VVLas2PtWy/XOaSQ==",
+        "SQL": "8+qzT3JBD5NX3Kh5bAsgkGhlg7HE4bB9NyxthQetgcvW1ab/jCq6ocVopi3CMof4U22h3emfZWiF++3/nseuv6wPW89ZtFwr2DuHuvjduvN1q5R2iIl8sC6aJyspbLa1EjBEANXFNLdM4mq7RkaN+oxEyE8tmWMjc5dZmusTeOKtyL1rmN+YGG6QHLwA3zRVfP/fYTxNsqUMpmbXv0Z+MO6H3qqBwWdL/x+l72tSuwNhHcpzeLhhIXA/mdvJN1oSSxpiHWLa70hyaFTU+Nh4vUv5+lGbmRjwCaIUB/4cwT5Xu2q6dfs5TJWUsqZQPz7zDccUocHR7CJSJFioRll8lPubUhLs5La+tn3H77nsbIc=",
         "Params": [],
         "Columns": [
           {
@@ -126,8 +126,39 @@
       }
     ]
   },
-  "ScriptText": "var LBL_TTL_3 \t\t= Matrix.getObject('LBL_TTL_3');\r\nvar LBL_INIT \t\t= Matrix.getObject('LBL_INIT');\r\n\r\n\r\n/* '그룹 추가' Form의 입력 컨트롤 */\r\nvar VS_INP_GROUP_CODE = Matrix.getObject('VS_INP_GROUP_CODE'); // 그룹코드\r\nvar VS_INP_GROUP_NAME = Matrix.getObject('VS_INP_GROUP_NAME'); // 그룹명\r\nvar VS_INP_CODE_DESC  = Matrix.getObject('VS_INP_CODE_DESC');  // 설명\r\n\r\n/* '코드 추가' Form의 입력 컨트롤 */\r\nvar VS_GROUP_CODE\t  = Matrix.getObject('VS_GROUP_CODE');\t  // 사업자번호\r\nvar VS_INP_CODE\t\t  = Matrix.getObject('VS_INP_CODE');\t  // 연락처\r\nvar VS_CODE_NAME\t  = Matrix.getObject('VS_CODE_NAME');\t  // 이메일\r\nvar VN_SORT \t\t  = Matrix.getObject('VN_SORT');\t\t  // 이메일\r\nvar VS_USE_YN \t\t  = Matrix.getObject('VS_USE_YN');\t\t  // 사업장주소\r\n\r\nvar popup \t\t\t  = null; // '그룹 추가', '코드 추가' Form을 오픈할 팝업\r\n\r\n\r\n/**************************************\r\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n * * arguments :  \r\n**************************************/\r\n var OnDocumentLoadComplete  = function(sender, args){\r\n \t/* 초기 세팅 */\r\n \tMatrix.getObject('LBL_DTL_CNT').Text = '0';\r\n\tLBL_TTL_3.Text = '  상세 코드 – 그룹을 선택하세요';\r\n\tLBL_INIT.Visible = true;\r\n \t\r\n\t/* Placeholder 설정 */\r\n\tVS_INP_GROUP_CODE.UsePlaceholder = true;\r\n\tVS_INP_GROUP_NAME.UsePlaceholder = true;\r\n\tVS_INP_CODE_DESC.UsePlaceholder = true;\r\n\tVS_INP_CODE.UsePlaceholder = true;\r\n\tVS_CODE_NAME.UsePlaceholder = true;\r\n\t\r\n\tVS_INP_GROUP_CODE.SetPlaceholder(' 예: NEW_CODE_TYPE');\r\n\tVS_INP_GROUP_NAME.SetPlaceholder(' 예: 새로운 코드 유형');\r\n\tVS_INP_CODE_DESC.SetPlaceholder(' 그룹에 대한 설명');\r\n\tVS_INP_CODE.SetPlaceholder(' 예: NEW_VALUE');\r\n\tVS_CODE_NAME.SetPlaceholder(' 예: 새로운 값');\r\n\t\r\n };\r\n \r\n\r\n/**************************************\r\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n *\t\t string\tText (Readonly:False) : 라벨 값 \r\n**************************************/\r\n var OnButtonClick  = function(sender, args){\r\n \tswitch(args.Id){\r\n\t\tcase 'BTN_MST_ADD': // 그룹 추가\r\n\t\t\tVS_INP_GROUP_CODE.Text = '';\r\n\t\t\tVS_INP_GROUP_NAME.Text = '';\r\n\t\t\tVS_INP_CODE_DESC.Text = '';\r\n\t\t\t\r\n\t\t\tpopup = Matrix.ShowWindow(\"그룹 추가\",0,0,460,415,true,false,\"그룹 추가\",true,'#ffffff',0,false,false);\r\n\t\t\tpopup.MoveToCenter();\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase 'BTN_DTL_ADD': // 코드 추가\r\n\t\t\tif(!Matrix.GetGlobalParamValue('VS_GROUP_CD')){\r\n\t\t\t\tMatrix.Information('먼저 코드 그룹을 선택해주세요','안내');\r\n\t\t\t\treturn;\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\tMatrix.Execute('GET_MAX_SORT' ,function(p){\r\n\t\t\t\tif(p.Success == false){\r\n\t\t\t\t\tMatrix.Alert(p.Message);\r\n\t\t\t\t\treturn;\r\n\t\t\t\t}\r\n\t\t\t\tvar  dt = p.DataTable;\r\n\t\t\t\t\r\n\t\t\t\tVS_GROUP_CODE.Text = Matrix.GetGlobalParamValue('VS_GROUP_CD');\r\n\t\t\t\tVS_INP_CODE.Text = '';\r\n\t\t\t\tVS_CODE_NAME.Text = '';\r\n\t\t\t\tVN_SORT.Text = dt.getData(0,'MAX_SORT');\r\n\t\t\t\tVS_USE_YN.Value = 'Y';\r\n\t\t\t\t\r\n\t\t\t\tpopup = Matrix.ShowWindow(\"코드 추가\",0,0,460,510,true,false,\"코드 추가\",true,'#ffffff',0,false,false);\r\n\t\t\t\tpopup.MoveToCenter();\r\n           \t});\r\n\t\t\tbreak;\r\n\t\t\r\n\t\tcase 'BTN_GRP_CNC': // 취소 (Form: '그룹 추가')\r\n\t\t\tpopup.Close();\r\n\t\t\tbreak;\r\n\t\t\r\n\t\tcase 'BTN_CD_CNC': // 취소 (Form: '코드 추가')\r\n\t\t\tpopup.Close();\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase 'BTN_MST_DEL': // 삭제 (코드 그룹)\r\n\t\t\tvar GRD_MASTER = Matrix.getObject('GRD_MASTER');\r\n\t\t\t\r\n\t\t\tif(!GRD_MASTER.GetCurrentRow()){\r\n\t\t\t\tMatrix.Information('삭제할 코드 그룹 선택 후 다시 시도하세요','안내');\r\n\t\t\t\treturn;\t\t\t\t\r\n\t\t\t}\r\n\t\t\tif(GRD_MASTER.GetCurrentRow().GetValue('CODE') > 1){\r\n\t\t\t\tMatrix.Information('모든 상세 코드를 삭제한 후 다시 시도하세요','안내');\r\n\t\t\t\treturn;\r\n\t\t\t}\r\n\t\t\tbreak;\r\n\t}\r\n };\r\n \r\n \r\n/**************************************\r\n * 컨트롤에 데이터셋이 바인딩된 후 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n *\t\t number\tRecordCount (Readonly:False) : 데이터셋의 레코드 수량 \r\n**************************************/\r\n var OnDataBindEnd  = function(sender, args){\r\n \tif(args.Id == 'GRD_MASTER'){\r\n\t\tMatrix.getObject('LBL_MST_CNT').Text = args.RecordCount;\r\n\t\r\n\t}else if(args.Id == 'GRD_DETAIL'){\r\n\t\tMatrix.getObject('LBL_DTL_CNT').Text = args.RecordCount;\r\n\t}\r\n };\r\n \r\n \r\n \r\n/**************************************\r\n * 그리드의 셀을 클릭할 떄 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t aud.control.grids.DataGridRow\tRow (Readonly:False) : 데이터 레코드 정보 \r\n *\t\t aud.control.grids.DataGridCell\tCell (Readonly:False) : 데이터셀 정보 \r\n *\t\t aud.control.grids.DataGridColumn\tField (Readonly:False) : 필드 정보 \r\n *\t\t boolean\tHandled (Readonly:False) : cell selection 정보 유지 여부 \r\n**************************************/\r\n var OnCellClick  = function(sender, args){\r\n \tif(args.Id == 'GRD_MASTER'){\r\n\t\tMatrix.SetGlobalParams('VS_GROUP_CD',args.Row.GetValue('GROUP_CD'));\r\n\t\tMatrix.doRefresh('GRD_DETAIL');\r\n\t\t\r\n\t\tLBL_TTL_3.Text = '  상세 코드 – '+args.Row.GetValue('CODE_NAME');\r\n\t\tLBL_INIT.Visible = false;\r\n\t}\r\n };\r\n \r\n \r\n/**************************************\r\n * 그리드의 셀을 더블 클릭할 떄 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t aud.control.grids.DataGridRow\tRow (Readonly:False) : 데이터 레코드 정보 \r\n *\t\t aud.control.grids.DataGridCell\tCell (Readonly:False) : 데이터셀 정보 \r\n *\t\t aud.control.grids.DataGridColumn\tField (Readonly:False) : 필드 정보 \r\n**************************************/\r\n var OnCellDoubleClick  = function(sender, args){\r\n \tif(args.Id == 'GRD_DETAIL'){\r\n\t\tvar getRow = args.Row;\r\n\t\t\r\n\t\tVS_GROUP_CODE.Text = Matrix.GetGlobalParamValue('VS_GROUP_CD');\r\n\t\tVS_INP_CODE.Text = getRow.GetValue('CODE');\r\n\t\tVS_CODE_NAME.Text = getRow.GetValue('CODE_NAME');\r\n\t\tVN_SORT.Text = getRow.GetValue('SORT_ORDER');\r\n\t\tVS_USE_YN.Value = getRow.GetValue('USE_YN_CODE');\r\n\t\t\r\n\t\tpopup = Matrix.ShowWindow(\"코드 추가\",0,0,460,510,true,false,\"코드 추가\",true,'#ffffff',0,false,false);\r\n\t\tpopup.MoveToCenter();\r\n\t}\r\n };\r\n \r\n \r\n/**************************************\r\n * 그리드의 멀티 헤더 체크 박스를 클릭하는 순간 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t aud.control.grids.MultiHeaderCell\tHeaderCell (Readonly:False) : 멀티헤더셀 객체 \r\n *\t\t booleans\tChecked (Readonly:False) : 체크 유무 \r\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 하게되면 클릭 처리가 취소됩니다. \r\n**************************************/\r\n var OnGridMultiHeaderCheckBoxClicked  = function(sender, args){\r\n  \tif(args.Id == 'GRD_DETAIL'){\r\n\t\tvar GRD = Matrix.getObject(args.Id);\r\n\t\tvar checkValue = args.Checked ? 'Y' : 'N';\r\n\t\t\r\n\t\tfor (var i=0; i<GRD.GetRowCount(); i++) {\r\n\t\t\tGRD.setRowValue(i, 'CHK', checkValue);\r\n\t\t}\r\n\t\tGRD.Update();\r\n\t}\r\n };",
-  "ServerScriptText": [],
+  "ScriptText": "/* init controls */\r\nvar GRD_MASTER \t\t  = Matrix.getObject('GRD_MASTER');\r\nvar GRD_DETAIL \t\t  = Matrix.getObject('GRD_DETAIL');\r\nvar LBL_TTL_3 \t\t  = Matrix.getObject('LBL_TTL_3');\r\nvar LBL_INIT \t\t  = Matrix.getObject('LBL_INIT');\r\nvar BTN_CD_SAV\t\t  = Matrix.getObject('BTN_CD_SAV');\t\t  // 저장 버튼 (Form: 코드 추가)\r\nvar popup \t\t\t  = null; // '그룹 추가', '코드 추가' Form을 오픈할 팝업\r\n\r\n/* '그룹 추가' Form의 입력 컨트롤 */\r\nvar VS_INP_GROUP_CODE = Matrix.getObject('VS_INP_GROUP_CODE'); // 그룹코드\r\nvar VS_INP_GROUP_NAME = Matrix.getObject('VS_INP_GROUP_NAME'); // 그룹명\r\nvar VS_INP_CODE_DESC  = Matrix.getObject('VS_INP_CODE_DESC');  // 설명\r\n\r\n/* '코드 추가' Form의 입력 컨트롤 */\r\nvar VS_GROUP_CODE\t  = Matrix.getObject('VS_GROUP_CODE');\t  // 사업자번호\r\nvar VS_INP_CODE\t\t  = Matrix.getObject('VS_INP_CODE');\t  // 연락처\r\nvar VS_CODE_NAME\t  = Matrix.getObject('VS_CODE_NAME');\t  // 이메일\r\nvar VN_SORT \t\t  = Matrix.getObject('VN_SORT');\t\t  // 이메일\r\nvar VS_USE_YN \t\t  = Matrix.getObject('VS_USE_YN');\t\t  // 사업장주소\r\n\r\n/**************************************\r\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n * * arguments :  \r\n**************************************/\r\n var OnDocumentLoadComplete  = function(sender, args){\r\n \t/* Primary 세팅 */\r\n\tGRD_MASTER.GetField('GROUP_CD').KeyType = 3;\r\n\tGRD_DETAIL.GetField('CODE').KeyType = 3;\r\n \r\n \t/* 초기 세팅 */\r\n \tMatrix.getObject('LBL_DTL_CNT').Text = '0';\r\n\tMatrix.SetGlobalParams('VS_GROUP_CD',null);\r\n\tLBL_TTL_3.Text = '  상세 코드 – 그룹을 선택하세요';\r\n\tLBL_INIT.Visible = true;\r\n\tVS_GROUP_CODE.IsReadOnly = true;\r\n \t\r\n\t/* Placeholder 설정 */\r\n\tVS_INP_GROUP_CODE.UsePlaceholder = true;\r\n\tVS_INP_GROUP_NAME.UsePlaceholder = true;\r\n\tVS_INP_CODE_DESC.UsePlaceholder = true;\r\n\tVS_INP_CODE.UsePlaceholder = true;\r\n\tVS_CODE_NAME.UsePlaceholder = true;\r\n\t\r\n\tVS_INP_GROUP_CODE.SetPlaceholder(' 예: NEW_CODE_TYPE');\r\n\tVS_INP_GROUP_NAME.SetPlaceholder(' 예: 새로운 코드 유형');\r\n\tVS_INP_CODE_DESC.SetPlaceholder(' 그룹에 대한 설명');\r\n\tVS_INP_CODE.SetPlaceholder(' 예: NEW_VALUE');\r\n\tVS_CODE_NAME.SetPlaceholder(' 예: 새로운 값');\r\n };\r\n \r\n\r\n/**************************************\r\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n *\t\t string\tText (Readonly:False) : 라벨 값 \r\n**************************************/\r\n var OnButtonClick  = function(sender, args){\r\n \tswitch(args.Id){\r\n\t\tcase 'BTN_MST_ADD': // 그룹 추가\r\n\t\t\tsetInputValue('GRD_MASTER'); // Input 컨트롤 초기화\r\n\t\t\t\r\n\t\t\tpopup = Matrix.ShowWindow(\"그룹 추가\",0,0,460,415,true,false,\"그룹 추가\",true,'#ffffff',0,false,false);\r\n\t\t\tpopup.MoveToCenter();\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase 'BTN_DTL_ADD': // 코드 추가\r\n\t\t\tif(!Matrix.GetGlobalParamValue('VS_GROUP_CD')){\r\n\t\t\t\tMatrix.Information('먼저 코드 그룹을 선택해주세요','안내');\r\n\t\t\t\treturn;\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\tsetInputValue(null);\r\n\t\t\tBTN_CD_SAV.Text = '추가';\r\n\t\t\tVS_INP_CODE.IsReadOnly = false;\r\n\t\t\tVS_INP_CODE.Style.Background.Color.SetRGBA('255' ,'255' ,'255' ,'1');\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase 'BTN_MST_DEL': // 삭제 (코드 그룹)\t\t\t\r\n\t\t\tif(!GRD_MASTER.GetCurrentRow()){\r\n\t\t\t\tMatrix.Information('삭제할 코드 그룹 선택 후 다시 시도하세요','안내');\r\n\t\t\t\treturn;\t\t\t\t\r\n\t\t\t}else GRD_MASTER.GetCurrentRow().Data.RowState = 'D';\r\n\t\t\t\r\n\t\t\tif(GRD_MASTER.GetCurrentRow().GetValue('CODE') > 0){\r\n\t\t\t\tMatrix.Information('모든 상세 코드를 삭제한 후 다시 시도하세요','안내');\r\n\t\t\t\treturn;\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\tMatrix.Confirm('[ '+Matrix.GetGlobalParamValue('VS_GROUP_CD')+' ] 그룹코드를 삭제하시겠습니까?','안내' ,function(ok){\r\n               \tif(ok){\r\n\t\t\t\t\tMatrix.RunScript('GRD_MASTER','GRD_MASTER_DELETE' ,function(p){\r\n\t\t\t\t\t\tif(p.Success == false){\r\n\t\t\t\t\t\tMatrix.Alert(p.Message);\r\n\t\t\t\t\t\treturn;\r\n\t\t\t\t\t}\r\n\t\t\t\t\t\tMatrix.doRefresh('GRD_MASTER');\r\n\t\t\t\t\t\tMatrix.Information('삭제 완료되었습니다.','안내');\r\n\t\t\t\t\t\tMatrix.SetGlobalParams('VS_GROUP_CD',null);\r\n\t\t\t\t\t});\r\n             \t}else GRD_MASTER.ClearRowState(false);\r\n            } ,0);\r\n\t\t\t\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase 'BTN_DTL_DEL': // 삭제 (상세 코드)\r\n\t\t\tvar checkCount = 0;\r\n\t\t\tfor(var i=0; i<GRD_DETAIL.GetRowCount(); i++){\r\n\t\t\t\tif(GRD_DETAIL.getRowValue(i,'CHK') == 'Y'){\r\n\t\t\t\t\tGRD_DETAIL.ChangeRowStateAt(i,'D');\r\n\t\t\t\t\tcheckCount++;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\tif(!checkCount){\r\n\t\t\t\tMatrix.Information('삭제할 항목을 선택하세요','안내');\r\n\t\t\t\treturn;\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\tMatrix.Confirm('선택한 항목을 삭제하시겠습니까?','안내' ,function(ok){\r\n               \tif(ok){\r\n\t\t\t\t\tMatrix.RunScript('GRD_DETAIL','GRD_DETAIL_DELETE' ,function(p){\r\n\t\t\t\t\t\tif(p.Success == false){\r\n\t\t\t\t\t\tMatrix.Alert(p.Message);\r\n\t\t\t\t\t\treturn;\r\n\t\t\t\t\t}\r\n\t\t\t\t\t\tMatrix.doRefresh('GRD_MASTER,GRD_DETAIL');\r\n\t\t\t\t\t\tMatrix.Information('삭제 완료되었습니다.','안내');\r\n\t\t\t\t\t});\r\n             \t}else GRD_DETAIL.ClearRowState(false);\r\n            } ,0);\r\n\t\t\tbreak;\r\n\t\t\r\n\t\tcase 'BTN_GRP_CNC': // 취소 (Form: '그룹 추가')\r\n\t\t\tpopup.Close();\r\n\t\t\tbreak;\r\n\t\t\r\n\t\tcase 'BTN_GRP_SAV': // 추가 (Form: '그룹 추가')\r\n\t\t\tvar fields = [VS_INP_GROUP_CODE.Text,VS_INP_GROUP_NAME.Text];\r\n\t\t\tif(isInvalidInput(fields)){\r\n\t\t\t\tMatrix.Information('필수 입력 항목을 확인해주세요','안내');\r\n\t\t\t\treturn;\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\tMatrix.RunScript('','GRD_MASTER_INSERT' ,function(p){\r\n            \tif(p.Success == false){\r\n           \t\tMatrix.Alert(p.Message);\r\n           \t\treturn;\r\n           \t}\r\n\t\t\t\tMatrix.doRefresh('GRD_MASTER');\r\n\t\t\t\tMatrix.Information('추가 완료되었습니다.','안내');\r\n\t\t\t\tpopup.Close();\r\n            });\r\n\t\t\tbreak;\r\n\t\t\r\n\t\tcase 'BTN_CD_CNC': // 취소 (Form: '코드 추가')\r\n\t\t\tpopup.Close();\r\n\t\t\tbreak;\r\n\t\t\r\n\t\tcase 'BTN_CD_SAV': // 추가 (Form: '코드 추가')\r\n\t\t\tvar fields = [VS_INP_CODE.Text,VS_CODE_NAME.Text];\r\n\t\t\tif(isInvalidInput(fields)){\r\n\t\t\t\tMatrix.Information('필수 입력 항목을 확인해주세요','안내');\r\n\t\t\t\treturn;\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\tvar scriptName = BTN_CD_SAV.Text=='저장' ? 'GRD_DETAIL_UPDATE' : 'GRD_DETAIL_INSERT';\r\n\t\t\tMatrix.RunScript('',scriptName ,function(p){\r\n            \tif(p.Success == false){\r\n           \t\tMatrix.Alert(p.Message);\r\n           \t\treturn;\r\n           \t}\r\n\t\t\t\tMatrix.doRefresh('GRD_DETAIL');\r\n\t\t\t\tMatrix.Information(BTN_CD_SAV.Text+' 완료되었습니다.','안내');\r\n\t\t\t\tpopup.Close();\r\n            });\r\n\t\t\tbreak;\r\n\t}\r\n };\r\n \r\n \r\n/**************************************\r\n * 컨트롤에 데이터셋이 바인딩된 후 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n *\t\t number\tRecordCount (Readonly:False) : 데이터셋의 레코드 수량 \r\n**************************************/\r\n var OnDataBindEnd  = function(sender, args){\r\n \tif(args.Id == 'GRD_MASTER'){\r\n\t\tMatrix.getObject('LBL_MST_CNT').Text = args.RecordCount;\r\n\t\r\n\t}else if(args.Id == 'GRD_DETAIL'){\r\n\t\tMatrix.getObject('LBL_DTL_CNT').Text = args.RecordCount;\r\n\t}\r\n };\r\n \r\n \r\n \r\n/**************************************\r\n * 그리드의 셀을 클릭할 떄 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t aud.control.grids.DataGridRow\tRow (Readonly:False) : 데이터 레코드 정보 \r\n *\t\t aud.control.grids.DataGridCell\tCell (Readonly:False) : 데이터셀 정보 \r\n *\t\t aud.control.grids.DataGridColumn\tField (Readonly:False) : 필드 정보 \r\n *\t\t boolean\tHandled (Readonly:False) : cell selection 정보 유지 여부 \r\n**************************************/\r\n var OnCellClick  = function(sender, args){\r\n \tif(args.Id == 'GRD_MASTER'){\r\n\t\tMatrix.SetGlobalParams('VS_GROUP_CD',args.Row.GetValue('GROUP_CD'));\r\n\t\tMatrix.doRefresh('GRD_DETAIL');\r\n\t\t\r\n\t\tLBL_TTL_3.Text = '  상세 코드 – '+args.Row.GetValue('CODE_NAME');\r\n\t\tLBL_INIT.Visible = false;\r\n\t}\r\n };\r\n \r\n \r\n/**************************************\r\n * 그리드의 셀을 더블 클릭할 떄 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t aud.control.grids.DataGridRow\tRow (Readonly:False) : 데이터 레코드 정보 \r\n *\t\t aud.control.grids.DataGridCell\tCell (Readonly:False) : 데이터셀 정보 \r\n *\t\t aud.control.grids.DataGridColumn\tField (Readonly:False) : 필드 정보 \r\n**************************************/\r\n var OnCellDoubleClick  = function(sender, args){\r\n \tif(args.Id == 'GRD_DETAIL'){\r\n\t\tsetInputValue(args.Row);\r\n\t\tBTN_CD_SAV.Text = '저장';\r\n\t\tVS_INP_CODE.IsReadOnly = true;\r\n\t\tVS_INP_CODE.Style.Background.Color.SetRGBA('217' ,'217' ,'217' ,'0.3');\r\n\t\t\r\n\t\tpopup = Matrix.ShowWindow(\"코드 추가\",0,0,460,350,true,false,\"코드 수정\",true,'#ffffff',0,false,false);\r\n\t\tpopup.MoveToCenter();\r\n\t}\r\n };\r\n \r\n \r\n/**************************************\r\n * 그리드의 멀티 헤더 체크 박스를 클릭하는 순간 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t aud.control.grids.MultiHeaderCell\tHeaderCell (Readonly:False) : 멀티헤더셀 객체 \r\n *\t\t booleans\tChecked (Readonly:False) : 체크 유무 \r\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 하게되면 클릭 처리가 취소됩니다. \r\n**************************************/\r\n var OnGridMultiHeaderCheckBoxClicked  = function(sender, args){\r\n  \tif(args.Id == 'GRD_DETAIL'){\r\n\t\tvar GRD = Matrix.getObject(args.Id);\r\n\t\tvar checkValue = args.Checked ? 'Y' : 'N';\r\n\t\t\r\n\t\tfor (var i=0; i<GRD.GetRowCount(); i++) {\r\n\t\t\tGRD.setRowValue(i, 'CHK', checkValue);\r\n\t\t}\r\n\t\tGRD.Update();\r\n\t}\r\n };\r\n \r\n \r\n var setInputValue = function(row){\r\n \tif(row == 'GRD_MASTER'){\r\n\t\tVS_INP_GROUP_CODE.Text = '';\r\n\t\tVS_INP_GROUP_NAME.Text = '';\r\n\t\tVS_INP_CODE_DESC.Text  = '';\r\n\t\t\r\n\t}else if(typeof row === 'object' && row !== null){\r\n\t\tVS_GROUP_CODE.Text = Matrix.GetGlobalParamValue('VS_GROUP_CD');\r\n\t\tVS_INP_CODE.Text   = row.GetValue('CODE');\r\n\t\tVS_CODE_NAME.Text  = row.GetValue('CODE_NAME');\r\n\t\tVN_SORT.Text \t   = row.GetValue('SORT_ORDER');\r\n\t\tVS_USE_YN.Value    = row.GetValue('USE_YN_CODE');\r\n\t\r\n\t}else{\r\n\t\tMatrix.Execute('GET_MAX_SORT' ,function(p){\r\n\t\t\tif(p.Success == false){\r\n\t\t\t\tMatrix.Alert(p.Message);\r\n\t\t\t\treturn;\r\n\t\t\t}\r\n\t\t\tvar  dt = p.DataTable;\r\n\t\t\t\r\n\t\t\tVS_GROUP_CODE.Text = Matrix.GetGlobalParamValue('VS_GROUP_CD');\r\n\t\t\tVS_INP_CODE.Text   = '';\r\n\t\t\tVS_CODE_NAME.Text  = '';\r\n\t\t\tVN_SORT.Text\t   = dt.getData(0,'MAX_SORT');\r\n\t\t\tVS_USE_YN.Value    = 'Y';\r\n\t\t\t\r\n\t\t\tpopup = Matrix.ShowWindow(\"코드 추가\",0,0,460,350,true,false,\"코드 추가\",true,'#ffffff',0,false,false);\r\n\t\t\tpopup.MoveToCenter();\r\n\t\t});\r\n\t}\r\n };\r\n \r\n \r\nvar isInvalidInput = function(fields) {\r\n\treturn fields.some(function(v) {\r\n\t\treturn v === null || v === undefined || v === '';\r\n\t});\r\n};",
+  "ServerScriptText": [
+    {
+      "Name": "GRD_MASTER_INSERT",
+      "Key": "BIZ765BB13C596746098A241DD49475881C",
+      "Encrypted": true,
+      "ScriptText": "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"
+    },
+    {
+      "Name": "GRD_MASTER_DELETE",
+      "Key": "BIZD608C7F4EBD34517BA2B72CCB287358D",
+      "Encrypted": true,
+      "ScriptText": "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"
+    },
+    {
+      "Name": "GRD_DETAIL_INSERT",
+      "Key": "BIZ0578381F028D4CF3AE760E2A98E00F3D",
+      "Encrypted": true,
+      "ScriptText": "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"
+    },
+    {
+      "Name": "GRD_DETAIL_UPDATE",
+      "Key": "BIZ3179103D602346EBBBE3514D323C86F9",
+      "Encrypted": true,
+      "ScriptText": "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"
+    },
+    {
+      "Name": "GRD_DETAIL_DELETE",
+      "Key": "BIZ1C040FF1CFE54E2B9C387408A0F02CCC",
+      "Encrypted": true,
+      "ScriptText": "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"
+    }
+  ],
   "Forms": [
     {
       "Id": "FormD64B8652095A4B9798E93B38EDBCCCD4",
@@ -265,7 +296,7 @@
               "Name": "BTN_DTL_ADD",
               "InGroup": "GRP_HEADER",
               "Position": {
-                "Left": 1770,
+                "Left": 1481,
                 "Top": 10,
                 "Width": 90,
                 "Height": 35,
@@ -352,7 +383,7 @@
               "Name": "BTN_MST_ADD",
               "InGroup": "GRP_HEADER",
               "Position": {
-                "Left": 1670,
+                "Left": 1381,
                 "Top": 10,
                 "Width": 90,
                 "Height": 35,
@@ -416,7 +447,7 @@
           "Position": {
             "Left": 0,
             "Top": 0,
-            "Width": 1880,
+            "Width": 1591,
             "Height": 55,
             "ZIndex": 1,
             "TabIndex": 0,
@@ -482,7 +513,7 @@
                 "Left": 0,
                 "Top": 55,
                 "Width": 450,
-                "Height": 758,
+                "Height": 728,
                 "ZIndex": 0,
                 "TabIndex": 0,
                 "Docking": {
@@ -644,7 +675,7 @@
                   "DataStyle": "BX114111304E2C4013A1A9E0BBB9A52169",
                   "GridColumnWidthType": 1,
                   "Editable": false,
-                  "KeyType": 2,
+                  "KeyType": 3,
                   "HeaderPosition": "center",
                   "CalcSubTotalType": "None"
                 },
@@ -1048,7 +1079,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": 10,
+              "Text": "",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -1219,7 +1250,7 @@
             "Left": 20,
             "Top": 75,
             "Width": 450,
-            "Height": 813,
+            "Height": 783,
             "ZIndex": 7,
             "TabIndex": 0,
             "Docking": {
@@ -1277,7 +1308,7 @@
           "ChildElements": [
             {
               "LanguageCode": "",
-              "Text": "  상세 코드 – 확정",
+              "Text": "  상세 코드",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -1298,7 +1329,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 1370,
+                "Width": 1081,
                 "Height": 55,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -1355,7 +1386,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": 2,
+              "Text": "",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -1374,7 +1405,7 @@
               "Name": "LBL_DTL_CNT",
               "InGroup": "GRP_DTL",
               "Position": {
-                "Left": 1268,
+                "Left": 979,
                 "Top": 14,
                 "Width": 27,
                 "Height": 27,
@@ -1461,7 +1492,7 @@
               "Name": "BTN_DTL_DEL",
               "InGroup": "GRP_DTL",
               "Position": {
-                "Left": 1305,
+                "Left": 1016,
                 "Top": 14,
                 "Width": 45,
                 "Height": 27,
@@ -1526,8 +1557,8 @@
               "Position": {
                 "Left": 0,
                 "Top": 55,
-                "Width": 1370,
-                "Height": 757,
+                "Width": 1081,
+                "Height": 727,
                 "ZIndex": 7,
                 "TabIndex": 0,
                 "Docking": {
@@ -1688,7 +1719,7 @@
                   },
                   "GridColumnWidthType": 1,
                   "Editable": false,
-                  "KeyType": 2,
+                  "KeyType": 3,
                   "HeaderPosition": "center",
                   "CalcSubTotalType": "None"
                 },
@@ -1879,7 +1910,7 @@
                         "Position": {
                           "Left": 50,
                           "Top": 0,
-                          "Width": 330,
+                          "Width": 257,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1964,9 +1995,9 @@
                         "Id": "Label389E2B3EF0F59AC5DAD1F18440A6943E",
                         "Name": "CODE_NAME",
                         "Position": {
-                          "Left": 380,
+                          "Left": 307,
                           "Top": 0,
-                          "Width": 330,
+                          "Width": 257,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2051,9 +2082,9 @@
                         "Id": "Label9734999F722D19480D1A8E7F49478AD5",
                         "Name": "SORT_ORDER",
                         "Position": {
-                          "Left": 710,
+                          "Left": 564,
                           "Top": 0,
-                          "Width": 330,
+                          "Width": 257,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2137,9 +2168,9 @@
                         "Id": "Label8242D4A926CE33C39A44392210E0D146",
                         "Name": "USE_YN",
                         "Position": {
-                          "Left": 1040,
+                          "Left": 821,
                           "Top": 0,
-                          "Width": 330,
+                          "Width": 260,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2234,7 +2265,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 101,
-                "Width": 1370,
+                "Width": 1081,
                 "Height": 90,
                 "ZIndex": 9,
                 "TabIndex": 0,
@@ -2296,8 +2327,8 @@
           "Position": {
             "Left": 490,
             "Top": 75,
-            "Width": 1370,
-            "Height": 813,
+            "Width": 1081,
+            "Height": 783,
             "ZIndex": 7,
             "TabIndex": 0,
             "Docking": {
@@ -2822,7 +2853,7 @@
           "ChildElements": [
             {
               "LanguageCode": "",
-              "Value": "저장",
+              "Value": "추가",
               "Cursor": "pointer",
               "MouseOver": {
                 "UseYn": false,
@@ -2850,7 +2881,7 @@
               "Name": "BTN_GRP_SAV",
               "InGroup": "GRP_FOOTER_GROUP",
               "Position": {
-                "Left": 1531,
+                "Left": 378,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -2937,7 +2968,7 @@
               "Name": "BTN_GRP_CNC",
               "InGroup": "GRP_FOOTER_GROUP",
               "Position": {
-                "Left": 1461,
+                "Left": 308,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -3000,8 +3031,8 @@
           "Name": "GRP_FOOTER_GROUP",
           "Position": {
             "Left": 0,
-            "Top": 839,
-            "Width": 1611,
+            "Top": 324,
+            "Width": 458,
             "Height": 55,
             "ZIndex": 35,
             "TabIndex": 0,
@@ -3088,7 +3119,7 @@
           "ChildElements": [
             {
               "LanguageCode": "",
-              "Value": "저장",
+              "Value": "추가",
               "Cursor": "pointer",
               "MouseOver": {
                 "UseYn": false,
@@ -3266,7 +3297,7 @@
           "Name": "GRP_FOOTER_GROUP1",
           "Position": {
             "Left": 0,
-            "Top": 417,
+            "Top": 257,
             "Width": 456,
             "Height": 55,
             "ZIndex": 36,
@@ -3324,8 +3355,8 @@
         },
         {
           "LanguageCode": "",
-          "Text": "EMP_STATUS",
-          "Value": "EMP_STATUS",
+          "Text": "test",
+          "Value": "test",
           "IsReadOnly": true,
           "MaxLength": 0,
           "InputType": 0,
@@ -3357,10 +3388,10 @@
             "BoxStyle": "",
             "Background": {
               "Color": {
-                "R": 255,
-                "G": 255,
-                "B": 255,
-                "A": 1
+                "R": 217,
+                "G": 217,
+                "B": 217,
+                "A": 0.3
               }
             },
             "Border": {
@@ -3471,8 +3502,8 @@
         },
         {
           "LanguageCode": "",
-          "Text": "ACTIVE",
-          "Value": "ACTIVE",
+          "Text": "",
+          "Value": "",
           "IsReadOnly": false,
           "MaxLength": 0,
           "InputType": 0,
@@ -3484,7 +3515,7 @@
           "Position": {
             "Left": 20,
             "Top": 119,
-            "Width": 420,
+            "Width": 200,
             "Height": 35,
             "ZIndex": 16,
             "TabIndex": 0,
@@ -3618,8 +3649,8 @@
         },
         {
           "LanguageCode": "",
-          "Text": "재직중",
-          "Value": "재직중",
+          "Text": "",
+          "Value": "",
           "IsReadOnly": false,
           "MaxLength": 0,
           "InputType": 0,
@@ -3629,9 +3660,9 @@
           "Id": "TextBox99ECE63A195F5D67E9BDE517AFEF67AB",
           "Name": "VS_CODE_NAME",
           "Position": {
-            "Left": 20,
-            "Top": 197,
-            "Width": 420,
+            "Left": 240,
+            "Top": 119,
+            "Width": 200,
             "Height": 35,
             "ZIndex": 12,
             "TabIndex": 0,
@@ -3706,8 +3737,8 @@
           "Id": "Label53BBD838CBEBE32844B5EE20FCBCB7CC",
           "Name": "LBL_DTL_INPUT_3",
           "Position": {
-            "Left": 20,
-            "Top": 173,
+            "Left": 240,
+            "Top": 95,
             "Width": 100,
             "Height": 23,
             "ZIndex": 11,
@@ -3784,7 +3815,7 @@
           "Name": "LBL_DTL_INPUT_4",
           "Position": {
             "Left": 20,
-            "Top": 248,
+            "Top": 174,
             "Width": 100,
             "Height": 23,
             "ZIndex": 16,
@@ -3860,8 +3891,8 @@
           "Id": "LabelA1C11C42C97446AB21E5763443B0CD84",
           "Name": "LBL_DTL_INPUT_5",
           "Position": {
-            "Left": 20,
-            "Top": 327,
+            "Left": 240,
+            "Top": 174,
             "Width": 100,
             "Height": 23,
             "ZIndex": 17,
@@ -3920,8 +3951,8 @@
         {
           "Format": "#,##0",
           "Formula": "",
-          "Value": 1,
-          "Text": "1",
+          "Value": 0,
+          "Text": 0,
           "IsReadOnly": false,
           "Maximum": "",
           "Minimum": "",
@@ -3932,8 +3963,8 @@
           "Name": "VN_SORT",
           "Position": {
             "Left": 20,
-            "Top": 272,
-            "Width": 420,
+            "Top": 198,
+            "Width": 200,
             "Height": 35,
             "ZIndex": 17,
             "TabIndex": 0,
@@ -3990,8 +4021,8 @@
         },
         {
           "DataSource": "DS91B035B3F14D4BF1902AF6C4481891EB",
-          "Value": "Y",
-          "Text": "사용",
+          "Value": "",
+          "Text": "",
           "InitType": "0",
           "RefreshType": 1,
           "IsReadOnly": false,
@@ -4004,14 +4035,14 @@
             "LabelField": "NAME",
             "ValueField": "CODE"
           },
-          "InitValue": "Y",
+          "InitValue": "",
           "Type": "ComboBox",
           "Id": "ComboBox916430AB4A37E80D66554FB9C6424275",
           "Name": "VS_USE_YN",
           "Position": {
-            "Left": 20,
-            "Top": 351,
-            "Width": 420,
+            "Left": 240,
+            "Top": 198,
+            "Width": 200,
             "Height": 35,
             "ZIndex": 18,
             "TabIndex": 0,

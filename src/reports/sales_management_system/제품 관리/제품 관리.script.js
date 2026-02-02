@@ -1,6 +1,10 @@
+/* init controls */
+var GRD_PRODUCT		= Matrix.getObject('GRD_PRODUCT');		// DataGrid 
+var BTN_SAV			= Matrix.getObject('BTN_SAV');			// 저장 버튼
+var popup 			= null; // '제품 등록' Form을 오픈할 팝업
+
 /* 조회 조건 컨트롤 */
 var VS_CAT 			= Matrix.getObject('VS_CAT');			// 카테고리
-var VS_STATUS		= Matrix.getObject('VS_STATUS');		// 판매 상태
 var VS_KEYWORD 		= Matrix.getObject('VS_KEYWORD');		// 검색어
 
 /* '제품 등록' Form의 입력 컨트롤 */
@@ -9,9 +13,6 @@ var VS_INP_CAT 		= Matrix.getObject('VS_INP_CAT');		// 카테고리
 var VS_INP_PRICE 	= Matrix.getObject('VS_INP_PRICE');		// 단가
 var VS_INP_COST 	= Matrix.getObject('VS_INP_COST');		// 원가
 var VS_INP_UNIT 	= Matrix.getObject('VS_INP_UNIT');		// 단위
-var VS_INP_STATUS 	= Matrix.getObject('VS_INP_STATUS');	// 상태
-
-var popup 			= null; // '제품 등록' Form을 오픈할 팝업
 
 
 /**************************************
@@ -21,6 +22,8 @@ var popup 			= null; // '제품 등록' Form을 오픈할 팝업
  var OnDocumentLoadComplete  = function(sender, args){
 	VS_KEYWORD.UsePlaceholder = true;
 	VS_KEYWORD.SetPlaceholder(' 제품명, 제품코드으로 검색');
+	
+	GRD_PRODUCT.GetField('PROD_ID').KeyType = 3; // KeyType: Primary
  };
  
  
@@ -33,8 +36,8 @@ var popup 			= null; // '제품 등록' Form을 오픈할 팝업
  *		 string	FilterText (Readonly:False) : 검색 텍스트박스에 입력된 검색어 
 **************************************/
  var OnMultiComboBoxExecuteStart  = function(sender, args){
- 	if(['VS_CAT', 'VS_STATUS'].includes(args.Id)){
-		Matrix.getObject(args.Id).CheckAll();
+ 	if(args.Id == 'VS_CAT'){
+		VS_CAT.CheckAll();
 	}
  };
  
@@ -48,7 +51,9 @@ var popup 			= null; // '제품 등록' Form을 오픈할 팝업
  var OnButtonClick  = function(sender, args){
  	switch(args.Id){
 		case 'BTN_ADD':	// 제품 등록 (Form: 제품 관리)
-			setInputValue(false); // Input 컨트롤 초기화
+			setInputValue(null); // Input 컨트롤 초기화
+			Matrix.SetGlobalParams('PROD_ID',false);
+			BTN_SAV.Text = '추가';
 			
 			popup = Matrix.ShowWindow("제품 등록",0,0,460,415,true,false,"제품 등록",true,'#ffffff',0,false,false);
 			popup.MoveToCenter();
@@ -59,17 +64,62 @@ var popup 			= null; // '제품 등록' Form을 오픈할 팝업
 			break;
 			
 		case 'BTN_RESET': // 초기화 (Form: 제품 관리)
-			['VS_CAT', 'VS_STATUS'].forEach(function(i){
-				Matrix.getObject(i).CheckAll();
-			});
+			Matrix.getObject('VS_CAT').CheckAll();
 			VS_KEYWORD.Text = '';
+			break;
+			
+		case 'BTN_DEL': // 삭제 (Form: 제품 관리)
+			var checkCount = 0;
+			for(var i=0; i<GRD_PRODUCT.GetRowCount(); i++){
+				if(GRD_PRODUCT.getRowValue(i,'CHK') == 'Y'){
+					GRD_PRODUCT.ChangeRowStateAt(i,'D');
+					checkCount++;
+				}
+			}
+			
+			if(!checkCount){
+				Matrix.Information('삭제할 항목을 선택하세요','안내');
+				return;
+			}
+			
+			Matrix.Confirm('선택한 항목을 삭제하시겠습니까?','안내' ,function(ok){
+               	if(ok){
+					Matrix.RunScript('GRD_PRODUCT','GRD_DELETE' ,function(p){
+						if(p.Success == false){
+						Matrix.Alert(p.Message);
+						return;
+					}
+						Matrix.doRefresh('GRD_PRODUCT');
+						Matrix.Information('삭제 완료되었습니다.','안내');
+					});
+             	}else GRD_STOCK.ClearRowState(false);
+            } ,0);
+			
 			break;
 			
 		case 'BTN_CNC': // 취소 (Form: 제품 등록)
 			popup.Close();
 			break;
+			
+		case 'BTN_SAV': // 저장 (Form: 제품 등록)
+			var fields = [VS_INP_PROD.Text,VS_INP_CAT.Value,VS_INP_PRICE.Value,VS_INP_COST.Value,VS_INP_UNIT.Value];
+			if(isInvalidInput(fields)){
+				Matrix.Information('필수 입력 항목을 확인해주세요','안내');
+				return;
+			}
+			
+			var scriptName = Matrix.GetGlobalParamValue('VS_PROD_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';
+			Matrix.RunScript('',scriptName ,function(p){
+            	if(p.Success == false){
+           		Matrix.Alert(p.Message);
+           		return;
+           	}
+				Matrix.doRefresh('GRD_PRODUCT');
+				Matrix.Information(BTN_SAV.Text+' 완료되었습니다.','안내');
+				popup.Close();
+            });
+			break;
 	}
-
  };
  
  /**************************************
@@ -81,6 +131,20 @@ var popup 			= null; // '제품 등록' Form을 오픈할 팝업
  var OnDataBindEnd  = function(sender, args){
  	if(args.Id == 'GRD_PRODUCT'){
 		Matrix.getObject('LBL_TTL_2').Text = '   제품 목록 (' + args.RecordCount + '종)';
+	}
+ };
+ 
+ 
+/**************************************
+ * 텍스트 박스 컨트롤의 key 입력 시 발생합니다.
+ * * arguments :  
+ *		 string	Id (Readonly:False) : 컨트롤 이름 
+ *		 string	Text (Readonly:False) : 현재 텍스트 
+ *		 aud.data.Event	Event (Readonly:False) : 텍스트박스 key event 객체 
+**************************************/
+ var OnTextKeydown  = function(sender, args){
+ 	if(args.Id == 'VS_KEYWORD' && args.Event.isEnter()){
+		Matrix.doRefresh('GRD_PRODUCT');
 	}
  };
  
@@ -117,6 +181,8 @@ var popup 			= null; // '제품 등록' Form을 오픈할 팝업
  var OnCellDoubleClick  = function(sender, args){
  	if(args.Id == 'GRD_PRODUCT'){
 		setInputValue(args.Row);
+		Matrix.SetGlobalParams('VS_PROD_ID',args.Row.GetValue('PROD_ID'));
+		BTN_SAV.Text = '저장';
 		
 		popup = Matrix.ShowWindow("제품 등록",0,0,460,415,true,false,"제품 등록",true,'#ffffff',0,false,false);
 		popup.MoveToCenter();
@@ -125,20 +191,25 @@ var popup 			= null; // '제품 등록' Form을 오픈할 팝업
  
  
  var setInputValue = function(row){
- 	if(row){
-		VS_INP_PROD.Text	  = row.GetValue('PROD_ID');
-		VS_INP_CAT.Text	 	  = row.GetValue('CATEGORY');
+ 	if(typeof row === 'object' && row !== null){
+		VS_INP_PROD.Text	  = row.GetValue('PROD_NAME');
+		VS_INP_CAT.Value	  = row.GetValue('CATEGORY_CODE');
 		VS_INP_PRICE.Text 	  = row.GetValue('STD_PRICE');
 		VS_INP_COST.Text	  = row.GetValue('COST_PRICE');
-		VS_INP_UNIT.Text	  = row.GetValue('STD_UNIT');
-		VS_INP_STATUS.Text	  = row.GetValue('SALES_STATUS');
+		VS_INP_UNIT.Value	  = row.GetValue('STD_UNIT');
 	
 	}else{
 		VS_INP_PROD.Text	  = '';
 		VS_INP_CAT.Value	  = '';
-		VS_INP_PRICE.Value 	  = '';
-		VS_INP_COST.Value	  = '';
-		VS_INP_UNIT.Text	  = '';
-		VS_INP_STATUS.Text	  = '';
+		VS_INP_PRICE.Text 	  = '';
+		VS_INP_COST.Text	  = '';
+		VS_INP_UNIT.Value	  = '';
 	}
- }
+ };
+ 
+ 
+var isInvalidInput = function(fields) {
+	return fields.some(function(v) {
+		return v === null || v === undefined || v === '';
+	});
+};

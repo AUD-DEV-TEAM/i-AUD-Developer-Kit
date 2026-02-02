@@ -1,3 +1,8 @@
+/* init controls */
+var GRD_PERF		= Matrix.getObject('GRD_PERF');			// DataGrid 
+var BTN_SAV			= Matrix.getObject('BTN_SAV');			// 저장 버튼
+var popup 			= null; // '실적 등록' Form
+
 /* 조회 조건 컨트롤 */
 var VS_PIC 			= Matrix.getObject('VS_PIC');			// 담당자
 var VS_CUST 		= Matrix.getObject('VS_CUST');			// 고객
@@ -9,20 +14,18 @@ var VS_INP_YMD 		= Matrix.getObject('VS_INP_YMD');		// 판매일
 var VS_INP_PIC 		= Matrix.getObject('VS_INP_PIC');		// 담당자
 var VS_INP_CUST 	= Matrix.getObject('VS_INP_CUST');		// 고객
 var VS_INP_PROD 	= Matrix.getObject('VS_INP_PROD');		// 제품
-var VS_INP_QTY 		= Matrix.getObject('VS_INP_QTY');		// 수량
-var VS_INP_PRICE 	= Matrix.getObject('VS_INP_PRICE');		// 단가
-var VS_INP_COST 	= Matrix.getObject('VS_INP_COST');		// 금액
+var VN_INP_QTY 		= Matrix.getObject('VN_INP_QTY');		// 수량
+var VN_INP_PRICE 	= Matrix.getObject('VN_INP_PRICE');		// 단가
+var VN_INP_COST 	= Matrix.getObject('VN_INP_COST');		// 금액
 var VS_INP_STATUS	= Matrix.getObject('VS_INP_STATUS');	// 상태
-
-var popup 			= null; // '실적 등록' Form
-
 
 /**************************************
  * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.
  * * arguments :  
 **************************************/
  var OnDocumentLoadComplete  = function(sender, args){
-	
+	VS_INP_ID.IsReadOnly= true;
+	GRD_PERF.GetField('SALES_ID').KeyType = 3; // KeyType: Primary
  };
  
  
@@ -50,7 +53,9 @@ var popup 			= null; // '실적 등록' Form
  var OnButtonClick  = function(sender, args){
  	switch(args.Id){
 		case 'BTN_ADD':	// 실적 등록 (Form: 영업 실적)
-			setInputValue(false); // Input 컨트롤 초기화
+			setInputValue(null); // Input 컨트롤 초기화
+			Matrix.SetGlobalParams('SALES_ID',false);
+			BTN_SAV.Text = '추가';
 			
 			popup = Matrix.ShowWindow("실적 등록",0,0,460,500,true,false,"실적 등록",true,'#ffffff',0,false,false);
 			popup.MoveToCenter();
@@ -66,11 +71,59 @@ var popup 			= null; // '실적 등록' Form
 			});
 			break;
 			
+		case 'BTN_DEL': // 삭제 (Form: 영업 관리)
+			var checkCount = 0;
+			for(var i=0; i<GRD_PERF.GetRowCount(); i++){
+				if(GRD_PERF.getRowValue(i,'CHK') == 'Y'){
+					GRD_PERF.ChangeRowStateAt(i,'D');
+					checkCount++;
+				}
+			}
+			
+			if(!checkCount){
+				Matrix.Information('삭제할 항목을 선택하세요','안내');
+				return;
+			}
+			
+			Matrix.Confirm('선택한 항목을 삭제하시겠습니까?','안내' ,function(ok){
+               	if(ok){
+					Matrix.RunScript('GRD_PERF','GRD_DELETE' ,function(p){
+						if(p.Success == false){
+						Matrix.Alert(p.Message);
+						return;
+					}
+						Matrix.doRefresh('GRD_PERF');
+						Matrix.Information('삭제 완료되었습니다.','안내');
+					});
+             	}else GRD_PERF.ClearRowState(false);
+            } ,0);
+			
+			break;
+			
 		case 'BTN_CNC': // 취소 (Form: 영업 실적)
 			popup.Close();
 			break;
+			
+		case 'BTN_SAV': // 저장 (Form: 영업 등록)
+			var fields = [VS_INP_ID.Text,VS_INP_YMD.Value,VS_INP_PIC.Value,VS_INP_CUST.Value,VS_INP_PROD.Value
+						 ,VN_INP_QTY.Value,VN_INP_PRICE.Value,VN_INP_COST.Value,VS_INP_STATUS.Value];
+			if(isInvalidInput(fields)){
+				Matrix.Information('필수 입력 항목을 확인해주세요','안내');
+				return;
+			}
+			
+			var scriptName = Matrix.GetGlobalParamValue('VS_SALES_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';
+			Matrix.RunScript('',scriptName ,function(p){
+            	if(p.Success == false){
+           		Matrix.Alert(p.Message);
+           		return;
+           	}
+				Matrix.doRefresh('GRD_PERF');
+				Matrix.Information(BTN_SAV.Text+' 완료되었습니다.','안내');
+				popup.Close();
+            });
+			break;
 	}
-
  };
  
  /**************************************
@@ -82,6 +135,22 @@ var popup 			= null; // '실적 등록' Form
  var OnDataBindEnd  = function(sender, args){
  	if(args.Id == 'GRD_PERF'){
 		Matrix.getObject('LBL_TTL_2').Text = '   영업 실적 목록 (' + args.RecordCount + '건)';
+	
+	}else if(args.Id == 'GRD_TOTAL'){
+		if(!args.RecordCount){
+			['1','2','3','4'].forEach(function(i){
+				Matrix.getObject('LBL_TOTAL_VAL_' + i).Text = '';
+			});
+		}
+		
+		var val = Matrix.getObject(args.Id).getRowValue(0,'TOTAL_COMP_PERF_VAL');
+		
+		if(val<0) var setColor = '#ef4444'; // 빨강
+		else if(val>0) var setColor = '#10b981'; // 초록
+		else var setColor = '#1e293b'; // 검정
+		
+		Matrix.getObject('LBL_TOTAL_VAL_2').Style.Font.Color.SetColor(setColor);
+		Matrix.getObject('LBL_TOTAL_VAL_2').Update();
 	}
  };
  
@@ -103,6 +172,26 @@ var popup 			= null; // '실적 등록' Form
 			GRD_PERF.setRowValue(i, "CHK", checkValue);
 		}
 		GRD_PERF.Update();
+	}
+ };
+ 
+ 
+  /**************************************
+ * 그리드의 셀을 더블 클릭할 떄 발생합니다.
+ * * arguments :  
+ *		 string	Id (Readonly:False) : 컨트롤 이름 
+ *		 aud.control.grids.DataGridRow	Row (Readonly:False) : 데이터 레코드 정보 
+ *		 aud.control.grids.DataGridCell	Cell (Readonly:False) : 데이터셀 정보 
+ *		 aud.control.grids.DataGridColumn	Field (Readonly:False) : 필드 정보 
+**************************************/
+ var OnCellDoubleClick  = function(sender, args){
+ 	if(args.Id == 'GRD_PERF'){
+		setInputValue(args.Row);
+		Matrix.SetGlobalParams('VS_SALES_ID',args.Row.GetValue('SALES_ID'));
+		BTN_SAV.Text = '저장';
+		
+		popup = Matrix.ShowWindow("실적 등록",0,0,460,500,true,false,"실적 등록",true,'#ffffff',0,false,false);
+		popup.MoveToCenter();
 	}
  };
  
@@ -132,45 +221,42 @@ var popup 			= null; // '실적 등록' Form
  };
  
  
-  /**************************************
- * 그리드의 셀을 더블 클릭할 떄 발생합니다.
- * * arguments :  
- *		 string	Id (Readonly:False) : 컨트롤 이름 
- *		 aud.control.grids.DataGridRow	Row (Readonly:False) : 데이터 레코드 정보 
- *		 aud.control.grids.DataGridCell	Cell (Readonly:False) : 데이터셀 정보 
- *		 aud.control.grids.DataGridColumn	Field (Readonly:False) : 필드 정보 
-**************************************/
- var OnCellDoubleClick  = function(sender, args){
- 	if(args.Id == 'GRD_PERF'){
-		setInputValue(args.Row);
-		
-		popup = Matrix.ShowWindow("실적 등록",0,0,460,500,true,false,"실적 등록",true,'#ffffff',0,false,false);
-		popup.MoveToCenter();
+ var setInputValue = function(row){
+ 	if(typeof row === 'object' && row !== null){
+		VS_INP_ID.Text	  	= row.GetValue('SALES_ID');
+		VS_INP_YMD.Value	= row.GetValue('SALES_DATE');
+		VS_INP_PIC.Value 	= row.GetValue('EMP_ID');
+		VS_INP_CUST.Value	= row.GetValue('CUST_ID');
+		VS_INP_PROD.Value	= row.GetValue('PROD_ID');
+		VN_INP_QTY.Value	= row.GetValue('QTY');
+		VN_INP_PRICE.Value	= row.GetValue('UNIT_PRICE');
+		VN_INP_COST.Value	= row.GetValue('COST_AMOUNT');
+		VS_INP_STATUS.Value	= row.GetValue('STATUS_CODE');
+	
+	}else{
+		Matrix.Execute('SET_SALES_ID' ,function(p){
+			if(p.Success == false){
+				Matrix.Alert(p.Message);
+				return;
+			}
+			var  dt = p.DataTable;
+			VS_INP_ID.Text = dt.getRowValue(0,'SALES_ID');
+       	});
+		VS_INP_ID.Text	  	= '';
+		VS_INP_YMD.Value	= '';
+		VS_INP_PIC.Value 	= '';
+		VS_INP_CUST.Value	= '';
+		VS_INP_PROD.Value	= '';
+		VN_INP_QTY.Value	= '';
+		VN_INP_PRICE.Value	= '';
+		VN_INP_COST.Value	= '';
+		VS_INP_STATUS.Value	= '';
 	}
  };
  
  
- var setInputValue = function(row){
- 	if(row){
-		VS_INP_ID.Text	  	= row.GetValue('SALES_ID');
-		VS_INP_YMD.Text	 	= row.GetValue('SALES_DATE');
-		VS_INP_PIC.Text 	= row.GetValue('EMP_NAME');
-		VS_INP_CUST.Text	= row.GetValue('CUST_NAME');
-		VS_INP_PROD.Text	= row.GetValue('PROD_NAME');
-		VS_INP_QTY.Text	  	= row.GetValue('QTY');
-		VS_INP_PRICE.Text	= row.GetValue('UNIT_PRICE');
-		VS_INP_COST.Text	= row.GetValue('COST_AMOUNT');
-		VS_INP_STATUS.Text	= row.GetValue('SALES_STATUS');
-	
-	}else{
-		VS_INP_ID.Text	  	= '';
-		VS_INP_YMD.Text	 	= '';
-		VS_INP_PIC.Text 	= '';
-		VS_INP_CUST.Value	= '';
-		VS_INP_PROD.Text	= '';
-		VS_INP_QTY.Text	  	= '';
-		VS_INP_PRICE.Text	= '';
-		VS_INP_COST.Text	= '';
-		VS_INP_STATUS.Text	= '';
-	}
- }
+var isInvalidInput = function(fields) {
+	return fields.some(function(v) {
+		return v === null || v === undefined || v === '';
+	});
+};

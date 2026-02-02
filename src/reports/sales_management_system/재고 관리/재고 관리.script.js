@@ -8,9 +8,9 @@ var VS_INP_PRODUCT 	 = Matrix.getObject('VS_INP_PRODUCT');	// 제품
 var VS_INP_STORAGE 	 = Matrix.getObject('VS_INP_STORAGE');	// 창고
 var VN_INP_CURR 	 = Matrix.getObject('VN_INP_CURR');		// 현재 재고
 var VN_INP_SAFE 	 = Matrix.getObject('VN_INP_SAFE');		// 안전 재고
-var VS_INP_RECEIVING = Matrix.getObject('VS_INP_RECEIVING');// 최종 입고일
-var VS_INP_SHIPPING  = Matrix.getObject('VS_INP_SHIPPING');	// 최종 출고일
 
+var GRD_STOCK		= Matrix.getObject('GRD_STOCK');		// DataGrid 
+var BTN_SAV			= Matrix.getObject('BTN_SAV');			// 저장 버튼
 var popup 			= null; // '재고 관리' Form
 
 
@@ -21,6 +21,8 @@ var popup 			= null; // '재고 관리' Form
  var OnDocumentLoadComplete  = function(sender, args){
 	VS_KEYWORD.UsePlaceholder = true;
 	VS_KEYWORD.SetPlaceholder(' 제품명으로 검색');
+	
+	GRD_STOCK.GetField('INV_ID').KeyType = 3; // KeyType: Primary
  };
  
  
@@ -48,14 +50,50 @@ var popup 			= null; // '재고 관리' Form
  var OnButtonClick  = function(sender, args){
  	switch(args.Id){
 		case 'BTN_ADD':	// 재고 등록 (Form: 재고 관리)
-			setInputValue(false);
+			setInputValue(null);
+			Matrix.SetGlobalParams('INV_ID',false);
+			BTN_SAV.Text = '추가';
 			
-			popup = Matrix.ShowWindow("재고 등록",0,0,460,340,true,false,"재고 등록",true,'#ffffff',0,false,false);
+			popup = Matrix.ShowWindow("재고 등록",0,0,460,265,true,false,"재고 등록",true,'#ffffff',0,false,false);
 			popup.MoveToCenter();
 			break;
 			
 		case 'BTN_REF': // 검색 (Form: 재고 관리)
 			Matrix.doRefresh('GRD_STOCK');
+			break;
+			
+		case 'BTN_RESET': // 초기화 (Form: 제품 관리)
+			Matrix.getObject('VS_CAT').CheckAll();
+			VS_KEYWORD.Text = '';
+			break;
+			
+		case 'BTN_DEL': // 삭제 (Form: 제품 관리)
+			var checkCount = 0;
+			for(var i=0; i<GRD_STOCK.GetRowCount(); i++){
+				if(GRD_STOCK.getRowValue(i,'CHK') == 'Y'){
+					GRD_STOCK.ChangeRowStateAt(i,'D');
+					checkCount++;
+				}
+			}
+			
+			if(!checkCount){
+				Matrix.Information('삭제할 항목을 선택하세요','안내');
+				return;
+			}
+			
+			Matrix.Confirm('선택한 항목을 삭제하시겠습니까?','안내' ,function(ok){
+               	if(ok){
+					Matrix.RunScript('GRD_STOCK','GRD_DELETE' ,function(p){
+						if(p.Success == false){
+						Matrix.Alert(p.Message);
+						return;
+					}
+						Matrix.doRefresh('GRD_STOCK');
+						Matrix.Information('삭제 완료되었습니다.','안내');
+					});
+             	}else GRD_STOCK.ClearRowState(false);
+            } ,0);
+			
 			break;
 			
 		case 'BTN_RESET': // 초기화 (Form: 재고 관리)
@@ -68,8 +106,26 @@ var popup 			= null; // '재고 관리' Form
 		case 'BTN_CNC': // 취소 (Form: 재고 등록)
 			popup.Close();
 			break;
+			
+		case 'BTN_SAV': // 저장 (Form: 제품 등록)
+			var fields = [VS_INP_PRODUCT.Value,VS_INP_STORAGE.Value,VN_INP_CURR.Value];
+			if(isInvalidInput(fields)){
+				Matrix.Information('필수 입력 항목을 확인해주세요','안내');
+				return;
+			}
+			
+			var scriptName = Matrix.GetGlobalParamValue('VS_INV_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';
+			Matrix.RunScript('',scriptName ,function(p){
+            	if(p.Success == false){
+           		Matrix.Alert(p.Message);
+           		return;
+           	}
+				Matrix.doRefresh('GRD_STOCK');
+				Matrix.Information(BTN_SAV.Text+' 완료되었습니다.','안내');
+				popup.Close();
+            });
+			break;
 	}
-
  };
  
  /**************************************
@@ -81,6 +137,19 @@ var popup 			= null; // '재고 관리' Form
  var OnDataBindEnd  = function(sender, args){
  	if(args.Id == 'GRD_STOCK'){
 		Matrix.getObject('LBL_TTL_2').Text = '   재고 목록 (' + args.RecordCount + '건)';
+	
+	}else if(args.Id == 'GRD_TOTAL'){
+		if(!args.RecordCount){
+			['1','2','3','4'].forEach(function(i){
+				Matrix.getObject('LBL_TOTAL_VAL_' + i).Text = '';
+			});
+		}
+		
+		var val = Matrix.getObject(args.Id).getRowValue(0,'UNDER_SAFETY_STOCK_COUNT_VAL');
+		var setColor = val<0 ? '#ef4444' : '#1e293b';
+		
+		Matrix.getObject('LBL_TOTAL_VAL_3').Style.Font.Color.SetColor(setColor);
+		Matrix.getObject('LBL_TOTAL_VAL_3').Update();
 	}
  };
  
@@ -121,6 +190,44 @@ var popup 			= null; // '재고 관리' Form
  
  
 /**************************************
+ * 그리드의 셀을 더블 클릭할 떄 발생합니다.
+ * * arguments :  
+ *		 string	Id (Readonly:False) : 컨트롤 이름 
+ *		 aud.control.grids.DataGridRow	Row (Readonly:False) : 데이터 레코드 정보 
+ *		 aud.control.grids.DataGridCell	Cell (Readonly:False) : 데이터셀 정보 
+ *		 aud.control.grids.DataGridColumn	Field (Readonly:False) : 필드 정보 
+**************************************/
+ var OnCellDoubleClick  = function(sender, args){
+ 	if(args.Id == 'GRD_STOCK'){
+		setInputValue(args.Row);
+		Matrix.SetGlobalParams('VS_INV_ID',args.Row.GetValue('INV_ID'));
+		BTN_SAV.Text = '저장';
+			
+		popup = Matrix.ShowWindow("재고 등록",0,0,460,265,true,false,"재고 등록",true,'#ffffff',0,false,false);
+		popup.MoveToCenter();
+	}
+ };
+ 
+ 
+ var setInputValue = function(row){
+ 	if(typeof row === 'object' && row !== null){
+		VS_INP_PRODUCT.IsReadOnly = true;
+		VS_INP_PRODUCT.Text	= row.GetValue('PROD_NAME');
+		VS_INP_STORAGE.Value	= row.GetValue('STORAGE');
+		VN_INP_CURR.Value		= row.GetValue('CURR_QTY');
+		VN_INP_SAFE.Value		= row.GetValue('SAFE_QTY');
+
+	}else{
+		VS_INP_PRODUCT.IsReadOnly = false;
+		VS_INP_PRODUCT.Value	= '';
+		VS_INP_STORAGE.Value	= '';
+		VN_INP_CURR.Value		= '';
+		VN_INP_SAFE.Value		= '';
+	}
+ }
+ 
+ 
+/**************************************
  * 뷰어의 사이즈가 변경될 때 발생합니다.
  * * arguments :  
  *		 number	Width (Readonly:False) : 뷰어의 넓이 
@@ -145,39 +252,8 @@ var popup 			= null; // '재고 관리' Form
  };
  
  
-/**************************************
- * 그리드의 셀을 더블 클릭할 떄 발생합니다.
- * * arguments :  
- *		 string	Id (Readonly:False) : 컨트롤 이름 
- *		 aud.control.grids.DataGridRow	Row (Readonly:False) : 데이터 레코드 정보 
- *		 aud.control.grids.DataGridCell	Cell (Readonly:False) : 데이터셀 정보 
- *		 aud.control.grids.DataGridColumn	Field (Readonly:False) : 필드 정보 
-**************************************/
- var OnCellDoubleClick  = function(sender, args){
- 	if(args.Id == 'GRD_STOCK'){
-		setInputValue(args.Row);
-			
-		popup = Matrix.ShowWindow("재고 등록",0,0,460,340,true,false,"재고 등록",true,'#ffffff',0,false,false);
-		popup.MoveToCenter();
-	}
- };
- 
- 
- var setInputValue = function(row){
- 	if(row){
-		VS_INP_PRODUCT.Value	= row.GetValue('PROD_CODE');
-		VS_INP_STORAGE.Value	= row.GetValue('STORAGE');
-		VN_INP_CURR.Value		= row.GetValue('CURR_QTY');
-		VN_INP_SAFE.Value		= row.GetValue('SAFE_QTY');
-		VS_INP_RECEIVING.Value	= row.GetValue('RECEIVING_DATE');
-		VS_INP_SHIPPING.Value	= row.GetValue('SHIPPING_DATE');
-
-	}else{
-		VS_INP_PRODUCT.Value	= '';
-		VS_INP_STORAGE.Value	= '';
-		VN_INP_CURR.Value		= '';
-		VN_INP_SAFE.Value		= '';
-		VS_INP_RECEIVING.Value	= '';
-		VS_INP_SHIPPING.Value	= '';
-	}
- }
+var isInvalidInput = function(fields) {
+	return fields.some(function(v) {
+		return v === null || v === undefined || v === '';
+	});
+}

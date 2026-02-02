@@ -1,13 +1,13 @@
 {
   "ReportInfo": {
-    "ReportCode": "REP13FA4914D11C4EF1AB8A2AB082070419",
+    "ReportCode": "REPC4B58EC1A02C4556BDA354EF5A020437",
     "FolderCode": "FLDC7BAD63B598D40C69738638A26DE0C36",
-    "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REP13FA4914D11C4EF1AB8A2AB082070419.mtsd",
-    "ReportName": "재고 관리",
+    "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REPC4B58EC1A02C4556BDA354EF5A020437.mtsd",
+    "ReportName": "직원 관리",
     "Writer": "kimje1342",
-    "WriteDate": "2026-01-26 16:44:59",
+    "WriteDate": "2026-02-02 13:11:13",
     "Editor": "kimje1342",
-    "EditDate": "2026-01-26 16:44:59",
+    "EditDate": "2026-02-02 13:11:13",
     "TabPosition": 0,
     "DocumentVersion": "3.0.0.0",
     "RefreshType": 0
@@ -16,79 +16,87 @@
     "Datas": [
       {
         "Id": "DS9F936284C99F45FDA45E939494ABE790",
-        "Name": "VS_CATEGORY",
+        "Name": "VS_DEPT",
         "UseMeta": "False",
         "UseCache": "False",
         "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
-        "SQL": "RqcdFwrE75IJ8ts66KIvJtVbGnhzqZEq0yGGHRb/iVDMZsq1jSJqrYlPu+l7R4epQukRnv5CbF/whBUAjdxcoeaNKO2uGT11Ds61JJN2ScP5UqdaMuVmeQzYLweq3QHnB1KHceFdosNJNLXoH/YWNqc2n3Y2oeCQ+RTdwkq1Ga7HiloK/vm+HQkMP/YeEbDP",
+        "SQL": "Q2ldHDe9UiUTRvONq2IONidWN4dBc1WUs+8/6F2tbZci6LSKWexyEMSUlFKKUA7LLe16SH/VVNOrYMNe1KkAMQ+w86e6BpIvuCu8FjKEs/g=",
         "Params": [],
         "Columns": [
           {
-            "Name": "CATEGORY_CODE",
+            "Name": "DEPT_CODE",
             "Type": "String"
           },
           {
-            "Name": "CATEGORY_NAME",
+            "Name": "DEPT_NAME",
             "Type": "String"
           }
         ]
       },
       {
         "Id": "DS7DB266D7666C4618A3016DBBA4EF73C1",
-        "Name": "VS_WAREHOUSE",
+        "Name": "VS_POSITION",
         "UseMeta": "False",
         "UseCache": "False",
         "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
-        "SQL": "Yr0wUOa/MrT9yEX3Q4QnjZzYrlCym9bE1aIbR4VJbK+u7I9WnPs+qZriJ75/ydfTV1A+EjaSfKzitflDYeL6gA==",
+        "SQL": "RqcdFwrE75IJ8ts66KIvJlHawbo5MHCg7wAsDeYisRPMZsq1jSJqrYlPu+l7R4epvQlIkHfJVaoWYAt2+e5YEuaNKO2uGT11Ds61JJN2ScP5UqdaMuVmeQzYLweq3QHnpkSHirvtr/LEuGFPU8NNtznaHUJ5IRgBcAhgycS1LP7t2O7LdsGERYfFyP5nMddJ",
         "Params": [],
         "Columns": [
           {
-            "Name": "STORAGE_LOC",
+            "Name": "POSITION_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "POSITION_NAME",
             "Type": "String"
           }
         ]
       },
       {
-        "Id": "DSAF71F596E4314C6B94DD2B794868DB76",
-        "Name": "VS_PRODUCT",
+        "Id": "DS51DBE6EE50354391B2E39D80DDEC595E",
+        "Name": "VS_STATUS",
         "UseMeta": "False",
         "UseCache": "False",
         "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
-        "SQL": "Yr0wUOa/MrT9yEX3Q4QnjbZb/OpbTkZLLZK/+KXD5NXiQSYuWZwOPw0q4JB6VexN/hdGyWqSl6eu7IUE1YMU9ClwMvwoPFrwERmRDV4Z4nKtckYObIYKpm+gHJjwFePJFfIKnVppSzqwTsIMUZ40krEyWfbIgd23d1Fm0VdUq60e1oxVsf8DhOwNrcJMox7XmTQsqAtOZCDHu+YIPamMzB2dyBeCkv7ZgmwJLeKORmh+63wTjCXxIfMlBTkiiTXe",
+        "SQL": "RqcdFwrE75IJ8ts66KIvJt6Z40dhsrRzHruJk09HD+oBkmTjZ3bZx4YBFzp6fUKi6umVodKUDR7Wqyn26iknVOmuP6CL6L6mqMPHDsA+2H5B1LhkR0pJ7afjAI0yJH4HIRmiaelW3VX7636cz+tE0XKAK4Ava8UEK1ct91LCVa/x8E39zft8Wp3GONH78qqs",
         "Params": [],
         "Columns": [
           {
-            "Name": "PROD_CODE",
+            "Name": "STATUS_CODE",
             "Type": "String"
           },
           {
-            "Name": "PROD_NAME",
+            "Name": "STATUS_NAME",
             "Type": "String"
           }
         ]
       },
       {
         "Id": "DSD6DF8B2713D145DCA1839F8F4E594615",
-        "Name": "GRD_STOCK",
+        "Name": "GRD_EMPLOYEE",
         "UseMeta": "False",
         "UseCache": "False",
         "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
-        "SQL": "8VqV9SHWRaWYNcV34m5FLmGaLg7Qo0sdJ1/Kz780OKO2OZF1KJT228D8hWrvlJBkiLDozw0sHtcMZeUszt+mQ+RNRea7fCdv8+GuQnnD3aeF8IwFKTT2l/iVJhfAPyvIZrakhFTKOWnc1oixTe/eFROlZr4uxF+W/BkwJccLhzryJ96a1EFBU1B6Zpej7uIeGP26iRU8hOLkEu2T3TpbTaQcSJyynCaL0VzTIypGeQL5HRuWN9fDFCtmL9hz4lVKfeKaugME8t9hrWZ4AcCGYg4KobspBMd2KzCcQuphpRnow/PXYycIbeh+/KUxffM0364dsoeKbXcIASA9X+xG6shjngrSvWny6mUEW/2GKdpVEgGvrGKH0UYcfmTzx9ujxW1lIPUjEWS/kF40zMmsn1aYuzK7itE/pE6C9NPATGB+aXz0r0pH58fXOUhtoddebXnyFycs16JqNyik14W4G8rn5txq1vlMC0urT3Zf0OnxsNr/ZQJUC2ASPMjKuXYjTGIPhjIuvhZwUwUGRyiBKyQNeyw+cvPKDoJLRZiUpZNsIfdpqdYnvCh/8bP9p0CsMO3GvL1qdrQ8OJwUieKN8Pqe7eQkxPkoNvjI66HHc3XBYgBb2oGZqZaUsjWHgXZcwTXtmycMvfIXucb0B/wcCoyLKDlz7psmJEcUTcLWZaaofsd4/uwV3lJDugHdDnesYiTHzhWVN9BlbnZOk4u3/WbPS+gaIweRdU0MfClgAmWcYYCXkxlralaNVIzvCBDc1w0gKInAT+Z8Mr+Fnw0jn5nwnwBbBr8hUvcTlEYiRMV04sI7cAQ+Ys8xiR01t3MxH+GQ8iNLTUEIaeLjQSd1PUcPAvwKOcI+SVniWqrDIYOIUq//4s9yrFpXrijgJF7H+pgyPsp5pF5scgTWJrpGc+lKV6LlkLxzP0fe4LeY09LUmV+t1Jn6uRm3HvnAT9xD7s9UNouqBfXIbUOYNzKnc3L3aNZhhj8bBxsPgsAc+lvCOOgoDPnPVY7UnmLmyyUr6nqKrFC8Gx9ScBBQ3l+M27orwldNXYeMqcyUmpgB1FBxPp7kj6NmIN1HehTPaNinWoDpUJRzFQlqv6zUDgWiuN9Djio2ofpFoPoWH7bS7kVyhypsTPEIyp1d+FD9eiiO8wmQgv50hUOziDr1BPy8vn7hROoBhReZctWiTrtOtzD96/di7rNIcKvbPIu9OmGWPNIa2Dn7KLHBcEaDCK9Jvg==",
+        "SQL": "FM7UoKEcH/S0N4Lyins4VzooehWRNUilJg+eO6gusQgKHuUArp5x2NUbRuymsJblWB86HFYYpKuExKQ0nFhCpTL85DOpRIzrFJSJ8eCKGtfwnImZ6YFuwyLh36AMEpWWRp30BQSeOGy7CHNjhs4xnZh6W7lMJY8pH4U0dc9+uPOwTQ896RomvlukoyluRe6HpydV6lfaBNLR3Uw6Cqw9ezHNbb6nXIioezETziiuh3S3PbZxcDiAKLT2O/FTPbDAANQfdP6aUyb/NdgIFhQUHOUfoDczNJLr8IpfoQtr167X/U+1UhhknSsIbuIx40hlDzs0ZR+nc8j2CIsA3+d/MjPH9cYCvVmHg3qHKnN7Qd43Piws+KsglBvRuMJJgvBbmtdzGPREVE17u/Z8OioHgYVdk3Ne9hhf4ATbuGkZMJ6VtR7hBVwj3JCpKQwIrNvkcZ4hzgFd65hCl1p7t+NUmvuCKKEag/GEUQ2MW3pCjC2VT/gVM/AGeTUB/tA4Y8ag6y+pMBbJ0h/HrP1HLrOj3mMsoNHpsJ/DvMINycfbyWJUS7RqqkQ5xZYCSJD5a64US5yXUV65P6ygffAdqyc2S3aQSuOVe6Yy4EpFWfAFkgp32vJG3MafkoXUAEWcbFSWI5E/Q5gTRsgAS4kbgCjqGotNqXsgILK/49EGqGf255PiBh9YAuSqvFoIjZfBZnWgbe8P7bzMqKU/1JASyfB5uAt/ExGa3mM/JqEHrV0s/DczsSOlvz6CsrmN0H8rawCQ9E6J1Ev/Sfphaer8lVGcTOR0hBOxv8pjPopcG9sIDXRFmTzSIZEEzTS/pCAsVq1aZMCCH3hu4p7tMOHA5VsHZ0k6TExj4itX98ReoqrPyGJfAEotgox8S7d9VRa3u3K+n3mKXLYQuE7ZYu5TpsAXwzQTInzBtAk+HttqoSvIxTCzs0WVmK1PJpQ89AseumCaTuBCKHUuwpj9as3Vut3rGa8nuIf4N5aDU4Kq4/AeWgHGmeC36Pbzl/RngDLjI0X9mxFE7Cdsrku1X96TUcYdeK8nuIf4N5aDU4Kq4/AeWgF5Pp1CTf7Id6kjz09ppAeDT/Ex37G4kT25Wu//5WBL0A==",
         "Params": [
           {
-            "Name": ":VS_CATEGORY",
+            "Name": ":VS_DEPT",
             "ParamType": "String"
           },
           {
-            "Name": ":VS_WAREHOUSE",
+            "Name": ":VS_POSITION",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_STATUS",
             "ParamType": "String"
           },
           {
@@ -98,88 +106,78 @@
         ],
         "Columns": [
           {
-            "Name": "INV_ID",
+            "Name": "EMP_ID",
             "Type": "String"
           },
           {
-            "Name": "PROD_NAME",
+            "Name": "EMP_NAME",
             "Type": "String"
           },
           {
-            "Name": "CATEGORY",
+            "Name": "DEPT_NAME",
             "Type": "String"
           },
           {
-            "Name": "STORAGE",
+            "Name": "POSITION",
             "Type": "String"
           },
           {
-            "Name": "CURR_QTY",
-            "Type": "Numeric"
-          },
-          {
-            "Name": "SAFE_QTY",
-            "Type": "Numeric"
-          },
-          {
-            "Name": "STATUS",
+            "Name": "EMAIL",
             "Type": "String"
           },
           {
-            "Name": "RECEIVING_DATE",
+            "Name": "PHONE",
             "Type": "String"
           },
           {
-            "Name": "CATEGORY_CODE",
+            "Name": "HIRE_DATE",
             "Type": "String"
           },
           {
-            "Name": "PROD_CODE",
+            "Name": "EMP_STATUS",
             "Type": "String"
           },
           {
-            "Name": "SHIPPING_DATE",
-            "Type": "String"
-          }
-        ]
-      },
-      {
-        "Id": "DSF7CF15B7125743AD9E5E888034F68886",
-        "Name": "GRD_TOTAL",
-        "UseMeta": "False",
-        "UseCache": "False",
-        "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": "True",
-        "DSType": 2,
-        "SQL": "dTqdYzgg/wnbly+ocwOPoNpaTFbXddsLJoej54b3L662Aww3msuME7LhuK3CVXu78z96/RFOP6P5d13GcZPbVc7wKSp2TY8zFwlwnmGb9pRmESJrTzOKvf+QolJdsXJwfBZZEZNRN315C3YmwMQz1h5rYupqUfhRzTJgEnm7fVc9vF9/K74ZtItCBwaS3jF5JHNaFezkHxt9wBv5wAcyRfuzoreABUsMu/UzQvzpLkjZc6oDbCMrpk/nGKigbG1DqwbXGDSq3KPjJKJXpUJ4rUFh9ZzW+wt0MdJDpcBxC2opx01p7y03XsYFHLopXOMiDnbvL4kvRpWFzwzrtXNJRGISSfC/x/RaDkeP84ph0Cgk5oTQJ6Boy1I7dW1DYxkjQpY3pBmMw5G5HREi231PhpJCBLT0JvuSEwAvtTls9RnOsPtPJ7CK23RF2V7czDS0M/ieZzTuvReIlOREg4Xt/W65qG6VuQSibf+Rr7HpVsqT3yjndwWpcpgiH6PsG7xYPE9btNyEjK79/5orVRF6/oYmYewIJphQ34f7moE0xiPomxa2T+HoG9tAR+E4OGnIlyVtfTRt0u3aUE9uzIrUYXTU6xHKA5ZrKYjhpPsJPCCU+pmgoH4tbK/kZuAepHrtrc//jBrYg0SHgMAjJM9QIsTtFlD93a1H334RxpWNWuWSPrjt2N3usepfKmUI4va+9OEJl9QuskjLkUcSHpMhhp/vcyCM8dgHxKQpP03jZ8o=",
-        "Params": [],
-        "Columns": [
-          {
-            "Name": "TOTAL_ITEM_COUNT",
+            "Name": "DEPT_CODE",
             "Type": "String"
           },
           {
-            "Name": "TOTAL_STOCK_QTY",
+            "Name": "POSITION_CODE",
             "Type": "String"
           },
           {
-            "Name": "UNDER_SAFETY_STOCK_COUNT",
-            "Type": "String"
-          },
-          {
-            "Name": "TOTAL_STOCK_VALUE",
+            "Name": "EMP_STATUS_CODE",
             "Type": "String"
           }
         ]
       }
     ]
   },
-  "ScriptText": "/* 조회 조건 컨트롤 */\r\nvar VS_CATEGORY \t = Matrix.getObject('VS_CATEGORY');\t\t// 카테고리\r\nvar VS_WAREHOUSE \t = Matrix.getObject('VS_WAREHOUSE');\t// 창고\r\nvar VS_KEYWORD \t\t = Matrix.getObject('VS_KEYWORD');\t\t// 검색어\r\n\r\n/* '재고 등록' Form의 입력 컨트롤 */\r\nvar VS_INP_PRODUCT \t = Matrix.getObject('VS_INP_PRODUCT');\t// 제품\r\nvar VS_INP_STORAGE \t = Matrix.getObject('VS_INP_STORAGE');\t// 창고\r\nvar VN_INP_CURR \t = Matrix.getObject('VN_INP_CURR');\t\t// 현재 재고\r\nvar VN_INP_SAFE \t = Matrix.getObject('VN_INP_SAFE');\t\t// 안전 재고\r\nvar VS_INP_RECEIVING = Matrix.getObject('VS_INP_RECEIVING');// 최종 입고일\r\nvar VS_INP_SHIPPING  = Matrix.getObject('VS_INP_SHIPPING');\t// 최종 출고일\r\n\r\nvar popup \t\t\t= null; // '재고 관리' Form\r\n\r\n\r\n/**************************************\r\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n * * arguments :  \r\n**************************************/\r\n var OnDocumentLoadComplete  = function(sender, args){\r\n\tVS_KEYWORD.UsePlaceholder = true;\r\n\tVS_KEYWORD.SetPlaceholder(' 제품명으로 검색');\r\n };\r\n \r\n \r\n/**************************************\r\n * Execute 실행되는 시점에 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 시 실행이 취소됩니다. \r\n *\t\t number\tFilterType (Readonly:False) : 0:일반 조회, 1:검색 텍스트박스 조회, 2:전체검색 버튼 조회 \r\n *\t\t string\tFilterText (Readonly:False) : 검색 텍스트박스에 입력된 검색어 \r\n**************************************/\r\n var OnMultiComboBoxExecuteStart  = function(sender, args){\r\n \tif(['VS_CATEGORY','VS_WAREHOUSE'].includes(args.Id)){\r\n\t\tMatrix.getObject(args.Id).CheckAll();\r\n\t}\r\n };\r\n \r\n \r\n/**************************************\r\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n *\t\t string\tText (Readonly:False) : 라벨 값 \r\n**************************************/\r\n var OnButtonClick  = function(sender, args){\r\n \tswitch(args.Id){\r\n\t\tcase 'BTN_ADD':\t// 재고 등록 (Form: 재고 관리)\r\n\t\t\tsetInputValue(false);\r\n\t\t\t\r\n\t\t\tpopup = Matrix.ShowWindow(\"재고 등록\",0,0,460,340,true,false,\"재고 등록\",true,'#ffffff',0,false,false);\r\n\t\t\tpopup.MoveToCenter();\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase 'BTN_REF': // 검색 (Form: 재고 관리)\r\n\t\t\tMatrix.doRefresh('GRD_STOCK');\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase 'BTN_RESET': // 초기화 (Form: 재고 관리)\r\n\t\t\t['VS_CATEGORY','VS_WAREHOUSE','VS_STATUS'].forEach(function(i){\r\n\t\t\t\tMatrix.getObject(i).CheckAll();\r\n\t\t\t});\r\n\t\t\tVS_KEYWORD.Text = '';\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase 'BTN_CNC': // 취소 (Form: 재고 등록)\r\n\t\t\tpopup.Close();\r\n\t\t\tbreak;\r\n\t}\r\n\r\n };\r\n \r\n /**************************************\r\n * 컨트롤에 데이터셋이 바인딩된 후 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n *\t\t number\tRecordCount (Readonly:False) : 데이터셋의 레코드 수량 \r\n**************************************/\r\n var OnDataBindEnd  = function(sender, args){\r\n \tif(args.Id == 'GRD_STOCK'){\r\n\t\tMatrix.getObject('LBL_TTL_2').Text = '   재고 목록 (' + args.RecordCount + '건)';\r\n\t}\r\n };\r\n \r\n \r\n/**************************************\r\n * 텍스트 박스 컨트롤의 key 입력 시 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t string\tText (Readonly:False) : 현재 텍스트 \r\n *\t\t aud.data.Event\tEvent (Readonly:False) : 텍스트박스 key event 객체 \r\n**************************************/\r\n var OnTextKeydown  = function(sender, args){\r\n \tif(args.Id == 'VS_KEYWORD' && args.Event.isEnter()){\r\n\t\tMatrix.doRefresh('GRD_STOCK');\r\n\t}\r\n };\r\n \r\n \r\n/**************************************\r\n * 그리드의 멀티 헤더 체크 박스를 클릭하는 순간 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t aud.control.grids.MultiHeaderCell\tHeaderCell (Readonly:False) : 멀티헤더셀 객체 \r\n *\t\t boolean\tChecked (Readonly:False) : 체크 유무 \r\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 하게되면 클릭 처리가 취소됩니다. \r\n**************************************/\r\n var OnGridMultiHeaderCheckBoxClicked  = function(sender, args){\r\n \tif(args.Id == 'GRD_STOCK'){\r\n\t\tvar GRD_STOCK = Matrix.getObject(args.Id);\r\n\t\tvar checkValue = args.Checked ? \"Y\" : \"N\";\r\n\t\t\r\n\t\tfor (var i=0; i<GRD_STOCK.GetRowCount(); i++) {\r\n\t\t\tGRD_STOCK.setRowValue(i, \"CHK\", checkValue);\r\n\t\t}\r\n\t\tGRD_STOCK.Update();\r\n\t}\r\n };\r\n \r\n \r\n/**************************************\r\n * 뷰어의 사이즈가 변경될 때 발생합니다.\r\n * * arguments :  \r\n *\t\t number\tWidth (Readonly:False) : 뷰어의 넓이 \r\n *\t\t number\tHeight (Readonly:False) : 뷰어의 높이 \r\n**************************************/\r\n var OnViewerSizeChanged  = function(sender, args){\r\n \tvar GRP_TOTAL_1 = Matrix.getObject('GRP_TOTAL_1');\r\n \tvar GRP_TOTAL_2 = Matrix.getObject('GRP_TOTAL_2');\r\n \tvar GRP_TOTAL_3 = Matrix.getObject('GRP_TOTAL_3');\r\n \tvar GRP_TOTAL_4 = Matrix.getObject('GRP_TOTAL_4');\r\n\t\r\n\tvar setWidth = (args.Width-100) / 4;\r\n\r\n\tGRP_TOTAL_1.Width = setWidth;\r\n\tGRP_TOTAL_2.Width = setWidth;\r\n\tGRP_TOTAL_3.Width = setWidth;\r\n\tGRP_TOTAL_4.Width = setWidth;\r\n\t\r\n\tGRP_TOTAL_2.Left = setWidth+40;\r\n\tGRP_TOTAL_3.Left = setWidth*2+60;\r\n\tGRP_TOTAL_4.Left = setWidth*3+80;\r\n };\r\n \r\n \r\n/**************************************\r\n * 그리드의 셀을 더블 클릭할 떄 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t aud.control.grids.DataGridRow\tRow (Readonly:False) : 데이터 레코드 정보 \r\n *\t\t aud.control.grids.DataGridCell\tCell (Readonly:False) : 데이터셀 정보 \r\n *\t\t aud.control.grids.DataGridColumn\tField (Readonly:False) : 필드 정보 \r\n**************************************/\r\n var OnCellDoubleClick  = function(sender, args){\r\n \tif(args.Id == 'GRD_STOCK'){\r\n\t\tsetInputValue(args.Row);\r\n\t\t\t\r\n\t\tpopup = Matrix.ShowWindow(\"재고 등록\",0,0,460,340,true,false,\"재고 등록\",true,'#ffffff',0,false,false);\r\n\t\tpopup.MoveToCenter();\r\n\t}\r\n };\r\n \r\n \r\n var setInputValue = function(row){\r\n \tif(row){\r\n\t\tVS_INP_PRODUCT.Value\t= row.GetValue('PROD_CODE');\r\n\t\tVS_INP_STORAGE.Value\t= row.GetValue('STORAGE');\r\n\t\tVN_INP_CURR.Value\t\t= row.GetValue('CURR_QTY');\r\n\t\tVN_INP_SAFE.Value\t\t= row.GetValue('SAFE_QTY');\r\n\t\tVS_INP_RECEIVING.Value\t= row.GetValue('RECEIVING_DATE');\r\n\t\tVS_INP_SHIPPING.Value\t= row.GetValue('SHIPPING_DATE');\r\n\r\n\t}else{\r\n\t\tVS_INP_PRODUCT.Value\t= '';\r\n\t\tVS_INP_STORAGE.Value\t= '';\r\n\t\tVN_INP_CURR.Value\t\t= '';\r\n\t\tVN_INP_SAFE.Value\t\t= '';\r\n\t\tVS_INP_RECEIVING.Value\t= '';\r\n\t\tVS_INP_SHIPPING.Value\t= '';\r\n\t}\r\n }",
-  "ServerScriptText": [],
+  "ScriptText": "/* init controls */\r\nvar GRD_EMPLOYEE\t= Matrix.getObject('GRD_EMPLOYEE');\t\t// DataGrid \r\nvar BTN_SAV\t\t\t= Matrix.getObject('BTN_SAV');\t\t\t// 저장 버튼\r\nvar popup \t\t\t= null; \t\t\t\t\t\t\t\t// '직원 관리' Form을 오픈할 팝업\r\n\r\n/* 조회 조건 컨트롤 */\r\nvar VS_DEPT \t\t= Matrix.getObject('VS_DEPT');\t\t\t// 부서\r\nvar VS_POSITION \t= Matrix.getObject('VS_POSITION');\t\t// 직급\r\nvar VS_STATUS\t\t= Matrix.getObject('VS_STATUS');\t\t// 재직 상태\r\nvar VS_KEYWORD \t\t= Matrix.getObject('VS_KEYWORD');\t\t// 검색어\r\n\r\n/* '직원 등록' Form의 입력 컨트롤 */\r\nvar VS_INP_NAME \t= Matrix.getObject('VS_INP_NAME');\t\t// 이름\r\nvar VS_INP_DEPT \t= Matrix.getObject('VS_INP_DEPT');\t\t// 부서\r\nvar VS_INP_POSITION = Matrix.getObject('VS_INP_POSITION');\t// 직급\r\nvar VS_INP_STATUS \t= Matrix.getObject('VS_INP_STATUS');\t// 상태\r\nvar VS_INP_EMAIL \t= Matrix.getObject('VS_INP_EMAIL');\t\t// 이메일\r\nvar VS_INP_PHONE \t= Matrix.getObject('VS_INP_PHONE');\t\t// 연락처\r\nvar VS_INP_HIRE\t\t= Matrix.getObject('VS_INP_HIRE');\t\t// 입사일\r\n\r\n\r\n/**************************************\r\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n * * arguments :  \r\n**************************************/\r\n var OnDocumentLoadComplete  = function(sender, args){\r\n\tVS_KEYWORD.UsePlaceholder = true;\r\n\tVS_KEYWORD.SetPlaceholder(' 이름, 사번으로 검색');\r\n\t\r\n\tGRD_EMPLOYEE.GetField('EMP_ID').KeyType = 3; // KeyType: Primary\r\n };\r\n \r\n \r\n/**************************************\r\n * Execute 실행되는 시점에 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 시 실행이 취소됩니다. \r\n *\t\t number\tFilterType (Readonly:False) : 0:일반 조회, 1:검색 텍스트박스 조회, 2:전체검색 버튼 조회 \r\n *\t\t string\tFilterText (Readonly:False) : 검색 텍스트박스에 입력된 검색어 \r\n**************************************/\r\n var OnMultiComboBoxExecuteStart  = function(sender, args){\r\n \tif(['VS_DEPT','VS_POSITION','VS_STATUS'].includes(args.Id)){\r\n\t\tMatrix.getObject(args.Id).CheckAll();\r\n\t}\r\n };\r\n \r\n \r\n/**************************************\r\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n *\t\t string\tText (Readonly:False) : 라벨 값 \r\n**************************************/\r\n var OnButtonClick  = function(sender, args){\r\n \tswitch(args.Id){\r\n\t\tcase 'BTN_ADD':\t// 직원 등록 (Form: 직원 관리)\r\n\t\t\tsetInputValue(null); // Input 컨트롤 초기화\r\n\t\t\tMatrix.SetGlobalParams('VS_EMP_ID',false);\r\n\t\t\tBTN_SAV.Text = '추가';\r\n\t\t\t\r\n\t\t\tpopup = Matrix.ShowWindow(\"직원 등록\",0,0,460,415,true,false,\"직원 등록\",true,'#ffffff',0,false,false);\r\n\t\t\tpopup.MoveToCenter();\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase 'BTN_REF': // 검색 (Form: 직원 관리)\r\n\t\t\tMatrix.doRefresh('GRD_EMPLOYEE');\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase 'BTN_RESET': // 초기화 (Form: 직원 관리)\r\n\t\t\t['VS_DEPT','VS_POSITION','VS_STATUS'].forEach(function(i){\r\n\t\t\t\tMatrix.getObject(i).CheckAll();\r\n\t\t\t});\r\n\t\t\tVS_KEYWORD.Text = '';\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase 'BTN_DEL': // 삭제 (Form: 직원 관리)\r\n\t\t\tvar checkCount = 0;\r\n\t\t\t\r\n\t\t\tfor(var i=0; i<GRD_EMPLOYEE.GetRowCount(); i++){\r\n\t\t\t\tif(GRD_EMPLOYEE.getRowValue(i,'CHK') == 'Y'){\r\n\t\t\t\t\tGRD_EMPLOYEE.ChangeRowStateAt(i,'D');\r\n\t\t\t\t\tcheckCount++;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\tif(!checkCount){\r\n\t\t\t\tMatrix.Information('삭제할 항목을 선택하세요','안내');\r\n\t\t\t\treturn;\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\tMatrix.Confirm('선택한 항목을 삭제하시겠습니까?','안내' ,function(ok){\r\n               \tif(ok){\r\n\t\t\t\t\tMatrix.RunScript('GRD_EMPLOYEE','GRD_DELETE' ,function(p){\r\n\t\t\t\t\t\tif(p.Success == false){\r\n\t\t\t\t\t\tMatrix.Alert(p.Message);\r\n\t\t\t\t\t\treturn;\r\n\t\t\t\t\t}\r\n\t\t\t\t\t\tMatrix.doRefresh('GRD_EMPLOYEE');\r\n\t\t\t\t\t\tMatrix.Information('삭제 완료되었습니다.','안내');\r\n\t\t\t\t\t}); \r\n             \t}else GRD_STOCK.ClearRowState(false);\r\n            } ,0);\r\n\t\t\t\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase 'BTN_CNC': // 취소 (Form: 직원 등록)\r\n\t\t\tpopup.Close();\r\n\t\t\tbreak;\r\n\t\t\t\r\n\t\tcase 'BTN_SAV': // 저장 (Form: 직원 등록)\r\n\t\t\tvar fields = [VS_INP_NAME.Text,VS_INP_DEPT.Value,VS_INP_POSITION.Value,VS_INP_STATUS.Value,VS_INP_HIRE.Value];\r\n\t\t\tif(isInvalidInput(fields)){\r\n\t\t\t\tMatrix.Information('필수 입력 항목을 확인해주세요','안내');\r\n\t\t\t\treturn;\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\tvar scriptName = Matrix.GetGlobalParamValue('VS_EMP_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';\r\n\t\t\tMatrix.RunScript('',scriptName ,function(p){\r\n            \tif(p.Success == false){\r\n           \t\tMatrix.Alert(p.Message);\r\n           \t\treturn;\r\n           \t}\r\n\t\t\t\tMatrix.doRefresh('GRD_EMPLOYEE');\r\n\t\t\t\tMatrix.Information(BTN_SAV.Text+' 완료되었습니다.','안내');\r\n\t\t\t\tpopup.Close();\r\n            });\r\n\t\t\tbreak;\r\n\t}\r\n };\r\n \r\n /**************************************\r\n * 컨트롤에 데이터셋이 바인딩된 후 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n *\t\t number\tRecordCount (Readonly:False) : 데이터셋의 레코드 수량 \r\n**************************************/\r\n var OnDataBindEnd  = function(sender, args){\r\n \tif(args.Id == 'GRD_EMPLOYEE'){\r\n\t\tMatrix.getObject('LBL_TTL_2').Text = '   직원 목록 (' + args.RecordCount + '명)';\r\n\t}\r\n };\r\n \r\n \r\n/**************************************\r\n * 텍스트 박스 컨트롤의 key 입력 시 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t string\tText (Readonly:False) : 현재 텍스트 \r\n *\t\t aud.data.Event\tEvent (Readonly:False) : 텍스트박스 key event 객체 \r\n**************************************/\r\n var OnTextKeydown  = function(sender, args){\r\n \tif(args.Id == 'VS_KEYWORD' && args.Event.isEnter()){\r\n\t\tMatrix.doRefresh('GRD_EMPLOYEE');\r\n\t}\r\n };\r\n \r\n \r\n/**************************************\r\n * 그리드의 멀티 헤더 체크 박스를 클릭하는 순간 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t aud.control.grids.MultiHeaderCell\tHeaderCell (Readonly:False) : 멀티헤더셀 객체 \r\n *\t\t boolean\tChecked (Readonly:False) : 체크 유무 \r\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 하게되면 클릭 처리가 취소됩니다. \r\n**************************************/\r\n var OnGridMultiHeaderCheckBoxClicked  = function(sender, args){\r\n \tif(args.Id == 'GRD_EMPLOYEE'){\r\n\t\tvar GRD_EMPLOYEE = Matrix.getObject(args.Id);\r\n\t\tvar checkValue = args.Checked ? 'Y' : 'N';\r\n\t\t\r\n\t\tfor (var i=0; i<GRD_EMPLOYEE.GetRowCount(); i++) {\r\n\t\t\tGRD_EMPLOYEE.setRowValue(i, 'CHK', checkValue);\r\n\t\t}\r\n\t\tGRD_EMPLOYEE.Update();\r\n\t}\r\n };\r\n \r\n \r\n/**************************************\r\n * 그리드의 셀을 더블 클릭할 떄 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t aud.control.grids.DataGridRow\tRow (Readonly:False) : 데이터 레코드 정보 \r\n *\t\t aud.control.grids.DataGridCell\tCell (Readonly:False) : 데이터셀 정보 \r\n *\t\t aud.control.grids.DataGridColumn\tField (Readonly:False) : 필드 정보 \r\n**************************************/\r\n var OnCellDoubleClick  = function(sender, args){\r\n \tif(args.Id == 'GRD_EMPLOYEE'){\r\n\t\tsetInputValue(args.Row);\r\n\t\tMatrix.SetGlobalParams('VS_EMP_ID',args.Row.GetValue('EMP_ID'));\r\n\t\tBTN_SAV.Text = '저장';\r\n\t\t\r\n\t\tpopup = Matrix.ShowWindow(\"직원 등록\",0,0,460,415,true,false,\"직원 수정\",true,'#ffffff',0,false,false);\r\n\t\tpopup.MoveToCenter();\r\n\t}\r\n };\r\n \r\n \r\n var setInputValue = function(row){\r\n \tif(typeof row === 'object' && row !== null){\r\n\t\tVS_INP_NAME.Text\t  = row.GetValue('EMP_NAME');\r\n\t\tVS_INP_DEPT.Value\t  = row.GetValue('DEPT_CODE');\r\n\t\tVS_INP_POSITION.Value = row.GetValue('POSITION_CODE');\r\n\t\tVS_INP_STATUS.Value\t  = row.GetValue('EMP_STATUS_CODE');\r\n\t\tVS_INP_EMAIL.Text\t  = row.GetValue('EMAIL');\r\n\t\tVS_INP_PHONE.Text\t  = row.GetValue('PHONE');\r\n\t\tVS_INP_HIRE.Value\t  = row.GetValue('HIRE_DATE');\r\n\t\r\n\t}else{\r\n\t\tVS_INP_NAME.Text\t  = '';\r\n\t\tVS_INP_DEPT.Value\t  = '';\r\n\t\tVS_INP_POSITION.Value = '';\r\n\t\tVS_INP_STATUS.Value\t  = '';\r\n\t\tVS_INP_EMAIL.Text\t  = '';\r\n\t\tVS_INP_PHONE.Text\t  = '';\r\n\t\tVS_INP_HIRE.Value\t  = '';\r\n\t}\r\n };\r\n \r\n \r\nvar isInvalidInput = function(fields) {\r\n\treturn fields.some(function(v) {\r\n\t\treturn v === null || v === undefined || v === '';\r\n\t});\r\n};",
+  "ServerScriptText": [
+    {
+      "Name": "GRD_INSERT",
+      "Key": "BIZ68B43221D1674F11A23D82942A0BC33F",
+      "Encrypted": true,
+      "ScriptText": "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"
+    },
+    {
+      "Name": "GRD_UPDATE",
+      "Key": "BIZ625C8374679E4329AC1D62AA6B000A2E",
+      "Encrypted": true,
+      "ScriptText": "wi5lPLVCtMfgAqg1MAW8gX/NwtjfRP+fV07/o3kXTcop1Tj7MYwsyIywEpWMBHhhVpoeeUvf3/OgACguYyi/2hLMMwucXVNF/9rlxbVpmLK6LcPkckGfPtG6ohlgtKyNoBjKDProkLCNZBWL+QH8ZDZcTLglqk2xMMvfbyTXQGWYnAxyQheQDMj9tzKzxJNtCDYJgxAt1I/xtK9yzVS8wYBy/222ix6H1Sq7IkEyMXBtNL3qsEdDG1RRLyClvbqHH3Sd9znXabxJv68y0aE+waN5rakqu2EK6SaVYOi4iQM8MAhIj0V2iREr1WqU2IFgcQMjl/eVAqk6aa1YNlsheWQE5RVIstlBMPe2WxcncLpPETQ4nQpRlWpfq+J0GCsH6fVqhI5R+0fbRVKh9JQSVNqR3+kuPFvp4e0bCcINvLVN17rpiKuMchphnMkGfCT3HIxGAHYlPIXFVy5RZqV8WqoB+EqE846chwzBTdfBBa6izz2f94TezWUr/tcT/pFoI6S/DfdpKCCZwSfZJqFptGySxE37HoJn4PQSMgFNNbcRf+/miW52aE0ERHWYG3rUvgZFSSz3DCJRLiu4pH9rDUSK6JL2axpwEVaCCMIpt8698pF9HS5Pn2BRBLHUJ54hFs5+ilWpiJHZLC9lw1Fnpb8bEa3/G4pCN3FFvFawFplgCh4tWhCwHGBRwySvlgbGaCdAXY8jPM3127sDo9aO4xwGPtQE/uvAJhIcNHcw651xH5IheFrD2HMbbJu0jw4v1IjN1c+WK/xjJUcWM86pelV/wg+ltmu+/UeCAY9qXEn09yzhJgOMeqZ8s7PWldD5PCPeGQRZ4O8PTNbZRQEliAgwfl4TS9No8e4k1GVuuozUiM3Vz5Yr/GMlRxYzzql6Qn0h0mlg0xoB4Zcl7tHxDnkHo7OPgL83NEOMVggXEdxz8AY7Tgh/ROlBOOGHPD4B1J+1am09LrPAhJJ/r5kmRkku7IKI7Q4YIDxOWPzux429mJBM4eUmqSNd/rKQjb6kZhxWbgofACKnqLEJnUCd1JHYmXHz3nYk+lW46MgMfIul0ZXxpOhOkf+fLB3T50fy6H79XR4KUHQl3NZ4SCCD7kDROu//E6F/tR6yAMnoZ1Ft5eCwDBC2QC93velZAM8qQOben5kwBb41NNXu/47doWCeuh4Os60AsLGwizONVjQyQQkJ4uy/b3e9IArU/wRJcLAuzvAIUyFjgTUj+CicUtONvSm+ac5JFGVIk4SZV504rEIlHj+guiOhhAUgjL8ChfCOWsDklZ96YRXk8z26VdJqT8q5jK01t6SViFFTsGS21TXCDbpa4TysF4kbqWy7h8VITHY7e+opeyq11mTp/RKVSDlAAHl8oMyBUjJK6hgIrAXW3EM+m98S1WZwu4tqy2MPo91wW9TGB2B9KCJExyLgooIznwFAuJpAGO3Nfvgbt9BoX42pyRkM8Ge+Ggf+237L+hlv+DqubLMNnEj0a7bVNcINulrhPKwXiRupbLvVjeIXygwI0+LJ5TAm8HhbBm8HWC2zbSphVX9ys5IJKvJU0ZrpMB96JXu7MezkyzESIOiPH9oo5QIV8h/nTxixyrT6v+BYimMiMFDcL5vDCeGmgVXkv42CtqUUqdpp1Gb5USojU8roSp5h639yr8NAi1xwsfYeW6l21p8s3kcAzMLu27UmlQCxnKEnxPxSeqa0EhlletpXtCzc4ouMEo23KtqAoTZ3dvrzXwzC43PhkYrg0EZMxLHcRMhN4SIu5I/eZqbAklQ5z9qPk7kPexQbBjXN3G5bEbJwUZSeO39546aKhQIAJIyGQwdTZh//t4qsB0lDrEmdR4lhXNrYQKzBMoB+yp1xFMiI+0XVRC/io2b1Qveu3LXxA14NicjvvLdDJSe0fzR5qYeZ7o7ub87lcOOuUkO4BIrwkYa+r8MpyM/fsIOQ9P2fDrFqJo/9Zl+SWSrqbgEb7AKifkixKfZQqaWXguV8RMYaq6/K7Dp2qfPmKCFQR7/fndA0vOb6SlOBBOC3u41SNoyEn59wjONsL3Eey4RJelk7e2GbnjZ099hYMEnAjMbICk2gmN0R9e6Lt5VS2i9JxLD/sbOhD9Eod/LjEfIMN+KpyBFPxeDVGHvA9pr29SsMb37cIps792tdUyvOGxFJYb0WYe3fgQf1QYBJT9ecYfDbHzgRRDCnUvvGx5tSSJB/2klnN1S1Dza6b0uF4hNg12xp7Ph+UrTevdJBAMAmhABeiyw0SoN0l90+ZkSI1iUEryRUDJYF+b+8dINf7SYpfT+idaGX+QF33zWDbhW5wgsPAdJKscrGjelkbs+o4qDbUdSqacm3Ql/90bbKhOQzIyWQxo58u7//KYDpSupY7e49fw0K0qZBA1CiTQoyoawc0cT9ofMcjibDciFiJTqXDwkJG222gWj32d/wcHUNhwUThRCeo6Bej+inz68wn/kYd/gcASbiws1ueWrNU8WlYZH0tTLAgblIxbEoH3s8SaeETDT6TjFyhw=="
+    },
+    {
+      "Name": "GRD_DELETE",
+      "Key": "BIZ68F5D78FFCA542C1B7F2B38CCC1FC8EF",
+      "Encrypted": true,
+      "ScriptText": "DuP/yUJGaX6+fE224obzsba4TTSDK7/I9MGeoTL1Lrm2uE00gyu/yPTBnqEy9S65UL2KtebSC68kiU8FZBdWFPQHsNWX8Ypy+tu3xCu8rksBPn43CnDdRsYddtnQ37DTiIiJZAlGwo0KTGtvDtrA6ra4TTSDK7/I9MGeoTL1Lrm2uE00gyu/yPTBnqEy9S65trhNNIMrv8j0wZ6hMvUuudWEiVzzRBqQSVhihXTxZ28u5jWAkndu7vQ2NHbbqy78yisfEqWQdL96nzXnaUUJ8AISEKNgxVk6xJCwHea2kmXkRQ5CXGKKpgJ3Xa50EATX2BsyM5n0NmhpZyOYPbkBwOEPoD+96hrud2ASxMYNUpcNu/Qx18EKJ/LpBsVM9++riAG8xsnM5LTJjS71toaEddXcgnqyI7VfISclo6SN6V/zhnQXoZDo37d2ZWfQiKpO85il0I+2cQzQjFZv83b0kRW0GfiPDgSKEbdF9IhiN2IxIOkaiiaA9dLLZGpkXkFOlDbx63VbotYabplUODG5sVTaPfpOqq0CssQUBSWFYlMCPcc/2gi9p3TDFwGkV6AE9Y6m+SBgW+051Dks/s1JD1lKGMuSDAr3sMwGmtHE4XczflKP7/vfazxDqJi+iMiZ/9QeeRtgZaOHs2ylfwMRVprI49e8OhJL3KFAVfg8nhwIsvRTjCEVIvkpDptfr8tOmF/xU9+CabHgSxF4x3YUGcdAVsNCFXzBzHBejZcsc3kd3bibPl4ubWz/hNCHjtgAvNC5gF9XkvGigyC/rxIPVluRpcPkD+aWQmrBX3am0yxbkaXD5A/mlkJqwV92ptMsW5Glw+QP5pZCasFfdqbTLKz7JZcZgH51TE7WO+dTV+cvVgaFLvWRXvj2OWtpkRO5W5Glw+QP5pZCasFfdqbTLFuRpcPkD+aWQmrBX3am0yxbkaXD5A/mlkJqwV92ptMsOoCk13VsVxELQ5WNk/IHJ5gnazhPaBXVXVkUt9ahaMTFoaGt4ZWULz9WCxkQt/peVQjri4u56VUMfjB36cvcrxRoj+WUyKpG0oYEndOPyqYqqbs/rvEEihfIcXBCFQ5Jd130bMnda0KwhyNKwzupeGstZ3/jpJY+2cGZCEZ3ij58fgd38tCcIUAY44oztRQsnUaBGtEnsaUo11yFqhSWp3W1GOuO6ZDeg0PPoT+VkgWPfvXeJDwGbPAgDxwCE5Pb1L9KPikvjn8pzF57hkVyU/Ljtz63xvlrLIuve89A2efs9DndWV/T5edYB2RdOEEsBO0q9fJc98pJwdz7/SmKTdgXsaZRluZVyAlcdKgmo7bg9h/yvJLCOaXUvVu+TfsVFvB0IDgRJRvGNqxOD0gPn18w9v/a6vpjLW6NJQU2dYQkTLhjK4VtUfk5lrcN9LqtzmfrZ8VxKDW5DRPUcTpQr9jknw1tzG2PgEgmQRPcaGhCG4xUhiP1F6sZqwZfqsOBozpkDygC9bNIGtT7TU5zlaJndbuHDv3lEdnIBESN+g/4GrVdKFBy6rzDgSGnLQBFnW5OOgK6ZDRNnNGRQOgP6zIp+vjtLAqlCIobRYJ5FFBPa1h6ERC5REAq09SH5QrdDaCG9rAEpbqGlhimOKsMxL/ig4hOG65gzZF3FOrKcgbqKV2Kll0Z7Yls/GoRbSRlSeWMngKZIV8yJc/8fJRrXkAav+vW10DgTCSeEBum8G8NkOGVal+BIUjiZnK2JDgHcP7irdz0l9fhvjy/rZb3tgHR8IAJ/rYUxyMGyys7LWpbo7AbGbmzGmbznuGFM1E4ddOnKJicRWW2scU50mH35aIed1fOXfNvCq5PmqtxJtfesEZLfD8RIhd8YaMr1qwGpXLvrpAgfZjNeT4FGwLQPY8pmcwIy4NG9vbmyTkmR3OdkLaCpmZ5j8DRE9drQwxXKNoyIj0n9RHZB6kjy76Jv2IECpDGlXSZH4p2HpsZFtp6M+9lKMDFAP9pbsu93y9p0y+LDXWdnatpJ8g9dWdc8rKRBbOPh473SlbFlRZlj/bR2AkUfBJX0+bdepTqSn/m7o+S+085hSQk7fsaThpsYcsjTGn6GVMmUbySN1j2KM/GVDDTV0rafhc72MCtdgcg"
+    }
+  ],
   "Forms": [
     {
       "Id": "FormD64B8652095A4B9798E93B38EDBCCCD4",
-      "Name": "재고 관리",
+      "Name": "직원 관리",
       "Activated": true,
       "Visible": true,
       "LanguageCode": "",
@@ -207,7 +205,7 @@
           "ChildElements": [
             {
               "LanguageCode": "",
-              "Value": "+ 재고 등록",
+              "Value": "+ 직원 등록",
               "Cursor": "pointer",
               "MouseOver": {
                 "UseYn": false,
@@ -358,7 +356,7 @@
           "ChildElements": [
             {
               "LanguageCode": "",
-              "Text": "카테고리",
+              "Text": "부서",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -436,7 +434,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "창고",
+              "Text": "직급",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -514,6 +512,84 @@
             },
             {
               "LanguageCode": "",
+              "Text": "재직 상태",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": true,
+              "Margin": {
+                "Left": 3,
+                "Top": 0,
+                "Right": 3,
+                "Bottom": 0,
+                "Text": "3,0,3,0"
+              },
+              "Type": "Label",
+              "Id": "Label6B06BD185F3013417590A40A5AF17643",
+              "Name": "LBL_COND_3",
+              "InGroup": "GRP_SRCH_CON",
+              "Position": {
+                "Left": 360,
+                "Top": 10,
+                "Width": 100,
+                "Height": 23,
+                "ZIndex": 7,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 85,
+                    "G": 142,
+                    "B": 213,
+                    "A": 1
+                  },
+                  "LineType": "none",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 100,
+                    "G": 116,
+                    "B": 139,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
               "Text": "검색어",
               "Cursor": "default",
               "Formula": "",
@@ -533,7 +609,7 @@
               "Name": "LBL_COND_4",
               "InGroup": "GRP_SRCH_CON",
               "Position": {
-                "Left": 360,
+                "Left": 530,
                 "Top": 10,
                 "Width": 100,
                 "Height": 23,
@@ -604,7 +680,7 @@
               "Name": "VS_KEYWORD",
               "InGroup": "GRP_SRCH_CON",
               "Position": {
-                "Left": 360,
+                "Left": 530,
                 "Top": 34,
                 "Width": 200,
                 "Height": 35,
@@ -691,7 +767,7 @@
               "Name": "BTN_REF",
               "InGroup": "GRP_SRCH_CON",
               "Position": {
-                "Left": 580,
+                "Left": 750,
                 "Top": 34,
                 "Width": 60,
                 "Height": 35,
@@ -778,7 +854,7 @@
               "Name": "BTN_RESET",
               "InGroup": "GRP_SRCH_CON",
               "Position": {
-                "Left": 645,
+                "Left": 815,
                 "Top": 34,
                 "Width": 70,
                 "Height": 35,
@@ -837,7 +913,7 @@
             },
             {
               "DataSource": "DS9F936284C99F45FDA45E939494ABE790",
-              "EditValue": "ELECTRONICS,NETWORK,PERIPHERAL,SERVER,SOFTWARE,SUPPLIES",
+              "EditValue": "DEPT001,DEPT010,DEPT011,DEPT012,DEPT013,DEPT020,DEPT021,DEPT022,DEPT030,DEPT031,DEPT032,DEPT033",
               "CaptionText": "전체",
               "InitType": "0",
               "InitValue": "",
@@ -865,14 +941,14 @@
               "DataSourceInfo": {
                 "ParentField": "",
                 "ChildField": "",
-                "CaptionField": "CATEGORY_NAME",
-                "ValueField": "CATEGORY_CODE",
+                "CaptionField": "DEPT_NAME",
+                "ValueField": "DEPT_CODE",
                 "ImageField": "",
                 "TooltipField": ""
               },
               "Type": "MultiComboBox",
               "Id": "MultiComboBox17228C07AF1DFABD66A4C4BB6E9F44FD",
-              "Name": "VS_CATEGORY",
+              "Name": "VS_DEPT",
               "InGroup": "GRP_SRCH_CON",
               "Position": {
                 "Left": 20,
@@ -934,7 +1010,7 @@
             },
             {
               "DataSource": "DS7DB266D7666C4618A3016DBBA4EF73C1",
-              "EditValue": "A-01-01,A-01-02,A-01-03,A-01-04,A-01-05,A-02-01,A-02-02,A-02-03,A-02-04,A-03-01,A-03-02,A-03-03,A-03-04,A-03-05,A-03-06,A-04-01,A-04-02,A-04-03,B-01-01,B-01-02,B-01-03,B-01-04,B-01-05,B-02-01,B-02-02,B-02-03,B-02-04,B-03-01,B-03-02,B-03-03,B-04-01,B-04-02,B-04-03,B-05-01,B-05-02,B-05-03,C-01-01,C-01-02,C-01-03,C-01-04,C-01-05,C-01-06,C-01-07,C-02-01,C-02-02,C-02-03,C-02-04,C-02-05,C-02-06,C-02-07,C-03-01,C-03-02,C-03-03,C-03-04,C-03-05,C-03-06,C-04-01,C-04-02,C-04-03,C-04-04,C-04-05,C-04-06,C-04-07,C-04-08,C-05-01,C-05-02,C-05-03,C-05-04,C-05-05,C-05-06,D-01-01,D-01-02,D-01-03,D-01-04,D-02-01,D-02-02,D-02-03,D-02-04,D-02-05,D-02-06,D-02-07,D-03-01,D-03-02,D-03-03,D-03-04,E-01-01,E-01-02,E-01-03,E-01-04,E-02-01,E-02-02,E-03-01,E-03-02,E-03-03,E-03-04,E-04-01,E-04-02,E-05-01,E-05-02,E-06-01,LICENSE,Z-99-01,Z-99-02",
+              "EditValue": "DEPUTY,DIRECTOR,MANAGER,SENIOR,STAFF",
               "CaptionText": "전체",
               "InitType": "0",
               "InitValue": "",
@@ -962,14 +1038,14 @@
               "DataSourceInfo": {
                 "ParentField": "",
                 "ChildField": "",
-                "CaptionField": "STORAGE_LOC",
-                "ValueField": "STORAGE_LOC",
+                "CaptionField": "POSITION_NAME",
+                "ValueField": "POSITION_CODE",
                 "ImageField": "",
                 "TooltipField": ""
               },
               "Type": "MultiComboBox",
               "Id": "MultiComboBoxA69F535BCD912DFF99F03E7169E9F3DD",
-              "Name": "VS_WAREHOUSE",
+              "Name": "VS_POSITION",
               "InGroup": "GRP_SRCH_CON",
               "Position": {
                 "Left": 190,
@@ -1028,6 +1104,103 @@
                   "TempFontFamily": "맑은 고딕"
                 }
               }
+            },
+            {
+              "DataSource": "DS51DBE6EE50354391B2E39D80DDEC595E",
+              "EditValue": "ACTIVE,LEAVE,RETIRED",
+              "CaptionText": "전체",
+              "InitType": "0",
+              "InitValue": "",
+              "RefreshType": 1,
+              "IsReadOnly": false,
+              "SortType": 0,
+              "AutoRefresh": true,
+              "AfterRefresh": "",
+              "ClearTargetData": false,
+              "IsMultiSelect": true,
+              "AutoChildSelect": true,
+              "LeafNodeOnly": false,
+              "HideCheckBox": false,
+              "AutoExpandLevel": 0,
+              "IndentSize": 15,
+              "EmptyValue": "(null)",
+              "TreeViewType": 1,
+              "DialogWidth": 400,
+              "DialogHeight": 300,
+              "UsedSelectAllQueryParamValue": true,
+              "CheckedAll": true,
+              "EditableValueText": false,
+              "CacheExpiryTime": 0,
+              "UseSelectedAllText": true,
+              "DataSourceInfo": {
+                "ParentField": "",
+                "ChildField": "",
+                "CaptionField": "STATUS_NAME",
+                "ValueField": "STATUS_CODE",
+                "ImageField": "",
+                "TooltipField": ""
+              },
+              "Type": "MultiComboBox",
+              "Id": "MultiComboBoxC7A72E1685B73C8294DEACF0ECC97959",
+              "Name": "VS_STATUS",
+              "InGroup": "GRP_SRCH_CON",
+              "Position": {
+                "Left": 360,
+                "Top": 34,
+                "Width": 150,
+                "Height": 35,
+                "ZIndex": 6,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": true,
+                  "Margin": "0,0,0,20",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 226,
+                    "G": 232,
+                    "B": 240,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "5,5,5,5"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 30,
+                    "G": 41,
+                    "B": 59,
+                    "A": 1
+                  },
+                  "Size": 13,
+                  "Family": "inherit",
+                  "Bold": false,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
             }
           ],
           "Type": "Group",
@@ -1035,7 +1208,7 @@
           "Name": "GRP_SRCH_CON",
           "Position": {
             "Left": 20,
-            "Top": 205,
+            "Top": 75,
             "Width": 1551,
             "Height": 90,
             "ZIndex": 3,
@@ -1095,7 +1268,7 @@
           "ChildElements": [
             {
               "LanguageCode": "",
-              "Text": "   재고 목록 (116건)",
+              "Text": "   직원 목록",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -1174,13 +1347,13 @@
             {
               "Type": "DataGrid",
               "Id": "DataGridF080EDCACB22D1D56A21D1B1E3AE9017",
-              "Name": "GRD_STOCK",
+              "Name": "GRD_EMPLOYEE",
               "Visible": true,
               "Position": {
                 "Left": 20,
                 "Top": 75,
                 "Width": 1511,
-                "Height": 468,
+                "Height": 598,
                 "ZIndex": 21,
                 "TabIndex": 0,
                 "Docking": {
@@ -1313,7 +1486,7 @@
                 {
                   "Name": "CHK",
                   "Caption": "",
-                  "Width": 30,
+                  "Width": 45,
                   "Validator": {
                     "ValidateType": 8,
                     "UseGuideMessage": true,
@@ -1329,9 +1502,9 @@
                   "CalcSubTotalType": "None"
                 },
                 {
-                  "Name": "INV_ID",
-                  "Caption": "INV_ID",
-                  "Width": 100,
+                  "Name": "EMP_ID",
+                  "Caption": "사번",
+                  "Width": 70,
                   "Validator": {
                     "ValidateType": 8,
                     "UseGuideMessage": true,
@@ -1341,82 +1514,15 @@
                   },
                   "GridColumnWidthType": 1,
                   "Editable": false,
-                  "HeaderPosition": "center",
-                  "TextPosition": "center"
-                },
-                {
-                  "Name": "PROD_NAME",
-                  "Caption": "PROD_NAME",
-                  "Width": 100,
-                  "Validator": {
-                    "ValidateType": 8,
-                    "UseGuideMessage": true,
-                    "GuideLanguageCode": "",
-                    "UseErrorMessage": true,
-                    "ErrorLanguageCode": ""
-                  },
-                  "GridColumnWidthType": 1,
-                  "Editable": false,
-                  "HeaderPosition": "center",
-                  "TextPosition": "center"
-                },
-                {
-                  "Name": "CATEGORY",
-                  "Caption": "CATEGORY",
-                  "Width": 100,
-                  "Validator": {
-                    "ValidateType": 8,
-                    "UseGuideMessage": true,
-                    "GuideLanguageCode": "",
-                    "UseErrorMessage": true,
-                    "ErrorLanguageCode": ""
-                  },
-                  "GridColumnWidthType": 1,
-                  "Editable": false,
-                  "HeaderPosition": "center",
-                  "TextPosition": "center"
-                },
-                {
-                  "Name": "STORAGE",
-                  "Caption": "STORAGE",
-                  "Width": 100,
-                  "Validator": {
-                    "ValidateType": 8,
-                    "UseGuideMessage": true,
-                    "GuideLanguageCode": "",
-                    "UseErrorMessage": true,
-                    "ErrorLanguageCode": ""
-                  },
-                  "GridColumnWidthType": 1,
-                  "Editable": false,
-                  "HeaderPosition": "center",
-                  "TextPosition": "center"
-                },
-                {
-                  "Name": "CURR_QTY",
-                  "Caption": "CURR_QTY",
-                  "Width": 100,
-                  "Validator": {
-                    "ValidateType": 8,
-                    "UseGuideMessage": true,
-                    "GuideLanguageCode": "",
-                    "UseErrorMessage": true,
-                    "ErrorLanguageCode": ""
-                  },
-                  "GridColumnWidthType": 1,
-                  "Editable": false,
-                  "ColumnType": 3,
-                  "Format": "{0:N0}",
-                  "DataType": 0,
+                  "KeyType": 3,
                   "HeaderPosition": "center",
                   "TextPosition": "center",
-                  "DisplaySubTotalType": "Hidden",
-                  "CalcSubTotalType": "Sum"
+                  "CalcSubTotalType": "None"
                 },
                 {
-                  "Name": "SAFE_QTY",
-                  "Caption": "SAFE_QTY",
-                  "Width": 100,
+                  "Name": "EMP_NAME",
+                  "Caption": "이름",
+                  "Width": 70,
                   "Validator": {
                     "ValidateType": 8,
                     "UseGuideMessage": true,
@@ -1426,17 +1532,68 @@
                   },
                   "GridColumnWidthType": 1,
                   "Editable": false,
-                  "ColumnType": 3,
-                  "Format": "{0:N0}",
-                  "DataType": 0,
+                  "KeyType": 2,
                   "HeaderPosition": "center",
                   "TextPosition": "center",
-                  "DisplaySubTotalType": "Hidden",
-                  "CalcSubTotalType": "Sum"
+                  "CalcSubTotalType": "None"
                 },
                 {
-                  "Name": "STATUS",
-                  "Caption": "STATUS",
+                  "Name": "DEPT_NAME",
+                  "Caption": "부서",
+                  "Width": 70,
+                  "Validator": {
+                    "ValidateType": 8,
+                    "UseGuideMessage": true,
+                    "GuideLanguageCode": "",
+                    "UseErrorMessage": true,
+                    "ErrorLanguageCode": ""
+                  },
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "KeyType": 2,
+                  "HeaderPosition": "center",
+                  "TextPosition": "center",
+                  "CalcSubTotalType": "None"
+                },
+                {
+                  "Name": "POSITION",
+                  "Caption": "직급",
+                  "Width": 70,
+                  "Validator": {
+                    "ValidateType": 8,
+                    "UseGuideMessage": true,
+                    "GuideLanguageCode": "",
+                    "UseErrorMessage": true,
+                    "ErrorLanguageCode": ""
+                  },
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "KeyType": 2,
+                  "HeaderPosition": "center",
+                  "TextPosition": "center",
+                  "CalcSubTotalType": "None"
+                },
+                {
+                  "Name": "EMAIL",
+                  "Caption": "이메일",
+                  "Width": 120,
+                  "Validator": {
+                    "ValidateType": 8,
+                    "UseGuideMessage": true,
+                    "GuideLanguageCode": "",
+                    "UseErrorMessage": true,
+                    "ErrorLanguageCode": ""
+                  },
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "KeyType": 2,
+                  "HeaderPosition": "center",
+                  "TextPosition": "center",
+                  "CalcSubTotalType": "None"
+                },
+                {
+                  "Name": "PHONE",
+                  "Caption": "연락처",
                   "Width": 100,
                   "Validator": {
                     "ValidateType": 8,
@@ -1447,12 +1604,14 @@
                   },
                   "GridColumnWidthType": 1,
                   "Editable": false,
+                  "KeyType": 2,
                   "HeaderPosition": "center",
-                  "TextPosition": "center"
+                  "TextPosition": "center",
+                  "CalcSubTotalType": "None"
                 },
                 {
-                  "Name": "RECEIVING_DATE",
-                  "Caption": "RECEIVING_DATE",
+                  "Name": "HIRE_DATE",
+                  "Caption": "입사일",
                   "Width": 100,
                   "Validator": {
                     "ValidateType": 8,
@@ -1464,12 +1623,32 @@
                   "GridColumnWidthType": 1,
                   "Editable": false,
                   "Format": "{0:yyyy-MM-dd}",
+                  "KeyType": 2,
                   "HeaderPosition": "center",
-                  "TextPosition": "center"
+                  "TextPosition": "center",
+                  "CalcSubTotalType": "None"
                 },
                 {
-                  "Name": "CATEGORY_CODE",
-                  "Caption": "CATEGORY_CODE",
+                  "Name": "EMP_STATUS",
+                  "Caption": "재직 상태",
+                  "Width": 70,
+                  "Validator": {
+                    "ValidateType": 8,
+                    "UseGuideMessage": true,
+                    "GuideLanguageCode": "",
+                    "UseErrorMessage": true,
+                    "ErrorLanguageCode": ""
+                  },
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "KeyType": 2,
+                  "HeaderPosition": "center",
+                  "TextPosition": "center",
+                  "CalcSubTotalType": "None"
+                },
+                {
+                  "Name": "DEPT_CODE",
+                  "Caption": "DEPT_CODE",
                   "Width": 100,
                   "Validator": {
                     "ValidateType": 8,
@@ -1479,11 +1658,13 @@
                     "ErrorLanguageCode": ""
                   },
                   "Visible": false,
-                  "HeaderPosition": "center"
+                  "KeyType": 2,
+                  "HeaderPosition": "center",
+                  "CalcSubTotalType": "None"
                 },
                 {
-                  "Name": "PROD_CODE",
-                  "Caption": "PROD_CODE",
+                  "Name": "POSITION_CODE",
+                  "Caption": "POSITION_CODE",
                   "Width": 100,
                   "Validator": {
                     "ValidateType": 8,
@@ -1493,11 +1674,13 @@
                     "ErrorLanguageCode": ""
                   },
                   "Visible": false,
-                  "HeaderPosition": "center"
+                  "KeyType": 2,
+                  "HeaderPosition": "center",
+                  "CalcSubTotalType": "None"
                 },
                 {
-                  "Name": "SHIPPING_DATE",
-                  "Caption": "SHIPPING_DATE",
+                  "Name": "EMP_STATUS_CODE",
+                  "Caption": "EMP_STATUS_CODE",
                   "Width": 100,
                   "Validator": {
                     "ValidateType": 8,
@@ -1507,7 +1690,9 @@
                     "ErrorLanguageCode": ""
                   },
                   "Visible": false,
-                  "HeaderPosition": "center"
+                  "KeyType": 2,
+                  "HeaderPosition": "center",
+                  "CalcSubTotalType": "None"
                 }
               ],
               "MultiHeader": {
@@ -1527,12 +1712,12 @@
                         "Checked": false,
                         "ViewType": 0,
                         "Type": "CheckBox",
-                        "Id": "CheckBox9BB4AAE6B9A519FDC0CB9FD32D19C8CD",
+                        "Id": "CheckBoxF286C213A668C1D7B9729A80E1F0409C",
                         "Name": "CHK",
                         "Position": {
                           "Left": 5,
                           "Top": 5,
-                          "Width": 20,
+                          "Width": 35,
                           "Height": 35,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1603,11 +1788,11 @@
                     }
                   },
                   {
-                    "Value": "재고ID",
+                    "Value": "사번",
                     "Elements": [
                       {
                         "LanguageCode": "",
-                        "Text": "재고ID",
+                        "Text": "사번",
                         "Cursor": "default",
                         "Formula": "",
                         "UseTextOverflow": false,
@@ -1622,12 +1807,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "Label030F578915ED328187C55BB391355972",
-                        "Name": "재고",
+                        "Id": "Label30EF93E9BD1B718F7AB8152418D8981E",
+                        "Name": "EMP_ID",
                         "Position": {
-                          "Left": 30,
+                          "Left": 45,
                           "Top": 0,
-                          "Width": 185,
+                          "Width": 153,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1655,13 +1840,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 85,
-                              "G": 142,
-                              "B": 213,
+                              "R": 226,
+                              "G": 232,
+                              "B": 240,
                               "A": 1
                             },
-                            "LineType": "none",
-                            "Thickness": "1,1,1,1",
+                            "LineType": "solid",
+                            "Thickness": "0,0,0,0",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -1690,11 +1875,11 @@
                     "Tooltip": ""
                   },
                   {
-                    "Value": "제품명",
+                    "Value": "이름",
                     "Elements": [
                       {
                         "LanguageCode": "",
-                        "Text": "제품명",
+                        "Text": "이름",
                         "Cursor": "default",
                         "Formula": "",
                         "UseTextOverflow": false,
@@ -1709,12 +1894,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "LabelBF16312B401F7CB139FD1824013EAB5A",
-                        "Name": "PROD_NAME",
+                        "Id": "LabelB0620F5E35D376F6C2361C228FD339F8",
+                        "Name": "EMP_NAME",
                         "Position": {
-                          "Left": 215,
+                          "Left": 198,
                           "Top": 0,
-                          "Width": 185,
+                          "Width": 153,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1742,13 +1927,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 85,
-                              "G": 142,
-                              "B": 213,
+                              "R": 226,
+                              "G": 232,
+                              "B": 240,
                               "A": 1
                             },
-                            "LineType": "none",
-                            "Thickness": "1,1,1,1",
+                            "LineType": "solid",
+                            "Thickness": "0,0,0,0",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -1777,11 +1962,11 @@
                     "Tooltip": ""
                   },
                   {
-                    "Value": "카테고리",
+                    "Value": "부서",
                     "Elements": [
                       {
                         "LanguageCode": "",
-                        "Text": "카테고리",
+                        "Text": "부서",
                         "Cursor": "default",
                         "Formula": "",
                         "UseTextOverflow": false,
@@ -1796,12 +1981,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "Label3698D97B01B2DFB71AB25C9A7DE867B3",
-                        "Name": "CATEGORY",
+                        "Id": "LabelF93C49F45FA9479D004E46FD45A4EB5A",
+                        "Name": "DEPT_NAME",
                         "Position": {
-                          "Left": 400,
+                          "Left": 351,
                           "Top": 0,
-                          "Width": 185,
+                          "Width": 153,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1829,13 +2014,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 85,
-                              "G": 142,
-                              "B": 213,
+                              "R": 226,
+                              "G": 232,
+                              "B": 240,
                               "A": 1
                             },
-                            "LineType": "none",
-                            "Thickness": "1,1,1,1",
+                            "LineType": "solid",
+                            "Thickness": "0,0,0,0",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -1864,11 +2049,11 @@
                     "Tooltip": ""
                   },
                   {
-                    "Value": "창고",
+                    "Value": "직급",
                     "Elements": [
                       {
                         "LanguageCode": "",
-                        "Text": "창고",
+                        "Text": "직급",
                         "Cursor": "default",
                         "Formula": "",
                         "UseTextOverflow": false,
@@ -1883,12 +2068,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "Label95B5883A9443C3888FEE6EA774B4DA76",
-                        "Name": "STORAGE",
+                        "Id": "Label050B0979FEFCF8FC68B8CEAC9EDC0A66",
+                        "Name": "POSITION",
                         "Position": {
-                          "Left": 585,
+                          "Left": 504,
                           "Top": 0,
-                          "Width": 185,
+                          "Width": 153,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1916,13 +2101,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 85,
-                              "G": 142,
-                              "B": 213,
+                              "R": 226,
+                              "G": 232,
+                              "B": 240,
                               "A": 1
                             },
-                            "LineType": "none",
-                            "Thickness": "1,1,1,1",
+                            "LineType": "solid",
+                            "Thickness": "0,0,0,0",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -1945,17 +2130,16 @@
                       }
                     ],
                     "Col": 4,
-                    "HeaderPosition": "start",
                     "Margin": "0,0,0,0",
                     "Type": 1,
                     "Tooltip": ""
                   },
                   {
-                    "Value": "현재 재고",
+                    "Value": "이메일",
                     "Elements": [
                       {
                         "LanguageCode": "",
-                        "Text": "현재 재고",
+                        "Text": "이메일",
                         "Cursor": "default",
                         "Formula": "",
                         "UseTextOverflow": false,
@@ -1970,12 +2154,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "Label26F746DD401A5DC33F9439D54AA48175",
-                        "Name": "CURR_QTY",
+                        "Id": "LabelA5D4D0B72FA23B1DC5B78FA8A1F11795",
+                        "Name": "EMAIL",
                         "Position": {
-                          "Left": 770,
+                          "Left": 657,
                           "Top": 0,
-                          "Width": 185,
+                          "Width": 262,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2003,13 +2187,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 85,
-                              "G": 142,
-                              "B": 213,
+                              "R": 226,
+                              "G": 232,
+                              "B": 240,
                               "A": 1
                             },
-                            "LineType": "none",
-                            "Thickness": "1,1,1,1",
+                            "LineType": "solid",
+                            "Thickness": "0,0,0,0",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -2038,11 +2222,11 @@
                     "Tooltip": ""
                   },
                   {
-                    "Value": "안전 재고",
+                    "Value": "연락처",
                     "Elements": [
                       {
                         "LanguageCode": "",
-                        "Text": "안전 재고",
+                        "Text": "연락처",
                         "Cursor": "default",
                         "Formula": "",
                         "UseTextOverflow": false,
@@ -2057,12 +2241,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "Label966AB7086861874A782FD675C8BAF23F",
-                        "Name": "SAFE_QTY",
+                        "Id": "LabelED7E75DF67B861459B14CC967922F644",
+                        "Name": "PHONE",
                         "Position": {
-                          "Left": 955,
+                          "Left": 919,
                           "Top": 0,
-                          "Width": 185,
+                          "Width": 218,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2090,13 +2274,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 85,
-                              "G": 142,
-                              "B": 213,
+                              "R": 226,
+                              "G": 232,
+                              "B": 240,
                               "A": 1
                             },
-                            "LineType": "none",
-                            "Thickness": "1,1,1,1",
+                            "LineType": "solid",
+                            "Thickness": "0,0,0,0",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -2125,11 +2309,11 @@
                     "Tooltip": ""
                   },
                   {
-                    "Value": "상태",
+                    "Value": "입사일",
                     "Elements": [
                       {
                         "LanguageCode": "",
-                        "Text": "상태",
+                        "Text": "입사일",
                         "Cursor": "default",
                         "Formula": "",
                         "UseTextOverflow": false,
@@ -2144,12 +2328,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "LabelB94C1632DD37105FADFC3A2C730F7096",
-                        "Name": "STATUS",
+                        "Id": "LabelF5206617C114A4ED0511076AC33B7DA3",
+                        "Name": "HIRE_DATE",
                         "Position": {
-                          "Left": 1140,
+                          "Left": 1137,
                           "Top": 0,
-                          "Width": 185,
+                          "Width": 218,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2177,13 +2361,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 85,
-                              "G": 142,
-                              "B": 213,
+                              "R": 226,
+                              "G": 232,
+                              "B": 240,
                               "A": 1
                             },
-                            "LineType": "none",
-                            "Thickness": "1,1,1,1",
+                            "LineType": "solid",
+                            "Thickness": "0,0,0,0",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -2212,11 +2396,11 @@
                     "Tooltip": ""
                   },
                   {
-                    "Value": "최종 입고일",
+                    "Value": "재직 상태",
                     "Elements": [
                       {
                         "LanguageCode": "",
-                        "Text": "최종 입고일",
+                        "Text": "재직 상태",
                         "Cursor": "default",
                         "Formula": "",
                         "UseTextOverflow": false,
@@ -2231,12 +2415,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "LabelAC2BAE6C2DCB13AB9DCB550DB3DDE92B",
-                        "Name": "RECEIVING_DATE",
+                        "Id": "LabelFA749655F8CFE8256DEE5BF62EDBED49",
+                        "Name": "EMP_STATUS",
                         "Position": {
-                          "Left": 1325,
+                          "Left": 1355,
                           "Top": 0,
-                          "Width": 186,
+                          "Width": 156,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2264,13 +2448,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 85,
-                              "G": 142,
-                              "B": 213,
+                              "R": 226,
+                              "G": 232,
+                              "B": 240,
                               "A": 1
                             },
-                            "LineType": "none",
-                            "Thickness": "1,1,1,1",
+                            "LineType": "solid",
+                            "Thickness": "0,0,0,0",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -2299,264 +2483,24 @@
                     "Tooltip": ""
                   },
                   {
-                    "Value": "CATEGORY_CODE",
-                    "Elements": [
-                      {
-                        "LanguageCode": "",
-                        "Text": "CATEGORY_CODE",
-                        "Cursor": "default",
-                        "Formula": "",
-                        "UseTextOverflow": false,
-                        "UseAutoLineBreak": false,
-                        "MxBinding": "",
-                        "MxBindingUseStyle": true,
-                        "Margin": {
-                          "Left": 3,
-                          "Top": 0,
-                          "Right": 3,
-                          "Bottom": 0,
-                          "Text": "3,0,3,0"
-                        },
-                        "Type": "Label",
-                        "Id": "Label251773129EF6EDB81B2452A92896CF2B",
-                        "Name": "CATEGORY_CODE",
-                        "Position": {
-                          "Left": 291,
-                          "Top": 0,
-                          "Width": 100,
-                          "Height": 30,
-                          "ZIndex": 1,
-                          "TabIndex": 0,
-                          "Docking": {
-                            "Left": false,
-                            "Right": false,
-                            "Top": false,
-                            "Bottom": false,
-                            "Margin": "0,0,0,0",
-                            "HoldSize": false,
-                            "MinWidth": 0,
-                            "MinHeight": 0
-                          }
-                        },
-                        "Style": {
-                          "Type": 2,
-                          "BoxStyle": "",
-                          "Background": {
-                            "Color": {
-                              "R": 248,
-                              "G": 250,
-                              "B": 252,
-                              "A": 1
-                            }
-                          },
-                          "Border": {
-                            "Color": {
-                              "R": 85,
-                              "G": 142,
-                              "B": 213,
-                              "A": 1
-                            },
-                            "LineType": "none",
-                            "Thickness": "1,1,1,1",
-                            "CornerRadius": "0,0,0,0"
-                          },
-                          "Font": {
-                            "Color": {
-                              "R": 100,
-                              "G": 116,
-                              "B": 139,
-                              "A": 1
-                            },
-                            "Size": 13,
-                            "Family": "inherit",
-                            "Bold": true,
-                            "Italic": false,
-                            "UnderLine": false,
-                            "HorizontalAlignment": "center",
-                            "VerticalAlignment": "middle",
-                            "TempFontFamily": "맑은 고딕"
-                          }
-                        }
-                      }
-                    ],
+                    "Value": "DEPT_CODE",
+                    "Elements": [],
                     "Col": 9,
-                    "HeaderPosition": "start",
-                    "Margin": "0,0,0,0",
-                    "Type": 1,
+                    "Margin": "5,5,5,5",
                     "Tooltip": ""
                   },
                   {
-                    "Value": "PROD_CODE",
-                    "Elements": [
-                      {
-                        "LanguageCode": "",
-                        "Text": "PROD_CODE",
-                        "Cursor": "default",
-                        "Formula": "",
-                        "UseTextOverflow": false,
-                        "UseAutoLineBreak": false,
-                        "MxBinding": "",
-                        "MxBindingUseStyle": true,
-                        "Margin": {
-                          "Left": 3,
-                          "Top": 0,
-                          "Right": 3,
-                          "Bottom": 0,
-                          "Text": "3,0,3,0"
-                        },
-                        "Type": "Label",
-                        "Id": "LabelAF1B55028141A726C962C07F60439008",
-                        "Name": "PROD_CODE",
-                        "Position": {
-                          "Left": 391,
-                          "Top": 0,
-                          "Width": 100,
-                          "Height": 30,
-                          "ZIndex": 1,
-                          "TabIndex": 0,
-                          "Docking": {
-                            "Left": false,
-                            "Right": false,
-                            "Top": false,
-                            "Bottom": false,
-                            "Margin": "0,0,0,0",
-                            "HoldSize": false,
-                            "MinWidth": 0,
-                            "MinHeight": 0
-                          }
-                        },
-                        "Style": {
-                          "Type": 2,
-                          "BoxStyle": "",
-                          "Background": {
-                            "Color": {
-                              "R": 248,
-                              "G": 250,
-                              "B": 252,
-                              "A": 1
-                            }
-                          },
-                          "Border": {
-                            "Color": {
-                              "R": 85,
-                              "G": 142,
-                              "B": 213,
-                              "A": 1
-                            },
-                            "LineType": "none",
-                            "Thickness": "1,1,1,1",
-                            "CornerRadius": "0,0,0,0"
-                          },
-                          "Font": {
-                            "Color": {
-                              "R": 100,
-                              "G": 116,
-                              "B": 139,
-                              "A": 1
-                            },
-                            "Size": 13,
-                            "Family": "inherit",
-                            "Bold": true,
-                            "Italic": false,
-                            "UnderLine": false,
-                            "HorizontalAlignment": "center",
-                            "VerticalAlignment": "middle",
-                            "TempFontFamily": "맑은 고딕"
-                          }
-                        }
-                      }
-                    ],
+                    "Value": "POSITION_CODE",
+                    "Elements": [],
                     "Col": 10,
-                    "HeaderPosition": "start",
-                    "Margin": "0,0,0,0",
-                    "Type": 1,
+                    "Margin": "5,5,5,5",
                     "Tooltip": ""
                   },
                   {
-                    "Value": "SHIPPING_DATE",
-                    "Elements": [
-                      {
-                        "LanguageCode": "",
-                        "Text": "SHIPPING_DATE",
-                        "Cursor": "default",
-                        "Formula": "",
-                        "UseTextOverflow": false,
-                        "UseAutoLineBreak": false,
-                        "MxBinding": "",
-                        "MxBindingUseStyle": true,
-                        "Margin": {
-                          "Left": 3,
-                          "Top": 0,
-                          "Right": 3,
-                          "Bottom": 0,
-                          "Text": "3,0,3,0"
-                        },
-                        "Type": "Label",
-                        "Id": "Label2315E3B2856191776EFE1A58EF67890C",
-                        "Name": "SHIPPING_DATE",
-                        "Position": {
-                          "Left": 491,
-                          "Top": 0,
-                          "Width": 100,
-                          "Height": 30,
-                          "ZIndex": 1,
-                          "TabIndex": 0,
-                          "Docking": {
-                            "Left": false,
-                            "Right": false,
-                            "Top": false,
-                            "Bottom": false,
-                            "Margin": "0,0,0,0",
-                            "HoldSize": false,
-                            "MinWidth": 0,
-                            "MinHeight": 0
-                          }
-                        },
-                        "Style": {
-                          "Type": 2,
-                          "BoxStyle": "",
-                          "Background": {
-                            "Color": {
-                              "R": 248,
-                              "G": 250,
-                              "B": 252,
-                              "A": 1
-                            }
-                          },
-                          "Border": {
-                            "Color": {
-                              "R": 85,
-                              "G": 142,
-                              "B": 213,
-                              "A": 1
-                            },
-                            "LineType": "none",
-                            "Thickness": "1,1,1,1",
-                            "CornerRadius": "0,0,0,0"
-                          },
-                          "Font": {
-                            "Color": {
-                              "R": 100,
-                              "G": 116,
-                              "B": 139,
-                              "A": 1
-                            },
-                            "Size": 13,
-                            "Family": "inherit",
-                            "Bold": true,
-                            "Italic": false,
-                            "UnderLine": false,
-                            "HorizontalAlignment": "center",
-                            "VerticalAlignment": "middle",
-                            "TempFontFamily": "맑은 고딕"
-                          }
-                        }
-                      }
-                    ],
+                    "Value": "EMP_STATUS_CODE",
+                    "Elements": [],
                     "Col": 11,
-                    "HeaderPosition": "start",
-                    "Margin": "0,0,0,0",
-                    "Type": 1,
+                    "Margin": "5,5,5,5",
                     "Tooltip": ""
                   }
                 ]
@@ -2596,7 +2540,7 @@
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
-                "ZIndex": 21,
+                "ZIndex": 19,
                 "TabIndex": 0,
                 "Docking": {
                   "Left": false,
@@ -2655,9 +2599,9 @@
           "Name": "GRP_BODY",
           "Position": {
             "Left": 20,
-            "Top": 295,
+            "Top": 165,
             "Width": 1551,
-            "Height": 563,
+            "Height": 693,
             "ZIndex": 4,
             "TabIndex": 0,
             "Docking": {
@@ -2713,7 +2657,7 @@
         },
         {
           "LanguageCode": "",
-          "Text": "재고 관리",
+          "Text": "직원 관리",
           "Cursor": "default",
           "Formula": "",
           "UseTextOverflow": false,
@@ -2787,1232 +2731,12 @@
               "TempFontFamily": "맑은 고딕"
             }
           }
-        },
-        {
-          "ChildElements": [
-            {
-              "LanguageCode": "",
-              "Text": "총 재고 품목",
-              "Cursor": "default",
-              "Formula": "",
-              "UseTextOverflow": false,
-              "UseAutoLineBreak": false,
-              "MxBinding": "",
-              "MxBindingUseStyle": true,
-              "Margin": {
-                "Left": 3,
-                "Top": 0,
-                "Right": 3,
-                "Bottom": 0,
-                "Text": "3,0,3,0"
-              },
-              "Type": "Label",
-              "Id": "LabelD196333DFCFD90B481D324223BE1EC5E",
-              "Name": "LBL_TOTAL_1",
-              "InGroup": "GRP_TOTAL_1",
-              "Position": {
-                "Left": 20,
-                "Top": 10,
-                "Width": 100,
-                "Height": 23,
-                "ZIndex": 6,
-                "TabIndex": 0,
-                "Docking": {
-                  "Left": true,
-                  "Right": false,
-                  "Top": true,
-                  "Bottom": false,
-                  "Margin": "20,10,0,0",
-                  "HoldSize": true,
-                  "MinWidth": 0,
-                  "MinHeight": 0
-                }
-              },
-              "Style": {
-                "Type": 2,
-                "BoxStyle": "",
-                "Background": {
-                  "Color": {
-                    "R": 255,
-                    "G": 255,
-                    "B": 255,
-                    "A": 1
-                  }
-                },
-                "Border": {
-                  "Color": {
-                    "R": 85,
-                    "G": 142,
-                    "B": 213,
-                    "A": 1
-                  },
-                  "LineType": "none",
-                  "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0"
-                },
-                "Font": {
-                  "Color": {
-                    "R": 100,
-                    "G": 116,
-                    "B": 139,
-                    "A": 1
-                  },
-                  "Size": 13,
-                  "Family": "inherit",
-                  "Bold": true,
-                  "Italic": false,
-                  "UnderLine": false,
-                  "HorizontalAlignment": "left",
-                  "VerticalAlignment": "middle",
-                  "TempFontFamily": "맑은 고딕"
-                }
-              }
-            },
-            {
-              "LanguageCode": "",
-              "Text": "113종",
-              "Cursor": "default",
-              "Formula": "",
-              "UseTextOverflow": false,
-              "UseAutoLineBreak": false,
-              "BindingInfo": {
-                "BindingGId": "DataGrid023E121C6C176D854DC2226C9CA68616",
-                "BindingGName": "GRD_TOTAL",
-                "BindingGColumn": "TOTAL_ITEM_COUNT",
-                "BindingGColumnId": "GRD_TOTAL.TOTAL_ITEM_COUNT",
-                "BindingGColumnCaption": "TOTAL_ITEM_COUNT"
-              },
-              "MxBinding": "",
-              "MxBindingUseStyle": true,
-              "Margin": {
-                "Left": 3,
-                "Top": 0,
-                "Right": 3,
-                "Bottom": 0,
-                "Text": "3,0,3,0"
-              },
-              "Type": "Label",
-              "Id": "Label4E131CE925DAB6BFE0B8919B47EDADCE",
-              "Name": "LBL_TOTAL_VAL_1",
-              "InGroup": "GRP_TOTAL_1",
-              "Position": {
-                "Left": 0,
-                "Top": 34,
-                "Width": 445,
-                "Height": 45,
-                "ZIndex": 7,
-                "TabIndex": 0,
-                "Docking": {
-                  "Left": true,
-                  "Right": true,
-                  "Top": false,
-                  "Bottom": false,
-                  "Margin": "0,0,0,0",
-                  "HoldSize": false,
-                  "MinWidth": 0,
-                  "MinHeight": 0
-                }
-              },
-              "Style": {
-                "Type": 2,
-                "BoxStyle": "",
-                "Background": {
-                  "Color": {
-                    "R": 255,
-                    "G": 255,
-                    "B": 255,
-                    "A": 1
-                  }
-                },
-                "Border": {
-                  "Color": {
-                    "R": 217,
-                    "G": 217,
-                    "B": 217,
-                    "A": 1
-                  },
-                  "LineType": "none",
-                  "Thickness": "0,0,0,1",
-                  "CornerRadius": "0,0,0,0"
-                },
-                "Font": {
-                  "Color": {
-                    "R": 30,
-                    "G": 41,
-                    "B": 59,
-                    "A": 1
-                  },
-                  "Size": 23,
-                  "Family": "inherit",
-                  "Bold": true,
-                  "Italic": false,
-                  "UnderLine": false,
-                  "HorizontalAlignment": "center",
-                  "VerticalAlignment": "middle",
-                  "TempFontFamily": "맑은 고딕"
-                }
-              }
-            },
-            {
-              "LanguageCode": "",
-              "Text": "총 재고 품목",
-              "Cursor": "default",
-              "Formula": "",
-              "UseTextOverflow": false,
-              "UseAutoLineBreak": false,
-              "MxBinding": "",
-              "MxBindingUseStyle": true,
-              "Margin": {
-                "Left": 3,
-                "Top": 0,
-                "Right": 3,
-                "Bottom": 0,
-                "Text": "3,0,3,0"
-              },
-              "Type": "Label",
-              "Id": "Label31DBFD02F0D964B46BC8B304647D2C92",
-              "Name": "LBL_TOTAL_2",
-              "InGroup": "GRP_TOTAL_1",
-              "Position": {
-                "Left": 0,
-                "Top": 76,
-                "Width": 445,
-                "Height": 23,
-                "ZIndex": 7,
-                "TabIndex": 0,
-                "Docking": {
-                  "Left": true,
-                  "Right": true,
-                  "Top": false,
-                  "Bottom": true,
-                  "Margin": "0,0,0,10",
-                  "HoldSize": true,
-                  "MinWidth": 0,
-                  "MinHeight": 0
-                }
-              },
-              "Style": {
-                "Type": 2,
-                "BoxStyle": "",
-                "Background": {
-                  "Color": {
-                    "R": 255,
-                    "G": 255,
-                    "B": 255,
-                    "A": 1
-                  }
-                },
-                "Border": {
-                  "Color": {
-                    "R": 85,
-                    "G": 142,
-                    "B": 213,
-                    "A": 1
-                  },
-                  "LineType": "none",
-                  "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0"
-                },
-                "Font": {
-                  "Color": {
-                    "R": 100,
-                    "G": 116,
-                    "B": 139,
-                    "A": 1
-                  },
-                  "Size": 13,
-                  "Family": "inherit",
-                  "Bold": false,
-                  "Italic": false,
-                  "UnderLine": false,
-                  "HorizontalAlignment": "center",
-                  "VerticalAlignment": "middle",
-                  "TempFontFamily": "맑은 고딕"
-                }
-              }
-            }
-          ],
-          "Type": "Group",
-          "Id": "Group572B030752D2EA7859E37DE6DBEF3AE5",
-          "Name": "GRP_TOTAL_1",
-          "Position": {
-            "Left": 20,
-            "Top": 75,
-            "Width": 445,
-            "Height": 110,
-            "ZIndex": 4,
-            "TabIndex": 0,
-            "Docking": {
-              "Left": true,
-              "Right": false,
-              "Top": false,
-              "Bottom": false,
-              "Margin": "20,0,20,0",
-              "HoldSize": false,
-              "MinWidth": 0,
-              "MinHeight": 0
-            }
-          },
-          "Style": {
-            "Type": 2,
-            "BoxStyle": "",
-            "Background": {
-              "Color": {
-                "R": 255,
-                "G": 255,
-                "B": 255,
-                "A": 1
-              }
-            },
-            "Border": {
-              "Color": {
-                "R": 226,
-                "G": 232,
-                "B": 240,
-                "A": 0.3
-              },
-              "LineType": "solid",
-              "Thickness": "0,0,0,1",
-              "CornerRadius": "10,10,10,10"
-            },
-            "Font": {
-              "Color": {
-                "R": 48,
-                "G": 48,
-                "B": 49,
-                "A": 1
-              },
-              "Size": 12,
-              "Family": "inherit",
-              "Bold": false,
-              "Italic": false,
-              "UnderLine": false,
-              "HorizontalAlignment": "left",
-              "VerticalAlignment": "top",
-              "TempFontFamily": "맑은 고딕"
-            }
-          }
-        },
-        {
-          "ChildElements": [
-            {
-              "LanguageCode": "",
-              "Text": "재고 금액",
-              "Cursor": "default",
-              "Formula": "",
-              "UseTextOverflow": false,
-              "UseAutoLineBreak": false,
-              "MxBinding": "",
-              "MxBindingUseStyle": true,
-              "Margin": {
-                "Left": 3,
-                "Top": 0,
-                "Right": 3,
-                "Bottom": 0,
-                "Text": "3,0,3,0"
-              },
-              "Type": "Label",
-              "Id": "Label67441F015869CEFD0FAEC6F186643968",
-              "Name": "LBL_TOTAL_7",
-              "InGroup": "GRP_TOTAL_4",
-              "Position": {
-                "Left": 20,
-                "Top": 10,
-                "Width": 100,
-                "Height": 23,
-                "ZIndex": 9,
-                "TabIndex": 0,
-                "Docking": {
-                  "Left": true,
-                  "Right": false,
-                  "Top": true,
-                  "Bottom": false,
-                  "Margin": "20,10,0,0",
-                  "HoldSize": true,
-                  "MinWidth": 0,
-                  "MinHeight": 0
-                }
-              },
-              "Style": {
-                "Type": 2,
-                "BoxStyle": "",
-                "Background": {
-                  "Color": {
-                    "R": 255,
-                    "G": 255,
-                    "B": 255,
-                    "A": 1
-                  }
-                },
-                "Border": {
-                  "Color": {
-                    "R": 85,
-                    "G": 142,
-                    "B": 213,
-                    "A": 1
-                  },
-                  "LineType": "none",
-                  "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0"
-                },
-                "Font": {
-                  "Color": {
-                    "R": 100,
-                    "G": 116,
-                    "B": 139,
-                    "A": 1
-                  },
-                  "Size": 13,
-                  "Family": "inherit",
-                  "Bold": true,
-                  "Italic": false,
-                  "UnderLine": false,
-                  "HorizontalAlignment": "left",
-                  "VerticalAlignment": "middle",
-                  "TempFontFamily": "맑은 고딕"
-                }
-              }
-            },
-            {
-              "LanguageCode": "",
-              "Text": "₩2,303,030,000",
-              "Cursor": "default",
-              "Formula": "",
-              "UseTextOverflow": false,
-              "UseAutoLineBreak": false,
-              "BindingInfo": {
-                "BindingGId": "DataGrid023E121C6C176D854DC2226C9CA68616",
-                "BindingGName": "GRD_TOTAL",
-                "BindingGColumn": "TOTAL_STOCK_VALUE",
-                "BindingGColumnId": "GRD_TOTAL.TOTAL_STOCK_VALUE",
-                "BindingGColumnCaption": "TOTAL_STOCK_VALUE"
-              },
-              "MxBinding": "",
-              "MxBindingUseStyle": true,
-              "Margin": {
-                "Left": 3,
-                "Top": 0,
-                "Right": 3,
-                "Bottom": 0,
-                "Text": "3,0,3,0"
-              },
-              "Type": "Label",
-              "Id": "LabelD1BB638E50D00C856BC448083930800E",
-              "Name": "LBL_TOTAL_VAL_21",
-              "InGroup": "GRP_TOTAL_4",
-              "Position": {
-                "Left": 0,
-                "Top": 34,
-                "Width": 156,
-                "Height": 45,
-                "ZIndex": 9,
-                "TabIndex": 0,
-                "Docking": {
-                  "Left": true,
-                  "Right": true,
-                  "Top": false,
-                  "Bottom": false,
-                  "Margin": "0,0,0,0",
-                  "HoldSize": false,
-                  "MinWidth": 0,
-                  "MinHeight": 0
-                }
-              },
-              "Style": {
-                "Type": 2,
-                "BoxStyle": "",
-                "Background": {
-                  "Color": {
-                    "R": 255,
-                    "G": 255,
-                    "B": 255,
-                    "A": 1
-                  }
-                },
-                "Border": {
-                  "Color": {
-                    "R": 217,
-                    "G": 217,
-                    "B": 217,
-                    "A": 1
-                  },
-                  "LineType": "none",
-                  "Thickness": "0,0,0,1",
-                  "CornerRadius": "0,0,0,0"
-                },
-                "Font": {
-                  "Color": {
-                    "R": 30,
-                    "G": 41,
-                    "B": 59,
-                    "A": 1
-                  },
-                  "Size": 23,
-                  "Family": "inherit",
-                  "Bold": true,
-                  "Italic": false,
-                  "UnderLine": false,
-                  "HorizontalAlignment": "center",
-                  "VerticalAlignment": "middle",
-                  "TempFontFamily": "맑은 고딕"
-                }
-              }
-            },
-            {
-              "LanguageCode": "",
-              "Text": "총 재고 가치",
-              "Cursor": "default",
-              "Formula": "",
-              "UseTextOverflow": false,
-              "UseAutoLineBreak": false,
-              "MxBinding": "",
-              "MxBindingUseStyle": true,
-              "Margin": {
-                "Left": 3,
-                "Top": 0,
-                "Right": 3,
-                "Bottom": 0,
-                "Text": "3,0,3,0"
-              },
-              "Type": "Label",
-              "Id": "LabelDA2FF8D024C3778DF12B53A795060573",
-              "Name": "LBL_TOTAL_41",
-              "InGroup": "GRP_TOTAL_4",
-              "Position": {
-                "Left": 0,
-                "Top": 76,
-                "Width": 156,
-                "Height": 23,
-                "ZIndex": 9,
-                "TabIndex": 0,
-                "Docking": {
-                  "Left": true,
-                  "Right": true,
-                  "Top": false,
-                  "Bottom": false,
-                  "Margin": "0,0,0,0",
-                  "HoldSize": true,
-                  "MinWidth": 0,
-                  "MinHeight": 0
-                }
-              },
-              "Style": {
-                "Type": 2,
-                "BoxStyle": "",
-                "Background": {
-                  "Color": {
-                    "R": 255,
-                    "G": 255,
-                    "B": 255,
-                    "A": 1
-                  }
-                },
-                "Border": {
-                  "Color": {
-                    "R": 85,
-                    "G": 142,
-                    "B": 213,
-                    "A": 1
-                  },
-                  "LineType": "none",
-                  "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0"
-                },
-                "Font": {
-                  "Color": {
-                    "R": 100,
-                    "G": 116,
-                    "B": 139,
-                    "A": 1
-                  },
-                  "Size": 13,
-                  "Family": "inherit",
-                  "Bold": false,
-                  "Italic": false,
-                  "UnderLine": false,
-                  "HorizontalAlignment": "center",
-                  "VerticalAlignment": "middle",
-                  "TempFontFamily": "맑은 고딕"
-                }
-              }
-            }
-          ],
-          "Type": "Group",
-          "Id": "GroupD14156770D28CF0E8EF5FEE2F22C18ED",
-          "Name": "GRP_TOTAL_4",
-          "Position": {
-            "Left": 1415,
-            "Top": 75,
-            "Width": 156,
-            "Height": 110,
-            "ZIndex": 5,
-            "TabIndex": 0,
-            "Docking": {
-              "Left": false,
-              "Right": true,
-              "Top": false,
-              "Bottom": false,
-              "Margin": "20,0,20,0",
-              "HoldSize": false,
-              "MinWidth": 0,
-              "MinHeight": 0
-            }
-          },
-          "Style": {
-            "Type": 2,
-            "BoxStyle": "",
-            "Background": {
-              "Color": {
-                "R": 255,
-                "G": 255,
-                "B": 255,
-                "A": 1
-              }
-            },
-            "Border": {
-              "Color": {
-                "R": 226,
-                "G": 232,
-                "B": 240,
-                "A": 0.3
-              },
-              "LineType": "solid",
-              "Thickness": "0,0,0,1",
-              "CornerRadius": "10,10,10,10"
-            },
-            "Font": {
-              "Color": {
-                "R": 48,
-                "G": 48,
-                "B": 49,
-                "A": 1
-              },
-              "Size": 12,
-              "Family": "inherit",
-              "Bold": false,
-              "Italic": false,
-              "UnderLine": false,
-              "HorizontalAlignment": "left",
-              "VerticalAlignment": "top",
-              "TempFontFamily": "맑은 고딕"
-            }
-          }
-        },
-        {
-          "ChildElements": [
-            {
-              "LanguageCode": "",
-              "Text": "총 재고 수량",
-              "Cursor": "default",
-              "Formula": "",
-              "UseTextOverflow": false,
-              "UseAutoLineBreak": false,
-              "MxBinding": "",
-              "MxBindingUseStyle": true,
-              "Margin": {
-                "Left": 3,
-                "Top": 0,
-                "Right": 3,
-                "Bottom": 0,
-                "Text": "3,0,3,0"
-              },
-              "Type": "Label",
-              "Id": "Label349EB8832CB9F4C58706B460B2F39E51",
-              "Name": "LBL_TOTAL_3",
-              "InGroup": "GRP_TOTAL_2",
-              "Position": {
-                "Left": 20,
-                "Top": 10,
-                "Width": 100,
-                "Height": 23,
-                "ZIndex": 7,
-                "TabIndex": 0,
-                "Docking": {
-                  "Left": true,
-                  "Right": false,
-                  "Top": true,
-                  "Bottom": false,
-                  "Margin": "20,10,0,0",
-                  "HoldSize": true,
-                  "MinWidth": 0,
-                  "MinHeight": 0
-                }
-              },
-              "Style": {
-                "Type": 2,
-                "BoxStyle": "",
-                "Background": {
-                  "Color": {
-                    "R": 255,
-                    "G": 255,
-                    "B": 255,
-                    "A": 1
-                  }
-                },
-                "Border": {
-                  "Color": {
-                    "R": 85,
-                    "G": 142,
-                    "B": 213,
-                    "A": 1
-                  },
-                  "LineType": "none",
-                  "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0"
-                },
-                "Font": {
-                  "Color": {
-                    "R": 100,
-                    "G": 116,
-                    "B": 139,
-                    "A": 1
-                  },
-                  "Size": 13,
-                  "Family": "inherit",
-                  "Bold": true,
-                  "Italic": false,
-                  "UnderLine": false,
-                  "HorizontalAlignment": "left",
-                  "VerticalAlignment": "middle",
-                  "TempFontFamily": "맑은 고딕"
-                }
-              }
-            },
-            {
-              "LanguageCode": "",
-              "Text": "12,260개",
-              "Cursor": "default",
-              "Formula": "",
-              "UseTextOverflow": false,
-              "UseAutoLineBreak": false,
-              "BindingInfo": {
-                "BindingGId": "DataGrid023E121C6C176D854DC2226C9CA68616",
-                "BindingGName": "GRD_TOTAL",
-                "BindingGColumn": "TOTAL_STOCK_QTY",
-                "BindingGColumnId": "GRD_TOTAL.TOTAL_STOCK_QTY",
-                "BindingGColumnCaption": "TOTAL_STOCK_QTY"
-              },
-              "MxBinding": "",
-              "MxBindingUseStyle": true,
-              "Margin": {
-                "Left": 3,
-                "Top": 0,
-                "Right": 3,
-                "Bottom": 0,
-                "Text": "3,0,3,0"
-              },
-              "Type": "Label",
-              "Id": "Label605700EAE3887162198CEB766CD42C2C",
-              "Name": "LBL_TOTAL_VAL_2",
-              "InGroup": "GRP_TOTAL_2",
-              "Position": {
-                "Left": 0,
-                "Top": 34,
-                "Width": 445,
-                "Height": 45,
-                "ZIndex": 8,
-                "TabIndex": 0,
-                "Docking": {
-                  "Left": true,
-                  "Right": true,
-                  "Top": false,
-                  "Bottom": false,
-                  "Margin": "0,0,0,0",
-                  "HoldSize": false,
-                  "MinWidth": 0,
-                  "MinHeight": 0
-                }
-              },
-              "Style": {
-                "Type": 2,
-                "BoxStyle": "",
-                "Background": {
-                  "Color": {
-                    "R": 255,
-                    "G": 255,
-                    "B": 255,
-                    "A": 1
-                  }
-                },
-                "Border": {
-                  "Color": {
-                    "R": 217,
-                    "G": 217,
-                    "B": 217,
-                    "A": 1
-                  },
-                  "LineType": "none",
-                  "Thickness": "0,0,0,1",
-                  "CornerRadius": "0,0,0,0"
-                },
-                "Font": {
-                  "Color": {
-                    "R": 30,
-                    "G": 41,
-                    "B": 59,
-                    "A": 1
-                  },
-                  "Size": 23,
-                  "Family": "inherit",
-                  "Bold": true,
-                  "Italic": false,
-                  "UnderLine": false,
-                  "HorizontalAlignment": "center",
-                  "VerticalAlignment": "middle",
-                  "TempFontFamily": "맑은 고딕"
-                }
-              }
-            },
-            {
-              "LanguageCode": "",
-              "Text": "총 수량",
-              "Cursor": "default",
-              "Formula": "",
-              "UseTextOverflow": false,
-              "UseAutoLineBreak": false,
-              "MxBinding": "",
-              "MxBindingUseStyle": true,
-              "Margin": {
-                "Left": 3,
-                "Top": 0,
-                "Right": 3,
-                "Bottom": 0,
-                "Text": "3,0,3,0"
-              },
-              "Type": "Label",
-              "Id": "Label867DA7F1E1CB28982E1696ECD79AD60E",
-              "Name": "LBL_TOTAL_4",
-              "InGroup": "GRP_TOTAL_2",
-              "Position": {
-                "Left": 0,
-                "Top": 76,
-                "Width": 445,
-                "Height": 23,
-                "ZIndex": 8,
-                "TabIndex": 0,
-                "Docking": {
-                  "Left": true,
-                  "Right": true,
-                  "Top": false,
-                  "Bottom": false,
-                  "Margin": "0,0,0,0",
-                  "HoldSize": true,
-                  "MinWidth": 0,
-                  "MinHeight": 0
-                }
-              },
-              "Style": {
-                "Type": 2,
-                "BoxStyle": "",
-                "Background": {
-                  "Color": {
-                    "R": 255,
-                    "G": 255,
-                    "B": 255,
-                    "A": 1
-                  }
-                },
-                "Border": {
-                  "Color": {
-                    "R": 85,
-                    "G": 142,
-                    "B": 213,
-                    "A": 1
-                  },
-                  "LineType": "none",
-                  "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0"
-                },
-                "Font": {
-                  "Color": {
-                    "R": 100,
-                    "G": 116,
-                    "B": 139,
-                    "A": 1
-                  },
-                  "Size": 13,
-                  "Family": "inherit",
-                  "Bold": false,
-                  "Italic": false,
-                  "UnderLine": false,
-                  "HorizontalAlignment": "center",
-                  "VerticalAlignment": "middle",
-                  "TempFontFamily": "맑은 고딕"
-                }
-              }
-            }
-          ],
-          "Type": "Group",
-          "Id": "GroupE45AD0F40EA88BBD62886FB14CDCE0B4",
-          "Name": "GRP_TOTAL_2",
-          "Position": {
-            "Left": 485,
-            "Top": 75,
-            "Width": 445,
-            "Height": 110,
-            "ZIndex": 6,
-            "TabIndex": 0,
-            "Docking": {
-              "Left": false,
-              "Right": false,
-              "Top": false,
-              "Bottom": false,
-              "Margin": "20,0,20,0",
-              "HoldSize": false,
-              "MinWidth": 0,
-              "MinHeight": 0
-            }
-          },
-          "Style": {
-            "Type": 2,
-            "BoxStyle": "",
-            "Background": {
-              "Color": {
-                "R": 255,
-                "G": 255,
-                "B": 255,
-                "A": 1
-              }
-            },
-            "Border": {
-              "Color": {
-                "R": 226,
-                "G": 232,
-                "B": 240,
-                "A": 0.3
-              },
-              "LineType": "solid",
-              "Thickness": "0,0,0,1",
-              "CornerRadius": "10,10,10,10"
-            },
-            "Font": {
-              "Color": {
-                "R": 48,
-                "G": 48,
-                "B": 49,
-                "A": 1
-              },
-              "Size": 12,
-              "Family": "inherit",
-              "Bold": false,
-              "Italic": false,
-              "UnderLine": false,
-              "HorizontalAlignment": "left",
-              "VerticalAlignment": "top",
-              "TempFontFamily": "맑은 고딕"
-            }
-          }
-        },
-        {
-          "ChildElements": [
-            {
-              "LanguageCode": "",
-              "Text": "재고 부족",
-              "Cursor": "default",
-              "Formula": "",
-              "UseTextOverflow": false,
-              "UseAutoLineBreak": false,
-              "MxBinding": "",
-              "MxBindingUseStyle": true,
-              "Margin": {
-                "Left": 3,
-                "Top": 0,
-                "Right": 3,
-                "Bottom": 0,
-                "Text": "3,0,3,0"
-              },
-              "Type": "Label",
-              "Id": "Label3215087D49C532DE5671E65902506645",
-              "Name": "LBL_TOTAL_5",
-              "InGroup": "GRP_TOTAL_3",
-              "Position": {
-                "Left": 20,
-                "Top": 10,
-                "Width": 100,
-                "Height": 23,
-                "ZIndex": 8,
-                "TabIndex": 0,
-                "Docking": {
-                  "Left": true,
-                  "Right": false,
-                  "Top": true,
-                  "Bottom": false,
-                  "Margin": "20,10,0,0",
-                  "HoldSize": true,
-                  "MinWidth": 0,
-                  "MinHeight": 0
-                }
-              },
-              "Style": {
-                "Type": 2,
-                "BoxStyle": "",
-                "Background": {
-                  "Color": {
-                    "R": 255,
-                    "G": 255,
-                    "B": 255,
-                    "A": 1
-                  }
-                },
-                "Border": {
-                  "Color": {
-                    "R": 85,
-                    "G": 142,
-                    "B": 213,
-                    "A": 1
-                  },
-                  "LineType": "none",
-                  "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0"
-                },
-                "Font": {
-                  "Color": {
-                    "R": 100,
-                    "G": 116,
-                    "B": 139,
-                    "A": 1
-                  },
-                  "Size": 13,
-                  "Family": "inherit",
-                  "Bold": true,
-                  "Italic": false,
-                  "UnderLine": false,
-                  "HorizontalAlignment": "left",
-                  "VerticalAlignment": "middle",
-                  "TempFontFamily": "맑은 고딕"
-                }
-              }
-            },
-            {
-              "LanguageCode": "",
-              "Text": "0건",
-              "Cursor": "default",
-              "Formula": "",
-              "UseTextOverflow": false,
-              "UseAutoLineBreak": false,
-              "BindingInfo": {
-                "BindingGId": "DataGrid023E121C6C176D854DC2226C9CA68616",
-                "BindingGName": "GRD_TOTAL",
-                "BindingGColumn": "UNDER_SAFETY_STOCK_COUNT",
-                "BindingGColumnId": "GRD_TOTAL.UNDER_SAFETY_STOCK_COUNT",
-                "BindingGColumnCaption": "UNDER_SAFETY_STOCK_COUNT"
-              },
-              "MxBinding": "",
-              "MxBindingUseStyle": true,
-              "Margin": {
-                "Left": 3,
-                "Top": 0,
-                "Right": 3,
-                "Bottom": 0,
-                "Text": "3,0,3,0"
-              },
-              "Type": "Label",
-              "Id": "Label544C21940F2C629172D40176EC8261D2",
-              "Name": "LBL_TOTAL_VAL_3",
-              "InGroup": "GRP_TOTAL_3",
-              "Position": {
-                "Left": 0,
-                "Top": 34,
-                "Width": 445,
-                "Height": 45,
-                "ZIndex": 9,
-                "TabIndex": 0,
-                "Docking": {
-                  "Left": true,
-                  "Right": true,
-                  "Top": false,
-                  "Bottom": false,
-                  "Margin": "0,0,0,0",
-                  "HoldSize": false,
-                  "MinWidth": 0,
-                  "MinHeight": 0
-                }
-              },
-              "Style": {
-                "Type": 2,
-                "BoxStyle": "",
-                "Background": {
-                  "Color": {
-                    "R": 255,
-                    "G": 255,
-                    "B": 255,
-                    "A": 1
-                  }
-                },
-                "Border": {
-                  "Color": {
-                    "R": 217,
-                    "G": 217,
-                    "B": 217,
-                    "A": 1
-                  },
-                  "LineType": "none",
-                  "Thickness": "0,0,0,1",
-                  "CornerRadius": "0,0,0,0"
-                },
-                "Font": {
-                  "Color": {
-                    "R": 239,
-                    "G": 68,
-                    "B": 68,
-                    "A": 1
-                  },
-                  "Size": 23,
-                  "Family": "inherit",
-                  "Bold": true,
-                  "Italic": false,
-                  "UnderLine": false,
-                  "HorizontalAlignment": "center",
-                  "VerticalAlignment": "middle",
-                  "TempFontFamily": "맑은 고딕"
-                }
-              }
-            },
-            {
-              "LanguageCode": "",
-              "Text": "안전재고 미달",
-              "Cursor": "default",
-              "Formula": "",
-              "UseTextOverflow": false,
-              "UseAutoLineBreak": false,
-              "MxBinding": "",
-              "MxBindingUseStyle": true,
-              "Margin": {
-                "Left": 3,
-                "Top": 0,
-                "Right": 3,
-                "Bottom": 0,
-                "Text": "3,0,3,0"
-              },
-              "Type": "Label",
-              "Id": "Label3AD19C4B11EEC32AA6D8478DED2E52C7",
-              "Name": "LBL_TOTAL_6",
-              "InGroup": "GRP_TOTAL_3",
-              "Position": {
-                "Left": 0,
-                "Top": 76,
-                "Width": 445,
-                "Height": 23,
-                "ZIndex": 9,
-                "TabIndex": 0,
-                "Docking": {
-                  "Left": true,
-                  "Right": true,
-                  "Top": false,
-                  "Bottom": false,
-                  "Margin": "0,0,0,0",
-                  "HoldSize": true,
-                  "MinWidth": 0,
-                  "MinHeight": 0
-                }
-              },
-              "Style": {
-                "Type": 2,
-                "BoxStyle": "",
-                "Background": {
-                  "Color": {
-                    "R": 255,
-                    "G": 255,
-                    "B": 255,
-                    "A": 1
-                  }
-                },
-                "Border": {
-                  "Color": {
-                    "R": 85,
-                    "G": 142,
-                    "B": 213,
-                    "A": 1
-                  },
-                  "LineType": "none",
-                  "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0"
-                },
-                "Font": {
-                  "Color": {
-                    "R": 100,
-                    "G": 116,
-                    "B": 139,
-                    "A": 1
-                  },
-                  "Size": 13,
-                  "Family": "inherit",
-                  "Bold": false,
-                  "Italic": false,
-                  "UnderLine": false,
-                  "HorizontalAlignment": "center",
-                  "VerticalAlignment": "middle",
-                  "TempFontFamily": "맑은 고딕"
-                }
-              }
-            }
-          ],
-          "Type": "Group",
-          "Id": "Group3B1A3CB81973E7F9F6B6F33C695DAC59",
-          "Name": "GRP_TOTAL_3",
-          "Position": {
-            "Left": 950,
-            "Top": 75,
-            "Width": 445,
-            "Height": 110,
-            "ZIndex": 7,
-            "TabIndex": 0,
-            "Docking": {
-              "Left": false,
-              "Right": false,
-              "Top": false,
-              "Bottom": false,
-              "Margin": "20,0,20,0",
-              "HoldSize": false,
-              "MinWidth": 0,
-              "MinHeight": 0
-            }
-          },
-          "Style": {
-            "Type": 2,
-            "BoxStyle": "",
-            "Background": {
-              "Color": {
-                "R": 255,
-                "G": 255,
-                "B": 255,
-                "A": 1
-              }
-            },
-            "Border": {
-              "Color": {
-                "R": 226,
-                "G": 232,
-                "B": 240,
-                "A": 0.3
-              },
-              "LineType": "solid",
-              "Thickness": "0,0,0,1",
-              "CornerRadius": "10,10,10,10"
-            },
-            "Font": {
-              "Color": {
-                "R": 48,
-                "G": 48,
-                "B": 49,
-                "A": 1
-              },
-              "Size": 12,
-              "Family": "inherit",
-              "Bold": false,
-              "Italic": false,
-              "UnderLine": false,
-              "HorizontalAlignment": "left",
-              "VerticalAlignment": "top",
-              "TempFontFamily": "맑은 고딕"
-            }
-          }
         }
       ]
     },
     {
       "Id": "FormCDE9DF4203682EB2F906B4528AB0F64E",
-      "Name": "재고 등록",
+      "Name": "직원 등록",
       "Activated": false,
       "Visible": true,
       "LanguageCode": "",
@@ -4038,7 +2762,7 @@
       "Elements": [
         {
           "LanguageCode": "",
-          "Text": "창고 *",
+          "Text": "부서 *",
           "Cursor": "default",
           "Formula": "",
           "UseTextOverflow": false,
@@ -4115,7 +2839,77 @@
         },
         {
           "LanguageCode": "",
-          "Text": "제품 *",
+          "Text": "test11",
+          "Value": "test11",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "InputType": 0,
+          "Formula": "",
+          "MxBinding": "",
+          "Type": "TextBox",
+          "Id": "TextBox878B7518CD641459CBD3162C15BD618C",
+          "Name": "VS_INP_NAME",
+          "Position": {
+            "Left": 20,
+            "Top": 34,
+            "Width": 200,
+            "Height": 35,
+            "ZIndex": 8,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "5,5,5,5"
+            },
+            "Font": {
+              "Color": {
+                "R": 30,
+                "G": 41,
+                "B": 59,
+                "A": 1
+              },
+              "Size": 13,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "이름 *",
           "Cursor": "default",
           "Formula": "",
           "UseTextOverflow": false,
@@ -4191,8 +2985,166 @@
           }
         },
         {
+          "DataSource": "DS9F936284C99F45FDA45E939494ABE790",
+          "Value": "DEPT001",
+          "Text": "",
+          "InitType": "1",
+          "RefreshType": 1,
+          "IsReadOnly": false,
+          "SortType": 0,
+          "AutoRefresh": true,
+          "AfterRefresh": "",
+          "UseAllItems": false,
+          "UseAllItemsText": "전체",
+          "DisplayType": 1,
+          "DataSourceInfo": {
+            "LabelField": "DEPT_NAME",
+            "ValueField": "DEPT_CODE"
+          },
+          "InitValue": "",
+          "Type": "ComboBox",
+          "Id": "ComboBox974223E5E3F8F649965F6D538A2B02D5",
+          "Name": "VS_INP_DEPT",
+          "Position": {
+            "Left": 240,
+            "Top": 34,
+            "Width": 200,
+            "Height": 35,
+            "ZIndex": 5,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "5,5,5,5"
+            },
+            "Font": {
+              "Color": {
+                "R": 30,
+                "G": 41,
+                "B": 59,
+                "A": 1
+              },
+              "Size": 13,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "DataSource": "DS7DB266D7666C4618A3016DBBA4EF73C1",
+          "Value": "DEPUTY",
+          "Text": "",
+          "InitType": "1",
+          "RefreshType": 1,
+          "IsReadOnly": false,
+          "SortType": 0,
+          "AutoRefresh": true,
+          "AfterRefresh": "",
+          "UseAllItems": false,
+          "UseAllItemsText": "전체",
+          "DisplayType": 1,
+          "DataSourceInfo": {
+            "LabelField": "POSITION_NAME",
+            "ValueField": "POSITION_CODE"
+          },
+          "InitValue": "",
+          "Type": "ComboBox",
+          "Id": "ComboBoxC931D3958D3D859914BC47E83B3C54DC",
+          "Name": "VS_INP_POSITION",
+          "Position": {
+            "Left": 20,
+            "Top": 113,
+            "Width": 200,
+            "Height": 35,
+            "ZIndex": 6,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "5,5,5,5"
+            },
+            "Font": {
+              "Color": {
+                "R": 30,
+                "G": 41,
+                "B": 59,
+                "A": 1
+              },
+              "Size": 13,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
           "LanguageCode": "",
-          "Text": "현재 재고 *",
+          "Text": "직급 *",
           "Cursor": "default",
           "Formula": "",
           "UseTextOverflow": false,
@@ -4268,8 +3220,87 @@
           }
         },
         {
+          "DataSource": "DS51DBE6EE50354391B2E39D80DDEC595E",
+          "Value": "ACTIVE",
+          "Text": "",
+          "InitType": "1",
+          "RefreshType": 1,
+          "IsReadOnly": false,
+          "SortType": 0,
+          "AutoRefresh": true,
+          "AfterRefresh": "",
+          "UseAllItems": false,
+          "UseAllItemsText": "전체",
+          "DisplayType": 1,
+          "DataSourceInfo": {
+            "LabelField": "STATUS_NAME",
+            "ValueField": "STATUS_CODE"
+          },
+          "InitValue": "",
+          "Type": "ComboBox",
+          "Id": "ComboBoxA444384D817833F47A0ADF5F8CCCE78A",
+          "Name": "VS_INP_STATUS",
+          "Position": {
+            "Left": 240,
+            "Top": 113,
+            "Width": 200,
+            "Height": 35,
+            "ZIndex": 7,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "5,5,5,5"
+            },
+            "Font": {
+              "Color": {
+                "R": 30,
+                "G": 41,
+                "B": 59,
+                "A": 1
+              },
+              "Size": 13,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
           "LanguageCode": "",
-          "Text": "안전 재고",
+          "Text": "상태 *",
           "Cursor": "default",
           "Formula": "",
           "UseTextOverflow": false,
@@ -4346,7 +3377,77 @@
         },
         {
           "LanguageCode": "",
-          "Text": "최종 입고일",
+          "Text": "",
+          "Value": "",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "InputType": 0,
+          "Formula": "",
+          "MxBinding": "",
+          "Type": "TextBox",
+          "Id": "TextBoxB279D6DA646ABDACC0715C14ED5E550A",
+          "Name": "VS_INP_EMAIL",
+          "Position": {
+            "Left": 20,
+            "Top": 192,
+            "Width": 200,
+            "Height": 35,
+            "ZIndex": 10,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "5,5,5,5"
+            },
+            "Font": {
+              "Color": {
+                "R": 30,
+                "G": 41,
+                "B": 59,
+                "A": 1
+              },
+              "Size": 13,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "이메일",
           "Cursor": "default",
           "Formula": "",
           "UseTextOverflow": false,
@@ -4423,7 +3524,77 @@
         },
         {
           "LanguageCode": "",
-          "Text": "최종 출고일",
+          "Text": "",
+          "Value": "",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "InputType": 0,
+          "Formula": "",
+          "MxBinding": "",
+          "Type": "TextBox",
+          "Id": "TextBoxEC46B556D3196861365C242301458485",
+          "Name": "VS_INP_PHONE",
+          "Position": {
+            "Left": 240,
+            "Top": 192,
+            "Width": 200,
+            "Height": 35,
+            "ZIndex": 11,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "5,5,5,5"
+            },
+            "Font": {
+              "Color": {
+                "R": 30,
+                "G": 41,
+                "B": 59,
+                "A": 1
+              },
+              "Size": 13,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "연락처",
           "Cursor": "default",
           "Formula": "",
           "UseTextOverflow": false,
@@ -4443,6 +3614,83 @@
           "Position": {
             "Left": 240,
             "Top": 168,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 10,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 100,
+                "G": 116,
+                "B": 139,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "입사일 *",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "Label237FE7413D48D1B2E9742E4F66DC12DA",
+          "Name": "LBL_INPUT_7",
+          "Position": {
+            "Left": 20,
+            "Top": 247,
             "Width": 100,
             "Height": 23,
             "ZIndex": 10,
@@ -4530,7 +3778,7 @@
               "Name": "BTN_SAV",
               "InGroup": "GRP_FOOTER",
               "Position": {
-                "Left": 376,
+                "Left": 1509,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -4617,7 +3865,7 @@
               "Name": "BTN_CNC",
               "InGroup": "GRP_FOOTER",
               "Position": {
-                "Left": 306,
+                "Left": 1439,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -4680,8 +3928,8 @@
           "Name": "GRP_FOOTER",
           "Position": {
             "Left": 0,
-            "Top": 247,
-            "Width": 456,
+            "Top": 821,
+            "Width": 1589,
             "Height": 55,
             "ZIndex": 1,
             "TabIndex": 0,
@@ -4743,7 +3991,7 @@
           "IsReadOnly": false,
           "Text": "2026-01-22",
           "MinDate": "DATE(F,F,F)",
-          "MaxDate": "DATE(L,L,L)",
+          "MaxDate": "DATE(0,0,0)",
           "MxBinding": "",
           "UseWeekNumberDefined": false,
           "HighlightWeekendDefined": false,
@@ -4751,86 +3999,11 @@
           "ViewFormat": "yyyy-MM-dd",
           "Date": 1769007600000,
           "Type": "Calendar",
-          "Id": "Calendar86D8823C9D6BE20922EB5F5FE5207404",
-          "Name": "VS_INP_RECEIVING",
+          "Id": "Calendar769173B8029A9F3616721084CC8E4C62",
+          "Name": "VS_INP_HIRE",
           "Position": {
             "Left": 20,
-            "Top": 192,
-            "Width": 200,
-            "Height": 35,
-            "ZIndex": 10,
-            "TabIndex": 0,
-            "Docking": {
-              "Left": false,
-              "Right": false,
-              "Top": false,
-              "Bottom": false,
-              "Margin": "0,0,0,0",
-              "HoldSize": true,
-              "MinWidth": 0,
-              "MinHeight": 0
-            }
-          },
-          "Style": {
-            "Type": 2,
-            "BoxStyle": "",
-            "Background": {
-              "Color": {
-                "R": 255,
-                "G": 255,
-                "B": 255,
-                "A": 1
-              }
-            },
-            "Border": {
-              "Color": {
-                "R": 226,
-                "G": 232,
-                "B": 240,
-                "A": 1
-              },
-              "LineType": "solid",
-              "Thickness": "1,1,1,1",
-              "CornerRadius": "5,5,5,5"
-            },
-            "Font": {
-              "Color": {
-                "R": 30,
-                "G": 41,
-                "B": 59,
-                "A": 1
-              },
-              "Size": 13,
-              "Family": "inherit",
-              "Bold": false,
-              "Italic": false,
-              "UnderLine": false,
-              "HorizontalAlignment": "center",
-              "VerticalAlignment": "middle",
-              "TempFontFamily": "맑은 고딕"
-            }
-          }
-        },
-        {
-          "InitDate": "",
-          "DataFormat": "yyyyMMdd",
-          "FormatLanguageCode": "",
-          "IsReadOnly": false,
-          "Text": "",
-          "MinDate": "DATE(F,F,F)",
-          "MaxDate": "DATE(L,L,L)",
-          "MxBinding": "",
-          "UseWeekNumberDefined": false,
-          "HighlightWeekendDefined": false,
-          "DisplayStartDayOfWeekDefined": false,
-          "ViewFormat": "yyyy-MM-dd",
-          "Date": 1769411737098,
-          "Type": "Calendar",
-          "Id": "Calendar6B63FF17322D38E7564B811DB782CF70",
-          "Name": "VS_INP_SHIPPING",
-          "Position": {
-            "Left": 240,
-            "Top": 192,
+            "Top": 271,
             "Width": 200,
             "Height": 35,
             "ZIndex": 11,
@@ -4885,470 +4058,6 @@
               "TempFontFamily": "맑은 고딕"
             }
           }
-        },
-        {
-          "Format": "#,##0",
-          "Formula": "",
-          "Value": 60,
-          "Text": "60",
-          "IsReadOnly": false,
-          "Maximum": "",
-          "Minimum": "",
-          "MxBinding": "",
-          "NotNull": "true",
-          "Type": "NumberBox",
-          "Id": "NumberBoxC5E53AAADADA4744954BF17A594C0761",
-          "Name": "VN_INP_CURR",
-          "Position": {
-            "Left": 20,
-            "Top": 113,
-            "Width": 200,
-            "Height": 35,
-            "ZIndex": 6,
-            "TabIndex": 0,
-            "Docking": {
-              "Left": false,
-              "Right": false,
-              "Top": false,
-              "Bottom": false,
-              "Margin": "0,0,0,0",
-              "HoldSize": true,
-              "MinWidth": 0,
-              "MinHeight": 0
-            }
-          },
-          "Style": {
-            "Type": 2,
-            "BoxStyle": "",
-            "Background": {
-              "Color": {
-                "R": 255,
-                "G": 255,
-                "B": 255,
-                "A": 1
-              }
-            },
-            "Border": {
-              "Color": {
-                "R": 226,
-                "G": 232,
-                "B": 240,
-                "A": 1
-              },
-              "LineType": "solid",
-              "Thickness": "1,1,1,1",
-              "CornerRadius": "5,5,5,5"
-            },
-            "Font": {
-              "Color": {
-                "R": 30,
-                "G": 41,
-                "B": 59,
-                "A": 1
-              },
-              "Size": 13,
-              "Family": "inherit",
-              "Bold": false,
-              "Italic": false,
-              "UnderLine": false,
-              "HorizontalAlignment": "right",
-              "VerticalAlignment": "middle",
-              "TempFontFamily": "맑은 고딕"
-            }
-          }
-        },
-        {
-          "Format": "#,##0",
-          "Formula": "",
-          "Value": 25,
-          "Text": "25",
-          "IsReadOnly": false,
-          "Maximum": "",
-          "Minimum": "",
-          "MxBinding": "",
-          "NotNull": "true",
-          "Type": "NumberBox",
-          "Id": "NumberBox30EC94B58423D81F928CF15613A81702",
-          "Name": "VN_INP_SAFE",
-          "Position": {
-            "Left": 240,
-            "Top": 113,
-            "Width": 200,
-            "Height": 35,
-            "ZIndex": 7,
-            "TabIndex": 0,
-            "Docking": {
-              "Left": false,
-              "Right": false,
-              "Top": false,
-              "Bottom": false,
-              "Margin": "0,0,0,0",
-              "HoldSize": true,
-              "MinWidth": 0,
-              "MinHeight": 0
-            }
-          },
-          "Style": {
-            "Type": 2,
-            "BoxStyle": "",
-            "Background": {
-              "Color": {
-                "R": 255,
-                "G": 255,
-                "B": 255,
-                "A": 1
-              }
-            },
-            "Border": {
-              "Color": {
-                "R": 226,
-                "G": 232,
-                "B": 240,
-                "A": 1
-              },
-              "LineType": "solid",
-              "Thickness": "1,1,1,1",
-              "CornerRadius": "5,5,5,5"
-            },
-            "Font": {
-              "Color": {
-                "R": 30,
-                "G": 41,
-                "B": 59,
-                "A": 1
-              },
-              "Size": 13,
-              "Family": "inherit",
-              "Bold": false,
-              "Italic": false,
-              "UnderLine": false,
-              "HorizontalAlignment": "right",
-              "VerticalAlignment": "middle",
-              "TempFontFamily": "맑은 고딕"
-            }
-          }
-        },
-        {
-          "DataSource": "DS7DB266D7666C4618A3016DBBA4EF73C1",
-          "Value": "A-01-02",
-          "Text": "",
-          "InitType": 0,
-          "RefreshType": 1,
-          "IsReadOnly": false,
-          "SortType": 0,
-          "AutoRefresh": true,
-          "AfterRefresh": "",
-          "UseAllItems": false,
-          "UseAllItemsText": "전체",
-          "DisplayType": 1,
-          "DataSourceInfo": {
-            "LabelField": "STORAGE_LOC",
-            "ValueField": "STORAGE_LOC"
-          },
-          "InitValue": "A-01-02",
-          "Type": "ComboBox",
-          "Id": "ComboBoxFABEE8F9448E30A0C4B0089A4E18DBAB",
-          "Name": "VS_INP_STORAGE",
-          "Position": {
-            "Left": 240,
-            "Top": 34,
-            "Width": 200,
-            "Height": 35,
-            "ZIndex": 5,
-            "TabIndex": 0,
-            "Docking": {
-              "Left": false,
-              "Right": false,
-              "Top": false,
-              "Bottom": false,
-              "Margin": "0,0,0,0",
-              "HoldSize": true,
-              "MinWidth": 0,
-              "MinHeight": 0
-            }
-          },
-          "Style": {
-            "Type": 2,
-            "BoxStyle": "",
-            "Background": {
-              "Color": {
-                "R": 255,
-                "G": 255,
-                "B": 255,
-                "A": 1
-              }
-            },
-            "Border": {
-              "Color": {
-                "R": 226,
-                "G": 232,
-                "B": 240,
-                "A": 1
-              },
-              "LineType": "solid",
-              "Thickness": "1,1,1,1",
-              "CornerRadius": "5,5,5,5"
-            },
-            "Font": {
-              "Color": {
-                "R": 30,
-                "G": 41,
-                "B": 59,
-                "A": 1
-              },
-              "Size": 13,
-              "Family": "inherit",
-              "Bold": false,
-              "Italic": false,
-              "UnderLine": false,
-              "HorizontalAlignment": "left",
-              "VerticalAlignment": "middle",
-              "TempFontFamily": "맑은 고딕"
-            }
-          }
-        },
-        {
-          "DataSource": "DSAF71F596E4314C6B94DD2B794868DB76",
-          "Value": "PROD002",
-          "Text": "",
-          "InitType": 0,
-          "RefreshType": 1,
-          "IsReadOnly": false,
-          "SortType": 0,
-          "AutoRefresh": true,
-          "AfterRefresh": "",
-          "UseAllItems": false,
-          "UseAllItemsText": "전체",
-          "DisplayType": 1,
-          "DataSourceInfo": {
-            "LabelField": "PROD_NAME",
-            "ValueField": "PROD_CODE"
-          },
-          "InitValue": "PROD002",
-          "Type": "ComboBox",
-          "Id": "ComboBoxDFB42E470ED952D426A35E724C92851B",
-          "Name": "VS_INP_PRODUCT",
-          "Position": {
-            "Left": 20,
-            "Top": 34,
-            "Width": 200,
-            "Height": 35,
-            "ZIndex": 8,
-            "TabIndex": 0,
-            "Docking": {
-              "Left": false,
-              "Right": false,
-              "Top": false,
-              "Bottom": false,
-              "Margin": "0,0,0,0",
-              "HoldSize": true,
-              "MinWidth": 0,
-              "MinHeight": 0
-            }
-          },
-          "Style": {
-            "Type": 2,
-            "BoxStyle": "",
-            "Background": {
-              "Color": {
-                "R": 255,
-                "G": 255,
-                "B": 255,
-                "A": 1
-              }
-            },
-            "Border": {
-              "Color": {
-                "R": 226,
-                "G": 232,
-                "B": 240,
-                "A": 1
-              },
-              "LineType": "solid",
-              "Thickness": "1,1,1,1",
-              "CornerRadius": "5,5,5,5"
-            },
-            "Font": {
-              "Color": {
-                "R": 30,
-                "G": 41,
-                "B": 59,
-                "A": 1
-              },
-              "Size": 13,
-              "Family": "inherit",
-              "Bold": false,
-              "Italic": false,
-              "UnderLine": false,
-              "HorizontalAlignment": "left",
-              "VerticalAlignment": "middle",
-              "TempFontFamily": "맑은 고딕"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "Id": "FormDF198444C0C89E2B349096A053F8EB5A",
-      "Name": "Form1",
-      "Activated": false,
-      "Visible": true,
-      "LanguageCode": "",
-      "Style": {
-        "Type": 0,
-        "BoxStyle": "",
-        "Border": {
-          "ColorR": 204,
-          "ColorG": 204,
-          "ColorB": 204,
-          "ColorA": 1,
-          "CornerRadius": "0,0,0,0",
-          "LineType": "solid",
-          "Thickness": "1,1,1,1"
-        },
-        "Background": {
-          "ColorR": 255,
-          "ColorG": 255,
-          "ColorB": 255,
-          "ColorA": 1
-        }
-      },
-      "Elements": [
-        {
-          "Type": "DataGrid",
-          "Id": "DataGrid023E121C6C176D854DC2226C9CA68616",
-          "Name": "GRD_TOTAL",
-          "Visible": true,
-          "Position": {
-            "Left": 10,
-            "Top": 10,
-            "Width": 458,
-            "Height": 137,
-            "ZIndex": 0,
-            "TabIndex": 0,
-            "Docking": {
-              "Margin": "0,0,0,0",
-              "MinHeight": 0,
-              "MinWidth": 0
-            }
-          },
-          "Style": {
-            "Type": 2,
-            "Border": {
-              "Thickness": "1,1,1,1"
-            },
-            "VerticalBorder": {
-              "Thickness": 1
-            },
-            "HorizontalBorder": {
-              "Thickness": 1
-            },
-            "Background": {
-              "Color": {
-                "R": 255,
-                "G": 255,
-                "B": 255,
-                "A": 1
-              }
-            },
-            "Font": {
-              "Bold": false,
-              "Color": {
-                "R": 0,
-                "G": 0,
-                "B": 0,
-                "A": 1
-              },
-              "Family": "맑은 고딕",
-              "HorizontalAlignment": "left",
-              "Italic": false,
-              "Size": 12,
-              "UnderLine": false,
-              "VerticalAlignment": "top"
-            }
-          },
-          "CellMargin": "5,5,5,5",
-          "DataSource": "DSF7CF15B7125743AD9E5E888034F68886",
-          "AutoRefresh": true,
-          "SelectRule": 2,
-          "NaNCellText": "-",
-          "ColumnHeaderHeight": 28,
-          "RowHeight": 24,
-          "ExportCount": 1000000,
-          "FontFamily": "inherit",
-          "FontSize": 12,
-          "UsePPTExport": false,
-          "FrozenLineBrush": {
-            "Type": 0,
-            "Color": {
-              "R": 127,
-              "G": 127,
-              "B": 127,
-              "A": 1
-            }
-          },
-          "Columns": [
-            {
-              "Name": "TOTAL_ITEM_COUNT",
-              "Caption": "TOTAL_ITEM_COUNT",
-              "Width": 100,
-              "Validator": {
-                "ValidateType": 8,
-                "UseGuideMessage": true,
-                "GuideLanguageCode": "",
-                "UseErrorMessage": true,
-                "ErrorLanguageCode": ""
-              },
-              "KeyType": 2,
-              "HeaderPosition": "center",
-              "CalcSubTotalType": "None"
-            },
-            {
-              "Name": "TOTAL_STOCK_QTY",
-              "Caption": "TOTAL_STOCK_QTY",
-              "Width": 100,
-              "Validator": {
-                "ValidateType": 8,
-                "UseGuideMessage": true,
-                "GuideLanguageCode": "",
-                "UseErrorMessage": true,
-                "ErrorLanguageCode": ""
-              },
-              "KeyType": 2,
-              "HeaderPosition": "center",
-              "CalcSubTotalType": "None"
-            },
-            {
-              "Name": "UNDER_SAFETY_STOCK_COUNT",
-              "Caption": "UNDER_SAFETY_STOCK_COUNT",
-              "Width": 100,
-              "Validator": {
-                "ValidateType": 8,
-                "UseGuideMessage": true,
-                "GuideLanguageCode": "",
-                "UseErrorMessage": true,
-                "ErrorLanguageCode": ""
-              },
-              "KeyType": 2,
-              "HeaderPosition": "center",
-              "CalcSubTotalType": "None"
-            },
-            {
-              "Name": "TOTAL_STOCK_VALUE",
-              "Caption": "TOTAL_STOCK_VALUE",
-              "Width": 100,
-              "Validator": {
-                "ValidateType": 8,
-                "UseGuideMessage": true,
-                "GuideLanguageCode": "",
-                "UseErrorMessage": true,
-                "ErrorLanguageCode": ""
-              },
-              "KeyType": 2,
-              "HeaderPosition": "center",
-              "CalcSubTotalType": "None"
-            }
-          ]
         }
       ]
     }

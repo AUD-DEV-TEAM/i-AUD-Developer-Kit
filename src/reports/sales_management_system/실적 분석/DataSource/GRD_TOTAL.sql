@@ -1,10 +1,11 @@
 SELECT
     /* 영업팀 수 */
     (
-        SELECT COUNT(*) 
+        SELECT COUNT(*) || '명'
           FROM SM_EMPLOYEE E
          WHERE 1=1
 		   AND E.JOB_ROLE = 'SALES'
+		   AND E.EMP_STATUS = 'ACTIVE'
     ) AS SALES_CNT,
 
     /* 최고 실적 팀 */
