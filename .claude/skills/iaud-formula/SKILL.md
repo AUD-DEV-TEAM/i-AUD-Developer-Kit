@@ -415,6 +415,73 @@ DATE2(2025, 1, 15, "{0:yyyy-MM-dd}")    // "2025-01-15"
 
 ---
 
+## MTSD 문서에서의 수식 적용 위치
+
+MTSD(.mtsd) 파일에서 수식은 각 Element의 `Formula` 속성에 설정한다.
+
+### Formula 속성을 지원하는 Element 타입
+
+| Element 타입 | Formula 속성 | 필수/선택 | MTSD JSON 경로 |
+|-------------|-------------|----------|---------------|
+| **Label** | `Formula` | 필수 | `Forms[].Elements[].Formula` |
+| **NumberBox** | `Formula` | 필수 | `Forms[].Elements[].Formula` |
+| **TextBox** | `Formula` | 선택 | `Forms[].Elements[].Formula` |
+
+> **참고:** CheckBox, ComboBox, Button, DataGrid(GridColumn) 등에는 `Formula` 속성이 없다.
+
+### MTSD 적용 예시
+
+#### 라벨에 수식 설정
+`:VS_COMPANY` 값이 변경될 때 `lblText`에 `:VS_COMPANY + 1` 값을 표시하려면,
+해당 Label Element의 `Formula` 속성에 수식을 작성한다.
+```json
+{
+  "Type": "Label",
+  "Name": "lblText",
+  "Formula": ":VS_COMPANY + 1",
+  "Text": "",
+  "Cursor": "default",
+  "UseTextOverflow": false,
+  "UseAutoLineBreak": false,
+  "LineSpacing": 0,
+  "HasLineSpacing": false,
+  "LanguageCode": "",
+  "MxBinding": "",
+  "MxBindingUseStyle": false
+}
+```
+수식에서 `:VS_COMPANY`를 참조하면, 해당 컨트롤의 값이 변경될 때 수식이 자동 재연산된다.
+
+#### NumberBox에 수식 설정
+두 텍스트박스의 곱셈 결과를 NumberBox에 자동 계산하려면:
+```json
+{
+  "Type": "NumberBox",
+  "Name": "nbxTotal",
+  "Formula": ":txtPrice * :txtQty",
+  "Format": "{0:N0}",
+  "Value": 0,
+  "Text": "",
+  "IsReadOnly": true,
+  "Maximum": 999999999,
+  "Minimum": 0,
+  "MxBinding": "",
+  "MxBindingUseStyle": false
+}
+```
+
+### DataGrid 컬럼 수식에 대한 참고
+
+DataGrid의 GridColumn에는 MTSD 스키마상 `Formula` 속성이 존재하지 않는다.
+그리드 컬럼 수식(`[PRICE] * [QTY]` 등)은 i-AUD Designer에서 컬럼의 **계산수식** 설정을 통해 구성한다.
+따라서 MTSD 파일을 직접 편집하여 그리드 컬럼에 수식을 추가할 수 없으며,
+i-AUD Designer에서 해당 컬럼을 선택한 뒤 속성 창의 '계산수식' 항목에서 설정해야 한다.
+
+> **대안:** 클라이언트 스크립트에서 `DataGrid`의 `OnCellFormatting` 이벤트 등을 활용하여
+> 런타임에 셀 값을 동적으로 계산하는 방법도 있다.
+
+---
+
 ## 수식 사용 예시
 
 ### 라벨/텍스트박스 수식
