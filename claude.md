@@ -237,9 +237,10 @@ WHERE 1=1
   AND AMOUNT > :VN_MIN_AMOUNT            -- 숫자: 따옴표 없이 값 그대로 치환
   AND USER_NAME = @:VS_USER_NAME         -- @: 빈 값이면 해당 라인 삭제
   AND SEARCH_NAME LIKE %:VS_KEYWORD%     -- %: LIKE 와일드카드 자동 포함
+  AND USER_CODE = :VS_USER_CODE$         -- 파라미터명 뒤에 `$`를 붙이면 클라이언트 전달값 대신 서버 세션(인증) 값을 사용한다. 보안이 필요한 항목(사용자 코드, 조직 코드 등)에 사용한다.
 ```
 
-> 상세 규칙(IN절, Dynamic SQL, 프로시저 등)은 `/iaud-sql-guide` 스킬을 참조하세요.
+> 상세 규칙(IN절, Dynamic SQL, 프로시저, JavaScript 혼합 작성)은 `/iaud-sql-guide` 스킬을 참조하세요.
 
 ---
 
