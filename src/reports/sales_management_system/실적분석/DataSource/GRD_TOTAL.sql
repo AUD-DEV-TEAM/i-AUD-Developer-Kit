@@ -1,0 +1,53 @@
+SELECT
+    /* 영업팀 수 */
+    (
+        SELECT COUNT(*) 
+          FROM SM_EMPLOYEE E
+         WHERE 1=1
+		   AND E.JOB_ROLE = 'SALES'
+    ) AS SALES_CNT,
+
+    /* 최고 실적 팀 */
+    (
+        SELECT D.DEPT_NAME
+          FROM SM_SALES_PERFORMANCE PERF
+          LEFT JOIN SM_EMPLOYEE E
+            ON PERF.EMP_ID = E.EMP_ID
+          LEFT JOIN SM_DEPARTMENT D
+            ON E.DEPT_ID = D.DEPT_ID
+         WHERE 1=1
+		   AND PERF.SALES_STATUS = 'COMPLETED'
+		   AND TO_CHAR(PERF.SALES_DATE, 'YYYY') = :VS_YEAR
+         GROUP BY D.DEPT_ID, D.DEPT_NAME
+         ORDER BY SUM(PERF.NET_AMOUNT) DESC
+         LIMIT 1
+    ) AS TOP_SALES_DEPT,
+
+    /* 최고 실적 사원 */
+    (
+        SELECT E.EMP_NAME
+          FROM SM_SALES_PERFORMANCE PERF
+          LEFT JOIN SM_EMPLOYEE E
+            ON PERF.EMP_ID = E.EMP_ID
+		 WHERE 1=1
+		   AND TO_CHAR(PERF.SALES_DATE, 'YYYY') = :VS_YEAR
+         GROUP BY E.EMP_NAME
+         ORDER BY SUM(PERF.NET_AMOUNT) DESC
+         LIMIT 1
+    ) AS TOP_SALES_EMP,
+
+    /* 평균 달성률 */
+    (
+        SELECT AVG(ACHIEVEMENT_RATE)
+        FROM (
+            SELECT
+                PLN.PROD_ID,
+                SUM(PERF.NET_AMOUNT)/ NULLIF(SUM(PLN.TARGET_AMT), 0) AS ACHIEVEMENT_RATE
+            FROM SM_SALES_PLAN PLN
+            LEFT JOIN SM_SALES_PERFORMANCE PERF
+              ON PLN.PROD_ID = PERF.PROD_ID
+		   WHERE 1=1
+		     AND TO_CHAR(PERF.SALES_DATE, 'YYYY') = :VS_YEAR
+            GROUP BY PLN.PROD_ID
+        ) T
+    ) AS AVG_ACHV_RATE
