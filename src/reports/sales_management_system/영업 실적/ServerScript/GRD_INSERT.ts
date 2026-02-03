@@ -1,25 +1,21 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
-import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement";
-import { ScriptRequestPacket } from "@AUD_SERVER/matrix/script/ScriptRequestPacket";
 import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection";
+import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement";
 
- // Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
+// Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
 let CALL_BACK : Function;
 let Matrix : Matrix;
 
-const req = Matrix.getRequest(); // request
+const req = Matrix.getRequest();
+const res = Matrix.getResponse();
+let con = Matrix.getConnection();
 
-let con = Matrix.getConnection(); // dbms connection
-let sql = "";
-let stmt;
-
-try{
-	//connection
-	con.Connect("AUD_SAMPLE_DB");// set target dbms connection code
-	con.BeginTransaction();  // begin transaction
+try {
+	con.Connect("AUD_SAMPLE_DB");
+	con.BeginTransaction();
 
 	// INSERT
-	sql = "INSERT INTO SM_SALES_PERFORMANCE ( 			"
+	const sql = "INSERT INTO SM_SALES_PERFORMANCE ( 			"
 		+ "\n     SALES_ID 								"
 		+ "\n   , SALES_DATE							"
 		+ "\n   , EMP_ID								"
@@ -48,39 +44,34 @@ try{
 		+ "\n   , ? 									"
 		+ "\n );  										";
 
-	stmt = con.PreparedStatement(sql);
-
-	let IDX = 0;
-	stmt.setString(++IDX,req.getParam('VS_INP_ID'));		// SALES_ID
-	stmt.setString(++IDX,req.getParam('VS_INP_YMD'));		// SALES_DATE
-	stmt.setString(++IDX,req.getParam('VS_INP_PIC'));		// EMP_ID
-	stmt.setString(++IDX,req.getParam('VS_INP_CUST'));		// CUST_ID
-	stmt.setString(++IDX,req.getParam('VS_INP_PROD'));		// PROD_ID
-	stmt.setInt(++IDX,req.getParam('VN_INP_QTY'));			// QTY
-	stmt.setInt(++IDX,req.getParam('VN_INP_PRICE'));		// UNIT_PRICE
-	stmt.setInt(++IDX,req.getParam('VN_INP_COST'));			// COST_AMOUNT
-	stmt.setString(++IDX,req.getParam('VS_INP_STATUS'));	// SALES_STATUS
-	stmt.setString(++IDX,req.getUserCode());				// CREATED_BY
+	const stmt = con.PreparedStatement(sql);
+	stmt.setString(1, req.getParam('VS_INP_ID'));       // SALES_ID
+	stmt.setString(2, req.getParam('VS_INP_YMD'));      // SALES_DATE
+	stmt.setString(3, req.getParam('VS_INP_PIC'));      // EMP_ID
+	stmt.setString(4, req.getParam('VS_INP_CUST'));     // CUST_ID
+	stmt.setString(5, req.getParam('VS_INP_PROD'));     // PROD_ID
+	stmt.setInt(6, Number(req.getParam('VN_INP_QTY')));         // QTY
+	stmt.setInt(7, Number(req.getParam('VN_INP_PRICE')));       // UNIT_PRICE
+	stmt.setInt(8, Number(req.getParam('VN_INP_COST')));        // COST_AMOUNT
+	stmt.setString(9, req.getParam('VS_INP_STATUS'));   // SALES_STATUS
+	stmt.setString(10, req.getUserCode());              // CREATED_BY
 
 	Matrix.WriteLog(sql);
 	stmt.executeUpdate();
 	stmt.close();
-	stmt = null;
 
-	// COMMIT
 	con.CommitTransaction();
 	con.DisConnect();
 	con = null;
 
-}catch(e){
+} catch (e) {
 	Matrix.WriteLog("ERROR" + e.message);
-	if(con != null){
-		try{
+	if (con != null) {
+		try {
 			con.RollBackTransaction();
 			con.DisConnect();
 			con = null;
-		}catch(e){
-		}
+		} catch (e) {}
 	}
 	Matrix.ThrowException("Server Exception:" + e.message);
 }
