@@ -5,9 +5,9 @@
     "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REPC4B58EC1A02C4556BDA354EF5A020437.mtsd",
     "ReportName": "직원 관리",
     "Writer": "kimje1342",
-    "WriteDate": "2026-02-02 13:11:13",
+    "WriteDate": "2026-02-03 10:46:17",
     "Editor": "kimje1342",
-    "EditDate": "2026-02-02 13:11:13",
+    "EditDate": "2026-02-03 10:46:17",
     "TabPosition": 0,
     "DocumentVersion": "3.0.0.0",
     "RefreshType": 0,
@@ -16,74 +16,300 @@
   "DataSources": {
     "Datas": [
       {
-        "Id": "DSCBA5145F0DEF411DBFCAFA99DE885C4E",
-        "Name": "GRD_EMPLOYEE",
+        "Id": "DSDD0BC0E2906D46B7977499D5802159FF",
+        "Name": "VS_STATUS",
         "UseMeta": "False",
         "UseCache": "False",
-        "ConnectionCode": "MTXRPTY",
+        "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
-        "SQL": "FM7UoKEcH/S0N4Lyins4VzooehWRNUilJg+eO6gusQgKHuUArp5x2NUbRuymsJblWB86HFYYpKuExKQ0nFhCpTL85DOpRIzrFJSJ8eCKGtfwnImZ6YFuwyLh36AMEpWWRp30BQSeOGy7CHNjhs4xnZh6W7lMJY8pH4U0dc9+uPOwTQ896RomvlukoyluRe6HpydV6lfaBNLR3Uw6Cqw9ezHNbb6nXIioezETziiuh3S3PbZxcDiAKLT2O/FTPbDAANQfdP6aUyb/NdgIFhQUHOUfoDczNJLr8IpfoQtr167X/U+1UhhknSsIbuIx40hlDzs0ZR+nc8j2CIsA3+d/MjPH9cYCvVmHg3qHKnN7Qd43Piws+KsglBvRuMJJgvBbmtdzGPREVE17u/Z8OioHgYVdk3Ne9hhf4ATbuGkZMJ6VtR7hBVwj3JCpKQwIrNvkcZ4hzgFd65hCl1p7t+NUmvuCKKEag/GEUQ2MW3pCjC2VT/gVM/AGeTUB/tA4Y8ag6y+pMBbJ0h/HrP1HLrOj3mMsoNHpsJ/DvMINycfbyWJUS7RqqkQ5xZYCSJD5a64US5yXUV65P6ygffAdqyc2S3aQSuOVe6Yy4EpFWfAFkgp32vJG3MafkoXUAEWcbFSWI5E/Q5gTRsgAS4kbgCjqGotNqXsgILK/49EGqGf255PiBh9YAuSqvFoIjZfBZnWgbe8P7bzMqKU/1JASyfB5uAt/ExGa3mM/JqEHrV0s/DczsSOlvz6CsrmN0H8rawCQ9E6J1Ev/Sfphaer8lVGcTOR0hBOxv8pjPopcG9sIDXRFmTzSIZEEzTS/pCAsVq1aZMCCH3hu4p7tMOHA5VsHZ0k6TExj4itX98ReoqrPyGJfAEotgox8S7d9VRa3u3K+n3mKXLYQuE7ZYu5TpsAXwzQTInzBtAk+HttqoSvIxTCzs0WVmK1PJpQ89AseumCaTuBCKHUuwpj9as3Vut3rGQAW0hIWsVLDUhNueDLvi51QnGPTIVymx6X+weP6IdJ95JgoQB4pKm0p8C4w3pEO0V+GbpWmi79MV2kSPl3NRYpBZ+yNa3JdPtZjg38y4C5N",
+        "SQL": "RqcdFwrE75IJ8ts66KIvJt6Z40dhsrRzHruJk09HD+oBkmTjZ3bZx4YBFzp6fUKi6umVodKUDR7Wqyn26iknVOmuP6CL6L6mqMPHDsA+2H5B1LhkR0pJ7afjAI0yJH4HIRmiaelW3VX7636cz+tE0XKAK4Ava8UEK1ct91LCVa/x8E39zft8Wp3GONH78qqs",
         "Params": [],
-        "Columns": []
-      },
-      {
-        "Id": "DSE237375EF9324E0FB0DFEF0BC8BDC563",
-        "Name": "VS_DEPT",
-        "UseMeta": "False",
-        "UseCache": "False",
-        "ConnectionCode": "MTXRPTY",
-        "Encrypted": "True",
-        "DSType": 2,
-        "SQL": "Q2ldHDe9UiUTRvONq2IONidWN4dBc1WUs+8/6F2tbZci6LSKWexyEMSUlFKKUA7LLe16SH/VVNOrYMNe1KkAMQ+w86e6BpIvuCu8FjKEs/g=",
-        "Params": [],
-        "Columns": []
+        "Columns": [
+          {
+            "Name": "STATUS_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "STATUS_NAME",
+            "Type": "String"
+          }
+        ]
       },
       {
         "Id": "DSC2A98C49E4184FF391E9FD22C1D3247D",
         "Name": "VS_POSITION",
         "UseMeta": "False",
         "UseCache": "False",
-        "ConnectionCode": "MTXRPTY",
+        "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
         "SQL": "RqcdFwrE75IJ8ts66KIvJlHawbo5MHCg7wAsDeYisRPMZsq1jSJqrYlPu+l7R4epvQlIkHfJVaoWYAt2+e5YEuaNKO2uGT11Ds61JJN2ScP5UqdaMuVmeQzYLweq3QHnpkSHirvtr/LEuGFPU8NNtznaHUJ5IRgBcAhgycS1LP7t2O7LdsGERYfFyP5nMddJ",
         "Params": [],
-        "Columns": []
+        "Columns": [
+          {
+            "Name": "POSITION_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "POSITION_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSE237375EF9324E0FB0DFEF0BC8BDC563",
+        "Name": "VS_DEPT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "Q2ldHDe9UiUTRvONq2IONidWN4dBc1WUs+8/6F2tbZci6LSKWexyEMSUlFKKUA7LLe16SH/VVNOrYMNe1KkAMQ+w86e6BpIvuCu8FjKEs/g=",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "DEPT_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "DEPT_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSCBA5145F0DEF411DBFCAFA99DE885C4E",
+        "Name": "GRD_EMPLOYEE",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "FM7UoKEcH/S0N4Lyins4VzooehWRNUilJg+eO6gusQgKHuUArp5x2NUbRuymsJblWB86HFYYpKuExKQ0nFhCpTL85DOpRIzrFJSJ8eCKGtfwnImZ6YFuwyLh36AMEpWWRp30BQSeOGy7CHNjhs4xnZh6W7lMJY8pH4U0dc9+uPOwTQ896RomvlukoyluRe6HpydV6lfaBNLR3Uw6Cqw9ezHNbb6nXIioezETziiuh3S3PbZxcDiAKLT2O/FTPbDAANQfdP6aUyb/NdgIFhQUHOUfoDczNJLr8IpfoQtr167X/U+1UhhknSsIbuIx40hlDzs0ZR+nc8j2CIsA3+d/MjPH9cYCvVmHg3qHKnN7Qd43Piws+KsglBvRuMJJgvBbmtdzGPREVE17u/Z8OioHgYVdk3Ne9hhf4ATbuGkZMJ6VtR7hBVwj3JCpKQwIrNvkcZ4hzgFd65hCl1p7t+NUmvuCKKEag/GEUQ2MW3pCjC2VT/gVM/AGeTUB/tA4Y8ag6y+pMBbJ0h/HrP1HLrOj3mMsoNHpsJ/DvMINycfbyWJUS7RqqkQ5xZYCSJD5a64US5yXUV65P6ygffAdqyc2S3aQSuOVe6Yy4EpFWfAFkgp32vJG3MafkoXUAEWcbFSWI5E/Q5gTRsgAS4kbgCjqGotNqXsgILK/49EGqGf255PiBh9YAuSqvFoIjZfBZnWgbe8P7bzMqKU/1JASyfB5uAt/ExGa3mM/JqEHrV0s/DczsSOlvz6CsrmN0H8rawCQ9E6J1Ev/Sfphaer8lVGcTOR0hBOxv8pjPopcG9sIDXRFmTzSIZEEzTS/pCAsVq1aZMCCH3hu4p7tMOHA5VsHZ0k6TExj4itX98ReoqrPyGJfAEotgox8S7d9VRa3u3K+n3mKXLYQuE7ZYu5TpsAXwzQTInzBtAk+HttqoSvIxTCzs0WVmK1PJpQ89AseumCaTuBCKHUuwpj9as3Vut3rGQAW0hIWsVLDUhNueDLvi51QnGPTIVymx6X+weP6IdJ95JgoQB4pKm0p8C4w3pEO0V+GbpWmi79MV2kSPl3NRYpBZ+yNa3JdPtZjg38y4C5N",
+        "Params": [
+          {
+            "Name": ":VS_DEPT",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_POSITION",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_STATUS",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_KEYWORD",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "EMP_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "EMP_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "DEPT_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "POSITION",
+            "Type": "String"
+          },
+          {
+            "Name": "EMAIL",
+            "Type": "String"
+          },
+          {
+            "Name": "PHONE",
+            "Type": "String"
+          },
+          {
+            "Name": "HIRE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "EMP_STATUS",
+            "Type": "String"
+          },
+          {
+            "Name": "DEPT_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "POSITION_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "EMP_STATUS_CODE",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSCBA5145F0DEF411DBFCAFA99DE885C4E",
+        "Name": "GRD_EMPLOYEE",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "FM7UoKEcH/S0N4Lyins4VzooehWRNUilJg+eO6gusQgKHuUArp5x2NUbRuymsJblWB86HFYYpKuExKQ0nFhCpTL85DOpRIzrFJSJ8eCKGtfwnImZ6YFuwyLh36AMEpWWRp30BQSeOGy7CHNjhs4xnZh6W7lMJY8pH4U0dc9+uPOwTQ896RomvlukoyluRe6HpydV6lfaBNLR3Uw6Cqw9ezHNbb6nXIioezETziiuh3S3PbZxcDiAKLT2O/FTPbDAANQfdP6aUyb/NdgIFhQUHOUfoDczNJLr8IpfoQtr167X/U+1UhhknSsIbuIx40hlDzs0ZR+nc8j2CIsA3+d/MjPH9cYCvVmHg3qHKnN7Qd43Piws+KsglBvRuMJJgvBbmtdzGPREVE17u/Z8OioHgYVdk3Ne9hhf4ATbuGkZMJ6VtR7hBVwj3JCpKQwIrNvkcZ4hzgFd65hCl1p7t+NUmvuCKKEag/GEUQ2MW3pCjC2VT/gVM/AGeTUB/tA4Y8ag6y+pMBbJ0h/HrP1HLrOj3mMsoNHpsJ/DvMINycfbyWJUS7RqqkQ5xZYCSJD5a64US5yXUV65P6ygffAdqyc2S3aQSuOVe6Yy4EpFWfAFkgp32vJG3MafkoXUAEWcbFSWI5E/Q5gTRsgAS4kbgCjqGotNqXsgILK/49EGqGf255PiBh9YAuSqvFoIjZfBZnWgbe8P7bzMqKU/1JASyfB5uAt/ExGa3mM/JqEHrV0s/DczsSOlvz6CsrmN0H8rawCQ9E6J1Ev/Sfphaer8lVGcTOR0hBOxv8pjPopcG9sIDXRFmTzSIZEEzTS/pCAsVq1aZMCCH3hu4p7tMOHA5VsHZ0k6TExj4itX98ReoqrPyGJfAEotgox8S7d9VRa3u3K+n3mKXLYQuE7ZYu5TpsAXwzQTInzBtAk+HttqoSvIxTCzs0WVmK1PJpQ89AseumCaTuBCKHUuwpj9as3Vut3rGQAW0hIWsVLDUhNueDLvi51QnGPTIVymx6X+weP6IdJ95JgoQB4pKm0p8C4w3pEO0V+GbpWmi79MV2kSPl3NRYpBZ+yNa3JdPtZjg38y4C5N",
+        "Params": [
+          {
+            "Name": ":VS_DEPT",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_POSITION",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_STATUS",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_KEYWORD",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "EMP_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "EMP_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "DEPT_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "POSITION",
+            "Type": "String"
+          },
+          {
+            "Name": "EMAIL",
+            "Type": "String"
+          },
+          {
+            "Name": "PHONE",
+            "Type": "String"
+          },
+          {
+            "Name": "HIRE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "EMP_STATUS",
+            "Type": "String"
+          },
+          {
+            "Name": "DEPT_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "POSITION_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "EMP_STATUS_CODE",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSE237375EF9324E0FB0DFEF0BC8BDC563",
+        "Name": "VS_DEPT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "Q2ldHDe9UiUTRvONq2IONidWN4dBc1WUs+8/6F2tbZci6LSKWexyEMSUlFKKUA7LLe16SH/VVNOrYMNe1KkAMQ+w86e6BpIvuCu8FjKEs/g=",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "DEPT_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "DEPT_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSC2A98C49E4184FF391E9FD22C1D3247D",
+        "Name": "VS_POSITION",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "RqcdFwrE75IJ8ts66KIvJlHawbo5MHCg7wAsDeYisRPMZsq1jSJqrYlPu+l7R4epvQlIkHfJVaoWYAt2+e5YEuaNKO2uGT11Ds61JJN2ScP5UqdaMuVmeQzYLweq3QHnpkSHirvtr/LEuGFPU8NNtznaHUJ5IRgBcAhgycS1LP7t2O7LdsGERYfFyP5nMddJ",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "POSITION_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "POSITION_NAME",
+            "Type": "String"
+          }
+        ]
       },
       {
         "Id": "DSDD0BC0E2906D46B7977499D5802159FF",
         "Name": "VS_STATUS",
         "UseMeta": "False",
         "UseCache": "False",
-        "ConnectionCode": "MTXRPTY",
+        "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
         "SQL": "RqcdFwrE75IJ8ts66KIvJt6Z40dhsrRzHruJk09HD+oBkmTjZ3bZx4YBFzp6fUKi6umVodKUDR7Wqyn26iknVOmuP6CL6L6mqMPHDsA+2H5B1LhkR0pJ7afjAI0yJH4HIRmiaelW3VX7636cz+tE0XKAK4Ava8UEK1ct91LCVa/x8E39zft8Wp3GONH78qqs",
         "Params": [],
-        "Columns": []
+        "Columns": [
+          {
+            "Name": "STATUS_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "STATUS_NAME",
+            "Type": "String"
+          }
+        ]
       }
     ]
   },
-  "ScriptText": "/*****************************\r\n * Control Declarations\r\n *****************************/\r\nvar VS_KEYWORD = Matrix.getObject(\"VS_KEYWORD\");\r\nvar GRD_EMPLOYEE = Matrix.getObject(\"GRD_EMPLOYEE\");\r\nvar VS_INP_NAME = Matrix.getObject(\"VS_INP_NAME\");\r\nvar VS_INP_DEPT = Matrix.getObject(\"VS_INP_DEPT\");\r\nvar VS_INP_POSITION = Matrix.getObject(\"VS_INP_POSITION\");\r\nvar VS_INP_STATUS = Matrix.getObject(\"VS_INP_STATUS\");\r\nvar VS_INP_EMAIL = Matrix.getObject(\"VS_INP_EMAIL\");\r\nvar VS_INP_PHONE = Matrix.getObject(\"VS_INP_PHONE\");\r\nvar BTN_SAV = Matrix.getObject(\"BTN_SAV\");\r\nvar VS_INP_HIRE = Matrix.getObject(\"VS_INP_HIRE\");\r\nvar popup = null;\r\n/**************************************\r\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n * * arguments :\r\n **************************************/\r\nvar OnDocumentLoadComplete = function (sender, args) {\r\n    VS_KEYWORD.UsePlaceholder = true;\r\n    VS_KEYWORD.SetPlaceholder(' 이름, 사번으로 검색');\r\n    GRD_EMPLOYEE.GetField('EMP_ID').KeyType = 3; // KeyType: Primary\r\n};\r\n/**************************************\r\n * Execute 실행되는 시점에 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\r\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 시 실행이 취소됩니다.\r\n *\t\t number\tFilterType (Readonly:False) : 0:일반 조회, 1:검색 텍스트박스 조회, 2:전체검색 버튼 조회\r\n *\t\t string\tFilterText (Readonly:False) : 검색 텍스트박스에 입력된 검색어\r\n **************************************/\r\nvar OnMultiComboBoxExecuteStart = function (sender, args) {\r\n    if (['VS_DEPT', 'VS_POSITION', 'VS_STATUS'].includes(args.Id)) {\r\n        Matrix.getObject(args.Id).CheckAll();\r\n    }\r\n};\r\n/**************************************\r\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤이름\r\n *\t\t string\tText (Readonly:False) : 라벨 값\r\n **************************************/\r\nvar OnButtonClick = function (sender, args) {\r\n    switch (args.Id) {\r\n        case 'BTN_ADD': // 직원 등록 (Form: 직원 관리)\r\n            setInputValue(null); // Input 컨트롤 초기화\r\n            Matrix.SetGlobalParams('VS_EMP_ID', '');\r\n            BTN_SAV.Text = '추가';\r\n            popup = Matrix.ShowWindow(\"직원 등록\", 0, 0, 460, 415, true, false, \"직원 등록\", true, '#ffffff', 0, false, false);\r\n            popup.MoveToCenter();\r\n            break;\r\n        case 'BTN_REF': // 검색 (Form: 직원 관리)\r\n            Matrix.doRefresh('GRD_EMPLOYEE');\r\n            break;\r\n        case 'BTN_RESET': // 초기화 (Form: 직원 관리)\r\n            ['VS_DEPT', 'VS_POSITION', 'VS_STATUS'].forEach(function (i) {\r\n                Matrix.getObject(i).CheckAll();\r\n            });\r\n            VS_KEYWORD.Text = '';\r\n            break;\r\n        case 'BTN_DEL': // 삭제 (Form: 직원 관리)\r\n            var checkCount = 0;\r\n            for (var i = 0; i < GRD_EMPLOYEE.GetRowCount(); i++) {\r\n                if (GRD_EMPLOYEE.getRowValue(i, 'CHK') == 'Y') {\r\n                    GRD_EMPLOYEE.ChangeRowStateAt(i, 'D');\r\n                    checkCount++;\r\n                }\r\n            }\r\n            if (!checkCount) {\r\n                Matrix.Information('삭제할 항목을 선택하세요', '안내');\r\n                return;\r\n            }\r\n            Matrix.Confirm('선택한 항목을 삭제하시겠습니까?', '안내', function (ok) {\r\n                if (ok) {\r\n                    Matrix.RunScript('GRD_EMPLOYEE', 'GRD_DELETE', function (p) {\r\n                        if (p.Success == false) {\r\n                            Matrix.Alert(p.Message);\r\n                            return;\r\n                        }\r\n                        Matrix.doRefresh('GRD_EMPLOYEE');\r\n                        Matrix.Information('삭제 완료되었습니다.', '안내');\r\n                    });\r\n                }\r\n                else\r\n                    GRD_EMPLOYEE.ClearRowState(false);\r\n            }, 0);\r\n            break;\r\n        case 'BTN_CNC': // 취소 (Form: 직원 등록)\r\n            popup.Close();\r\n            break;\r\n        case 'BTN_SAV': // 저장 (Form: 직원 등록)\r\n            var fields = [VS_INP_NAME.Text, VS_INP_DEPT.Value, VS_INP_POSITION.Value, VS_INP_STATUS.Value, VS_INP_HIRE.Value];\r\n            if (isInvalidInput(fields)) {\r\n                Matrix.Information('필수 입력 항목을 확인해주세요', '안내');\r\n                return;\r\n            }\r\n            var scriptName = Matrix.GetGlobalParamValue('VS_EMP_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';\r\n            Matrix.RunScript('', scriptName, function (p) {\r\n                if (p.Success == false) {\r\n                    Matrix.Alert(p.Message);\r\n                    return;\r\n                }\r\n                Matrix.doRefresh('GRD_EMPLOYEE');\r\n                Matrix.Information(BTN_SAV.Text + ' 완료되었습니다.', '안내');\r\n                popup.Close();\r\n            });\r\n            break;\r\n    }\r\n};\r\n/**************************************\r\n * 컨트롤에 데이터셋이 바인딩된 후 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤이름\r\n *\t\t number\tRecordCount (Readonly:False) : 데이터셋의 레코드 수량\r\n **************************************/\r\nvar OnDataBindEnd = function (sender, args) {\r\n    if (args.Id == 'GRD_EMPLOYEE') {\r\n        Matrix.getObject('LBL_TTL_2').Text = '   직원 목록 (' + args.RecordCount + '명)';\r\n    }\r\n};\r\n/**************************************\r\n * 텍스트 박스 컨트롤의 key 입력 시 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\r\n *\t\t string\tText (Readonly:False) : 현재 텍스트\r\n *\t\t aud.data.Event\tEvent (Readonly:False) : 텍스트박스 key event 객체\r\n **************************************/\r\nvar OnTextKeydown = function (sender, args) {\r\n    if (args.Id == 'VS_KEYWORD' && args.Event.isEnter()) {\r\n        Matrix.doRefresh('GRD_EMPLOYEE');\r\n    }\r\n};\r\n/**************************************\r\n * 그리드의 멀티 헤더 체크 박스를 클릭하는 순간 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\r\n *\t\t aud.control.grids.MultiHeaderCell\tHeaderCell (Readonly:False) : 멀티헤더셀 객체\r\n *\t\t boolean\tChecked (Readonly:False) : 체크 유무\r\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 하게되면 클릭 처리가 취소됩니다.\r\n **************************************/\r\nvar OnGridMultiHeaderCheckBoxClicked = function (sender, args) {\r\n    if (args.Id == 'GRD_EMPLOYEE') {\r\n        var checkValue = args.Checked ? 'Y' : 'N';\r\n        for (var i = 0; i < GRD_EMPLOYEE.GetRowCount(); i++) {\r\n            GRD_EMPLOYEE.setRowValue(i, 'CHK', checkValue);\r\n        }\r\n        GRD_EMPLOYEE.Update();\r\n    }\r\n};\r\n/**************************************\r\n * 그리드의 셀을 더블 클릭할 떄 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\r\n *\t\t aud.control.grids.DataGridRow\tRow (Readonly:False) : 데이터 레코드 정보\r\n *\t\t aud.control.grids.DataGridCell\tCell (Readonly:False) : 데이터셀 정보\r\n *\t\t aud.control.grids.DataGridColumn\tField (Readonly:False) : 필드 정보\r\n **************************************/\r\nvar OnCellDoubleClick = function (sender, args) {\r\n    if (args.Id == 'GRD_EMPLOYEE') {\r\n        setInputValue(args.Row);\r\n        Matrix.SetGlobalParams('VS_EMP_ID', args.Row.GetValue('EMP_ID'));\r\n        BTN_SAV.Text = '저장';\r\n        popup = Matrix.ShowWindow(\"직원 등록\", 0, 0, 460, 415, true, false, \"직원 수정\", true, '#ffffff', 0, false, false);\r\n        popup.MoveToCenter();\r\n    }\r\n};\r\nvar setInputValue = function (row) {\r\n    if (typeof row === 'object' && row !== null) {\r\n        VS_INP_NAME.Text = row.GetValue('EMP_NAME');\r\n        VS_INP_DEPT.Value = row.GetValue('DEPT_CODE');\r\n        VS_INP_POSITION.Value = row.GetValue('POSITION_CODE');\r\n        VS_INP_STATUS.Value = row.GetValue('EMP_STATUS_CODE');\r\n        VS_INP_EMAIL.Text = row.GetValue('EMAIL');\r\n        VS_INP_PHONE.Text = row.GetValue('PHONE');\r\n        VS_INP_HIRE.Value = row.GetValue('HIRE_DATE');\r\n    }\r\n    else {\r\n        VS_INP_NAME.Text = '';\r\n        VS_INP_DEPT.Value = '';\r\n        VS_INP_POSITION.Value = '';\r\n        VS_INP_STATUS.Value = '';\r\n        VS_INP_EMAIL.Text = '';\r\n        VS_INP_PHONE.Text = '';\r\n        VS_INP_HIRE.Value = '';\r\n    }\r\n};\r\nvar isInvalidInput = function (fields) {\r\n    return fields.some(function (v) {\r\n        return v === null || v === undefined || v === '';\r\n    });\r\n};\r\n",
+  "ScriptText": "/*****************************\n * Control Declarations\n *****************************/\nvar VS_KEYWORD = Matrix.getObject(\"VS_KEYWORD\");\nvar GRD_EMPLOYEE = Matrix.getObject(\"GRD_EMPLOYEE\");\nvar VS_INP_NAME = Matrix.getObject(\"VS_INP_NAME\");\nvar VS_INP_DEPT = Matrix.getObject(\"VS_INP_DEPT\");\nvar VS_INP_POSITION = Matrix.getObject(\"VS_INP_POSITION\");\nvar VS_INP_STATUS = Matrix.getObject(\"VS_INP_STATUS\");\nvar VS_INP_EMAIL = Matrix.getObject(\"VS_INP_EMAIL\");\nvar VS_INP_PHONE = Matrix.getObject(\"VS_INP_PHONE\");\nvar BTN_SAV = Matrix.getObject(\"BTN_SAV\");\nvar VS_INP_HIRE = Matrix.getObject(\"VS_INP_HIRE\");\nvar popup = null;\n/**************************************\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\n * * arguments :\n **************************************/\nvar OnDocumentLoadComplete = function (sender, args) {\n    VS_KEYWORD.UsePlaceholder = true;\n    VS_KEYWORD.SetPlaceholder(' 이름, 사번으로 검색');\n    GRD_EMPLOYEE.GetField('EMP_ID').KeyType = 3; // KeyType: Primary\n};\n/**************************************\n * Execute 실행되는 시점에 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 시 실행이 취소됩니다.\n *\t\t number\tFilterType (Readonly:False) : 0:일반 조회, 1:검색 텍스트박스 조회, 2:전체검색 버튼 조회\n *\t\t string\tFilterText (Readonly:False) : 검색 텍스트박스에 입력된 검색어\n **************************************/\nvar OnMultiComboBoxExecuteStart = function (sender, args) {\n    if (['VS_DEPT', 'VS_POSITION', 'VS_STATUS'].includes(args.Id)) {\n        Matrix.getObject(args.Id).CheckAll();\n    }\n};\n/**************************************\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤이름\n *\t\t string\tText (Readonly:False) : 라벨 값\n **************************************/\nvar OnButtonClick = function (sender, args) {\n    switch (args.Id) {\n        case 'BTN_ADD': // 직원 등록 (Form: 직원 관리)\n            setInputValue(null); // Input 컨트롤 초기화\n            Matrix.SetGlobalParams('VS_EMP_ID', false);\n            BTN_SAV.Text = '추가';\n            popup = Matrix.ShowWindow(\"직원 등록\", 0, 0, 460, 415, true, false, \"직원 등록\", true, '#ffffff', 0, false, false);\n            popup.MoveToCenter();\n            break;\n        case 'BTN_REF': // 검색 (Form: 직원 관리)\n            Matrix.doRefresh('GRD_EMPLOYEE');\n            break;\n        case 'BTN_RESET': // 초기화 (Form: 직원 관리)\n            ['VS_DEPT', 'VS_POSITION', 'VS_STATUS'].forEach(function (i) {\n                Matrix.getObject(i).CheckAll();\n            });\n            VS_KEYWORD.Text = '';\n            break;\n        case 'BTN_DEL': // 삭제 (Form: 직원 관리)\n            var checkCount = 0;\n            for (var i = 0; i < GRD_EMPLOYEE.GetRowCount(); i++) {\n                if (GRD_EMPLOYEE.getRowValue(i, 'CHK') == 'Y') {\n                    GRD_EMPLOYEE.ChangeRowStateAt(i, 'D');\n                    checkCount++;\n                }\n            }\n            if (!checkCount) {\n                Matrix.Information('삭제할 항목을 선택하세요', '안내');\n                return;\n            }\n            Matrix.Confirm('선택한 항목을 삭제하시겠습니까?', '안내', function (ok) {\n                if (ok) {\n                    Matrix.RunScript('GRD_EMPLOYEE', 'GRD_DELETE', function (p) {\n                        if (p.Success == false) {\n                            Matrix.Alert(p.Message);\n                            return;\n                        }\n                        Matrix.doRefresh('GRD_EMPLOYEE');\n                        Matrix.Information('삭제 완료되었습니다.', '안내');\n                    });\n                }\n                else\n                    GRD_EMPLOYEE.ClearRowState(false);\n            }, 0);\n            break;\n        case 'BTN_CNC': // 취소 (Form: 직원 등록)\n            popup.Close();\n            break;\n        case 'BTN_SAV': // 저장 (Form: 직원 등록)\n            var fields = [VS_INP_NAME.Text, VS_INP_DEPT.Value, VS_INP_POSITION.Value, VS_INP_STATUS.Value, VS_INP_HIRE.Value];\n            if (isInvalidInput(fields)) {\n                Matrix.Information('필수 입력 항목을 확인해주세요', '안내');\n                return;\n            }\n            var scriptName = Matrix.GetGlobalParamValue('VS_EMP_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';\n            Matrix.RunScript('', scriptName, function (p) {\n                if (p.Success == false) {\n                    Matrix.Alert(p.Message);\n                    return;\n                }\n                Matrix.doRefresh('GRD_EMPLOYEE');\n                Matrix.Information(BTN_SAV.Text + ' 완료되었습니다.', '안내');\n                popup.Close();\n            });\n            break;\n    }\n};\n/**************************************\n * 컨트롤에 데이터셋이 바인딩된 후 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤이름\n *\t\t number\tRecordCount (Readonly:False) : 데이터셋의 레코드 수량\n **************************************/\nvar OnDataBindEnd = function (sender, args) {\n    if (args.Id == 'GRD_EMPLOYEE') {\n        Matrix.getObject('LBL_TTL_2').Text = '   직원 목록 (' + args.RecordCount + '명)';\n    }\n};\n/**************************************\n * 텍스트 박스 컨트롤의 key 입력 시 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\n *\t\t string\tText (Readonly:False) : 현재 텍스트\n *\t\t aud.data.Event\tEvent (Readonly:False) : 텍스트박스 key event 객체\n **************************************/\nvar OnTextKeydown = function (sender, args) {\n    if (args.Id == 'VS_KEYWORD' && args.Event.isEnter()) {\n        Matrix.doRefresh('GRD_EMPLOYEE');\n    }\n};\n/**************************************\n * 그리드의 멀티 헤더 체크 박스를 클릭하는 순간 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\n *\t\t aud.control.grids.MultiHeaderCell\tHeaderCell (Readonly:False) : 멀티헤더셀 객체\n *\t\t boolean\tChecked (Readonly:False) : 체크 유무\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 하게되면 클릭 처리가 취소됩니다.\n **************************************/\nvar OnGridMultiHeaderCheckBoxClicked = function (sender, args) {\n    if (args.Id == 'GRD_EMPLOYEE') {\n        var checkValue = args.Checked ? 'Y' : 'N';\n        for (var i = 0; i < GRD_EMPLOYEE.GetRowCount(); i++) {\n            GRD_EMPLOYEE.setRowValue(i, 'CHK', checkValue);\n        }\n        GRD_EMPLOYEE.Update();\n    }\n};\n/**************************************\n * 그리드의 셀을 더블 클릭할 떄 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\n *\t\t aud.control.grids.DataGridRow\tRow (Readonly:False) : 데이터 레코드 정보\n *\t\t aud.control.grids.DataGridCell\tCell (Readonly:False) : 데이터셀 정보\n *\t\t aud.control.grids.DataGridColumn\tField (Readonly:False) : 필드 정보\n **************************************/\nvar OnCellDoubleClick = function (sender, args) {\n    if (args.Id == 'GRD_EMPLOYEE') {\n        setInputValue(args.Row);\n        Matrix.SetGlobalParams('VS_EMP_ID', args.Row.GetValue('EMP_ID'));\n        BTN_SAV.Text = '저장';\n        popup = Matrix.ShowWindow(\"직원 등록\", 0, 0, 460, 415, true, false, \"직원 수정\", true, '#ffffff', 0, false, false);\n        popup.MoveToCenter();\n    }\n};\nvar setInputValue = function (row) {\n    if (typeof row === 'object' && row !== null) {\n        VS_INP_NAME.Text = row.GetValue('EMP_NAME');\n        VS_INP_DEPT.Value = row.GetValue('DEPT_CODE');\n        VS_INP_POSITION.Value = row.GetValue('POSITION_CODE');\n        VS_INP_STATUS.Value = row.GetValue('EMP_STATUS_CODE');\n        VS_INP_EMAIL.Text = row.GetValue('EMAIL');\n        VS_INP_PHONE.Text = row.GetValue('PHONE');\n        VS_INP_HIRE.Value = row.GetValue('HIRE_DATE');\n    }\n    else {\n        VS_INP_NAME.Text = '';\n        VS_INP_DEPT.Value = '';\n        VS_INP_POSITION.Value = '';\n        VS_INP_STATUS.Value = '';\n        VS_INP_EMAIL.Text = '';\n        VS_INP_PHONE.Text = '';\n        VS_INP_HIRE.Value = '';\n    }\n};\nvar isInvalidInput = function (fields) {\n    return fields.some(function (v) {\n        return v === null || v === undefined || v === '';\n    });\n};\n",
   "ServerScriptText": [
     {
       "Name": "GRD_DELETE",
       "Key": "BIZEB79F808C8F94F3D81EEA3BDAD71E333",
       "Encrypted": true,
-      "ScriptText": "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"
+      "ScriptText": "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"
     },
     {
       "Name": "GRD_INSERT",
       "Key": "BIZ2907E9FAF3304A80B3EDFABCC50ED2F2",
       "Encrypted": true,
-      "ScriptText": "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"
+      "ScriptText": "SnGZTXoWgLwnWaQFwynZkMloOIQcnzfw03AihKOUcMghluSJqfuFzWYi6BHo9NxrzvuO7dhUG1p7r0hAhJJLLAeqACZhHRCcelqh/bXZB5a3HBv9p35aNSWaCD9hOPC6pGfKjANsEhftEfPprCCSXRhnAdVshrRJgtnhngxYn8JQcGzt4v1ieDBjZV0cARKfT5ru0Lkx+4oHWjUKoHd7z1UKx4cdngM0KBwEZDkLFXb6pLribHC8m/lcN8ZX9kKchfaMmjzIeiddqm6s8rSX1udoZE2yxSu1uYWs5Is0pR6sPYDuTH2pXK2p+x2PwQOrZCyn+pCgeRARiD8YBitzC8MWKDDGtDRud/HsJ8E/TEJ0bD4kese57oxje0GJFsqrJXumLoLfNmaIsa4f23KVClJwo8iTBaREODQPXyw43Sz9uLb/z8mj/rx+zrh+FhepSRhhDtDuD3LLnSWVTDp8xfGU4585wK/OD6QaO5Q8b69ofIFyhW3P2NTX796qK/Yr+nct5D0yE4Ns3QfPRjj2L0UJPbN+NA8kbBJf7sI4GTOELIYZeyFi5tCpxX1KML1VrJQdXDv+9azUIFSXaFMTvvXH7MzWdapNrq6hadWtn2xfXXsqZRnpMqNkzJ/39tzUHw7l28z6GAexHfeU3jtyPRaYpwY+nUBH+ogApD0adEC4zXiKcNbiH8lgwrHSUb70ySYdQ/AbswwMxgpXTZnfY1m1gGbhGaJu/rCPWt1whyuLDnm4zVrjGGetF44Eq7o4cJuEA1jyF/Jo39q4v/iFqFm1gGbhGaJu/rCPWt1whysd6XrI8Rw8jwinzZUzm40w3+rlifSh6B1M+/Lx9C9CdVm1gGbhGaJu/rCPWt1whys6c4IPcZPhgI2XMQwuE0HjGRBcf6jHNThbuQxVaIGOiyeSpXTIBJaiTgXc/vhHumjcbjl6R0spCM09SSvUWu/Kvcvs681/lQ6M0lX67Ol6V6xMzeVLz/trVC89JEpcfT3UDW4lFTX/W9UO4OMxC+u5Va3LcnfE/PJNoIz81HGIAAD8jawRV9zuo2aGIXE0XT88x/4W78/SZNZcFLOBVhr2vcvs681/lQ6M0lX67Ol6V6xMzeVLz/trVC89JEpcfT2G7XT+2pSxt8Hbr4QVWkWr6j168OD7zC2w28KbEJ6ZPyLKYz3bil0MhEQmljglC0UZEFx/qMc1OFu5DFVogY6LLVdciP9sabdWJyounM1Kcwb/b3WXk8VWYWLh/15Z5/wZEFx/qMc1OFu5DFVogY6LJ5KldMgElqJOBdz++Ee6aGCdbjsTBtwEPYdvUfUDFJxJM1+E4LNLikpFee0ZiK7aWbWAZuEZom7+sI9a3XCHKytJBLd1vRDF1XtiIeuNut1yhi6KC47wN21mhKGly2Dwvcvs681/lQ6M0lX67Ol6VzTW6hUX865EhMf8cgt+DA5APrpe7BicKbdfD5afBTokQEGYTdgoYURwBmY6VknjMSYDcJ0DOjKFCKdFjR85OyVB0jeokJJZ6AaSKwEdWIDaKGfWKiXhTQ0bVePXpea/yDTW6hUX865EhMf8cgt+DA4HmtCXHkZ31HC5vM+lk2hJZhZM8VnvgVc7CIRiOlkVTSrSMoKM3Pey8a0aWWnwYgMqF8Zn27dgLJR6oRKlzk+wP/AKpLxV16uEV7utC8WrEdisRUFwlUoiRGEuZMSuhK8nkqV0yASWok4F3P74R7pox80QaUb7HzrOMLdxrVClEwIgkTH0OKfNHkVJoKAXZJK3+Saa5TvgzFdBcfL7oQQmGRBcf6jHNThbuQxVaIGOi1m1gGbhGaJu/rCPWt1whyt7cWwlwFBNhXsrnSKTcXWRvcvs681/lQ6M0lX67Ol6V6xMzeVLz/trVC89JEpcfT1Cu9Joz1lfcM26m+gCWdMTFpinBj6dQEf6iACkPRp0QPQ3wKO+YVui7yeyfewucKanZ9NzUlBJSixBw9osDSO5FNsoDG06B6YDoCESiVHO0o+llLz16fbxUMDkq0NoKLgq0jKCjNz3svGtGllp8GIDSv7b+SCUjG6OCOoBuLF7ieQhtldiJ2H59/9UsUwUuZb+JmGkAJUsKv6Zqyj3M71CFpinBj6dQEf6iACkPRp0QEKD07VWuoPagtJdm6oRQiIZEFx/qMc1OFu5DFVogY6LbKTN+hxHdhBqcoeG8a0qaR3uo0N8vAIF3UB9zTFB3OxFCT2zfjQPJGwSX+7COBkzTNXR72jC3pXv3S/LI//EtRkQXH+oxzU4W7kMVWiBjotGCuGwIYYOB+WsDDReSzmXakr7ZpjcyzhnJXn16ANHd/yMV/2fgtbJjoLij+Xa6KphQNv98hKHmp/fLHeKZfcH1AgNNeD1h1WeS4YsO5qeVWu6x92/fKLBSM4WIprWgEQf1d0i9QgDlFooYlS8/TCiYUDb/fISh5qf3yx3imX3BycZ09fOhKFzOFxNl4Eq7a0SlUg5QAB5fKDMgVIySuoYE60Z+fHI9WnUXNxGTQEhmGoxd7ytUtCWwpXvEOnsCp93wBmovtqmloRVUGCUk7XkKkPYgU1GHi+nu67eKiiuHA3j27VXQhvSDpQWr71MMWq7db84YeMyr7cctkrhRZ6mJoPvu6zUKAQNCm0OnijCBjF3x7cU2Zl13pP5Mp68ZCBLXvDj+U3HtdaHaVAkcUNIsWV6I4hQnkxFn1lq5bHJnnPdDV6lQNrZrFGhI/1fQfdwC4OE3dGEithcRg+F63tTY1vzWe92rtvXMRQvrISlvT9arlctfQKJWoWqfnCQJrJucDTb/mHB4jjlhCX30dnEDAlrkA/qETB0IaWeJvcQFYjbGBI4335p8A7bWNTm0gy7db84YeMyr7cctkrhRZ6mQ2q5w2qUpH/OzTKlG2rgDpTxIKe1aSkItamAwkfGVhK9qBdmeToVHApA8VJrqhXtC44cIeAS2V/7kzGWjxBARF1gy+etYLgVa1+/emBjUF80TW9iP+pX400EeIpgcr1Og3uGB3bK1pr99We21aHUEwylcK2TITZha9DqE4A4eiBeBeYnGcvNU/FY/4SAdtgweARwem8oxPnOSQni8KuMOea+XibAMhPJE7vmPvQCehTMBbM5CG4YjC94yb7jArIHaR/goe568AYw9FbR4CAMULewH8LtO9lwTqc+kuRfyacJDUEnjUSdTLj2Ghcm8UopC5mDCcn6wsE+8T3Q7+XaQYC4Dh7t7xcjLSq8hNMXoe+U3Yt1bCvyLnTyo+tqXeIJp3sY/rhpwJIS4COoPHK+gRhka3aHj30cyEkaGL+PIqgpRP3Tp90NtwIEoergNRbrrdu+bTvU6lHHukMKRxNJjipJ5nQaQaOtfrKob8XChoO2pz8UxC/H375tJ3pPdmtVmhIF4ptVUUNZ8D+CSc+m6fsHhQOMByjqqTWuamdBZuxIQ+JHSwMDnpoWFBHiRiV73j3V7EGV/UWUQ31KwuV0h9cF+l4SF4OTgsxdyLSYrpLMpQSX18jsmm7vfMcRBjSUj3yWpkjOz0O073wCthzUdp6uEALXc+rpTnOFRmTt+nrZ3/BwdQ2HBROFEJ6joF6P6KfPrzCf+Rh3+BwBJuLCzW55as1TxaVhkfS1MsCBuUhem9El4ECrm5X7nlTDA4jx"
     },
     {
       "Name": "GRD_UPDATE",
       "Key": "BIZFDA0B2C51F6142FA9F920261F286D9DC",
       "Encrypted": true,
-      "ScriptText": "SnGZTXoWgLwnWaQFwynZkMloOIQcnzfw03AihKOUcMghluSJqfuFzWYi6BHo9NxrzvuO7dhUG1p7r0hAhJJLLAeqACZhHRCcelqh/bXZB5YFIeGgTP2xS2Mg6x73Xd6zVrCyTXiNnTvGOErttK4pZ4rxiqSMjI85GAXoex82aSnHVJHycmB3Zp7km+/dIq+cvzZ8V4tkomIMaqVXIWxbFnCxs/EhhkWYIpKgUF7FnhYxB6KsrF9SBCxx1iNSqtL5L3ZMjRRIYvdqNj7FqdW6nOTXb48NVukqpd9WJaq/63eND0/YVvUAxIYN/zOeeFXJ1AGT1d0DSu6d01J1VqaPJr7MVTrQjt3LGP2GlY5yb4KMdzY+d+yXlLNtJAt5xg3wLtBlheNaD7MQcAPFvXFfmx6JcK9xcbT1VfmtB9c+Z7MfAOvWvc0/FqplWhmuKLSrWzPEod32o1HnJmWmuU4hKrsn9Wdh89InoUZJIhCZX0ajFD7xTc4Uk+llikFjCNlHEX/v5oludmhNBER1mBt61L4GRUks9wwiUS4ruKR/aw0U2ygMbToHpgOgIRKJUc7S6XjXrvPFk8I8/q/B0cDZjHEfkiF4WsPYcxtsm7SPDi+e7T9N5oRYAkRHhZrMmbct5TUNhBInY9g648Fe7gt+TFNDaaK6TW4mhRU4b6fTy5qCMQWmJ/wxmFZnsC/RuE9pEouVBGwR7R9NuMmOUvEy2yD8hA1+KAN6l/ilYgJCZra4KnxCZdJd6LVMobEVMmZQt1Sp17pdaCmSePwE03KiEdmSzSVDIRC9nZqAjNaA2wSlB3YkDu87wMqEatA/69EF/pNqzTm1kZ6Omfa5yWBEzpi6gD/3pRCL6hO8GPkDvEPBoDtHRWU+1ybCd62S3Wh7YIr9+HTuViM8o9RtW3E/7Y6uHpEV63GliYl3mY3nIPwU2ygMbToHpgOgIRKJUc7SfpTqd4sMBX+NjVQ3gmNaqztfiTDoYsvohV4tCDzYBFZbQjxy7UoZR0SdbZVkGibZnu0/TeaEWAJER4WazJm3LWYcVm4KHwAip6ixCZ1AndSR2Jlx8952JPpVuOjIDHyLgjEFpif8MZhWZ7Av0bhPab2Lg6M91mcwYdys45GKRi793AKlQF/P3+MEXce63QEkuCp8QmXSXei1TKGxFTJmUD3ACj9ea1ypby2BUVQkR0pjjR1Izzs7la19V4vt45Mhlwme+jYXkPFdMlSgFMKnxGpK+2aY3Ms4ZyV59egDR3fcebRC9OLxSXB8qb65jt3B7GT0GTEZ7ZJEHScrF/N+Et99DOh892/NxwDlx5LWJHxhNcnR49ZKo2DsQlO96C7bx9jqBiFyQpDS4Xq5aJFzW9eTDZfHhmyxz//EGS9k38k79H9O1bUxlEbp8dhOsi+AnvDDBWWc72o2sSV1ivkvM4B2j42cBRFp/BjdlFsx9Lxh4q1oXzl/PMjIE8gKnWvexn1taL6AwMS8YnVfJqx/Jcbvzvuo4IPNWzE01DGZLVxtcbr2iNwZ5Gie6k537QSHYfJcXwx1azDTdEiN76l3/5chuGMlcbJqJxPU7g5xaJlLxmHdlZV/zcvQp6E/LEzfCeLyc/ETJmooMw1vl31Jhd5mpsCSVDnP2o+TuQ97FBu8/036oEPBXcAJiKvPyrZw2bSRfhOHJ7QtT/oMI8l1/mnfXTXzQQ6R43tBiohUgT7QeVQ/QzUVNmCAbdUeuZY6t9nEYJK1JtgWfvpSi0PYOr5zRnGqlVf1Ghr7JFW6pB4j1McPDEugaLRn8o6k/mgYKsaRWy4t02y7UoEzdQ8a/AwJa5AP6hEwdCGlnib3EBWI2xgSON9+afAO21jU5tIMw5eonZazIV9HmvN31XIXm2R3w2u8R1m4aS8Csvewr0IFb6qBpT3vxSGSfIC2aSgxAgWvgvzw1fg0qQIjC4Ioe047ireLihEu84ZZC1Jh9A/5w0cwNmxPk3RSPo5FmWniVH3xWC+amRk3vTYjeyPAXI0RrRtkneDFbMOQK1pWIEoThsbk1vg+KkBJssnisWvlnvDDBWWc72o2sSV1ivkvM4B2j42cBRFp/BjdlFsx9LxBE8AruLfHV6qCDddwwwu2jZEMYgmMQwHDj/phJL4ZBcoUKktacMhiOSOcMdntYTeAJHwPdWbBcAEmDWIeNIrR/G35wZnmdrbb000JsIYHx2rjrUItbMncFBpfCSUYSlBYK/qP3fWhdglSvioxrv0NldPDOmtvSD7cBoQVb2x+vpmPQivRMVTNTdEdjze5Hn7pD1U9wfN4Mw5aLFU4b6RqSEPiR0sDA56aFhQR4kYle7+wA/sTRu+r0d0inJE+HmvzJ4tALYmXO27BLcrACNiGui9sJ3EgTSDKEvVADNbq4+sm83gtsAHsNc+633z3P+yEgGK7It9tJ6+enCJiXoTkYg1dS+THBkhl/5ojye0YeZn8vFbJoz2zcOzlyI9DRC1cu7Gl05psM+hsrzYeT2iJjVKoz5kCccYtqkfGMVjZ0TMtsCYvsnHs/nwyQHwMJw9XM7BhgmP5bpZYQJEptr2LqgWaDmRZkpBJ7O4waWwQtLxhxd9Ct06BgGoivKY+3rHJHW6zGt6PiROBa3DjDf5FePkj+zzDbEB+GzKBkC0iobd0DlNFPMTAYB4+UP7e9DOWkqC4uqFaZzzY1J8MSWFk2d/wcHUNhwUThRCeo6Bej+inz68wn/kYd/gcASbiws1ueWrNU8WlYZH0tTLAgblIEQM79E5N0gTfV7lQ33KOTg=="
+      "ScriptText": "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"
     }
   ],
   "Forms": [
@@ -145,7 +371,7 @@
               "Name": "BTN_ADD",
               "InGroup": "GRP_HEADER",
               "Position": {
-                "Left": 1481,
+                "Left": 1501,
                 "Top": 10,
                 "Width": 90,
                 "Height": 35,
@@ -209,7 +435,7 @@
           "Position": {
             "Left": 0,
             "Top": 0,
-            "Width": 1591,
+            "Width": 1611,
             "Height": 55,
             "ZIndex": 0,
             "TabIndex": 0,
@@ -824,7 +1050,7 @@
               }
             },
             {
-              "DataSource": "DS9F936284C99F45FDA45E939494ABE790",
+              "DataSource": "DSE237375EF9324E0FB0DFEF0BC8BDC563",
               "EditValue": "DEPT001,DEPT010,DEPT011,DEPT012,DEPT013,DEPT020,DEPT021,DEPT022,DEPT030,DEPT031,DEPT032,DEPT033",
               "CaptionText": "전체",
               "InitType": "0",
@@ -921,8 +1147,8 @@
               }
             },
             {
-              "DataSource": "DS7DB266D7666C4618A3016DBBA4EF73C1",
-              "EditValue": "DEPUTY,DIRECTOR,MANAGER,SENIOR,STAFF",
+              "DataSource": "DSC2A98C49E4184FF391E9FD22C1D3247D",
+              "EditValue": "STAFF,SENIOR,MANAGER,DEPUTY,DIRECTOR",
               "CaptionText": "전체",
               "InitType": "0",
               "InitValue": "",
@@ -1018,7 +1244,7 @@
               }
             },
             {
-              "DataSource": "DS51DBE6EE50354391B2E39D80DDEC595E",
+              "DataSource": "DSDD0BC0E2906D46B7977499D5802159FF",
               "EditValue": "ACTIVE,LEAVE,RETIRED",
               "CaptionText": "전체",
               "InitType": "0",
@@ -1121,7 +1347,7 @@
           "Position": {
             "Left": 20,
             "Top": 75,
-            "Width": 1551,
+            "Width": 1571,
             "Height": 90,
             "ZIndex": 3,
             "TabIndex": 0,
@@ -1201,7 +1427,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 1551,
+                "Width": 1571,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -1257,6 +1483,93 @@
               }
             },
             {
+              "LanguageCode": "",
+              "Value": "삭제",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "ButtonF935379F1A135AC9045233A4B4354BE4",
+              "Name": "BTN_DEL",
+              "InGroup": "GRP_BODY",
+              "Position": {
+                "Left": 1491,
+                "Top": 10,
+                "Width": 60,
+                "Height": 35,
+                "ZIndex": 19,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,20,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 1,
+                "BoxStyle": "BX478B581080C34B1EB6F2479F1D161DD2",
+                "Background": {
+                  "Color": {
+                    "R": 239,
+                    "G": 68,
+                    "B": 68,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 226,
+                    "G": 232,
+                    "B": 240,
+                    "A": 1
+                  },
+                  "LineType": "none",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "4,4,4,4"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  },
+                  "Size": 13,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
               "Type": "DataGrid",
               "Id": "DataGridF080EDCACB22D1D56A21D1B1E3AE9017",
               "Name": "GRD_EMPLOYEE",
@@ -1264,9 +1577,9 @@
               "Position": {
                 "Left": 20,
                 "Top": 75,
-                "Width": 1511,
-                "Height": 598,
-                "ZIndex": 21,
+                "Width": 1531,
+                "Height": 593,
+                "ZIndex": 22,
                 "TabIndex": 0,
                 "Docking": {
                   "Margin": "20,0,20,20",
@@ -1334,7 +1647,7 @@
                 }
               },
               "CellMargin": "5,5,5,5",
-              "DataSource": "DSD6DF8B2713D145DCA1839F8F4E594615",
+              "DataSource": "DSCBA5145F0DEF411DBFCAFA99DE885C4E",
               "AutoRefresh": true,
               "ShowHeader": 2,
               "NaNCellText": "-",
@@ -1624,13 +1937,13 @@
                         "Checked": false,
                         "ViewType": 0,
                         "Type": "CheckBox",
-                        "Id": "CheckBoxF286C213A668C1D7B9729A80E1F0409C",
-                        "Name": "CHK",
+                        "Id": "CheckBox80BE1E5D636B456A1211A9FE8CE295CD",
+                        "Name": "CHK1",
                         "Position": {
-                          "Left": 5,
-                          "Top": 5,
-                          "Width": 35,
-                          "Height": 35,
+                          "Left": 0,
+                          "Top": 0,
+                          "Width": 45,
+                          "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
                           "Docking": {
@@ -1668,12 +1981,12 @@
                           },
                           "Font": {
                             "Color": {
-                              "R": 48,
-                              "G": 48,
-                              "B": 49,
+                              "R": 100,
+                              "G": 116,
+                              "B": 139,
                               "A": 1
                             },
-                            "Size": 12,
+                            "Size": 13,
                             "Family": "inherit",
                             "Bold": false,
                             "Italic": false,
@@ -1686,7 +1999,7 @@
                       }
                     ],
                     "HeaderPosition": "start",
-                    "Margin": "5,5,5,5",
+                    "Margin": "0,0,0,0",
                     "Type": 3,
                     "Tooltip": "",
                     "CellStyle": {
@@ -1719,12 +2032,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "Label30EF93E9BD1B718F7AB8152418D8981E",
+                        "Id": "LabelE056AF43E6D93F1F971A4B6C7E508F06",
                         "Name": "EMP_ID",
                         "Position": {
                           "Left": 45,
                           "Top": 0,
-                          "Width": 153,
+                          "Width": 155,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1752,13 +2065,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 226,
-                              "G": 232,
-                              "B": 240,
+                              "R": 85,
+                              "G": 142,
+                              "B": 213,
                               "A": 1
                             },
-                            "LineType": "solid",
-                            "Thickness": "0,0,0,0",
+                            "LineType": "none",
+                            "Thickness": "1,1,1,1",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -1806,12 +2119,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "LabelB0620F5E35D376F6C2361C228FD339F8",
+                        "Id": "LabelF6A0A615A30B81DACA07F9C2EB502B22",
                         "Name": "EMP_NAME",
                         "Position": {
-                          "Left": 198,
+                          "Left": 200,
                           "Top": 0,
-                          "Width": 153,
+                          "Width": 155,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1839,13 +2152,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 226,
-                              "G": 232,
-                              "B": 240,
+                              "R": 85,
+                              "G": 142,
+                              "B": 213,
                               "A": 1
                             },
-                            "LineType": "solid",
-                            "Thickness": "0,0,0,0",
+                            "LineType": "none",
+                            "Thickness": "1,1,1,1",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -1893,12 +2206,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "LabelF93C49F45FA9479D004E46FD45A4EB5A",
+                        "Id": "Label209E151E732008D9F7847D1898F155BE",
                         "Name": "DEPT_NAME",
                         "Position": {
-                          "Left": 351,
+                          "Left": 355,
                           "Top": 0,
-                          "Width": 153,
+                          "Width": 155,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1926,13 +2239,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 226,
-                              "G": 232,
-                              "B": 240,
+                              "R": 85,
+                              "G": 142,
+                              "B": 213,
                               "A": 1
                             },
-                            "LineType": "solid",
-                            "Thickness": "0,0,0,0",
+                            "LineType": "none",
+                            "Thickness": "1,1,1,1",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -1980,12 +2293,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "Label050B0979FEFCF8FC68B8CEAC9EDC0A66",
+                        "Id": "Label47A0CCB02786A4D4CF3120BBD3D4F51C",
                         "Name": "POSITION",
                         "Position": {
-                          "Left": 504,
+                          "Left": 510,
                           "Top": 0,
-                          "Width": 153,
+                          "Width": 155,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2013,13 +2326,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 226,
-                              "G": 232,
-                              "B": 240,
+                              "R": 85,
+                              "G": 142,
+                              "B": 213,
                               "A": 1
                             },
-                            "LineType": "solid",
-                            "Thickness": "0,0,0,0",
+                            "LineType": "none",
+                            "Thickness": "1,1,1,1",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -2042,6 +2355,7 @@
                       }
                     ],
                     "Col": 4,
+                    "HeaderPosition": "start",
                     "Margin": "0,0,0,0",
                     "Type": 1,
                     "Tooltip": ""
@@ -2066,12 +2380,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "LabelA5D4D0B72FA23B1DC5B78FA8A1F11795",
+                        "Id": "Label391498F7ADF3A9C4DF2103A2F912AF1F",
                         "Name": "EMAIL",
                         "Position": {
-                          "Left": 657,
+                          "Left": 665,
                           "Top": 0,
-                          "Width": 262,
+                          "Width": 266,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2099,13 +2413,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 226,
-                              "G": 232,
-                              "B": 240,
+                              "R": 85,
+                              "G": 142,
+                              "B": 213,
                               "A": 1
                             },
-                            "LineType": "solid",
-                            "Thickness": "0,0,0,0",
+                            "LineType": "none",
+                            "Thickness": "1,1,1,1",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -2153,12 +2467,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "LabelED7E75DF67B861459B14CC967922F644",
+                        "Id": "Label0673F4A863CC8CCB3CFA45943F39D013",
                         "Name": "PHONE",
                         "Position": {
-                          "Left": 919,
+                          "Left": 931,
                           "Top": 0,
-                          "Width": 218,
+                          "Width": 221,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2186,13 +2500,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 226,
-                              "G": 232,
-                              "B": 240,
+                              "R": 85,
+                              "G": 142,
+                              "B": 213,
                               "A": 1
                             },
-                            "LineType": "solid",
-                            "Thickness": "0,0,0,0",
+                            "LineType": "none",
+                            "Thickness": "1,1,1,1",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -2240,12 +2554,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "LabelF5206617C114A4ED0511076AC33B7DA3",
+                        "Id": "LabelA12CD30F06DF7345403425F4F72FF883",
                         "Name": "HIRE_DATE",
                         "Position": {
-                          "Left": 1137,
+                          "Left": 1152,
                           "Top": 0,
-                          "Width": 218,
+                          "Width": 221,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2273,13 +2587,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 226,
-                              "G": 232,
-                              "B": 240,
+                              "R": 85,
+                              "G": 142,
+                              "B": 213,
                               "A": 1
                             },
-                            "LineType": "solid",
-                            "Thickness": "0,0,0,0",
+                            "LineType": "none",
+                            "Thickness": "1,1,1,1",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -2327,12 +2641,12 @@
                           "Text": "3,0,3,0"
                         },
                         "Type": "Label",
-                        "Id": "LabelFA749655F8CFE8256DEE5BF62EDBED49",
+                        "Id": "Label8AC9140A8E06ABA9A6BCAC6B57D7205E",
                         "Name": "EMP_STATUS",
                         "Position": {
-                          "Left": 1355,
+                          "Left": 1373,
                           "Top": 0,
-                          "Width": 156,
+                          "Width": 158,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2360,13 +2674,13 @@
                           },
                           "Border": {
                             "Color": {
-                              "R": 226,
-                              "G": 232,
-                              "B": 240,
+                              "R": 85,
+                              "G": 142,
+                              "B": 213,
                               "A": 1
                             },
-                            "LineType": "solid",
-                            "Thickness": "0,0,0,0",
+                            "LineType": "none",
+                            "Thickness": "1,1,1,1",
                             "CornerRadius": "0,0,0,0"
                           },
                           "Font": {
@@ -2396,113 +2710,266 @@
                   },
                   {
                     "Value": "DEPT_CODE",
-                    "Elements": [],
+                    "Elements": [
+                      {
+                        "LanguageCode": "",
+                        "Text": "DEPT_CODE",
+                        "Cursor": "default",
+                        "Formula": "",
+                        "UseTextOverflow": false,
+                        "UseAutoLineBreak": false,
+                        "MxBinding": "",
+                        "MxBindingUseStyle": true,
+                        "Margin": {
+                          "Left": 3,
+                          "Top": 0,
+                          "Right": 3,
+                          "Bottom": 0,
+                          "Text": "3,0,3,0"
+                        },
+                        "Type": "Label",
+                        "Id": "LabelA896BCAB995B0386FC306ED3CFD3DB34",
+                        "Name": "DEPT_CODE",
+                        "Position": {
+                          "Left": 475,
+                          "Top": 0,
+                          "Width": 100,
+                          "Height": 30,
+                          "ZIndex": 1,
+                          "TabIndex": 0,
+                          "Docking": {
+                            "Left": false,
+                            "Right": false,
+                            "Top": false,
+                            "Bottom": false,
+                            "Margin": "0,0,0,0",
+                            "HoldSize": false,
+                            "MinWidth": 0,
+                            "MinHeight": 0
+                          }
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "BoxStyle": "",
+                          "Background": {
+                            "Color": {
+                              "R": 255,
+                              "G": 255,
+                              "B": 255,
+                              "A": 1
+                            }
+                          },
+                          "Border": {
+                            "Color": {
+                              "R": 85,
+                              "G": 142,
+                              "B": 213,
+                              "A": 1
+                            },
+                            "LineType": "none",
+                            "Thickness": "1,1,1,1",
+                            "CornerRadius": "0,0,0,0"
+                          },
+                          "Font": {
+                            "Color": {
+                              "R": 100,
+                              "G": 116,
+                              "B": 139,
+                              "A": 1
+                            },
+                            "Size": 13,
+                            "Family": "inherit",
+                            "Bold": true,
+                            "Italic": false,
+                            "UnderLine": false,
+                            "HorizontalAlignment": "center",
+                            "VerticalAlignment": "middle",
+                            "TempFontFamily": "맑은 고딕"
+                          }
+                        }
+                      }
+                    ],
                     "Col": 9,
-                    "Margin": "5,5,5,5",
+                    "HeaderPosition": "start",
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
                     "Tooltip": ""
                   },
                   {
                     "Value": "POSITION_CODE",
-                    "Elements": [],
+                    "Elements": [
+                      {
+                        "LanguageCode": "",
+                        "Text": "POSITION_CODE",
+                        "Cursor": "default",
+                        "Formula": "",
+                        "UseTextOverflow": false,
+                        "UseAutoLineBreak": false,
+                        "MxBinding": "",
+                        "MxBindingUseStyle": true,
+                        "Margin": {
+                          "Left": 3,
+                          "Top": 0,
+                          "Right": 3,
+                          "Bottom": 0,
+                          "Text": "3,0,3,0"
+                        },
+                        "Type": "Label",
+                        "Id": "Label084A4CF75C8748CAEDBAA717C260F2E3",
+                        "Name": "POSITION_CODE",
+                        "Position": {
+                          "Left": 575,
+                          "Top": 0,
+                          "Width": 16,
+                          "Height": 30,
+                          "ZIndex": 1,
+                          "TabIndex": 0,
+                          "Docking": {
+                            "Left": false,
+                            "Right": false,
+                            "Top": false,
+                            "Bottom": false,
+                            "Margin": "0,0,0,0",
+                            "HoldSize": false,
+                            "MinWidth": 0,
+                            "MinHeight": 0
+                          }
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "BoxStyle": "",
+                          "Background": {
+                            "Color": {
+                              "R": 255,
+                              "G": 255,
+                              "B": 255,
+                              "A": 1
+                            }
+                          },
+                          "Border": {
+                            "Color": {
+                              "R": 85,
+                              "G": 142,
+                              "B": 213,
+                              "A": 1
+                            },
+                            "LineType": "none",
+                            "Thickness": "1,1,1,1",
+                            "CornerRadius": "0,0,0,0"
+                          },
+                          "Font": {
+                            "Color": {
+                              "R": 100,
+                              "G": 116,
+                              "B": 139,
+                              "A": 1
+                            },
+                            "Size": 13,
+                            "Family": "inherit",
+                            "Bold": true,
+                            "Italic": false,
+                            "UnderLine": false,
+                            "HorizontalAlignment": "center",
+                            "VerticalAlignment": "middle",
+                            "TempFontFamily": "맑은 고딕"
+                          }
+                        }
+                      }
+                    ],
                     "Col": 10,
-                    "Margin": "5,5,5,5",
+                    "HeaderPosition": "start",
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
                     "Tooltip": ""
                   },
                   {
                     "Value": "EMP_STATUS_CODE",
-                    "Elements": [],
+                    "Elements": [
+                      {
+                        "LanguageCode": "",
+                        "Text": "EMP_STATUS_CODE",
+                        "Cursor": "default",
+                        "Formula": "",
+                        "UseTextOverflow": false,
+                        "UseAutoLineBreak": false,
+                        "MxBinding": "",
+                        "MxBindingUseStyle": true,
+                        "Margin": {
+                          "Left": 3,
+                          "Top": 0,
+                          "Right": 3,
+                          "Bottom": 0,
+                          "Text": "3,0,3,0"
+                        },
+                        "Type": "Label",
+                        "Id": "Label277EBAEAAD5625E9BD16F280DE51E52E",
+                        "Name": "EMP_STATUS_CODE",
+                        "Position": {
+                          "Left": 584,
+                          "Top": 0,
+                          "Width": 7,
+                          "Height": 30,
+                          "ZIndex": 1,
+                          "TabIndex": 0,
+                          "Docking": {
+                            "Left": false,
+                            "Right": false,
+                            "Top": false,
+                            "Bottom": false,
+                            "Margin": "0,0,0,0",
+                            "HoldSize": false,
+                            "MinWidth": 0,
+                            "MinHeight": 0
+                          }
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "BoxStyle": "",
+                          "Background": {
+                            "Color": {
+                              "R": 255,
+                              "G": 255,
+                              "B": 255,
+                              "A": 1
+                            }
+                          },
+                          "Border": {
+                            "Color": {
+                              "R": 85,
+                              "G": 142,
+                              "B": 213,
+                              "A": 1
+                            },
+                            "LineType": "none",
+                            "Thickness": "1,1,1,1",
+                            "CornerRadius": "0,0,0,0"
+                          },
+                          "Font": {
+                            "Color": {
+                              "R": 100,
+                              "G": 116,
+                              "B": 139,
+                              "A": 1
+                            },
+                            "Size": 13,
+                            "Family": "inherit",
+                            "Bold": true,
+                            "Italic": false,
+                            "UnderLine": false,
+                            "HorizontalAlignment": "center",
+                            "VerticalAlignment": "middle",
+                            "TempFontFamily": "맑은 고딕"
+                          }
+                        }
+                      }
+                    ],
                     "Col": 11,
-                    "Margin": "5,5,5,5",
+                    "HeaderPosition": "start",
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
                     "Tooltip": ""
                   }
                 ]
-              }
-            },
-            {
-              "LanguageCode": "",
-              "Value": "삭제",
-              "Cursor": "pointer",
-              "MouseOver": {
-                "UseYn": false,
-                "BoxStyle": ""
-              },
-              "MouseDown": {
-                "UseYn": false,
-                "BoxStyle": ""
-              },
-              "Shadow": {
-                "UseYn": false,
-                "ColorR": 0,
-                "ColorG": 0,
-                "ColorB": 0,
-                "ColorA": 1,
-                "HLeng": 10,
-                "VLeng": 10,
-                "BlurRadius": 0,
-                "SpreadRadius": 0,
-                "Inset": false
-              },
-              "HasNewRadius": true,
-              "Type": "Button",
-              "Id": "ButtonF935379F1A135AC9045233A4B4354BE4",
-              "Name": "BTN_DEL",
-              "InGroup": "GRP_BODY",
-              "Position": {
-                "Left": 1471,
-                "Top": 10,
-                "Width": 60,
-                "Height": 35,
-                "ZIndex": 19,
-                "TabIndex": 0,
-                "Docking": {
-                  "Left": false,
-                  "Right": true,
-                  "Top": false,
-                  "Bottom": false,
-                  "Margin": "0,0,20,0",
-                  "HoldSize": true,
-                  "MinWidth": 0,
-                  "MinHeight": 0
-                }
-              },
-              "Style": {
-                "Type": 1,
-                "BoxStyle": "BX478B581080C34B1EB6F2479F1D161DD2",
-                "Background": {
-                  "Color": {
-                    "R": 239,
-                    "G": 68,
-                    "B": 68,
-                    "A": 1
-                  }
-                },
-                "Border": {
-                  "Color": {
-                    "R": 226,
-                    "G": 232,
-                    "B": 240,
-                    "A": 1
-                  },
-                  "LineType": "none",
-                  "Thickness": "1,1,1,1",
-                  "CornerRadius": "4,4,4,4"
-                },
-                "Font": {
-                  "Color": {
-                    "R": 255,
-                    "G": 255,
-                    "B": 255,
-                    "A": 1
-                  },
-                  "Size": 13,
-                  "Family": "inherit",
-                  "Bold": true,
-                  "Italic": false,
-                  "UnderLine": false,
-                  "HorizontalAlignment": "center",
-                  "VerticalAlignment": "middle",
-                  "TempFontFamily": "맑은 고딕"
-                }
               }
             }
           ],
@@ -2512,8 +2979,8 @@
           "Position": {
             "Left": 20,
             "Top": 165,
-            "Width": 1551,
-            "Height": 693,
+            "Width": 1571,
+            "Height": 688,
             "ZIndex": 4,
             "TabIndex": 0,
             "Docking": {
@@ -2751,8 +3218,8 @@
         },
         {
           "LanguageCode": "",
-          "Text": "test11",
-          "Value": "test11",
+          "Text": "박팀장",
+          "Value": "박팀장",
           "IsReadOnly": false,
           "MaxLength": 0,
           "InputType": 0,
@@ -2897,8 +3364,8 @@
           }
         },
         {
-          "DataSource": "DS9F936284C99F45FDA45E939494ABE790",
-          "Value": "DEPT001",
+          "DataSource": "DSE237375EF9324E0FB0DFEF0BC8BDC563",
+          "Value": "DEPT011",
           "Text": "",
           "InitType": "1",
           "RefreshType": 1,
@@ -2976,8 +3443,8 @@
           }
         },
         {
-          "DataSource": "DS7DB266D7666C4618A3016DBBA4EF73C1",
-          "Value": "DEPUTY",
+          "DataSource": "DSC2A98C49E4184FF391E9FD22C1D3247D",
+          "Value": "MANAGER",
           "Text": "",
           "InitType": "1",
           "RefreshType": 1,
@@ -3132,7 +3599,7 @@
           }
         },
         {
-          "DataSource": "DS51DBE6EE50354391B2E39D80DDEC595E",
+          "DataSource": "DSDD0BC0E2906D46B7977499D5802159FF",
           "Value": "ACTIVE",
           "Text": "",
           "InitType": "1",
@@ -3289,8 +3756,8 @@
         },
         {
           "LanguageCode": "",
-          "Text": "",
-          "Value": "",
+          "Text": "park@company.com",
+          "Value": "park@company.com",
           "IsReadOnly": false,
           "MaxLength": 0,
           "InputType": 0,
@@ -3436,8 +3903,8 @@
         },
         {
           "LanguageCode": "",
-          "Text": "",
-          "Value": "",
+          "Text": "010-1111-0011",
+          "Value": "010-1111-0011",
           "IsReadOnly": false,
           "MaxLength": 0,
           "InputType": 0,
@@ -3690,7 +4157,7 @@
               "Name": "BTN_SAV",
               "InGroup": "GRP_FOOTER",
               "Position": {
-                "Left": 1509,
+                "Left": 376,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -3777,7 +4244,7 @@
               "Name": "BTN_CNC",
               "InGroup": "GRP_FOOTER",
               "Position": {
-                "Left": 1439,
+                "Left": 306,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -3840,8 +4307,8 @@
           "Name": "GRP_FOOTER",
           "Position": {
             "Left": 0,
-            "Top": 821,
-            "Width": 1589,
+            "Top": 322,
+            "Width": 456,
             "Height": 55,
             "ZIndex": 1,
             "TabIndex": 0,
@@ -3901,7 +4368,7 @@
           "DataFormat": "yyyyMMdd",
           "FormatLanguageCode": "",
           "IsReadOnly": false,
-          "Text": "2026-01-22",
+          "Text": "2015-05-10",
           "MinDate": "DATE(F,F,F)",
           "MaxDate": "DATE(0,0,0)",
           "MxBinding": "",
@@ -3909,7 +4376,7 @@
           "HighlightWeekendDefined": false,
           "DisplayStartDayOfWeekDefined": false,
           "ViewFormat": "yyyy-MM-dd",
-          "Date": 1769007600000,
+          "Date": 1431183600000,
           "Type": "Calendar",
           "Id": "Calendar769173B8029A9F3616721084CC8E4C62",
           "Name": "VS_INP_HIRE",

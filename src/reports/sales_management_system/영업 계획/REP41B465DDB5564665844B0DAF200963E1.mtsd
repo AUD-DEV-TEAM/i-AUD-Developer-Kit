@@ -5,9 +5,9 @@
     "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REP41B465DDB5564665844B0DAF200963E1.mtsd",
     "ReportName": "영업 계획",
     "Writer": "kimje1342",
-    "WriteDate": "2026-02-02 13:40:26",
+    "WriteDate": "2026-02-03 11:11:43",
     "Editor": "kimje1342",
-    "EditDate": "2026-02-02 13:40:26",
+    "EditDate": "2026-02-03 11:11:43",
     "TabPosition": 0,
     "UseLayout": false,
     "DocumentVersion": "3.0.0.0",
@@ -17,15 +17,83 @@
   "DataSources": {
     "Datas": [
       {
-        "Id": "DS99C962208F484181BECED51E7CF44D12",
-        "Name": "GRD_PLAN",
+        "Id": "DS6DFFD892D44143609F46D4E0F055A9A2",
+        "Name": "VS_STATUS",
         "UseMeta": "False",
         "UseCache": "False",
-        "ConnectionCode": "MTXRPTY",
+        "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
-        "SQL": "UXY4QJ/jm6BoLfQUfkSXys8jWF6iFPNsntF9X/BTfBkNT5yu7w23SkXZ/6tsHdV7D2IJiuUj4XrqBIDW2DLhzpK+PnYtX9sE/4TA218XsFef04TF94tvl1smc/UcxZ1u/RvMI4g/iMfOBsfBQ6eRlaLXTWyAO8eyVdntsGOBaLm54wk1T8T7OVkFuLA0SaUFmCm2/Q7jv9N1sL5gtx9w+AOqTwJGENpvp5XtAgfY6tjNhOBPATbQecxKPfrGdj9bv7cGPPiTZge06d1IbbzSkf5V9pw9XNFpAIxq0X1b6ApgO9mVtyGxjm9BpEWKIJWcA0HXuNli0g2TfUsbqOSgKT0tXwO1qhl/SHfCehLuOIRat4yzuRvyakOBbzgarXaNU6mNSZ6JhDhC8rcWEn92djOwKsIQz60aA4UnpyTVN1A+2zZlRM7HMs0dCtPhbNfursdFCD9c5qa1nylEsPXgOtfp8jryLomuOdYTxqvXjyFw+ufw2mDwM4s/1ygxtX/GTW7VM5EeRDhUli/dZwPNErfVqmYCgPzdtUwaWNwY5L44apiC2gRU/ybN/6H6rqRrwkrk9AAGjt+p9F7ta1ijfNBuZr4GLg2VN8Bfrq+gWN05GUyEb2My5lvWVPC1MUOPbPrd0moGYh+tuc3kHt18hk7IqI+mct9QnVh7ljM6IhjSNZFXL9PEvR3z7+72BZ3kCtEIwlLqilKD9eMCCDbCPYnYgZTwXqOdY0x3wfAI/zkZyW9hSqk+rcs+8RTIfTRX1HOVddicAgEvW0dR08M45HjrwahG3xoyu7xgb0a9NUQ=",
+        "SQL": "RqcdFwrE75IJ8ts66KIvJosubnYeN1DMgZo+ZLvOl7rTEzyegU8P2Amd4CZcsLAfUtdQmY5MRsunoY36WrvGWaVjjoFLlHEhna8xwQawBoU5yvuFIPxaryvWi8P7OOBoB5OggX4OT7kQemAECnrIvdXrPGrSEBnt/5iCwlh4W/+WVOCv2bEteNxKY9tidNvX",
         "Params": [],
+        "Columns": [
+          {
+            "Name": "STATE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "STATE_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS165AF90A65674872AC71064296553965",
+        "Name": "VS_PIC",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "mMudaIRdYd33Q22VGLMpn0Ng+VKnTaaPCwkg5OfCax1BIjACNhFEmKn5yc+kpJpR",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "EMP_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "EMP_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSADA2AC91E08F44C6B1E722EF1703A3F1",
+        "Name": "VS_INP_PROD",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "SWLIeD7wnrKxW+FBCC3XtURo9UGarhwbeeV334BiStM23KbPQWLXtsBMstixuxvP",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "PROD_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "PROD_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSCC41C1F2C1F54B6D92E219D3F2F7D2D4",
+        "Name": "SET_PLAN_ID",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "FquVigH8MnM6kc4icljwBAtkg7gxy9CZ51w6qFT17M04TQuSp56aZ/ZstAoq0koRrjRXiqmM5z2gAfOgpOx4Xj8J8C/BB4ME1Rr2Gqx1ogOwv9w0X/wifwavy7B52Iay8IjJRX0abCUe/Ou7RExBxfTwq/tIS89jG7qeq5aOm+Ib33J/aLVxqkTvOhF0pfaWfwyw9gpH/Lu1qXLhLt7D0lwrVKT28dRjpQVC1tI8rugkt9I5kqmeYtpkAHOABoJF8vUz8rIBQaTUgKHgT6afHzyzKhjKxYHi8yis+DIMpxHQsMSHKI50weRfC6BA9TfmJfcCeEuxaM3ujwS8sn7UGgh00Caz/Q5cHUSIwHLfJoA=",
+        "Params": [
+          {
+            "Name": ":VS_YM",
+            "ParamType": "String"
+          }
+        ],
         "Columns": []
       },
       {
@@ -33,7 +101,69 @@
         "Name": "GRD_TOTAL",
         "UseMeta": "False",
         "UseCache": "False",
-        "ConnectionCode": "MTXRPTY",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "9I2SYN/GRWW1LktFUf2dfdUTqe/MUz53xTp6sIfhMlzpowbkcvZN8EuHKTq0BGI7YrcXZFDjZkrkUEZ+AAgXY8nWtDp6RN+zHpys2dQMHr86bR9fAHitIzKURyNXXUsYhb7cXyEHQj+2SDICpvjrsYXvcy+TM6twHkkTbwYZ43FEe127IZTzNT6WrR5E7eCBjAZPHNO0yp1pQ7O9GTQonoZCgQHyvTdrG9cukgsfDTYiVtNDPRVxPWn77WDq2gfSeDLWElLmJZuThtUpNq88omMwcJow/Cll6yJsTOZpd4ynZ3yOZ5iaUl6b44a55LtZFpifcSV280Z7RFcWy/4NhwI+d8vVAcJwBEIrxESZJACP8h8vJnhIxzt3sfLZw3wYkwH4W1+ng8puKR0pxGnXcHnQf8rWjnQ0E4hc4xyavvHXzJsxoqOU3XwZwfjNWAQbr7yrxMKPsZLBqXowAtaUnkpNJ/CucWCcxHY/nWqzC05O0m2DS69kyemD8kMvSebfY5AbdQNf6mlo0UYGW1OFfkOdyMCwh+dB4iNKwBjx5kU=",
+        "Params": [],
+        "Columns": []
+      },
+      {
+        "Id": "DS99C962208F484181BECED51E7CF44D12",
+        "Name": "GRD_PLAN",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "UXY4QJ/jm6BoLfQUfkSXys8jWF6iFPNsntF9X/BTfBkNT5yu7w23SkXZ/6tsHdV7D2IJiuUj4XrqBIDW2DLhzpK+PnYtX9sE/4TA218XsFef04TF94tvl1smc/UcxZ1u/RvMI4g/iMfOBsfBQ6eRlaLXTWyAO8eyVdntsGOBaLm54wk1T8T7OVkFuLA0SaUFmCm2/Q7jv9N1sL5gtx9w+AOqTwJGENpvp5XtAgfY6tjNhOBPATbQecxKPfrGdj9bv7cGPPiTZge06d1IbbzSkf5V9pw9XNFpAIxq0X1b6ApgO9mVtyGxjm9BpEWKIJWcA0HXuNli0g2TfUsbqOSgKT0tXwO1qhl/SHfCehLuOIRat4yzuRvyakOBbzgarXaNU6mNSZ6JhDhC8rcWEn92djOwKsIQz60aA4UnpyTVN1A+2zZlRM7HMs0dCtPhbNfursdFCD9c5qa1nylEsPXgOtfp8jryLomuOdYTxqvXjyFw+ufw2mDwM4s/1ygxtX/GTW7VM5EeRDhUli/dZwPNErfVqmYCgPzdtUwaWNwY5L44apiC2gRU/ybN/6H6rqRrwkrk9AAGjt+p9F7ta1ijfNBuZr4GLg2VN8Bfrq+gWN05GUyEb2My5lvWVPC1MUOPbPrd0moGYh+tuc3kHt18hk7IqI+mct9QnVh7ljM6IhjSNZFXL9PEvR3z7+72BZ3kCtEIwlLqilKD9eMCCDbCPYnYgZTwXqOdY0x3wfAI/zkZyW9hSqk+rcs+8RTIfTRX1HOVddicAgEvW0dR08M45HjrwahG3xoyu7xgb0a9NUQ=",
+        "Params": [
+          {
+            "Name": ":VS_YM",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_PIC",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_STATUS",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": []
+      },
+      {
+        "Id": "DS99C962208F484181BECED51E7CF44D12",
+        "Name": "GRD_PLAN",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "UXY4QJ/jm6BoLfQUfkSXys8jWF6iFPNsntF9X/BTfBkNT5yu7w23SkXZ/6tsHdV7D2IJiuUj4XrqBIDW2DLhzpK+PnYtX9sE/4TA218XsFef04TF94tvl1smc/UcxZ1u/RvMI4g/iMfOBsfBQ6eRlaLXTWyAO8eyVdntsGOBaLm54wk1T8T7OVkFuLA0SaUFmCm2/Q7jv9N1sL5gtx9w+AOqTwJGENpvp5XtAgfY6tjNhOBPATbQecxKPfrGdj9bv7cGPPiTZge06d1IbbzSkf5V9pw9XNFpAIxq0X1b6ApgO9mVtyGxjm9BpEWKIJWcA0HXuNli0g2TfUsbqOSgKT0tXwO1qhl/SHfCehLuOIRat4yzuRvyakOBbzgarXaNU6mNSZ6JhDhC8rcWEn92djOwKsIQz60aA4UnpyTVN1A+2zZlRM7HMs0dCtPhbNfursdFCD9c5qa1nylEsPXgOtfp8jryLomuOdYTxqvXjyFw+ufw2mDwM4s/1ygxtX/GTW7VM5EeRDhUli/dZwPNErfVqmYCgPzdtUwaWNwY5L44apiC2gRU/ybN/6H6rqRrwkrk9AAGjt+p9F7ta1ijfNBuZr4GLg2VN8Bfrq+gWN05GUyEb2My5lvWVPC1MUOPbPrd0moGYh+tuc3kHt18hk7IqI+mct9QnVh7ljM6IhjSNZFXL9PEvR3z7+72BZ3kCtEIwlLqilKD9eMCCDbCPYnYgZTwXqOdY0x3wfAI/zkZyW9hSqk+rcs+8RTIfTRX1HOVddicAgEvW0dR08M45HjrwahG3xoyu7xgb0a9NUQ=",
+        "Params": [
+          {
+            "Name": ":VS_YM",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_PIC",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_STATUS",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": []
+      },
+      {
+        "Id": "DS48CDA4F4D76C422AAD1D594EA057B23E",
+        "Name": "GRD_TOTAL",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
         "SQL": "9I2SYN/GRWW1LktFUf2dfdUTqe/MUz53xTp6sIfhMlzpowbkcvZN8EuHKTq0BGI7YrcXZFDjZkrkUEZ+AAgXY8nWtDp6RN+zHpys2dQMHr86bR9fAHitIzKURyNXXUsYhb7cXyEHQj+2SDICpvjrsYXvcy+TM6twHkkTbwYZ43FEe127IZTzNT6WrR5E7eCBjAZPHNO0yp1pQ7O9GTQonoZCgQHyvTdrG9cukgsfDTYiVtNDPRVxPWn77WDq2gfSeDLWElLmJZuThtUpNq88omMwcJow/Cll6yJsTOZpd4ynZ3yOZ5iaUl6b44a55LtZFpifcSV280Z7RFcWy/4NhwI+d8vVAcJwBEIrxESZJACP8h8vJnhIxzt3sfLZw3wYkwH4W1+ng8puKR0pxGnXcHnQf8rWjnQ0E4hc4xyavvHXzJsxoqOU3XwZwfjNWAQbr7yrxMKPsZLBqXowAtaUnkpNJ/CucWCcxHY/nWqzC05O0m2DS69kyemD8kMvSebfY5AbdQNf6mlo0UYGW1OFfkOdyMCwh+dB4iNKwBjx5kU=",
@@ -45,11 +175,16 @@
         "Name": "SET_PLAN_ID",
         "UseMeta": "False",
         "UseCache": "False",
-        "ConnectionCode": "MTXRPTY",
+        "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
         "SQL": "FquVigH8MnM6kc4icljwBAtkg7gxy9CZ51w6qFT17M04TQuSp56aZ/ZstAoq0koRrjRXiqmM5z2gAfOgpOx4Xj8J8C/BB4ME1Rr2Gqx1ogOwv9w0X/wifwavy7B52Iay8IjJRX0abCUe/Ou7RExBxfTwq/tIS89jG7qeq5aOm+Ib33J/aLVxqkTvOhF0pfaWfwyw9gpH/Lu1qXLhLt7D0lwrVKT28dRjpQVC1tI8rugkt9I5kqmeYtpkAHOABoJF8vUz8rIBQaTUgKHgT6afHzyzKhjKxYHi8yis+DIMpxHQsMSHKI50weRfC6BA9TfmJfcCeEuxaM3ujwS8sn7UGgh00Caz/Q5cHUSIwHLfJoA=",
-        "Params": [],
+        "Params": [
+          {
+            "Name": ":VS_YM",
+            "ParamType": "String"
+          }
+        ],
         "Columns": []
       },
       {
@@ -57,58 +192,85 @@
         "Name": "VS_INP_PROD",
         "UseMeta": "False",
         "UseCache": "False",
-        "ConnectionCode": "MTXRPTY",
+        "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
         "SQL": "SWLIeD7wnrKxW+FBCC3XtURo9UGarhwbeeV334BiStM23KbPQWLXtsBMstixuxvP",
         "Params": [],
-        "Columns": []
+        "Columns": [
+          {
+            "Name": "PROD_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "PROD_NAME",
+            "Type": "String"
+          }
+        ]
       },
       {
         "Id": "DS165AF90A65674872AC71064296553965",
         "Name": "VS_PIC",
         "UseMeta": "False",
         "UseCache": "False",
-        "ConnectionCode": "MTXRPTY",
+        "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
         "SQL": "mMudaIRdYd33Q22VGLMpn0Ng+VKnTaaPCwkg5OfCax1BIjACNhFEmKn5yc+kpJpR",
         "Params": [],
-        "Columns": []
+        "Columns": [
+          {
+            "Name": "EMP_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "EMP_NAME",
+            "Type": "String"
+          }
+        ]
       },
       {
         "Id": "DS6DFFD892D44143609F46D4E0F055A9A2",
         "Name": "VS_STATUS",
         "UseMeta": "False",
         "UseCache": "False",
-        "ConnectionCode": "MTXRPTY",
+        "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
         "SQL": "RqcdFwrE75IJ8ts66KIvJosubnYeN1DMgZo+ZLvOl7rTEzyegU8P2Amd4CZcsLAfUtdQmY5MRsunoY36WrvGWaVjjoFLlHEhna8xwQawBoU5yvuFIPxaryvWi8P7OOBoB5OggX4OT7kQemAECnrIvdXrPGrSEBnt/5iCwlh4W/+WVOCv2bEteNxKY9tidNvX",
         "Params": [],
-        "Columns": []
+        "Columns": [
+          {
+            "Name": "STATE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "STATE_NAME",
+            "Type": "String"
+          }
+        ]
       }
     ]
   },
-  "ScriptText": "/* Typed control declarations */\r\nvar GRD_PLAN = Matrix.getObject(\"GRD_PLAN\");\r\nvar GRP_TOTAL_1 = Matrix.getObject(\"GRP_TOTAL_1\");\r\nvar GRP_TOTAL_4 = Matrix.getObject(\"GRP_TOTAL_4\");\r\nvar GRP_TOTAL_2 = Matrix.getObject(\"GRP_TOTAL_2\");\r\nvar GRP_TOTAL_3 = Matrix.getObject(\"GRP_TOTAL_3\");\r\nvar VS_INP_PIC = Matrix.getObject(\"VS_INP_PIC\");\r\nvar BTN_SAV = Matrix.getObject(\"BTN_SAV\");\r\nvar VS_INP_YM = Matrix.getObject(\"VS_INP_YM\");\r\nvar VS_INP_STATUS = Matrix.getObject(\"VS_INP_STATUS\");\r\nvar VS_INP_PROD = Matrix.getObject(\"VS_INP_PROD\");\r\nvar VN_INP_QTY = Matrix.getObject(\"VN_INP_QTY\");\r\nvar VN_INP_AMT = Matrix.getObject(\"VN_INP_AMT\");\r\nvar VS_INP_ID = Matrix.getObject(\"VS_INP_ID\");\r\nvar popup = null;\r\n/**************************************\r\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n * * arguments :\r\n**************************************/\r\nvar OnDocumentLoadComplete = function (sender, args) {\r\n    VS_INP_ID.IsReadOnly = true;\r\n    GRD_PLAN.GetField('PLAN_ID').KeyType = 3; // KeyType: Primary\r\n};\r\n/**************************************\r\n * Execute 실행되는 시점에 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\r\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 시 실행이 취소됩니다.\r\n *\t\t number\tFilterType (Readonly:False) : 0:일반 조회, 1:검색 텍스트박스 조회, 2:전체검색 버튼 조회\r\n *\t\t string\tFilterText (Readonly:False) : 검색 텍스트박스에 입력된 검색어\r\n**************************************/\r\nvar OnMultiComboBoxExecuteStart = function (sender, args) {\r\n    if (['VS_PIC', 'VS_STATUS'].includes(args.Id)) {\r\n        Matrix.getObject(args.Id).CheckAll();\r\n    }\r\n};\r\n/**************************************\r\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤이름\r\n *\t\t string\tText (Readonly:False) : 라벨 값\r\n**************************************/\r\nvar OnButtonClick = function (sender, args) {\r\n    switch (args.Id) {\r\n        case 'BTN_ADD': // 계획 등록 (Form: 영업 계획)\r\n            setInputValue(false); // Input 컨트롤 초기화\r\n            Matrix.SetGlobalParams('PLAN_ID', '');\r\n            BTN_SAV.Text = '추가';\r\n            popup = Matrix.ShowWindow(\"계획 등록\", 0, 0, 460, 415, true, false, \"계획 등록\", true, '#ffffff', 0, false, false);\r\n            popup.MoveToCenter();\r\n            break;\r\n        case 'BTN_REF': // 검색 (Form: 영업 계획)\r\n            Matrix.doRefresh('GRD_PLAN');\r\n            break;\r\n        case 'BTN_RESET': // 초기화 (Form: 영업 계획)\r\n            ['VS_PIC', 'VS_STATUS'].forEach(function (i) {\r\n                Matrix.getObject(i).CheckAll();\r\n            });\r\n            break;\r\n        case 'BTN_DEL': // 삭제 (Form: 영업 관리)\r\n            var checkCount = 0;\r\n            for (var i = 0; i < GRD_PLAN.GetRowCount(); i++) {\r\n                if (GRD_PLAN.getRowValue(i, 'CHK') == 'Y') {\r\n                    GRD_PLAN.ChangeRowStateAt(i, 'D');\r\n                    checkCount++;\r\n                }\r\n            }\r\n            if (!checkCount) {\r\n                Matrix.Information('삭제할 항목을 선택하세요', '안내');\r\n                return;\r\n            }\r\n            Matrix.Confirm('선택한 항목을 삭제하시겠습니까?', '안내', function (ok) {\r\n                if (ok) {\r\n                    Matrix.RunScript('GRD_PLAN', 'GRD_DELETE', function (p) {\r\n                        if (p.Success == false) {\r\n                            Matrix.Alert(p.Message);\r\n                            return;\r\n                        }\r\n                        Matrix.doRefresh('GRD_PLAN');\r\n                        Matrix.Information('삭제 완료되었습니다.', '안내');\r\n                    });\r\n                }\r\n                else\r\n                    GRD_PLAN.ClearRowState(false);\r\n            }, 0);\r\n            break;\r\n        case 'BTN_CNC': // 취소 (Form: 영업 계획)\r\n            popup.Close();\r\n            break;\r\n        case 'BTN_SAV': // 저장 (Form: 영업 등록)\r\n            var fields = [VS_INP_ID.Text, VS_INP_YM.Value, VS_INP_PIC.Value, VS_INP_PROD.Value, VN_INP_QTY.Value, VS_INP_STATUS.Value];\r\n            if (isInvalidInput(fields)) {\r\n                Matrix.Information('필수 입력 항목을 확인해주세요', '안내');\r\n                return;\r\n            }\r\n            var scriptName = Matrix.GetGlobalParamValue('VS_PLAN_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';\r\n            Matrix.RunScript('', scriptName, function (p) {\r\n                if (p.Success == false) {\r\n                    Matrix.Alert(p.Message);\r\n                    return;\r\n                }\r\n                Matrix.doRefresh('GRD_PLAN');\r\n                Matrix.Information(BTN_SAV.Text + ' 완료되었습니다.', '안내');\r\n                popup.Close();\r\n            });\r\n            break;\r\n    }\r\n};\r\n/**************************************\r\n* 컨트롤에 데이터셋이 바인딩된 후 발생합니다.\r\n* * arguments :\r\n*\t\t string\tId (Readonly:False) : 컨트롤이름\r\n*\t\t number\tRecordCount (Readonly:False) : 데이터셋의 레코드 수량\r\n**************************************/\r\nvar OnDataBindEnd = function (sender, args) {\r\n    if (args.Id == 'GRD_PLAN') {\r\n        Matrix.getObject('LBL_TTL_2').Text = '   영업 계획 목록 (' + args.RecordCount + '건)';\r\n    }\r\n    else if (args.Id == 'GRD_TOTAL') {\r\n        if (!args.RecordCount) {\r\n            ['1', '2', '3', '4'].forEach(function (i) {\r\n                Matrix.getObject('LBL_TOTAL_VAL_' + i).Text = '';\r\n            });\r\n        }\r\n    }\r\n};\r\n/**************************************\r\n * 그리드의 멀티 헤더 체크 박스를 클릭하는 순간 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\r\n *\t\t aud.control.grids.MultiHeaderCell\tHeaderCell (Readonly:False) : 멀티헤더셀 객체\r\n *\t\t boolean\tChecked (Readonly:False) : 체크 유무\r\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 하게되면 클릭 처리가 취소됩니다.\r\n**************************************/\r\nvar OnGridMultiHeaderCheckBoxClicked = function (sender, args) {\r\n    if (args.Id == 'GRD_PLAN') {\r\n        var grid = Matrix.getObject(args.Id);\r\n        var checkValue = args.Checked ? \"Y\" : \"N\";\r\n        for (var i = 0; i < grid.GetRowCount(); i++) {\r\n            grid.setRowValue(i, \"CHK\", checkValue);\r\n        }\r\n        grid.Update();\r\n    }\r\n};\r\n/**************************************\r\n* 그리드의 셀을 더블 클릭할 떄 발생합니다.\r\n* * arguments :\r\n*\t\t string\tId (Readonly:False) : 컨트롤 이름\r\n*\t\t aud.control.grids.DataGridRow\tRow (Readonly:False) : 데이터 레코드 정보\r\n*\t\t aud.control.grids.DataGridCell\tCell (Readonly:False) : 데이터셀 정보\r\n*\t\t aud.control.grids.DataGridColumn\tField (Readonly:False) : 필드 정보\r\n**************************************/\r\nvar OnCellDoubleClick = function (sender, args) {\r\n    if (args.Id == 'GRD_PLAN') {\r\n        setInputValue(args.Row);\r\n        Matrix.SetGlobalParams('VS_PLAN_ID', args.Row.GetValue('PLAN_ID'));\r\n        BTN_SAV.Text = '저장';\r\n        popup = Matrix.ShowWindow(\"계획 등록\", 0, 0, 460, 415, true, false, \"계획 등록\", true, '#ffffff', 0, false, false);\r\n        popup.MoveToCenter();\r\n    }\r\n};\r\n/**************************************\r\n * 뷰어의 사이즈가 변경될 때 발생합니다.\r\n * * arguments :\r\n *\t\t number\tWidth (Readonly:False) : 뷰어의 넓이\r\n *\t\t number\tHeight (Readonly:False) : 뷰어의 높이\r\n**************************************/\r\nvar OnViewerSizeChanged = function (sender, args) {\r\n    var setWidth = (args.Width - 100) / 4;\r\n    GRP_TOTAL_1.Width = setWidth;\r\n    GRP_TOTAL_2.Width = setWidth;\r\n    GRP_TOTAL_3.Width = setWidth;\r\n    GRP_TOTAL_4.Width = setWidth;\r\n    GRP_TOTAL_2.Left = setWidth + 40;\r\n    GRP_TOTAL_3.Left = setWidth * 2 + 60;\r\n    GRP_TOTAL_4.Left = setWidth * 3 + 80;\r\n};\r\nvar setInputValue = function (row) {\r\n    if (row) {\r\n        VS_INP_ID.Text = row.GetValue('PLAN_ID');\r\n        VS_INP_YM.Value = row.GetValue('PLAN_YM');\r\n        VS_INP_PIC.Value = row.GetValue('EMP_ID');\r\n        VS_INP_PROD.Value = row.GetValue('PROD_ID');\r\n        VN_INP_QTY.Value = row.GetValue('TARGET_QTY');\r\n        VN_INP_AMT.Value = row.GetValue('TARGET_AMT');\r\n        VS_INP_STATUS.Value = row.GetValue('PLAN_STATUS_CODE');\r\n    }\r\n    else {\r\n        Matrix.Execute('SET_PLAN_ID', function (p) {\r\n            if (p.Success == false) {\r\n                Matrix.Alert(p.Message);\r\n                return;\r\n            }\r\n            var dt = p.DataTable;\r\n            VS_INP_ID.Text = dt.getRowValue(0, 'PLAN_ID');\r\n        });\r\n        VS_INP_YM.Value = '';\r\n        VS_INP_PIC.Value = '';\r\n        VS_INP_PROD.Value = '';\r\n        VN_INP_QTY.Value = 0;\r\n        VN_INP_AMT.Value = 0;\r\n        VS_INP_STATUS.Value = '';\r\n    }\r\n};\r\nvar isInvalidInput = function (fields) {\r\n    return fields.some(function (v) {\r\n        return v === null || v === undefined || v === '';\r\n    });\r\n};\r\n",
+  "ScriptText": "/* Typed control declarations */\nvar GRD_PLAN = Matrix.getObject(\"GRD_PLAN\");\nvar GRP_TOTAL_1 = Matrix.getObject(\"GRP_TOTAL_1\");\nvar GRP_TOTAL_4 = Matrix.getObject(\"GRP_TOTAL_4\");\nvar GRP_TOTAL_2 = Matrix.getObject(\"GRP_TOTAL_2\");\nvar GRP_TOTAL_3 = Matrix.getObject(\"GRP_TOTAL_3\");\nvar VS_INP_PIC = Matrix.getObject(\"VS_INP_PIC\");\nvar BTN_SAV = Matrix.getObject(\"BTN_SAV\");\nvar VS_INP_YM = Matrix.getObject(\"VS_INP_YM\");\nvar VS_INP_STATUS = Matrix.getObject(\"VS_INP_STATUS\");\nvar VS_INP_PROD = Matrix.getObject(\"VS_INP_PROD\");\nvar VN_INP_QTY = Matrix.getObject(\"VN_INP_QTY\");\nvar VN_INP_AMT = Matrix.getObject(\"VN_INP_AMT\");\nvar VS_INP_ID = Matrix.getObject(\"VS_INP_ID\");\nvar popup = null;\n/**************************************\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\n * * arguments :\n**************************************/\nvar OnDocumentLoadComplete = function (sender, args) {\n    VS_INP_ID.IsReadOnly = true;\n    GRD_PLAN.GetField('PLAN_ID').KeyType = 3; // KeyType: Primary\n};\n/**************************************\n * Execute 실행되는 시점에 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 시 실행이 취소됩니다.\n *\t\t number\tFilterType (Readonly:False) : 0:일반 조회, 1:검색 텍스트박스 조회, 2:전체검색 버튼 조회\n *\t\t string\tFilterText (Readonly:False) : 검색 텍스트박스에 입력된 검색어\n**************************************/\nvar OnMultiComboBoxExecuteStart = function (sender, args) {\n    if (['VS_PIC', 'VS_STATUS'].includes(args.Id)) {\n        Matrix.getObject(args.Id).CheckAll();\n    }\n};\n/**************************************\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤이름\n *\t\t string\tText (Readonly:False) : 라벨 값\n**************************************/\nvar OnButtonClick = function (sender, args) {\n    switch (args.Id) {\n        case 'BTN_ADD': // 계획 등록 (Form: 영업 계획)\n            setInputValue(false); // Input 컨트롤 초기화\n            Matrix.SetGlobalParams('PLAN_ID', false);\n            BTN_SAV.Text = '추가';\n            popup = Matrix.ShowWindow(\"계획 등록\", 0, 0, 460, 415, true, false, \"계획 등록\", true, '#ffffff', 0, false, false);\n            popup.MoveToCenter();\n            break;\n        case 'BTN_REF': // 검색 (Form: 영업 계획)\n            Matrix.doRefresh('GRD_PLAN');\n            break;\n        case 'BTN_RESET': // 초기화 (Form: 영업 계획)\n            ['VS_PIC', 'VS_STATUS'].forEach(function (i) {\n                Matrix.getObject(i).CheckAll();\n            });\n            break;\n        case 'BTN_DEL': // 삭제 (Form: 영업 관리)\n            var checkCount = 0;\n            for (var i = 0; i < GRD_PLAN.GetRowCount(); i++) {\n                if (GRD_PLAN.getRowValue(i, 'CHK') == 'Y') {\n                    GRD_PLAN.ChangeRowStateAt(i, 'D');\n                    checkCount++;\n                }\n            }\n            if (!checkCount) {\n                Matrix.Information('삭제할 항목을 선택하세요', '안내');\n                return;\n            }\n            Matrix.Confirm('선택한 항목을 삭제하시겠습니까?', '안내', function (ok) {\n                if (ok) {\n                    Matrix.RunScript('GRD_PLAN', 'GRD_DELETE', function (p) {\n                        if (p.Success == false) {\n                            Matrix.Alert(p.Message);\n                            return;\n                        }\n                        Matrix.doRefresh('GRD_PLAN');\n                        Matrix.Information('삭제 완료되었습니다.', '안내');\n                    });\n                }\n                else\n                    GRD_PLAN.ClearRowState(false);\n            }, 0);\n            break;\n        case 'BTN_CNC': // 취소 (Form: 영업 계획)\n            popup.Close();\n            break;\n        case 'BTN_SAV': // 저장 (Form: 영업 등록)\n            var fields = [VS_INP_ID.Text, VS_INP_YM.Value, VS_INP_PIC.Value, VS_INP_PROD.Value, VN_INP_QTY.Value, VS_INP_STATUS.Value];\n            if (isInvalidInput(fields)) {\n                Matrix.Information('필수 입력 항목을 확인해주세요', '안내');\n                return;\n            }\n            var scriptName = Matrix.GetGlobalParamValue('VS_PLAN_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';\n            Matrix.RunScript('', scriptName, function (p) {\n                if (p.Success == false) {\n                    Matrix.Alert(p.Message);\n                    return;\n                }\n                Matrix.doRefresh('GRD_PLAN');\n                Matrix.Information(BTN_SAV.Text + ' 완료되었습니다.', '안내');\n                popup.Close();\n            });\n            break;\n    }\n};\n/**************************************\n* 컨트롤에 데이터셋이 바인딩된 후 발생합니다.\n* * arguments :\n*\t\t string\tId (Readonly:False) : 컨트롤이름\n*\t\t number\tRecordCount (Readonly:False) : 데이터셋의 레코드 수량\n**************************************/\nvar OnDataBindEnd = function (sender, args) {\n    if (args.Id == 'GRD_PLAN') {\n        Matrix.getObject('LBL_TTL_2').Text = '   영업 계획 목록 (' + args.RecordCount + '건)';\n    }\n    else if (args.Id == 'GRD_TOTAL') {\n        if (!args.RecordCount) {\n            ['1', '2', '3', '4'].forEach(function (i) {\n                Matrix.getObject('LBL_TOTAL_VAL_' + i).Text = '';\n            });\n        }\n    }\n};\n/**************************************\n * 그리드의 멀티 헤더 체크 박스를 클릭하는 순간 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\n *\t\t aud.control.grids.MultiHeaderCell\tHeaderCell (Readonly:False) : 멀티헤더셀 객체\n *\t\t boolean\tChecked (Readonly:False) : 체크 유무\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 하게되면 클릭 처리가 취소됩니다.\n**************************************/\nvar OnGridMultiHeaderCheckBoxClicked = function (sender, args) {\n    if (args.Id == 'GRD_PLAN') {\n        var grid = Matrix.getObject(args.Id);\n        var checkValue = args.Checked ? \"Y\" : \"N\";\n        for (var i = 0; i < grid.GetRowCount(); i++) {\n            grid.setRowValue(i, \"CHK\", checkValue);\n        }\n        grid.Update();\n    }\n};\n/**************************************\n* 그리드의 셀을 더블 클릭할 떄 발생합니다.\n* * arguments :\n*\t\t string\tId (Readonly:False) : 컨트롤 이름\n*\t\t aud.control.grids.DataGridRow\tRow (Readonly:False) : 데이터 레코드 정보\n*\t\t aud.control.grids.DataGridCell\tCell (Readonly:False) : 데이터셀 정보\n*\t\t aud.control.grids.DataGridColumn\tField (Readonly:False) : 필드 정보\n**************************************/\nvar OnCellDoubleClick = function (sender, args) {\n    if (args.Id == 'GRD_PLAN') {\n        setInputValue(args.Row);\n        Matrix.SetGlobalParams('VS_PLAN_ID', args.Row.GetValue('PLAN_ID'));\n        BTN_SAV.Text = '저장';\n        popup = Matrix.ShowWindow(\"계획 등록\", 0, 0, 460, 415, true, false, \"계획 등록\", true, '#ffffff', 0, false, false);\n        popup.MoveToCenter();\n    }\n};\n/**************************************\n * 뷰어의 사이즈가 변경될 때 발생합니다.\n * * arguments :\n *\t\t number\tWidth (Readonly:False) : 뷰어의 넓이\n *\t\t number\tHeight (Readonly:False) : 뷰어의 높이\n**************************************/\nvar OnViewerSizeChanged = function (sender, args) {\n    var setWidth = (args.Width - 100) / 4;\n    GRP_TOTAL_1.Width = setWidth;\n    GRP_TOTAL_2.Width = setWidth;\n    GRP_TOTAL_3.Width = setWidth;\n    GRP_TOTAL_4.Width = setWidth;\n    GRP_TOTAL_2.Left = setWidth + 40;\n    GRP_TOTAL_3.Left = setWidth * 2 + 60;\n    GRP_TOTAL_4.Left = setWidth * 3 + 80;\n};\nvar setInputValue = function (row) {\n    if (row) {\n        VS_INP_ID.Text = row.GetValue('PLAN_ID');\n        VS_INP_YM.Value = row.GetValue('PLAN_YM');\n        VS_INP_PIC.Value = row.GetValue('EMP_ID');\n        VS_INP_PROD.Value = row.GetValue('PROD_ID');\n        VN_INP_QTY.Value = row.GetValue('TARGET_QTY');\n        VN_INP_AMT.Value = row.GetValue('TARGET_AMT');\n        VS_INP_STATUS.Value = row.GetValue('PLAN_STATUS_CODE');\n    }\n    else {\n        Matrix.Execute('SET_PLAN_ID', function (p) {\n            if (p.Success == false) {\n                Matrix.Alert(p.Message);\n                return;\n            }\n            var dt = p.DataTable;\n            VS_INP_ID.Text = dt.getRowValue(0, 'PLAN_ID');\n        });\n        VS_INP_YM.Value = '';\n        VS_INP_PIC.Value = '';\n        VS_INP_PROD.Value = '';\n        VN_INP_QTY.Value = 0;\n        VN_INP_AMT.Value = 0;\n        VS_INP_STATUS.Value = '';\n    }\n};\nvar isInvalidInput = function (fields) {\n    return fields.some(function (v) {\n        return v === null || v === undefined || v === '';\n    });\n};\n",
   "ServerScriptText": [
     {
       "Name": "GRD_DELETE",
       "Key": "BIZB432613AD4E64DCE96C4F330356E1806",
       "Encrypted": true,
-      "ScriptText": "SnGZTXoWgLwnWaQFwynZkMloOIQcnzfw03AihKOUcMghluSJqfuFzWYi6BHo9NxrzvuO7dhUG1p7r0hAhJJLLAeqACZhHRCcelqh/bXZB5YFIeGgTP2xS2Mg6x73Xd6zVrCyTXiNnTvGOErttK4pZ9L7j/j6NBR2i8YMNVZKQuX5zCuM96MpPE7TMo8Sk8fiClB6zk/1ZXrR+aDgGjXVs/Q+moVyZyfPhRwdV/hEeBaMMHQfpw5vSXA5zZ4inxsCsVpR9lc0lMsayKR7904liTSuMlhVgeOL3IY8ydhxmSO6LcPkckGfPtG6ohlgtKyNf9dA4Tu9+GSREpwNqU98+IiDuCJUx19EdSfWWWz+7JCFptfMlR+Hr5vZDto6ROW2VHSMHqSS/rnLeXstTVcFe3x0n5WovPYMhLjMyHpjQaDY/qBgRfyKPW5RXVUeGWAs1wpsdfp//iO9JLN4tBLkoHP4bXeuiII92Lb7+yaWx57Dfpu8NuxYfLQe0geDILcoqL4YLBBO3JaVMiJGOpbLgJEUjF4+A+iiAnXMM2Iu94zrnebLd7cOmB7GaABO7T8oVQrHhx2eAzQoHARkOQsVdmIm5PvmiYnS0fHcXPGnPvCilTIGKAgxs5LrY78ZPRMaXcHtbfgz2PAu1+RR/q/qzEWzktqEpsFnmMMhaIUfu51bkaXD5A/mlkJqwV92ptMsW5Glw+QP5pZCasFfdqbTLFuRpcPkD+aWQmrBX3am0yyPtc9FyWjceWFK6ic3kPgJXubIgs2XcFx7EtDGWpJFRaV60COv9EAJYFkRBDaAFJtbkaXD5A/mlkJqwV92ptMsW5Glw+QP5pZCasFfdqbTLLUOgos9rzOrjADaGJ9BH//qsP9VtKblLZsReqsGpYFljUymymlo93y94A0sKpDJV+vBR71sk7lp61nZbtC+1ATEseq3ii+IXUJkQMgEU+a06PS8c2f2GVJemIltCwl6QP5Ci3s9qtu8xif2kSn6Xnkqqbs/rvEEihfIcXBCFQ5JbNFiVcmEl76QIqgvYUGu9rGfNGVMH6QO6CvBPpNVLSe09piT4KI0Le6PbKSKgq6o1ODiHzAjd3mD+EwqtahPdhIUutCBiGPcIX+c8CW+Y2KGDJpIUBIZdRHEAs5S7TO1j3713iQ8BmzwIA8cAhOT2wTLB2aoud0i38e/nGCjwtPWX4kJ5l1Wl5AjnSzBhDCqVUumeljO/03UulMOnb0B5xkgSEPhrqrC86P2nnt2CKNa5uW577dx+QwcuI5P3L9XObQYHqg+fntcjzNs0nAx/E9zkmniRZTDunDwKJrHLLwTVdh5eIWkvCBaQrj+ltHFclo6TJgFdXH2g6z5BLlOJsOS7tOigmxAv7ZnTRc0zVk1l4eXSFBgmR7isxcnr4nbGbuX0By+JUndRgqAQX0tp/tnuNQcgW1LEEftQvaSqxHdHCK9H/i1NCfpXOFpABYyJDx1QlZsGc/KR607C3eY9OhaHi9Lq+WVvVjmXe7l1VTZEDUw4tEycyzkoAw56/sBAqQGVXR4My3rpi+1ElLaHq3bvm071OpRx7pDCkcTSY7/P/4X2DmcjEVDcrKq7G5hurg/qznQqgSUYYiOwtKsfeYV33OmonPFIxSarSUrMdrFuOjXhHNlXMHODTgKe+RXdDoc/xrK3EH1bjOVarad9FmaZIhuM7/d2kevUHLUDHJTAsVsZUxS81ikQjVIQEA5cpoiFxvW6aBJeCldxKk/GNeFdh6s8f7YGeF5MMNnHmhymiIXG9bpoEl4KV3EqT8Y2IMGOMV6VHKo590q/IFjpTsB4R4CvTWZFxL4MFWZUsenYD4TvGDSc5GtlcU+Evb1xoSRpYHZkcz37L/0EX7qkdO2x+zXszbBV3Th6JUzhoU="
+      "ScriptText": "SnGZTXoWgLwnWaQFwynZkMloOIQcnzfw03AihKOUcMghluSJqfuFzWYi6BHo9NxrzvuO7dhUG1p7r0hAhJJLLAeqACZhHRCcelqh/bXZB5a3HBv9p35aNSWaCD9hOPC6pGfKjANsEhftEfPprCCSXcnfSFub2jUjkWTDQsHCSuM2XEy4JapNsTDL328k10BlmJwMckIXkAzI/bcys8STbWtiwZWc+NgpP8pREC4/Z/oK0Oeu4e5aecB7TSh0xyiHCG4GWEI7TgnLRKHIvv4R0+W7CSsK0hGj47msl5eAL1VeU5/bYNzZOX9cOu18Zy55R1YIo/RZJyRktPB5iThwVdjTvXCLvJMb3FkXYr1pOcL3o6Td3GyvE46VBKO9/7CGx8TLya1dNR+zm2Rk+gRIkvqkuuJscLyb+Vw3xlf2QpwVIdgirZ6HSaoxb5E7rcn3hVNVkiC036DK9+HvOYjUZJfmwJYHS2nftJY4QbgBBcjbnyEakS/RZo+iQn/AHz/c1AGT1d0DSu6d01J1VqaPJr7MVTrQjt3LGP2GlY5yb4KMdzY+d+yXlLNtJAt5xg3wOFb/dkvojMwiyRdyxqTsPadTsOWlrfGfgX7Uc3m13fhPIHk698Udt6aNiR2dHbwrkRRFcEMW+zkP7QXB4LIDzSLJaXa7xY/lLIwaoH0UbWBbkaXD5A/mlkJqwV92ptMsW5Glw+QP5pZCasFfdqbTLPL5gbYIqwepaVzQtY7GDEx6CaPld1OSNrKHzMarl5XRJwqi/q4yx5T5uGGGHpwWgluRpcPkD+aWQmrBX3am0yxbkaXD5A/mlkJqwV92ptMsdPcUebWs9WK+6o7dFsVHZ25CPlZ7yRXfpbVcfoPE3fwH2noWBrnzszc67M1OaUBxfnrGxWbMD6FmgftmVV8p38hKZTp9JzQut7NBZP/uHzVVCOuLi7npVQx+MHfpy9yvZWyl3QfimVVPcnZdTTdiCW+vjjIKRnH7mJ3wMXe+QX4f8EUhOyoc+MpxpuRHVbQchaysPhAjGtKQnoSvWi5oWUy0ImDQRfwICJUU5RhilEWZt4utp7Pf304IomOy3QUB+wCFWsrZ52BC4RLmAsKdYycbRI5UA/fjZFmQAaqQksRu2fENPicFNcvtMzTjXK4fasOTjfWg0fUG7CER1kQK26z3XsPwf0Y5JB60yX8HWCR7knoq2KBLKdYqiP8F/fzrihvCR8vkOq+/L/GLQ0ScZHaBAsq4WRbsQ+8oAin6BMALevglo8tuqi3Y13vo9t3a9Nn+lGJQeKUYU/Sk6zBBCgxnNDnPaWlwCqUNcwh0oPeVYHYPSGxhdIgi0h3xOQe+tHLP4oFYc6xGMNomwHohvhgFW5e2S9zd1OZSREHr/MdzhKGhZqdmJGpVBB3dvkAje8J3Gre5kgFvQPcRjmkrUlNSloZOZXdKR1XkUlM22whMVPWrZokSf9/nrdsaDoVfoh53V85d828Krk+aq3Em196wRkt8PxEiF3xhoyvWrAbj2skTP40dS/L9kOX04UOaaYd9yJphZmKzfg5MIw7Rasxgs7Q+jDPpjbn9zlUThEq19s3rDKfdMpbM+ulnvASpgiB9vvJIVhBfLcAHMQ29U/IfZU6O/OgBHgrDhhLHt3R6MFbAyoWVbwMJKkQvMG8+wr59xprVtJ1AcVTkzlwXrlRjxOftksoAOIN/586ZuQDKVGAIZrwhfPFjwM4XdCmfR/PV8FfMIOzEikvYVE6L0vzW6vv7GGMDNBgaS1eLKtfU/iZiGqtVKGjYI4mDSR9f+GCEUFxD5/k8rr6ZlcsBmvSzGvkVyrq1tOr7GiTRYXQ="
     },
     {
       "Name": "GRD_INSERT",
       "Key": "BIZ4A8C3D7706BD471F937EE0B05BAAC998",
       "Encrypted": true,
-      "ScriptText": "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"
+      "ScriptText": "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"
     },
     {
       "Name": "GRD_UPDATE",
       "Key": "BIZAC6F80021D0C4B22901F2ADD461F5529",
       "Encrypted": true,
-      "ScriptText": "SnGZTXoWgLwnWaQFwynZkMloOIQcnzfw03AihKOUcMghluSJqfuFzWYi6BHo9NxrzvuO7dhUG1p7r0hAhJJLLAeqACZhHRCcelqh/bXZB5YFIeGgTP2xS2Mg6x73Xd6zVrCyTXiNnTvGOErttK4pZ4rxiqSMjI85GAXoex82aSnHVJHycmB3Zp7km+/dIq+cvzZ8V4tkomIMaqVXIWxbFnCxs/EhhkWYIpKgUF7FnhYxB6KsrF9SBCxx1iNSqtL5L3ZMjRRIYvdqNj7FqdW6nOTXb48NVukqpd9WJaq/63eND0/YVvUAxIYN/zOeeFXJ1AGT1d0DSu6d01J1VqaPJr7MVTrQjt3LGP2GlY5yb4KMdzY+d+yXlLNtJAt5xg3wLtBlheNaD7MQcAPFvXFfmx6JcK9xcbT1VfmtB9c+Z7MfAOvWvc0/FqplWhmuKLSrXFsjM2/9f6PzRMHTskn4GogEBHJDM9KiYsLYFJAoLaV1PK5pyFOwMmFX33Wnn2V8NudrbuHGZv8GG/JlK5OXNXVe7Iy+G31ozG6hGqKgRqa5r1vmExpT2niukl/zS9IVCRaSSA64dClS7veTh4eX/A9ZwHhIbFKWgSXZsBmjpDU01uoVF/OuRITH/HILfgwOhqNdYZXl9CVVAFknsE6/xRcHof1p8q6OS0eG48saV58hMEMFrzeCHhVGjdjR5ZSUGTpTlWmvedTQPH4tClj5Ky+Ud0annEGohjC+hXcFpeee7T9N5oRYAkRHhZrMmbctDBNCiqem9OJMn3LA9t0Jjw0ealhkwSh0HS0XP6z6teQ01uoVF/OuRITH/HILfgwOgTZvZ1Sob3dNkk0O2or0fXGY6HRYpq6Wx02nv7VDS8HXNKReBwU/xApTNeVzrEkGbltNGMwVGhEONEjjB0kxaByPXL0DgBqQc1isA3rytXqUOkMwQ5lFI2n69as6l4hVWHW5B13GSnFnlmtyHqChYS+hcLzWQ026rzzzAdZy5usWaYSMIA6h5JLFuGFjb6ap6jOFALW3FLIlT80KhGFYgjlIaSUls5beWOmx0ZfV3+sp+v0Ab1t04bNTkngFNOOhuvRlC1xtHUgcPPspSKBGLxJs4O/IWFYs+YPUfBnu00BFDeFZN2NJERgFuWhUhcC3nYyJf/2DsjpxnTJFL9TxipcJnvo2F5DxXTJUoBTCp8RqSvtmmNzLOGclefXoA0d33Hm0QvTi8UlwfKm+uY7dwexk9BkxGe2SRB0nKxfzfhLffQzofPdvzccA5ceS1iR8YTXJ0ePWSqNg7EJTvegu23phKsKiEB7pMQoHua8FYvR4OhMjE0WaBeeCboBKB1wu1MOUsBXojkN3KJj3T0HjUEnq+bsE/QLXzVnfGTJMYNvwTLHWVQog+ELrGrl71IFszjItdtvJAEA6liZewmUtBwwKqKIjrcxpHsx882nf0o3G7877qOCDzVsxNNQxmS1cbXG69ojcGeRonupOd+0Eh2Q/stHz136e5dKlHwP+si6Pu+w7m6rJscgLjQrNcJRCUAMPQ6MGbtwGK0gbzd/AUQ+Qr+HVVuIbV3z4Ly4W9vMmAHzY8nwBcAHoEy1xTM84hkBbn0QYg8NwDEqw5PydG8vqQdWWeo1Q7OL/MwWc31jQeVQ/QzUVNmCAbdUeuZY6viXSzFYtLxD3rqNBNHb37+hjVRuzalwW92yV17ZMItwZXkYKTC34fpFnbC9zA/SaUvk8mgMsx6ORnk4qZU15xgZkegeEal0V6c2OXIsKblGuuiHoRZ8AI/a2Itltjoad22M2hx0Cj6lCew8o6CsWv57wwwVlnO9qNrEldYr5LzOAdo+NnAURafwY3ZRbMfS82Y+AdKhaL4FWSwikHncub+JdhUjUSIUI/6RoNiniWicj1McPDEugaLRn8o6k/mgYKsaRWy4t02y7UoEzdQ8a/KQedqCQLYjmuqKq2G2d6oiq4c3QuxTL/Wn2XM5byP9aad9dNfNBDpHje0GKiFSBPtB5VD9DNRU2YIBt1R65ljpu85+/HeL/pAu79zAjiuwD1tS+8rLro3R61vaErYvAcV+yok6Hw4NSxrp/uhoWpF2K661R1Fmf2KDOH87WfRpj9FL684EMoeG2xNF7SGOE1ZVDoVM00SIGz2NPSaA4TFZpLpeutQu2uTKTJKIyV9aZxuKKfJJkbpLjXnBRCYlt+Jjag8QC/vy/H5+OKSr0kuTrZaLhVPS44kAZNBuU3J47p2ZOHZ+QcK3Fyb5UceLQTeguiA1rzqYLMk2bXdi0EXmW6edYLMeWIeP4Acp+7j0S5zfcsK1vQQXjdiAslxWJqF+yok6Hw4NSxrp/uhoWpF3LTeWB3N7We+o02uSNIQgmxrxFlSWpbNDzoo7alwDSGQ9TEL8NcNdHTgKjaUKxrsVf5eDvQf0r+/gMEOKp0o70VzOwYYJj+W6WWECRKba9i//JNPoRyvx9mCc4pUXU5NOFXWdPNCzWEjbHpXLQhLERsPb3WfnJfWrMdxQ07Lw8vc7tbPCHXv6FUnD+bp2XIeZkAO/EoXH03SBlgA1kvUmoE4uQeu7WXwepP2/A+5ib6P/LE1hEMN3OaNsCi2GcUeM7ZBw5C0sQYWdGb2EUMHpRUBeECoaC4aII8KF8zEzCT9T+JmIaq1UoaNgjiYNJH1/4YIRQXEPn+TyuvpmVywGag7Gu+pZaRklmsxrcaKzJt4Lvzfnfztdwh4XPxIqPw+A="
+      "ScriptText": "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"
     }
   ],
   "Forms": [
@@ -170,7 +332,7 @@
               "Name": "BTN_ADD",
               "InGroup": "GRP_HEADER",
               "Position": {
-                "Left": 1481,
+                "Left": 1501,
                 "Top": 10,
                 "Width": 90,
                 "Height": 35,
@@ -234,7 +396,7 @@
           "Position": {
             "Left": 0,
             "Top": 0,
-            "Width": 1591,
+            "Width": 1611,
             "Height": 55,
             "ZIndex": 0,
             "TabIndex": 0,
@@ -622,7 +784,7 @@
               }
             },
             {
-              "DataSource": "DS7DB266D7666C4618A3016DBBA4EF73C1",
+              "DataSource": "DS165AF90A65674872AC71064296553965",
               "EditValue": "EMP010,EMP011,EMP012,EMP013,EMP014,EMP021,EMP022,EMP023,EMP024,EMP031,EMP032,EMP040,EMP041,EMP042,EMP051,EMP060,EMP061,EMP071,EMP081,EMP082,EMP090,EMP099,EMP001",
               "CaptionText": "전체",
               "InitType": "0",
@@ -719,7 +881,7 @@
               }
             },
             {
-              "DataSource": "DS51DBE6EE50354391B2E39D80DDEC595E",
+              "DataSource": "DS6DFFD892D44143609F46D4E0F055A9A2",
               "EditValue": "DRAFT,CONFIRMED",
               "CaptionText": "전체",
               "InitType": "0",
@@ -976,7 +1138,7 @@
           "Position": {
             "Left": 20,
             "Top": 205,
-            "Width": 1551,
+            "Width": 1571,
             "Height": 90,
             "ZIndex": 3,
             "TabIndex": 0,
@@ -1056,7 +1218,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 1551,
+                "Width": 1571,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -1119,8 +1281,8 @@
               "Position": {
                 "Left": 20,
                 "Top": 75,
-                "Width": 1511,
-                "Height": 468,
+                "Width": 1531,
+                "Height": 492,
                 "ZIndex": 21,
                 "TabIndex": 0,
                 "Docking": {
@@ -1189,7 +1351,7 @@
                 }
               },
               "CellMargin": "5,5,5,5",
-              "DataSource": "DSD6DF8B2713D145DCA1839F8F4E594615",
+              "DataSource": "DS99C962208F484181BECED51E7CF44D12",
               "AutoRefresh": true,
               "ShowHeader": 2,
               "NaNCellText": "-",
@@ -1572,7 +1734,7 @@
                         "Position": {
                           "Left": 30,
                           "Top": 0,
-                          "Width": 211,
+                          "Width": 214,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1657,9 +1819,9 @@
                         "Id": "Label6990F06C4BDEB6D50FC95504563C3905",
                         "Name": "PLAN_YM",
                         "Position": {
-                          "Left": 241,
+                          "Left": 244,
                           "Top": 0,
-                          "Width": 211,
+                          "Width": 214,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1744,9 +1906,9 @@
                         "Id": "Label237E4A18A1DA2B6B971B36AB1C3276A0",
                         "Name": "EMP_NAME",
                         "Position": {
-                          "Left": 452,
+                          "Left": 458,
                           "Top": 0,
-                          "Width": 211,
+                          "Width": 214,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1831,9 +1993,9 @@
                         "Id": "Label264FDEBA95170F980A612E1AD72093CB",
                         "Name": "PROD_NAME",
                         "Position": {
-                          "Left": 663,
+                          "Left": 672,
                           "Top": 0,
-                          "Width": 211,
+                          "Width": 214,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1918,9 +2080,9 @@
                         "Id": "LabelE987703E45511CB5EA9D697B6852E54C",
                         "Name": "TARGET_QTY",
                         "Position": {
-                          "Left": 874,
+                          "Left": 886,
                           "Top": 0,
-                          "Width": 211,
+                          "Width": 214,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2005,9 +2167,9 @@
                         "Id": "LabelFC1426CE409122D6CF61F1704F186285",
                         "Name": "TARGET_AMT",
                         "Position": {
-                          "Left": 1085,
+                          "Left": 1100,
                           "Top": 0,
-                          "Width": 211,
+                          "Width": 214,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2092,9 +2254,9 @@
                         "Id": "Label71FCDEFB744AC0514844E84C61F588C8",
                         "Name": "PLAN_STATUS",
                         "Position": {
-                          "Left": 1296,
+                          "Left": 1314,
                           "Top": 0,
-                          "Width": 215,
+                          "Width": 217,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2210,7 +2372,7 @@
               "Name": "BTN_DEL",
               "InGroup": "GRP_BODY",
               "Position": {
-                "Left": 1471,
+                "Left": 1491,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -2274,8 +2436,8 @@
           "Position": {
             "Left": 20,
             "Top": 295,
-            "Width": 1551,
-            "Height": 563,
+            "Width": 1571,
+            "Height": 587,
             "ZIndex": 4,
             "TabIndex": 0,
             "Docking": {
@@ -2517,7 +2679,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 34,
-                "Width": 445,
+                "Width": 450,
                 "Height": 45,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -2595,7 +2757,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 76,
-                "Width": 445,
+                "Width": 450,
                 "Height": 23,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -2657,7 +2819,7 @@
           "Position": {
             "Left": 20,
             "Top": 75,
-            "Width": 445,
+            "Width": 450,
             "Height": 110,
             "ZIndex": 4,
             "TabIndex": 0,
@@ -2823,7 +2985,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 34,
-                "Width": 156,
+                "Width": 161,
                 "Height": 45,
                 "ZIndex": 9,
                 "TabIndex": 0,
@@ -2901,7 +3063,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 76,
-                "Width": 156,
+                "Width": 161,
                 "Height": 23,
                 "ZIndex": 9,
                 "TabIndex": 0,
@@ -2961,9 +3123,9 @@
           "Id": "GroupD14156770D28CF0E8EF5FEE2F22C18ED",
           "Name": "GRP_TOTAL_4",
           "Position": {
-            "Left": 1415,
+            "Left": 1430,
             "Top": 75,
-            "Width": 156,
+            "Width": 161,
             "Height": 110,
             "ZIndex": 5,
             "TabIndex": 0,
@@ -3129,7 +3291,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 34,
-                "Width": 445,
+                "Width": 450,
                 "Height": 45,
                 "ZIndex": 8,
                 "TabIndex": 0,
@@ -3207,7 +3369,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 76,
-                "Width": 445,
+                "Width": 450,
                 "Height": 23,
                 "ZIndex": 8,
                 "TabIndex": 0,
@@ -3267,9 +3429,9 @@
           "Id": "GroupE45AD0F40EA88BBD62886FB14CDCE0B4",
           "Name": "GRP_TOTAL_2",
           "Position": {
-            "Left": 485,
+            "Left": 490,
             "Top": 75,
-            "Width": 445,
+            "Width": 450,
             "Height": 110,
             "ZIndex": 6,
             "TabIndex": 0,
@@ -3435,7 +3597,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 34,
-                "Width": 445,
+                "Width": 450,
                 "Height": 45,
                 "ZIndex": 9,
                 "TabIndex": 0,
@@ -3513,7 +3675,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 76,
-                "Width": 445,
+                "Width": 450,
                 "Height": 23,
                 "ZIndex": 9,
                 "TabIndex": 0,
@@ -3573,9 +3735,9 @@
           "Id": "Group3B1A3CB81973E7F9F6B6F33C695DAC59",
           "Name": "GRP_TOTAL_3",
           "Position": {
-            "Left": 950,
+            "Left": 960,
             "Top": 75,
-            "Width": 445,
+            "Width": 450,
             "Height": 110,
             "ZIndex": 7,
             "TabIndex": 0,
@@ -3813,9 +3975,9 @@
           }
         },
         {
-          "DataSource": "DS7DB266D7666C4618A3016DBBA4EF73C1",
+          "DataSource": "DS165AF90A65674872AC71064296553965",
           "Value": "EMP010",
-          "Text": "",
+          "Text": "이영업",
           "InitType": "1",
           "RefreshType": 1,
           "IsReadOnly": false,
@@ -3826,8 +3988,8 @@
           "UseAllItemsText": "전체",
           "DisplayType": 1,
           "DataSourceInfo": {
-            "LabelField": "담당자명",
-            "ValueField": "담당자 ID"
+            "LabelField": "EMP_NAME",
+            "ValueField": "EMP_ID"
           },
           "InitValue": "",
           "Type": "ComboBox",
@@ -4231,7 +4393,7 @@
               "Name": "BTN_SAV",
               "InGroup": "GRP_FOOTER",
               "Position": {
-                "Left": 1509,
+                "Left": 1529,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -4318,7 +4480,7 @@
               "Name": "BTN_CNC",
               "InGroup": "GRP_FOOTER",
               "Position": {
-                "Left": 1439,
+                "Left": 1459,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -4381,8 +4543,8 @@
           "Name": "GRP_FOOTER",
           "Position": {
             "Left": 0,
-            "Top": 821,
-            "Width": 1589,
+            "Top": 845,
+            "Width": 1609,
             "Height": 55,
             "ZIndex": 1,
             "TabIndex": 0,
@@ -4590,9 +4752,9 @@
           }
         },
         {
-          "DataSource": "DS51DBE6EE50354391B2E39D80DDEC595E",
+          "DataSource": "DS6DFFD892D44143609F46D4E0F055A9A2",
           "Value": "DRAFT",
-          "Text": "",
+          "Text": "초안",
           "InitType": "1",
           "RefreshType": 1,
           "IsReadOnly": false,
@@ -4669,9 +4831,9 @@
           }
         },
         {
-          "DataSource": "DS68CE3BC1F0214A20AD75118C6643B2F5",
+          "DataSource": "DSADA2AC91E08F44C6B1E722EF1703A3F1",
           "Value": "PROD001",
-          "Text": "",
+          "Text": "노트북 프로 15인치",
           "InitType": "1",
           "RefreshType": 1,
           "IsReadOnly": false,
@@ -4682,8 +4844,8 @@
           "UseAllItemsText": "전체",
           "DisplayType": 1,
           "DataSourceInfo": {
-            "LabelField": "상품명",
-            "ValueField": "상품코드"
+            "LabelField": "PROD_NAME",
+            "ValueField": "PROD_ID"
           },
           "InitValue": "",
           "Type": "ComboBox",
@@ -5041,7 +5203,7 @@
             }
           },
           "CellMargin": "5,5,5,5",
-          "DataSource": "DS9BADDF082C02496CA686B05840C05854",
+          "DataSource": "DS48CDA4F4D76C422AAD1D594EA057B23E",
           "AutoRefresh": true,
           "SelectRule": 2,
           "NaNCellText": "-",

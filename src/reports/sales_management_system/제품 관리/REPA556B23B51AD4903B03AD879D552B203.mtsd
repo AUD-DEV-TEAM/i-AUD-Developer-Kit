@@ -5,9 +5,9 @@
     "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REPA556B23B51AD4903B03AD879D552B203.mtsd",
     "ReportName": "제품 관리",
     "Writer": "kimje1342",
-    "WriteDate": "2026-02-02 13:12:10",
+    "WriteDate": "2026-02-03 10:36:56",
     "Editor": "kimje1342",
-    "EditDate": "2026-02-02 13:12:10",
+    "EditDate": "2026-02-03 10:36:56",
     "TabPosition": 0,
     "UseLayout": false,
     "DocumentVersion": "3.0.0.0",
@@ -21,11 +21,20 @@
         "Name": "GRD_PRODUCT",
         "UseMeta": "False",
         "UseCache": "False",
-        "ConnectionCode": "MTXRPTY",
+        "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
         "SQL": "YFlOv2mIX7PccK3PEWKs5e9Q9M6LU8384S70biEaBdXwnImZ6YFuwyLh36AMEpWW3yX3krkko/zjy9NShyL9ROpq0nLiMIx7kpV2DzxZlqlAHVCLzoYJo93VYUyXu/gHKxCIoJUYRYHsv7xkS4RGBfw6cGt1dDc8KUBMDmpuywlUxlUiJoDMASeR2IY6Uu54obVlc/tBpVlZHpjnporPxH95SzBpIqsuHQYWHoZOrp4WD4BpgCzVwypAVv11yjL/dPtcEME/P8xm0E63S2Axec1H4nFolgLs5VBS3E4aBJB6lVHN6cIoy+wGFukZy8ip2r6oxas6EsB/d2luvQq7nwdSh3HhXaLDSTS16B/2FjYDXQJpsB9bnZ7MGz/Uf/+s2tg+2QDhdQQWh4TOOTepXqZKssxRyv3mVFY8QweZWHp6lVHN6cIoy+wGFukZy8ipvV8dHBIT6cCOB2pK8KyZbvk3aHhA8rlhNX6gSqgzxdFmEihOiWqi3Nj640fMTxArLk2fPFiN2B0Tl0Jj9pXA5V9Ys0EVt/u9uLqPMVXi8P7PWtgWDvGngW7UwBbQklBJ5zRAGhJUveA3nN4oFbzrHJUkqt8csZkDMRe3V3dHp6U6Fo4nNNHDec/cf6JMm84+4KPJQWxIFUU9bs2k8wO9dZ5kEX/At+asWN9rDj3tiI+3et0lR9fhL/BYkCI+xC1F7qCQVgucttzKjn5jATznsw==",
-        "Params": [],
+        "Params": [
+          {
+            "Name": ":VS_CAT",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_KEYWORD",
+            "ParamType": "String"
+          }
+        ],
         "Columns": []
       },
       {
@@ -33,46 +42,127 @@
         "Name": "VS_CAT",
         "UseMeta": "False",
         "UseCache": "False",
-        "ConnectionCode": "MTXRPTY",
+        "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
         "SQL": "RqcdFwrE75IJ8ts66KIvJosubnYeN1DMgZo+ZLvOl7rTEzyegU8P2Amd4CZcsLAfUtdQmY5MRsunoY36WrvGWaVjjoFLlHEhna8xwQawBoU5yvuFIPxaryvWi8P7OOBouhQIueZlbwHXd9ZNPqUrW6ip389vm77PbWz0jDGJ1HbdaFpBrdSkbMhvWyKVI6kD",
         "Params": [],
-        "Columns": []
+        "Columns": [
+          {
+            "Name": "STATE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "STATE_NAME",
+            "Type": "String"
+          }
+        ]
       },
       {
         "Id": "DS4E9BF11BCE39431B97C2CB6507C58EDC",
         "Name": "VS_INP_UNIT",
         "UseMeta": "False",
         "UseCache": "False",
-        "ConnectionCode": "MTXRPTY",
+        "ConnectionCode": "AUD_SAMPLE_DB",
         "Encrypted": "True",
         "DSType": 2,
         "SQL": "RqcdFwrE75IJ8ts66KIvJosubnYeN1DMgZo+ZLvOl7rTEzyegU8P2Amd4CZcsLAfUtdQmY5MRsunoY36WrvGWaVjjoFLlHEhna8xwQawBoU5yvuFIPxaryvWi8P7OOBoS6l+ID+Kmg9npiyPw3xIhdfoh43J2Y9cTnfyk5LZeVdBxZSCYJXfBvikFrsO/Wvu",
         "Params": [],
+        "Columns": [
+          {
+            "Name": "STATE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "STATE_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS25BCC88F91D845D7AED3B11E271A4439",
+        "Name": "GRD_PRODUCT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "YFlOv2mIX7PccK3PEWKs5e9Q9M6LU8384S70biEaBdXwnImZ6YFuwyLh36AMEpWW3yX3krkko/zjy9NShyL9ROpq0nLiMIx7kpV2DzxZlqlAHVCLzoYJo93VYUyXu/gHKxCIoJUYRYHsv7xkS4RGBfw6cGt1dDc8KUBMDmpuywlUxlUiJoDMASeR2IY6Uu54obVlc/tBpVlZHpjnporPxH95SzBpIqsuHQYWHoZOrp4WD4BpgCzVwypAVv11yjL/dPtcEME/P8xm0E63S2Axec1H4nFolgLs5VBS3E4aBJB6lVHN6cIoy+wGFukZy8ip2r6oxas6EsB/d2luvQq7nwdSh3HhXaLDSTS16B/2FjYDXQJpsB9bnZ7MGz/Uf/+s2tg+2QDhdQQWh4TOOTepXqZKssxRyv3mVFY8QweZWHp6lVHN6cIoy+wGFukZy8ipvV8dHBIT6cCOB2pK8KyZbvk3aHhA8rlhNX6gSqgzxdFmEihOiWqi3Nj640fMTxArLk2fPFiN2B0Tl0Jj9pXA5V9Ys0EVt/u9uLqPMVXi8P7PWtgWDvGngW7UwBbQklBJ5zRAGhJUveA3nN4oFbzrHJUkqt8csZkDMRe3V3dHp6U6Fo4nNNHDec/cf6JMm84+4KPJQWxIFUU9bs2k8wO9dZ5kEX/At+asWN9rDj3tiI+3et0lR9fhL/BYkCI+xC1F7qCQVgucttzKjn5jATznsw==",
+        "Params": [
+          {
+            "Name": ":VS_CAT",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_KEYWORD",
+            "ParamType": "String"
+          }
+        ],
         "Columns": []
+      },
+      {
+        "Id": "DS4C768EFDD1754FAA82EB08115825CF8E",
+        "Name": "VS_CAT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "RqcdFwrE75IJ8ts66KIvJosubnYeN1DMgZo+ZLvOl7rTEzyegU8P2Amd4CZcsLAfUtdQmY5MRsunoY36WrvGWaVjjoFLlHEhna8xwQawBoU5yvuFIPxaryvWi8P7OOBouhQIueZlbwHXd9ZNPqUrW6ip389vm77PbWz0jDGJ1HbdaFpBrdSkbMhvWyKVI6kD",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "STATE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "STATE_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS4E9BF11BCE39431B97C2CB6507C58EDC",
+        "Name": "VS_INP_UNIT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "RqcdFwrE75IJ8ts66KIvJosubnYeN1DMgZo+ZLvOl7rTEzyegU8P2Amd4CZcsLAfUtdQmY5MRsunoY36WrvGWaVjjoFLlHEhna8xwQawBoU5yvuFIPxaryvWi8P7OOBoS6l+ID+Kmg9npiyPw3xIhdfoh43J2Y9cTnfyk5LZeVdBxZSCYJXfBvikFrsO/Wvu",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "STATE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "STATE_NAME",
+            "Type": "String"
+          }
+        ]
       }
     ]
   },
-  "ScriptText": "/*****************************\r\n * Typed control declarations\r\n *****************************/\r\nvar VS_KEYWORD = Matrix.getObject(\"VS_KEYWORD\");\r\nvar VS_CAT = Matrix.getObject(\"VS_CAT\");\r\nvar GRD_PRODUCT = Matrix.getObject(\"GRD_PRODUCT\");\r\nvar VS_INP_PROD = Matrix.getObject(\"VS_INP_PROD\");\r\nvar VS_INP_CAT = Matrix.getObject(\"VS_INP_CAT\");\r\nvar BTN_SAV = Matrix.getObject(\"BTN_SAV\");\r\nvar VS_INP_PRICE = Matrix.getObject(\"VS_INP_PRICE\");\r\nvar VS_INP_COST = Matrix.getObject(\"VS_INP_COST\");\r\nvar VS_INP_UNIT = Matrix.getObject(\"VS_INP_UNIT\");\r\nvar popup = null;\r\n/**************************************\r\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n * * arguments :\r\n**************************************/\r\nvar OnDocumentLoadComplete = function (sender, args) {\r\n    VS_KEYWORD.UsePlaceholder = true;\r\n    VS_KEYWORD.SetPlaceholder(' 제품명, 제품코드으로 검색');\r\n    GRD_PRODUCT.GetField('PROD_ID').KeyType = 3; // KeyType: Primary\r\n};\r\n/**************************************\r\n * Execute 실행되는 시점에 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\r\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 시 실행이 취소됩니다.\r\n *\t\t number\tFilterType (Readonly:False) : 0:일반 조회, 1:검색 텍스트박스 조회, 2:전체검색 버튼 조회\r\n *\t\t string\tFilterText (Readonly:False) : 검색 텍스트박스에 입력된 검색어\r\n**************************************/\r\nvar OnMultiComboBoxExecuteStart = function (sender, args) {\r\n    if (args.Id == 'VS_CAT') {\r\n        VS_CAT.CheckAll();\r\n    }\r\n};\r\n/**************************************\r\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤이름\r\n *\t\t string\tText (Readonly:False) : 라벨 값\r\n**************************************/\r\nvar OnButtonClick = function (sender, args) {\r\n    switch (args.Id) {\r\n        case 'BTN_ADD': // 제품 등록 (Form: 제품 관리)\r\n            setInputValue(null); // Input 컨트롤 초기화\r\n            Matrix.SetGlobalParams('PROD_ID', '');\r\n            BTN_SAV.Text = '추가';\r\n            popup = Matrix.ShowWindow(\"제품 등록\", 0, 0, 460, 415, true, false, \"제품 등록\", true, '#ffffff', 0, false, false);\r\n            popup.MoveToCenter();\r\n            break;\r\n        case 'BTN_REF': // 검색 (Form: 제품 관리)\r\n            Matrix.doRefresh('GRD_PRODUCT');\r\n            break;\r\n        case 'BTN_RESET': // 초기화 (Form: 제품 관리)\r\n            Matrix.getObject('VS_CAT').CheckAll();\r\n            VS_KEYWORD.Text = '';\r\n            break;\r\n        case 'BTN_DEL': // 삭제 (Form: 제품 관리)\r\n            var checkCount = 0;\r\n            for (var i = 0; i < GRD_PRODUCT.GetRowCount(); i++) {\r\n                if (GRD_PRODUCT.getRowValue(i, 'CHK') == 'Y') {\r\n                    GRD_PRODUCT.ChangeRowStateAt(i, 'D');\r\n                    checkCount++;\r\n                }\r\n            }\r\n            if (!checkCount) {\r\n                Matrix.Information('삭제할 항목을 선택하세요', '안내');\r\n                return;\r\n            }\r\n            Matrix.Confirm('선택한 항목을 삭제하시겠습니까?', '안내', function (ok) {\r\n                if (ok) {\r\n                    Matrix.RunScript('GRD_PRODUCT', 'GRD_DELETE', function (p) {\r\n                        if (p.Success == false) {\r\n                            Matrix.Alert(p.Message);\r\n                            return;\r\n                        }\r\n                        Matrix.doRefresh('GRD_PRODUCT');\r\n                        Matrix.Information('삭제 완료되었습니다.', '안내');\r\n                    });\r\n                }\r\n                else\r\n                    GRD_PRODUCT.ClearRowState(false);\r\n            }, 0);\r\n            break;\r\n        case 'BTN_CNC': // 취소 (Form: 제품 등록)\r\n            popup.Close();\r\n            break;\r\n        case 'BTN_SAV': // 저장 (Form: 제품 등록)\r\n            var fields = [VS_INP_PROD.Text, VS_INP_CAT.Value, VS_INP_PRICE.Value, VS_INP_COST.Value, VS_INP_UNIT.Value];\r\n            if (isInvalidInput(fields)) {\r\n                Matrix.Information('필수 입력 항목을 확인해주세요', '안내');\r\n                return;\r\n            }\r\n            var scriptName = Matrix.GetGlobalParamValue('VS_PROD_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';\r\n            Matrix.RunScript('', scriptName, function (p) {\r\n                if (p.Success == false) {\r\n                    Matrix.Alert(p.Message);\r\n                    return;\r\n                }\r\n                Matrix.doRefresh('GRD_PRODUCT');\r\n                Matrix.Information(BTN_SAV.Text + ' 완료되었습니다.', '안내');\r\n                popup.Close();\r\n            });\r\n            break;\r\n    }\r\n};\r\n/**************************************\r\n* 컨트롤에 데이터셋이 바인딩된 후 발생합니다.\r\n* * arguments :\r\n*\t\t string\tId (Readonly:False) : 컨트롤이름\r\n*\t\t number\tRecordCount (Readonly:False) : 데이터셋의 레코드 수량\r\n**************************************/\r\nvar OnDataBindEnd = function (sender, args) {\r\n    if (args.Id == 'GRD_PRODUCT') {\r\n        Matrix.getObject('LBL_TTL_2').Text = '   제품 목록 (' + args.RecordCount + '종)';\r\n    }\r\n};\r\n/**************************************\r\n * 텍스트 박스 컨트롤의 key 입력 시 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\r\n *\t\t string\tText (Readonly:False) : 현재 텍스트\r\n *\t\t aud.data.Event\tEvent (Readonly:False) : 텍스트박스 key event 객체\r\n**************************************/\r\nvar OnTextKeydown = function (sender, args) {\r\n    if (args.Id == 'VS_KEYWORD' && args.Event.isEnter()) {\r\n        Matrix.doRefresh('GRD_PRODUCT');\r\n    }\r\n};\r\n/**************************************\r\n * 그리드의 멀티 헤더 체크 박스를 클릭하는 순간 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\r\n *\t\t aud.control.grids.MultiHeaderCell\tHeaderCell (Readonly:False) : 멀티헤더셀 객체\r\n *\t\t boolean\tChecked (Readonly:False) : 체크 유무\r\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 하게되면 클릭 처리가 취소됩니다.\r\n**************************************/\r\nvar OnGridMultiHeaderCheckBoxClicked = function (sender, args) {\r\n    if (args.Id == 'GRD_PRODUCT') {\r\n        var checkValue = args.Checked ? 'Y' : 'N';\r\n        for (var i = 0; i < GRD_PRODUCT.GetRowCount(); i++) {\r\n            GRD_PRODUCT.setRowValue(i, 'CHK', checkValue);\r\n        }\r\n        GRD_PRODUCT.Update();\r\n    }\r\n};\r\n/**************************************\r\n * 그리드의 셀을 더블 클릭할 떄 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\r\n *\t\t aud.control.grids.DataGridRow\tRow (Readonly:False) : 데이터 레코드 정보\r\n *\t\t aud.control.grids.DataGridCell\tCell (Readonly:False) : 데이터셀 정보\r\n *\t\t aud.control.grids.DataGridColumn\tField (Readonly:False) : 필드 정보\r\n**************************************/\r\nvar OnCellDoubleClick = function (sender, args) {\r\n    if (args.Id == 'GRD_PRODUCT') {\r\n        setInputValue(args.Row);\r\n        Matrix.SetGlobalParams('VS_PROD_ID', args.Row.GetValue('PROD_ID'));\r\n        BTN_SAV.Text = '저장';\r\n        popup = Matrix.ShowWindow(\"제품 등록\", 0, 0, 460, 415, true, false, \"제품 등록\", true, '#ffffff', 0, false, false);\r\n        popup.MoveToCenter();\r\n    }\r\n};\r\nvar setInputValue = function (row) {\r\n    if (typeof row === 'object' && row !== null) {\r\n        VS_INP_PROD.Text = row.GetValue('PROD_NAME');\r\n        VS_INP_CAT.Value = row.GetValue('CATEGORY_CODE');\r\n        VS_INP_PRICE.Text = row.GetValue('STD_PRICE');\r\n        VS_INP_COST.Text = row.GetValue('COST_PRICE');\r\n        VS_INP_UNIT.Value = row.GetValue('STD_UNIT');\r\n    }\r\n    else {\r\n        VS_INP_PROD.Text = '';\r\n        VS_INP_CAT.Value = '';\r\n        VS_INP_PRICE.Text = '';\r\n        VS_INP_COST.Text = '';\r\n        VS_INP_UNIT.Value = '';\r\n    }\r\n};\r\nvar isInvalidInput = function (fields) {\r\n    return fields.some(function (v) {\r\n        return v === null || v === undefined || v === '';\r\n    });\r\n};\r\n",
+  "ScriptText": "/*****************************\n * Typed control declarations\n *****************************/\nvar VS_KEYWORD = Matrix.getObject(\"VS_KEYWORD\");\nvar VS_CAT = Matrix.getObject(\"VS_CAT\");\nvar GRD_PRODUCT = Matrix.getObject(\"GRD_PRODUCT\");\nvar VS_INP_PROD = Matrix.getObject(\"VS_INP_PROD\");\nvar VS_INP_CAT = Matrix.getObject(\"VS_INP_CAT\");\nvar BTN_SAV = Matrix.getObject(\"BTN_SAV\");\nvar VS_INP_PRICE = Matrix.getObject(\"VS_INP_PRICE\");\nvar VS_INP_COST = Matrix.getObject(\"VS_INP_COST\");\nvar VS_INP_UNIT = Matrix.getObject(\"VS_INP_UNIT\");\nvar popup = null;\n/**************************************\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\n * * arguments :\n**************************************/\nvar OnDocumentLoadComplete = function (sender, args) {\n    VS_KEYWORD.UsePlaceholder = true;\n    VS_KEYWORD.SetPlaceholder(' 제품명, 제품코드으로 검색');\n    GRD_PRODUCT.GetField('PROD_ID').KeyType = 3; // KeyType: Primary\n};\n/**************************************\n * Execute 실행되는 시점에 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 시 실행이 취소됩니다.\n *\t\t number\tFilterType (Readonly:False) : 0:일반 조회, 1:검색 텍스트박스 조회, 2:전체검색 버튼 조회\n *\t\t string\tFilterText (Readonly:False) : 검색 텍스트박스에 입력된 검색어\n**************************************/\nvar OnMultiComboBoxExecuteStart = function (sender, args) {\n    if (args.Id == 'VS_CAT') {\n        VS_CAT.CheckAll();\n    }\n};\n/**************************************\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤이름\n *\t\t string\tText (Readonly:False) : 라벨 값\n**************************************/\nvar OnButtonClick = function (sender, args) {\n    switch (args.Id) {\n        case 'BTN_ADD': // 제품 등록 (Form: 제품 관리)\n            setInputValue(null); // Input 컨트롤 초기화\n            Matrix.SetGlobalParams('PROD_ID', false);\n            BTN_SAV.Text = '추가';\n            popup = Matrix.ShowWindow(\"제품 등록\", 0, 0, 460, 415, true, false, \"제품 등록\", true, '#ffffff', 0, false, false);\n            popup.MoveToCenter();\n            break;\n        case 'BTN_REF': // 검색 (Form: 제품 관리)\n            Matrix.doRefresh('GRD_PRODUCT');\n            break;\n        case 'BTN_RESET': // 초기화 (Form: 제품 관리)\n            Matrix.getObject('VS_CAT').CheckAll();\n            VS_KEYWORD.Text = '';\n            break;\n        case 'BTN_DEL': // 삭제 (Form: 제품 관리)\n            var checkCount = 0;\n            for (var i = 0; i < GRD_PRODUCT.GetRowCount(); i++) {\n                if (GRD_PRODUCT.getRowValue(i, 'CHK') == 'Y') {\n                    GRD_PRODUCT.ChangeRowStateAt(i, 'D');\n                    checkCount++;\n                }\n            }\n            if (!checkCount) {\n                Matrix.Information('삭제할 항목을 선택하세요', '안내');\n                return;\n            }\n            Matrix.Confirm('선택한 항목을 삭제하시겠습니까?', '안내', function (ok) {\n                if (ok) {\n                    Matrix.RunScript('GRD_PRODUCT', 'GRD_DELETE', function (p) {\n                        if (p.Success == false) {\n                            Matrix.Alert(p.Message);\n                            return;\n                        }\n                        Matrix.doRefresh('GRD_PRODUCT');\n                        Matrix.Information('삭제 완료되었습니다.', '안내');\n                    });\n                }\n                else\n                    GRD_PRODUCT.ClearRowState(false);\n            }, 0);\n            break;\n        case 'BTN_CNC': // 취소 (Form: 제품 등록)\n            popup.Close();\n            break;\n        case 'BTN_SAV': // 저장 (Form: 제품 등록)\n            var fields = [VS_INP_PROD.Text, VS_INP_CAT.Value, VS_INP_PRICE.Value, VS_INP_COST.Value, VS_INP_UNIT.Value];\n            if (isInvalidInput(fields)) {\n                Matrix.Information('필수 입력 항목을 확인해주세요', '안내');\n                return;\n            }\n            var scriptName = Matrix.GetGlobalParamValue('VS_PROD_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';\n            Matrix.RunScript('', scriptName, function (p) {\n                if (p.Success == false) {\n                    Matrix.Alert(p.Message);\n                    return;\n                }\n                Matrix.doRefresh('GRD_PRODUCT');\n                Matrix.Information(BTN_SAV.Text + ' 완료되었습니다.', '안내');\n                popup.Close();\n            });\n            break;\n    }\n};\n/**************************************\n* 컨트롤에 데이터셋이 바인딩된 후 발생합니다.\n* * arguments :\n*\t\t string\tId (Readonly:False) : 컨트롤이름\n*\t\t number\tRecordCount (Readonly:False) : 데이터셋의 레코드 수량\n**************************************/\nvar OnDataBindEnd = function (sender, args) {\n    if (args.Id == 'GRD_PRODUCT') {\n        Matrix.getObject('LBL_TTL_2').Text = '   제품 목록 (' + args.RecordCount + '종)';\n    }\n};\n/**************************************\n * 텍스트 박스 컨트롤의 key 입력 시 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\n *\t\t string\tText (Readonly:False) : 현재 텍스트\n *\t\t aud.data.Event\tEvent (Readonly:False) : 텍스트박스 key event 객체\n**************************************/\nvar OnTextKeydown = function (sender, args) {\n    if (args.Id == 'VS_KEYWORD' && args.Event.isEnter()) {\n        Matrix.doRefresh('GRD_PRODUCT');\n    }\n};\n/**************************************\n * 그리드의 멀티 헤더 체크 박스를 클릭하는 순간 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\n *\t\t aud.control.grids.MultiHeaderCell\tHeaderCell (Readonly:False) : 멀티헤더셀 객체\n *\t\t boolean\tChecked (Readonly:False) : 체크 유무\n *\t\t boolean\tCancel (Readonly:False) : 이 값을 true로 설정 하게되면 클릭 처리가 취소됩니다.\n**************************************/\nvar OnGridMultiHeaderCheckBoxClicked = function (sender, args) {\n    if (args.Id == 'GRD_PRODUCT') {\n        var checkValue = args.Checked ? 'Y' : 'N';\n        for (var i = 0; i < GRD_PRODUCT.GetRowCount(); i++) {\n            GRD_PRODUCT.setRowValue(i, 'CHK', checkValue);\n        }\n        GRD_PRODUCT.Update();\n    }\n};\n/**************************************\n * 그리드의 셀을 더블 클릭할 떄 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤 이름\n *\t\t aud.control.grids.DataGridRow\tRow (Readonly:False) : 데이터 레코드 정보\n *\t\t aud.control.grids.DataGridCell\tCell (Readonly:False) : 데이터셀 정보\n *\t\t aud.control.grids.DataGridColumn\tField (Readonly:False) : 필드 정보\n**************************************/\nvar OnCellDoubleClick = function (sender, args) {\n    if (args.Id == 'GRD_PRODUCT') {\n        setInputValue(args.Row);\n        Matrix.SetGlobalParams('VS_PROD_ID', args.Row.GetValue('PROD_ID'));\n        BTN_SAV.Text = '저장';\n        popup = Matrix.ShowWindow(\"제품 등록\", 0, 0, 460, 415, true, false, \"제품 등록\", true, '#ffffff', 0, false, false);\n        popup.MoveToCenter();\n    }\n};\nvar setInputValue = function (row) {\n    if (typeof row === 'object' && row !== null) {\n        VS_INP_PROD.Text = row.GetValue('PROD_NAME');\n        VS_INP_CAT.Value = row.GetValue('CATEGORY_CODE');\n        VS_INP_PRICE.Text = row.GetValue('STD_PRICE');\n        VS_INP_COST.Text = row.GetValue('COST_PRICE');\n        VS_INP_UNIT.Value = row.GetValue('STD_UNIT');\n    }\n    else {\n        VS_INP_PROD.Text = '';\n        VS_INP_CAT.Value = '';\n        VS_INP_PRICE.Text = '';\n        VS_INP_COST.Text = '';\n        VS_INP_UNIT.Value = '';\n    }\n};\nvar isInvalidInput = function (fields) {\n    return fields.some(function (v) {\n        return v === null || v === undefined || v === '';\n    });\n};\n",
   "ServerScriptText": [
     {
       "Name": "GRD_DELETE",
       "Key": "BIZA7C4B899F498400791A971D5D0148537",
       "Encrypted": true,
-      "ScriptText": "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"
+      "ScriptText": "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"
     },
     {
       "Name": "GRD_INSERT",
       "Key": "BIZ091B1ED627A54E309A2B75770C11D816",
       "Encrypted": true,
-      "ScriptText": "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"
+      "ScriptText": "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"
     },
     {
       "Name": "GRD_UPDATE",
       "Key": "BIZ90F7BC069E6742FD857882425914FC8D",
       "Encrypted": true,
-      "ScriptText": "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"
+      "ScriptText": "SnGZTXoWgLwnWaQFwynZkMloOIQcnzfw03AihKOUcMghluSJqfuFzWYi6BHo9NxrzvuO7dhUG1p7r0hAhJJLLAeqACZhHRCcelqh/bXZB5a3HBv9p35aNSWaCD9hOPC6pGfKjANsEhftEfPprCCSXRhnAdVshrRJgtnhngxYn8JQcGzt4v1ieDBjZV0cARKfT5ru0Lkx+4oHWjUKoHd7z1UKx4cdngM0KBwEZDkLFXb6pLribHC8m/lcN8ZX9kKchfaMmjzIeiddqm6s8rSX1udoZE2yxSu1uYWs5Is0pR6sPYDuTH2pXK2p+x2PwQOrZCyn+pCgeRARiD8YBitzC8MWKDDGtDRud/HsJ8E/TEJ0bD4kese57oxje0GJFsqrJXumLoLfNmaIsa4f23KVClJwo8iTBaREODQPXyw43Sz9uLb/z8mj/rx+zrh+Fhep8LKLu45BmpBBaUAg1KguqzOX5ZrQ5CDvRF7RwC2KMKqeVKSKs23mo8g2Ju92jizgy8OsotsiqRPfEOqa1EDifTTW6hUX865EhMf8cgt+DA5jy8kzkcBA1HcIB9TV+d0iNSnixL0OXGHOmCYqGDCoUnvjMRgSEo4XDJJRloNpiDuEaKLCcxHGlNSVLrjTClOCyNtKB83B1fm4SmN5qmD48S5nZOzeZO6JMZplZP6ItyINchRFWgiwAicZcDfcVnEE1zSkXgcFP8QKUzXlc6xJBu2u1CL5WhkYSkwCbKZ0EbMAQA0h1CuqmN84qRvFQifGlmzOsztqJnxG1PkCINNZO0gMEqF2HaQ8KXgXW8cTY6bXNKReBwU/xApTNeVzrEkG7gULvQdWM7vi0TnQeksY3+6EiWWwlu9XmZBUynYjW7IycwnmGm2LSVRAk/gRgS4nD2eOzJ93e1KMNzzbdgR3BxTbKAxtOgemA6AhEolRztJSSLWmjJLbyF4Sn6K4Q6q0HpWQF94gKw2K3loPR1zvzElxFDwt4BpjN0hbv5CLJP/TIu8GsrEJkgOJwtjy9jYNM4k5dGDqZ8WA4SyfigEk1qVSRR0TN15rVtdoEQCF8G6RNDUh74flRrYKp0Aqux/5tu2qlP8V1zBW1hmEDnixbOAOL3csMByf9Zn5EFj2DA5W/j9uUfRX4umIV0Z7jtOVSrsm2jUJlcmwvi+x+oak1/Jj0zzPDWlVKbk9H67A7C+mzHAE9ck8A26tOVl5mj35ZrILvx5geDXlW54lOetS33LOubHajZq+1ONRQkl6G+MJyesr29NR9NAw8cvE4a7zfpVKibmiQeC/UF1gqgcdnn27QamT+GNdSU6lCu4j/1ZT4NNVQSxGJNDCd3Vo5zcHCWXsccP7CnNxKAZwEl1L1Lt1vzhh4zKvtxy2SuFFnqb6onrlYNXNmcAZYNi65Nw1tShVSc937xmMjW+yfDpxQ+VNADI07ENcmxKj6P4s39W7db84YeMyr7cctkrhRZ6mSY96FFLkclwJoktgUUiRjaoRxkoDKWNeK0z1X9rCH7RCTlb0VlVcwr3pMSaEC172YsekiZR6X7S43iVmMLGcxIB2j42cBRFp/BjdlFsx9LwNQnT1A/67IgvF6FVK6LHzvVNyReRHhuicAcaMqM6LXjm0GB6oPn57XI8zbNJwMfyAJHwPdWbBcAEmDWIeNIrR2yeUGycf+4hJVdFAgtcf4n8or5kTMyUuOcmIr8pctNvS+tfoGVM/sYz3dBEpUAYF5/+aaEe+u5s8uYvnAN1jOEksDe3PxoDaU9b3DmVG6NGMTeNI+rpM8whtEazRa7Q7HmOqG7z4H4O/Jfmv2mTfcgZ6GVNldQ2gAl/kLKVcQ/igCeaWTHXOk1Jd2UxVN2xPYSSrz92lJIzENY6fdMgjO8h7B1k9hojD2mHVDfuxhZm3st/u8rZeGXfoHu/9jijSQ1kMi6PHQXVJO+8UaD/1/3/NoPkkvnvpA7O11+Kz1zkEPiSGdPjXYOUkaiy0keozxQsXxu5bbwsyu0aAeMWA420pThi0Znt8dSbXfae2wIgVHiK2+Np7sWprXiNsAHE3urg/qznQqgSUYYiOwtKsfccQOLDOslehgWHLi4CZBiaLI4ivGOBsuZUV0HhEXsUHLAyBU5h+4mF89YiVtVXHYcTRtzxLYefPC1qWBLQqyBs3vf8goo4pmqBK+nqPK+DbJlbA/QVGpMUd7YIWmRODiXmYBDNv2PGQ8s+cNXmzTnmUM2LZlqer5tRACU0XITFT"
     }
   ],
   "Forms": [
@@ -134,7 +224,7 @@
               "Name": "BTN_ADD",
               "InGroup": "GRP_HEADER",
               "Position": {
-                "Left": 1481,
+                "Left": 1501,
                 "Top": 10,
                 "Width": 90,
                 "Height": 35,
@@ -198,7 +288,7 @@
           "Position": {
             "Left": 0,
             "Top": 0,
-            "Width": 1591,
+            "Width": 1611,
             "Height": 55,
             "ZIndex": 0,
             "TabIndex": 0,
@@ -657,7 +747,7 @@
               }
             },
             {
-              "DataSource": "DS9F936284C99F45FDA45E939494ABE790",
+              "DataSource": "DS4C768EFDD1754FAA82EB08115825CF8E",
               "EditValue": "ELECTRONICS,NETWORK,PERIPHERAL,SERVER,SOFTWARE,SUPPLIES,DEPT001,DEPT010,DEPT011,DEPT012,DEPT013,DEPT020,DEPT021,DEPT022,DEPT030,DEPT031,DEPT032,DEPT033",
               "CaptionText": "전체",
               "InitType": "0",
@@ -760,7 +850,7 @@
           "Position": {
             "Left": 20,
             "Top": 75,
-            "Width": 1551,
+            "Width": 1571,
             "Height": 90,
             "ZIndex": 3,
             "TabIndex": 0,
@@ -840,7 +930,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 1551,
+                "Width": 1571,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -903,8 +993,8 @@
               "Position": {
                 "Left": 20,
                 "Top": 75,
-                "Width": 1511,
-                "Height": 598,
+                "Width": 1531,
+                "Height": 593,
                 "ZIndex": 21,
                 "TabIndex": 0,
                 "Docking": {
@@ -973,7 +1063,7 @@
                 }
               },
               "CellMargin": "5,5,5,5",
-              "DataSource": "DSD6DF8B2713D145DCA1839F8F4E594615",
+              "DataSource": "DS25BCC88F91D845D7AED3B11E271A4439",
               "AutoRefresh": true,
               "ShowHeader": 2,
               "NaNCellText": "-",
@@ -1312,7 +1402,7 @@
                         "Position": {
                           "Left": 100,
                           "Top": 0,
-                          "Width": 232,
+                          "Width": 238,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1397,9 +1487,9 @@
                         "Id": "Label0DC638F373F11A1895E56B22525567EE",
                         "Name": "PROD_NAME",
                         "Position": {
-                          "Left": 332,
+                          "Left": 338,
                           "Top": 0,
-                          "Width": 232,
+                          "Width": 238,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1484,9 +1574,9 @@
                         "Id": "LabelEA046C21C2CC4D937EAF8D8BA8309647",
                         "Name": "CATEGORY",
                         "Position": {
-                          "Left": 564,
+                          "Left": 576,
                           "Top": 0,
-                          "Width": 232,
+                          "Width": 238,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1571,9 +1661,9 @@
                         "Id": "Label8BC727E19EC7831BAAD3D6C8C4F381E1",
                         "Name": "STD_PRICE",
                         "Position": {
-                          "Left": 796,
+                          "Left": 814,
                           "Top": 0,
-                          "Width": 232,
+                          "Width": 238,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1658,9 +1748,9 @@
                         "Id": "Label31AA705A021CE020C8C201E97405D5C0",
                         "Name": "COST_PRICE",
                         "Position": {
-                          "Left": 1028,
+                          "Left": 1052,
                           "Top": 0,
-                          "Width": 232,
+                          "Width": 238,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1745,9 +1835,9 @@
                         "Id": "LabelD555DFA3DC00FA352D3542CAC68E34EF",
                         "Name": "STD_UNIT_NAME",
                         "Position": {
-                          "Left": 1260,
+                          "Left": 1290,
                           "Top": 0,
-                          "Width": 234,
+                          "Width": 241,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1935,7 +2025,7 @@
               "Name": "BTN_DEL",
               "InGroup": "GRP_BODY",
               "Position": {
-                "Left": 1471,
+                "Left": 1491,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -1999,8 +2089,8 @@
           "Position": {
             "Left": 20,
             "Top": 165,
-            "Width": 1551,
-            "Height": 693,
+            "Width": 1571,
+            "Height": 688,
             "ZIndex": 4,
             "TabIndex": 0,
             "Docking": {
@@ -2384,9 +2474,9 @@
           }
         },
         {
-          "DataSource": "DS9F936284C99F45FDA45E939494ABE790",
+          "DataSource": "DS4C768EFDD1754FAA82EB08115825CF8E",
           "Value": "NETWORK",
-          "Text": "네트워크",
+          "Text": "",
           "InitType": "1",
           "RefreshType": 1,
           "IsReadOnly": false,
@@ -2725,7 +2815,7 @@
               "Name": "BTN_SAV",
               "InGroup": "GRP_FOOTER",
               "Position": {
-                "Left": 376,
+                "Left": 1529,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -2812,7 +2902,7 @@
               "Name": "BTN_CNC",
               "InGroup": "GRP_FOOTER",
               "Position": {
-                "Left": 306,
+                "Left": 1459,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -2875,8 +2965,8 @@
           "Name": "GRP_FOOTER",
           "Position": {
             "Left": 0,
-            "Top": 322,
-            "Width": 456,
+            "Top": 816,
+            "Width": 1609,
             "Height": 55,
             "ZIndex": 1,
             "TabIndex": 0,
@@ -3074,9 +3164,9 @@
           }
         },
         {
-          "DataSource": "DS9A041012ECF544C9B85A0E673162054C",
+          "DataSource": "DS4E9BF11BCE39431B97C2CB6507C58EDC",
           "Value": "EA",
-          "Text": "개",
+          "Text": "",
           "InitType": "1",
           "RefreshType": 1,
           "IsReadOnly": false,
