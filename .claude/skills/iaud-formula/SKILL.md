@@ -31,14 +31,18 @@ i-AUD 계산수식(FormulaManager)은 텍스트박스, 라벨, 데이터그리�
 ### 연산자
 | 연산자 | 설명 | 예시 |
 |--------|------|------|
-| `+` | 덧셈 | `:txtA + :txtB` |
+| `+` | 덧셈 / 문자열 연결 | `:txtA + :txtB` |
 | `-` | 뺄셈 | `[PRICE] - [DISCOUNT]` |
 | `*` | 곱셈 | `[PRICE] * [QTY]` |
 | `/` | 나눗셈 | `[TOTAL] / [COUNT]` |
 | `%` | 나머지 | `[VALUE] % 2` |
+| `^` | 거듭제곱 | `[BASE] ^ 2` |
 | `=` | 비교(==) | `[STATUS] = "Y"` |
 | `!=` | 불일치 | `[STATUS] != "N"` |
 | `>` `<` `>=` `<=` | 비교 | `[AMT] > 1000` |
+| `!` | 논리 NOT | `![FLAG]` |
+| `&&` / `AND` | 논리 AND (연산자) | `[A] > 0 && [B] > 0` |
+| `‖` / `OR` | 논리 OR (연산자) | `[A] = 1 ‖ [B] = 1` |
 
 > **참고:** 수식 모드에서 단일 `=`는 비교(`==`)로 처리된다. JavaScript 모드(`return`, `var`, `{}`가 포함된 경우)에서는 대입(`=`)으로 처리된다.
 
@@ -66,9 +70,9 @@ if (result > 10000) {
 
 | 키워드 | 설명 |
 |--------|------|
-| `CELL_VALUE` | 현재 셀의 기존 값 |
-| `FIELD_LABEL` | 현재 컬럼의 Caption |
-| `FIELD_KEY` | 현재 컬럼의 Name(필드키) |
+| `CELL_VALUE` | 현재 셀의 기존 값 (데이터 셀의 집계 값) |
+| `FIELD_LABEL` | 현재 컬럼의 Caption (데이터 필드의 표시명) |
+| `FIELD_KEY` | 현재 컬럼의 Name (데이터 필드의 키값) |
 | `IS_GRAND_TOTAL` | 현재 행이 총합계 행인지 여부 (boolean) |
 | `IS_SUB_TOTAL` | 현재 행이 소계 행인지 여부 (boolean) |
 
@@ -84,27 +88,20 @@ IIF(IS_GRAND_TOTAL, [TOTAL_AMT], [PRICE] * [QTY])
 ### 조건/논리 함수
 
 #### IIF(condition, trueValue, falseValue)
-조건이 참이면 trueValue, 거짓이면 falseValue를 반환한다.
+> `bool IF(bool condition, object trueValue, object falseValue)`
+
+조건 검사를 수행하여 참이면 trueValue를 반환하고, 거짓이면 falseValue를 반환한다.
 - `IF()`로도 사용 가능 (내부에서 `IIF`로 변환됨)
 ```
 IIF([STATUS] = "Y", "활성", "비활성")
 IIF(:txtAge > 20, "성인", "미성년")
 ```
 
-#### AND(condition1, condition2, ...)
-모든 조건이 참이면 `true`를 반환한다.
-```
-AND([AMT] > 0, [QTY] > 0)
-```
-
-#### OR(condition1, condition2, ...)
-하나라도 참이면 `true`를 반환한다.
-```
-OR([STATUS] = "A", [STATUS] = "B")
-```
-
 #### CASE(condition1, value1, condition2, value2, ..., defaultValue)
-조건-값 쌍을 순서대로 평가하여 첫 번째 참인 조건의 값을 반환한다.
+> `object Switch(bool condition1, object value1, bool condition2, object value2, ..., object elseValue)`
+
+조건 n개에 대해 순차적으로 검사하여 가장 처음으로 참인 조건의 값을 반환한다.
+모든 조건이 거짓일 경우 마지막 default 값이 반환된다.
 인자가 홀수 개이면 마지막 값이 기본값이다.
 - `SWITCH()`와 동일하게 동작한다.
 ```
@@ -116,19 +113,35 @@ CASE(
 )
 ```
 
-#### SWITCH(condition1, value1, condition2, value2, ..., defaultValue)
-`CASE()`와 동일하다.
+#### AND(condition1, condition2, ...)
+> `bool AND(bool condition1, bool condition2, ...)`
+
+넘겨진 파라미터 n개의 논리곱을 반환한다. 모든 조건이 참이면 `true`를 반환한다.
+```
+AND([AMT] > 0, [QTY] > 0)
+```
+
+#### OR(condition1, condition2, ...)
+> `bool OR(bool condition1, bool condition2, ...)`
+
+넘겨진 파라미터 n개의 논리합을 반환한다. 하나라도 참이면 `true`를 반환한다.
+```
+OR([STATUS] = "A", [STATUS] = "B")
+```
 
 ---
 
 ### 타입 변환 함수
 
 #### TOSTRING(value, format?)
-값을 문자열로 변환한다. format을 지정하면 서식을 적용한다.
+> `string ToString(object value, [string format])`
+
+넘겨진 값을 문자열로 변환한다. format은 수치형 포맷 및 일자형 포맷을 사용할 수 있으며, 생략 가능하다.
 ```
-TOSTRING(12345, "{0:N2}")        // "12,345.00"
-TOSTRING(0.15, "{0:P1}")         // "15.0%"
-TOSTRING(NOW(), "{0:YYYY-MM-DD}") // "2025-01-15"
+TOSTRING(123456789, "#,##0")          // "123,456,789"
+TOSTRING(12345, "{0:N2}")             // "12,345.00"
+TOSTRING(0.15, "{0:P1}")              // "15.0%"
+TOSTRING(NOW(), "{0:yyyy-MM-dd}")     // "2025-01-15"
 ```
 
 **format 종류:**
@@ -139,10 +152,13 @@ TOSTRING(NOW(), "{0:YYYY-MM-DD}") // "2025-01-15"
 | `{0:E숫자}` | 지수표현 | `{0:E2}` -> `1.23E45` |
 | `{0:C숫자}` | 화폐 | `{0:C0}` -> `1,235` |
 | `{0:#,###}` | 사용자 정의 숫자 | `{0:#,###.00}` |
-| `{0:YYYY-MM-DD}` | 날짜 | `{0:YYYY-MM-DD}` -> `2025-01-15` |
+| `#,##0` | 사용자 정의 숫자 (중괄호 없이) | `#,##0` -> `123,456,789` |
+| `{0:yyyy-MM-dd}` | 날짜 | `{0:yyyy-MM-dd}` -> `2025-01-15` |
 
-#### TONUMBER(value, failValue)
-값을 숫자로 변환한다. 변환 실패 시 failValue를 반환한다.
+#### TONUMBER(value, defaultValue)
+> `double ToNumber(object value, double defaultValue)`
+
+value를 숫자형으로 변환한 값을 반환한다. 수치 형변환 실패 시 defaultValue를 반환한다.
 ```
 TONUMBER("123", 0)        // 123
 TONUMBER("abc", -1)       // -1
@@ -150,10 +166,13 @@ TONUMBER([QTY], 0)        // 필드값을 숫자로 변환
 ```
 
 #### TODATE(value, format?)
-값을 날짜 문자열로 변환한다. format 미지정 시 `yyyy-MM-dd` 형식이다.
+> `DateTime ToDate(object value, [string format])`
+
+넘겨진 값을 일자형으로 변환한다. format은 일자형 포맷으로 생략 가능하다. format 미지정 시 `yyyy-MM-dd` 형식이다.
 ```
 TODATE("20250115", "{0:yyyy-MM-dd}")   // "2025-01-15"
 TODATE("20250115", "{0:yyyy/MM/dd}")   // "2025/01/15"
+TODATE(TODAY(), "yyyy-MM-dd")          // "2025-01-15"
 ```
 
 ---
@@ -162,11 +181,11 @@ TODATE("20250115", "{0:yyyy/MM/dd}")   // "2025/01/15"
 
 | 함수 | 설명 | 반환 |
 |------|------|------|
-| `ISNULL(value)` | null 체크 | boolean |
-| `ISBOOL(value)` | boolean 타입 체크 | boolean |
-| `ISNUMBER(value)` | number 타입 체크 | boolean |
-| `ISSTRING(value)` | string 타입 체크 | boolean |
-| `ISDATETIME(value)` | Date 타입 체크 | boolean |
+| `ISNULL(value)` | 검사 대상 값이 null 값인지 여부를 반환 | boolean |
+| `ISBOOL(value)` | 검사 대상 값이 Boolean인지 여부를 반환 | boolean |
+| `ISNUMBER(value)` | 검사 대상 값이 숫자로 치환 가능한지 여부를 반환 | boolean |
+| `ISSTRING(value)` | 검사 대상 값의 타입이 문자열인지 여부를 반환 | boolean |
+| `ISDATETIME(value)` | 검사 대상 값의 타입이 일자형(DateTime)인지 여부를 반환 | boolean |
 
 ```
 IIF(ISNULL([PRICE]), 0, [PRICE] * [QTY])
@@ -179,70 +198,110 @@ IIF(ISNULL([PRICE]), 0, [PRICE] * [QTY])
 집계 함수는 데이터그리드의 데이터를 기반으로 연산한다. `:그리드컨트롤명`으로 그리드를 참조한다.
 
 #### SUMIF(grid, fieldName, condition?)
-조건에 맞는 행의 필드값 합계를 반환한다.
+> `double SUMIF(:Gridname, "Fieldname", "criteria")`
+
+지정한 Grid에서 조건에 맞는 Field 데이터의 합을 구한다.
 ```
-SUMIF(:DataGrid1, "AMT")                           // AMT 필드 전체 합계
-SUMIF(:DataGrid1, "AMT", "[DEPT] = '영업부'")       // 영업부만 합계
-SUMIF(:DataGrid1, "AMT", "[STATUS] = 'Y'")         // STATUS가 Y인 행만 합계
+SUMIF(:DataGrid1, "AMT")                                    // AMT 필드 전체 합계
+SUMIF(:DataGrid1, "AMT", "[DEPT] = '영업부'")                // 영업부만 합계
+SUMIF(:DataGrid1, "AMT", "AND([AREA] == 'Seoul' , [Product] == 'NotBook')")
 ```
 
 #### AVERAGEIF(grid, fieldName, condition?)
-조건에 맞는 행의 필드값 평균을 반환한다.
+> `double AVERAGEIF(:Gridname, "Fieldname", "criteria")`
+
+지정한 Grid에서 조건을 만족하는 Field 데이터의 평균을 구한다.
 ```
 AVERAGEIF(:DataGrid1, "SCORE")
 AVERAGEIF(:DataGrid1, "SCORE", "[CLASS] = 'A'")
+AVERAGEIF(:Grid, "AMT", "OR([AREA] == 'Seoul', [AREA] == 'Busan')")
 ```
 
 #### COUNTIF(grid, fieldName, condition?)
-조건에 맞는 행의 수를 반환한다.
+> `int COUNTIF(:Gridname, "Fieldname", "criteria")`
+
+지정한 Grid에서 조건에 맞는 Field 데이터의 개수를 구한다.
 ```
 COUNTIF(:DataGrid1, "ID")                          // 전체 행 수
 COUNTIF(:DataGrid1, "ID", "[STATUS] = 'Y'")        // STATUS가 Y인 행 수
+COUNTIF(:Grid, "CODE", "AND([AGE] > 20, [AGE] < 30)")
 ```
 
 #### MAXIF(grid, fieldName, condition?)
-조건에 맞는 행 중 필드값의 최댓값을 반환한다.
+> `double MAXIF(:Gridname, "Fieldname", "criteria")`
+
+지정한 Grid에서 조건에 맞는 Field 데이터 중 최대 값을 구한다.
 ```
 MAXIF(:DataGrid1, "AMT")
 MAXIF(:DataGrid1, "AMT", "[YEAR] = '2025'")
+MAXIF(:Grid, "Score", "AND([Level] == 3 , [SEX] == 'F')")
 ```
 
 #### MINIF(grid, fieldName, condition?)
-조건에 맞는 행 중 필드값의 최솟값을 반환한다.
+> `double MINIF(:Gridname, "Fieldname", "criteria")`
+
+지정한 Grid에서 조건에 맞는 Field 데이터 중 최소 값을 구한다.
 ```
 MINIF(:DataGrid1, "AMT")
+MINIF(:Grid, "Score", "AND([Level] == 3 , [SEX] == 'F')")
 ```
 
 #### DISTINCTCOUNT(grid, fieldName)
-필드의 고유값 개수를 반환한다.
+> `int DistinctCount(:Gridname, "Fieldname")`
+
+지정한 Grid에서 Field 데이터의 고유(distinct) 값의 개수를 구한다.
 ```
 DISTINCTCOUNT(:DataGrid1, "DEPT")
+DISTINCTCOUNT(:Grid, "AREA")
+```
+
+#### GETPIVOTDATA(grid, fieldName, criteria)
+> `string GETPIVOTDATA(:Gridname, "Fieldname", "criteria")`
+
+OlapGrid에 저장된 데이터를 반환한다. criteria에 `[차원][값]` 형식으로 조건을 지정한다.
+```
+GETPIVOTDATA(:Grid, "AMT", "[YEAR][2017],[AREA][Seoul],[COMPANY][BIMATRIX]")
 ```
 
 #### SELECTEDFIELDVALUE(grid, fieldName, defaultValue?)
-그리드에서 현재 선택된 행의 필드값을 반환한다. 선택된 행이 없으면 defaultValue를 반환한다.
+> `string SelectedFieldValue(:Gridname, "Fieldname", defaultValue)`
+
+지정한 Grid에서 선택된 셀을 구성하고 있는 레코드 중 특정 필드의 값을 반환한다.
+OLAP 그리드의 경우 여러 개의 레코드를 포함하는 경우 모든 레코드의 필드값이 동일하지 않으면 NULL을 반환한다.
 ```
 SELECTEDFIELDVALUE(:DataGrid1, "EMP_NAME", "")
 SELECTEDFIELDVALUE(:DataGrid1, "DEPT_CD", "ALL")
 ```
 
 #### SUMCELLS(grid, fieldName?)
-그리드에서 선택된 셀들의 합계를 반환한다. fieldName을 지정하면 해당 필드만 대상으로 한다.
+> `double SUMCELLS(:Gridname, "Fieldname")`
+
+지정한 Grid에서 선택된 영역의 합계를 구한다. fieldName을 지정하면 해당 필드만 대상으로 한다.
 ```
 SUMCELLS(:DataGrid1)
 SUMCELLS(:DataGrid1, "AMT")
+"합계 : " + TOSTRING(SUMCELLS(:Grid, "FieldName"), "#,##0.0")
+// -> "합계 : 12,777,856.0"
 ```
 
 #### COUNTCELLS(grid, fieldName?)
-그리드에서 선택된 셀들의 개수를 반환한다.
+> `int COUNTCELLS(:Gridname, "Fieldname")`
+
+지정한 Grid에서 선택된 영역의 개수를 구한다.
 ```
 COUNTCELLS(:DataGrid1)
+"개수 : " + TOSTRING(COUNTCELLS(:Grid, "FieldName"), "#,##0")
+// -> "개수 : 3"
 ```
 
 #### AVGCELLS(grid, fieldName?)
-그리드에서 선택된 셀들의 평균을 반환한다.
+> `double AVGCELLS(:Gridname, "Fieldname")`
+
+지정한 Grid에서 선택된 영역의 평균값을 구한다.
 ```
 AVGCELLS(:DataGrid1, "SCORE")
+"평균 : " + TOSTRING(AVGCELLS(:Grid, "FieldName"), "#,##0.##")
+// -> "평균 : 4,259,285.33"
 ```
 
 > **참고:** SUMCELLS, COUNTCELLS, AVGCELLS는 숫자(Numeric) 타입이고 Visible한 컬럼의 셀만 대상으로 한다.
@@ -252,98 +311,130 @@ AVGCELLS(:DataGrid1, "SCORE")
 ### 문자열 함수
 
 #### LEFT(text, size)
-문자열 왼쪽에서 size만큼 추출한다.
+> `string Left(string target, int nCount)`
+
+원본 문자열에서 좌측으로부터 nCount개만큼의 길이를 가지는 새로운 문자열을 반환한다.
 ```
-LEFT("ABCDE", 3)       // "ABC"
-LEFT([CODE], 2)         // CODE 필드의 앞 2자리
+LEFT("123456789", 3)    // "123"
+LEFT([CODE], 2)          // CODE 필드의 앞 2자리
 ```
 
 #### RIGHT(text, size)
-문자열 오른쪽에서 size만큼 추출한다.
+> `string Right(string target, int nCount)`
+
+원본 문자열에서 우측으로부터 nCount개만큼의 길이를 가지는 새로운 문자열을 반환한다.
 ```
-RIGHT("ABCDE", 3)      // "CDE"
+RIGHT("123456789", 3)   // "789"
 ```
 
 #### MID(text, startIndex, count)
-startIndex부터 count만큼 추출한다 (0-based).
+> `string SubString(string, int nFirst, int nCount)`
+
+원본 문자열의 특정 위치(nFirst, 0-based)로부터 nCount만큼의 문자열을 반환한다.
+`Mid`와 `Substring`은 동일한 함수이다.
 ```
-MID("ABCDE", 1, 3)     // "BCD"
+MID("abcde", 1, 3)      // "bcd"
 ```
 
 #### LEN(text)
-문자열 길이를 반환한다.
+> `int Len(string target)`
+
+전달받은 문자열의 길이를 반환한다.
+필드가 파라미터로 전달될 경우 해당 필드의 모든 레코드에 대한 문자열 길이의 배열을 반환한다.
 ```
-LEN("Hello")            // 5
-LEN([NAME])             // NAME 필드의 문자열 길이
+LEN("123456789")         // 9
+LEN([NAME])              // NAME 필드의 문자열 길이
 ```
 
 #### LOWER(text) / UPPER(text)
-소문자/대문자로 변환한다.
+> `string Lower(string target)` / `string Upper(string text)`
+
+전달받은 문자열을 소문자/대문자로 변환한 문자열을 반환한다.
+필드가 파라미터로 전달될 경우 해당 필드의 모든 레코드에 대해 처리한다.
 ```
-LOWER("HELLO")          // "hello"
-UPPER("hello")          // "HELLO"
+LOWER("ABC")             // "abc"
+UPPER("abcde")           // "ABCDE"
 ```
 
-#### FIND(text, findText, startIndex?)
-text에서 findText의 위치를 반환한다 (0-based, 없으면 -1).
+#### FIND(textToFind, textToSearch, startIndex?)
+> `int Find(string textToFind, string textToSearch, int startIndex)`
+
+원본 문자열(textToSearch)의 특정 위치(startIndex, 0-based)로부터 대상 문자열(textToFind)을 검색하여 해당 인덱스를 반환한다. 검색 대상이 없을 경우 `-1`을 반환한다.
+
+**주의:** 첫 번째 인자가 찾을 문자열(textToFind), 두 번째 인자가 검색 대상 문자열(textToSearch)이다.
 ```
-FIND("Hello World", "World")      // 6
-FIND("Hello World", "xyz")        // -1
+FIND("bc", "abcde")              // 1
+FIND("World", "Hello World")     // 6
+FIND("xyz", "Hello World")       // -1
 ```
 
 #### REPLACE(text, oldText, newText)
-text에서 oldText를 newText로 모두 치환한다 (정규식 지원).
-- `SUBSTITUTE()`로도 사용 가능하다.
+> `string Replace(string text, string oldText, string newText)`
+
+원본 문자열의 oldText를 newText로 치환한 문자열을 반환한다 (정규식 지원).
+- `SUBSTITUTE()`로도 사용 가능하다 (동일한 함수).
 ```
+REPLACE("abcde", "bc", "BC")            // "aBCde"
 REPLACE("Hello World", "World", "AUD")   // "Hello AUD"
 REPLACE([CODE], "-", "")                  // CODE에서 하이픈 제거
 ```
 
 #### TRIM(text)
-앞뒤 공백을 제거한다.
+> `string Trim(string text)`
+
+원본 문자열의 시작과 종료 부분에 공백을 모두 제거한 문자열을 반환한다.
 ```
-TRIM("  Hello  ")      // "Hello"
+TRIM("   abcde   ")     // "abcde"
 ```
 
 ---
 
 ### 수학 함수
 
-| 함수 | 설명 | 예시 |
-|------|------|------|
-| `ABS(number)` | 절댓값 | `ABS(-5)` -> `5` |
-| `CEIL(number)` | 올림 | `CEIL(3.2)` -> `4` |
-| `FLOOR(number)` | 내림 | `FLOOR(3.8)` -> `3` |
-| `ROUND(number, decimals?)` | 반올림 | `ROUND(3.456, 2)` -> `3.46` |
-| `LOG(number, base?)` | 로그 | `LOG(100, 10)` -> `2` |
-| `LOG10(number)` | 상용로그 | `LOG10(1000)` -> `3` |
-| `EXP(number)` | e의 거듭제곱 | `EXP(1)` -> `2.718...` |
-| `RAND(number)` | 0~number 사이 랜덤 | `RAND(100)` |
-| `SIN(number)` | 사인 | `SIN(1.5708)` |
-| `COS(number)` | 코사인 | `COS(0)` -> `1` |
-| `TAN(number)` | 탄젠트 | `TAN(0.7854)` |
-| `ASIN(number)` | 아크사인 | `ASIN(1)` |
-| `ACOS(number)` | 아크코사인 | `ACOS(0)` |
-| `ATAN(number)` | 아크탄젠트 | `ATAN(1)` |
+| 함수 | 시그니처 | 설명 | 예시 |
+|------|---------|------|------|
+| `ABS(value)` | `double ABS(double value)` | 절댓값 | `ABS(-100)` -> `100` |
+| `CEIL(value)` | `double CEIL(value)` | 지정한 수 이상의 가장 작은 정수(올림) | `CEIL(0.95)` -> `1` |
+| `FLOOR(value, significance?)` | `double FLOOR(double value, double significance)` | 수를 significance의 배수가 되도록 내림. significance 생략 시 주어진 수와 같거나 작은 가장 큰 정수를 반환 | `FLOOR(45.95)` -> `45`, `FLOOR(3910, 50)` -> `3900` |
+| `ROUND(value, decimals?)` | `double ROUND(double value, int decimals)` | 지정한 소수점 자릿수로 반올림 | `ROUND(1.256, 2)` -> `1.26` |
+| `LOG(value, base?)` | `double LOG(double value, double base)` | 지정한 밑의 로그 | `LOG(2, 8)` -> `3` |
+| `LOG10(value)` | `double LOG10(double value)` | 상용로그 (밑 10) | `LOG10(100)` -> `2` |
+| `EXP(value)` | `double EXP(double value)` | 자연 상수 e의 거듭제곱 | `EXP(1)` -> `2.71828...` |
+| `RAND(max?)` | `double RAND([double max])` | 0~max 사이 난수. max 미지정 시 0~1 사이 난수 반환 | `RAND(100)` -> `97.1234` |
+| `SIN(value)` | `double SIN(double value)` | 사인 (라디안) | `SIN(Math.PI / 2)` -> `1` |
+| `COS(value)` | `double COS(double value)` | 코사인 (라디안) | `COS(1)` -> `0.5403...` |
+| `TAN(value)` | `double TAN(double value)` | 탄젠트 | `TAN(1)` -> `1.557...` |
+| `ASIN(value)` | `double ASIN(double value)` | 아크사인 | `ASIN(-1)` -> `-1.5707...` |
+| `ACOS(value)` | `double ACOS(double value)` | 아크코사인 | `ACOS(-1)` -> `3.1415...` |
+| `ATAN(value)` | `double ATAN(double value)` | 아크탄젠트 | `ATAN(1)` -> `0.7853...` |
 
 ---
 
 ### 날짜/시간 함수
 
 #### NOW()
-현재 날짜+시간을 `yyyyMMddHHmmssSSS` 형식 문자열로 반환한다.
+> `DateTime NOW()`
+
+현재 시스템의 날짜와 시간을 `yyyyMMddHHmmssSSS` 형식 문자열로 반환한다.
 ```
-NOW()       // "20250115143025123"
+NOW()       // "20250115170409448"
 ```
 
 #### TODAY()
-오늘 날짜를 `yyyyMMdd` 형식 문자열로 반환한다.
+> `DateTime TODAY()`
+
+현재 시스템의 날짜를 `yyyyMMdd` 형식 문자열로 반환한다. 시간은 00:00:00으로 설정된다.
 ```
 TODAY()     // "20250115"
 ```
 
 #### YEAR(date), MONTH(date), DAY(date)
-날짜에서 연/월/일을 추출한다. date는 Date 객체 또는 `yyyyMMdd` 이상의 문자열이다.
+> `int YEAR(DateTime date)` / `int MONTH(DateTime date)` / `int DAY(DateTime date)`
+
+대상 날짜에서 연/월/일을 추출한다. date는 Date 객체 또는 `yyyyMMdd` 이상의 문자열이다.
+- **YEAR**: 년도를 반환
+- **MONTH**: 월의 값을 반환 (1~12)
+- **DAY**: 일의 값을 반환 (1~31)
 ```
 YEAR("20250115")    // 2025
 MONTH("20250115")   // 1
@@ -352,65 +443,88 @@ YEAR(TODAY())       // 현재 연도
 ```
 
 #### WEEKDAY(date)
-요일을 반환한다 (0=일요일, 1=월요일, ..., 6=토요일).
+> `int WEEKDAY(DateTime date)`
+
+대상 날짜의 요일값을 반환한다 (0=일요일, 1=월요일, ..., 6=토요일).
 ```
 WEEKDAY("20250115")   // 3 (수요일)
 ```
 
 #### HOUR(date), MINUTE(date), SECOND(date)
-시/분/초를 추출한다. date는 10자리/12자리/14자리 이상의 문자열이어야 한다.
+> `int HOUR(DateTime date)` / `int MINUTE(DateTime date)` / `int SECOND(DateTime date)`
+
+대상 시간의 시/분/초를 추출한다.
+- **HOUR**: 시간 값 반환 (0~23)
+- **MINUTE**: 분 값 반환 (0~59)
+- **SECOND**: 초 값 반환 (0~59)
 ```
 HOUR("20250115143025")      // 14
 MINUTE("20250115143025")    // 30
 SECOND("20250115143025")    // 25
 ```
 
-#### DATEADD(interval, addValue, date)
-날짜에 값을 더한다. interval은 숫자 상수이다.
+#### DATEADD(interval, number, date)
+> `DateTime DATEADD(interval, double number, DateTime date)`
 
-**interval 값:**
+대상 일자에 일자의 각 단위(년, 분기, 월, 일 등)를 가감한 일자를 반환한다.
+
+**interval 상수:**
 | 상수 | 의미 |
 |------|------|
-| `1` | YEAR |
-| `2` | MONTH |
-| `5` | DAY |
-| `11` | HOUR |
-| `12` | MINUTE |
-| `13` | SECOND |
+| `1` | YEAR (년) |
+| `2` | MONTH (월) |
+| `5` | DAY (일) |
+| `11` | HOUR (시) |
+| `12` | MINUTE (분) |
+| `13` | SECOND (초) |
 
 ```
-DATEADD(5, 7, "20250115")        // 7일 후 -> "20250122..."
-DATEADD(2, -1, "20250115")       // 1개월 전 -> "20241215..."
-DATEADD(1, 1, TODAY())           // 1년 후
+DATEADD(5, 1, "20201231")           // 1일 후 -> "202101010000000"
+DATEADD(5, 7, "20250115")           // 7일 후 -> "20250122..."
+DATEADD(2, -1, "20250115")          // 1개월 전 -> "20241215..."
+DATEADD(1, 1, TODAY())              // 1년 후
 ```
 
-#### DATEDIFF(interval, dateA, dateB)
-두 날짜 간의 차이를 반환한다 (dateB - dateA).
+#### DATEDIFF(interval, date1, date2)
+> `int DATEDIFF(interval, DateTime date1, DateTime date2)`
+
+두 일자 간 차이의 값을 반환한다 (date2 - date1). interval 상수는 DATEADD와 동일하다.
 ```
+DATEDIFF(5, "20201215", "20201231")    // 16 (일)
 DATEDIFF(5, "20250101", "20250115")    // 14 (일)
 DATEDIFF(2, "20240115", "20250115")    // 12 (개월)
 DATEDIFF(1, "20200101", "20250101")    // 5 (년)
 ```
 
 #### DATEPART(interval, date)
-날짜의 특정 부분을 추출한다. YEAR(), MONTH() 등과 유사하나 interval로 지정한다.
+> `double DATEPART(interval, DateTime date)`
+
+일자의 각 파트에 해당하는 값을 반환한다. interval 상수는 DATEADD와 동일하다.
+YEAR(), MONTH() 등과 유사하나 interval로 지정한다.
 ```
 DATEPART(1, "20250115")     // 2025 (년)
 DATEPART(2, "20250115")     // 1 (월)
 DATEPART(5, "20250115")     // 15 (일)
 ```
 
-#### DATE(year, month, date, hour?, minute?, second?)
-Date 객체를 생성한다.
+#### DATE(year, month, day, hour?, minute?, second?)
+> `DateTime DATE(int year, int month, int day [, int hour, int minute, int second])`
+
+넘겨진 파라미터 값을 가지고 새로운 일자(Date 객체)를 반환한다. 시/분/초는 옵션이다.
 ```
 DATE(2025, 1, 15)
 DATE(2025, 1, 15, 14, 30, 0)
+DATE("2020", "12", "31")           // Thu Dec 31 2020 ...
 ```
 
-#### DATE2(year, month, date, format)
-날짜를 생성하여 포맷된 문자열로 반환한다.
+#### DATE2(year_diff, month_diff, day_diff)
+> `DateTime DATE2(int year_diff, int month_diff, int day_diff)`
+
+현재 날짜를 기준으로 상대적인 차이(년, 월, 일)를 적용한 새로운 일자를 반환한다.
 ```
-DATE2(2025, 1, 15, "{0:yyyy-MM-dd}")    // "2025-01-15"
+DATE2(0, 0, 1)      // 오늘 + 1일
+DATE2(0, -1, 0)     // 오늘 - 1개월
+DATE2(1, 0, 0)      // 오늘 + 1년
 ```
 
 ---
@@ -497,6 +611,9 @@ IIF(:txtScore >= 60, "합격", "불합격")
 
 // 포맷 적용
 TOSTRING(SUMIF(:DataGrid1, "AMT"), "{0:N0}")
+
+// 문자열 연결 + 날짜 함수 조합
+LEFT(TODAY(), 4) + "년 " + MID(TODAY(), 4, 2) + "월"
 ```
 
 ### 데이터그리드 컬럼 수식
@@ -549,3 +666,5 @@ if (total > 100000) {
 5. **반환값**: 수식 모드에서는 `return`을 생략하면 자동으로 추가된다. JavaScript 모드에서는 명시적으로 `return`을 사용해야 한다.
 6. **숫자 필드**: Numeric 타입 필드의 값이 null/undefined이면 `0`으로 처리된다.
 7. **집계 함수의 condition**: condition 내에서 `[필드명]`으로 그리드의 각 행의 필드를 참조할 수 있다.
+8. **FIND 파라미터 순서**: `FIND(찾을문자열, 검색대상문자열, 시작인덱스)` 순서이다. 첫 번째가 찾을 문자열임에 주의한다.
+9. **FLOOR의 significance**: `FLOOR(3910, 50)` -> `3900`과 같이 significance 인자를 지정하면 해당 배수로 내림한다.
