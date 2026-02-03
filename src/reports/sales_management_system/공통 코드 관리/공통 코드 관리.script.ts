@@ -181,7 +181,7 @@ const OnButtonClick = function(sender, args) {
 					Matrix.Alert(p.Message);
 					return;
 				}
-				Matrix.doRefresh('GRD_DETAIL');
+				Matrix.doRefresh('GRD_MASTER,GRD_DETAIL');
 				Matrix.Information(BTN_CD_SAV.Text+' 완료되었습니다.','안내');
 				popup.Close();
 			});
