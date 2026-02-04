@@ -10,7 +10,8 @@
     "EditDate": "2026-02-02 12:18:01",
     "TabPosition": 0,
     "DocumentVersion": "3.0.0.0",
-    "RefreshType": 0
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
     "Datas": [
@@ -37,7 +38,7 @@
       }
     ]
   },
-  "ScriptText": "var WEB = Matrix.getObject('WEB');\r\nvar url = 'https://rnd.bimatrix.co.kr/aud7//AUD/main.jsp?id=';\r\n\r\n/**************************************\r\n * 그리드의 셀을 클릭할 떄 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤 이름 \r\n *\t\t aud.control.grids.DataGridRow\tRow (Readonly:False) : 데이터 레코드 정보 \r\n *\t\t aud.control.grids.DataGridCell\tCell (Readonly:False) : 데이터셀 정보 \r\n *\t\t aud.control.grids.DataGridColumn\tField (Readonly:False) : 필드 정보 \r\n *\t\t boolean\tHandled (Readonly:False) : cell selection 정보 유지 여부 \r\n**************************************/\r\n var OnCellClick  = function(sender, args){\r\n \tif(args.Id == 'GRD_TREE'){\r\n\t\tWEB.URL = url + args.Row.GetValue('CODE');\r\n\t\tMatrix.doRefresh('WEB');\r\n\t}\r\n };",
+  "ScriptText": "/* Init Controls */\nvar GRD_TREE = Matrix.getObject(\"GRD_TREE\");\nvar WEB = Matrix.getObject(\"WEB\");\nvar url = 'https://rnd.bimatrix.co.kr/aud7//AUD/main.jsp?id=';\nGRD_TREE.OnCellClick = function (s, e) {\n    WEB.URL = url + e.Row.GetValue('CODE');\n    Matrix.doRefresh('WEB');\n};\n",
   "ServerScriptText": [],
   "Forms": [
     {

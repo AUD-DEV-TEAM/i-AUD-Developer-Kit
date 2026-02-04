@@ -1,25 +1,16 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { WebContainer } from "@AUD_CLIENT/control/WebContainer";
+import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
 
 let Matrix : Matrix;
-/*****************************
- *
- *****************************/
 
-/**************************************
- * 그리드의 셀을 클릭할 떄 발생합니다.
- * * arguments :
- *		 string	Id (Readonly:False) : 컨트롤 이름
- *		 aud.control.grids.DataGridRow	Row (Readonly:False) : 데이터 레코드 정보
- *		 aud.control.grids.DataGridCell	Cell (Readonly:False) : 데이터셀 정보
- *		 aud.control.grids.DataGridColumn	Field (Readonly:False) : 필드 정보
- *		 boolean	Handled (Readonly:False) : cell selection 정보 유지 여부
-**************************************/
- var OnCellClick  = function(sender, args){
- 	if(args.Id == 'GRD_TREE'){
-		WEB.URL = url + args.Row.GetValue('CODE');
-		Matrix.doRefresh('WEB');
-	}
- };
-const WEB : WebContainer =   Matrix.getObject("WEB") as WebContainer;
+/* Init Controls */
+const GRD_TREE: DataGrid = Matrix.getObject("GRD_TREE") as DataGrid;
+const WEB: WebContainer = Matrix.getObject("WEB") as WebContainer;
 const url = 'https://rnd.bimatrix.co.kr/aud7//AUD/main.jsp?id=';
+
+
+GRD_TREE.OnCellClick = function(s, e) {
+	WEB.URL = url + e.Row.GetValue('CODE');
+	Matrix.doRefresh('WEB');
+};

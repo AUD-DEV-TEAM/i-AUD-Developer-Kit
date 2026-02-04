@@ -2,42 +2,42 @@ import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { Label } from "@AUD_CLIENT/control/Label";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
 import { Group } from "@AUD_CLIENT/control/Group";
+import { Button } from "@AUD_CLIENT/control/Button";
 import { Chart } from "@AUD_CLIENT/control/Chart";
 import { PiePlotOptions } from "@AUD_CLIENT/control/charts/PiePlotOptions";
 
 let Matrix : Matrix;
 
+/* Button Controls */
+const BTN_REF: Button = Matrix.getObject("BTN_REF") as Button;
+const BTN_DETAIL_CST: Button = Matrix.getObject("BTN_DETAIL_CST") as Button;
+const BTN_DETAIL_PRD: Button = Matrix.getObject("BTN_DETAIL_PRD") as Button;
+
+/* Tab Controls */
+const LBL_TAB_AMT: Label = Matrix.getObject("LBL_TAB_AMT") as Label;
+const LBL_TAB_QTY: Label = Matrix.getObject("LBL_TAB_QTY") as Label;
+const LBL_TAB_CNT: Label = Matrix.getObject("LBL_TAB_CNT") as Label;
+
 let popup: any = null;
 
 
-/**************************************
- * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.
- * * arguments :
-**************************************/
- var OnDocumentLoadComplete  = function(sender, args){
- 	Matrix.SetVariable('VN_RANK_CST','1');
- 	Matrix.SetVariable('VN_RANK_PRD','1');
- };
+Matrix.OnDocumentLoadComplete = function(s, e) {
+	Matrix.SetVariable('VN_RANK_CST', '1');
+	Matrix.SetVariable('VN_RANK_PRD', '1');
+};
 
+Matrix.OnDataBindEnd = function(s, e) {
+	if (['CHT_2', 'CHT_3', 'CHT_5'].includes(e.Id)) {
+		((Matrix.getObject(e.Id) as Chart).PlotOptions as unknown as PiePlotOptions).DataLabelsDistance = 0;
 
-/**************************************
- * 컨트롤에 데이터셋이 바인딩된 후 발생합니다.
- * * arguments :
- *		 string	Id (Readonly:False) : 컨트롤이름
- *		 number	RecordCount (Readonly:False) : 데이터셋의 레코드 수량
-**************************************/
- var OnDataBindEnd  = function(sender, args){
- 	if(['CHT_2','CHT_3','CHT_5'].includes(args.Id)){
-		((Matrix.getObject(args.Id) as Chart).PlotOptions as unknown as PiePlotOptions).DataLabelsDistance = 0;
-
-	}else if(args.Id == 'GRD_TOTAL'){
-		if(!args.RecordCount){
-			['1','2','3','4'].forEach(function(i){
+	} else if (e.Id == 'GRD_TOTAL') {
+		if (!e.RecordCount) {
+			['1', '2', '3', '4'].forEach(function(i) {
 				(Matrix.getObject('LBL_TOTAL_VAL_' + i) as Label).Text = '';
 			});
 		}
 
-		['1','2','3','4'].forEach(function(i){
+		['1', '2', '3', '4'].forEach(function(i) {
 			let lbl = Matrix.getObject('LBL_RATE_' + i) as Label;
 			let val = Number(lbl.Value);
 			let displayVal = Math.abs(val).toFixed(1);
@@ -48,106 +48,88 @@ let popup: any = null;
 				return;
 			}
 
-			if(val > 0){
+			if (val > 0) {
 				lbl.Text = '▲ ' + displayVal + '% 전년 대비';
 				lbl.Style.Font.Color.SetColor('#10b981'); // 초록
 
-			}else if (val < 0) {
+			} else if (val < 0) {
 				lbl.Text = '▼ ' + displayVal + '% 전년 대비';
 				lbl.Style.Font.Color.SetColor('#ef4444'); // 빨강
 
-			}else {
+			} else {
 				lbl.Text = '– 전년 대비';   // 0일 때
 				lbl.Style.Font.Color.SetColor('#64748b'); // 회색
 			}
 
 			lbl.Update();
 		});
-
 	}
- };
+};
 
+/******** Button Click Event ********/
+// 조회
+BTN_REF.OnClick = function(s, e) {
+	Matrix.doRefresh('');
+};
 
-/**************************************
- * 버튼 컨트롤이 클릭되는 시점에 발생합니다.
- * * arguments :
- *		 string	Id (Readonly:False) : 컨트롤이름
- *		 string	Text (Readonly:False) : 라벨 값
-**************************************/
- var OnButtonClick  = function(sender, args){
- 	switch(args.Id){
-		case 'BTN_REF': // 조회
-			Matrix.doRefresh('');
-			break;
+// 고객별 매출 상세
+BTN_DETAIL_CST.OnClick = function(s, e) {
+	Matrix.SetVariable('VN_RANK_CST', '10');
+	Matrix.doRefresh('GRD_3_DTL');
 
-		case 'BTN_EXP_PDF': // PDF 내보내기
+	popup = Matrix.ShowWindow("고객별 매출 상세", 0, 0, 590, 573, true, false, "고객별 매출 TOP 10", true, '#ffffff', 0, false, false);
+	popup.MoveToCenter();
+};
 
-			break;
+// 제품별 매출 상세
+BTN_DETAIL_PRD.OnClick = function(s, e) {
+	Matrix.SetVariable('VN_RANK_PRD', '10');
+	Matrix.doRefresh('GRD_4_DTL');
 
-		case 'BTN_EXP_EXCEL': // Excel 내보내기
+	popup = Matrix.ShowWindow("제품별 매출 상세", 0, 0, 680, 573, true, false, "제품별 매출 TOP 10", true, '#ffffff', 0, false, false);
+	popup.MoveToCenter();
+};
+/******** Button Click Event ********/
 
-			break;
+var setActiveTab = function(activeTab: Label) {
+	let tabs = [
+		{ tab: LBL_TAB_AMT, suffix: 'AMT' },
+		{ tab: LBL_TAB_QTY, suffix: 'QTY' },
+		{ tab: LBL_TAB_CNT, suffix: 'CNT' }
+	];
+	tabs.forEach(function(item) {
+		let isActive = item.tab === activeTab;
+		(Matrix.getObject('GRD_1_' + item.suffix) as DataGrid).Visible = isActive;
+		(Matrix.getObject('CHT_1_' + item.suffix) as Chart).Visible = isActive;
+		item.tab.Style.Background.Color.SetColor(isActive ? '#ffffff' : '#f1f5f9');
+		item.tab.Update();
+	});
+};
 
-		case 'BTN_DETAIL_CST':
-			Matrix.SetVariable('VN_RANK_CST','10');
-			Matrix.doRefresh('GRD_3_DTL');
+// 매출액
+LBL_TAB_AMT.OnClick = function(s, e) {
+	setActiveTab(LBL_TAB_AMT);
+};
 
-			popup = Matrix.ShowWindow("고객별 매출 상세",0,0,590,573,true,false,"고객별 매출 TOP 10",true,'#ffffff',0,false,false);
-			popup.MoveToCenter();
-			break;
+// 수량
+LBL_TAB_QTY.OnClick = function(s, e) {
+	setActiveTab(LBL_TAB_QTY);
+};
 
-		case 'BTN_DETAIL_PRD':
-			Matrix.SetVariable('VN_RANK_PRD','10');
-			Matrix.doRefresh('GRD_4_DTL');
+// 건수
+LBL_TAB_CNT.OnClick = function(s, e) {
+	setActiveTab(LBL_TAB_CNT);
+};
 
-			popup = Matrix.ShowWindow("제품별 매출 상세",0,0,680,573,true,false,"제품별 매출 TOP 10",true,'#ffffff',0,false,false);
-			popup.MoveToCenter();
-			break;
-
-	}
-
- };
-
-
-/**************************************
- * 텍스트블럭이 클릭되는 시점에 발생합니다.
- * * arguments :
- *		 string	Id (Readonly:False) : 컨트롤 이름
- *		 string	Text (Readonly:False) : 라벨 값
-**************************************/
- var OnTextBlockClick  = function(sender, args){
- 	let tabArr = ['LBL_TAB_AMT','LBL_TAB_QTY','LBL_TAB_CNT'];
-
- 	if(tabArr.includes(args.Id)){
-		tabArr.forEach(function(id){
-			let grd = Matrix.getObject('GRD_1_'+id.substr(-3)) as DataGrid;
-			let cht = Matrix.getObject('CHT_1_'+id.substr(-3)) as Chart;
-			let tab = Matrix.getObject(id) as Label;
-
-			grd.Visible = id === args.Id ? true : false;
-			cht.Visible = id === args.Id ? true : false;
-			tab.Style.Background.Color.SetColor(id === args.Id ? '#ffffff' : '#f1f5f9');
-			tab.Update();
-		});
-	}
- };
-
-
-/**************************************
- * 뷰어의 사이즈가 변경될 때 발생합니다.
- * * arguments :
- *		 number	Width (Readonly:False) : 뷰어의 넓이
- *		 number	Height (Readonly:False) : 뷰어의 높이
-**************************************/
- var OnViewerSizeChanged  = function(sender, args){
+Matrix.OnViewerSizeChanged = function(s, e) {
 	let gap = 20;
 	let start = 20;
 
-	let setTotalWidth = (args.Width - 100) / 4;
-	let setBodyWidth  = (args.Width - 80)  / 3;
+	let setTotalWidth = (e.Width - 100) / 4;
+	let setBodyWidth  = (e.Width - 80)  / 3;
 
 	/*  TOTAL  */
-	['1','2','3','4'].forEach(function(i, idx){
+	['1', '2', '3', '4'].forEach(function(i, idx) {
 		let grp  = Matrix.getObject('GRP_TOTAL_' + i) as Group;
 		let icon = Matrix.getObject('LBL_ICON_' + i) as Label;
 
@@ -159,18 +141,18 @@ let popup: any = null;
 
 	/*  BODY  */
 	let body = {};
-	['1','2','3','4','5','6','7'].forEach(function(i){
+	['1', '2', '3', '4', '5', '6', '7'].forEach(function(i) {
 		body[i] = Matrix.getObject('GRP_BODY_' + i) as Group;
 	});
 
 	body[1].Width = setBodyWidth * 2 + gap;
 	body[2].Left  = setBodyWidth * 2 + gap * 3;
 
-	['5','6','7'].forEach(function(i, idx){
+	['5', '6', '7'].forEach(function(i, idx) {
 		body[i].Width = setBodyWidth;
 		body[i].Left  = (setBodyWidth + gap) * idx + start;
 	});
 
 	body[3].Width = setTotalWidth * 2 + gap;
 	body[4].Left  = setTotalWidth * 2 + gap * 3;
- };
+};

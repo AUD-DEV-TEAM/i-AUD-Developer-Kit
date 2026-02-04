@@ -4,17 +4,24 @@ import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
 import { Button } from "@AUD_CLIENT/control/Button";
 import { TextBox } from "@AUD_CLIENT/control/TextBox";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
-import { Group } from "@AUD_CLIENT/control/Group";
 import { MultiComboBox } from "@AUD_CLIENT/control/MultiComboBox";
 import { Calendar } from "@AUD_CLIENT/control/Calendar";
 
 let Matrix : Matrix;
 
-/*****************************
- * Control Declarations
- *****************************/
-const VS_KEYWORD: TextBox = Matrix.getObject("VS_KEYWORD") as TextBox;
+/* Init Controls */
 const GRD_EMPLOYEE: DataGrid = Matrix.getObject("GRD_EMPLOYEE") as DataGrid;
+const VS_KEYWORD: TextBox = Matrix.getObject("VS_KEYWORD") as TextBox;
+
+/* Button Controls */
+const BTN_ADD: Button = Matrix.getObject("BTN_ADD") as Button;
+const BTN_REF: Button = Matrix.getObject("BTN_REF") as Button;
+const BTN_RESET: Button = Matrix.getObject("BTN_RESET") as Button;
+const BTN_DEL: Button = Matrix.getObject("BTN_DEL") as Button;
+const BTN_CNC: Button = Matrix.getObject("BTN_CNC") as Button;
+const BTN_SAV: Button = Matrix.getObject("BTN_SAV") as Button;
+
+/* Input Controls */
 const VS_INP_NAME: TextBox = Matrix.getObject("VS_INP_NAME") as TextBox;
 const VS_INP_DEPT: ComboBox = Matrix.getObject("VS_INP_DEPT") as ComboBox;
 const VS_INP_POSITION: ComboBox = Matrix.getObject("VS_INP_POSITION") as ComboBox;
@@ -22,180 +29,150 @@ const VS_INP_STATUS: ComboBox = Matrix.getObject("VS_INP_STATUS") as ComboBox;
 const VS_INP_EMAIL: TextBox = Matrix.getObject("VS_INP_EMAIL") as TextBox;
 const VS_INP_PHONE: TextBox = Matrix.getObject("VS_INP_PHONE") as TextBox;
 const VS_INP_HIRE: Calendar = Matrix.getObject("VS_INP_HIRE") as Calendar;
-const BTN_SAV: Button = Matrix.getObject("BTN_SAV") as Button;
 
 let popup: any = null;
 
 
-/**************************************
- * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.
- **************************************/
-var OnDocumentLoadComplete = function(sender, args) {
+Matrix.OnDocumentLoadComplete = function(s, e) {
 	VS_KEYWORD.UsePlaceholder = true;
 	VS_KEYWORD.SetPlaceholder(' 이름, 사번으로 검색');
 	GRD_EMPLOYEE.GetField('EMP_ID').KeyType = 3; // KeyType: Primary
 };
 
-
-/**************************************
- * Execute 실행되는 시점에 발생합니다.
- **************************************/
-var OnMultiComboBoxExecuteStart = function(sender, args) {
-	if (['VS_DEPT', 'VS_POSITION', 'VS_STATUS'].includes(args.Id)) {
-		(Matrix.getObject(args.Id) as MultiComboBox).CheckAll();
+Matrix.OnMultiComboBoxExecuteStart = function(s, e) {
+	if (['VS_DEPT', 'VS_POSITION', 'VS_STATUS'].includes(e.Id)) {
+		(Matrix.getObject(e.Id) as MultiComboBox).CheckAll();
 	}
 };
 
+Matrix.OnDataBindEnd = function(s, e) {
+	if (e.Id == 'GRD_EMPLOYEE') {
+		(Matrix.getObject('LBL_TTL_2') as Label).Text = '   직원 목록 (' + e.RecordCount + '명)';
+	}
+};
 
-/**************************************
- * 버튼 컨트롤이 클릭되는 시점에 발생합니다.
- **************************************/
-var OnButtonClick = function(sender, args) {
-	switch (args.Id) {
-		case 'BTN_ADD':
-			setInputValue(null);
-			Matrix.SetGlobalParams('VS_EMP_ID', '');
-			BTN_SAV.Text = '추가';
-			popup = Matrix.ShowWindow("직원 등록", 0, 0, 460, 415, true, false, "직원 등록", true, '#ffffff', 0, false, false);
-			popup.MoveToCenter();
-			break;
+/******** Button Click Event ********/
+// 등록
+BTN_ADD.OnClick = function(s, e) {
+	setInputValue(null);
+	Matrix.SetGlobalParams('VS_EMP_ID', '');
+	BTN_SAV.Text = '추가';
+	popup = Matrix.ShowWindow("직원 등록", 0, 0, 460, 415, true, false, "직원 등록", true, '#ffffff', 0, false, false);
+	popup.MoveToCenter();
+};
 
-		case 'BTN_REF':
-			Matrix.doRefresh('GRD_EMPLOYEE');
-			break;
+// 검색
+BTN_REF.OnClick = function(s, e) {
+	Matrix.doRefresh('GRD_EMPLOYEE');
+};
 
-		case 'BTN_RESET':
-			['VS_DEPT', 'VS_POSITION', 'VS_STATUS'].forEach(function(i) {
-				(Matrix.getObject(i) as MultiComboBox).CheckAll();
-			});
-			VS_KEYWORD.Text = '';
-			break;
+// 초기화
+BTN_RESET.OnClick = function(s, e) {
+	['VS_DEPT', 'VS_POSITION', 'VS_STATUS'].forEach(function(i) {
+		(Matrix.getObject(i) as MultiComboBox).CheckAll();
+	});
+	VS_KEYWORD.Text = '';
+};
 
-		case 'BTN_DEL':
-			let checkCount = 0;
-			for (let i = 0; i < GRD_EMPLOYEE.GetRowCount(); i++) {
-				if (GRD_EMPLOYEE.getRowValue(i, 'CHK') == 'Y') {
-					GRD_EMPLOYEE.ChangeRowStateAt(i, 'D');
-					checkCount++;
-				}
-			}
+// 삭제
+BTN_DEL.OnClick = function(s, e) {
+	let checkCount = 0;
+	for (let i = 0; i < GRD_EMPLOYEE.GetRowCount(); i++) {
+		if (GRD_EMPLOYEE.getRowValue(i, 'CHK') == 'Y') {
+			GRD_EMPLOYEE.ChangeRowStateAt(i, 'D');
+			checkCount++;
+		}
+	}
 
-			if (!checkCount) {
-				Matrix.Information('삭제할 항목을 선택하세요', '안내');
-				return;
-			}
+	if (!checkCount) {
+		Matrix.Information('삭제할 항목을 선택하세요', '안내');
+		return;
+	}
 
-			Matrix.Confirm('선택한 항목을 삭제하시겠습니까?', '안내', function(ok) {
-				if (ok) {
-					Matrix.RunScript('GRD_EMPLOYEE', 'GRD_DELETE', function(p) {
-						if (p.Success == false) {
-							Matrix.Alert(p.Message);
-							return;
-						}
-						Matrix.doRefresh('GRD_EMPLOYEE');
-						Matrix.Information('삭제 완료되었습니다.', '안내');
-					});
-				} else {
-					GRD_EMPLOYEE.ClearRowState(false);
-				}
-			}, 0);
-			break;
-
-		case 'BTN_CNC':
-			popup.Close();
-			break;
-
-		case 'BTN_SAV':
-			const fields = [VS_INP_NAME.Text, VS_INP_DEPT.Value, VS_INP_POSITION.Value, VS_INP_STATUS.Value, VS_INP_HIRE.Value];
-
-			if (isInvalidInput(fields)) {
-				Matrix.Information('필수 입력 항목을 확인해주세요', '안내');
-				return;
-			}
-
-			const scriptName = Matrix.GetGlobalParamValue('VS_EMP_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';
-			Matrix.RunScript('', scriptName, function(p) {
+	Matrix.Confirm('선택한 항목을 삭제하시겠습니까?', '안내', function(ok) {
+		if (ok) {
+			Matrix.RunScript('GRD_EMPLOYEE', 'GRD_DELETE', function(p) {
 				if (p.Success == false) {
 					Matrix.Alert(p.Message);
 					return;
 				}
 				Matrix.doRefresh('GRD_EMPLOYEE');
-				Matrix.Information(BTN_SAV.Text + ' 완료되었습니다.', '안내');
-				popup.Close();
+				Matrix.Information('삭제 완료되었습니다.', '안내');
 			});
-			break;
-	}
+		} else {
+			GRD_EMPLOYEE.ClearRowState(false);
+		}
+	}, 0);
 };
 
-
-/**************************************
- * 컨트롤에 데이터셋이 바인딩된 후 발생합니다.
- **************************************/
-var OnDataBindEnd = function(sender, args) {
-	if (args.Id == 'GRD_EMPLOYEE') {
-		(Matrix.getObject('LBL_TTL_2') as Label).Text = '   직원 목록 (' + args.RecordCount + '명)';
-	}
+// 취소
+BTN_CNC.OnClick = function(s, e) {
+	popup.Close();
 };
 
+// 저장
+BTN_SAV.OnClick = function(s, e) {
+	const fields = [VS_INP_NAME.Text, VS_INP_DEPT.Value, VS_INP_POSITION.Value, VS_INP_STATUS.Value, VS_INP_HIRE.Value];
 
-/**************************************
- * 텍스트 박스 컨트롤의 key 입력 시 발생합니다.
- **************************************/
-var OnTextKeydown = function(sender, args) {
-	if (args.Id == 'VS_KEYWORD' && args.Event.isEnter()) {
+	if (isInvalidInput(fields)) {
+		Matrix.Information('필수 입력 항목을 확인해주세요', '안내');
+		return;
+	}
+
+	const scriptName = Matrix.GetGlobalParamValue('VS_EMP_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';
+	Matrix.RunScript('', scriptName, function(p) {
+		if (p.Success == false) {
+			Matrix.Alert(p.Message);
+			return;
+		}
+		Matrix.doRefresh('GRD_EMPLOYEE');
+		Matrix.Information(BTN_SAV.Text + ' 완료되었습니다.', '안내');
+		popup.Close();
+	});
+};
+/******** Button Click Event ********/
+
+VS_KEYWORD.OnTextKeydown = function(s, e) {
+	if (e.Event.isEnter()) {
 		Matrix.doRefresh('GRD_EMPLOYEE');
 	}
 };
 
-
-/**************************************
- * 그리드의 멀티 헤더 체크 박스를 클릭하는 순간 발생합니다.
- **************************************/
-var OnGridMultiHeaderCheckBoxClicked = function(sender, args) {
-	if (args.Id == 'GRD_EMPLOYEE') {
-		const checkValue = args.Checked ? 'Y' : 'N';
-		for (let i = 0; i < GRD_EMPLOYEE.GetRowCount(); i++) {
-			GRD_EMPLOYEE.setRowValue(i, 'CHK', checkValue);
-		}
-		GRD_EMPLOYEE.Update();
+GRD_EMPLOYEE.OnGridMultiHeaderCheckBoxClicked = function(s, e) {
+	const checkValue = e.Checked ? 'Y' : 'N';
+	for (let i = 0; i < GRD_EMPLOYEE.GetRowCount(); i++) {
+		GRD_EMPLOYEE.setRowValue(i, 'CHK', checkValue);
 	}
+	GRD_EMPLOYEE.Update();
 };
 
-
-/**************************************
- * 그리드의 셀을 더블 클릭할 떄 발생합니다.
- **************************************/
-var OnCellDoubleClick = function(sender, args) {
-	if (args.Id == 'GRD_EMPLOYEE') {
-		setInputValue(args.Row);
-		Matrix.SetGlobalParams('VS_EMP_ID', args.Row.GetValue('EMP_ID'));
-		BTN_SAV.Text = '저장';
-		popup = Matrix.ShowWindow("직원 등록", 0, 0, 460, 415, true, false, "직원 수정", true, '#ffffff', 0, false, false);
-		popup.MoveToCenter();
-	}
+GRD_EMPLOYEE.OnCellDoubleClick = function(s, e) {
+	setInputValue(e.Row);
+	Matrix.SetGlobalParams('VS_EMP_ID', e.Row.GetValue('EMP_ID'));
+	BTN_SAV.Text = '저장';
+	popup = Matrix.ShowWindow("직원 등록", 0, 0, 460, 415, true, false, "직원 수정", true, '#ffffff', 0, false, false);
+	popup.MoveToCenter();
 };
-
 
 var setInputValue = function(row) {
 	if (typeof row === 'object' && row !== null) {
-		VS_INP_NAME.Text = row.GetValue('EMP_NAME');
-		VS_INP_DEPT.Value = row.GetValue('DEPT_CODE');
+		VS_INP_NAME.Text     = row.GetValue('EMP_NAME');
+		VS_INP_DEPT.Value    = row.GetValue('DEPT_CODE');
 		VS_INP_POSITION.Value = row.GetValue('POSITION_CODE');
-		VS_INP_STATUS.Value = row.GetValue('EMP_STATUS_CODE');
-		VS_INP_EMAIL.Text = row.GetValue('EMAIL');
-		VS_INP_PHONE.Text = row.GetValue('PHONE');
-		VS_INP_HIRE.Value = row.GetValue('HIRE_DATE');
+		VS_INP_STATUS.Value  = row.GetValue('EMP_STATUS_CODE');
+		VS_INP_EMAIL.Text    = row.GetValue('EMAIL');
+		VS_INP_PHONE.Text    = row.GetValue('PHONE');
+		VS_INP_HIRE.Value    = row.GetValue('HIRE_DATE');
 	} else {
-		VS_INP_NAME.Text = '';
-		VS_INP_DEPT.Value = '';
+		VS_INP_NAME.Text     = '';
+		VS_INP_DEPT.Value    = '';
 		VS_INP_POSITION.Value = '';
-		VS_INP_STATUS.Value = '';
-		VS_INP_EMAIL.Text = '';
-		VS_INP_PHONE.Text = '';
-		VS_INP_HIRE.Value = '';
+		VS_INP_STATUS.Value  = '';
+		VS_INP_EMAIL.Text    = '';
+		VS_INP_PHONE.Text    = '';
+		VS_INP_HIRE.Value    = '';
 	}
 };
-
 
 var isInvalidInput = function(fields) {
 	return fields.some(function(v) {
