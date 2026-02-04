@@ -4,16 +4,75 @@
     "FolderCode": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD",
     "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REP864A26F475AE4F0391901626E3A83F35.mtsd",
     "ReportName": "(OlapGrid) 조건부 서식(이미지)",
-    "Writer": "choehanna",
-    "WriteDate": "2024-04-01 17:51:56",
-    "Editor": "choehanna",
-    "EditDate": "2024-04-01 17:51:56",
+    "Writer": "yglee",
+    "WriteDate": "2026-02-04 10:26:20",
+    "Editor": "yglee",
+    "EditDate": "2026-02-04 10:26:20",
     "TabPosition": 1,
     "UseLayout": false,
-    "DocumentVersion": "3.0.0.0"
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
     "Datas": [
+      {
+        "Id": "DS4FB234C49A9046CABF3F87F47CAA0131",
+        "Name": "Data1",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "/VAMGJR9QF5UXyW0Art89evSZ1qd9oASZCpSi96pKfk=",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "YYYY",
+            "Type": "String"
+          },
+          {
+            "Name": "HALF",
+            "Type": "String"
+          },
+          {
+            "Name": "QUATER",
+            "Type": "String"
+          },
+          {
+            "Name": "LOCALE",
+            "Type": "String"
+          },
+          {
+            "Name": "PRODUCT",
+            "Type": "String"
+          },
+          {
+            "Name": "CUSTOMER",
+            "Type": "String"
+          },
+          {
+            "Name": "Y_VAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "H_VAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Q_VAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "ROW_ID",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "BIG_DOUBLE",
+            "Type": "Numeric"
+          }
+        ]
+      },
       {
         "Id": "DS4FB234C49A9046CABF3F87F47CAA0131",
         "Name": "Data1",
@@ -127,6 +186,8 @@
               "DisplayColumnSubTotal": true,
               "HideTotalChildIsOneColumn": false,
               "HideTotalChildIsOneRow": false,
+              "HideEmptyMeasureRows": false,
+              "HideEmptyMeasureColumns": false,
               "DisplayRowSubTotal": true,
               "DisplayColumnGrandTotal": true,
               "DisplayRowGrandTotal": true,
@@ -931,6 +992,7 @@
             "UseMeta": false,
             "UseChartSourceTotal": false,
             "UseChartSourceGrandTotal": false,
+            "UseChartSourceReverse": false,
             "ChartLabelDepth": -1,
             "ConditionalStyleName": "",
             "BackgroundColorBoxStyleKey": "",
@@ -964,18 +1026,11 @@
           "Position": {
             "Left": 0,
             "Top": 0,
-            "Width": 1878,
-            "Height": 884,
+            "Width": 1551,
+            "Height": 887,
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": true,
               "Right": true,
               "Top": true,
@@ -983,18 +1038,14 @@
               "Margin": "0,0,0,0",
               "HoldSize": false,
               "MinWidth": 0,
-              "MinHeight": 0,
-              "checkBoxAreaElement": {},
-              "marginWrapElement": {}
+              "MinHeight": 0
             }
           },
           "Style": {
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -1002,9 +1053,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -1012,27 +1061,10 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Border",
-                  "Font",
-                  "StyleType",
-                  "BoxStyle",
-                  "Background"
-                ]
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 0,
                 "G": 0,
                 "B": 0,
@@ -1045,17 +1077,6 @@
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "top",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Border",
-                  "Font",
-                  "StyleType",
-                  "BoxStyle",
-                  "Background"
-                ]
-              },
               "TempFontFamily": "맑은 고딕"
             }
           }
@@ -1093,14 +1114,16 @@
           "Text": "1.상수\n    CELL_VALUE : 데이터 셀의 값\n    FIELD_KEY  : 데이터 셀에 계산에 적용된 데이터 필드의 Key값\n    FIELD_LABEL  : 데이터 셀에 계산에 적용된 데이터 필드의 라벨(Caption)\n\n2. 수식\n    셀에 이미지를 표시하기 위해서는 IMG(string imageName, double width, double height) 함수를\n    이용하여 이미지를 반환하셔야 합니다.\n    이미지는 서버의 reports/WEB_IMAGES/ 폴더 아래에 있는 이미지 이름을 입력하시면 됩니다.\n    아래 수식의 IMG(\"red.png\", 16,16) 에서 red.png는 실제reports/WEB_IMAGES/red.png 로 존재하며,\n    표현 시 넓이와 높이는 16px의 값으로 표현하게 됩니다.\n\nIF(IsTotalOrGrandTotal\n   ,  \"\"\n   ,\n   IF( FIELD_KEY = \"IMG_FLD\"\n     , IF(    CELL_VALUE < 60000 \n              , IMG(\"red.png\", 16,16) \n              , IMG(\"green.png\", 16,16)    \n         ) \n     , \"\"\n    )\n)",
           "Cursor": "default",
           "Formula": "",
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
           "MxBinding": "",
+          "MxBindingUseStyle": false,
           "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Top": 0,
+            "Right": 0,
+            "Bottom": 0,
+            "Text": "0,0,0,0"
+          },
           "Type": "Label",
           "Id": "Labele7e98955-e08b-d1d4-026d-a4f4920b992e",
           "Name": "Label",
@@ -1112,13 +1135,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "50,20,0,0",
-              "compileMargin": [
-                50,
-                20,
-                0,
-                0
-              ],
               "Left": true,
               "Right": true,
               "Top": true,
@@ -1133,9 +1149,7 @@
             "Type": 2,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -1143,9 +1157,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 85,
                 "G": 142,
                 "B": 213,
@@ -1153,22 +1165,10 @@
               },
               "LineType": "none",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              },
-              "mVariable": {
-                "LineType": "none",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 12,
                 "G": 56,
                 "B": 134,
@@ -1181,12 +1181,6 @@
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "top",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              },
               "TempFontFamily": "맑은 고딕"
             }
           }
@@ -1215,13 +1209,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -1236,9 +1223,7 @@
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -1246,9 +1231,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -1256,25 +1239,10 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Background",
-                  "Border",
-                  "Font"
-                ]
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 0,
                 "G": 0,
                 "B": 0,
@@ -1287,15 +1255,6 @@
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "top",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Background",
-                  "Border",
-                  "Font"
-                ]
-              },
               "TempFontFamily": "맑은 고딕"
             }
           }
@@ -1312,6 +1271,5 @@
   "ResponsiveLayout": [],
   "Langs": [],
   "WorkFlowModules": [],
-  "WorkFlowInfo": "",
-  "UsePersonalConditions": true
+  "WorkFlowInfo": ""
 }

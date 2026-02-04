@@ -5,14 +5,14 @@
     "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REPD6EB58B183904D5C9362E963D77790A6.mtsd",
     "ReportName": "(서버 스크립트) OlapGrid 배치 개인화 (호출하기)",
     "Writer": "yglee",
-    "WriteDate": "2021-10-19 18:18:48",
+    "WriteDate": "2026-02-04 10:24:04",
     "Editor": "yglee",
-    "EditDate": "2021-10-20 13:20:25",
+    "EditDate": "2026-02-04 10:24:04",
     "TabPosition": 0,
-    "TabHeight": 28,
     "UseLayout": false,
-    "DocumentVersion": "2.1.0.0",
-    "Description": ""
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
     "Datas": [
@@ -23,8 +23,8 @@
         "UseCache": "False",
         "ConnectionCode": "MTXRPTY",
         "Encrypted": "True",
-        "MetaSQLExecuteType": 0,
         "DSType": 1,
+        "MetaCodes": "RPT44F134BFC0A84EF9BEB80D2CC25AE694",
         "SQL": "STb0UxwpW9nW28w0bbPaQTBaGSNWYbGosrx0bRG5jKr+FeoEETVWa5hNe3kIYoz5eJE0VfWFAgsTmHPLizO+SfIO3z7l/em5kDFPAUpgM5zEdIAzM690zizmfsz/meGXJ3IoQjab6WAU3xoMEN2T9z/5bg9nfMBLS4cPIbuOZ8XN6Zbbczr0Tpqbz1BIRDp/WUutQfr/4fdi2GEguUtdqLo+gKg7uMPTHvcVwiAo+nC8lPB+urVy1D3TcZA2Er3t27nV6nu7DFLNepyQwI7or8IvJ7mDnzBErdiNQb/eSvehb5DrnCfGpFJYQhrI+7xsGqIdbGbjoyCbLRWh7XXxbOJBMb7q5MZN53g2LmQcH9Uz+VcNlCgLxmBTt4bsAIXCiO4KHTYrUjre/Tn8NruGq7SKeGk1CKxdR8nqFkkIFhdFs5j9UiAWmO2nRTUXoNaoi3GGgSA38wV0Ay4xt+e1348lMaE10kbVP43BUmM0ye3YOg0zH23fCbXRWVnNgKTy",
         "Params": [],
         "Columns": []
@@ -117,15 +117,122 @@
         "UseCache": "False",
         "ConnectionCode": "MTXRPTY",
         "Encrypted": "True",
-        "MetaSQLExecuteType": 0,
         "DSType": 1,
+        "MetaCodes": "RPT3048F89487B44C768239763DAC46B288",
+        "SQL": "STb0UxwpW9nW28w0bbPaQUr3oDko6vUNYhpaGTVeICblAdIwux2ls8EYZ863dD+8CjPbheI2qg3BRzMM1NH2704HJ7e+XS942W86QXjFW3a/t1LkL08ii3f/4tY3svbrkorzscD3SwoKfHR/RfAwueWEh5p/6OWt3FWd3UZpbCdgWg/ShYS+K2QsVkogjfHHDRxlWOKOnAuczqN+KCGZcAmsheQ6tEdvYFgpTbCH5InQfOrgITpzAQHNxm21ps9FJ6tSkmavMQxnX7FRyBAGOrNHfHTf1DhzYk/JLeJPEroLwecxKTzBIgusKHNFcoO0k9cdAmuiVmpaToJRydBBelUAsVvfrrywA/6iLy/EwcUPt/jRh3AcarayE6cPgkTdXLlR4CIoGOr8px3nj+J1f4BrGYgiHhc9ZMYOZ1O1znLk6zu+oQie1IobowRMxmCNjn7meXZobV1ioTwBB5gYQm+LLsWOyGMUUiVek22jV1ML0rPv9oJ7pXH3HTDsqBhwIthSOOyCMCY34eYi2XiE8Y0jZRYIelAfZIq/6ANyaDzIYRCjwDkz85RhX87S6tfuuB+9c16/9FsygQS03aoRMeZyoSRaEcsyZtqSRvfn1WA=",
+        "Params": [],
+        "Columns": []
+      },
+      {
+        "Id": "DS",
+        "Name": "Data1",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "False",
+        "DSType": 2,
+        "SQL": "SELECT * FROM MTX_REPORT\r\n WHERE 1=1 \r\n\t AND REPORT_NAME = '(서버 스크립트) OlapGrid 배치 개인화'\r\n",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "REPORT_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_SEQ",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "REPORT_PATH",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_SIZE",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "MODULE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_DESC",
+            "Type": "String"
+          },
+          {
+            "Name": "ACCESS_CNT",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "ACCESS_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "EXPECT_TIME",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "ATTRIBUTE1",
+            "Type": "String"
+          },
+          {
+            "Name": "ATTRIBUTE2",
+            "Type": "String"
+          },
+          {
+            "Name": "OWNER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_DATE",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSCDD5F14C5E97876BBA6E8D3A88D708A1",
+        "Name": "건설발주정보",
+        "UseMeta": "True",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 1,
+        "MetaCodes": "RPT44F134BFC0A84EF9BEB80D2CC25AE694",
+        "SQL": "STb0UxwpW9nW28w0bbPaQTBaGSNWYbGosrx0bRG5jKr+FeoEETVWa5hNe3kIYoz5eJE0VfWFAgsTmHPLizO+SfIO3z7l/em5kDFPAUpgM5zEdIAzM690zizmfsz/meGXJ3IoQjab6WAU3xoMEN2T9z/5bg9nfMBLS4cPIbuOZ8XN6Zbbczr0Tpqbz1BIRDp/WUutQfr/4fdi2GEguUtdqLo+gKg7uMPTHvcVwiAo+nC8lPB+urVy1D3TcZA2Er3t27nV6nu7DFLNepyQwI7or8IvJ7mDnzBErdiNQb/eSvehb5DrnCfGpFJYQhrI+7xsGqIdbGbjoyCbLRWh7XXxbOJBMb7q5MZN53g2LmQcH9Uz+VcNlCgLxmBTt4bsAIXCiO4KHTYrUjre/Tn8NruGq7SKeGk1CKxdR8nqFkkIFhdFs5j9UiAWmO2nRTUXoNaoi3GGgSA38wV0Ay4xt+e1348lMaE10kbVP43BUmM0ye3YOg0zH23fCbXRWVnNgKTy",
+        "Params": [],
+        "Columns": []
+      },
+      {
+        "Id": "DSC355A2E57C8FF0A744AEAB19632E9F94",
+        "Name": "커피_매출정보",
+        "UseMeta": "True",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 1,
+        "MetaCodes": "RPT3048F89487B44C768239763DAC46B288",
         "SQL": "STb0UxwpW9nW28w0bbPaQUr3oDko6vUNYhpaGTVeICblAdIwux2ls8EYZ863dD+8CjPbheI2qg3BRzMM1NH2704HJ7e+XS942W86QXjFW3a/t1LkL08ii3f/4tY3svbrkorzscD3SwoKfHR/RfAwueWEh5p/6OWt3FWd3UZpbCdgWg/ShYS+K2QsVkogjfHHDRxlWOKOnAuczqN+KCGZcAmsheQ6tEdvYFgpTbCH5InQfOrgITpzAQHNxm21ps9FJ6tSkmavMQxnX7FRyBAGOrNHfHTf1DhzYk/JLeJPEroLwecxKTzBIgusKHNFcoO0k9cdAmuiVmpaToJRydBBelUAsVvfrrywA/6iLy/EwcUPt/jRh3AcarayE6cPgkTdXLlR4CIoGOr8px3nj+J1f4BrGYgiHhc9ZMYOZ1O1znLk6zu+oQie1IobowRMxmCNjn7meXZobV1ioTwBB5gYQm+LLsWOyGMUUiVek22jV1ML0rPv9oJ7pXH3HTDsqBhwIthSOOyCMCY34eYi2XiE8Y0jZRYIelAfZIq/6ANyaDzIYRCjwDkz85RhX87S6tfuuB+9c16/9FsygQS03aoRMeZyoSRaEcsyZtqSRvfn1WA=",
         "Params": [],
         "Columns": []
       }
     ]
   },
-  "ScriptText": "\r\n/*****************************************\r\n* 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n* * arguments :  \r\n*\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n*\t\t string\tText (Readonly:False) : 라벨 값 \r\n*****************************************/\r\n var OnButtonClick  = function(sender, args)\r\n {\r\n \tif(args.Id == \"btnSaveLayout\"){\r\n\t\tShowLayoutWindow(\"CREATE\",\"OlapGrid\");\r\n\t}else if(args.Id == \"btnLoadLayout\"){\r\n\t\tShowLayoutWindow(\"SELECT\",\"OlapGrid\");\r\n\t}\r\n }\r\n \r\n \r\n var ShowLayoutWindow = function(jobType, olapName){\r\n \tif(! Matrix.GetReportInfo().CODE){\r\n\t\tMatrix.Information(\"배치 저장/복원 기능은 현재 보고서를 저장 후 사용 가능합니다.\" ,\"저장 확인\");\r\n\t\treturn;\r\n\t}\r\n\t// 팝업창으로 넘길 파라미터 설정.\r\n\tvar olapGrid =  Matrix.getObject(olapName);\r\n\tvar param = {\r\n\t\t  \"VS_LAYOUT_REPORT_CODE\" : Matrix.GetReportInfo().CODE\r\n\t\t, \"VS_LAYOUT_INFO\" : (jobType == \"CREATE\" ? getLayoutInfo(olapName) : \"\")\r\n\t\t, \"VS_CONTROL_CODE\" : olapName\r\n\t\t, \"JOB_TYPE\":jobType\r\n\t\t, \"CONTROL_NAME\": (olapGrid.Caption ? olapGrid.Caption : olapGrid.Name)\r\n\t\t, \"REPORT_NAME\" : Matrix.GetReportInfo().NAME\r\n\t};\t \r\n\t// 팝업창에 표시할 보고서 코드.\r\n\tvar reportCode = \"REPA57EA3E7DDBB4576841598FC91055FE9\";\t\r\n\t// 팝업창 옵션 설정.\r\n\tvar opt = {\r\n\t\tWidth : 500,\r\n\t\tHeight : 400,\r\n\t\tLeft : 30,\r\n\t\tTop : 30,\r\n\t\tCenter : true,\r\n\t\tModal : true,\r\n\t\tTitle : \"\",\r\n\t\tMaximize : true,\r\n\t\tResizable : true, \r\n\t\tButtons : 0 // Button  0 : 없음, 1:닫기, 2:확인/취소\r\n\t};\r\n \r\n\tMatrix.ShowReportDialog(reportCode, param, opt, function(result){\r\n\t\tif(result){\r\n\t\t\tif(jobType == \"SELECT\"){\r\n\t\t\t\tsetLayoutInfo(result);\r\n\t\t\t}\r\n\t\t}\r\n\t});\t\r\n \r\n };\r\n  \r\n var getLayoutInfo = function(id){\r\n \tvar ctl = Matrix.getObject(id);\r\n\t//var ctl = Matrix.getObject(\"OlapGrid\");\r\n\tvar fields = ctl.getFields(); \r\n\tvar RESULT = [];\r\n\tfor(var i=0; i<fields.length; i++){\r\n\t\tvar fld = fields[i];\r\n\t\tvar item = {\r\n\t\t\t\"Name\": fld.Name\r\n\t\t\t,\"Area\": fld.Area\r\n\t\t\t,\"AreaIndex\": fld.AreaIndex\r\n\t\t\t,\"Caption\": fld.Caption\r\n\t\t\t,\"Format\": fld.Format \r\n\t\t\t,\"Formula\": fld.Formula \r\n\t\t\t,\"Formula2\": fld.Formula2 \r\n\t\t\t,\"SortType\": fld.SortType \r\n\t\t\t,\"SortBaseField\": fld.SortBaseField \r\n\t\t\t,\"SummaryType\": fld.SummaryType \r\n\t\t\t,\"SummaryVariation\": fld.SummaryVariation \r\n\t\t\t,\"SummaryBaseFieldKey\": fld.SummaryBaseFieldKey \r\n\t\t\t,\"TextAlignment\": fld.TextAlignment \r\n\t\t\t,\"ToolTipField\": fld.ToolTipField\r\n\t\t\t,\"ToolTipText\": fld.ToolTipText\r\n\t\t\t,\"TotalSummaryType\": fld.TotalSummaryType\r\n\t\t\t,\"Width\": fld.Width\r\n\t\t\t,\"Visible\": fld.Visible\r\n\t\t\t,\"VisibleSubTotal\": fld.VisibleSubTotal\r\n\t\t\t,\"Unit\": fld.Unit\r\n\t\t\t,\"FilterInfo\":fld.FilterInfo.Serialize()\r\n\t\t};\r\n\t\tRESULT.push(item);\t\t\r\n\t}\r\n\treturn  JSON.stringify(RESULT);\r\n }\r\n var setLayoutInfo = function(result){ \t\r\n \tvar ctl = Matrix.getObject(result.CONTROL);\t\r\n\tvar fields = result.MODEL;\r\n\tfor(var i=0; i<fields.length; i++){\r\n\t\tvar fld = fields[i];\r\n\t\tvar oldFld = ctl.getField(fld.Name);\r\n\t\tif(oldFld != null){\r\n\t\t\toldFld.Name = fld.Name\r\n\t\t\toldFld.Area = fld.Area\r\n\t\t\toldFld.AreaIndex = fld.AreaIndex\r\n\t\t\toldFld.Caption = fld.Caption\r\n\t\t\toldFld.Format = fld.Format \r\n\t\t\toldFld.Formula = fld.Formula \r\n\t\t\toldFld.Formula2 = fld.Formula2 \r\n\t\t\toldFld.SortType = fld.SortType \r\n\t\t\toldFld.SortBaseField = fld.SortBaseField \r\n\t\t\toldFld.SummaryType = fld.SummaryType \r\n\t\t\toldFld.SummaryVariation = fld.SummaryVariation \r\n\t\t\toldFld.SummaryBaseFieldKey = fld.SummaryBaseFieldKey \r\n\t\t\toldFld.TextAlignment = fld.TextAlignment \r\n\t\t\toldFld.ToolTipField = fld.ToolTipField\r\n\t\t\toldFld.ToolTipText = fld.ToolTipText\r\n\t\t\toldFld.TotalSummaryType = fld.TotalSummaryType\r\n\t\t\toldFld.Width = fld.Width\r\n\t\t\toldFld.Visible = fld.Visible\r\n\t\t\toldFld.VisibleSubTotal = fld.VisibleSubTotal\r\n\t\t\toldFld.Unit = fld.Unit\r\n\t\t\toldFld.FilterInfo.DeSerialize(fld.FilterInfo);\r\n\t\t} \t\t\r\n\t} \r\n\tctl.Refresh();\t\r\n }\r\n \r\n \r\n ",
+  "ScriptText": "/*****************************\r\n *\r\n *****************************/\r\n/*****************************************\r\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤이름\r\n *\t\t string\tText (Readonly:False) : 라벨 값\r\n *****************************************/\r\nvar OnButtonClick = function (sender, args) {\r\n    if (args.Id == \"btnSaveLayout\") {\r\n        ShowLayoutWindow(\"CREATE\", \"OlapGrid\");\r\n    }\r\n    else if (args.Id == \"btnLoadLayout\") {\r\n        ShowLayoutWindow(\"SELECT\", \"OlapGrid\");\r\n    }\r\n};\r\nvar ShowLayoutWindow = function (jobType, olapName) {\r\n    if (!Matrix.GetReportInfo().CODE) {\r\n        Matrix.Information(\"배치 저장/복원 기능은 현재 보고서를 저장 후 사용 가능합니다.\", \"저장 확인\");\r\n        return;\r\n    }\r\n    // 팝업창으로 넘길 파라미터 설정.\r\n    var olapGrid = Matrix.getObject(olapName);\r\n    var param = {\r\n        VS_LAYOUT_REPORT_CODE: Matrix.GetReportInfo().CODE,\r\n        VS_LAYOUT_INFO: jobType == \"CREATE\" ? getLayoutInfo(olapName) : \"\",\r\n        VS_CONTROL_CODE: olapName,\r\n        JOB_TYPE: jobType,\r\n        CONTROL_NAME: olapGrid.Caption ? olapGrid.Caption : olapGrid.Name,\r\n        REPORT_NAME: Matrix.GetReportInfo().NAME,\r\n    };\r\n    // 팝업창에 표시할 보고서 코드.\r\n    var reportCode = \"REPA57EA3E7DDBB4576841598FC91055FE9\";\r\n    // 팝업창 옵션 설정.\r\n    var opt = {\r\n        Width: 500,\r\n        Height: 400,\r\n        Left: 30,\r\n        Top: 30,\r\n        Center: true,\r\n        Modal: true,\r\n        Title: \"\",\r\n        Maximize: true,\r\n        Resizable: true,\r\n        Buttons: 0, // Button  0 : 없음, 1:닫기, 2:확인/취소\r\n    };\r\n    Matrix.ShowReportDialog(reportCode, param, opt, function (result) {\r\n        if (result) {\r\n            if (jobType == \"SELECT\") {\r\n                setLayoutInfo(result);\r\n            }\r\n        }\r\n    });\r\n};\r\nvar getLayoutInfo = function (id) {\r\n    var ctl = Matrix.getObject(id);\r\n    //var ctl = Matrix.getObject(\"OlapGrid\");\r\n    var fields = ctl.getFields();\r\n    var RESULT = [];\r\n    for (var i = 0; i < fields.length; i++) {\r\n        var fld = fields[i];\r\n        var item = {\r\n            Name: fld.Name,\r\n            Area: fld.Area,\r\n            AreaIndex: fld.AreaIndex,\r\n            Caption: fld.Caption,\r\n            Format: fld.Format,\r\n            Formula: fld.Formula,\r\n            Formula2: fld.Formula2,\r\n            SortType: fld.SortType,\r\n            SortBaseField: fld.SortBaseField,\r\n            SummaryType: fld.SummaryType,\r\n            SummaryVariation: fld.SummaryVariation,\r\n            SummaryBaseFieldKey: fld.SummaryBaseFieldKey,\r\n            TextAlignment: fld.TextAlignment,\r\n            ToolTipField: fld.ToolTipField,\r\n            ToolTipText: fld.ToolTipText,\r\n            TotalSummaryType: fld.TotalSummaryType,\r\n            Width: fld.Width,\r\n            Visible: fld.Visible,\r\n            VisibleSubTotal: fld.VisibleSubTotal,\r\n            Unit: fld.Unit,\r\n            FilterInfo: fld.FilterInfo.Serialize(),\r\n        };\r\n        RESULT.push(item);\r\n    }\r\n    return JSON.stringify(RESULT);\r\n};\r\nvar setLayoutInfo = function (result) {\r\n    var ctl = Matrix.getObject(result.CONTROL);\r\n    var fields = result.MODEL;\r\n    for (var i = 0; i < fields.length; i++) {\r\n        var fld = fields[i];\r\n        var oldFld = ctl.getField(fld.Name);\r\n        if (oldFld != null) {\r\n            oldFld.Name = fld.Name;\r\n            oldFld.Area = fld.Area;\r\n            oldFld.AreaIndex = fld.AreaIndex;\r\n            oldFld.Caption = fld.Caption;\r\n            oldFld.Format = fld.Format;\r\n            oldFld.Formula = fld.Formula;\r\n            oldFld.Formula2 = fld.Formula2;\r\n            oldFld.SortType = fld.SortType;\r\n            oldFld.SortBaseField = fld.SortBaseField;\r\n            oldFld.SummaryType = fld.SummaryType;\r\n            oldFld.SummaryVariation = fld.SummaryVariation;\r\n            oldFld.SummaryBaseFieldKey = fld.SummaryBaseFieldKey;\r\n            oldFld.TextAlignment = fld.TextAlignment;\r\n            oldFld.ToolTipField = fld.ToolTipField;\r\n            oldFld.ToolTipText = fld.ToolTipText;\r\n            oldFld.TotalSummaryType = fld.TotalSummaryType;\r\n            oldFld.Width = fld.Width;\r\n            oldFld.Visible = fld.Visible;\r\n            oldFld.VisibleSubTotal = fld.VisibleSubTotal;\r\n            oldFld.Unit = fld.Unit;\r\n            oldFld.FilterInfo.DeSerialize(fld.FilterInfo);\r\n        }\r\n    }\r\n    ctl.Refresh();\r\n};\r\n",
   "ServerScriptText": [],
   "Forms": [
     {
@@ -135,6 +242,8 @@
       "Visible": true,
       "LanguageCode": "",
       "Style": {
+        "Type": 2,
+        "BoxStyle": "",
         "Border": {
           "ColorR": 204,
           "ColorG": 204,
@@ -154,9 +263,9 @@
       "Elements": [
         {
           "LanguageCode": "",
-          "UseTooltip": true,
           "Value": "배치 정보 저장",
           "Cursor": "pointer",
+          "UseTooltip": true,
           "MouseOver": {
             "UseYn": false,
             "BoxStyle": ""
@@ -177,6 +286,7 @@
             "SpreadRadius": "0",
             "Inset": false
           },
+          "HasNewRadius": false,
           "Type": "Button",
           "Id": "Buttond465e3d6-3ca6-b93d-4213-be8cd7ccc0ea",
           "Name": "btnSaveLayout",
@@ -194,91 +304,55 @@
               "Bottom": false,
               "Margin": "0",
               "HoldSize": false,
-              "MinWidth": "0",
-              "MinHeight": "0",
-              "_compileMarginText": "0",
-              "_compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ]
+              "MinWidth": 0,
+              "MinHeight": 0
             }
           },
           "Style": {
             "Type": 2,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.SolidColorBrush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "74",
-                "G": "134",
-                "B": "232",
-                "A": "1"
+                "R": 74,
+                "G": 134,
+                "B": 232,
+                "A": 1
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "12",
-                "G": "56",
-                "B": "134",
-                "A": "1"
+                "R": 12,
+                "G": 56,
+                "B": 134,
+                "A": 1
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "3",
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "3"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              }
+              "CornerRadius": "3"
             },
             "Font": {
-              "__type__": "istudio.drawing.style.FontInfo",
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
               "Size": 12,
               "Family": "inherit",
-              "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "255",
-                "G": "255",
-                "B": "255",
-                "A": "1"
-              },
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "center",
               "VerticalAlignment": "middle",
-              "mVariable": {
-                "Size": 12,
-                "Family": "inherit",
-                "Bold": false,
-                "Italic": false,
-                "UnderLine": false,
-                "HorizontalAlignment": "center",
-                "VerticalAlignment": "middle"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              }
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
         {
           "LanguageCode": "",
-          "UseTooltip": true,
           "Value": "배치 정보 복원",
           "Cursor": "pointer",
+          "UseTooltip": true,
           "MouseOver": {
             "UseYn": false,
             "BoxStyle": ""
@@ -299,6 +373,7 @@
             "SpreadRadius": "0",
             "Inset": false
           },
+          "HasNewRadius": false,
           "Type": "Button",
           "Id": "Button3a3d690c-e6bb-a31b-4306-996ce1841137",
           "Name": "btnLoadLayout",
@@ -316,83 +391,47 @@
               "Bottom": false,
               "Margin": "0",
               "HoldSize": false,
-              "MinWidth": "0",
-              "MinHeight": "0",
-              "_compileMarginText": "0",
-              "_compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ]
+              "MinWidth": 0,
+              "MinHeight": 0
             }
           },
           "Style": {
             "Type": 2,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.SolidColorBrush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "74",
-                "G": "134",
-                "B": "232",
-                "A": "1"
+                "R": 74,
+                "G": 134,
+                "B": 232,
+                "A": 1
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "12",
-                "G": "56",
-                "B": "134",
-                "A": "1"
+                "R": 12,
+                "G": 56,
+                "B": 134,
+                "A": 1
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "3",
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "3"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              }
+              "CornerRadius": "3"
             },
             "Font": {
-              "__type__": "istudio.drawing.style.FontInfo",
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
               "Size": 12,
               "Family": "inherit",
-              "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "255",
-                "G": "255",
-                "B": "255",
-                "A": "1"
-              },
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "center",
               "VerticalAlignment": "middle",
-              "mVariable": {
-                "Size": 12,
-                "Family": "inherit",
-                "Bold": false,
-                "Italic": false,
-                "UnderLine": false,
-                "HorizontalAlignment": "center",
-                "VerticalAlignment": "middle"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              }
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
@@ -421,6 +460,8 @@
               "DisplayColumnSubTotal": true,
               "HideTotalChildIsOneColumn": false,
               "HideTotalChildIsOneRow": false,
+              "HideEmptyMeasureRows": false,
+              "HideEmptyMeasureColumns": false,
               "DisplayRowSubTotal": true,
               "DisplayColumnGrandTotal": true,
               "DisplayRowGrandTotal": true,
@@ -450,6 +491,11 @@
               "TreeHeaderWidth": 300,
               "TreeIndentWidth": 20,
               "DisableColumnSort": false,
+              "MergeColumnHeaders": false,
+              "MergeRowHeaders": false,
+              "OptimizingHybridFilter": false,
+              "AutoHideGrandTotalRow": false,
+              "AutoHideGrandTotalColumn": false,
               "ExportOption": {
                 "ExportSheetSize": 1000000,
                 "ExportDisableRowMerge": false,
@@ -457,13 +503,14 @@
               },
               "PagerInfo": {
                 "PageSize": 100,
-                "UsePaging": true
+                "UsePaging": true,
+                "IgnoreTotalCount": false
               },
               "Style": {
                 "ColumnHeaderVerticalAlignment": 0,
                 "RowHeaderVerticalAlignment": 0,
                 "LineColor": "rgba(152,183,216,1)",
-                "BackgroundColor": "#fff"
+                "BackgroundColor": ""
               },
               "CacheOption": {
                 "CacheMode": 1,
@@ -473,6 +520,14 @@
                 "HybridSort": false
               }
             },
+            "TopFilter": {
+              "Dimension": "",
+              "Measure": "",
+              "Rank": 10,
+              "IsTop": true,
+              "GroupBy": []
+            },
+            "PreFilters": [],
             "Fields": [
               {
                 "Key": "C3CEE2DA4",
@@ -488,11 +543,13 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
                 "SortType": 1,
                 "MeasureSortField": "",
+                "SortBaseField": "",
                 "MoveAble": true,
                 "SortAble": true,
                 "FilterAble": true,
@@ -524,7 +581,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "C680BC9E8",
@@ -540,11 +598,13 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
                 "SortType": 1,
                 "MeasureSortField": "",
+                "SortBaseField": "",
                 "MoveAble": true,
                 "SortAble": true,
                 "FilterAble": true,
@@ -580,7 +640,8 @@
                     "2012",
                     "2013"
                   ]
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "CF1AFBA3C",
@@ -596,11 +657,13 @@
                 "Format": "{0:N0}",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
                 "SortType": 1,
                 "MeasureSortField": "",
+                "SortBaseField": "",
                 "MoveAble": true,
                 "SortAble": true,
                 "FilterAble": true,
@@ -632,7 +695,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "C13459534",
@@ -648,11 +712,13 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
                 "SortType": 1,
                 "MeasureSortField": "",
+                "SortBaseField": "",
                 "MoveAble": true,
                 "SortAble": true,
                 "FilterAble": true,
@@ -684,7 +750,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "C9F2F8F80",
@@ -700,11 +767,13 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
                 "SortType": 1,
                 "MeasureSortField": "",
+                "SortBaseField": "",
                 "MoveAble": true,
                 "SortAble": true,
                 "FilterAble": true,
@@ -736,7 +805,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "C3123E20B",
@@ -752,11 +822,13 @@
                 "Format": "{0:N0}",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
                 "SortType": 1,
                 "MeasureSortField": "",
+                "SortBaseField": "",
                 "MoveAble": true,
                 "SortAble": true,
                 "FilterAble": true,
@@ -788,7 +860,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "CFC68A18C",
@@ -804,11 +877,13 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
                 "SortType": 1,
                 "MeasureSortField": "",
+                "SortBaseField": "",
                 "MoveAble": true,
                 "SortAble": true,
                 "FilterAble": true,
@@ -840,7 +915,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "#MEASURES_HEADER#",
@@ -856,6 +932,7 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 1,
@@ -893,7 +970,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               }
             ],
             "MultiHeaderCells": []
@@ -902,6 +980,7 @@
             "UseMeta": true,
             "UseChartSourceTotal": false,
             "UseChartSourceGrandTotal": false,
+            "UseChartSourceReverse": false,
             "ChartLabelDepth": -1,
             "ConditionalStyleName": "",
             "BackgroundColorBoxStyleKey": "",
@@ -926,7 +1005,8 @@
             "EtcMultiHeader": true,
             "EtcCacheInfo": true,
             "EtcFieldGroup": true,
-            "EtcFilterManager": true
+            "EtcFilterManager": true,
+            "EtcTopFilter": true
           },
           "Type": "OlapGrid",
           "Id": "OlapGrid1634703555611",
@@ -945,24 +1025,15 @@
               "Bottom": false,
               "Margin": "0,0,0,0",
               "HoldSize": false,
-              "MinWidth": "0",
-              "MinHeight": "0",
-              "_compileMarginText": "0,0,0,0",
-              "_compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ]
+              "MinWidth": 0,
+              "MinHeight": 0
             }
           },
           "Style": {
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.SolidColorBrush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -970,9 +1041,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -980,58 +1049,23 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Border",
-                  "Font",
-                  "StyleType",
-                  "BoxStyle",
-                  "Background"
-                ]
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "__type__": "istudio.drawing.style.FontInfo",
-              "Size": 12,
-              "Family": "inherit",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 0,
                 "G": 0,
                 "B": 0,
                 "A": 1
               },
+              "Size": 12,
+              "Family": "inherit",
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "top",
-              "mVariable": {
-                "Size": 12,
-                "Family": "inherit",
-                "Bold": false,
-                "Italic": false,
-                "UnderLine": false,
-                "HorizontalAlignment": "left",
-                "VerticalAlignment": "top"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Border",
-                  "Font",
-                  "StyleType",
-                  "BoxStyle",
-                  "Background"
-                ]
-              }
+              "TempFontFamily": "맑은 고딕"
             }
           }
         }
@@ -1041,7 +1075,7 @@
   "MetaDataSources": {
     "MetaDataSources": [
       {
-        "LayoutXML": "<MetaViewLayout><MetaItemLayoutInfo metaConnectionCode=\"MTXRPTY\" IncludeAttribute=\"False\" DBType=\"1\" ViewerVersion=\"6.2.200.20211014-11\" UseHybrid=\"true\" DistinctRecord=\"0\" DefaultSQLHint=\"\" HavingOperator=\"\" SelectType=\"1\" AutoSynchronizeMeta=\"1\" sourceName=\"건설발주정보\" sourceCode=\"RPT44F134BFC0A84EF9BEB80D2CC25AE694\"><SelectedItemInfo><SelectedItems controlType=\"1\" /><SelectedItems controlType=\"2\" /><SelectedItems controlType=\"3\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"시도별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"시도별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D1\" DataType=\"typeNchar\" Name=\"시도별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"시도별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주년\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주년\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" DataType=\"typeNchar\" Name=\"발주년\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주년\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주월\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주월\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"발주월\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주월\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주자별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D4\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주자별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D4\" DataType=\"typeNchar\" Name=\"발주자별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주자별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /></SelectedItems><SelectedItems controlType=\"4\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"데이터\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"데이터\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M1\" DataType=\"typeNumber\" Name=\"데이터\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITMDEE483F046C1411D8D438FC647E1A9FA\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"데이터\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /></SelectedItems><SelectedItems controlType=\"7\" /><SelectedItems controlType=\"8\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"시도별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"시도별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D1\" DataType=\"typeNchar\" Name=\"시도별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"시도별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주년\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주년\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" DataType=\"typeNchar\" Name=\"발주년\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주년\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주월\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주월\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"발주월\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주월\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주자별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D4\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주자별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D4\" DataType=\"typeNchar\" Name=\"발주자별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주자별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"데이터\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"데이터\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M1\" DataType=\"typeNumber\" Name=\"데이터\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITMDEE483F046C1411D8D438FC647E1A9FA\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"데이터\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /></SelectedItems><SelectedItems controlType=\"9\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"시도별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"시도별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D1\" DataType=\"typeNchar\" Name=\"시도별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"시도별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주년\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주년\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" DataType=\"typeNchar\" Name=\"발주년\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주년\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주월\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주월\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"발주월\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주월\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주자별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D4\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주자별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D4\" DataType=\"typeNchar\" Name=\"발주자별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주자별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"데이터\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"데이터\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M1\" DataType=\"typeNumber\" Name=\"데이터\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITMDEE483F046C1411D8D438FC647E1A9FA\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"데이터\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /></SelectedItems><SelectedItems controlType=\"10\" /><SelectedItems controlType=\"6\" /></SelectedItemInfo><FilteredItems /><UserDefineItems /><GridProperties RowTotalLocation=\"Bottom\" ColumnTotalLocation=\"Right\" DisplayColumnGrandTotal=\"True\" DisplayColumnTotal=\"True\" DisplayRowGrandTotal=\"True\" DisplayRowTotal=\"True\" /><OutputDocumentXML /></MetaItemLayoutInfo></MetaViewLayout>",
+        "LayoutXML": "<MetaViewLayout><MetaItemLayoutInfo metaConnectionCode=\"MTXRPTY\" IncludeAttribute=\"False\" DBType=\"1\" ViewerVersion=\"6.2.200.20211014-11\" UseHybrid=\"true\" DistinctRecord=\"0\" DefaultSQLHint=\"\" HavingOperator=\"\" SelectType=\"1\" AutoSynchronizeMeta=\"1\" sourceName=\"건설발주정보\" sourceCode=\"RPT44F134BFC0A84EF9BEB80D2CC25AE694\"><SelectedItemInfo><SelectedItems controlType=\"1\"/><SelectedItems controlType=\"2\"/><SelectedItems controlType=\"3\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"시도별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"시도별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D1\" DataType=\"typeNchar\" Name=\"시도별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"시도별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주년\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주년\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" DataType=\"typeNchar\" Name=\"발주년\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주년\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주월\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주월\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"발주월\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주월\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주자별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D4\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주자별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D4\" DataType=\"typeNchar\" Name=\"발주자별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주자별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/></SelectedItems><SelectedItems controlType=\"4\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"데이터\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"데이터\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M1\" DataType=\"typeNumber\" Name=\"데이터\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITMDEE483F046C1411D8D438FC647E1A9FA\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"데이터\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/></SelectedItems><SelectedItems controlType=\"7\"/><SelectedItems controlType=\"8\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"시도별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"시도별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D1\" DataType=\"typeNchar\" Name=\"시도별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"시도별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주년\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주년\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" DataType=\"typeNchar\" Name=\"발주년\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주년\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주월\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주월\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"발주월\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주월\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주자별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D4\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주자별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D4\" DataType=\"typeNchar\" Name=\"발주자별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주자별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"데이터\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"데이터\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M1\" DataType=\"typeNumber\" Name=\"데이터\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITMDEE483F046C1411D8D438FC647E1A9FA\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"데이터\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/></SelectedItems><SelectedItems controlType=\"9\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"시도별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"시도별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D1\" DataType=\"typeNchar\" Name=\"시도별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"시도별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주년\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주년\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" DataType=\"typeNchar\" Name=\"발주년\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주년\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주월\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주월\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"발주월\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주월\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"발주자별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D4\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"발주자별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D4\" DataType=\"typeNchar\" Name=\"발주자별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"발주자별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"데이터\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"데이터\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M1\" DataType=\"typeNumber\" Name=\"데이터\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITMDEE483F046C1411D8D438FC647E1A9FA\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"데이터\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/></SelectedItems><SelectedItems controlType=\"10\"/><SelectedItems controlType=\"6\"/></SelectedItemInfo><FilteredItems/><UserDefineItems/><GridProperties RowTotalLocation=\"Bottom\" ColumnTotalLocation=\"Right\" DisplayColumnGrandTotal=\"True\" DisplayColumnTotal=\"True\" DisplayRowGrandTotal=\"True\" DisplayRowTotal=\"True\"/><OutputDocumentXML/></MetaItemLayoutInfo></MetaViewLayout>",
         "Code": "DSCDD5F14C5E97876BBA6E8D3A88D708A1",
         "ConnectionCode": "MTXRPTY",
         "ReportCode": "TEMPLATE_SD_ANAL",
@@ -1146,11 +1180,10 @@
             "LanguageCode": "pms.BRANCH.MEX_USER_FILE_DATA.M1",
             "IsMetaField": true
           }
-        ],
-        "Conditions": []
+        ]
       },
       {
-        "LayoutXML": "<MetaViewLayout><MetaItemLayoutInfo metaConnectionCode=\"MTXRPTY\" IncludeAttribute=\"False\" DBType=\"1\" ViewerVersion=\"6.2.200.20211014-11\" UseHybrid=\"true\" DistinctRecord=\"0\" DefaultSQLHint=\"\" HavingOperator=\"\" SelectType=\"1\" AutoSynchronizeMeta=\"1\" sourceName=\"커피_매출정보\" sourceCode=\"RPT3048F89487B44C768239763DAC46B288\"><SelectedItemInfo><SelectedItems controlType=\"1\" /><SelectedItems controlType=\"2\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"년도\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D5\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"년도\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D5\" DataType=\"typeNchar\" Name=\"년도\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"년도\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"월\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D4\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"월\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D4\" DataType=\"typeNchar\" Name=\"월\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"월\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /></SelectedItems><SelectedItems controlType=\"3\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"제품명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"제품명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D1\" DataType=\"typeNchar\" Name=\"제품명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"제품명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"지점명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"지점명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" DataType=\"typeNchar\" Name=\"지점명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"지점명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"성별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"성별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"성별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"성별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /></SelectedItems><SelectedItems controlType=\"4\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매수량\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매수량\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M1\" DataType=\"typeNumber\" Name=\"판매수량\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM5D4FA974A9074EDBBC93447C3DCD5048\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매수량\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매단가\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매단가\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" DataType=\"typeNumber\" Name=\"판매단가\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM9EFBEC83B53A4E8FBFBA0736F1DBEDFB\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매단가\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /></SelectedItems><SelectedItems controlType=\"7\" /><SelectedItems controlType=\"8\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"제품명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"제품명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D1\" DataType=\"typeNchar\" Name=\"제품명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"제품명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"지점명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"지점명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" DataType=\"typeNchar\" Name=\"지점명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"지점명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"성별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"성별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"성별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"성별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"년도\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D5\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"년도\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D5\" DataType=\"typeNchar\" Name=\"년도\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"년도\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"월\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D4\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"월\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D4\" DataType=\"typeNchar\" Name=\"월\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"월\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매수량\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매수량\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M1\" DataType=\"typeNumber\" Name=\"판매수량\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM5D4FA974A9074EDBBC93447C3DCD5048\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매수량\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매단가\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매단가\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" DataType=\"typeNumber\" Name=\"판매단가\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM9EFBEC83B53A4E8FBFBA0736F1DBEDFB\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매단가\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /></SelectedItems><SelectedItems controlType=\"9\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"제품명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"제품명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D1\" DataType=\"typeNchar\" Name=\"제품명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"제품명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"지점명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"지점명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" DataType=\"typeNchar\" Name=\"지점명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"지점명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"성별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"성별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"성별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"성별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"년도\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D5\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"년도\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D5\" DataType=\"typeNchar\" Name=\"년도\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"년도\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"월\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D4\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"월\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D4\" DataType=\"typeNchar\" Name=\"월\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"월\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매수량\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매수량\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M1\" DataType=\"typeNumber\" Name=\"판매수량\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM5D4FA974A9074EDBBC93447C3DCD5048\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매수량\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매단가\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매단가\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" DataType=\"typeNumber\" Name=\"판매단가\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM9EFBEC83B53A4E8FBFBA0736F1DBEDFB\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매단가\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /></SelectedItems><SelectedItems controlType=\"10\" /><SelectedItems controlType=\"6\" /></SelectedItemInfo><FilteredItems /><UserDefineItems /><GridProperties RowTotalLocation=\"Bottom\" ColumnTotalLocation=\"Right\" DisplayColumnGrandTotal=\"True\" DisplayColumnTotal=\"True\" DisplayRowGrandTotal=\"True\" DisplayRowTotal=\"True\" /><OutputDocumentXML /></MetaItemLayoutInfo></MetaViewLayout>",
+        "LayoutXML": "<MetaViewLayout><MetaItemLayoutInfo metaConnectionCode=\"MTXRPTY\" IncludeAttribute=\"False\" DBType=\"1\" ViewerVersion=\"6.2.200.20211014-11\" UseHybrid=\"true\" DistinctRecord=\"0\" DefaultSQLHint=\"\" HavingOperator=\"\" SelectType=\"1\" AutoSynchronizeMeta=\"1\" sourceName=\"커피_매출정보\" sourceCode=\"RPT3048F89487B44C768239763DAC46B288\"><SelectedItemInfo><SelectedItems controlType=\"1\"/><SelectedItems controlType=\"2\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"년도\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D5\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"년도\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D5\" DataType=\"typeNchar\" Name=\"년도\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"년도\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"월\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D4\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"월\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D4\" DataType=\"typeNchar\" Name=\"월\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"월\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/></SelectedItems><SelectedItems controlType=\"3\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"제품명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"제품명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D1\" DataType=\"typeNchar\" Name=\"제품명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"제품명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"지점명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"지점명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" DataType=\"typeNchar\" Name=\"지점명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"지점명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"성별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"성별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"성별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"성별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/></SelectedItems><SelectedItems controlType=\"4\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매수량\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매수량\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M1\" DataType=\"typeNumber\" Name=\"판매수량\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM5D4FA974A9074EDBBC93447C3DCD5048\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매수량\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매단가\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매단가\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" DataType=\"typeNumber\" Name=\"판매단가\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM9EFBEC83B53A4E8FBFBA0736F1DBEDFB\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매단가\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/></SelectedItems><SelectedItems controlType=\"7\"/><SelectedItems controlType=\"8\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"제품명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"제품명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D1\" DataType=\"typeNchar\" Name=\"제품명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"제품명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"지점명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"지점명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" DataType=\"typeNchar\" Name=\"지점명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"지점명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"성별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"성별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"성별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"성별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"년도\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D5\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"년도\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D5\" DataType=\"typeNchar\" Name=\"년도\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"년도\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"월\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D4\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"월\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D4\" DataType=\"typeNchar\" Name=\"월\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"월\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매수량\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매수량\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M1\" DataType=\"typeNumber\" Name=\"판매수량\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM5D4FA974A9074EDBBC93447C3DCD5048\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매수량\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매단가\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매단가\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" DataType=\"typeNumber\" Name=\"판매단가\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM9EFBEC83B53A4E8FBFBA0736F1DBEDFB\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매단가\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/></SelectedItems><SelectedItems controlType=\"9\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"제품명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"제품명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D1\" DataType=\"typeNchar\" Name=\"제품명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"제품명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"지점명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"지점명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" DataType=\"typeNchar\" Name=\"지점명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"지점명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"성별\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"성별\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"성별\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"성별\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"년도\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D5\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"년도\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D5\" DataType=\"typeNchar\" Name=\"년도\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"년도\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D5\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"월\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D4\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"월\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D4\" DataType=\"typeNchar\" Name=\"월\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"월\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D4\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매수량\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M1\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매수량\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M1\" DataType=\"typeNumber\" Name=\"판매수량\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM5D4FA974A9074EDBBC93447C3DCD5048\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매수량\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M1\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매단가\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매단가\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" DataType=\"typeNumber\" Name=\"판매단가\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM9EFBEC83B53A4E8FBFBA0736F1DBEDFB\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매단가\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/></SelectedItems><SelectedItems controlType=\"10\"/><SelectedItems controlType=\"6\"/></SelectedItemInfo><FilteredItems/><UserDefineItems/><GridProperties RowTotalLocation=\"Bottom\" ColumnTotalLocation=\"Right\" DisplayColumnGrandTotal=\"True\" DisplayColumnTotal=\"True\" DisplayRowGrandTotal=\"True\" DisplayRowTotal=\"True\"/><OutputDocumentXML/></MetaItemLayoutInfo></MetaViewLayout>",
         "Code": "DSC355A2E57C8FF0A744AEAB19632E9F94",
         "ConnectionCode": "MTXRPTY",
         "ReportCode": "TEMPLATE_SD_ANAL",
@@ -1293,14 +1326,15 @@
             "LanguageCode": "pms.BRANCH.MEX_USER_FILE_DATA.M2",
             "IsMetaField": true
           }
-        ],
-        "Conditions": []
+        ]
       }
     ]
   },
   "EXECUTION_PLANS": [],
   "Variables": [],
   "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
   "WorkFlowModules": [],
   "WorkFlowInfo": "{}"
 }

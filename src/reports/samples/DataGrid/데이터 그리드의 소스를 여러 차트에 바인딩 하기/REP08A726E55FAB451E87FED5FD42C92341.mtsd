@@ -5,17 +5,42 @@
     "SavePath": "FLDECBB2CAEFB904D2E9C49459291F6E735/REP08A726E55FAB451E87FED5FD42C92341.mtsd",
     "ReportName": "데이터 그리드의 소스를 여러 차트에 바인딩 하기",
     "Writer": "yglee",
-    "WriteDate": "2021-06-15 22:32:21",
+    "WriteDate": "2026-02-04 10:15:57",
     "Editor": "yglee",
-    "EditDate": "2021-06-15 22:34:19",
+    "EditDate": "2026-02-04 10:15:57",
     "TabPosition": 0,
-    "TabHeight": 28,
     "UseLayout": false,
-    "DocumentVersion": "2.1.0.0",
-    "Description": ""
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
     "Datas": [
+      {
+        "Id": "DSBA7A8469F0EE4A7AB2FC2D394E3FE032",
+        "Name": "Data1",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "a9bqTryl8wObhubVjnFqSEX+iAZRRBdwqcux2m6tYpC+VN0b8LqIAXzGeMFywNDYL1zZrr3PIrSZO7x5wsKfpOX4xqFo6zeLJMxhu9Y5/tx2MQ+wMLAJ50wLnDy47EWORU6OWuB6b+c7busbRa9F7kxCTbIH4JFBEUjDPGhKI6STb9yeqz3fkpKkS1n2sGIRi+y3qkUAhuxdfrTxUHA2BdgGqLMT6kJGB305lt96yX5ec1JotWCq5kYmQG5XE3bGgfmmoJe0hh5WsaPKQpgXWa7+CeWAsmsqaDxsPlzQhPJfbMxhoXTz4UZgbFJfu0TBAHnrPUu94jF2kD3gii2HV5LZoTgNHQmQc8OhE0yciiJ1wgz3TiCjOiHWpQo8tJ2A",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "제품명",
+            "Type": "String"
+          },
+          {
+            "Name": "판매수량",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "판매금액",
+            "Type": "Numeric"
+          }
+        ]
+      },
       {
         "Id": "DSC41B45023794B5189A01B317A4E221BF",
         "Name": "스마트폰_매출정보",
@@ -23,8 +48,8 @@
         "UseCache": "False",
         "ConnectionCode": "MTXRPTY",
         "Encrypted": "True",
-        "MetaSQLExecuteType": 0,
         "DSType": 1,
+        "MetaCodes": "RPTEB418D642F424C949D1598B07F5279F7",
         "SQL": "a9bqTryl8wObhubVjnFqSEr3oDko6vUNYhpaGTVeICYKfkr6t0Szn6W5E0aLnOqBZwGME3W3Nhrh+LredFDgN7NHfHTf1DhzYk/JLeJPEroLwecxKTzBIgusKHNFcoO0JEGHvvj/QHB64BR8PCKeN+012lZMt1u/qXq6NqeFvvRacYGu0LjsH2/jb/nTL1VvXLlR4CIoGOr8px3nj+J1f4BrGYgiHhc9ZMYOZ1O1znLk6zu+oQie1IobowRMxmCNjn7meXZobV1ioTwBB5gYQleHSEEtDzGYzwke0rJsrPUks87VH10ecdtTegghmIx/N0v0CA1wUHmWyvShxQRj/I0jZRYIelAfZIq/6ANyaDzY5vvyidaxda+dU6sbokVG",
         "Params": [],
         "Columns": []
@@ -53,10 +78,23 @@
             "Type": "Numeric"
           }
         ]
+      },
+      {
+        "Id": "DSC41B45023794B5189A01B317A4E221BF",
+        "Name": "스마트폰_매출정보",
+        "UseMeta": "True",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 1,
+        "MetaCodes": "RPTEB418D642F424C949D1598B07F5279F7",
+        "SQL": "a9bqTryl8wObhubVjnFqSEr3oDko6vUNYhpaGTVeICYKfkr6t0Szn6W5E0aLnOqBZwGME3W3Nhrh+LredFDgN7NHfHTf1DhzYk/JLeJPEroLwecxKTzBIgusKHNFcoO0JEGHvvj/QHB64BR8PCKeN+012lZMt1u/qXq6NqeFvvRacYGu0LjsH2/jb/nTL1VvXLlR4CIoGOr8px3nj+J1f4BrGYgiHhc9ZMYOZ1O1znLk6zu+oQie1IobowRMxmCNjn7meXZobV1ioTwBB5gYQleHSEEtDzGYzwke0rJsrPUks87VH10ecdtTegghmIx/N0v0CA1wUHmWyvShxQRj/I0jZRYIelAfZIq/6ANyaDzY5vvyidaxda+dU6sbokVG",
+        "Params": [],
+        "Columns": []
       }
     ]
   },
-  "ScriptText": "var Chart = null; \r\nvar Chart1 = null; \r\nvar DataGrid = null; \r\n\r\nvar initControlVariables = function(){\r\n\tChart = Matrix.getObject(\"Chart\"); \r\n\tChart1 = Matrix.getObject(\"Chart1\"); \r\n\tDataGrid = Matrix.getObject(\"DataGrid\"); \r\n\r\n};\r\ninitControlVariables();\r\n\r\n/*****************************************\r\n* 컨트롤에 데이터셋이 바인딩된 후 발생합니다.\r\n* * arguments :  \r\n*\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n*\t\t int\tRecordCount (Readonly:False) : 데이터셋의 레코드 수량 \r\n*****************************************/\r\n var OnDataBindEnd  = function(sender, args)\r\n {\r\n// \tif(args.Id == \"DataGrid\"){\r\n//\t\tvar dataSet = DataGrid.GetDataSet();\t\t\r\n//\t\tChart.SetDataSet(dataSet);\r\n//\t\tChart1.SetDataSet(dataSet);\r\n//\t}\r\n };\r\n \r\n var  bind = function(){\r\n \tvar grid = Matrix.getObject(\"DataGrid\");\r\n\tvar chart1 = Matrix.getObject(\"Chart\"); \r\n\tvar chart2 = Matrix.getObject(\"Chart1\"); \r\n\t\r\n\tgrid.OnDataBindEnd = function(s, e){\r\n\t\tvar dataSet = grid.GetDataSet();\t\t\r\n\t\tchart1.SetDataSet(dataSet);\r\n\t\tchart2.SetDataSet(dataSet);\r\n\t};\r\n };\r\n \r\n bind();",
+  "ScriptText": "var DataGrid = Matrix.getObject(\"DataGrid\");\r\nvar Chart = Matrix.getObject(\"Chart\");\r\nvar Chart1 = Matrix.getObject(\"Chart1\");\r\n/*****************************\r\n *\r\n *****************************/\r\nvar bind = function () {\r\n    DataGrid.OnDataBindEnd = function (_s, _e) {\r\n        var dataSet = DataGrid.GetDataSet();\r\n        Chart.SetDataSet(dataSet);\r\n        Chart1.SetDataSet(dataSet);\r\n    };\r\n};\r\nbind();\r\n",
   "ServerScriptText": [],
   "Forms": [
     {
@@ -66,6 +104,8 @@
       "Visible": true,
       "LanguageCode": "",
       "Style": {
+        "Type": 2,
+        "BoxStyle": "",
         "Border": {
           "ColorR": 204,
           "ColorG": 204,
@@ -91,13 +131,14 @@
           "Position": {
             "Left": 3,
             "Top": 253,
-            "Width": 1491,
-            "Height": 489,
+            "Width": 1834,
+            "Height": 661,
             "ZIndex": 0,
+            "TabIndex": 0,
             "Docking": {
               "Margin": "3",
-              "MinHeight": "0",
-              "MinWidth": "0",
+              "MinHeight": 0,
+              "MinWidth": 0,
               "Left": true,
               "Right": true,
               "Bottom": true
@@ -105,6 +146,36 @@
           },
           "Style": {
             "Type": 2,
+            "Border": {
+              "Type": 0,
+              "Color": {
+                "R": 187,
+                "G": 199,
+                "B": 211,
+                "A": 1
+              },
+              "Thickness": "1,1,1,1"
+            },
+            "VerticalBorder": {
+              "Type": 0,
+              "Color": {
+                "R": 187,
+                "G": 199,
+                "B": 211,
+                "A": 1
+              },
+              "Thickness": 1
+            },
+            "HorizontalBorder": {
+              "Type": 0,
+              "Color": {
+                "R": 187,
+                "G": 199,
+                "B": 211,
+                "A": 1
+              },
+              "Thickness": 1
+            },
             "Background": {
               "Color": {
                 "R": 255,
@@ -112,36 +183,6 @@
                 "B": 255,
                 "A": 1
               }
-            },
-            "Border": {
-              "Color": {
-                "R": "187",
-                "G": "199",
-                "B": "211",
-                "A": "1"
-              },
-              "CornerRadius": "0,0,0,0",
-              "LineType": "solid",
-              "Thickness": "1,1,1,1"
-            },
-            "VerticalBorder": {
-              "Color": {
-                "R": "187",
-                "G": "199",
-                "B": "211",
-                "A": "1"
-              },
-              "LineType": "solid",
-              "Thickness": 1
-            },
-            "HorizontalBorder": {
-              "Color": {
-                "R": "187",
-                "G": "199",
-                "B": "211",
-                "A": "1"
-              },
-              "Thickness": 1
             },
             "Font": {
               "Bold": false,
@@ -151,7 +192,7 @@
                 "B": 0,
                 "A": 1
               },
-              "Family": "inherit",
+              "Family": "맑은 고딕",
               "HorizontalAlignment": "left",
               "Italic": false,
               "Size": 12,
@@ -163,6 +204,7 @@
           "DataSource": "DSBA7A8469F0EE4A7AB2FC2D394E3FE032",
           "ColumnHeaderHeight": 23,
           "RowHeight": 23,
+          "ExportCount": 0,
           "FontFamily": "inherit",
           "FontSize": 12,
           "UsePPTExport": false,
@@ -180,14 +222,27 @@
               "Name": "제품명",
               "Caption": "제품명",
               "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
               "KeyType": 2,
-              "HeaderPosition": "center",
-              "CalcSubTotalType": "Text"
+              "HeaderPosition": "center"
             },
             {
               "Name": "판매수량",
               "Caption": "판매수량",
               "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
               "ColumnType": 3,
               "KeyType": 2,
               "DataType": 0,
@@ -200,6 +255,13 @@
               "Name": "판매금액",
               "Caption": "판매금액",
               "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
               "ColumnType": 3,
               "KeyType": 2,
               "DataType": 0,
@@ -217,23 +279,24 @@
           "DoExport": false,
           "PivotGrid": "",
           "DataGrid": "",
+          "UseListGridFormat": true,
           "Chart": {
             "ChartType": 3,
             "FontFamily": "default",
             "FontColor": "rgb(0,0,0)",
             "BackgroundColor": "rgb(255,255,255)",
             "BorderColor": "",
-            "BorderWidth": 3,
+            "BorderWidth": "3",
             "BorderRadius": 10,
             "Palette": 14,
             "TooltipBGColor": "rgba(255, 255, 255, 0.7)",
+            "SwitchSeriesLegend": false,
             "Tooltip": true,
-            "TooltipFormatter": "",
             "Inverted": false,
             "TooltipShared": false,
             "TooltipSharedType": 0,
-            "Margin": null,
             "UseChartTypeMenu": true,
+            "Margin": null,
             "Options3d": {
               "Enabled": false,
               "Alpha": 15,
@@ -251,10 +314,6 @@
             "XAxis": {
               "Text": "",
               "Visible": true,
-              "Label": {
-                "FontColor": "rgb(0,0,0)",
-                "LabelAngle": "auto"
-              },
               "Name": "제품명",
               "AutoTickInterval": true,
               "UseMinorTickInterval": false,
@@ -262,74 +321,116 @@
               "AutoMin": true,
               "GridLineColor": "#D8D8D8",
               "GridLineWidth": 1,
+              "GridLineStyle": 0,
               "MinorGridLineColor": "#E0E0E0",
               "MinorGridLineWidth": 1,
+              "MinorGridLineStyle": 0,
               "Categories": [
-                "Galaxy S7",
-                "Galaxy Note4",
                 "G4",
                 "G5",
-                "i Phone SE",
-                "V10",
+                "Galaxy Note4",
                 "Galaxy S6",
-                "i Phone6+",
-                "i Phone6"
+                "Galaxy S7",
+                "V10",
+                "i Phone SE",
+                "i Phone6",
+                "i Phone6+"
               ],
-              "DefinedItems": "",
-              "LanguageCode": ""
+              "AnnoFormat": "{0:N0}",
+              "Label": {
+                "FontBold": false,
+                "FontItalic": false,
+                "LabelAngle": "auto"
+              },
+              "PlotLinesWidth": 0,
+              "PlotLinesColor": "red",
+              "PlotLinesValue": 0,
+              "PlotLinesDashStyle": "Solid",
+              "PlotLinesValueVisibled": false,
+              "Caption": "제품명",
+              "TitleLabelAngle": 0,
+              "TickColor": "#D8D8D8",
+              "TickWidth": 0
             },
             "Y1Axis": {
               "Text": "",
               "Visible": true,
-              "Label": {
-                "FontColor": "rgb(0,0,0)",
-                "AnnoFormat": "{0:N0}",
-                "LabelAngle": "auto"
-              },
               "AutoTickInterval": true,
               "UseMinorTickInterval": false,
               "AutoMax": true,
               "AutoMin": true,
               "GridLineColor": "#D8D8D8",
               "GridLineWidth": 1,
+              "GridLineStyle": 0,
               "MinorGridLineColor": "#E0E0E0",
               "MinorGridLineWidth": 1,
+              "MinorGridLineStyle": 0,
               "Categories": [],
-              "DefinedItems": "",
-              "LanguageCode": "",
-              "PlotLinesWidth": 0,
-              "PlotLinesColor": "red",
-              "PlotLinesValue": 0,
-              "PlotLinesDashStyle": "solid",
-              "PlotLinesValueVisibled": false
-            },
-            "Y2Axis": {
-              "Text": "",
-              "Visible": false,
               "Label": {
                 "FontColor": "rgb(0,0,0)",
                 "AnnoFormat": "{0:N0}",
                 "LabelAngle": "auto"
               },
-              "Opposite": true,
-              "AutoTickInterval": true,
-              "UseMinorTickInterval": true,
-              "AutoMinorTickInterval": false,
-              "MinorTickInterval": "",
-              "AutoMax": true,
-              "AutoMin": true,
-              "GridLineColor": "#D8D8D8",
-              "GridLineWidth": 1,
-              "MinorGridLineColor": "#E0E0E0",
-              "MinorGridLineWidth": 1,
-              "DefinedItems": "",
-              "LanguageCode": "",
               "PlotLinesWidth": 0,
               "PlotLinesColor": "red",
               "PlotLinesValue": 0,
               "PlotLinesDashStyle": "solid",
-              "PlotLinesValueVisibled": false
+              "PlotLinesValueVisibled": false,
+              "TitleLabelAngle": 270,
+              "TickColor": "#D8D8D8",
+              "TickWidth": 0
+            },
+            "Y2Axis": {
+              "Text": "",
+              "Visible": false,
+              "Opposite": true,
+              "AutoTickInterval": true,
+              "UseMinorTickInterval": true,
+              "AutoMinorTickInterval": false,
+              "AutoMax": true,
+              "AutoMin": true,
+              "GridLineColor": "#D8D8D8",
+              "GridLineWidth": 1,
+              "GridLineStyle": 0,
+              "MinorGridLineColor": "#E0E0E0",
+              "MinorGridLineWidth": 1,
+              "MinorGridLineStyle": 0,
+              "Label": {
+                "FontColor": "rgb(0,0,0)",
+                "AnnoFormat": "{0:N0}",
+                "LabelAngle": "auto"
+              },
+              "PlotLinesWidth": 0,
+              "PlotLinesColor": "red",
+              "PlotLinesValue": 0,
+              "PlotLinesDashStyle": "solid",
+              "PlotLinesValueVisibled": false,
+              "TitleLabelAngle": 270,
+              "TickColor": "#D8D8D8",
+              "TickWidth": 0
             }
+          },
+          "PlotOptions": {
+            "Animation": 1000,
+            "EnableMouseTracking": true,
+            "DataLabels": {},
+            "ConnectNulls": false
+          },
+          "Title": {
+            "Text": "",
+            "LanguageCode": ""
+          },
+          "Legend": {
+            "UseFontStyle": true,
+            "FontFamily": "default",
+            "FontSize": 11,
+            "FontBold": false,
+            "FontItalic": false,
+            "FontColor": "rgb(0,0,0)",
+            "Floating": false,
+            "Reversed": false,
+            "MarginTop": 2,
+            "Distance": 20
           },
           "SeriesSet": [
             {
@@ -337,7 +438,7 @@
               "Label": "제품명",
               "Type": 3,
               "BackgroundColor": "",
-              "Axis": 0,
+              "Axis": 1,
               "ValueField": "제품명",
               "DataType": 1,
               "UsedNumberSeries": false,
@@ -348,9 +449,13 @@
               "Unit": 0,
               "X": 0,
               "Y": -6,
-              "Align": 0,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
               "X2Axis": false,
+              "Sequence": 0,
               "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
               "LineWidth": 2
             },
             {
@@ -369,9 +474,13 @@
               "Unit": 0,
               "X": 0,
               "Y": -6,
-              "Align": 0,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
               "X2Axis": false,
+              "Sequence": 1,
               "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
               "LineWidth": 2
             },
             {
@@ -390,29 +499,16 @@
               "Unit": 0,
               "X": 0,
               "Y": -6,
-              "Align": 0,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
               "X2Axis": false,
+              "Sequence": 2,
               "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
               "LineWidth": 2
             }
           ],
-          "PlotOptions": {
-            "Animation": 1000,
-            "EnableMouseTracking": true,
-            "DataLabels": {
-              "Stacking": ""
-            },
-            "ConnectNulls": false
-          },
-          "Title": {
-            "Text": ""
-          },
-          "Legend": {
-            "FontColor": "rgb(0,0,0)",
-            "Floating": false,
-            "X": 0,
-            "Y": 0
-          },
           "Type": "Chart",
           "Id": "Chart58919f8e-2bcf-ebab-6d81-27a621e6ff24",
           "Name": "Chart",
@@ -430,24 +526,15 @@
               "Bottom": false,
               "Margin": "3",
               "HoldSize": false,
-              "MinWidth": "0",
-              "MinHeight": "0",
-              "_compileMarginText": "3",
-              "_compileMargin": [
-                3,
-                3,
-                3,
-                3
-              ]
+              "MinWidth": 0,
+              "MinHeight": 0
             }
           },
           "Style": {
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.SolidColorBrush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -455,9 +542,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -465,62 +550,23 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Font",
-                  "Border",
-                  "StyleType",
-                  "BoxStyle",
-                  "Background",
-                  "Font.HorizontalAlignment",
-                  "Font.VerticalAlignment"
-                ]
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "__type__": "istudio.drawing.style.FontInfo",
-              "Size": 12,
-              "Family": "inherit",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 0,
                 "G": 0,
                 "B": 0,
                 "A": 1
               },
+              "Size": 12,
+              "Family": "inherit",
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "top",
-              "mVariable": {
-                "Size": 12,
-                "Family": "inherit",
-                "Bold": false,
-                "Italic": false,
-                "UnderLine": false,
-                "HorizontalAlignment": "left",
-                "VerticalAlignment": "top"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Font",
-                  "Border",
-                  "StyleType",
-                  "BoxStyle",
-                  "Background",
-                  "Font.HorizontalAlignment",
-                  "Font.VerticalAlignment"
-                ]
-              }
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
@@ -531,23 +577,24 @@
           "DoExport": false,
           "PivotGrid": "",
           "DataGrid": "",
+          "UseListGridFormat": true,
           "Chart": {
             "ChartType": 3,
             "FontFamily": "default",
             "FontColor": "rgb(0,0,0)",
             "BackgroundColor": "rgb(255,255,255)",
             "BorderColor": "",
-            "BorderWidth": 3,
+            "BorderWidth": "3",
             "BorderRadius": 10,
             "Palette": 11,
             "TooltipBGColor": "rgba(255, 255, 255, 0.7)",
+            "SwitchSeriesLegend": false,
             "Tooltip": true,
-            "TooltipFormatter": "",
             "Inverted": false,
             "TooltipShared": false,
             "TooltipSharedType": 0,
-            "Margin": null,
             "UseChartTypeMenu": true,
+            "Margin": null,
             "Options3d": {
               "Enabled": false,
               "Alpha": 15,
@@ -565,10 +612,6 @@
             "XAxis": {
               "Text": "",
               "Visible": true,
-              "Label": {
-                "FontColor": "rgb(0,0,0)",
-                "LabelAngle": "auto"
-              },
               "Name": "제품명",
               "AutoTickInterval": true,
               "UseMinorTickInterval": false,
@@ -576,74 +619,116 @@
               "AutoMin": true,
               "GridLineColor": "#D8D8D8",
               "GridLineWidth": 1,
+              "GridLineStyle": 0,
               "MinorGridLineColor": "#E0E0E0",
               "MinorGridLineWidth": 1,
+              "MinorGridLineStyle": 0,
               "Categories": [
-                "Galaxy S7",
-                "Galaxy Note4",
                 "G4",
                 "G5",
-                "i Phone SE",
-                "V10",
+                "Galaxy Note4",
                 "Galaxy S6",
-                "i Phone6+",
-                "i Phone6"
+                "Galaxy S7",
+                "V10",
+                "i Phone SE",
+                "i Phone6",
+                "i Phone6+"
               ],
-              "DefinedItems": "",
-              "LanguageCode": ""
+              "AnnoFormat": "{0:N0}",
+              "Label": {
+                "FontBold": false,
+                "FontItalic": false,
+                "LabelAngle": "auto"
+              },
+              "PlotLinesWidth": 0,
+              "PlotLinesColor": "red",
+              "PlotLinesValue": 0,
+              "PlotLinesDashStyle": "Solid",
+              "PlotLinesValueVisibled": false,
+              "Caption": "제품명",
+              "TitleLabelAngle": 0,
+              "TickColor": "#D8D8D8",
+              "TickWidth": 0
             },
             "Y1Axis": {
               "Text": "",
               "Visible": true,
-              "Label": {
-                "FontColor": "rgb(0,0,0)",
-                "AnnoFormat": "{0:N0}",
-                "LabelAngle": "auto"
-              },
               "AutoTickInterval": true,
               "UseMinorTickInterval": false,
               "AutoMax": true,
               "AutoMin": true,
               "GridLineColor": "#D8D8D8",
               "GridLineWidth": 1,
+              "GridLineStyle": 0,
               "MinorGridLineColor": "#E0E0E0",
               "MinorGridLineWidth": 1,
+              "MinorGridLineStyle": 0,
               "Categories": [],
-              "DefinedItems": "",
-              "LanguageCode": "",
-              "PlotLinesWidth": 0,
-              "PlotLinesColor": "red",
-              "PlotLinesValue": 0,
-              "PlotLinesDashStyle": "solid",
-              "PlotLinesValueVisibled": false
-            },
-            "Y2Axis": {
-              "Text": "",
-              "Visible": false,
               "Label": {
                 "FontColor": "rgb(0,0,0)",
                 "AnnoFormat": "{0:N0}",
                 "LabelAngle": "auto"
               },
-              "Opposite": true,
-              "AutoTickInterval": true,
-              "UseMinorTickInterval": true,
-              "AutoMinorTickInterval": false,
-              "MinorTickInterval": "",
-              "AutoMax": true,
-              "AutoMin": true,
-              "GridLineColor": "#D8D8D8",
-              "GridLineWidth": 1,
-              "MinorGridLineColor": "#E0E0E0",
-              "MinorGridLineWidth": 1,
-              "DefinedItems": "",
-              "LanguageCode": "",
               "PlotLinesWidth": 0,
               "PlotLinesColor": "red",
               "PlotLinesValue": 0,
               "PlotLinesDashStyle": "solid",
-              "PlotLinesValueVisibled": false
+              "PlotLinesValueVisibled": false,
+              "TitleLabelAngle": 270,
+              "TickColor": "#D8D8D8",
+              "TickWidth": 0
+            },
+            "Y2Axis": {
+              "Text": "",
+              "Visible": false,
+              "Opposite": true,
+              "AutoTickInterval": true,
+              "UseMinorTickInterval": true,
+              "AutoMinorTickInterval": false,
+              "AutoMax": true,
+              "AutoMin": true,
+              "GridLineColor": "#D8D8D8",
+              "GridLineWidth": 1,
+              "GridLineStyle": 0,
+              "MinorGridLineColor": "#E0E0E0",
+              "MinorGridLineWidth": 1,
+              "MinorGridLineStyle": 0,
+              "Label": {
+                "FontColor": "rgb(0,0,0)",
+                "AnnoFormat": "{0:N0}",
+                "LabelAngle": "auto"
+              },
+              "PlotLinesWidth": 0,
+              "PlotLinesColor": "red",
+              "PlotLinesValue": 0,
+              "PlotLinesDashStyle": "solid",
+              "PlotLinesValueVisibled": false,
+              "TitleLabelAngle": 270,
+              "TickColor": "#D8D8D8",
+              "TickWidth": 0
             }
+          },
+          "PlotOptions": {
+            "Animation": 1000,
+            "EnableMouseTracking": true,
+            "DataLabels": {},
+            "ConnectNulls": false
+          },
+          "Title": {
+            "Text": "",
+            "LanguageCode": ""
+          },
+          "Legend": {
+            "UseFontStyle": true,
+            "FontFamily": "default",
+            "FontSize": 11,
+            "FontBold": false,
+            "FontItalic": false,
+            "FontColor": "rgb(0,0,0)",
+            "Floating": false,
+            "Reversed": false,
+            "MarginTop": 2,
+            "Distance": 20
           },
           "SeriesSet": [
             {
@@ -651,7 +736,7 @@
               "Label": "제품명",
               "Type": 3,
               "BackgroundColor": "",
-              "Axis": 0,
+              "Axis": 1,
               "ValueField": "제품명",
               "DataType": 1,
               "UsedNumberSeries": false,
@@ -662,9 +747,13 @@
               "Unit": 0,
               "X": 0,
               "Y": -6,
-              "Align": 0,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
               "X2Axis": false,
+              "Sequence": 0,
               "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
               "LineWidth": 2
             },
             {
@@ -683,9 +772,13 @@
               "Unit": 0,
               "X": 0,
               "Y": -6,
-              "Align": 0,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
               "X2Axis": false,
+              "Sequence": 1,
               "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
               "LineWidth": 2
             },
             {
@@ -704,36 +797,23 @@
               "Unit": 0,
               "X": 0,
               "Y": -6,
-              "Align": 0,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
               "X2Axis": false,
+              "Sequence": 2,
               "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
               "LineWidth": 2
             }
           ],
-          "PlotOptions": {
-            "Animation": 1000,
-            "EnableMouseTracking": true,
-            "DataLabels": {
-              "Stacking": ""
-            },
-            "ConnectNulls": false
-          },
-          "Title": {
-            "Text": ""
-          },
-          "Legend": {
-            "FontColor": "rgb(0,0,0)",
-            "Floating": false,
-            "X": 0,
-            "Y": 0
-          },
           "Type": "Chart",
           "Id": "Chartedd7abe6-6ce3-0617-d83d-2c925e589d70",
           "Name": "Chart1",
           "Position": {
             "Left": 656,
             "Top": 3,
-            "Width": 838,
+            "Width": 1181,
             "Height": 239,
             "ZIndex": 0,
             "TabIndex": 0,
@@ -744,24 +824,15 @@
               "Bottom": false,
               "Margin": "3",
               "HoldSize": false,
-              "MinWidth": "0",
-              "MinHeight": "0",
-              "_compileMarginText": "3",
-              "_compileMargin": [
-                3,
-                3,
-                3,
-                3
-              ]
+              "MinWidth": 0,
+              "MinHeight": 0
             }
           },
           "Style": {
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.SolidColorBrush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -769,9 +840,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -779,62 +848,23 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Font",
-                  "Border",
-                  "StyleType",
-                  "BoxStyle",
-                  "Background",
-                  "Font.HorizontalAlignment",
-                  "Font.VerticalAlignment"
-                ]
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "__type__": "istudio.drawing.style.FontInfo",
-              "Size": 12,
-              "Family": "inherit",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 0,
                 "G": 0,
                 "B": 0,
                 "A": 1
               },
+              "Size": 12,
+              "Family": "inherit",
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "top",
-              "mVariable": {
-                "Size": 12,
-                "Family": "inherit",
-                "Bold": false,
-                "Italic": false,
-                "UnderLine": false,
-                "HorizontalAlignment": "left",
-                "VerticalAlignment": "top"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Font",
-                  "Border",
-                  "StyleType",
-                  "BoxStyle",
-                  "Background",
-                  "Font.HorizontalAlignment",
-                  "Font.VerticalAlignment"
-                ]
-              }
+              "TempFontFamily": "맑은 고딕"
             }
           }
         }
@@ -844,7 +874,7 @@
   "MetaDataSources": {
     "MetaDataSources": [
       {
-        "LayoutXML": "<MetaViewLayout><MetaItemLayoutInfo IncludeAttribute=\"False\" DBType=\"1\" ViewerVersion=\"6.2.200.20210429-12\" UseHybrid=\"true\" DistinctRecord=\"0\" DefaultSQLHint=\"\" HavingOperator=\"\" SelectType=\"3\" AutoSynchronizeMeta=\"1\" sourceName=\"스마트폰_매출정보\" sourceCode=\"RPTEB418D642F424C949D1598B07F5279F7\"><SelectedItemInfo><SelectedItems controlType=\"1\" /><SelectedItems controlType=\"2\" /><SelectedItems controlType=\"3\" /><SelectedItems controlType=\"4\" /><SelectedItems controlType=\"7\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"제품명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"제품명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"제품명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"제품명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매수량\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매수량\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" DataType=\"typeNumber\" Name=\"판매수량\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM55448A865D3445A7B52A363E884ED00B\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매수량\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매금액\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매금액\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M3\" DataType=\"typeNumber\" Name=\"판매금액\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM44976F70BEB74691A7684AFFF3C664C3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매금액\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /></SelectedItems><SelectedItems controlType=\"8\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"제품명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"제품명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"제품명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"제품명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매수량\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매수량\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" DataType=\"typeNumber\" Name=\"판매수량\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM55448A865D3445A7B52A363E884ED00B\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매수량\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매금액\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매금액\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M3\" DataType=\"typeNumber\" Name=\"판매금액\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM44976F70BEB74691A7684AFFF3C664C3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매금액\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /></SelectedItems><SelectedItems controlType=\"9\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"제품명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"제품명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"제품명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"제품명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매수량\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매수량\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" DataType=\"typeNumber\" Name=\"판매수량\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM55448A865D3445A7B52A363E884ED00B\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매수량\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매금액\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매금액\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M3\" DataType=\"typeNumber\" Name=\"판매금액\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM44976F70BEB74691A7684AFFF3C664C3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매금액\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\" /></SelectedItems><SelectedItems controlType=\"10\" /><SelectedItems controlType=\"6\" /></SelectedItemInfo><FilteredItems /><UserDefineItems /><GridProperties RowTotalLocation=\"Bottom\" ColumnTotalLocation=\"Right\" DisplayColumnGrandTotal=\"True\" DisplayColumnTotal=\"True\" DisplayRowGrandTotal=\"True\" DisplayRowTotal=\"True\" /><OutputDocumentXML /></MetaItemLayoutInfo></MetaViewLayout>",
+        "LayoutXML": "<MetaViewLayout><MetaItemLayoutInfo IncludeAttribute=\"False\" DBType=\"1\" ViewerVersion=\"6.2.200.20210429-12\" UseHybrid=\"true\" DistinctRecord=\"0\" DefaultSQLHint=\"\" HavingOperator=\"\" SelectType=\"3\" AutoSynchronizeMeta=\"1\" sourceName=\"스마트폰_매출정보\" sourceCode=\"RPTEB418D642F424C949D1598B07F5279F7\"><SelectedItemInfo><SelectedItems controlType=\"1\"/><SelectedItems controlType=\"2\"/><SelectedItems controlType=\"3\"/><SelectedItems controlType=\"4\"/><SelectedItems controlType=\"7\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"제품명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"제품명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"제품명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"제품명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매수량\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매수량\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" DataType=\"typeNumber\" Name=\"판매수량\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM55448A865D3445A7B52A363E884ED00B\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매수량\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매금액\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매금액\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M3\" DataType=\"typeNumber\" Name=\"판매금액\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM44976F70BEB74691A7684AFFF3C664C3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매금액\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/></SelectedItems><SelectedItems controlType=\"8\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"제품명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"제품명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"제품명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"제품명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매수량\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매수량\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" DataType=\"typeNumber\" Name=\"판매수량\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM55448A865D3445A7B52A363E884ED00B\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매수량\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매금액\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매금액\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M3\" DataType=\"typeNumber\" Name=\"판매금액\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM44976F70BEB74691A7684AFFF3C664C3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매금액\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/></SelectedItems><SelectedItems controlType=\"9\"><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"제품명\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"@\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"D3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Count\" Description=\"제품명\" Category=\"0\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" DataType=\"typeNchar\" Name=\"제품명\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"제품명\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"0\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매수량\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M2\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매수량\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" DataType=\"typeNumber\" Name=\"판매수량\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM55448A865D3445A7B52A363E884ED00B\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매수량\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/><MetaItemProperty SortField=\"\" LOVDisabled=\"false\" LanguageCode=\"\" CaptionDesc=\"판매금액\" FormulaEx=\"\" Hidden=\"false\" LOV_SQL=\"\" LabelField=\"\" DataMaskRule=\"\" Encryped=\"false\" BaseSummaryField=\"\" DefaultFormat=\"\" FilterMask=\"\" PeriodConvertCommand=\"\" ColumnDesc=\"\" ColumnName=\"M3\" TableDesc=\"\" TableName=\"MEX_USER_FILE_DATA\" PeriodConvertType=\"null\" PeriodRollUpType=\"None\" AfterRollUpType=\"0\" GroupOrder=\"0\" SummaryType=\"Sum\" Description=\"판매금액\" Category=\"1\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M3\" DataType=\"typeNumber\" Name=\"판매금액\" PhysicalCode=\"\" Operator=\"0\" IsUserMode=\"false\" IsEnableLOV=\"true\" IsUseFilter=\"true\" IsDisableTrim=\"false\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" ParentCode=\"\" RefFormula=\"\" UserDefineItemFormula=\"\" IsFieldHidden=\"false\" Code=\"ITM44976F70BEB74691A7684AFFF3C664C3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" RollupType=\"0\" ItemType=\"1\" OriginDescrption=\"판매금액\" TooltipText=\"\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M3\" Selected=\"true\" SortDirection=\"sortAscending\" SortOrder=\"0\" Having=\"\" GroupFunction=\"1\"/></SelectedItems><SelectedItems controlType=\"10\"/><SelectedItems controlType=\"6\"/></SelectedItemInfo><FilteredItems/><UserDefineItems/><GridProperties RowTotalLocation=\"Bottom\" ColumnTotalLocation=\"Right\" DisplayColumnGrandTotal=\"True\" DisplayColumnTotal=\"True\" DisplayRowGrandTotal=\"True\" DisplayRowTotal=\"True\"/><OutputDocumentXML/></MetaItemLayoutInfo></MetaViewLayout>",
         "Code": "DSC41B45023794B5189A01B317A4E221BF",
         "ConnectionCode": "MTXRPTY",
         "ReportCode": "TEMPLATE_SD_LIST",
@@ -911,14 +941,15 @@
             "LanguageCode": "pms.BRANCH.MEX_USER_FILE_DATA.M3",
             "IsMetaField": true
           }
-        ],
-        "Conditions": []
+        ]
       }
     ]
   },
   "EXECUTION_PLANS": [],
   "Variables": [],
   "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
   "WorkFlowModules": [],
   "WorkFlowInfo": "{}"
 }

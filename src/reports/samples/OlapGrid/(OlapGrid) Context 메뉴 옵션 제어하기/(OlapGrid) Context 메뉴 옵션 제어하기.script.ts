@@ -1,62 +1,59 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
-import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
-import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
+import { NumberBox } from "@AUD_CLIENT/control/NumberBox";
 import { CheckBox } from "@AUD_CLIENT/control/CheckBox";
+import { Label } from "@AUD_CLIENT/control/Label";
+import { iGrid } from "@AUD_CLIENT/control/iGrid";
+import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
+import { Image } from "@AUD_CLIENT/control/Image";
+import { ColorPicker } from "@AUD_CLIENT/control/ColorPicker";
+import { Button } from "@AUD_CLIENT/control/Button";
+import { TextBox } from "@AUD_CLIENT/control/TextBox";
+import { RadioButton } from "@AUD_CLIENT/control/RadioButton";
+import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
+import { DataSet } from "@AUD_CLIENT/data/DataSet";
+import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
+import { Group } from "@AUD_CLIENT/control/Group";
+import { Chart } from "@AUD_CLIENT/control/Chart";
+import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare const Matrix: Matrix;
-
+let Matrix: Matrix;
 /*****************************
- * 컨트롤 변수 선언
+ * OlapGrid의 Context Menu  API 샘플
  *****************************/
-const olapGrid: OlapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
-const tbxDebug: RichTextBox = Matrix.getObject("tbxDebug") as RichTextBox;
+
+let tbxDebug: RichTextBox = Matrix.getObject("tbxDebug") as RichTextBox;
+let OlapGrid: OlapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
 
 /*****************************************
- * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.
- * * arguments :
- *****************************************/
-const OnDocumentLoadComplete = function (_sender: object, _args: object): void {
-  // 초기화 로직이 필요한 경우 여기에 작성
+* 체크박스 컨트롤의 값이 변경될 경우 발생합니다.
+* * arguments :  
+*		 string	Id (Readonly:False) : 컨트롤이름 
+*		 bool	IsChecked (Readonly:False) : 체크 상태 
+*****************************************/
+const OnCheckValueChange = function (sender, args) {
+	switch (args.Id) {
+		case "DisplayRowSubTotal":
+		case "DisplayRowGrandTotal":
+		case "DisplayColumnSubTotal":
+		case "DisplayColumnGrandTotal":
+			let option = OlapGrid.Options;
+			option[args.Id] = args.IsChecked;
+			tbxDebug.Text = "//Script 사용 예제 "
+				+ "\n// " + (Matrix.getObject(args.Id) as CheckBox).Text
+				+ "\n var option = OlapGrid.Options;"
+				+ "\n  option." + args.Id + " = " + args.IsChecked + ";";
+
+			OlapGrid.Refresh();
+			break;
+
+		default:
+			let menuOption = OlapGrid.getMenuOption();
+			menuOption[args.Id] = args.IsChecked;
+			tbxDebug.Text = "//Script 사용 예제 "
+				+ "\n// " + (Matrix.getObject(args.Id) as CheckBox).Text
+				+ "\n var option = OlapGrid.getMenuOption();"
+				+ "\n  option." + args.Id + " = " + args.IsChecked + ";";
+			break;
+
+	}
 };
-
-/*****************************************
- * 체크박스 컨트롤의 값이 변경될 경우 발생합니다.
- * * arguments :
- *		 string	Id (Readonly:False) : 컨트롤이름
- *		 bool	IsChecked (Readonly:False) : 체크 상태
- *****************************************/
-const OnCheckValueChange = function (_sender: object, args: { Id: string; IsChecked: boolean }): void {
-  switch (args.Id) {
-    case "DisplayRowSubTotal":
-    case "DisplayRowGrandTotal":
-    case "DisplayColumnSubTotal":
-    case "DisplayColumnGrandTotal": {
-      const option = (olapGrid as any).getGlobalOption();
-      option[args.Id] = args.IsChecked;
-      const checkBox = Matrix.getObject(args.Id) as CheckBox;
-      tbxDebug.Text =
-        "//Script 사용 예제 " +
-        "\n// " + checkBox.Text +
-        "\n var option = OlapGrid.getMenuOption();" +
-        "\n  option." + args.Id + " = " + args.IsChecked + ";";
-
-      olapGrid.Refresh();
-      break;
-    }
-
-    default: {
-      const option = olapGrid.getMenuOption();
-      option[args.Id] = args.IsChecked;
-      const checkBox = Matrix.getObject(args.Id) as CheckBox;
-      tbxDebug.Text =
-        "//Script 사용 예제 " +
-        "\n// " + checkBox.Text +
-        "\n var option = OlapGrid.getMenuOption();" +
-        "\n  option." + args.Id + " = " + args.IsChecked + ";";
-      break;
-    }
-  }
-};
-
-// Export event handlers for i-AUD runtime
-export { OnDocumentLoadComplete, OnCheckValueChange };

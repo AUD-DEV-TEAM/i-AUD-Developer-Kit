@@ -4,14 +4,15 @@
     "FolderCode": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD",
     "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REPD8CE2ACC617D4E7FB106352FCEE15593.mtsd",
     "ReportName": "(OlapGrid) Write-Back-ServerScript",
-    "Writer": "choehanna",
-    "WriteDate": "2025-04-07 09:53:26",
-    "Editor": "choehanna",
-    "EditDate": "2025-04-07 09:53:26",
+    "Writer": "yglee",
+    "WriteDate": "2026-02-04 10:23:04",
+    "Editor": "yglee",
+    "EditDate": "2026-02-04 10:23:04",
     "TabPosition": 1,
     "UseLayout": false,
-    "UsePersonalConditions": false,
-    "DocumentVersion": "3.0.0.0"
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
     "Datas": [
@@ -96,22 +97,104 @@
             "Type": "String"
           }
         ]
+      },
+      {
+        "Id": "DS",
+        "Name": "Data1",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "VatCXgm4IcrkvM4YCZI+uhslExmxVCokCMTJ7kZfOL1sF1035snPa8SYo3X/bgl6",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "P1",
+            "Type": "String"
+          },
+          {
+            "Name": "D1",
+            "Type": "String"
+          },
+          {
+            "Name": "D2",
+            "Type": "String"
+          },
+          {
+            "Name": "D3",
+            "Type": "String"
+          },
+          {
+            "Name": "D4",
+            "Type": "String"
+          },
+          {
+            "Name": "D5",
+            "Type": "String"
+          },
+          {
+            "Name": "D6",
+            "Type": "String"
+          },
+          {
+            "Name": "D7",
+            "Type": "String"
+          },
+          {
+            "Name": "D8",
+            "Type": "String"
+          },
+          {
+            "Name": "M1",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "M2",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "M3",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DS1",
+        "Name": "Data2",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "FILE_DATA_BASE",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "7Zdi74/xLoVGxLLZK9lcY6rvHXAt3HllAmlUXMW12ElN+L0TPEj6g3T9JSVAkuXb9zIuMN8Zq2LDP2zA2s2yZOEJtmC0cWLt8JA81RpErKsuH79FFnwBg1l9cbaNBNldFvupPZp31HDVDqgMx0khIQ==",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "CODE",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "TEXT",
+            "Type": "String"
+          }
+        ]
       }
     ]
   },
-  "ScriptText": "var btnCalculate = null;\r\nvar btnUpate = null;\r\nvar chkEnableCreateRecord = null;\r\nvar chkManualUpdate = null;\r\nvar DataGrid = null;\r\nvar DataGrid = null;\r\nvar MXGrid = null;\r\nvar OlapGrid = null;\r\nvar VN_BAEBUN_TYPE = null;\r\nvar tbxLockCellFormula = null;\r\nvar initControlVariables = function () {\r\n    btnCalculate = Matrix.getObject(\"btnCalculate\");\r\n    btnUpate = Matrix.getObject(\"btnUpate\");\r\n    chkEnableCreateRecord = Matrix.getObject(\"chkEnableCreateRecord\");\r\n    chkManualUpdate = Matrix.getObject(\"chkManualUpdate\");\r\n    DataGrid = Matrix.getObject(\"DataGrid\");\r\n    DataGrid = Matrix.getObject(\"DataGrid\");\r\n    MXGrid = Matrix.getObject(\"MXGrid\");\r\n    OlapGrid = Matrix.getObject(\"OlapGrid\");\r\n    VN_BAEBUN_TYPE = Matrix.getObject(\"VN_BAEBUN_TYPE\");\r\n    tbxLockCellFormula = Matrix.getObject(\"tbxLockCellFormula\");\r\n    tbxLockCellFormula.OnTextChange = function (s, e) {\r\n        OlapGrid.setLockCellFormula(tbxLockCellFormula.Text);\r\n    };\r\n};\r\n/**\r\n * Write-Back 기능 활성화 하기\r\n**/\r\nvar initWriteBack = function () {\r\n    OlapGrid.Options.EnableWriteBack = true; //Write-back 활성화\r\n    OlapGrid.Options.EnableCreateRecord = false; //레코드가 없는 셀의 경우 데이터 생성 여부\r\n    OlapGrid.Options.ManualUpdate = false; //수동 계산 실행 여\r\n    OlapGrid.setLockCellFormula(tbxLockCellFormula.Text);\r\n};\r\n/*****************************************\r\n* 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n* * arguments :\r\n*****************************************/\r\nvar OnDocumentLoadComplete = function (sender, args) {\r\n    initControlVariables();\r\n    initWriteBack();\r\n};\r\n/*****************************************\r\n* 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n* * arguments :\r\n*\t\t string\tId (Readonly:False) : 컨트롤이름\r\n*\t\t string\tText (Readonly:False) : 라벨 값\r\n*****************************************/\r\nvar OnButtonClick = function (sender, args) {\r\n    if (args.Id == \"btnCalculate\") {\r\n        if (OlapGrid.CanCalculateWriteBack()) { //계산할 대상이 있으면..\r\n            OlapGrid.CalculateWriteBack();\r\n        }\r\n    }\r\n    else if (args.Id == \"btnUpate\") {\r\n        if (OlapGrid.IsModified() == false) { //계산할 대상이 있으면..\r\n            Matrix.Information(\"계산하지 않은 셀이 존재합니다. 계산을 먼저 수행해 주세요.\", \"i-AUD\");\r\n            return;\r\n        }\r\n        if (OlapGrid.CanCalculateWriteBack()) { //계산할 대상이 있으면..\r\n            Matrix.Information(\"계산하지 않은 셀이 존재합니다. 계산을 먼저 수행해 주세요.\", \"i-AUD\");\r\n            return;\r\n        }\r\n        Matrix.RunScript(\"OlapGrid\", \"Service1\", function (p) {\r\n            if (p.Success == false) {\r\n                Matrix.Alert(p.Message);\r\n                return;\r\n            }\r\n            //alert(\"정상적으로 처리되었습니다.\");\r\n            Matrix.doRefresh(\"OlapGrid\");\r\n        });\r\n    }\r\n};\r\n/*****************************************\r\n* 콤보박스 컨트롤의 값이 변경될때 발생합니다.\r\n* * arguments :\r\n*\t\t string\tId (Readonly:False) : 컨트롤이름\r\n*\t\t string\tValue (Readonly:False) : 컨트롤 값\r\n*****************************************/\r\nvar OnComboBoxValueChanged = function (sender, args) {\r\n    var fld = OlapGrid.getField(\"M1\");\r\n    fld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n    fld.EditPrecision = 0; //소수점 자리수\r\n    //fld.EditMethodRef = \"M2\";//참조 필드(가중치 기준 필드)\r\n    fld = OlapGrid.getField(\"M2\");\r\n    fld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n    fld.EditPrecision = 0; //소수점 자리수\r\n    fld = OlapGrid.getField(\"M3\");\r\n    fld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n    fld.EditPrecision = 0; //소수점 자리수\r\n};\r\n/*****************************************\r\n* 체크박스 컨트롤의 값이 변경될 경우 발생합니다.\r\n* * arguments :\r\n*\t\t string\tId (Readonly:False) : 컨트롤이름\r\n*\t\t bool\tIsChecked (Readonly:False) : 체크 상태\r\n*****************************************/\r\nvar OnCheckValueChange = function (sender, args) {\r\n    if (args.Id == \"chkManualUpdate\") {\r\n        OlapGrid.Options.ManualUpdate = args.IsChecked;\r\n    }\r\n    else if (args.Id == \"chkEnableCreateRecord\") {\r\n        OlapGrid.Options.EnableCreateRecord = args.IsChecked;\r\n    }\r\n};\r\n/*****************************************\r\n* 데이터 셀 수정 모드로 진입할 때 발생합니다.\r\n* * arguments :\r\n*\t\t string\tId (Readonly:True) : 컨트롤 명\r\n*\t\t iOLAP.ScriptDataCell\tCell (Readonly:True) : 데이터 셀 객체\r\n*\t\t bool\tCancel (Readonly:False) : 이 값을 true 로 설정 할 경우 수정 모드로 진입이 취소됩니다.\r\n*****************************************/\r\nvar OnOlapDataCellStartEdit = function (sender, args) {\r\n};\r\n/*****************************************\r\n* 데이터 셀을 수정 후에 발생합니다.\r\n* * arguments :\r\n*\t\t string\tId (Readonly:True) : 컨트롤 명\r\n*\t\t iOLAP.ScriptDataCell\tCell (Readonly:True) : 데이터 셀 객체\r\n*\t\t double\tBeforeValue (Readonly:True) : 수정 전 값\r\n*\t\t double\tAfterValue (Readonly:True) : 수정 후 값\r\n*\t\t double\tLockedValue (Readonly:True) : 잠긴 레코드의 값\r\n*\t\t bool\tCancel (Readonly:False) : 이 값을 true 로 설정 할 경우 수정 작업이 취소됩니다.\r\n*****************************************/\r\nvar OnOlapDataCellEndEdit = function (sender, args) {\r\n    if (args.LockedValue > args.AfterValue) {\r\n        args.Cancel = true;\r\n        var fmtValue = Matrix.getFormatConverter(args.Cell.Field.Format).Convert(args.LockedValue).Value;\r\n        Matrix.Information(\"잠금으로 설정한 값(\" + fmtValue + \")보다 큰 값을 입력해 주세요.\", \"i-AUD\");\r\n    }\r\n};\r\n",
+  "ScriptText": "var btnCalculate;\r\nvar btnUpate;\r\nvar chkEnableCreateRecord;\r\nvar chkManualUpdate;\r\nvar dataGrid;\r\nvar MXGrid;\r\nvar olapGrid;\r\nvar VN_BAEBUN_TYPE;\r\nvar tbxLockCellFormula;\r\nvar initControlVariables = function () {\r\n    btnCalculate = Matrix.getObject(\"btnCalculate\");\r\n    btnUpate = Matrix.getObject(\"btnUpate\");\r\n    chkEnableCreateRecord = Matrix.getObject(\"chkEnableCreateRecord\");\r\n    chkManualUpdate = Matrix.getObject(\"chkManualUpdate\");\r\n    dataGrid = Matrix.getObject(\"DataGrid\");\r\n    MXGrid = Matrix.getObject(\"MXGrid\");\r\n    olapGrid = Matrix.getObject(\"OlapGrid\");\r\n    VN_BAEBUN_TYPE = Matrix.getObject(\"VN_BAEBUN_TYPE\");\r\n    tbxLockCellFormula = Matrix.getObject(\"tbxLockCellFormula\");\r\n    tbxLockCellFormula.OnTextChange = function (_s, _e) {\r\n        olapGrid.setLockCellFormula(tbxLockCellFormula.Text);\r\n    };\r\n};\r\n/**\r\n * Write-Back 기능 활성화 하기\r\n **/\r\nvar initWriteBack = function () {\r\n    olapGrid.Options.EnableWriteBack = true; //Write-back 활성화\r\n    olapGrid.Options.EnableCreateRecord = false; //레코드가 없는 셀의 경우 데이터 생성 여부\r\n    olapGrid.Options.ManualUpdate = false; //수동 계산 실행 여부\r\n    olapGrid.setLockCellFormula(tbxLockCellFormula.Text);\r\n};\r\n/*****************************************\r\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n * * arguments :\r\n *****************************************/\r\nvar OnDocumentLoadComplete = function (_sender, _args) {\r\n    initControlVariables();\r\n    initWriteBack();\r\n};\r\nvar OnButtonClick = function (_sender, args) {\r\n    if (args.Id == \"btnCalculate\") {\r\n        if (olapGrid.CanCalculateWriteBack()) {\r\n            //계산할 대상이 있으면..\r\n            olapGrid.CalculateWriteBack(function () { });\r\n        }\r\n    }\r\n    else if (args.Id == \"btnUpate\") {\r\n        if (olapGrid.IsModified() == false) {\r\n            //계산할 대상이 있으면..\r\n            Matrix.Information(\"계산하지 않은 셀이 존재합니다. 계산을 먼저 수행해 주세요.\", \"i-AUD\");\r\n            return;\r\n        }\r\n        if (olapGrid.CanCalculateWriteBack()) {\r\n            //계산할 대상이 있으면..\r\n            Matrix.Information(\"계산하지 않은 셀이 존재합니다. 계산을 먼저 수행해 주세요.\", \"i-AUD\");\r\n            return;\r\n        }\r\n        Matrix.RunScript(\"OlapGrid\", \"Service1\", function (p) {\r\n            if (p.Success == false) {\r\n                Matrix.Alert(p.Message);\r\n                return;\r\n            }\r\n            //alert(\"정상적으로 처리되었습니다.\");\r\n            Matrix.doRefresh(\"OlapGrid\");\r\n        });\r\n    }\r\n};\r\n/*****************************************\r\n * 콤보박스 컨트롤의 값이 변경될때 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤이름\r\n *\t\t string\tValue (Readonly:False) : 컨트롤 값\r\n *****************************************/\r\nvar OnComboBoxValueChanged = function (_sender, _args) {\r\n    var fld = olapGrid.getField(\"M1\");\r\n    fld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n    fld.EditPrecision = 0; //소수점 자리수\r\n    //fld.EditMethodRef = \"M2\";//참조 필드(가중치 기준 필드)\r\n    fld = olapGrid.getField(\"M2\");\r\n    fld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n    fld.EditPrecision = 0; //소수점 자리수\r\n    fld = olapGrid.getField(\"M3\");\r\n    fld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n    fld.EditPrecision = 0; //소수점 자리수\r\n};\r\nvar OnCheckValueChange = function (_sender, args) {\r\n    if (args.Id == \"chkManualUpdate\") {\r\n        olapGrid.Options.ManualUpdate = args.IsChecked;\r\n    }\r\n    else if (args.Id == \"chkEnableCreateRecord\") {\r\n        olapGrid.Options.EnableCreateRecord = args.IsChecked;\r\n    }\r\n};\r\n/*****************************************\r\n * 데이터 셀 수정 모드로 진입할 때 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:True) : 컨트롤 명\r\n *\t\t iOLAP.ScriptDataCell\tCell (Readonly:True) : 데이터 셀 객체\r\n *\t\t bool\tCancel (Readonly:False) : 이 값을 true 로 설정 할 경우 수정 모드로 진입이 취소됩니다.\r\n *****************************************/\r\nvar OnOlapDataCellStartEdit = function (_sender, _args) { };\r\nvar OnOlapDataCellEndEdit = function (_sender, args) {\r\n    if (args.LockedValue > args.AfterValue) {\r\n        args.Cancel = true;\r\n        var fmtValue = Matrix.getFormatConverter(args.Cell.Field.Format).Convert(args.LockedValue).Value;\r\n        Matrix.Information(\"잠금으로 설정한 값(\" + fmtValue + \")보다 큰 값을 입력해 주세요.\", \"i-AUD\");\r\n    }\r\n};\r\n",
   "ServerScriptText": [
     {
       "Name": "Service1",
-      "Key": "BIZ",
-      "Encrypted": false,
-      "ScriptText": "// Please do not modify or delete the following variables: \"CALL_BACK\", \"Matrix\". \r\nvar req = Matrix.getRequest();\r\nvar res = Matrix.getResponse();\r\nvar session = Matrix.getSession();\r\nvar util = Matrix.getUtility();\r\nvar fso = Matrix.getFileSystemObject();\r\nvar con = Matrix.getConnection();\r\n/*************************************************************\r\n * SAMPLE #1 single table insert\r\n *************************************************************/\r\nvar sql = \"\";\r\nvar status = \"\";\r\nvar row = null;\r\nvar stmt = null;\r\nvar stmtInsert = null;\r\nvar ROW_IDX = 0;\r\ntry {\r\n    //connection\r\n    con.Connect(\"MTXRPTY\"); // set target dbms connection code\r\n    con.BeginTransaction(); // begin transaction\t \r\n    //------------------------------------------------------\r\n    // save table data\r\n    //------------------------------------------------------\t\r\n    var table = req.getTable(\"OlapGrid\"); //get grid's work data\r\n    sql = \"UPDATE MEX_USER_CRUD_DATA SET  M1=?, M2=?, M3=?  WHERE P1=?\";\r\n    stmt = con.PreparedStatement(sql);\r\n    sql = \" INSERT INTO MEX_USER_CRUD_DATA(P1,D1,D2,D3,D4,D5,D6,D7,D8,M1,M2,M3) \"\r\n        + \"                    VALUES (?, ?,?,?,?,?,?,?,?,?,?,?)\";\r\n    stmtInsert = con.PreparedStatement(sql);\r\n    /* OLAP은 데이터가 많을 수 있으므로 Callback를 수행한다.  */\r\n    table.FetchRows(CALL_BACK(function (row) {\r\n        ROW_IDX++;\r\n        status = row.getRowStatus();\r\n        var IDX = 0;\r\n        if (status == \"U\") {\r\n            stmt.setDouble(++IDX, row.getDouble(\"M1\"));\r\n            stmt.setDouble(++IDX, row.getDouble(\"M2\"));\r\n            stmt.setDouble(++IDX, row.getDouble(\"M3\"));\r\n            stmt.setString(++IDX, row.getString(\"P1\"));\r\n            stmt.addBatch();\r\n        }\r\n        else if (status == \"N\") {\r\n            stmtInsert.setString(++IDX, util.getUniqueKey(\"P\")); //primary key\r\n            stmtInsert.setString(++IDX, row.getString(\"D1\"));\r\n            stmtInsert.setString(++IDX, row.getString(\"D2\"));\r\n            stmtInsert.setString(++IDX, row.getString(\"D3\"));\r\n            stmtInsert.setString(++IDX, row.getString(\"D4\"));\r\n            stmtInsert.setString(++IDX, row.getString(\"D5\"));\r\n            stmtInsert.setString(++IDX, row.getString(\"D6\"));\r\n            stmtInsert.setString(++IDX, row.getString(\"D7\"));\r\n            stmtInsert.setString(++IDX, row.getString(\"D8\"));\r\n            stmtInsert.setDouble(++IDX, row.getDouble(\"M1\"));\r\n            stmtInsert.setDouble(++IDX, row.getDouble(\"M2\"));\r\n            stmtInsert.setDouble(++IDX, row.getDouble(\"M3\"));\r\n            stmtInsert.addBatch();\r\n        }\r\n        if (ROW_IDX > 100) {\r\n            stmt.executeBatch();\r\n            stmtInsert.executeBatch();\r\n            ROW_IDX = 0;\r\n        }\r\n        return null;\r\n    }));\r\n    stmt.executeBatch();\r\n    stmtInsert.executeBatch();\r\n    // COMMIT\r\n    con.CommitTransaction();\r\n    con.DisConnect();\r\n    con = null;\r\n}\r\ncatch (e) {\r\n    Matrix.WriteLog(\"ERROR\" + e.message);\r\n    if (con != null) {\r\n        try {\r\n            con.RollBackTransaction();\r\n            con.DisConnect();\r\n            con = null;\r\n        }\r\n        catch (e) {\r\n        }\r\n    }\r\n    Matrix.ThrowException(\"Server Exception:\" + e.message);\r\n}\r\nfinally {\r\n    if (stmt != null) {\r\n        try {\r\n            stmt.Close();\r\n            stmt = null;\r\n        }\r\n        catch (e) {\r\n        }\r\n    }\r\n    if (con != null) {\r\n        try {\r\n            //con.RollBackTransaction();\r\n            con.DisConnect();\r\n            con = null;\r\n        }\r\n        catch (e) {\r\n        }\r\n    }\r\n}\r\n"
+      "Key": "BIZ105BC57B215E4F3EA496B77468F1138C",
+      "Encrypted": true,
+      "ScriptText": "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"
     },
     {
       "Name": "OLAP_WRITE_BACK",
-      "Key": "BIZ96A72586850C4566A03AFD60B4C192E0",
-      "Encrypted": false,
-      "ScriptText": "//------------------------------------\r\n// OLAP Write-Back에서는 OlapContext만 사용할 수 있습니다.\r\n// OLAP Context\r\nvar OLAPContext = Matrix.getOlapScriptContext();\r\n/**\r\n * 데이터 수정 하기\r\n * 균등 배분 예시\r\n * @param cell\r\n * @param rows\r\n * @param dataField\r\n */\r\nvar UpdateCellValue = function (cell, rows, dataField) {\r\n    var unLockedRows = []; //Lock이 아닌 Row 목록\r\n    var editRow;\r\n    var lockedValue = 0.0; //Lock된 Row의 값\r\n    var beforeValue = 0.0; //수정전 값\r\n    var fldValue = 0.0;\r\n    var dataColumnIndex = dataField.DataColumnIndex; //수정된 데이터 셀의 DataColumnIndex\r\n    var row;\r\n    for (var r = 0, r2 = rows.length; r < r2; r++) {\r\n        row = rows[r]; //데이터 셀을 구성하는 Row\t\t\r\n        fldValue = row.getNumber(dataColumnIndex); //수정된 데이터 셀의 값\r\n        if (isNaN(fldValue) == true) { //수정된 데이터 셀의 값이 NaN일 경우\r\n            fldValue = 0.0;\r\n        }\r\n        beforeValue += fldValue; //수정전 값 누적\r\n        if (row.IsLockColumn(dataColumnIndex) == false) { //Lock이 아닐 경우에만 수정\r\n            unLockedRows.push({ \"Row\": row, \"Value\": fldValue }); //Lock이 아닌 Row 목록에 추가\r\n        }\r\n        else {\r\n            lockedValue += fldValue;\r\n        }\r\n    }\r\n    if (unLockedRows.length == 0) {\r\n        return; //모두 잠김 셀 이라면 수정하지 않음.\r\n    }\r\n    //잠김셀의 값의 합이 입력된 값보다 작은경우 (수정할 수 없다, 값이 음수 이상이어야 한다.)\r\n    if (lockedValue > cell.After) {\r\n        throw \"Enter a value that is greater than the sum of the lock cells.(Lock:\" + lockedValue + \", Input:\" + cell.After + \")\";\r\n    }\r\n    //가감해야 하는 값 \r\n    var diff = cell.After - beforeValue;\r\n    var diviedValue = diff / unLockedRows.length; //균등 배분 값\r\n    OLAPContext.WriteLog(\"OLAP_WRITE_BACK\", \"diviedValue:\" + diviedValue + \", diff:\" + diff\r\n        + \", beforeValue:\" + beforeValue\r\n        + \", lockedValue:\" + lockedValue\r\n        + \", cell.After:\" + cell.After\r\n        + \", unLockedRows.length:\" + unLockedRows.length);\r\n    //균등 배분\r\n    for (var i = 0, i2 = unLockedRows.length; i < i2; i++) {\r\n        editRow = unLockedRows[i]; //Lock이 아닌 Row \r\n        if (editRow.Value + diviedValue < 0) { //균등 배분값을 더했을때 0보다 작으면 해당 값 만큼 빼준다.\r\n            diff -= editRow.Value;\r\n            editRow.Value = 0.0;\r\n            editRow.Row.setNumber(dataColumnIndex, 0.0);\r\n        }\r\n        else {\r\n            //균등 배분값을 더한 값으로 수정\r\n            diff -= diviedValue;\r\n            editRow.Value += diviedValue;\r\n            editRow.Row.setNumber(dataColumnIndex, editRow.Value);\r\n        }\r\n    }\r\n    if (diff > 0) {\r\n        //끝전 처리 (큰 데이터에 묻힌다.)\r\n        var sortRows = unLockedRows.sort(function (a, b) {\r\n            return b.Value - a.Value;\r\n        }); //정렬\r\n        //0보다 큰 값들.\r\n        var sumValue = 0.0;\r\n        unLockedRows = [];\r\n        for (var i = 0, i2 = sortRows.length; i < i2; i++) {\r\n            if (sortRows[i].Value <= 0) {\r\n                break;\r\n            }\r\n            sumValue += sortRows[i].Value;\r\n            unLockedRows.push(sortRows[i]);\r\n        }\r\n        for (var i = 0, i2 = unLockedRows.length; i < i2; i++) {\r\n            editRow = unLockedRows[i]; //Lock이 아닌 Row \r\n            if (diff <= 0) {\r\n                break;\r\n            }\r\n            //비율에 맞춰서 차감\r\n            if (editRow.Value > 0) {\r\n                var editValue = diff * (editRow.Value / sumValue); //비율에 맞춰서 차감\r\n                diff -= editValue;\r\n                unLockedRows[i].Value -= editValue;\r\n                editRow.Row.setNumber(dataColumnIndex, editRow.Value);\r\n            }\r\n        }\r\n    }\r\n};\r\nvar editCells = OLAPContext.getEditCells(); //수정된 데이터 셀\r\nvar rows; //데이터셀을 구성하는 Rows\r\nvar dataCell; //수정된 데이터 셀\r\nvar dataField; //수정된 데이터 셀의 필드 정보\r\nvar beforeValue; //수정전 값\r\nvar afterValue; //수정후 값\r\nfor (var c = 0, c2 = editCells.length; c < c2; c++) {\r\n    dataCell = editCells[c]; //수정된 데이터 셀\r\n    rows = OLAPContext.getRows(dataCell); //수정된 데이터 셀을 구성하는 Rows\r\n    dataField = OLAPContext.getField(dataCell.Field); //수정된 데이터 셀의 필드 정보\r\n    beforeValue = dataCell.Before; //수정전 값\r\n    afterValue = dataCell.After; //수정후 값\r\n    if (beforeValue != afterValue) {\r\n        UpdateCellValue(dataCell, rows, dataField); //수정된 데이터 셀의 값 업데이트\r\n        //행을 추가하고 싶은경우...\r\n        //let row = OLAPContext.addRow(dataCell);//수정된 데이터 셀 기준으로 Row 추가\r\n        //row.setString(OLAPContext.getField(\"D7\").DataColumnIndex, \"추가\");\t\t\r\n        //row.setNumber(dataField.DataColumnIndex, 100);\r\n    }\r\n}\r\n"
+      "Key": "BIZ1141EDB534FE46DF85C9B615D45CBD98",
+      "Encrypted": true,
+      "ScriptText": "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"
     }
   ],
   "Forms": [
@@ -149,10 +232,12 @@
           "TemplateCode": "",
           "ActiveSheet": "",
           "UseMultiSheet": false,
+          "EnableZoom": false,
           "FreezeLineThickness": 1,
           "ParentGridName": "",
           "DisableScrollBar": false,
           "LimitOfBinding": 1000,
+          "ExcelExportType": "Default",
           "SelectedColor": {
             "R": 198,
             "G": 217,
@@ -239,7 +324,7 @@
                     "UseServerExport": true
                   },
                   "PagerInfo": {
-                    "PageSize": 0,
+                    "PageSize": 100,
                     "UsePaging": false,
                     "IgnoreTotalCount": false
                   },
@@ -1026,11 +1111,12 @@
               "Type": "OlapGrid",
               "Id": "OlapGrid1643090455349",
               "Name": "OlapGrid",
+              "Visible": false,
               "Position": {
                 "Left": 4,
                 "Top": 89,
-                "Width": 1855,
-                "Height": 793,
+                "Width": 1875,
+                "Height": 780,
                 "ZIndex": 1,
                 "TabIndex": 0,
                 "Docking": {
@@ -1523,8 +1609,8 @@
           "Position": {
             "Left": 3,
             "Top": 88,
-            "Width": 1872,
-            "Height": 793,
+            "Width": 1545,
+            "Height": 796,
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
@@ -1586,6 +1672,7 @@
           "CheckedValue": "",
           "UnCheckedValue": "",
           "Checked": false,
+          "ViewType": 0,
           "Type": "CheckBox",
           "Id": "CheckBoxe16c811f-ea63-7f4f-88c9-cf44e107c08b",
           "Name": "chkManualUpdate",
@@ -1655,6 +1742,7 @@
           "CheckedValue": "",
           "UnCheckedValue": "",
           "Checked": false,
+          "ViewType": 0,
           "Type": "CheckBox",
           "Id": "CheckBox9d134046-ae6d-ebef-a3f2-e7cd8f6fb291",
           "Name": "chkEnableCreateRecord",
@@ -1719,7 +1807,7 @@
         {
           "DataSource": "DS1",
           "Value": "3",
-          "Text": "가중치 배분(force)",
+          "Text": "",
           "InitType": 0,
           "RefreshType": 1,
           "IsReadOnly": false,
@@ -2226,10 +2314,12 @@
           "TemplateCode": "3DA83891F15444B38AED2BBE3F2F29DD",
           "ActiveSheet": "",
           "UseMultiSheet": false,
+          "EnableZoom": false,
           "FreezeLineThickness": 1,
           "ParentGridName": "",
           "DisableScrollBar": false,
           "LimitOfBinding": 1000,
+          "ExcelExportType": "Default",
           "SelectedColor": {
             "R": 198,
             "G": 217,
@@ -2323,44 +2413,7 @@
   "Modules": [],
   "ResponsiveLayout": [],
   "Langs": [],
-  "WorkFlowModules": [
-    {
-      "EVENT_YN": "N",
-      "CREATE_USER": "yglee",
-      "MODULE_DESCRIPTION": "상/하 컨트롤을 Resize할 수 있는 Splitter를 넣습니다.",
-      "SCRIPT_TEXT": "  var igrid = Matrix.getObject(arguments[0]);\n \tvar ctlTop = Matrix.getObject(arguments[1]);\n \tvar ctlBottom = Matrix.getObject(arguments[2]);\n \tvar splitterColor = arguments[3];\n\tvar SPLITTER_COLOR = \"#FF95B3D7\";\n\tif(!igrid || !ctlTop || !ctlBottom) return;\n\t\n\t\n\tif(ctlTop.ZIndex <=  igrid.ZIndex){\n\t\tctlTop.ZIndex =  igrid.ZIndex + 2;\n    ctlTop.Update();\n\t}\n\t ctlTop.Docking.Margin = \"0,0,0,3\";\n  \n\tif(ctlBottom.ZIndex <=  igrid.ZIndex){\n\t\tctlBottom.ZIndex =  igrid.ZIndex + 2;\n    ctlBottom.Update();\n\t}\n\tctlBottom.Docking.Margin = \"0,3,0,0\";\n  igrid.Style.Type=\"Custom\";\n  igrid.Style.Border.LineType =\"none\";\n  igrid.Update();\n\t\n\tif(splitterColor){\n    splitterColor = splitterColor.trim();\n\t\tif(splitterColor.indexOf(\"#\") == 0){\n\t\t\tSPLITTER_COLOR = \"#FF\" + splitterColor.substring(1,splitterColor.length);\t\t\t\n\t\t}\n\t}\n   var h1 = ctlTop.Height  + 3;\n   var h2 = 23;//ctlBottom.Height;\n   \tvar json = {\n\t\t\t\"DefaultFontName\":\"맑은 고딕\"\n\t\t\t,\"DefaultFontSize\":15\n\t\t\t,\"OriginFontSize\":11\n\t\t\t,\"Styles\":{\n\t\t\t\t\"S0\":{\"text-align\":\"left\",\"vertical-align\":\"middle\"},\n\t\t\t\t\"S1\":{\"border-bottom\":\"Thick,\" + SPLITTER_COLOR},\n\t\t\t\t\"S2\":{\"border-top\":\"Thick,\" + SPLITTER_COLOR}\n\t\t\t},\n\t\t\t\"Tables\":[\n\t\t\t{\n\t\t\t\t\"FreezePanes\":{\"Row\":-1, \"Column\":-1} \n\t\t\t\t,\"Columns\":[\n\t\t\t\t\t{\"Index\": 1 , \"width\":502,\"W\":62.13 , \"Unit\":1 }\n\t\t\t\t\t]\n\t\t\t\t, \"Rows\":[\n\t\t\t\t\t{\"R\":1,\"Height\":h1,\"height\":h1,\"Resize\":2,\"H\":122.25 \n\t\t\t\t\t,\"Cells\":[\n\t\t\t\t\t{\"Range\":\"A1\",\"R\":1,\"C\":1,\"class\":\"S1\",\"Type\":\"Empty\",\"CTL\":ctlTop.Name}\n\t\t\t\t\t]}\n\t\t\t\t\t,{\"R\":2,\"Height\":h2,\"height\":h2,\"Resize\":2,\"H\":122.25,\"Unit\":1\n\t\t\t\t\t,\"Cells\":[\n\t\t\t\t\t{\"Range\":\"A2\",\"R\":2,\"C\":1,\"class\":\"S2\",\"Type\":\"Empty\",\"CTL\":ctlBottom.Name}\n\t\t\t\t\t]}\n\t\t\t\t\t]\n\t\t\t\t\t,\"UsageExpand\":false\n\t\t\t\t\t,\"HasPerCol\":true\n\t\t\t\t\t,\"HasPerRow\":true\n\t\t\t\t\t \n\t\t\t\t}\n\t\t\t]\n\t\t};   \n\tigrid.ApplyDataSource(json);",
-      "WF_YN": "Y",
-      "RESULT_TYPE": "",
-      "MODULE_SUBJECT": "Splitter 상/하 (MX-Grid 사용)",
-      "MODULE_TYPE": "",
-      "CREATE_DATE": "2021-01-19 00:17:53",
-      "DELETE_FLAG": "Y",
-      "MODULE_SEQ": "8",
-      "ORIGINAL_MODULE_CODE": "",
-      "MODIFY_DATE": "2022-06-30 17:46:06",
-      "MODULE_CODE": "MODA673ED75A2354FDB9F82AF23B78BA50F",
-      "EDIT_AUTHORITY": "-1",
-      "MODIFY_USER": "yglee"
-    },
-    {
-      "EVENT_YN": "N",
-      "CREATE_USER": "yglee",
-      "MODULE_DESCRIPTION": "OlapGrid의 Drill To Detail 데이터를 그리드에 출력합니다.\n(이 모듈은 OnDocumentLoadComplete에 지정하십시요.)",
-      "SCRIPT_TEXT": "   \tvar args =  arguments[arguments.length -1];\n\tif(args != null && args.Id){\n\t\tif(Matrix.getObject(args.Id) != null){\n\t\talert(\"이 모듈은 컨트롤의 이벤트에 등록 하실 수 없습니다.\\n모듈로 사용하시거나 Report Open 이벤트에서 사용하시기 바랍니다.\");\n\t\treturn;\n\t\t}\n\t}\n\tvar olap =  Matrix.getObject(arguments[0]);\n\tif(!olap) return;\n\tvar grid =  Matrix.getObject(arguments[1]);\n\tif(!olap) return;\n\tolap.OnDataCellDoubleClick = function(sender, args){ \t\n\t\n\t\tvar ds = Matrix.getControlDataSource(olap.Name);\n\t\tif(ds){\n\t\t\tif(ds.useMeta == \"True\"){\n\t\t\t\t  var xml = olap.getDrillToDetailXml(args.DataCell);\n\t\t\t\t  Matrix.DrillToDetail(olap, xml, grid.Name);\n\t\t\t}else{\n\t\t\t\t  olap.ExecuteDrillToDetail(args.DataCell ,grid.Name);\n\t\t\t}\n\t\t}\t\n\t\t\n\t};",
-      "WF_YN": "Y",
-      "RESULT_TYPE": "",
-      "MODULE_SUBJECT": "OlapGrid Drill To Detail ",
-      "MODULE_TYPE": "",
-      "CREATE_DATE": "2020-12-30 00:49:25",
-      "DELETE_FLAG": "N",
-      "MODULE_SEQ": "19",
-      "ORIGINAL_MODULE_CODE": "",
-      "MODIFY_DATE": "2022-07-01 05:46:06",
-      "MODULE_CODE": "MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8",
-      "EDIT_AUTHORITY": "-1",
-      "MODIFY_USER": "yglee"
-    }
-  ],
+  "WorkFlowModules": [],
   "WorkFlowInfo": "{\"Document\":{\"Name\":\"Report\",\"Events\":[{\"Name\":\"OnDocumentLoadComplete\",\"Flow\":{\"Actions\":[{\"Name\":\"Module\",\"Parameters\":[\"Splitter 상/하 (MX-Grid 사용)\",\"{\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"MODULE_SUBJECT\\\":\\\"Splitter 상/하 (MX-Grid 사용)\\\",\\\"MODULE_PARAMS\\\":[{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"1\\\",\\\"PARAM_DESCRIPTION\\\":\\\"Splitter로 사용할 MX-Grid 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"MXGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"2\\\",\\\"PARAM_DESCRIPTION\\\":\\\"상단에 배치할 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"OlapGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"3\\\",\\\"PARAM_DESCRIPTION\\\":\\\"하단에 배치할 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"Group\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"Y\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP001\\\",\\\"PARAM_SEQ\\\":\\\"4\\\",\\\"PARAM_DESCRIPTION\\\":\\\"Splitter의 색상을 입력해 주세요.(eg.#efefef) \\\\n입력하지 않을 경우 기본값이 적용됩니다.\\\",\\\"Value\\\":\\\"\\\"}],\\\"MODULE_TYPE\\\":\\\"\\\"}\"]},{\"Name\":\"Module\",\"Parameters\":[\"OlapGrid Drill To Detail \",\"{\\\"MODULE_CODE\\\":\\\"MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8\\\",\\\"MODULE_SUBJECT\\\":\\\"OlapGrid Drill To Detail \\\",\\\"MODULE_PARAMS\\\":[{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"1\\\",\\\"PARAM_DESCRIPTION\\\":\\\"OlapGrid 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"OlapGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"2\\\",\\\"PARAM_DESCRIPTION\\\":\\\"상세 데이터를 출력할 데이터 그리드를 선택해 주세요.\\\",\\\"Value\\\":\\\"DataGrid\\\"}],\\\"MODULE_TYPE\\\":\\\"\\\"}\"]}],\"IsChecked\":true,\"SourceXML\":\"<Activity x:Class=\\\"Report(Open)_OnDocumentLoadComplete\\\" sap:VirtualizedContainerService.HintSize=\\\"276,342\\\" mva:VisualBasic.Settings=\\\"Assembly references and imported namespaces for internal implementation\\\" xmlns=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities\\\" xmlns:mva=\\\"clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities\\\" xmlns:sads=\\\"http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger\\\" xmlns:sap=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation\\\" xmlns:scg=\\\"clr-namespace:System.Collections.Generic;assembly=mscorlib\\\" xmlns:wa=\\\"clr-namespace:WorkFlow.Activities;assembly=WorkFlow\\\" xmlns:x=\\\"http://schemas.microsoft.com/winfx/2006/xaml\\\">\\r\\n  <Sequence DisplayName=\\\"Report(Open)_OnDocumentLoadComplete\\\" sap:VirtualizedContainerService.HintSize=\\\"236,302\\\">\\r\\n    <sap:WorkflowViewStateService.ViewState>\\r\\n      <scg:Dictionary x:TypeArguments=\\\"x:String, x:Object\\\">\\r\\n        <x:Boolean x:Key=\\\"IsExpanded\\\">True</x:Boolean>\\r\\n      </scg:Dictionary>\\r\\n    </sap:WorkflowViewStateService.ViewState>\\r\\n    <wa:Module ConditionExpression=\\\"{x:Null}\\\" ConditionToolTipText=\\\"\\\" DiagramText=\\\"Module\\\" DisplayName=\\\"Module\\\" Expand=\\\"False\\\" FunctionName=\\\"_AUD_Module\\\" sap:VirtualizedContainerService.HintSize=\\\"214,69\\\" ModuleJson=\\\"{}{&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;MODULE_SUBJECT&quot;:&quot;Splitter 상/하 (MX-Grid 사용)&quot;,&quot;MODULE_PARAMS&quot;:[{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;1&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;Splitter로 사용할 MX-Grid 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;MXGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;2&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;상단에 배치할 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;OlapGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;3&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;하단에 배치할 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;Group&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;Y&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP001&quot;,&quot;PARAM_SEQ&quot;:&quot;4&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;Splitter의 색상을 입력해 주세요.(eg.#efefef) \\\\n입력하지 않을 경우 기본값이 적용됩니다.&quot;,&quot;Value&quot;:&quot;&quot;}],&quot;MODULE_TYPE&quot;:&quot;&quot;}\\\" ModuleName=\\\"Splitter 상/하 (MX-Grid 사용)\\\" Result=\\\"{x:Null}\\\">\\r\\n      <wa:Module.ElseBody>\\r\\n        <Sequence DisplayName=\\\"Else 동작\\\" />\\r\\n      </wa:Module.ElseBody>\\r\\n      <wa:Module.TrueBody>\\r\\n        <Sequence DisplayName=\\\"True 동작\\\" />\\r\\n      </wa:Module.TrueBody>\\r\\n    </wa:Module>\\r\\n    <wa:Module ConditionExpression=\\\"{x:Null}\\\" ConditionToolTipText=\\\"\\\" DiagramText=\\\"Module\\\" DisplayName=\\\"Module\\\" Expand=\\\"False\\\" FunctionName=\\\"_AUD_Module\\\" sap:VirtualizedContainerService.HintSize=\\\"214,69\\\" ModuleJson=\\\"{}{&quot;MODULE_CODE&quot;:&quot;MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8&quot;,&quot;MODULE_SUBJECT&quot;:&quot;OlapGrid Drill To Detail &quot;,&quot;MODULE_PARAMS&quot;:[{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;1&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;OlapGrid 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;OlapGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;2&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;상세 데이터를 출력할 데이터 그리드를 선택해 주세요.&quot;,&quot;Value&quot;:&quot;DataGrid&quot;}],&quot;MODULE_TYPE&quot;:&quot;&quot;}\\\" ModuleName=\\\"OlapGrid Drill To Detail \\\" Result=\\\"{x:Null}\\\">\\r\\n      <wa:Module.ElseBody>\\r\\n        <Sequence DisplayName=\\\"Else 동작\\\" />\\r\\n      </wa:Module.ElseBody>\\r\\n      <wa:Module.TrueBody>\\r\\n        <Sequence DisplayName=\\\"True 동작\\\" />\\r\\n      </wa:Module.TrueBody>\\r\\n    </wa:Module>\\r\\n  </Sequence>\\r\\n</Activity>\"}}]},\"Object\":{\"Name\":\"Object\"}}",
   "schModel": {},
   "WORK_FLOW": {

@@ -1,8 +1,13 @@
-SELECT 
-    "T1"."D1" AS  "시도별" 
-    ,"T1"."D2" AS  "발주년" 
-    ,"T1"."D3" AS  "발주월" 
-    ,"T1"."D4" AS  "발주자별" 
-    ,"T1"."M1" AS  "데이터" 
-FROM "MEX_USER_FILE_DATA" "T1" 
-WHERE "T1"."META_FILE_CODE" = 'RPT44F134BFC0A84EF9BEB80D2CC25AE694'
+SELECT   T1.YYYY 
+	, T1.MM -- 월
+	, T1.SEX -- 성별
+	, T1.PRODUCT -- 제품명
+	, T1.BRANCH -- 지점명
+	, SUM(T1.SALE_QTY) -- 판매수량
+	, SUM(T1.SALE_PRICE) -- 판매단가
+FROM MEX_COFFEE T1 -- 커피_매출정보
+GROUP BY T1.YYYY,
+	T1.MM,
+	T1.SEX,
+	T1.PRODUCT,
+	T1.BRANCH

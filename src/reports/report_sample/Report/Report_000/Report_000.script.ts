@@ -13,7 +13,7 @@ let getParam: any[] | null = null;
  **************************************/
 const OnDocumentLoadComplete = function(_sender: any, _args: any): void {
 	getParam = Matrix.GetDialogRequestParams() ?
-		Matrix.GetDialogRequestParams() : Matrix.GetGlobalParams().GetParams();
+		Matrix.GetDialogRequestParams() as any[] : Matrix.GetGlobalParams().GetParams() as any[] ; 
 
 	for (let i = 0; i < getParam.length; i++) {
 		RichTextBox.Text += getParam[i].Name + " : " + getParam[i].Value + "\n";

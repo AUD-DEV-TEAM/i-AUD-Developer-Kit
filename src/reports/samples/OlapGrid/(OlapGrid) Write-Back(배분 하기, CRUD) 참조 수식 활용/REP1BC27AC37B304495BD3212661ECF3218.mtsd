@@ -5,12 +5,14 @@
     "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REP1BC27AC37B304495BD3212661ECF3218.mtsd",
     "ReportName": "(OlapGrid) Write-Back(배분 하기, CRUD) 참조 수식 활용",
     "Writer": "yglee",
-    "WriteDate": "2022-6-30-19-43-15",
+    "WriteDate": "2026-02-04 10:23:39",
     "Editor": "yglee",
-    "EditDate": "2022-6-30-19-43-15",
+    "EditDate": "2026-02-04 10:23:39",
     "TabPosition": 1,
     "UseLayout": false,
-    "DocumentVersion": "3.0.0.0"
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
     "Datas": [
@@ -95,22 +97,104 @@
             "Type": "String"
           }
         ]
+      },
+      {
+        "Id": "DS",
+        "Name": "Data1",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "VatCXgm4IcrkvM4YCZI+uhslExmxVCokCMTJ7kZfOL1sF1035snPa8SYo3X/bgl6",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "P1",
+            "Type": "String"
+          },
+          {
+            "Name": "D5",
+            "Type": "String"
+          },
+          {
+            "Name": "D8",
+            "Type": "String"
+          },
+          {
+            "Name": "M1",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "D6",
+            "Type": "String"
+          },
+          {
+            "Name": "M3",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "M2",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "D7",
+            "Type": "String"
+          },
+          {
+            "Name": "D1",
+            "Type": "String"
+          },
+          {
+            "Name": "D2",
+            "Type": "String"
+          },
+          {
+            "Name": "D3",
+            "Type": "String"
+          },
+          {
+            "Name": "D4",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS1",
+        "Name": "Data2",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "DBDD1DE7815C16441BAC53B946D0ED5FB1",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "7Zdi74/xLoVGxLLZK9lcY6rvHXAt3HllAmlUXMW12ElN+L0TPEj6g3T9JSVAkuXb9zIuMN8Zq2LDP2zA2s2yZOEJtmC0cWLt8JA81RpErKsuH79FFnwBg1l9cbaNBNldFvupPZp31HDVDqgMx0khIQ==",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "CODE",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "TEXT",
+            "Type": "String"
+          }
+        ]
       }
     ]
   },
-  "ScriptText": "var btnCalculate = null; \r\nvar btnUpate = null; \r\nvar chkEnableCreateRecord = null; \r\nvar chkManualUpdate = null; \r\nvar DataGrid = null; \r\nvar DataGrid = null; \r\nvar MXGrid = null; \r\nvar OlapGrid = null; \r\nvar VN_BAEBUN_TYPE = null; \r\nvar tbxLockCellFormula = null;\r\n\r\nvar initControlVariables = function(){\r\n\tbtnCalculate = Matrix.getObject(\"btnCalculate\"); \r\n\tbtnUpate = Matrix.getObject(\"btnUpate\"); \r\n\tchkEnableCreateRecord = Matrix.getObject(\"chkEnableCreateRecord\"); \r\n\tchkManualUpdate = Matrix.getObject(\"chkManualUpdate\"); \r\n\tDataGrid = Matrix.getObject(\"DataGrid\"); \r\n\tDataGrid = Matrix.getObject(\"DataGrid\"); \r\n\tMXGrid = Matrix.getObject(\"MXGrid\"); \r\n\tOlapGrid = Matrix.getObject(\"OlapGrid\"); \r\n\tVN_BAEBUN_TYPE = Matrix.getObject(\"VN_BAEBUN_TYPE\"); \r\n\ttbxLockCellFormula = Matrix.getObject(\"tbxLockCellFormula\"); \r\n\t\r\n\ttbxLockCellFormula.OnTextChange = function(s, e){\r\n\t\tOlapGrid.setLockCellFormula(tbxLockCellFormula.Text);\r\n\t};\r\n}; \r\n\r\n\r\n\r\n/**\r\n * Write-Back 기능 활성화 하기\r\n**/\r\nvar initWriteBack = function(){\r\n\r\n\tOlapGrid.Options.EnableWriteBack = true; //Write-back 활성화\r\n\tOlapGrid.Options.EnableCreateRecord = false; //레코드가 없는 셀의 경우 데이터 생성 여부\r\n\tOlapGrid.Options.ManualUpdate = false; //수동 계산 실행 여\r\n\r\n\tOlapGrid.setLockCellFormula(tbxLockCellFormula.Text);\r\n}\r\n\r\n/*****************************************\r\n* 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n* * arguments :  \r\n*****************************************/\r\n var OnDocumentLoadComplete  = function(sender, args)\r\n {\r\n\tinitControlVariables();\r\n\tinitWriteBack(); \r\n };\r\n \r\n\r\n\r\n\r\n\r\n/*****************************************\r\n* 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n* * arguments :  \r\n*\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n*\t\t string\tText (Readonly:False) : 라벨 값 \r\n*****************************************/\r\n var OnButtonClick  = function(sender, args)\r\n { \r\n \tif(args.Id == \"btnCalculate\"){\r\n\t\t\t\t\r\n\t\tif(OlapGrid.CanCalculateWriteBack()){ //계산할 대상이 있으면..\r\n\t\t\tOlapGrid.CalculateWriteBack();\r\n\t\t}\r\n\t\t\r\n\t}else if(args.Id == \"btnUpate\"){\r\n\t\tif(OlapGrid.IsModified() == false){ //계산할 대상이 있으면..\r\n\t\t\tMatrix.Information(\"수정된 데이터가 존재하지 않습니다.\" ,\"i-AUD\");\r\n\t\t\treturn;\r\n\t\t}\r\n\t\t//if(OlapGrid.CanCalculateWriteBack()){ //계산할 대상이 있으면..\r\n\t\t\t//Matrix.Information(\"계산하지 않은 셀이 존재합니다. 계산을 먼저 수행해 주세요.\" ,\"i-AUD\");\r\n\t\t\t//return;\r\n\t\t\t\r\n\t\t//}else{\r\n\t\t//\tsaveOlap();\r\n\t\t//}\r\n\t\tif(OlapGrid.CanCalculateWriteBack()){ //계산할 대상이 있으면..\r\n\t\t\tOlapGrid.CalculateWriteBack(/* succsss only */\r\n                                   function(){\r\n                                       saveOlap();\r\n                                   });\r\n\t\t}else{\r\n  \t\t\tsaveOlap();\r\n\t\t}\r\n\t\t\r\n\t}\r\n };\r\n \r\n var saveOlap = function(){\r\n \tMatrix.RunScript(\"OlapGrid\" ,\"Service2\" ,function(p){\r\n\t\t\t\t\t\t\t\t\t\tif(p.Success == false){\r\n\t\t\t\t\t\t\t\t\t\tMatrix.Alert(p.Message);\r\n\t\t\t\t\t\t\t\t\t\treturn;\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t//alert(\"정상적으로 처리되었습니다.\");\r\n\t\t\t\t\t\t\t\t\tMatrix.doRefresh(\"OlapGrid\");\r\n\t\t\t\t\t\t\t\t});\r\n }\r\n/*****************************************\r\n* 콤보박스 컨트롤의 값이 변경될때 발생합니다.\r\n* * arguments :  \r\n*\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n*\t\t string\tValue (Readonly:False) : 컨트롤 값 \r\n*****************************************/\r\n var OnComboBoxValueChanged  = function(sender, args)\r\n {\r\n \r\n\tvar fld = OlapGrid.getField(\"M1\")\r\n\tfld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n\tfld.EditPrecision = 0; //소수점 자리수\r\n\t//fld.EditMethodRef = \"M2\";//참조 필드(가중치 기준 필드)\r\n\t\r\n\tfld = OlapGrid.getField(\"M2\")\r\n\tfld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n\tfld.EditPrecision = 0; //소수점 자리수\r\n\t\r\n\tfld = OlapGrid.getField(\"M3\")\r\n\tfld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n\tfld.EditPrecision = 0; //소수점 자리수\r\n\t\r\n };\r\n/*****************************************\r\n* 체크박스 컨트롤의 값이 변경될 경우 발생합니다.\r\n* * arguments :  \r\n*\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n*\t\t bool\tIsChecked (Readonly:False) : 체크 상태 \r\n*****************************************/\r\n var OnCheckValueChange  = function(sender, args)\r\n {\t\r\n \tif(args.Id == \"chkManualUpdate\"){\r\n \t\tOlapGrid.Options.ManualUpdate = args.IsChecked;\r\n\t}else if(args.Id == \"chkEnableCreateRecord\"){\r\n\t\tOlapGrid.Options.EnableCreateRecord = args.IsChecked;\r\n\t}\r\n \r\n };\r\n   \r\n/*****************************************\r\n* 데이터 셀 수정 모드로 진입할 때 발생합니다.\r\n* * arguments :  \r\n*\t\t string\tId (Readonly:True) : 컨트롤 명 \r\n*\t\t iOLAP.ScriptDataCell\tCell (Readonly:True) : 데이터 셀 객체 \r\n*\t\t bool\tCancel (Readonly:False) : 이 값을 true 로 설정 할 경우 수정 모드로 진입이 취소됩니다. \r\n*****************************************/\r\n var OnOlapDataCellStartEdit  = function(sender, args)\r\n {\r\n \t\t \r\n }; \r\n \r\n/*****************************************\r\n* 데이터 셀을 수정 후에 발생합니다.\r\n* * arguments :  \r\n*\t\t string\tId (Readonly:True) : 컨트롤 명 \r\n*\t\t iOLAP.ScriptDataCell\tCell (Readonly:True) : 데이터 셀 객체 \r\n*\t\t double\tBeforeValue (Readonly:True) : 수정 전 값 \r\n*\t\t double\tAfterValue (Readonly:True) : 수정 후 값 \r\n*\t\t double\tLockedValue (Readonly:True) : 잠긴 레코드의 값 \r\n*\t\t bool\tCancel (Readonly:False) : 이 값을 true 로 설정 할 경우 수정 작업이 취소됩니다. \r\n*****************************************/\r\n var OnOlapDataCellEndEdit  = function(sender, args)\r\n {\r\n \r\n \tif(args.LockedValue > args.AfterValue){\r\n\t\targs.Cancel = true;\r\n        var fmtValue =  Matrix.getFormatConverter(args.Cell.Field.Format).Convert(args.LockedValue).Value;\t\r\n\t\t\r\n\t\tMatrix.Information(\"잠금으로 설정한 값(\" + fmtValue + \")보다 큰 값을 입력해 주세요.\",\"i-AUD\");\r\n\t}\r\n\t//입력값 점검 전체 값계의 값보다 크면 안된다.\r\n\tvar limitValue = parseFloat( args.Cell.Value2 ); // <= 참조 수식 값 확인\r\n\tif(limitValue < args.AfterValue){\r\n\t\targs.Cancel = true;\r\n        var fmtValue =  Matrix.getFormatConverter(args.Cell.Field.Format).Convert(args.LockedValue).Value;\t\r\n\t\t\r\n\t\tMatrix.Information(\"입력한 값은 Row의 합계 \"+limitValue+\" 보다 클 수 없습니다..\",\"i-AUD\");\r\n\t}\r\n };",
+  "ScriptText": "var btnCalculate;\r\nvar btnUpate;\r\nvar chkEnableCreateRecord;\r\nvar chkManualUpdate;\r\nvar DataGrid;\r\nvar MXGrid;\r\nvar OlapGrid;\r\nvar VN_BAEBUN_TYPE;\r\nvar tbxLockCellFormula;\r\nvar initControlVariables = function () {\r\n    btnCalculate = Matrix.getObject(\"btnCalculate\");\r\n    btnUpate = Matrix.getObject(\"btnUpate\");\r\n    chkEnableCreateRecord = Matrix.getObject(\"chkEnableCreateRecord\");\r\n    chkManualUpdate = Matrix.getObject(\"chkManualUpdate\");\r\n    DataGrid = Matrix.getObject(\"DataGrid\");\r\n    MXGrid = Matrix.getObject(\"MXGrid\");\r\n    OlapGrid = Matrix.getObject(\"OlapGrid\");\r\n    VN_BAEBUN_TYPE = Matrix.getObject(\"VN_BAEBUN_TYPE\");\r\n    tbxLockCellFormula = Matrix.getObject(\"tbxLockCellFormula\");\r\n    tbxLockCellFormula.OnTextChange = function (s, e) {\r\n        OlapGrid.setLockCellFormula(tbxLockCellFormula.Text);\r\n    };\r\n};\r\n/**\r\n * Write-Back 기능 활성화 하기\r\n **/\r\nvar initWriteBack = function () {\r\n    OlapGrid.Options.EnableWriteBack = true; //Write-back 활성화\r\n    OlapGrid.Options.EnableCreateRecord = false; //레코드가 없는 셀의 경우 데이터 생성 여부\r\n    OlapGrid.Options.ManualUpdate = false; //수동 계산 실행 여\r\n    OlapGrid.setLockCellFormula(tbxLockCellFormula.Text);\r\n};\r\n/*****************************************\r\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n * * arguments :\r\n *****************************************/\r\nvar OnDocumentLoadComplete = function (sender, args) {\r\n    initControlVariables();\r\n    initWriteBack();\r\n};\r\n/*****************************************\r\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤이름\r\n *\t\t string\tText (Readonly:False) : 라벨 값\r\n *****************************************/\r\nvar OnButtonClick = function (sender, args) {\r\n    if (args.Id == \"btnCalculate\") {\r\n        if (OlapGrid.CanCalculateWriteBack()) {\r\n            //계산할 대상이 있으면..\r\n            OlapGrid.CalculateWriteBack(function () { });\r\n        }\r\n    }\r\n    else if (args.Id == \"btnUpate\") {\r\n        if (OlapGrid.IsModified() == false) {\r\n            //계산할 대상이 있으면..\r\n            Matrix.Information(\"수정된 데이터가 존재하지 않습니다.\", \"i-AUD\");\r\n            return;\r\n        }\r\n        //if(OlapGrid.CanCalculateWriteBack()){ //계산할 대상이 있으면..\r\n        //Matrix.Information(\"계산하지 않은 셀이 존재합니다. 계산을 먼저 수행해 주세요.\" ,\"i-AUD\");\r\n        //return;\r\n        //}else{\r\n        //\tsaveOlap();\r\n        //}\r\n        if (OlapGrid.CanCalculateWriteBack()) {\r\n            //계산할 대상이 있으면..\r\n            OlapGrid.CalculateWriteBack(\r\n            /* succsss only */\r\n            function () {\r\n                saveOlap();\r\n            });\r\n        }\r\n        else {\r\n            saveOlap();\r\n        }\r\n    }\r\n};\r\nvar saveOlap = function () {\r\n    Matrix.RunScript(\"OlapGrid\", \"Service2\", function (p) {\r\n        if (p.Success == false) {\r\n            Matrix.Alert(p.Message);\r\n            return;\r\n        }\r\n        //alert(\"정상적으로 처리되었습니다.\");\r\n        Matrix.doRefresh(\"OlapGrid\");\r\n    });\r\n};\r\n/*****************************************\r\n * 콤보박스 컨트롤의 값이 변경될때 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤이름\r\n *\t\t string\tValue (Readonly:False) : 컨트롤 값\r\n *****************************************/\r\nvar OnComboBoxValueChanged = function (_sender, _args) {\r\n    var fld = OlapGrid.getField(\"M1\");\r\n    fld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n    fld.EditPrecision = 0; //소수점 자리수\r\n    //fld.EditMethodRef = \"M2\";//참조 필드(가중치 기준 필드)\r\n    fld = OlapGrid.getField(\"M2\");\r\n    fld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n    fld.EditPrecision = 0; //소수점 자리수\r\n    fld = OlapGrid.getField(\"M3\");\r\n    fld.EditMethod = parseFloat(VN_BAEBUN_TYPE.Value);\r\n    fld.EditPrecision = 0; //소수점 자리수\r\n};\r\n/*****************************************\r\n * 체크박스 컨트롤의 값이 변경될 경우 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤이름\r\n *\t\t bool\tIsChecked (Readonly:False) : 체크 상태\r\n *****************************************/\r\nvar OnCheckValueChange = function (_sender, args) {\r\n    if (args.Id == \"chkManualUpdate\") {\r\n        OlapGrid.Options.ManualUpdate = args.IsChecked;\r\n    }\r\n    else if (args.Id == \"chkEnableCreateRecord\") {\r\n        OlapGrid.Options.EnableCreateRecord = args.IsChecked;\r\n    }\r\n};\r\n/*****************************************\r\n * 데이터 셀 수정 모드로 진입할 때 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:True) : 컨트롤 명\r\n *\t\t iOLAP.ScriptDataCell\tCell (Readonly:True) : 데이터 셀 객체\r\n *\t\t bool\tCancel (Readonly:False) : 이 값을 true 로 설정 할 경우 수정 모드로 진입이 취소됩니다.\r\n *****************************************/\r\nvar OnOlapDataCellStartEdit = function (_sender, _args) { };\r\n/*****************************************\r\n * 데이터 셀을 수정 후에 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:True) : 컨트롤 명\r\n *\t\t iOLAP.ScriptDataCell\tCell (Readonly:True) : 데이터 셀 객체\r\n *\t\t double\tBeforeValue (Readonly:True) : 수정 전 값\r\n *\t\t double\tAfterValue (Readonly:True) : 수정 후 값\r\n *\t\t double\tLockedValue (Readonly:True) : 잠긴 레코드의 값\r\n *\t\t bool\tCancel (Readonly:False) : 이 값을 true 로 설정 할 경우 수정 작업이 취소됩니다.\r\n *****************************************/\r\nvar OnOlapDataCellEndEdit = function (_sender, args) {\r\n    if (args.LockedValue > args.AfterValue) {\r\n        args.Cancel = true;\r\n        var fmtValue = Matrix.getFormatConverter(args.Cell.Field.Format).Convert(args.LockedValue).Value;\r\n        Matrix.Information(\"잠금으로 설정한 값(\" + fmtValue + \")보다 큰 값을 입력해 주세요.\", \"i-AUD\");\r\n    }\r\n    //입력값 점검 전체 값계의 값보다 크면 안된다.\r\n    var limitValue = parseFloat(args.Cell.Value2); // <= 참조 수식 값 확인\r\n    if (limitValue < args.AfterValue) {\r\n        args.Cancel = true;\r\n        var fmtValue = Matrix.getFormatConverter(args.Cell.Field.Format).Convert(args.LockedValue).Value;\r\n        Matrix.Information(\"입력한 값은 Row의 합계 \" + limitValue + \" 보다 클 수 없습니다..\", \"i-AUD\");\r\n    }\r\n};\r\n",
   "ServerScriptText": [
     {
       "Name": "Service1",
-      "Key": "BIZ",
+      "Key": "BIZB411599D4D084E609FA2577C9886F4FA",
       "Encrypted": true,
-      "ScriptText": "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"
+      "ScriptText": "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"
     },
     {
       "Name": "Service2",
-      "Key": "BIZ099CC15E5CEB42E598F379CF32DE1788",
+      "Key": "BIZ51EF5D39648A48699F32AB687FDC26BE",
       "Encrypted": true,
-      "ScriptText": "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"
+      "ScriptText": "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"
     }
   ],
   "Forms": [
@@ -121,6 +205,8 @@
       "Visible": true,
       "LanguageCode": "",
       "Style": {
+        "Type": 2,
+        "BoxStyle": "",
         "Border": {
           "ColorR": 204,
           "ColorG": 204,
@@ -146,10 +232,12 @@
           "TemplateCode": "",
           "ActiveSheet": "",
           "UseMultiSheet": false,
+          "EnableZoom": false,
           "FreezeLineThickness": 1,
           "ParentGridName": "",
           "DisableScrollBar": false,
           "LimitOfBinding": 1000,
+          "ExcelExportType": "Default",
           "SelectedColor": {
             "R": 198,
             "G": 217,
@@ -162,6 +250,8 @@
             "B": 127,
             "A": 1
           },
+          "SelectionBorderColor": "rgba(234, 86, 64, 0.5)",
+          "SelectionMode": 0,
           "Controls": [
             {
               "DataSource": "DS",
@@ -188,6 +278,8 @@
                   "DisplayColumnSubTotal": false,
                   "HideTotalChildIsOneColumn": true,
                   "HideTotalChildIsOneRow": true,
+                  "HideEmptyMeasureRows": false,
+                  "HideEmptyMeasureColumns": false,
                   "DisplayRowSubTotal": true,
                   "DisplayColumnGrandTotal": true,
                   "DisplayRowGrandTotal": true,
@@ -220,6 +312,11 @@
                   "EnableWriteBack": true,
                   "EnableCreateRecord": false,
                   "ManualUpdate": false,
+                  "MergeColumnHeaders": false,
+                  "MergeRowHeaders": false,
+                  "OptimizingHybridFilter": false,
+                  "AutoHideGrandTotalRow": false,
+                  "AutoHideGrandTotalColumn": false,
                   "ExportOption": {
                     "ExportSheetSize": 1000000,
                     "ExportDisableRowMerge": false,
@@ -227,13 +324,14 @@
                   },
                   "PagerInfo": {
                     "PageSize": 100,
-                    "UsePaging": true
+                    "UsePaging": true,
+                    "IgnoreTotalCount": false
                   },
                   "Style": {
                     "ColumnHeaderVerticalAlignment": 0,
                     "RowHeaderVerticalAlignment": 0,
                     "LineColor": "rgba(152,183,216,1)",
-                    "BackgroundColor": "#fff"
+                    "BackgroundColor": ""
                   },
                   "CacheOption": {
                     "CacheMode": 1,
@@ -243,6 +341,14 @@
                     "HybridSort": false
                   }
                 },
+                "TopFilter": {
+                  "Dimension": "",
+                  "Measure": "",
+                  "Rank": 10,
+                  "IsTop": true,
+                  "GroupBy": []
+                },
+                "PreFilters": [],
                 "Fields": [
                   {
                     "Key": "P1",
@@ -296,7 +402,8 @@
                       "MeasureFilterTypeA": 0,
                       "MeasureFilterTypeB": 0,
                       "MeasureAndOrOperator": 2
-                    }
+                    },
+                    "RelationFields": []
                   },
                   {
                     "Key": "D5",
@@ -350,7 +457,8 @@
                       "MeasureFilterTypeA": 0,
                       "MeasureFilterTypeB": 0,
                       "MeasureAndOrOperator": 2
-                    }
+                    },
+                    "RelationFields": []
                   },
                   {
                     "Key": "D8",
@@ -404,7 +512,8 @@
                       "MeasureFilterTypeA": 0,
                       "MeasureFilterTypeB": 0,
                       "MeasureAndOrOperator": 2
-                    }
+                    },
+                    "RelationFields": []
                   },
                   {
                     "Key": "M1",
@@ -460,7 +569,8 @@
                       "MeasureFilterTypeA": 0,
                       "MeasureFilterTypeB": 0,
                       "MeasureAndOrOperator": 2
-                    }
+                    },
+                    "RelationFields": []
                   },
                   {
                     "Key": "#MEASURES_HEADER#",
@@ -514,7 +624,8 @@
                       "MeasureFilterTypeA": 0,
                       "MeasureFilterTypeB": 0,
                       "MeasureAndOrOperator": 2
-                    }
+                    },
+                    "RelationFields": []
                   },
                   {
                     "Key": "M3",
@@ -570,7 +681,8 @@
                       "MeasureFilterTypeA": 0,
                       "MeasureFilterTypeB": 0,
                       "MeasureAndOrOperator": 2
-                    }
+                    },
+                    "RelationFields": []
                   },
                   {
                     "Key": "D6",
@@ -624,7 +736,8 @@
                       "MeasureFilterTypeA": 0,
                       "MeasureFilterTypeB": 0,
                       "MeasureAndOrOperator": 2
-                    }
+                    },
+                    "RelationFields": []
                   },
                   {
                     "Key": "D4",
@@ -678,7 +791,8 @@
                       "MeasureFilterTypeA": 0,
                       "MeasureFilterTypeB": 0,
                       "MeasureAndOrOperator": 2
-                    }
+                    },
+                    "RelationFields": []
                   },
                   {
                     "Key": "D7",
@@ -732,7 +846,8 @@
                       "MeasureFilterTypeA": 0,
                       "MeasureFilterTypeB": 0,
                       "MeasureAndOrOperator": 2
-                    }
+                    },
+                    "RelationFields": []
                   },
                   {
                     "Key": "D3",
@@ -786,7 +901,8 @@
                       "MeasureFilterTypeA": 0,
                       "MeasureFilterTypeB": 0,
                       "MeasureAndOrOperator": 2
-                    }
+                    },
+                    "RelationFields": []
                   },
                   {
                     "Key": "M2",
@@ -842,7 +958,8 @@
                       "MeasureFilterTypeA": 0,
                       "MeasureFilterTypeB": 0,
                       "MeasureAndOrOperator": 2
-                    }
+                    },
+                    "RelationFields": []
                   },
                   {
                     "Key": "D2",
@@ -896,7 +1013,8 @@
                       "MeasureFilterTypeA": 0,
                       "MeasureFilterTypeB": 0,
                       "MeasureAndOrOperator": 2
-                    }
+                    },
+                    "RelationFields": []
                   },
                   {
                     "Key": "D1",
@@ -950,7 +1068,8 @@
                       "MeasureFilterTypeA": 0,
                       "MeasureFilterTypeB": 0,
                       "MeasureAndOrOperator": 2
-                    }
+                    },
+                    "RelationFields": []
                   },
                   {
                     "Key": "CALC_FLD_13",
@@ -1005,7 +1124,8 @@
                       "MeasureFilterTypeB": 0,
                       "MeasureAndOrOperator": 2
                     },
-                    "CustomSortList": []
+                    "CustomSortList": [],
+                    "RelationFields": []
                   }
                 ],
                 "MultiHeaderCells": []
@@ -1014,6 +1134,7 @@
                 "UseMeta": false,
                 "UseChartSourceTotal": false,
                 "UseChartSourceGrandTotal": false,
+                "UseChartSourceReverse": false,
                 "ChartLabelDepth": -1,
                 "ConditionalStyleName": "",
                 "BackgroundColorBoxStyleKey": "",
@@ -1038,27 +1159,21 @@
                 "EtcMultiHeader": true,
                 "EtcCacheInfo": true,
                 "EtcFieldGroup": true,
-                "EtcFilterManager": true
+                "EtcFilterManager": true,
+                "EtcTopFilter": true
               },
               "Type": "OlapGrid",
               "Id": "OlapGrid1643090455349",
               "Name": "OlapGrid",
               "Visible": false,
               "Position": {
-                "Left": 3,
-                "Top": 88,
-                "Width": 1891,
-                "Height": 593,
+                "Left": 4,
+                "Top": 89,
+                "Width": 1892,
+                "Height": 590,
                 "ZIndex": 1,
                 "TabIndex": 0,
                 "Docking": {
-                  "compileMarginText": "0,0,0,3",
-                  "compileMargin": [
-                    0,
-                    0,
-                    0,
-                    3
-                  ],
                   "Left": false,
                   "Right": false,
                   "Top": false,
@@ -1073,9 +1188,7 @@
                 "Type": 0,
                 "BoxStyle": "",
                 "Background": {
-                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
-                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -1083,9 +1196,7 @@
                   }
                 },
                 "Border": {
-                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
-                    "__type__": "istudio.drawing.style.Color",
                     "R": 204,
                     "G": 204,
                     "B": 204,
@@ -1093,27 +1204,10 @@
                   },
                   "LineType": "solid",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0",
-                  "Option": {
-                    "activate": [],
-                    "Inactivate": [
-                      "Border",
-                      "Font",
-                      "StyleType",
-                      "BoxStyle",
-                      "Background"
-                    ]
-                  },
-                  "mVariable": {
-                    "LineType": "solid",
-                    "Thickness": "1,1,1,1",
-                    "CornerRadius": "0,0,0,0"
-                  }
+                  "CornerRadius": "0,0,0,0"
                 },
                 "Font": {
-                  "Type": "FontInfo",
                   "Color": {
-                    "__type__": "istudio.drawing.style.Color",
                     "R": 0,
                     "G": 0,
                     "B": 0,
@@ -1126,17 +1220,6 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "left",
                   "VerticalAlignment": "top",
-                  "mVariable": {},
-                  "Option": {
-                    "activate": [],
-                    "Inactivate": [
-                      "Border",
-                      "Font",
-                      "StyleType",
-                      "BoxStyle",
-                      "Background"
-                    ]
-                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -1151,8 +1234,8 @@
                   "Position": {
                     "Left": 0,
                     "Top": 24,
-                    "Width": 0,
-                    "Height": 0,
+                    "Width": 1892,
+                    "Height": 157,
                     "ZIndex": 3,
                     "TabIndex": 0,
                     "Docking": {
@@ -1166,6 +1249,36 @@
                   },
                   "Style": {
                     "Type": 2,
+                    "Border": {
+                      "Type": 0,
+                      "Color": {
+                        "R": 187,
+                        "G": 199,
+                        "B": 211,
+                        "A": 1
+                      },
+                      "Thickness": "1,1,1,1"
+                    },
+                    "VerticalBorder": {
+                      "Type": 0,
+                      "Color": {
+                        "R": 187,
+                        "G": 199,
+                        "B": 211,
+                        "A": 1
+                      },
+                      "Thickness": 1
+                    },
+                    "HorizontalBorder": {
+                      "Type": 0,
+                      "Color": {
+                        "R": 187,
+                        "G": 199,
+                        "B": 211,
+                        "A": 1
+                      },
+                      "Thickness": 1
+                    },
                     "Background": {
                       "Color": {
                         "R": 255,
@@ -1173,36 +1286,6 @@
                         "B": 255,
                         "A": 1
                       }
-                    },
-                    "Border": {
-                      "Color": {
-                        "R": 187,
-                        "G": 199,
-                        "B": 211,
-                        "A": 1
-                      },
-                      "CornerRadius": "0,0,0,0",
-                      "LineType": "solid",
-                      "Thickness": "1,1,1,1"
-                    },
-                    "VerticalBorder": {
-                      "Color": {
-                        "R": 187,
-                        "G": 199,
-                        "B": 211,
-                        "A": 1
-                      },
-                      "LineType": "solid",
-                      "Thickness": 1
-                    },
-                    "HorizontalBorder": {
-                      "Color": {
-                        "R": 187,
-                        "G": 199,
-                        "B": 211,
-                        "A": 1
-                      },
-                      "Thickness": 1
                     },
                     "Font": {
                       "Bold": false,
@@ -1212,7 +1295,7 @@
                         "B": 0,
                         "A": 1
                       },
-                      "Family": "inherit",
+                      "Family": "맑은 고딕",
                       "HorizontalAlignment": "left",
                       "Italic": false,
                       "Size": 12,
@@ -1225,6 +1308,7 @@
                   "DoRefresh": false,
                   "ColumnHeaderHeight": 23,
                   "RowHeight": 23,
+                  "ExportCount": 0,
                   "FontFamily": "inherit",
                   "FontSize": 12,
                   "UsePPTExport": false,
@@ -1242,6 +1326,13 @@
                       "Name": "P1",
                       "Caption": "P1",
                       "Width": 100,
+                      "Validator": {
+                        "ValidateType": 8,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
                       "KeyType": 2,
                       "HeaderPosition": "center"
                     },
@@ -1249,6 +1340,13 @@
                       "Name": "D1",
                       "Caption": "D1",
                       "Width": 306,
+                      "Validator": {
+                        "ValidateType": 8,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
                       "KeyType": 2,
                       "HeaderPosition": "center"
                     },
@@ -1256,6 +1354,13 @@
                       "Name": "D2",
                       "Caption": "D2",
                       "Width": 100,
+                      "Validator": {
+                        "ValidateType": 8,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
                       "KeyType": 2,
                       "HeaderPosition": "center"
                     },
@@ -1263,6 +1368,13 @@
                       "Name": "D3",
                       "Caption": "D3",
                       "Width": 100,
+                      "Validator": {
+                        "ValidateType": 8,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
                       "KeyType": 2,
                       "HeaderPosition": "center"
                     },
@@ -1270,6 +1382,13 @@
                       "Name": "D4",
                       "Caption": "D4",
                       "Width": 100,
+                      "Validator": {
+                        "ValidateType": 8,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
                       "KeyType": 2,
                       "HeaderPosition": "center"
                     },
@@ -1277,6 +1396,13 @@
                       "Name": "D5",
                       "Caption": "D5",
                       "Width": 100,
+                      "Validator": {
+                        "ValidateType": 8,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
                       "KeyType": 2,
                       "HeaderPosition": "center"
                     },
@@ -1284,6 +1410,13 @@
                       "Name": "D6",
                       "Caption": "D6",
                       "Width": 100,
+                      "Validator": {
+                        "ValidateType": 8,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
                       "KeyType": 2,
                       "HeaderPosition": "center"
                     },
@@ -1291,6 +1424,13 @@
                       "Name": "D7",
                       "Caption": "D7",
                       "Width": 100,
+                      "Validator": {
+                        "ValidateType": 8,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
                       "KeyType": 2,
                       "HeaderPosition": "center"
                     },
@@ -1298,6 +1438,13 @@
                       "Name": "D8",
                       "Caption": "D8",
                       "Width": 100,
+                      "Validator": {
+                        "ValidateType": 8,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
                       "KeyType": 2,
                       "HeaderPosition": "center"
                     },
@@ -1305,6 +1452,13 @@
                       "Name": "M1",
                       "Caption": "M1",
                       "Width": 100,
+                      "Validator": {
+                        "ValidateType": 8,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
                       "ColumnType": 3,
                       "Format": "{0:N0}",
                       "KeyType": 2,
@@ -1318,6 +1472,13 @@
                       "Name": "M2",
                       "Caption": "M2",
                       "Width": 100,
+                      "Validator": {
+                        "ValidateType": 8,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
                       "ColumnType": 3,
                       "Format": "{0:N0}",
                       "KeyType": 2,
@@ -1331,6 +1492,13 @@
                       "Name": "M3",
                       "Caption": "M3",
                       "Width": 100,
+                      "Validator": {
+                        "ValidateType": 8,
+                        "UseGuideMessage": true,
+                        "GuideLanguageCode": "",
+                        "UseErrorMessage": true,
+                        "ErrorLanguageCode": ""
+                      },
                       "ColumnType": 3,
                       "Format": "{0:N0}",
                       "KeyType": 2,
@@ -1344,17 +1512,19 @@
                 },
                 {
                   "LanguageCode": "",
-                  "UseTooltip": true,
                   "Text": " Drill To Detail (데이터 베이스 기준)",
                   "Cursor": "default",
                   "Formula": "",
-                  "BindingInfo": {
-                    "BindingGId": "",
-                    "BindingGName": "",
-                    "BindingGColumn": "",
-                    "BindingGColumnId": ""
-                  },
                   "MxBinding": "",
+                  "MxBindingUseStyle": false,
+                  "UseTooltip": true,
+                  "Margin": {
+                    "Left": 0,
+                    "Top": 0,
+                    "Right": 0,
+                    "Bottom": 0,
+                    "Text": "0,0,0,0"
+                  },
                   "Type": "Label",
                   "Id": "Labele438210e-aec3-b075-96e9-a38abb73d613",
                   "Name": "Label",
@@ -1362,18 +1532,11 @@
                   "Position": {
                     "Left": 0,
                     "Top": 0,
-                    "Width": 0,
+                    "Width": 1892,
                     "Height": 24,
                     "ZIndex": 5,
                     "TabIndex": 0,
                     "Docking": {
-                      "compileMarginText": "0",
-                      "compileMargin": [
-                        0,
-                        0,
-                        0,
-                        0
-                      ],
                       "Left": true,
                       "Right": true,
                       "Top": true,
@@ -1388,9 +1551,7 @@
                     "Type": 2,
                     "BoxStyle": "",
                     "Background": {
-                      "__type__": "istudio.drawing.style.Brush",
                       "Color": {
-                        "__type__": "istudio.drawing.style.Color",
                         "R": 207,
                         "G": 226,
                         "B": 243,
@@ -1398,9 +1559,7 @@
                       }
                     },
                     "Border": {
-                      "__type__": "istudio.drawing.style.BorderInfo",
                       "Color": {
-                        "__type__": "istudio.drawing.style.Color",
                         "R": 85,
                         "G": 142,
                         "B": 213,
@@ -1408,22 +1567,10 @@
                       },
                       "LineType": "none",
                       "Thickness": "1,1,1,1",
-                      "CornerRadius": "0,0,0,0",
-                      "Option": {
-                        "activate": [],
-                        "Inactivate": [],
-                        "DefaultStyle": "Label"
-                      },
-                      "mVariable": {
-                        "LineType": "none",
-                        "Thickness": "1,1,1,1",
-                        "CornerRadius": "0,0,0,0"
-                      }
+                      "CornerRadius": "0,0,0,0"
                     },
                     "Font": {
-                      "Type": "FontInfo",
                       "Color": {
-                        "__type__": "istudio.drawing.style.Color",
                         "R": 12,
                         "G": 56,
                         "B": 134,
@@ -1436,12 +1583,6 @@
                       "UnderLine": false,
                       "HorizontalAlignment": "left",
                       "VerticalAlignment": "middle",
-                      "mVariable": {},
-                      "Option": {
-                        "activate": [],
-                        "Inactivate": [],
-                        "DefaultStyle": "Label"
-                      },
                       "TempFontFamily": "맑은 고딕"
                     }
                   }
@@ -1452,20 +1593,13 @@
               "Name": "Group",
               "Visible": false,
               "Position": {
-                "Left": 3,
-                "Top": 687,
-                "Width": 1891,
-                "Height": 218,
+                "Left": 4,
+                "Top": 688,
+                "Width": 1892,
+                "Height": 181,
                 "ZIndex": 1,
                 "TabIndex": 0,
                 "Docking": {
-                  "compileMarginText": "0,3,0,0",
-                  "compileMargin": [
-                    0,
-                    3,
-                    0,
-                    0
-                  ],
                   "Left": false,
                   "Right": false,
                   "Top": false,
@@ -1480,9 +1614,7 @@
                 "Type": 2,
                 "BoxStyle": "",
                 "Background": {
-                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
-                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -1490,9 +1622,7 @@
                   }
                 },
                 "Border": {
-                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
-                    "__type__": "istudio.drawing.style.Color",
                     "R": 103,
                     "G": 144,
                     "B": 190,
@@ -1500,22 +1630,10 @@
                   },
                   "LineType": "none",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0",
-                  "Option": {
-                    "activate": [],
-                    "Inactivate": [],
-                    "DefaultStyle": "Group"
-                  },
-                  "mVariable": {
-                    "LineType": "none",
-                    "Thickness": "1,1,1,1",
-                    "CornerRadius": "0,0,0,0"
-                  }
+                  "CornerRadius": "0,0,0,0"
                 },
                 "Font": {
-                  "Type": "FontInfo",
                   "Color": {
-                    "__type__": "istudio.drawing.style.Color",
                     "R": 0,
                     "G": 0,
                     "B": 0,
@@ -1528,35 +1646,28 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "left",
                   "VerticalAlignment": "top",
-                  "mVariable": {},
-                  "Option": {
-                    "activate": [],
-                    "Inactivate": [],
-                    "DefaultStyle": "Group"
-                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
             }
           ],
+          "MenuOption": {
+            "VisibleExcel": true,
+            "VisibleHTML": true,
+            "VisiblePDF": true
+          },
+          "MoveAfterReturn": 1,
           "Type": "iGrid",
           "Id": "iGrid1643090481562",
           "Name": "MXGrid",
           "Position": {
             "Left": 3,
             "Top": 88,
-            "Width": 2223,
-            "Height": 1159,
+            "Width": 1545,
+            "Height": 796,
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "3",
-              "compileMargin": [
-                3,
-                3,
-                3,
-                3
-              ],
               "Left": true,
               "Right": true,
               "Top": false,
@@ -1571,9 +1682,7 @@
             "Type": "Custom",
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -1581,9 +1690,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -1591,21 +1698,10 @@
               },
               "LineType": "none",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": []
-              },
-              "mVariable": {
-                "LineType": "none",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 0,
                 "G": 0,
                 "B": 0,
@@ -1618,11 +1714,6 @@
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "top",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": []
-              },
               "TempFontFamily": "맑은 고딕"
             }
           }
@@ -1635,12 +1726,7 @@
           "CheckedValue": "",
           "UnCheckedValue": "",
           "Checked": true,
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
+          "ViewType": 0,
           "Type": "CheckBox",
           "Id": "CheckBoxe16c811f-ea63-7f4f-88c9-cf44e107c08b",
           "Name": "chkManualUpdate",
@@ -1652,13 +1738,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -1673,9 +1752,7 @@
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -1683,9 +1760,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -1693,48 +1768,22 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "BoxStyle",
-                  "Background",
-                  "Border"
-                ],
-                "DefaultStyle": "CheckBox"
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": 12,
-                "G": 56,
-                "B": 134,
+                "R": 48,
+                "G": 48,
+                "B": 49,
                 "A": 1
               },
-              "Size": 12,
+              "Size": "12",
               "Family": "inherit",
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
-              "HorizontalAlignment": "center",
-              "VerticalAlignment": "top",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "BoxStyle",
-                  "Background",
-                  "Border"
-                ],
-                "DefaultStyle": "CheckBox"
-              },
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
               "TempFontFamily": "맑은 고딕"
             }
           }
@@ -1747,12 +1796,7 @@
           "CheckedValue": "",
           "UnCheckedValue": "",
           "Checked": false,
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
+          "ViewType": 0,
           "Type": "CheckBox",
           "Id": "CheckBox9d134046-ae6d-ebef-a3f2-e7cd8f6fb291",
           "Name": "chkEnableCreateRecord",
@@ -1764,13 +1808,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -1785,9 +1822,7 @@
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -1795,9 +1830,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -1805,54 +1838,27 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "BoxStyle",
-                  "Background",
-                  "Border"
-                ],
-                "DefaultStyle": "CheckBox"
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": 12,
-                "G": 56,
-                "B": 134,
+                "R": 48,
+                "G": 48,
+                "B": 49,
                 "A": 1
               },
-              "Size": 12,
+              "Size": "12",
               "Family": "inherit",
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
-              "HorizontalAlignment": "center",
-              "VerticalAlignment": "top",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "BoxStyle",
-                  "Background",
-                  "Border"
-                ],
-                "DefaultStyle": "CheckBox"
-              },
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
               "TempFontFamily": "맑은 고딕"
             }
           }
         },
         {
-          "UseTooltip": true,
           "DataSource": "DS1",
           "Value": "3",
           "Text": "",
@@ -1861,6 +1867,7 @@
           "IsReadOnly": false,
           "SortType": 0,
           "AutoRefresh": true,
+          "AfterRefresh": "",
           "UseAllItems": false,
           "UseAllItemsText": "전체",
           "DisplayType": 1,
@@ -1868,13 +1875,8 @@
             "LabelField": "",
             "ValueField": ""
           },
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
           "InitValue": "3",
+          "UseTooltip": true,
           "Type": "ComboBox",
           "Id": "ComboBox5e72f37a-e4a3-65c1-bf2d-9f8f6a15b212",
           "Name": "VN_BAEBUN_TYPE",
@@ -1886,13 +1888,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -1907,9 +1902,7 @@
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -1917,73 +1910,49 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": 103,
-                "G": 144,
-                "B": 190,
+                "R": 194,
+                "G": 194,
+                "B": 197,
                 "A": 1
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Font.VerticalAlignment",
-                  "Font.HorizontalAlignment"
-                ],
-                "DefaultStyle": "ComboBox"
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": 0,
-                "G": 0,
-                "B": 0,
+                "R": 48,
+                "G": 48,
+                "B": 49,
                 "A": 1
               },
-              "Size": 12,
+              "Size": "12",
               "Family": "inherit",
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "middle",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Font.VerticalAlignment",
-                  "Font.HorizontalAlignment"
-                ],
-                "DefaultStyle": "ComboBox"
-              },
               "TempFontFamily": "맑은 고딕"
             }
           }
         },
         {
           "LanguageCode": "",
-          "UseTooltip": true,
           "Text": " 배분 방식",
           "Cursor": "default",
           "Formula": "",
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
           "MxBinding": "",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Top": 0,
+            "Right": 0,
+            "Bottom": 0,
+            "Text": "0,0,0,0"
+          },
           "Type": "Label",
           "Id": "Label75c3a4d1-9c96-2c7c-b19d-88a445adc3c5",
           "Name": "Label1",
@@ -1995,13 +1964,6 @@
             "ZIndex": 5,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -2016,9 +1978,7 @@
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -2026,9 +1986,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 85,
                 "G": 142,
                 "B": 213,
@@ -2036,49 +1994,31 @@
               },
               "LineType": "none",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              },
-              "mVariable": {
-                "LineType": "none",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": 12,
-                "G": 56,
-                "B": 134,
+                "R": 48,
+                "G": 48,
+                "B": 49,
                 "A": 1
               },
-              "Size": 12,
+              "Size": "12",
               "Family": "inherit",
               "Bold": true,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "middle",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              },
               "TempFontFamily": "맑은 고딕"
             }
           }
         },
         {
           "LanguageCode": "",
-          "UseTooltip": true,
           "Value": "저장",
           "Cursor": "pointer",
+          "UseTooltip": true,
           "MouseOver": {
             "UseYn": false,
             "BoxStyle": ""
@@ -2099,6 +2039,7 @@
             "SpreadRadius": "0",
             "Inset": false
           },
+          "HasNewRadius": false,
           "Type": "Button",
           "Id": "Buttonb7166246-3e8e-ad6f-17e3-048d19c03416",
           "Name": "btnUpate",
@@ -2110,13 +2051,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -2131,9 +2065,7 @@
             "Type": 2,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 46,
                 "G": 87,
                 "B": 160,
@@ -2141,9 +2073,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 12,
                 "G": 56,
                 "B": 134,
@@ -2151,22 +2081,10 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "1",
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "1"
-              }
+              "CornerRadius": "1"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -2179,21 +2097,15 @@
               "UnderLine": false,
               "HorizontalAlignment": "center",
               "VerticalAlignment": "middle",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              },
               "TempFontFamily": "맑은 고딕"
             }
           }
         },
         {
           "LanguageCode": "",
-          "UseTooltip": true,
           "Value": "계산하기",
           "Cursor": "pointer",
+          "UseTooltip": true,
           "MouseOver": {
             "UseYn": false,
             "BoxStyle": ""
@@ -2214,6 +2126,7 @@
             "SpreadRadius": "0",
             "Inset": false
           },
+          "HasNewRadius": false,
           "Type": "Button",
           "Id": "Button9b0e582f-8ab1-2314-9386-809ab2958498",
           "Name": "btnCalculate",
@@ -2225,13 +2138,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -2246,9 +2152,7 @@
             "Type": 2,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 46,
                 "G": 87,
                 "B": 160,
@@ -2256,9 +2160,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 12,
                 "G": 56,
                 "B": 134,
@@ -2266,22 +2168,10 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "1",
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "1"
-              }
+              "CornerRadius": "1"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -2294,12 +2184,6 @@
               "UnderLine": false,
               "HorizontalAlignment": "center",
               "VerticalAlignment": "middle",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              },
               "TempFontFamily": "맑은 고딕"
             }
           }
@@ -2308,12 +2192,6 @@
           "Formula": "",
           "IsReadOnly": false,
           "MaxLength": 0,
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
           "MxBinding": "",
           "Value": "",
           "Text": "",
@@ -2328,13 +2206,6 @@
             "ZIndex": 5,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -2349,9 +2220,7 @@
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -2359,71 +2228,49 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": 103,
-                "G": 144,
-                "B": 190,
+                "R": 194,
+                "G": 194,
+                "B": 197,
                 "A": 1
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Font.VerticalAlignment"
-                ],
-                "DefaultStyle": "RichTextBox"
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": 85,
-                "G": 85,
-                "B": 85,
+                "R": 48,
+                "G": 48,
+                "B": 49,
                 "A": 1
               },
-              "Size": 12,
+              "Size": "12",
               "Family": "inherit",
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "top",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Font.VerticalAlignment"
-                ],
-                "DefaultStyle": "RichTextBox"
-              },
               "TempFontFamily": "맑은 고딕"
             }
           }
         },
         {
           "LanguageCode": "",
-          "UseTooltip": true,
           "Text": "셀 잠금 수식",
           "Cursor": "default",
           "Formula": "",
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
           "MxBinding": "",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Top": 0,
+            "Right": 0,
+            "Bottom": 0,
+            "Text": "0,0,0,0"
+          },
           "Type": "Label",
           "Id": "Label31174719-778c-6d16-c726-cdb4bbf02ce1",
           "Name": "Label2",
@@ -2435,13 +2282,6 @@
             "ZIndex": 5,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -2456,9 +2296,7 @@
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -2466,9 +2304,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 85,
                 "G": 142,
                 "B": 213,
@@ -2476,40 +2312,22 @@
               },
               "LineType": "none",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              },
-              "mVariable": {
-                "LineType": "none",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": 12,
-                "G": 56,
-                "B": 134,
+                "R": 48,
+                "G": 48,
+                "B": 49,
                 "A": 1
               },
-              "Size": 12,
+              "Size": "12",
               "Family": "inherit",
               "Bold": true,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "middle",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              },
               "TempFontFamily": "맑은 고딕"
             }
           }
@@ -2523,6 +2341,8 @@
       "Visible": true,
       "LanguageCode": "",
       "Style": {
+        "Type": 2,
+        "BoxStyle": "",
         "Border": {
           "ColorR": 204,
           "ColorG": 204,
@@ -2548,10 +2368,12 @@
           "TemplateCode": "3DA83891F15444B38AED2BBE3F2F29DD",
           "ActiveSheet": "",
           "UseMultiSheet": false,
+          "EnableZoom": false,
           "FreezeLineThickness": 1,
           "ParentGridName": "",
           "DisableScrollBar": false,
           "LimitOfBinding": 1000,
+          "ExcelExportType": "Default",
           "SelectedColor": {
             "R": 198,
             "G": 217,
@@ -2564,7 +2386,15 @@
             "B": 127,
             "A": 1
           },
+          "SelectionBorderColor": "rgba(234, 86, 64, 0.5)",
+          "SelectionMode": 0,
           "Controls": [],
+          "MenuOption": {
+            "VisibleExcel": true,
+            "VisibleHTML": true,
+            "VisiblePDF": true
+          },
+          "MoveAfterReturn": 1,
           "Type": "iGrid",
           "Id": "iGrid1643118662708",
           "Name": "MXGrid1",
@@ -2576,7 +2406,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
               "Left": true,
               "Right": true,
               "Top": true,
@@ -2591,9 +2420,7 @@
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -2601,9 +2428,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -2611,21 +2436,10 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": []
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 0,
                 "G": 0,
                 "B": 0,
@@ -2638,11 +2452,6 @@
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "top",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": []
-              },
               "TempFontFamily": "맑은 고딕"
             }
           }
@@ -2658,6 +2467,152 @@
   "Modules": [],
   "ResponsiveLayout": [],
   "Langs": [],
+  "WorkFlowModules": [],
   "WorkFlowInfo": "{\"Document\":{\"Name\":\"Report\",\"Events\":[{\"Name\":\"OnDocumentLoadComplete\",\"Flow\":{\"Actions\":[{\"Name\":\"Module\",\"Parameters\":[\"Splitter 상/하 (MX-Grid 사용)\",\"{\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"MODULE_SUBJECT\\\":\\\"Splitter 상/하 (MX-Grid 사용)\\\",\\\"MODULE_PARAMS\\\":[{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"1\\\",\\\"PARAM_DESCRIPTION\\\":\\\"Splitter로 사용할 MX-Grid 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"MXGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"2\\\",\\\"PARAM_DESCRIPTION\\\":\\\"상단에 배치할 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"OlapGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"3\\\",\\\"PARAM_DESCRIPTION\\\":\\\"하단에 배치할 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"Group\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"Y\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP001\\\",\\\"PARAM_SEQ\\\":\\\"4\\\",\\\"PARAM_DESCRIPTION\\\":\\\"Splitter의 색상을 입력해 주세요.(eg.#efefef) \\\\n입력하지 않을 경우 기본값이 적용됩니다.\\\",\\\"Value\\\":\\\"\\\"}],\\\"MODULE_TYPE\\\":\\\"\\\"}\"]},{\"Name\":\"Module\",\"Parameters\":[\"OlapGrid Drill To Detail \",\"{\\\"MODULE_CODE\\\":\\\"MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8\\\",\\\"MODULE_SUBJECT\\\":\\\"OlapGrid Drill To Detail \\\",\\\"MODULE_PARAMS\\\":[{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"1\\\",\\\"PARAM_DESCRIPTION\\\":\\\"OlapGrid 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"OlapGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"2\\\",\\\"PARAM_DESCRIPTION\\\":\\\"상세 데이터를 출력할 데이터 그리드를 선택해 주세요.\\\",\\\"Value\\\":\\\"DataGrid\\\"}],\\\"MODULE_TYPE\\\":\\\"\\\"}\"]}],\"IsChecked\":true,\"SourceXML\":\"<Activity x:Class=\\\"Report(Open)_OnDocumentLoadComplete\\\" sap:VirtualizedContainerService.HintSize=\\\"276,342\\\" mva:VisualBasic.Settings=\\\"Assembly references and imported namespaces for internal implementation\\\" xmlns=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities\\\" xmlns:mva=\\\"clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities\\\" xmlns:sads=\\\"http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger\\\" xmlns:sap=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation\\\" xmlns:scg=\\\"clr-namespace:System.Collections.Generic;assembly=mscorlib\\\" xmlns:wa=\\\"clr-namespace:WorkFlow.Activities;assembly=WorkFlow\\\" xmlns:x=\\\"http://schemas.microsoft.com/winfx/2006/xaml\\\">\\r\\n  <Sequence DisplayName=\\\"Report(Open)_OnDocumentLoadComplete\\\" sap:VirtualizedContainerService.HintSize=\\\"236,302\\\">\\r\\n    <sap:WorkflowViewStateService.ViewState>\\r\\n      <scg:Dictionary x:TypeArguments=\\\"x:String, x:Object\\\">\\r\\n        <x:Boolean x:Key=\\\"IsExpanded\\\">True</x:Boolean>\\r\\n      </scg:Dictionary>\\r\\n    </sap:WorkflowViewStateService.ViewState>\\r\\n    <wa:Module ConditionExpression=\\\"{x:Null}\\\" ConditionToolTipText=\\\"\\\" DiagramText=\\\"Module\\\" DisplayName=\\\"Module\\\" Expand=\\\"False\\\" FunctionName=\\\"_AUD_Module\\\" sap:VirtualizedContainerService.HintSize=\\\"214,69\\\" ModuleJson=\\\"{}{&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;MODULE_SUBJECT&quot;:&quot;Splitter 상/하 (MX-Grid 사용)&quot;,&quot;MODULE_PARAMS&quot;:[{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;1&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;Splitter로 사용할 MX-Grid 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;MXGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;2&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;상단에 배치할 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;OlapGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;3&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;하단에 배치할 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;Group&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;Y&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP001&quot;,&quot;PARAM_SEQ&quot;:&quot;4&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;Splitter의 색상을 입력해 주세요.(eg.#efefef) \\\\n입력하지 않을 경우 기본값이 적용됩니다.&quot;,&quot;Value&quot;:&quot;&quot;}],&quot;MODULE_TYPE&quot;:&quot;&quot;}\\\" ModuleName=\\\"Splitter 상/하 (MX-Grid 사용)\\\" Result=\\\"{x:Null}\\\">\\r\\n      <wa:Module.ElseBody>\\r\\n        <Sequence DisplayName=\\\"Else 동작\\\" />\\r\\n      </wa:Module.ElseBody>\\r\\n      <wa:Module.TrueBody>\\r\\n        <Sequence DisplayName=\\\"True 동작\\\" />\\r\\n      </wa:Module.TrueBody>\\r\\n    </wa:Module>\\r\\n    <wa:Module ConditionExpression=\\\"{x:Null}\\\" ConditionToolTipText=\\\"\\\" DiagramText=\\\"Module\\\" DisplayName=\\\"Module\\\" Expand=\\\"False\\\" FunctionName=\\\"_AUD_Module\\\" sap:VirtualizedContainerService.HintSize=\\\"214,69\\\" ModuleJson=\\\"{}{&quot;MODULE_CODE&quot;:&quot;MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8&quot;,&quot;MODULE_SUBJECT&quot;:&quot;OlapGrid Drill To Detail &quot;,&quot;MODULE_PARAMS&quot;:[{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;1&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;OlapGrid 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;OlapGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;2&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;상세 데이터를 출력할 데이터 그리드를 선택해 주세요.&quot;,&quot;Value&quot;:&quot;DataGrid&quot;}],&quot;MODULE_TYPE&quot;:&quot;&quot;}\\\" ModuleName=\\\"OlapGrid Drill To Detail \\\" Result=\\\"{x:Null}\\\">\\r\\n      <wa:Module.ElseBody>\\r\\n        <Sequence DisplayName=\\\"Else 동작\\\" />\\r\\n      </wa:Module.ElseBody>\\r\\n      <wa:Module.TrueBody>\\r\\n        <Sequence DisplayName=\\\"True 동작\\\" />\\r\\n      </wa:Module.TrueBody>\\r\\n    </wa:Module>\\r\\n  </Sequence>\\r\\n</Activity>\"}}]},\"Object\":{\"Name\":\"Object\"}}",
-  "schModel": {}
+  "schModel": {},
+  "WORK_FLOW": {
+    "Version": 1,
+    "UseEvent": true,
+    "Nodes": [
+      {
+        "ID": "MIG_1",
+        "Type": "Report",
+        "ModuleCode": "",
+        "Name": "Report",
+        "Description": "",
+        "Left": 10,
+        "Top": 10,
+        "Width": 200,
+        "Height": 207,
+        "ControlType": "Report",
+        "Collapsed": true,
+        "Parameters": [
+          {
+            "ID": "OnDocumentLoadComplete",
+            "Name": "OnDocumentLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnLoadComplete",
+            "Name": "OnLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnExecuteStart",
+            "Name": "OnExecuteStart",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnRefreshComplete",
+            "Name": "OnRefreshComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnActiveSheetChange",
+            "Name": "OnActiveSheetChange",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnDestroy",
+            "Name": "OnDestroy",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnViewerSizeChange",
+            "Name": "OnViewerSizeChange",
+            "Value": null,
+            "Description": ""
+          }
+        ]
+      },
+      {
+        "ID": "MIG_2",
+        "Type": "Module",
+        "ModuleCode": "MODA673ED75A2354FDB9F82AF23B78BA50F",
+        "Name": "Splitter 상/하 (MX-Grid 사용)",
+        "Description": "",
+        "Left": 260,
+        "Top": 10,
+        "Width": 200,
+        "Height": 200,
+        "ControlType": "",
+        "Collapsed": false,
+        "Parameters": [
+          {
+            "ID": "P1",
+            "Name": "Splitter로 사용할 MX-Grid 컨트롤을 선택해 주세요.",
+            "Value": "MXGrid",
+            "Description": "Splitter로 사용할 MX-Grid 컨트롤을 선택해 주세요."
+          },
+          {
+            "ID": "P2",
+            "Name": "상단에 배치할 컨트롤을 선택해 주세요.",
+            "Value": "OlapGrid",
+            "Description": "상단에 배치할 컨트롤을 선택해 주세요."
+          },
+          {
+            "ID": "P3",
+            "Name": "하단에 배치할 컨트롤을 선택해 주세요.",
+            "Value": "Group",
+            "Description": "하단에 배치할 컨트롤을 선택해 주세요."
+          },
+          {
+            "ID": "P4",
+            "Name": "Splitter의 색상을 입력해 주세요.(eg.#efefef) \n입력하지 않을 경우 기본값이 적용됩니다.",
+            "Value": "",
+            "Description": "Splitter의 색상을 입력해 주세요.(eg.#efefef) \n입력하지 않을 경우 기본값이 적용됩니다."
+          }
+        ]
+      },
+      {
+        "ID": "MIG_3",
+        "Type": "Module",
+        "ModuleCode": "MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8",
+        "Name": "OlapGrid Drill To Detail ",
+        "Description": "",
+        "Left": 510,
+        "Top": 10,
+        "Width": 200,
+        "Height": 200,
+        "ControlType": "",
+        "Collapsed": false,
+        "Parameters": [
+          {
+            "ID": "P1",
+            "Name": "OlapGrid 컨트롤을 선택해 주세요.",
+            "Value": "OlapGrid",
+            "Description": "OlapGrid 컨트롤을 선택해 주세요."
+          },
+          {
+            "ID": "P2",
+            "Name": "상세 데이터를 출력할 데이터 그리드를 선택해 주세요.",
+            "Value": "DataGrid",
+            "Description": "상세 데이터를 출력할 데이터 그리드를 선택해 주세요."
+          }
+        ]
+      }
+    ],
+    "Links": [
+      {
+        "ID": "MIG_1.OnDocumentLoadComplete~MIG_2",
+        "From": "MIG_1",
+        "To": "MIG_2",
+        "FromParam": "OnDocumentLoadComplete",
+        "Type": 0
+      },
+      {
+        "ID": "MIG_2~MIG_3",
+        "From": "MIG_2",
+        "To": "MIG_3",
+        "FromParam": null,
+        "Type": 0
+      }
+    ]
+  }
 }

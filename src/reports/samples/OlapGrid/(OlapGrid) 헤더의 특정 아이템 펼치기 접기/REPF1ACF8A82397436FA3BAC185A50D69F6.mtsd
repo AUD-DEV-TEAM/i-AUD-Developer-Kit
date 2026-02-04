@@ -1,16 +1,18 @@
 {
   "ReportInfo": {
     "ReportCode": "REPF1ACF8A82397436FA3BAC185A50D69F6",
-    "FolderCode": "FLD5390E61749BE4E7FB7CC1146EF15C60B",
-    "SavePath": "FLD5390E61749BE4E7FB7CC1146EF15C60B/REPF1ACF8A82397436FA3BAC185A50D69F6.mtsd",
+    "FolderCode": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD",
+    "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REPF1ACF8A82397436FA3BAC185A50D69F6.mtsd",
     "ReportName": "(OlapGrid) 헤더의 특정 아이템 펼치기 접기",
-    "Writer": "choehanna",
-    "WriteDate": "2023-10-25 11:11:39",
-    "Editor": "choehanna",
-    "EditDate": "2023-10-25 11:11:39",
+    "Writer": "yglee",
+    "WriteDate": "2026-02-04 10:19:46",
+    "Editor": "yglee",
+    "EditDate": "2026-02-04 10:19:46",
     "TabPosition": 0,
     "UseLayout": false,
-    "DocumentVersion": "3.0.0.0"
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
     "Datas": [
@@ -22,7 +24,48 @@
         "ConnectionCode": "MTXRPTY",
         "Encrypted": "True",
         "DSType": 2,
-        "SQL": "woDM3YZ10KzGc8EMjwzCXFiowvvvBHQxJ0GQfJkP9yJnEiLynw19ezU3va1FUnYnC059MRKtRMwU4VX2KTtklvVzMoDezfJ9D/YrKLNef5ZFW85QkjBk6NfjBCcmewBfdMnKrXuhaAfcDWrZ+Z1Z/RlM690y7eKRVTWmtFCch8nxCVR8ydSbtTIk/TyZ9usOQ6DRF1keBcy5ntmnPibgu1tFllR7L0TNPaLEWQg+8OhAN/KfrH6REx4k8iHGJlJcm9ZuO04eppR6LFuj1IpcHFB2f9h2p4Fwp7w5zX3iJbwuLuzE5f+uYJxupJ99KQVcRs8yDJX9Nyh5Rd7R4AGmpsb27A4m3pED7PXpjtB7+czSKvLAQcXTEsuGmSIVQlTZ7MJRvja4cKSBaZbPeD230PVIpK/ClpCW+JNffJ6aLIfzvS74zTgsx5vZI8pYqgvYsT+tRAjoaWh0/DLMqCgAJOeLRtk3gVUQgoIMn4rxfbAXZVCQTtcjByjzgLUx9PjFqPe3miBXrDFpvwTEj+e30YjgJnEw2O+w5gtT9PTZ+84wapN6cUREksHOos/s1HFu",
+        "SQL": "nZaXMHE13+K+wKGa5To9L1CZeOCpVOXgXOnsAo8BdiNyojHSV/nktgEGUfcAH0qUu+V775kgR7fIBlxERyLBCmctyG8S4ef8ElghR8E9TDTc2fGNmfyqgePKPlGqI8oNmkrooJYTE+UbuJOJRQcepiB5JWXuPbwbjxvb/DzAdyFdIBCGs3LoP9Stssxdu5871A7cxf00qMzngELlsgr/x3k4Lyy6N4kgAASd2ZdC6BLt7pJ9NANyNYn4q9r4nvmMRwWOdbiQSTqEvKcsNxlJCYkWngkZ+GoLWH657LrQeco=",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "제품명",
+            "Type": "String"
+          },
+          {
+            "Name": "지점명",
+            "Type": "String"
+          },
+          {
+            "Name": "성별",
+            "Type": "String"
+          },
+          {
+            "Name": "매출월",
+            "Type": "String"
+          },
+          {
+            "Name": "매출년",
+            "Type": "String"
+          },
+          {
+            "Name": "판매수량",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "판매단가",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DSA5CB936B417B426F8DDC15DED9B38512",
+        "Name": "Data1",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "nZaXMHE13+K+wKGa5To9L1CZeOCpVOXgXOnsAo8BdiNyojHSV/nktgEGUfcAH0qUu+V775kgR7fIBlxERyLBCmctyG8S4ef8ElghR8E9TDTc2fGNmfyqgePKPlGqI8oNmkrooJYTE+UbuJOJRQcepiB5JWXuPbwbjxvb/DzAdyFdIBCGs3LoP9Stssxdu5871A7cxf00qMzngELlsgr/x3k4Lyy6N4kgAASd2ZdC6BLt7pJ9NANyNYn4q9r4nvmMRwWOdbiQSTqEvKcsNxlJCYkWngkZ+GoLWH657LrQeco=",
         "Params": [],
         "Columns": [
           {
@@ -57,7 +100,7 @@
       }
     ]
   },
-  "ScriptText": "var OlapGrid = null; \r\nvar rdoCollapsed = null; \r\nvar rdoExpand = null; \r\nvar tbxField = null; \r\nvar tbxItems = null; \r\n\r\nvar initControlVariables = function(){\r\n\tOlapGrid = Matrix.getObject(\"OlapGrid\"); \r\n\trdoCollapsed = Matrix.getObject(\"rdoCollapsed\"); \r\n\trdoExpand = Matrix.getObject(\"rdoExpand\"); \r\n\ttbxField = Matrix.getObject(\"tbxField\"); \r\n\ttbxItems = Matrix.getObject(\"tbxItems\"); \r\n\r\n};\r\n/*****************************************\r\n* 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n* * arguments :  \r\n*****************************************/\r\n var OnDocumentLoadComplete  = function(sender, args)\r\n {\r\n \tinitControlVariables();\r\n };\r\n/*****************************************\r\n* 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n* * arguments :  \r\n*\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n*\t\t string\tText (Readonly:False) : 라벨 값 \r\n*****************************************/\r\n var OnButtonClick  = function(sender, args)\r\n {  \r\n \tif(rdoExpand.Checked){\r\n\t\tOlapGrid.ExpandAll(); \r\n\t}else{\r\n\t\tOlapGrid.CollapsedAll();\r\n\t}\r\n };\r\n \r\n/*****************************************\r\n* 컨트롤에 데이터셋이 바인딩된 후 발생합니다.\r\n* * arguments :  \r\n*\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n*\t\t int\tRecordCount (Readonly:False) : 데이터셋의 레코드 수량 \r\n*****************************************/\r\n var OnDataBindEnd  = function(sender, args)\r\n {\r\n \tif(args.Id == OlapGrid.Name){\r\n \t\tOlapGrid.Expand(tbxField.Text, tbxItems.Text, rdoExpand.Checked);\r\n \t\tOlapGrid.Calculate();\r\n\t}\r\n };",
+  "ScriptText": "/*****************************\r\n * i-AUD Client Sample\r\n *****************************/\r\nvar btnExpandCollapsed = Matrix.getObject(\"btnExpandCollapsed\");\r\nvar tbxItems = Matrix.getObject(\"tbxItems\");\r\nvar rdoExpand = Matrix.getObject(\"rdoExpand\");\r\nvar rdoCollapsed = Matrix.getObject(\"rdoCollapsed\");\r\nvar OlapGrid = Matrix.getObject(\"OlapGrid\");\r\nvar cboFields = Matrix.getObject(\"cboFields\");\r\n/*****************************************\r\n* 전체 확장/축소 실행하기\r\n*****************************************/\r\nbtnExpandCollapsed.OnClick = function (sender, args) {\r\n    if (!rdoExpand.IsChecked) {\r\n        OlapGrid.ExpandAll();\r\n    }\r\n    else {\r\n        OlapGrid.CollapsedAll();\r\n    }\r\n};\r\n/*****************************************\r\n* 컨트롤에 데이터셋이 바인딩된 후 발생합니다.\r\n* * arguments :\r\n*\t\t string\tId (Readonly:False) : 컨트롤이름\r\n*\t\t int\tRecordCount (Readonly:False) : 데이터셋의 레코드 수량\r\n*****************************************/\r\nOlapGrid.OnDataBindEnd = function (sender, args) {\r\n    OlapGrid.Expand(cboFields.Value, tbxItems.Text, rdoExpand.IsChecked);\r\n    OlapGrid.Calculate();\r\n};\r\n/**\r\n * Olap의 디멘젼 필드 목록을 추출하여 ComboBox에 출력 합니다.\r\n */\r\nMatrix.OnDocumentLoadComplete = function () {\r\n    var ds = Matrix.CreateDataSet();\r\n    var dt = ds.CreateTable(\"DATA\");\r\n    dt.AddColumn(\"NAME\", false);\r\n    dt.AddColumn(\"DESCRIPTION\", false);\r\n    var fields = OlapGrid.getFields();\r\n    for (var i_1 = 0; i_1 < fields.length; i_1++) {\r\n        if (fields[i_1].Category != 2) { /*Measure가 아닌 것들...*/\r\n            dt.AppendRow([\r\n                fields[i_1].Name,\r\n                fields[i_1].Caption\r\n            ]);\r\n        }\r\n    }\r\n    cboFields.SetDataSet(ds);\r\n};\r\n",
   "ServerScriptText": [],
   "Forms": [
     {
@@ -111,6 +154,7 @@
             "SpreadRadius": "0",
             "Inset": false
           },
+          "HasNewRadius": false,
           "Type": "Button",
           "Id": "Button7c6ee406-c1c3-e00c-b225-b60530698828",
           "Name": "Button",
@@ -122,13 +166,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -140,12 +177,10 @@
             }
           },
           "Style": {
-            "Type": 0,
+            "Type": 2,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 46,
                 "G": 87,
                 "B": 160,
@@ -153,9 +188,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 12,
                 "G": 56,
                 "B": 134,
@@ -163,41 +196,23 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "12,12,12,12",
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "12,12,12,12"
-              }
+              "CornerRadius": "12,12,12,12"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
                 "A": 1
               },
-              "Size": "12",
+              "Size": 12,
               "Family": "inherit",
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "center",
               "VerticalAlignment": "middle",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              },
-              "TempFontFamily": "Arial"
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
@@ -209,12 +224,6 @@
           "MaxLength": 0,
           "InputType": "0",
           "Formula": "",
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
           "MxBinding": "",
           "Type": "TextBox",
           "Id": "TextBox26a4be17-669b-68cf-d55c-da0553db622a",
@@ -227,13 +236,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -248,9 +250,7 @@
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -258,9 +258,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 194,
                 "G": 194,
                 "B": 197,
@@ -268,24 +266,10 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Font.VerticalAlignment"
-                ],
-                "DefaultStyle": "TextBox"
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 48,
                 "G": 48,
                 "B": 49,
@@ -298,15 +282,7 @@
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "middle",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Font.VerticalAlignment"
-                ],
-                "DefaultStyle": "TextBox"
-              },
-              "TempFontFamily": "Arial"
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
@@ -315,14 +291,16 @@
           "Text": "필드명 ",
           "Cursor": "default",
           "Formula": "",
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
           "MxBinding": "",
+          "MxBindingUseStyle": false,
           "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Top": 0,
+            "Right": 0,
+            "Bottom": 0,
+            "Text": "0,0,0,0"
+          },
           "Type": "Label",
           "Id": "Label06c24279-faa8-6e82-dc23-1cb70c567c5c",
           "Name": "Label",
@@ -334,13 +312,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -355,9 +326,7 @@
             "Type": 1,
             "BoxStyle": "BX039DCA38014A485696C7A70A50AEFB68",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 207,
                 "G": 226,
                 "B": 243,
@@ -365,9 +334,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 109,
                 "G": 158,
                 "B": 235,
@@ -375,22 +342,10 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 0,
                 "G": 0,
                 "B": 0,
@@ -403,13 +358,7 @@
               "UnderLine": false,
               "HorizontalAlignment": "center",
               "VerticalAlignment": "middle",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              },
-              "TempFontFamily": "Arial"
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
@@ -421,12 +370,6 @@
           "MaxLength": 0,
           "InputType": "0",
           "Formula": "",
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
           "MxBinding": "",
           "Type": "TextBox",
           "Id": "TextBoxe1d0a01e-4de0-26c9-883e-4d4b82c5b9c2",
@@ -439,13 +382,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -460,9 +396,7 @@
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -470,9 +404,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 194,
                 "G": 194,
                 "B": 197,
@@ -480,24 +412,10 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Font.VerticalAlignment"
-                ],
-                "DefaultStyle": "TextBox"
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 48,
                 "G": 48,
                 "B": 49,
@@ -510,15 +428,7 @@
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "middle",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Font.VerticalAlignment"
-                ],
-                "DefaultStyle": "TextBox"
-              },
-              "TempFontFamily": "Arial"
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
@@ -527,14 +437,16 @@
           "Text": "대상(,로 분리 입력, * : 모든 아이템)",
           "Cursor": "default",
           "Formula": "",
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
           "MxBinding": "",
+          "MxBindingUseStyle": false,
           "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Top": 0,
+            "Right": 0,
+            "Bottom": 0,
+            "Text": "0,0,0,0"
+          },
           "Type": "Label",
           "Id": "Labelc4330dee-e93d-d9ed-f09a-ab51b5ecf8ce",
           "Name": "Label1",
@@ -546,13 +458,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -567,9 +472,7 @@
             "Type": 1,
             "BoxStyle": "BX039DCA38014A485696C7A70A50AEFB68",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 207,
                 "G": 226,
                 "B": 243,
@@ -577,9 +480,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 109,
                 "G": 158,
                 "B": 235,
@@ -587,22 +488,10 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 0,
                 "G": 0,
                 "B": 0,
@@ -615,13 +504,7 @@
               "UnderLine": false,
               "HorizontalAlignment": "center",
               "VerticalAlignment": "middle",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              },
-              "TempFontFamily": "Arial"
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
@@ -632,12 +515,6 @@
           "GroupName": "EXPAND",
           "CheckedValue": "",
           "Checked": true,
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
           "Type": "RadioButton",
           "Id": "RadioButton0ccbe958-ca04-0c77-e529-ffda8f6c9a7a",
           "Name": "rdoExpand",
@@ -649,13 +526,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -670,9 +540,7 @@
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -680,9 +548,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -690,25 +556,10 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Background",
-                  "Border"
-                ],
-                "DefaultStyle": "RadioButton"
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 48,
                 "G": 48,
                 "B": 49,
@@ -719,18 +570,9 @@
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
-              "HorizontalAlignment": "center",
+              "HorizontalAlignment": "left",
               "VerticalAlignment": "middle",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Background",
-                  "Border"
-                ],
-                "DefaultStyle": "RadioButton"
-              },
-              "TempFontFamily": "Arial"
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
@@ -741,12 +583,6 @@
           "GroupName": "EXPAND",
           "CheckedValue": "",
           "Checked": false,
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
           "Type": "RadioButton",
           "Id": "RadioButtone275fc9d-6d6d-98a1-d2a2-9c0801a697f6",
           "Name": "rdoCollapsed",
@@ -758,13 +594,6 @@
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "0,0,0,0",
-              "compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ],
               "Left": false,
               "Right": false,
               "Top": false,
@@ -779,9 +608,7 @@
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -789,9 +616,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -799,25 +624,10 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Background",
-                  "Border"
-                ],
-                "DefaultStyle": "RadioButton"
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 48,
                 "G": 48,
                 "B": 49,
@@ -828,18 +638,9 @@
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
-              "HorizontalAlignment": "center",
+              "HorizontalAlignment": "left",
               "VerticalAlignment": "middle",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Background",
-                  "Border"
-                ],
-                "DefaultStyle": "RadioButton"
-              },
-              "TempFontFamily": "Arial"
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
@@ -848,32 +649,27 @@
           "Text": "   OlapGrid 특정 항목 펼치기/접기 기능 샘플 (** 데이터 조회 시 자동 확장/축소 옵션 적용 됨 **)",
           "Cursor": "default",
           "Formula": "",
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
           "MxBinding": "",
+          "MxBindingUseStyle": false,
           "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Top": 0,
+            "Right": 0,
+            "Bottom": 0,
+            "Text": "0,0,0,0"
+          },
           "Type": "Label",
           "Id": "Label5ab9e071-7785-aea8-430d-53874dc442cf",
           "Name": "Label2",
           "Position": {
             "Left": 3,
             "Top": 3,
-            "Width": 1872,
+            "Width": 1545,
             "Height": 41,
             "ZIndex": 1,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "3",
-              "compileMargin": [
-                3,
-                3,
-                3,
-                3
-              ],
               "Left": true,
               "Right": true,
               "Top": true,
@@ -888,9 +684,7 @@
             "Type": 2,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -898,9 +692,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 102,
                 "G": 102,
                 "B": 102,
@@ -908,22 +700,10 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 67,
                 "G": 67,
                 "B": 67,
@@ -936,13 +716,7 @@
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "middle",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              },
-              "TempFontFamily": "Arial"
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
@@ -971,6 +745,8 @@
               "DisplayColumnSubTotal": true,
               "HideTotalChildIsOneColumn": false,
               "HideTotalChildIsOneRow": false,
+              "HideEmptyMeasureRows": false,
+              "HideEmptyMeasureColumns": false,
               "DisplayRowSubTotal": true,
               "DisplayColumnGrandTotal": true,
               "DisplayRowGrandTotal": true,
@@ -1003,13 +779,15 @@
               "MergeColumnHeaders": false,
               "MergeRowHeaders": false,
               "OptimizingHybridFilter": false,
+              "AutoHideGrandTotalRow": false,
+              "AutoHideGrandTotalColumn": false,
               "ExportOption": {
                 "ExportSheetSize": 1000000,
                 "ExportDisableRowMerge": false,
                 "UseServerExport": true
               },
               "PagerInfo": {
-                "PageSize": 0,
+                "PageSize": 100,
                 "UsePaging": false,
                 "IgnoreTotalCount": false
               },
@@ -1034,6 +812,7 @@
               "IsTop": true,
               "GroupBy": []
             },
+            "PreFilters": [],
             "Fields": [
               {
                 "Key": "성별",
@@ -1483,6 +1262,7 @@
             "UseMeta": false,
             "UseChartSourceTotal": false,
             "UseChartSourceGrandTotal": false,
+            "UseChartSourceReverse": false,
             "ChartLabelDepth": -1,
             "ConditionalStyleName": "",
             "BackgroundColorBoxStyleKey": "",
@@ -1516,18 +1296,11 @@
           "Position": {
             "Left": 3,
             "Top": 78,
-            "Width": 1872,
-            "Height": 833,
+            "Width": 1545,
+            "Height": 806,
             "ZIndex": 1,
             "TabIndex": 0,
             "Docking": {
-              "compileMarginText": "3",
-              "compileMargin": [
-                3,
-                3,
-                3,
-                3
-              ],
               "Left": true,
               "Right": true,
               "Top": false,
@@ -1542,9 +1315,7 @@
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.Brush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -1552,9 +1323,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -1562,27 +1331,10 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Border",
-                  "Font",
-                  "StyleType",
-                  "BoxStyle",
-                  "Background"
-                ]
-              },
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "Type": "FontInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 0,
                 "G": 0,
                 "B": 0,
@@ -1595,18 +1347,7 @@
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "top",
-              "mVariable": {},
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Border",
-                  "Font",
-                  "StyleType",
-                  "BoxStyle",
-                  "Background"
-                ]
-              },
-              "TempFontFamily": "Arial"
+              "TempFontFamily": "맑은 고딕"
             }
           }
         }
@@ -1622,6 +1363,5 @@
   "ResponsiveLayout": [],
   "Langs": [],
   "WorkFlowModules": [],
-  "WorkFlowInfo": "{}",
-  "UsePersonalConditions": false
+  "WorkFlowInfo": "{}"
 }

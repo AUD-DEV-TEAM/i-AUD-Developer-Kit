@@ -4,15 +4,15 @@
     "FolderCode": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD",
     "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REP2F962805E8DC487C8A873D81C9FBBC85.mtsd",
     "ReportName": "(OlapGrid) 사용자 정의 항목 제어하기",
-    "Writer": "choehanna",
-    "WriteDate": "2025-06-23 17:21:02",
-    "Editor": "choehanna",
-    "EditDate": "2025-06-23 17:21:02",
+    "Writer": "yglee",
+    "WriteDate": "2026-02-04 10:19:03",
+    "Editor": "yglee",
+    "EditDate": "2026-02-04 10:19:03",
     "TabPosition": 0,
     "UseLayout": false,
-    "UsePersonalConditions": false,
     "DocumentVersion": "3.0.0.0",
-    "RefreshType": 0
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
     "Datas": [
@@ -24,7 +24,64 @@
         "ConnectionCode": "MTXRPTY",
         "Encrypted": "False",
         "DSType": 2,
-        "SQL": "SELECT \"T1\".\"D1\" AS \"수불일자\"\r\n           , \"T1\".\"D2\" AS \"품목코드\"\r\n           , \"T1\".\"D3\" AS \"품명\"\r\n           , \"T1\".\"D4\" AS \"규격\"\r\n           , \"T1\".\"D5\" AS \"창고구분\"\r\n           , \"T1\".\"D6\" AS \"창고코드\"\r\n           , \"T1\".\"D7\" AS \"창고이름\"\r\n           , \"T1\".\"D8\" AS \"수불구분\"\r\n           , \"T1\".\"M1\" AS \"수불단가\"\r\n           , \"T1\".\"M2\" AS \"수불수량\"\r\n           , \"T1\".\"M3\" AS \"수불금액\"\r\nFROM MEX_USER_FILE_DATA \"T1\"\r\nWHERE (\r\n          1 = 1\r\n          AND \"T1\".\"META_FILE_CODE\" = 'RPTAC6A247392B94F928900F811D1AE1F5C'\r\n          )",
+        "SQL": "SELECT   T1.YYYY \r\n\t, T1.MM -- 월\r\n\t, T1.SEX -- 성별\r\n\t, T1.PRODUCT -- 제품명\r\n\t, T1.BRANCH -- 지점명\r\n\t, T1.SALE_QTY -- 판매수량\r\n\t, T1.SALE_PRICE -- 판매단가\r\nFROM MEX_COFFEE T1 -- 커피_매출정보 ",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "수불일자",
+            "Type": "String"
+          },
+          {
+            "Name": "품목코드",
+            "Type": "String"
+          },
+          {
+            "Name": "품명",
+            "Type": "String"
+          },
+          {
+            "Name": "규격",
+            "Type": "String"
+          },
+          {
+            "Name": "창고구분",
+            "Type": "String"
+          },
+          {
+            "Name": "창고코드",
+            "Type": "String"
+          },
+          {
+            "Name": "창고이름",
+            "Type": "String"
+          },
+          {
+            "Name": "수불구분",
+            "Type": "String"
+          },
+          {
+            "Name": "수불단가",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "수불수량",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "수불금액",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DSA1B4E38A3211484093CC21DAA7C7E8B2",
+        "Name": "Data1",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "False",
+        "DSType": 2,
+        "SQL": "SELECT   T1.YYYY \r\n\t, T1.MM -- 월\r\n\t, T1.SEX -- 성별\r\n\t, T1.PRODUCT -- 제품명\r\n\t, T1.BRANCH -- 지점명\r\n\t, T1.SALE_QTY -- 판매수량\r\n\t, T1.SALE_PRICE -- 판매단가\r\nFROM MEX_COFFEE T1 -- 커피_매출정보 ",
         "Params": [],
         "Columns": [
           {
@@ -75,7 +132,7 @@
       }
     ]
   },
-  "ScriptText": "var btnClear = null; \r\nvar btnExecute = null; \r\nvar Label = null; \r\nvar Label1 = null; \r\nvar Label3 = null; \r\nvar OlapGrid = null; \r\nvar tbxDebug = null; \r\nvar tbxValues = null; \r\nvar tbxGroupName = null; \r\n\r\nvar initControlVariables = function(){\r\n\tbtnClear = Matrix.getObject(\"btnClear\"); \r\n\tbtnExecute = Matrix.getObject(\"btnExecute\"); \r\n\tLabel = Matrix.getObject(\"Label\"); \r\n\tLabel1 = Matrix.getObject(\"Label1\"); \r\n\tLabel3 = Matrix.getObject(\"Label3\"); \r\n\tOlapGrid = Matrix.getObject(\"OlapGrid\"); \r\n\ttbxDebug = Matrix.getObject(\"tbxDebug\"); \r\n\ttbxValues = Matrix.getObject(\"tbxValues\"); \r\n\ttbxGroupName = Matrix.getObject(\"tbxGroupName\"); \r\n\r\n};\r\ninitControlVariables();\r\n \r\n/*****************************************\r\n* 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n* * arguments :  \r\n*\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n*\t\t string\tText (Readonly:False) : 라벨 값 \r\n*****************************************/\r\n var OnButtonClick  = function(sender, args)\r\n {\r\n \tswitch(args.Id){\r\n\t\tcase \"btnClear\":\r\n\t\t\tOlapGrid.ClearCustomDimensions();\t\t \r\n\t\t\tOlapGrid.Refresh();\r\n\t\t\tbreak;\r\n\t\tcase \"btnExecute\":\r\n\t\t\tvar nDim = OlapGrid.addCustomDimension(\"창고이름\", tbxGroupName.Text);\r\n\t\t\tnDim.Caption = tbxGroupName.Text;\r\n\t\t\tvar arr= tbxValues.Text.split(\",\");\r\n\t\t\tvar text = '\"' + arr.join(\"\\\",\\\"\") + '\"';\r\n\t\t\tnDim.Formula = ' InList([창고이름], ' + text + ')';\r\n\t\t\tnDim.DataCellStyle = \"BX68081E5FE2164E87AC30386900E82C78\";\r\n\t\t\tOlapGrid.Refresh();\t\t\r\n\t\t\tbreak;\r\n\t}\r\n };",
+  "ScriptText": "/*****************************\r\n\r\n *****************************/\r\nvar tbxDebug = Matrix.getObject(\"tbxDebug\");\r\nvar OlapGrid = Matrix.getObject(\"OlapGrid\");\r\nvar Label = Matrix.getObject(\"Label\");\r\nvar btnExecute = Matrix.getObject(\"btnExecute\");\r\nvar Label3 = Matrix.getObject(\"Label3\");\r\nvar tbxGroupName = Matrix.getObject(\"tbxGroupName\");\r\nvar Label1 = Matrix.getObject(\"Label1\");\r\nvar tbxValues = Matrix.getObject(\"tbxValues\");\r\nvar btnClear = Matrix.getObject(\"btnClear\");\r\n/**\r\n * 초기화 버튼 클릭\r\n * @param sender\r\n * @param args\r\n */\r\nbtnClear.OnClick = function (sender, args) {\r\n    OlapGrid.ClearCustomDimensions();\r\n    OlapGrid.Refresh();\r\n};\r\n/**\r\n * 사용자 정의 항목 추가 하기\r\n * @param sender\r\n * @param args\r\n */\r\nbtnExecute.OnClick = function (sender, args) {\r\n    var nDim = OlapGrid.addCustomDimension(\"PRODUCT\", tbxGroupName.Text);\r\n    nDim.Caption = tbxGroupName.Text;\r\n    var arr = tbxValues.Text.split(\",\");\r\n    var text = '\"' + arr.join(\"\\\",\\\"\") + '\"';\r\n    nDim.Formula = ' InList([PRODUCT], ' + text + ')';\r\n    OlapGrid.Refresh();\r\n};\r\n",
   "ServerScriptText": [],
   "Forms": [
     {
@@ -117,7 +174,7 @@
           "Position": {
             "Left": 3,
             "Top": 74,
-            "Width": 1892,
+            "Width": 1545,
             "Height": 100,
             "ZIndex": 0,
             "TabIndex": 0,
@@ -133,21 +190,21 @@
             }
           },
           "Style": {
-            "Type": "0",
-            "BoxStyle": "BX68081E5FE2164E87AC30386900E82C78",
+            "Type": 0,
+            "BoxStyle": "",
             "Background": {
               "Color": {
-                "R": 253,
-                "G": 252,
-                "B": 234,
+                "R": 255,
+                "G": 255,
+                "B": 255,
                 "A": 1
               }
             },
             "Border": {
               "Color": {
-                "R": 204,
-                "G": 204,
-                "B": 204,
+                "R": 194,
+                "G": 194,
+                "B": 197,
                 "A": 1
               },
               "LineType": "solid",
@@ -156,12 +213,12 @@
             },
             "Font": {
               "Color": {
-                "R": 0,
-                "G": 0,
-                "B": 0,
+                "R": 48,
+                "G": 48,
+                "B": 49,
                 "A": 1
               },
-              "Size": 12,
+              "Size": "12",
               "Family": "inherit",
               "Bold": false,
               "Italic": false,
@@ -1000,8 +1057,8 @@
           "Position": {
             "Left": 3,
             "Top": 176,
-            "Width": 1892,
-            "Height": 751,
+            "Width": 1545,
+            "Height": 708,
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
@@ -1239,7 +1296,7 @@
           "Position": {
             "Left": 3,
             "Top": 3,
-            "Width": 1892,
+            "Width": 1545,
             "Height": 41,
             "ZIndex": 1,
             "TabIndex": 0,

@@ -4,15 +4,15 @@
     "FolderCode": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD",
     "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REP3699D43C0F224D239FD597B74995A034.mtsd",
     "ReportName": "(OlapGrid) 특정 헤더 숨김처리(AddHiddenPaths)",
-    "Writer": "yglee",
-    "WriteDate": "2022-03-16 10:53:29",
-    "Editor": "yglee",
-    "EditDate": "2022-03-16 10:53:29",
+    "Writer": "sblim1417",
+    "WriteDate": "2026-01-14 14:36:38",
+    "Editor": "sblim1417",
+    "EditDate": "2026-01-14 14:36:38",
     "TabPosition": 0,
-    "TabHeight": 28,
     "UseLayout": false,
-    "DocumentVersion": "2.1.0.0",
-    "Description": ""
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
     "Datas": [
@@ -52,10 +52,47 @@
             "Type": "Numeric"
           }
         ]
+      },
+      {
+        "Id": "DS",
+        "Name": "Data1",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "y2phcsvD9SpfVtiDucXT+rFcuPzlguSUvMJotCXZ6UzfsBs7n4Pxcc8NwMsFJjH/DloUryQ8S6w6cmmNT0DdAc1eJtOBYaBxnW5FnsEy7tuh7+OV07OLH3ojgVP2hGMWbp+d3lCr04oGF8F+wiQ0a/F6bDjIBP+0vyi8SWjAOiJ5zzPkXBuKyRjcg0tKb79LZTl4yK62P0nFA+yTjkCqFdnIEICu+iQcO7SAUjbEa1da2OcOXo8t+cJNEkdPIXeqluguCiGTYQDuj9VxOeP/CjNW+fB9JIK4PfJNdK7SnP09rDypsZ7KGIMBURlZfhlNJ8rA9Yy0TJohDIKbJIW8QodZ9jyTD9lgmVdynBSQ9LN02Qoae2WbODibyFe4ewfo1lbxnrYtzkBfnJxOCjhPL4VTkUUrf360c5c4KYQnoZPQDf0tPodfQ8MFdI4c9I6a",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "제품명",
+            "Type": "String"
+          },
+          {
+            "Name": "지점명",
+            "Type": "String"
+          },
+          {
+            "Name": "년도",
+            "Type": "String"
+          },
+          {
+            "Name": "월",
+            "Type": "String"
+          },
+          {
+            "Name": "판매수량",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "판매단가",
+            "Type": "Numeric"
+          }
+        ]
       }
     ]
   },
-  "ScriptText": "var Button = null; \r\nvar Label = null; \r\nvar OlapGrid = null; \r\n\r\nvar initControlVariables = function(){\r\n\tButton = Matrix.getObject(\"Button\"); \r\n\tLabel = Matrix.getObject(\"Label\"); \r\n\tOlapGrid = Matrix.getObject(\"OlapGrid\"); \r\n\r\n\tButton.OnClick = function(s, e){\r\n\t\tHIDE_PATH();\r\n\t};\r\n};\r\ninitControlVariables();\r\n\r\n\r\nvar HIDE_PATH = function(){\r\n\t\r\n\t\r\n\tOlapGrid.ClearHiddenPaths();//전체 숨김 내역 제거\r\n\t\r\n\t//년도가 2012 년이면 판매 단가를 표시하지 않는다.\r\n\tvar cell;\r\n\tvar header;\r\n\tvar path;\r\n\tfor(var c=0,len=OlapGrid.ColumnCount;c<len; c++){\r\n\t\tcell = OlapGrid.getCell(0 ,c);\r\n\t\tif(cell.Field && cell.Field.Name == \"판매단가\"){\r\n\t\t\tif(cell.getHeaderValue(\"년도\") == \"2012\"){\r\n\t\t\t\t//경로 정보를 구한다.\r\n\t\t\t\tpath = getHiddenPath(cell.ColumnHeader);\r\n\t\t\t\tOlapGrid.AddHiddenPaths(path);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\tMatrix.doRefresh(\"OlapGrid\");\r\n}\r\nvar getHiddenPath = function(hCell) {\r\n    var path = \"\";\r\n    var cell = hCell;\r\n    while (true) {\r\n        if (!cell || !cell.Field)\r\n            break;\r\n\t\t\t\r\n        if (cell.Measure) {\r\n            path += \"[\" + cell.Key + \"]\";\r\n        }\r\n        else if (cell.GrandTotal) {\r\n            path += \"[#GRAND_TOTAL#]\";\r\n        }\r\n        else if (cell.Total && cell.Reference) {\r\n            path += \"[#\" + cell.Reference.Key + \"#]\";\r\n        }\r\n        else {\r\n            path += \"[\" + cell.Key + \"]\";\r\n        }\r\n        cell = cell.Parent;\r\n    }\r\n    return path;\r\n};",
+  "ScriptText": "/*****************************\r\n *\r\n *****************************/\r\nvar button = null;\r\nvar olapGrid = null;\r\nvar initControlVariables = function () {\r\n    button = Matrix.getObject(\"Button\");\r\n    olapGrid = Matrix.getObject(\"OlapGrid\");\r\n    button.OnClick = function (s, e) {\r\n        HIDE_PATH();\r\n    };\r\n};\r\ninitControlVariables();\r\nvar HIDE_PATH = function () {\r\n    olapGrid.ClearHiddenPaths(); //전체 숨김 내역 제거\r\n    //년도가 2012 년이면 판매 단가를 표시하지 않는다.\r\n    var cell;\r\n    var path;\r\n    for (var c = 0, len = olapGrid.ColumnCount; c < len; c++) {\r\n        cell = olapGrid.getCell(0, c);\r\n        if (cell.Field && cell.Field.Name == \"판매단가\") {\r\n            if (cell.getHeaderValue(\"년도\") == \"2012\") {\r\n                //경로 정보를 구한다.\r\n                path = getHiddenPath(cell.ColumnHeader);\r\n                olapGrid.AddHiddenPaths(path);\r\n            }\r\n        }\r\n    }\r\n    Matrix.doRefresh(\"OlapGrid\");\r\n};\r\nvar getHiddenPath = function (hCell) {\r\n    var path = \"\";\r\n    var cell = hCell;\r\n    while (true) {\r\n        if (!cell || !cell.Field)\r\n            break;\r\n        if (cell.Measure) {\r\n            path += \"[\" + cell.Key + \"]\";\r\n        }\r\n        else if (cell.GrandTotal) {\r\n            path += \"[#GRAND_TOTAL#]\";\r\n        }\r\n        else if (cell.Total && cell.Reference) {\r\n            path += \"[#\" + cell.Reference.Key + \"#]\";\r\n        }\r\n        else {\r\n            path += \"[\" + cell.Key + \"]\";\r\n        }\r\n        cell = cell.Parent;\r\n    }\r\n    return path;\r\n};\r\n",
   "ServerScriptText": [],
   "Forms": [
     {
@@ -65,6 +102,8 @@
       "Visible": true,
       "LanguageCode": "",
       "Style": {
+        "Type": 2,
+        "BoxStyle": "",
         "Border": {
           "ColorR": 204,
           "ColorG": 204,
@@ -107,6 +146,8 @@
               "DisplayColumnSubTotal": true,
               "HideTotalChildIsOneColumn": false,
               "HideTotalChildIsOneRow": false,
+              "HideEmptyMeasureRows": false,
+              "HideEmptyMeasureColumns": false,
               "DisplayRowSubTotal": true,
               "DisplayColumnGrandTotal": true,
               "DisplayRowGrandTotal": true,
@@ -136,6 +177,11 @@
               "TreeHeaderWidth": 300,
               "TreeIndentWidth": 20,
               "DisableColumnSort": false,
+              "MergeColumnHeaders": false,
+              "MergeRowHeaders": false,
+              "OptimizingHybridFilter": false,
+              "AutoHideGrandTotalRow": false,
+              "AutoHideGrandTotalColumn": false,
               "ExportOption": {
                 "ExportSheetSize": 1000000,
                 "ExportDisableRowMerge": false,
@@ -143,13 +189,14 @@
               },
               "PagerInfo": {
                 "PageSize": 100,
-                "UsePaging": true
+                "UsePaging": true,
+                "IgnoreTotalCount": false
               },
               "Style": {
                 "ColumnHeaderVerticalAlignment": 0,
                 "RowHeaderVerticalAlignment": 0,
                 "LineColor": "rgba(152,183,216,1)",
-                "BackgroundColor": "#fff"
+                "BackgroundColor": ""
               },
               "CacheOption": {
                 "CacheMode": 1,
@@ -159,6 +206,14 @@
                 "HybridSort": false
               }
             },
+            "TopFilter": {
+              "Dimension": "",
+              "Measure": "",
+              "Rank": 10,
+              "IsTop": true,
+              "GroupBy": []
+            },
+            "PreFilters": [],
             "Fields": [
               {
                 "Key": "제품명",
@@ -174,6 +229,7 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -211,7 +267,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "년도",
@@ -227,6 +284,7 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -268,7 +326,8 @@
                     "2012",
                     "2013"
                   ]
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "판매수량",
@@ -284,6 +343,7 @@
                 "Format": "{0:N0}",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 77,
                 "Unit": 1,
                 "CreateType": 0,
@@ -321,7 +381,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "월",
@@ -337,6 +398,7 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -388,7 +450,8 @@
                   "10월",
                   "12월",
                   "11월"
-                ]
+                ],
+                "RelationFields": []
               },
               {
                 "Key": "지점명",
@@ -404,6 +467,7 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -441,7 +505,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "판매단가",
@@ -457,6 +522,7 @@
                 "Format": "{0:N0}",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 81,
                 "Unit": 1,
                 "CreateType": 0,
@@ -494,7 +560,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "#MEASURES_HEADER#",
@@ -510,6 +577,7 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 1,
@@ -547,7 +615,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               }
             ],
             "MultiHeaderCells": [],
@@ -570,6 +639,7 @@
             "UseMeta": false,
             "UseChartSourceTotal": false,
             "UseChartSourceGrandTotal": false,
+            "UseChartSourceReverse": false,
             "ChartLabelDepth": -1,
             "ConditionalStyleName": "",
             "BackgroundColorBoxStyleKey": "",
@@ -594,7 +664,8 @@
             "EtcMultiHeader": true,
             "EtcCacheInfo": true,
             "EtcFieldGroup": true,
-            "EtcFilterManager": true
+            "EtcFilterManager": true,
+            "EtcTopFilter": true
           },
           "Type": "OlapGrid",
           "Id": "OlapGrid1647394372887",
@@ -602,8 +673,8 @@
           "Position": {
             "Left": 0,
             "Top": 120,
-            "Width": 1495,
-            "Height": 694,
+            "Width": 1609,
+            "Height": 751,
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
@@ -613,24 +684,15 @@
               "Bottom": true,
               "Margin": "0,0,0,0",
               "HoldSize": false,
-              "MinWidth": "0",
-              "MinHeight": "0",
-              "_compileMarginText": "0,0,0,0",
-              "_compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ]
+              "MinWidth": 0,
+              "MinHeight": 0
             }
           },
           "Style": {
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.SolidColorBrush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -638,9 +700,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -648,66 +708,31 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Border",
-                  "Font",
-                  "StyleType",
-                  "BoxStyle",
-                  "Background"
-                ]
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "__type__": "istudio.drawing.style.FontInfo",
-              "Size": 12,
-              "Family": "inherit",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 0,
                 "G": 0,
                 "B": 0,
                 "A": 1
               },
+              "Size": 12,
+              "Family": "inherit",
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "top",
-              "mVariable": {
-                "Size": 12,
-                "Family": "inherit",
-                "Bold": false,
-                "Italic": false,
-                "UnderLine": false,
-                "HorizontalAlignment": "left",
-                "VerticalAlignment": "top"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Border",
-                  "Font",
-                  "StyleType",
-                  "BoxStyle",
-                  "Background"
-                ]
-              }
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
         {
           "LanguageCode": "",
-          "UseTooltip": true,
           "Value": "특정 경로의 셀들 숨기기 ",
           "Cursor": "pointer",
+          "UseTooltip": true,
           "MouseOver": {
             "UseYn": false,
             "BoxStyle": ""
@@ -728,6 +753,7 @@
             "SpreadRadius": "0",
             "Inset": false
           },
+          "HasNewRadius": false,
           "Type": "Button",
           "Id": "Buttonb97f3d7a-3db3-58b5-d6b0-3f0c1e2f3a6d",
           "Name": "Button",
@@ -745,106 +771,72 @@
               "Bottom": false,
               "Margin": "0,0,0,0",
               "HoldSize": false,
-              "MinWidth": "0",
-              "MinHeight": "0",
-              "_compileMarginText": "0,0,0,0",
-              "_compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ]
+              "MinWidth": 0,
+              "MinHeight": 0
             }
           },
           "Style": {
             "Type": 2,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.SolidColorBrush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "46",
-                "G": "87",
-                "B": "160",
-                "A": "1"
+                "R": 46,
+                "G": 87,
+                "B": 160,
+                "A": 1
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "12",
-                "G": "56",
-                "B": "134",
-                "A": "1"
+                "R": 12,
+                "G": 56,
+                "B": 134,
+                "A": 1
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0",
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              }
+              "CornerRadius": "0"
             },
             "Font": {
-              "__type__": "istudio.drawing.style.FontInfo",
-              "Size": "12",
-              "Family": "inherit",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "255",
-                "G": "255",
-                "B": "255",
-                "A": "1"
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
               },
+              "Size": 12,
+              "Family": "inherit",
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "center",
               "VerticalAlignment": "middle",
-              "mVariable": {
-                "Size": "12",
-                "Family": "inherit",
-                "Bold": false,
-                "Italic": false,
-                "UnderLine": false,
-                "HorizontalAlignment": "center",
-                "VerticalAlignment": "middle"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              }
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
         {
           "LanguageCode": "",
-          "UseTooltip": true,
           "Text": " 특정 경로를 가지는 행/열을 숨김 처리 합니다.\n API : AddHiddenPaths(path);",
           "Cursor": "default",
           "Formula": "",
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
           "MxBinding": "",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Top": 0,
+            "Right": 0,
+            "Bottom": 0,
+            "Text": "0,0,0,0"
+          },
           "Type": "Label",
           "Id": "Label5acc6bcd-1036-56a3-8b28-3fe816c1bece",
           "Name": "Label",
           "Position": {
             "Left": 10,
             "Top": 43,
-            "Width": 1475,
+            "Width": 1589,
             "Height": 62,
             "ZIndex": 0,
             "TabIndex": 0,
@@ -855,83 +847,47 @@
               "Bottom": false,
               "Margin": "10",
               "HoldSize": false,
-              "MinWidth": "0",
-              "MinHeight": "0",
-              "_compileMarginText": "10",
-              "_compileMargin": [
-                10,
-                10,
-                10,
-                10
-              ]
+              "MinWidth": 0,
+              "MinHeight": 0
             }
           },
           "Style": {
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.SolidColorBrush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "255",
-                "G": "255",
-                "B": "255",
-                "A": "1"
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "85",
-                "G": "142",
-                "B": "213",
-                "A": "1"
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
               },
               "LineType": "none",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "mVariable": {
-                "LineType": "none",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "__type__": "istudio.drawing.style.FontInfo",
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
               "Size": "12",
               "Family": "inherit",
-              "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "12",
-                "G": "56",
-                "B": "134",
-                "A": "1"
-              },
               "Bold": true,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "middle",
-              "mVariable": {
-                "Size": "12",
-                "Family": "inherit",
-                "Bold": true,
-                "Italic": false,
-                "UnderLine": false,
-                "HorizontalAlignment": "left",
-                "VerticalAlignment": "middle"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              }
+              "TempFontFamily": "맑은 고딕"
             }
           }
         }
@@ -944,6 +900,8 @@
   "EXECUTION_PLANS": [],
   "Variables": [],
   "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
   "WorkFlowModules": [],
   "WorkFlowInfo": "{}",
   "schModel": {}

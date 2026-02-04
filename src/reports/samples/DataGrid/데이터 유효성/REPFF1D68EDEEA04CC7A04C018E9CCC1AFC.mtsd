@@ -4,16 +4,99 @@
     "FolderCode": "FLDECBB2CAEFB904D2E9C49459291F6E735",
     "SavePath": "FLDECBB2CAEFB904D2E9C49459291F6E735/REPFF1D68EDEEA04CC7A04C018E9CCC1AFC.mtsd",
     "ReportName": "데이터 유효성",
-    "Writer": "mkkim",
-    "WriteDate": "2022-8-28-22-9-44",
-    "Editor": "mkkim",
-    "EditDate": "2022-8-28-22-9-44",
+    "Writer": "yglee",
+    "WriteDate": "2026-02-04 10:15:56",
+    "Editor": "yglee",
+    "EditDate": "2026-02-04 10:15:56",
     "TabPosition": 0,
     "UseLayout": false,
-    "DocumentVersion": "3.0.0.0"
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
     "Datas": [
+      {
+        "Id": "DS780AEEC43EFB4E60ABB084BA3D47AB47",
+        "Name": "Data1",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "CwqBeb7O/m3KbirOli1/Pl0JV8LQ3V/EgGY2xy8rsow=",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "REPORT_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_SEQ",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "REPORT_PATH",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_SIZE",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "MODULE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_DESC",
+            "Type": "String"
+          },
+          {
+            "Name": "ACCESS_CNT",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "ACCESS_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "EXPECT_TIME",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "ATTRIBUTE1",
+            "Type": "String"
+          },
+          {
+            "Name": "ATTRIBUTE2",
+            "Type": "String"
+          },
+          {
+            "Name": "OWNER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_DATE",
+            "Type": "String"
+          }
+        ]
+      },
       {
         "Id": "DS_COFFEE_SALE_INFO",
         "Name": "커피 매출 정보",
@@ -135,6 +218,47 @@
             "Type": "String"
           }
         ]
+      },
+      {
+        "Id": "DS_COFFEE_SALE_INFO",
+        "Name": "커피 매출 정보",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 4,
+        "SQL": "roDKAyzx1vvC6/uDpjBou0pXuPN5/xxmZPHDwHP1PquOFZ3Y/4w1ntVHsB5QD8hSk7qJTNA6BWEyaaRouFCj8nIjSUcUdJVEo8FF6zFSV1Fc3375tstHb1ca9T9ItGP+HBfOhBqcFqLhfDTFSZthwM+ZI3kvFZErUXFG3jz99JlHg18UchWPX+ycQTpAS+N4ci/CRcQ1tiYT4T1H0F2fzhmru1DD2f8Jn735FMVRsVplKtCmvRdUzC5vRifs61NXv/tFu2Wk9PxLGbWHyfkz3zyHZhMR16UeVJlQDVERyVQM7UeCPxxvfGKw5LoHrY+XGTMhCROYZp+DqiIqXvLuNZAAXrAiiQzjp6pGBooEx45sAG6J3KGucpnQ8BL48C2gS83DDQiwb9bInYXbKn0i1g==",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "년도",
+            "Type": "String"
+          },
+          {
+            "Name": "성별",
+            "Type": "String"
+          },
+          {
+            "Name": "월",
+            "Type": "String"
+          },
+          {
+            "Name": "제품명",
+            "Type": "String"
+          },
+          {
+            "Name": "지점명",
+            "Type": "String"
+          },
+          {
+            "Name": "판매단가",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "판매수량",
+            "Type": "Numeric"
+          }
+        ]
       }
     ]
   },
@@ -148,6 +272,8 @@
       "Visible": true,
       "LanguageCode": "",
       "Style": {
+        "Type": 2,
+        "BoxStyle": "",
         "Border": {
           "ColorR": 204,
           "ColorG": 204,
@@ -185,6 +311,15 @@
           },
           "Style": {
             "Type": 2,
+            "Border": {
+              "Thickness": "1,1,1,1"
+            },
+            "VerticalBorder": {
+              "Thickness": 1
+            },
+            "HorizontalBorder": {
+              "Thickness": 1
+            },
             "Background": {
               "Color": {
                 "R": 255,
@@ -192,36 +327,6 @@
                 "B": 255,
                 "A": 1
               }
-            },
-            "Border": {
-              "Color": {
-                "R": 194,
-                "G": 194,
-                "B": 197,
-                "A": 1
-              },
-              "CornerRadius": "0,0,0,0",
-              "LineType": "solid",
-              "Thickness": "1,1,1,1"
-            },
-            "VerticalBorder": {
-              "Color": {
-                "R": 194,
-                "G": 194,
-                "B": 197,
-                "A": 1
-              },
-              "LineType": "solid",
-              "Thickness": 1
-            },
-            "HorizontalBorder": {
-              "Color": {
-                "R": 194,
-                "G": 194,
-                "B": 197,
-                "A": 1
-              },
-              "Thickness": 1
             },
             "Font": {
               "Bold": false,
@@ -231,7 +336,7 @@
                 "B": 0,
                 "A": 1
               },
-              "Family": "inherit",
+              "Family": "맑은 고딕",
               "HorizontalAlignment": "left",
               "Italic": false,
               "Size": 12,
@@ -245,6 +350,8 @@
           "ColumnHeaderHeight": 28,
           "RowHeight": 24,
           "Editable": true,
+          "ExportCount": 0,
+          "FontFamily": "inherit",
           "FontSize": 12,
           "UsePPTExport": false,
           "FrozenLineBrush": {
@@ -268,8 +375,7 @@
                 "UseGuideMessage": true,
                 "GuideLanguageCode": " {min}보다 크고 {max}보다 작아야 합니다.",
                 "UseErrorMessage": true,
-                "ErrorLanguageCode": "{min}보다 크고 {max}보다\n작아야 합니다.",
-                "IMEMode": 0
+                "ErrorLanguageCode": "{min}보다 크고 {max}보다\n작아야 합니다."
               },
               "ColumnType": 5,
               "Format": "{0:yyyy-MM-dd}",
@@ -288,8 +394,7 @@
                 "UseGuideMessage": true,
                 "GuideLanguageCode": "",
                 "UseErrorMessage": true,
-                "ErrorLanguageCode": "",
-                "IMEMode": 0
+                "ErrorLanguageCode": ""
               },
               "InitValue": "",
               "KeyType": 2,
@@ -306,8 +411,7 @@
                 "UseGuideMessage": true,
                 "GuideLanguageCode": "",
                 "UseErrorMessage": true,
-                "ErrorLanguageCode": "",
-                "IMEMode": 0
+                "ErrorLanguageCode": ""
               },
               "ColumnType": 3,
               "InitValue": "",
@@ -327,8 +431,7 @@
                 "UseGuideMessage": true,
                 "GuideLanguageCode": "",
                 "UseErrorMessage": true,
-                "ErrorLanguageCode": "",
-                "IMEMode": 0
+                "ErrorLanguageCode": ""
               },
               "KeyType": 2,
               "HeaderPosition": "center"
@@ -344,8 +447,7 @@
                 "UseGuideMessage": true,
                 "GuideLanguageCode": "",
                 "UseErrorMessage": true,
-                "ErrorLanguageCode": "",
-                "IMEMode": 0
+                "ErrorLanguageCode": ""
               },
               "ColumnType": 9,
               "InitValue": "",
@@ -384,5 +486,7 @@
   "Modules": [],
   "ResponsiveLayout": [],
   "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
   "schModel": {}
 }

@@ -4,18 +4,75 @@
     "FolderCode": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD",
     "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REP6DA232789CDA43238727F766E8B67338.mtsd",
     "ReportName": "(OlapGrid) 조건부 서식",
-    "Writer": "choehanna",
-    "WriteDate": "2021-07-30 13:54:29",
+    "Writer": "yglee",
+    "WriteDate": "2026-02-04 10:26:01",
     "Editor": "yglee",
-    "EditDate": "2021-10-20 13:12:00",
+    "EditDate": "2026-02-04 10:26:01",
     "TabPosition": 1,
-    "TabHeight": 28,
     "UseLayout": false,
-    "DocumentVersion": "2.1.0.0",
-    "Description": ""
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
     "Datas": [
+      {
+        "Id": "DS56AF776B21D34D1496F97F37B3912FEC",
+        "Name": "Data1",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "/VAMGJR9QF5UXyW0Art89evSZ1qd9oASZCpSi96pKfk=",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "YYYY",
+            "Type": "String"
+          },
+          {
+            "Name": "HALF",
+            "Type": "String"
+          },
+          {
+            "Name": "QUATER",
+            "Type": "String"
+          },
+          {
+            "Name": "LOCALE",
+            "Type": "String"
+          },
+          {
+            "Name": "PRODUCT",
+            "Type": "String"
+          },
+          {
+            "Name": "CUSTOMER",
+            "Type": "String"
+          },
+          {
+            "Name": "Y_VAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "H_VAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Q_VAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "ROW_ID",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "BIG_DOUBLE",
+            "Type": "Numeric"
+          }
+        ]
+      },
       {
         "Id": "DS56AF776B21D34D1496F97F37B3912FEC",
         "Name": "Data1",
@@ -85,6 +142,8 @@
       "Visible": true,
       "LanguageCode": "",
       "Style": {
+        "Type": 2,
+        "BoxStyle": "",
         "Border": {
           "ColorR": 204,
           "ColorG": 204,
@@ -127,6 +186,8 @@
               "DisplayColumnSubTotal": true,
               "HideTotalChildIsOneColumn": false,
               "HideTotalChildIsOneRow": false,
+              "HideEmptyMeasureRows": false,
+              "HideEmptyMeasureColumns": false,
               "DisplayRowSubTotal": true,
               "DisplayColumnGrandTotal": true,
               "DisplayRowGrandTotal": true,
@@ -156,6 +217,11 @@
               "TreeHeaderWidth": 300,
               "TreeIndentWidth": 20,
               "DisableColumnSort": false,
+              "MergeColumnHeaders": false,
+              "MergeRowHeaders": false,
+              "OptimizingHybridFilter": false,
+              "AutoHideGrandTotalRow": false,
+              "AutoHideGrandTotalColumn": false,
               "ExportOption": {
                 "ExportSheetSize": 1000000,
                 "ExportDisableRowMerge": false,
@@ -163,13 +229,14 @@
               },
               "PagerInfo": {
                 "PageSize": 100,
-                "UsePaging": true
+                "UsePaging": true,
+                "IgnoreTotalCount": false
               },
               "Style": {
                 "ColumnHeaderVerticalAlignment": 0,
                 "RowHeaderVerticalAlignment": 0,
                 "LineColor": "rgba(152,183,216,1)",
-                "BackgroundColor": "#fff"
+                "BackgroundColor": ""
               },
               "CacheOption": {
                 "CacheMode": 1,
@@ -179,6 +246,14 @@
                 "HybridSort": false
               }
             },
+            "TopFilter": {
+              "Dimension": "",
+              "Measure": "",
+              "Rank": 10,
+              "IsTop": true,
+              "GroupBy": []
+            },
+            "PreFilters": [],
             "Fields": [
               {
                 "Key": "QUATER",
@@ -194,6 +269,7 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -231,7 +307,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "YYYY",
@@ -247,6 +324,7 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -289,7 +367,8 @@
                     "Y2001",
                     "Y2002"
                   ]
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "CUSTOMER",
@@ -305,6 +384,7 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -350,7 +430,8 @@
                     "IBM",
                     "Inkel"
                   ]
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "Y_VAL",
@@ -366,6 +447,7 @@
                 "Format": "{0:N0}",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -403,7 +485,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "HALF",
@@ -419,6 +502,7 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -456,7 +540,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "PRODUCT",
@@ -472,6 +557,7 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -509,7 +595,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "#MEASURES_HEADER#",
@@ -525,6 +612,7 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 1,
@@ -562,7 +650,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "H_VAL",
@@ -578,6 +667,7 @@
                 "Format": "{0:N0}",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -615,7 +705,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "ROW_ID",
@@ -631,6 +722,7 @@
                 "Format": "{0:N0}",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -668,7 +760,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "LOCALE",
@@ -684,6 +777,7 @@
                 "Format": "",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -724,7 +818,8 @@
                   "Values": [
                     null
                   ]
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "Q_VAL",
@@ -740,6 +835,7 @@
                 "Format": "{0:N0}",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -777,7 +873,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               },
               {
                 "Key": "BIG_DOUBLE",
@@ -793,6 +890,7 @@
                 "Format": "{0:N0}",
                 "Formula": "",
                 "Formula2": "",
+                "RefFormula": "",
                 "Width": 100,
                 "Unit": 1,
                 "CreateType": 0,
@@ -830,7 +928,8 @@
                   "MeasureFilterTypeA": 0,
                   "MeasureFilterTypeB": 0,
                   "MeasureAndOrOperator": 2
-                }
+                },
+                "RelationFields": []
               }
             ],
             "ConditionalStyle": "/*\n  스타일은 반환값이 스타일 목록의 Key 나 Name을 값을 반환해야 합니다.\n  스타일은 스타일 매니저에서 사전 생성하셔야 합니다.\n*/ \nSwitch( \n     \t\tOR (IsRowGrandTotal, IsColGrandTotal, IsRowTotal, IsColTotal)  \n       \t\t, \"\"\n            ,  AND(FIELD_KEY == \"Y_VAL\" , CELL_VALUE < 100000) \n            ,  \"BXFCA0855A27B64BD9AB9A551F116588F7\"\n            ,   AND(FIELD_KEY == \"Q_VAL\" , CELL_VALUE < 60000)  \n            , \"BX9E4F47AC04094E2CA904C9288DBD8626\"\n            ,  AND(FIELD_KEY == \"H_VAL\" , CELL_VALUE < 60000) \n            , \"BX5E159B418280471DABFB95C1B08E43E6\"\n            , \"\" \n)  ",
@@ -840,6 +939,7 @@
             "UseMeta": false,
             "UseChartSourceTotal": false,
             "UseChartSourceGrandTotal": false,
+            "UseChartSourceReverse": false,
             "ChartLabelDepth": -1,
             "ConditionalStyleName": "",
             "BackgroundColorBoxStyleKey": "",
@@ -864,7 +964,8 @@
             "EtcMultiHeader": true,
             "EtcCacheInfo": true,
             "EtcFieldGroup": true,
-            "EtcFilterManager": true
+            "EtcFilterManager": true,
+            "EtcTopFilter": true
           },
           "Type": "OlapGrid",
           "Id": "OlapGrid1627619746590",
@@ -872,8 +973,8 @@
           "Position": {
             "Left": 0,
             "Top": 52,
-            "Width": 1882,
-            "Height": 882,
+            "Width": 1551,
+            "Height": 835,
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {
@@ -883,24 +984,15 @@
               "Bottom": true,
               "Margin": "0,0,0,0",
               "HoldSize": false,
-              "MinWidth": "0",
-              "MinHeight": "0",
-              "_compileMarginText": "0,0,0,0",
-              "_compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ]
+              "MinWidth": 0,
+              "MinHeight": 0
             }
           },
           "Style": {
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.SolidColorBrush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -908,9 +1000,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -918,66 +1008,31 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Border",
-                  "Font",
-                  "StyleType",
-                  "BoxStyle",
-                  "Background"
-                ]
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "__type__": "istudio.drawing.style.FontInfo",
-              "Size": 12,
-              "Family": "inherit",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 0,
                 "G": 0,
                 "B": 0,
                 "A": 1
               },
+              "Size": 12,
+              "Family": "inherit",
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "top",
-              "mVariable": {
-                "Size": 12,
-                "Family": "inherit",
-                "Bold": false,
-                "Italic": false,
-                "UnderLine": false,
-                "HorizontalAlignment": "left",
-                "VerticalAlignment": "top"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Border",
-                  "Font",
-                  "StyleType",
-                  "BoxStyle",
-                  "Background"
-                ]
-              }
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
         {
           "LanguageCode": "",
-          "UseTooltip": true,
           "Value": "SAVE LAYOUT",
           "Cursor": "pointer",
+          "UseTooltip": true,
           "MouseOver": {
             "UseYn": false,
             "BoxStyle": ""
@@ -998,6 +1053,7 @@
             "SpreadRadius": "0",
             "Inset": false
           },
+          "HasNewRadius": false,
           "Type": "Button",
           "Id": "Button9f2a2015-3a9f-4975-16a7-9cf0fdb9b6ec",
           "Name": "SAVE_LAYOUT",
@@ -1015,91 +1071,55 @@
               "Bottom": false,
               "Margin": "0,0,0,0",
               "HoldSize": false,
-              "MinWidth": "0",
-              "MinHeight": "0",
-              "_compileMarginText": "0,0,0,0",
-              "_compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ]
+              "MinWidth": 0,
+              "MinHeight": 0
             }
           },
           "Style": {
-            "Type": 0,
+            "Type": 2,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.SolidColorBrush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "46",
-                "G": "87",
-                "B": "160",
-                "A": "1"
+                "R": 46,
+                "G": 87,
+                "B": 160,
+                "A": 1
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "12",
-                "G": "56",
-                "B": "134",
-                "A": "1"
+                "R": 12,
+                "G": 56,
+                "B": 134,
+                "A": 1
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "12,12,12,12",
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "12,12,12,12"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              }
+              "CornerRadius": "12,12,12,12"
             },
             "Font": {
-              "__type__": "istudio.drawing.style.FontInfo",
-              "Size": "12",
-              "Family": "inherit",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "255",
-                "G": "255",
-                "B": "255",
-                "A": "1"
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
               },
+              "Size": 12,
+              "Family": "inherit",
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "center",
               "VerticalAlignment": "middle",
-              "mVariable": {
-                "Size": "12",
-                "Family": "inherit",
-                "Bold": false,
-                "Italic": false,
-                "UnderLine": false,
-                "HorizontalAlignment": "center",
-                "VerticalAlignment": "middle"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              }
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
         {
           "LanguageCode": "",
-          "UseTooltip": true,
           "Value": "LOAD LAYOUT",
           "Cursor": "pointer",
+          "UseTooltip": true,
           "MouseOver": {
             "UseYn": false,
             "BoxStyle": ""
@@ -1120,6 +1140,7 @@
             "SpreadRadius": "0",
             "Inset": false
           },
+          "HasNewRadius": false,
           "Type": "Button",
           "Id": "Button50cf3fa9-0a09-8f0c-560f-d0f40f824231",
           "Name": "LOAD_LAYOUT",
@@ -1137,83 +1158,47 @@
               "Bottom": false,
               "Margin": "0,0,0,0",
               "HoldSize": false,
-              "MinWidth": "0",
-              "MinHeight": "0",
-              "_compileMarginText": "0,0,0,0",
-              "_compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ]
+              "MinWidth": 0,
+              "MinHeight": 0
             }
           },
           "Style": {
-            "Type": 0,
+            "Type": 2,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.SolidColorBrush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "46",
-                "G": "87",
-                "B": "160",
-                "A": "1"
+                "R": 46,
+                "G": 87,
+                "B": 160,
+                "A": 1
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "12",
-                "G": "56",
-                "B": "134",
-                "A": "1"
+                "R": 12,
+                "G": 56,
+                "B": 134,
+                "A": 1
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "12,12,12,12",
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "12,12,12,12"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              }
+              "CornerRadius": "12,12,12,12"
             },
             "Font": {
-              "__type__": "istudio.drawing.style.FontInfo",
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
               "Size": 12,
               "Family": "inherit",
-              "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "255",
-                "G": "255",
-                "B": "255",
-                "A": "1"
-              },
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "center",
               "VerticalAlignment": "middle",
-              "mVariable": {
-                "Size": 12,
-                "Family": "inherit",
-                "Bold": false,
-                "Italic": false,
-                "UnderLine": false,
-                "HorizontalAlignment": "center",
-                "VerticalAlignment": "middle"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Button"
-              }
+              "TempFontFamily": "맑은 고딕"
             }
           }
         }
@@ -1226,6 +1211,8 @@
       "Visible": true,
       "LanguageCode": "",
       "Style": {
+        "Type": 2,
+        "BoxStyle": "",
         "Border": {
           "ColorR": 204,
           "ColorG": 204,
@@ -1245,17 +1232,19 @@
       "Elements": [
         {
           "LanguageCode": "",
-          "UseTooltip": true,
           "Text": "1.상수\n    CELL_VALUE : 데이터 셀의 값\n    FIELD_KEY  : 데이터 셀에 계산에 적용된 데이터 필드의 Key값\n    FIELD_LABEL  : 데이터 셀에 계산에 적용된 데이터 필드의 라벨(Caption)\n\n2. 수식\n    스타일은 반환값이 스타일 목록의 Key 값을 반환해야 합니다.\n     (\"BG_RED\", \"BG_BLUE\") 은 사용자가 직접 정의한 스타일 값입니다.\n     스타일은 전역 Resource로 관리되며, 스타일 편집기에서 편집이 가능합니다.\n\n \n/*\n  스타일은 반환값이 스타일 목록의 Key 나 Name을 값을 반환해야 합니다.\n  스타일은 스타일 매니저에서 사전 생성하셔야 합니다.\n*/ \nSwitch( \n     \t\tOR (IsRowGrandTotal, IsColGrandTotal, IsRowTotal, IsColTotal)  \n       \t\t, \"\"\n            ,  AND(FIELD_KEY == \"Y_VAL\" , CELL_VALUE < 100000) \n            ,  \"BXFCA0855A27B64BD9AB9A551F116588F7\"\n            ,   AND(FIELD_KEY == \"Q_VAL\" , CELL_VALUE < 60000)  \n            , \"BX9E4F47AC04094E2CA904C9288DBD8626\"\n            ,  AND(FIELD_KEY == \"H_VAL\" , CELL_VALUE < 60000) \n            , \"BX5E159B418280471DABFB95C1B08E43E6\"\n            , \"\" \n)  ",
           "Cursor": "default",
           "Formula": "",
-          "BindingInfo": {
-            "BindingGId": "",
-            "BindingGName": "",
-            "BindingGColumn": "",
-            "BindingGColumnId": ""
-          },
           "MxBinding": "",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Top": 0,
+            "Right": 0,
+            "Bottom": 0,
+            "Text": "0,0,0,0"
+          },
           "Type": "Label",
           "Id": "Label9f8fa7d7-4c97-8a9f-c512-a279c84d74c9",
           "Name": "Label",
@@ -1273,83 +1262,53 @@
               "Bottom": false,
               "Margin": "20,20,0,0",
               "HoldSize": false,
-              "MinWidth": "0",
-              "MinHeight": "0",
-              "_compileMarginText": "20,20,0,0"
+              "MinWidth": 0,
+              "MinHeight": 0
             }
           },
           "Style": {
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.SolidColorBrush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "255",
-                "G": "255",
-                "B": "255",
-                "A": "1"
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "85",
-                "G": "142",
-                "B": "213",
-                "A": "1"
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
               },
               "LineType": "none",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "mVariable": {
-                "LineType": "none",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "__type__": "istudio.drawing.style.FontInfo",
-              "Size": 12,
-              "Family": "inherit",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
-                "R": "12",
-                "G": "56",
-                "B": "134",
-                "A": "1"
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
               },
+              "Size": "12",
+              "Family": "inherit",
               "Bold": true,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "middle",
-              "mVariable": {
-                "Size": 12,
-                "Family": "inherit",
-                "Bold": true,
-                "Italic": false,
-                "UnderLine": false,
-                "HorizontalAlignment": "left",
-                "VerticalAlignment": "middle"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [],
-                "DefaultStyle": "Label"
-              }
+              "TempFontFamily": "맑은 고딕"
             }
           }
         },
         {
-          "UseTooltip": true,
           "Cursor": "default",
+          "UseTooltip": true,
           "Image": {
             "ImageCode": "1384e435d38f4d4884888bd5e39d78be",
             "ImageName": "조건부_서식_이미지.png",
@@ -1377,24 +1336,15 @@
               "Bottom": false,
               "Margin": "0,0,0,0",
               "HoldSize": false,
-              "MinWidth": "0",
-              "MinHeight": "0",
-              "_compileMarginText": "0,0,0,0",
-              "_compileMargin": [
-                0,
-                0,
-                0,
-                0
-              ]
+              "MinWidth": 0,
+              "MinHeight": 0
             }
           },
           "Style": {
             "Type": 0,
             "BoxStyle": "",
             "Background": {
-              "__type__": "istudio.drawing.style.SolidColorBrush",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 255,
                 "G": 255,
                 "B": 255,
@@ -1402,9 +1352,7 @@
               }
             },
             "Border": {
-              "__type__": "istudio.drawing.style.BorderInfo",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 204,
                 "G": 204,
                 "B": 204,
@@ -1412,54 +1360,23 @@
               },
               "LineType": "solid",
               "Thickness": "1,1,1,1",
-              "CornerRadius": "0,0,0,0",
-              "mVariable": {
-                "LineType": "solid",
-                "Thickness": "1,1,1,1",
-                "CornerRadius": "0,0,0,0"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Background",
-                  "Border",
-                  "Font"
-                ]
-              }
+              "CornerRadius": "0,0,0,0"
             },
             "Font": {
-              "__type__": "istudio.drawing.style.FontInfo",
-              "Size": 12,
-              "Family": "inherit",
               "Color": {
-                "__type__": "istudio.drawing.style.Color",
                 "R": 0,
                 "G": 0,
                 "B": 0,
                 "A": 1
               },
+              "Size": 12,
+              "Family": "inherit",
               "Bold": false,
               "Italic": false,
               "UnderLine": false,
               "HorizontalAlignment": "left",
               "VerticalAlignment": "top",
-              "mVariable": {
-                "Size": 12,
-                "Family": "inherit",
-                "Bold": false,
-                "Italic": false,
-                "UnderLine": false,
-                "HorizontalAlignment": "left",
-                "VerticalAlignment": "top"
-              },
-              "Option": {
-                "activate": [],
-                "Inactivate": [
-                  "Background",
-                  "Border",
-                  "Font"
-                ]
-              }
+              "TempFontFamily": "맑은 고딕"
             }
           }
         }
@@ -1472,40 +1389,126 @@
   "EXECUTION_PLANS": [],
   "Variables": [],
   "Modules": [],
-  "WorkFlowModules": [
-    {
-      "MODULE_CODE": "MOD93589566384847D411B2134AD7690539",
-      "MODULE_SUBJECT": "OlapGrid Layout(배치 정보) 저장, 복원 하기",
-      "MODULE_PARAMS": [
-        {
-          "DEFAULT_VALUE": "",
-          "MODULE_CODE": "MOD93589566384847D411B2134AD7690539",
-          "ATTR3": "",
-          "NULLABLE": "N",
-          "ATTR2": "",
-          "ATTR1": "",
-          "PARAM_TYPE": "INP004",
-          "PARAM_SEQ": "1",
-          "PARAM_DESCRIPTION": "배치 정보를 관리 할 OlapGrid 컨트롤을 선택해 주세요.",
-          "Value": "OlapGrid"
-        },
-        {
-          "DEFAULT_VALUE": "SELECT",
-          "MODULE_CODE": "MOD93589566384847D411B2134AD7690539",
-          "ATTR3": "",
-          "NULLABLE": "N",
-          "ATTR2": "",
-          "ATTR1": "CREATE;저장하기|SELECT;복원하기",
-          "PARAM_TYPE": "INP999",
-          "PARAM_SEQ": "2",
-          "PARAM_DESCRIPTION": "수행할 작업을 선택해 주세요.\n저장하기 : 현재 배치된 정보를 저장하는 대화상자가 표시됩니다.\n복원하기 : 기존 저장된 배치정보 목록 대화상자가 표시됩니다.",
-          "Value": "CREATE"
-        }
-      ],
-      "MODULE_TYPE": "",
-      "EVENT_CONTROL": "SAVE_LAYOUT",
-      "EVENT_NAME": "OnClick"
-    }
-  ],
-  "WorkFlowInfo": "{\"Document\":{\"Name\":\"Report\"},\"Object\":{\"Name\":\"Object\",\"Forms\":[{\"Name\":\"Main\",\"Controls\":[{\"Name\":\"SAVE_LAYOUT\",\"Events\":[{\"Name\":\"OnClick\",\"Flow\":{\"Actions\":[{\"Name\":\"Module\",\"Parameters\":[\"OlapGrid Layout(배치 정보) 저장, 복원 하기\",\"{\\\"MODULE_CODE\\\":\\\"MOD93589566384847D411B2134AD7690539\\\",\\\"MODULE_SUBJECT\\\":\\\"OlapGrid Layout(배치 정보) 저장, 복원 하기\\\",\\\"MODULE_PARAMS\\\":[{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MOD93589566384847D411B2134AD7690539\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"1\\\",\\\"PARAM_DESCRIPTION\\\":\\\"배치 정보를 관리 할 OlapGrid 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"OlapGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"SELECT\\\",\\\"MODULE_CODE\\\":\\\"MOD93589566384847D411B2134AD7690539\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"CREATE;저장하기|SELECT;복원하기\\\",\\\"PARAM_TYPE\\\":\\\"INP999\\\",\\\"PARAM_SEQ\\\":\\\"2\\\",\\\"PARAM_DESCRIPTION\\\":\\\"수행할 작업을 선택해 주세요.\\\\n저장하기 : 현재 배치된 정보를 저장하는 대화상자가 표시됩니다.\\\\n복원하기 : 기존 저장된 배치정보 목록 대화상자가 표시됩니다.\\\",\\\"Value\\\":\\\"CREATE\\\"}],\\\"MODULE_TYPE\\\":\\\"\\\"}\"]}],\"IsChecked\":true,\"SourceXML\":\"<Activity x:Class=\\\"SAVE_LAYOUT_OnClick\\\" sap:VirtualizedContainerService.HintSize=\\\"262,233\\\" mva:VisualBasic.Settings=\\\"Assembly references and imported namespaces for internal implementation\\\" xmlns=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities\\\" xmlns:mva=\\\"clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities\\\" xmlns:sads=\\\"http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger\\\" xmlns:sap=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation\\\" xmlns:scg=\\\"clr-namespace:System.Collections.Generic;assembly=mscorlib\\\" xmlns:wa=\\\"clr-namespace:WorkFlow.Activities;assembly=WorkFlow\\\" xmlns:x=\\\"http://schemas.microsoft.com/winfx/2006/xaml\\\">\\r\\n  <Sequence DisplayName=\\\"SAVE_LAYOUT_OnClick\\\" sap:VirtualizedContainerService.HintSize=\\\"222,193\\\">\\r\\n    <sap:WorkflowViewStateService.ViewState>\\r\\n      <scg:Dictionary x:TypeArguments=\\\"x:String, x:Object\\\">\\r\\n        <x:Boolean x:Key=\\\"IsExpanded\\\">True</x:Boolean>\\r\\n      </scg:Dictionary>\\r\\n    </sap:WorkflowViewStateService.ViewState>\\r\\n    <wa:Module ConditionExpression=\\\"{x:Null}\\\" ConditionToolTipText=\\\"\\\" DiagramText=\\\"Module\\\" DisplayName=\\\"Module\\\" Expand=\\\"False\\\" FunctionName=\\\"_AUD_Module\\\" sap:VirtualizedContainerService.HintSize=\\\"200,69\\\" ModuleJson=\\\"{}{&quot;MODULE_CODE&quot;:&quot;MOD93589566384847D411B2134AD7690539&quot;,&quot;MODULE_SUBJECT&quot;:&quot;OlapGrid Layout(배치 정보) 저장, 복원 하기&quot;,&quot;MODULE_PARAMS&quot;:[{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MOD93589566384847D411B2134AD7690539&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;1&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;배치 정보를 관리 할 OlapGrid 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;OlapGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;SELECT&quot;,&quot;MODULE_CODE&quot;:&quot;MOD93589566384847D411B2134AD7690539&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;CREATE;저장하기|SELECT;복원하기&quot;,&quot;PARAM_TYPE&quot;:&quot;INP999&quot;,&quot;PARAM_SEQ&quot;:&quot;2&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;수행할 작업을 선택해 주세요.\\\\n저장하기 : 현재 배치된 정보를 저장하는 대화상자가 표시됩니다.\\\\n복원하기 : 기존 저장된 배치정보 목록 대화상자가 표시됩니다.&quot;,&quot;Value&quot;:&quot;CREATE&quot;}],&quot;MODULE_TYPE&quot;:&quot;&quot;}\\\" ModuleName=\\\"OlapGrid Layout(배치 정보) 저장, 복원 하기\\\" Result=\\\"{x:Null}\\\">\\r\\n      <wa:Module.ElseBody>\\r\\n        <Sequence DisplayName=\\\"Else 동작\\\" />\\r\\n      </wa:Module.ElseBody>\\r\\n      <wa:Module.TrueBody>\\r\\n        <Sequence DisplayName=\\\"True 동작\\\" />\\r\\n      </wa:Module.TrueBody>\\r\\n    </wa:Module>\\r\\n  </Sequence>\\r\\n</Activity>\"}}]},{\"Name\":\"LOAD_LAYOUT\",\"Events\":[{\"Name\":\"OnClick\",\"Flow\":{\"Actions\":[{\"Name\":\"Module\",\"Parameters\":[\"OlapGrid Layout(배치 정보) 저장, 복원 하기\",\"{\\\"MODULE_CODE\\\":\\\"MOD93589566384847D411B2134AD7690539\\\",\\\"MODULE_SUBJECT\\\":\\\"OlapGrid Layout(배치 정보) 저장, 복원 하기\\\",\\\"MODULE_PARAMS\\\":[{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MOD93589566384847D411B2134AD7690539\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"1\\\",\\\"PARAM_DESCRIPTION\\\":\\\"배치 정보를 관리 할 OlapGrid 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"OlapGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"SELECT\\\",\\\"MODULE_CODE\\\":\\\"MOD93589566384847D411B2134AD7690539\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"CREATE;저장하기|SELECT;복원하기\\\",\\\"PARAM_TYPE\\\":\\\"INP999\\\",\\\"PARAM_SEQ\\\":\\\"2\\\",\\\"PARAM_DESCRIPTION\\\":\\\"수행할 작업을 선택해 주세요.\\\\n저장하기 : 현재 배치된 정보를 저장하는 대화상자가 표시됩니다.\\\\n복원하기 : 기존 저장된 배치정보 목록 대화상자가 표시됩니다.\\\",\\\"Value\\\":\\\"SELECT\\\"}],\\\"MODULE_TYPE\\\":\\\"\\\"}\"]}],\"IsChecked\":true,\"SourceXML\":\"<Activity x:Class=\\\"LOAD_LAYOUT_OnClick\\\" sap:VirtualizedContainerService.HintSize=\\\"262,233\\\" mva:VisualBasic.Settings=\\\"Assembly references and imported namespaces for internal implementation\\\" xmlns=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities\\\" xmlns:mva=\\\"clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities\\\" xmlns:sads=\\\"http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger\\\" xmlns:sap=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation\\\" xmlns:scg=\\\"clr-namespace:System.Collections.Generic;assembly=mscorlib\\\" xmlns:wa=\\\"clr-namespace:WorkFlow.Activities;assembly=WorkFlow\\\" xmlns:x=\\\"http://schemas.microsoft.com/winfx/2006/xaml\\\">\\r\\n  <Sequence DisplayName=\\\"LOAD_LAYOUT_OnClick\\\" sap:VirtualizedContainerService.HintSize=\\\"222,193\\\">\\r\\n    <sap:WorkflowViewStateService.ViewState>\\r\\n      <scg:Dictionary x:TypeArguments=\\\"x:String, x:Object\\\">\\r\\n        <x:Boolean x:Key=\\\"IsExpanded\\\">True</x:Boolean>\\r\\n      </scg:Dictionary>\\r\\n    </sap:WorkflowViewStateService.ViewState>\\r\\n    <wa:Module ConditionExpression=\\\"{x:Null}\\\" ConditionToolTipText=\\\"\\\" DiagramText=\\\"Module\\\" DisplayName=\\\"Module\\\" Expand=\\\"False\\\" FunctionName=\\\"_AUD_Module\\\" sap:VirtualizedContainerService.HintSize=\\\"200,69\\\" ModuleJson=\\\"{}{&quot;MODULE_CODE&quot;:&quot;MOD93589566384847D411B2134AD7690539&quot;,&quot;MODULE_SUBJECT&quot;:&quot;OlapGrid Layout(배치 정보) 저장, 복원 하기&quot;,&quot;MODULE_PARAMS&quot;:[{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MOD93589566384847D411B2134AD7690539&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;1&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;배치 정보를 관리 할 OlapGrid 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;OlapGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;SELECT&quot;,&quot;MODULE_CODE&quot;:&quot;MOD93589566384847D411B2134AD7690539&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;CREATE;저장하기|SELECT;복원하기&quot;,&quot;PARAM_TYPE&quot;:&quot;INP999&quot;,&quot;PARAM_SEQ&quot;:&quot;2&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;수행할 작업을 선택해 주세요.\\\\n저장하기 : 현재 배치된 정보를 저장하는 대화상자가 표시됩니다.\\\\n복원하기 : 기존 저장된 배치정보 목록 대화상자가 표시됩니다.&quot;,&quot;Value&quot;:&quot;SELECT&quot;}],&quot;MODULE_TYPE&quot;:&quot;&quot;}\\\" ModuleName=\\\"OlapGrid Layout(배치 정보) 저장, 복원 하기\\\">\\r\\n      <wa:Module.ElseBody>\\r\\n        <Sequence DisplayName=\\\"Else 동작\\\" />\\r\\n      </wa:Module.ElseBody>\\r\\n      <wa:Module.TrueBody>\\r\\n        <Sequence DisplayName=\\\"True 동작\\\" />\\r\\n      </wa:Module.TrueBody>\\r\\n    </wa:Module>\\r\\n  </Sequence>\\r\\n</Activity>\"}}]}]}]}}"
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "{\"Document\":{\"Name\":\"Report\"},\"Object\":{\"Name\":\"Object\",\"Forms\":[{\"Name\":\"Main\",\"Controls\":[{\"Name\":\"SAVE_LAYOUT\",\"Events\":[{\"Name\":\"OnClick\",\"Flow\":{\"Actions\":[{\"Name\":\"Module\",\"Parameters\":[\"OlapGrid Layout(배치 정보) 저장, 복원 하기\",\"{\\\"MODULE_CODE\\\":\\\"MOD93589566384847D411B2134AD7690539\\\",\\\"MODULE_SUBJECT\\\":\\\"OlapGrid Layout(배치 정보) 저장, 복원 하기\\\",\\\"MODULE_PARAMS\\\":[{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MOD93589566384847D411B2134AD7690539\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"1\\\",\\\"PARAM_DESCRIPTION\\\":\\\"배치 정보를 관리 할 OlapGrid 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"OlapGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"SELECT\\\",\\\"MODULE_CODE\\\":\\\"MOD93589566384847D411B2134AD7690539\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"CREATE;저장하기|SELECT;복원하기\\\",\\\"PARAM_TYPE\\\":\\\"INP999\\\",\\\"PARAM_SEQ\\\":\\\"2\\\",\\\"PARAM_DESCRIPTION\\\":\\\"수행할 작업을 선택해 주세요.\\\\n저장하기 : 현재 배치된 정보를 저장하는 대화상자가 표시됩니다.\\\\n복원하기 : 기존 저장된 배치정보 목록 대화상자가 표시됩니다.\\\",\\\"Value\\\":\\\"CREATE\\\"}],\\\"MODULE_TYPE\\\":\\\"\\\"}\"]}],\"IsChecked\":true,\"SourceXML\":\"<Activity x:Class=\\\"SAVE_LAYOUT_OnClick\\\" sap:VirtualizedContainerService.HintSize=\\\"262,233\\\" mva:VisualBasic.Settings=\\\"Assembly references and imported namespaces for internal implementation\\\" xmlns=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities\\\" xmlns:mva=\\\"clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities\\\" xmlns:sads=\\\"http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger\\\" xmlns:sap=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation\\\" xmlns:scg=\\\"clr-namespace:System.Collections.Generic;assembly=mscorlib\\\" xmlns:wa=\\\"clr-namespace:WorkFlow.Activities;assembly=WorkFlow\\\" xmlns:x=\\\"http://schemas.microsoft.com/winfx/2006/xaml\\\">\\r\\n  <Sequence DisplayName=\\\"SAVE_LAYOUT_OnClick\\\" sap:VirtualizedContainerService.HintSize=\\\"222,193\\\">\\r\\n    <sap:WorkflowViewStateService.ViewState>\\r\\n      <scg:Dictionary x:TypeArguments=\\\"x:String, x:Object\\\">\\r\\n        <x:Boolean x:Key=\\\"IsExpanded\\\">True</x:Boolean>\\r\\n      </scg:Dictionary>\\r\\n    </sap:WorkflowViewStateService.ViewState>\\r\\n    <wa:Module ConditionExpression=\\\"{x:Null}\\\" ConditionToolTipText=\\\"\\\" DiagramText=\\\"Module\\\" DisplayName=\\\"Module\\\" Expand=\\\"False\\\" FunctionName=\\\"_AUD_Module\\\" sap:VirtualizedContainerService.HintSize=\\\"200,69\\\" ModuleJson=\\\"{}{&quot;MODULE_CODE&quot;:&quot;MOD93589566384847D411B2134AD7690539&quot;,&quot;MODULE_SUBJECT&quot;:&quot;OlapGrid Layout(배치 정보) 저장, 복원 하기&quot;,&quot;MODULE_PARAMS&quot;:[{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MOD93589566384847D411B2134AD7690539&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;1&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;배치 정보를 관리 할 OlapGrid 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;OlapGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;SELECT&quot;,&quot;MODULE_CODE&quot;:&quot;MOD93589566384847D411B2134AD7690539&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;CREATE;저장하기|SELECT;복원하기&quot;,&quot;PARAM_TYPE&quot;:&quot;INP999&quot;,&quot;PARAM_SEQ&quot;:&quot;2&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;수행할 작업을 선택해 주세요.\\\\n저장하기 : 현재 배치된 정보를 저장하는 대화상자가 표시됩니다.\\\\n복원하기 : 기존 저장된 배치정보 목록 대화상자가 표시됩니다.&quot;,&quot;Value&quot;:&quot;CREATE&quot;}],&quot;MODULE_TYPE&quot;:&quot;&quot;}\\\" ModuleName=\\\"OlapGrid Layout(배치 정보) 저장, 복원 하기\\\" Result=\\\"{x:Null}\\\">\\r\\n      <wa:Module.ElseBody>\\r\\n        <Sequence DisplayName=\\\"Else 동작\\\" />\\r\\n      </wa:Module.ElseBody>\\r\\n      <wa:Module.TrueBody>\\r\\n        <Sequence DisplayName=\\\"True 동작\\\" />\\r\\n      </wa:Module.TrueBody>\\r\\n    </wa:Module>\\r\\n  </Sequence>\\r\\n</Activity>\"}}]},{\"Name\":\"LOAD_LAYOUT\",\"Events\":[{\"Name\":\"OnClick\",\"Flow\":{\"Actions\":[{\"Name\":\"Module\",\"Parameters\":[\"OlapGrid Layout(배치 정보) 저장, 복원 하기\",\"{\\\"MODULE_CODE\\\":\\\"MOD93589566384847D411B2134AD7690539\\\",\\\"MODULE_SUBJECT\\\":\\\"OlapGrid Layout(배치 정보) 저장, 복원 하기\\\",\\\"MODULE_PARAMS\\\":[{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MOD93589566384847D411B2134AD7690539\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"1\\\",\\\"PARAM_DESCRIPTION\\\":\\\"배치 정보를 관리 할 OlapGrid 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"OlapGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"SELECT\\\",\\\"MODULE_CODE\\\":\\\"MOD93589566384847D411B2134AD7690539\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"CREATE;저장하기|SELECT;복원하기\\\",\\\"PARAM_TYPE\\\":\\\"INP999\\\",\\\"PARAM_SEQ\\\":\\\"2\\\",\\\"PARAM_DESCRIPTION\\\":\\\"수행할 작업을 선택해 주세요.\\\\n저장하기 : 현재 배치된 정보를 저장하는 대화상자가 표시됩니다.\\\\n복원하기 : 기존 저장된 배치정보 목록 대화상자가 표시됩니다.\\\",\\\"Value\\\":\\\"SELECT\\\"}],\\\"MODULE_TYPE\\\":\\\"\\\"}\"]}],\"IsChecked\":true,\"SourceXML\":\"<Activity x:Class=\\\"LOAD_LAYOUT_OnClick\\\" sap:VirtualizedContainerService.HintSize=\\\"262,233\\\" mva:VisualBasic.Settings=\\\"Assembly references and imported namespaces for internal implementation\\\" xmlns=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities\\\" xmlns:mva=\\\"clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities\\\" xmlns:sads=\\\"http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger\\\" xmlns:sap=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation\\\" xmlns:scg=\\\"clr-namespace:System.Collections.Generic;assembly=mscorlib\\\" xmlns:wa=\\\"clr-namespace:WorkFlow.Activities;assembly=WorkFlow\\\" xmlns:x=\\\"http://schemas.microsoft.com/winfx/2006/xaml\\\">\\r\\n  <Sequence DisplayName=\\\"LOAD_LAYOUT_OnClick\\\" sap:VirtualizedContainerService.HintSize=\\\"222,193\\\">\\r\\n    <sap:WorkflowViewStateService.ViewState>\\r\\n      <scg:Dictionary x:TypeArguments=\\\"x:String, x:Object\\\">\\r\\n        <x:Boolean x:Key=\\\"IsExpanded\\\">True</x:Boolean>\\r\\n      </scg:Dictionary>\\r\\n    </sap:WorkflowViewStateService.ViewState>\\r\\n    <wa:Module ConditionExpression=\\\"{x:Null}\\\" ConditionToolTipText=\\\"\\\" DiagramText=\\\"Module\\\" DisplayName=\\\"Module\\\" Expand=\\\"False\\\" FunctionName=\\\"_AUD_Module\\\" sap:VirtualizedContainerService.HintSize=\\\"200,69\\\" ModuleJson=\\\"{}{&quot;MODULE_CODE&quot;:&quot;MOD93589566384847D411B2134AD7690539&quot;,&quot;MODULE_SUBJECT&quot;:&quot;OlapGrid Layout(배치 정보) 저장, 복원 하기&quot;,&quot;MODULE_PARAMS&quot;:[{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MOD93589566384847D411B2134AD7690539&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;1&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;배치 정보를 관리 할 OlapGrid 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;OlapGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;SELECT&quot;,&quot;MODULE_CODE&quot;:&quot;MOD93589566384847D411B2134AD7690539&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;CREATE;저장하기|SELECT;복원하기&quot;,&quot;PARAM_TYPE&quot;:&quot;INP999&quot;,&quot;PARAM_SEQ&quot;:&quot;2&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;수행할 작업을 선택해 주세요.\\\\n저장하기 : 현재 배치된 정보를 저장하는 대화상자가 표시됩니다.\\\\n복원하기 : 기존 저장된 배치정보 목록 대화상자가 표시됩니다.&quot;,&quot;Value&quot;:&quot;SELECT&quot;}],&quot;MODULE_TYPE&quot;:&quot;&quot;}\\\" ModuleName=\\\"OlapGrid Layout(배치 정보) 저장, 복원 하기\\\">\\r\\n      <wa:Module.ElseBody>\\r\\n        <Sequence DisplayName=\\\"Else 동작\\\" />\\r\\n      </wa:Module.ElseBody>\\r\\n      <wa:Module.TrueBody>\\r\\n        <Sequence DisplayName=\\\"True 동작\\\" />\\r\\n      </wa:Module.TrueBody>\\r\\n    </wa:Module>\\r\\n  </Sequence>\\r\\n</Activity>\"}}]}]}]}}",
+  "WORK_FLOW": {
+    "Version": 1,
+    "UseEvent": true,
+    "Nodes": [
+      {
+        "ID": "MIG_1",
+        "Type": "Control",
+        "ModuleCode": "",
+        "Name": "SAVE_LAYOUT",
+        "Description": "",
+        "Left": 10,
+        "Top": 10,
+        "Width": 200,
+        "Height": 115,
+        "ControlType": "Button",
+        "Collapsed": true,
+        "Parameters": [
+          {
+            "ID": "OnClick",
+            "Name": "OnClick",
+            "Value": null,
+            "Description": ""
+          }
+        ]
+      },
+      {
+        "ID": "MIG_2",
+        "Type": "Module",
+        "ModuleCode": "MOD93589566384847D411B2134AD7690539",
+        "Name": "OlapGrid Layout(배치 정보) 저장, 복원 하기",
+        "Description": "",
+        "Left": 260,
+        "Top": 10,
+        "Width": 200,
+        "Height": 200,
+        "ControlType": "",
+        "Collapsed": false,
+        "Parameters": [
+          {
+            "ID": "P1",
+            "Name": "배치 정보를 관리 할 OlapGrid 컨트롤을 선택해 주세요.",
+            "Value": "OlapGrid",
+            "Description": "배치 정보를 관리 할 OlapGrid 컨트롤을 선택해 주세요."
+          },
+          {
+            "ID": "P2",
+            "Name": "수행할 작업을 선택해 주세요.\n저장하기 : 현재 배치된 정보를 저장하는 대화상자가 표시됩니다.\n복원하기 : 기존 저장된 배치정보 목록 대화상자가 표시됩니다.",
+            "Value": "CREATE",
+            "Description": "수행할 작업을 선택해 주세요.\n저장하기 : 현재 배치된 정보를 저장하는 대화상자가 표시됩니다.\n복원하기 : 기존 저장된 배치정보 목록 대화상자가 표시됩니다."
+          }
+        ]
+      },
+      {
+        "ID": "MIG_3",
+        "Type": "Control",
+        "ModuleCode": "",
+        "Name": "LOAD_LAYOUT",
+        "Description": "",
+        "Left": 10,
+        "Top": 260,
+        "Width": 200,
+        "Height": 115,
+        "ControlType": "Button",
+        "Collapsed": true,
+        "Parameters": [
+          {
+            "ID": "OnClick",
+            "Name": "OnClick",
+            "Value": null,
+            "Description": ""
+          }
+        ]
+      },
+      {
+        "ID": "MIG_4",
+        "Type": "Module",
+        "ModuleCode": "MOD93589566384847D411B2134AD7690539",
+        "Name": "OlapGrid Layout(배치 정보) 저장, 복원 하기",
+        "Description": "",
+        "Left": 260,
+        "Top": 260,
+        "Width": 200,
+        "Height": 200,
+        "ControlType": "",
+        "Collapsed": false,
+        "Parameters": [
+          {
+            "ID": "P1",
+            "Name": "배치 정보를 관리 할 OlapGrid 컨트롤을 선택해 주세요.",
+            "Value": "OlapGrid",
+            "Description": "배치 정보를 관리 할 OlapGrid 컨트롤을 선택해 주세요."
+          },
+          {
+            "ID": "P2",
+            "Name": "수행할 작업을 선택해 주세요.\n저장하기 : 현재 배치된 정보를 저장하는 대화상자가 표시됩니다.\n복원하기 : 기존 저장된 배치정보 목록 대화상자가 표시됩니다.",
+            "Value": "SELECT",
+            "Description": "수행할 작업을 선택해 주세요.\n저장하기 : 현재 배치된 정보를 저장하는 대화상자가 표시됩니다.\n복원하기 : 기존 저장된 배치정보 목록 대화상자가 표시됩니다."
+          }
+        ]
+      }
+    ],
+    "Links": [
+      {
+        "ID": "MIG_1.OnClick~MIG_2",
+        "From": "MIG_1",
+        "To": "MIG_2",
+        "FromParam": "OnClick",
+        "Type": 0
+      },
+      {
+        "ID": "MIG_3.OnClick~MIG_4",
+        "From": "MIG_3",
+        "To": "MIG_4",
+        "FromParam": "OnClick",
+        "Type": 0
+      }
+    ]
+  }
 }
