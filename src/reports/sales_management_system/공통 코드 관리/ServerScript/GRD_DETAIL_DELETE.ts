@@ -1,8 +1,6 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
 import { ScriptDataRow } from "@AUD_SERVER/matrix/script/ScriptDataRow";
-import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement";
-import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection";
-import { ScriptQueryGenerator } from "@AUD_SERVER/matrix/script/ScriptQueryGenerator";
+
 
 // Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
 let CALL_BACK: Function;

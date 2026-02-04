@@ -1,7 +1,6 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { Label } from "@AUD_CLIENT/control/Label";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
-import { Group } from "@AUD_CLIENT/control/Group";
 import { Button } from "@AUD_CLIENT/control/Button";
 import { Chart } from "@AUD_CLIENT/control/Chart";
 import { PiePlotOptions } from "@AUD_CLIENT/control/charts/PiePlotOptions";

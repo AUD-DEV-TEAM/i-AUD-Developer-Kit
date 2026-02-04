@@ -5,7 +5,6 @@ import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
 import { Button } from "@AUD_CLIENT/control/Button";
 import { TextBox } from "@AUD_CLIENT/control/TextBox";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
-import { Group } from "@AUD_CLIENT/control/Group";
 import { CalendarYM } from "@AUD_CLIENT/control/CalendarYM";
 import { MultiComboBox } from "@AUD_CLIENT/control/MultiComboBox";
 
@@ -13,10 +12,6 @@ let Matrix : Matrix;
 
 /* Init Controls */
 const GRD_PLAN: DataGrid = Matrix.getObject("GRD_PLAN") as DataGrid;
-const GRP_TOTAL_1: Group = Matrix.getObject("GRP_TOTAL_1") as Group;
-const GRP_TOTAL_2: Group = Matrix.getObject("GRP_TOTAL_2") as Group;
-const GRP_TOTAL_3: Group = Matrix.getObject("GRP_TOTAL_3") as Group;
-const GRP_TOTAL_4: Group = Matrix.getObject("GRP_TOTAL_4") as Group;
 
 /* Button Controls */
 const BTN_ADD: Button = Matrix.getObject("BTN_ADD") as Button;

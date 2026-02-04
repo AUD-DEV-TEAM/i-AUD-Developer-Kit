@@ -1,6 +1,5 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { Label } from "@AUD_CLIENT/control/Label";
-import { Group } from "@AUD_CLIENT/control/Group";
 import { Button } from "@AUD_CLIENT/control/Button";
 
 let Matrix : Matrix;

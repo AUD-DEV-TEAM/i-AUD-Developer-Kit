@@ -5,7 +5,6 @@ import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
 import { Button } from "@AUD_CLIENT/control/Button";
 import { TextBox } from "@AUD_CLIENT/control/TextBox";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
-import { Group } from "@AUD_CLIENT/control/Group";
 import { MultiComboBox } from "@AUD_CLIENT/control/MultiComboBox";
 import { Calendar } from "@AUD_CLIENT/control/Calendar";
 import { CalendarFromTo } from "@AUD_CLIENT/control/CalendarFromTo";
@@ -15,10 +14,6 @@ let Matrix : Matrix;
 /* Init Controls */
 const VS_YMD_FROM: CalendarFromTo = Matrix.getObject("VS_YMD_FROM") as CalendarFromTo;
 const GRD_PERF: DataGrid = Matrix.getObject("GRD_PERF") as DataGrid;
-const GRP_TOTAL_1: Group = Matrix.getObject("GRP_TOTAL_1") as Group;
-const GRP_TOTAL_2: Group = Matrix.getObject("GRP_TOTAL_2") as Group;
-const GRP_TOTAL_3: Group = Matrix.getObject("GRP_TOTAL_3") as Group;
-const GRP_TOTAL_4: Group = Matrix.getObject("GRP_TOTAL_4") as Group;
 
 /* Button Controls */
 const BTN_ADD: Button = Matrix.getObject("BTN_ADD") as Button;

@@ -5,7 +5,6 @@ import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
 import { Button } from "@AUD_CLIENT/control/Button";
 import { TextBox } from "@AUD_CLIENT/control/TextBox";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
-import { Group } from "@AUD_CLIENT/control/Group";
 import { MultiComboBox } from "@AUD_CLIENT/control/MultiComboBox";
 
 let Matrix : Matrix;

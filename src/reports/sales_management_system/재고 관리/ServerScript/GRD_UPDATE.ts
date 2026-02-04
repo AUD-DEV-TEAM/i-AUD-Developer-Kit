@@ -1,6 +1,5 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
 import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement";
-import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection";
 
  // Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
 let CALL_BACK : Function;

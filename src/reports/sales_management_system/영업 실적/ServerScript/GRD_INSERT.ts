@@ -1,5 +1,4 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
-import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection";
 import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement";
 
 // Please do not modify or delete the following variables: "CALL_BACK", "Matrix".

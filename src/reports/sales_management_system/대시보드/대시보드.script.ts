@@ -1,20 +1,9 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { Label } from "@AUD_CLIENT/control/Label";
-import { Group } from "@AUD_CLIENT/control/Group";
 import { Button } from "@AUD_CLIENT/control/Button";
 import { CalendarYear } from "@AUD_CLIENT/control/CalendarYear";
 
 let Matrix : Matrix;
-
-/* Init Controls */
-const GRP_TOTAL_1: Group = Matrix.getObject("GRP_TOTAL_1") as Group;
-const GRP_TOTAL_2: Group = Matrix.getObject("GRP_TOTAL_2") as Group;
-const GRP_TOTAL_3: Group = Matrix.getObject("GRP_TOTAL_3") as Group;
-const GRP_TOTAL_4: Group = Matrix.getObject("GRP_TOTAL_4") as Group;
-const GRP_BODY_1: Group = Matrix.getObject("GRP_BODY_1") as Group;
-const GRP_BODY_2: Group = Matrix.getObject("GRP_BODY_2") as Group;
-const GRP_BODY_3: Group = Matrix.getObject("GRP_BODY_3") as Group;
-const GRP_BODY_4: Group = Matrix.getObject("GRP_BODY_4") as Group;
 
 /* Button Controls */
 const BTN_REF: Button = Matrix.getObject("BTN_REF") as Button;
