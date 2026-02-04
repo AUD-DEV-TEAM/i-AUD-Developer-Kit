@@ -12,7 +12,7 @@ const gen = Matrix.getQueryGenerator();
 const DATE_TIME_NOW = gen.getDateTimeNowString(con.getDbType());
 
 let sql = "";
-let stmt = null;
+let stmt : ScriptPreparedStatement = null;
 
 try {
 	con.Connect("AUD_SAMPLE_DB");
@@ -50,10 +50,15 @@ try {
 	Matrix.WriteLog("ERROR" + e.message);
 	if (con != null) {
 		try {
-			con.RollBackTransaction();
-			con.DisConnect();
-			con = null;
+			con.RollBackTransaction();			
 		} catch(e) {}
 	}
-	Matrix.ThrowException("Server Exception:" + e.message);
+	Matrix.ThrowException("상세코드 수정 중 오류가 발생하였습니다.");
+}finally{
+	if(stmt){
+		stmt.close();
+	}
+	if(con){
+		con.DisConnect();
+	}
 }

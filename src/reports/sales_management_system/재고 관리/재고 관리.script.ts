@@ -13,10 +13,6 @@ let Matrix : Matrix;
 /* Init Controls */
 const GRD_STOCK: DataGrid = Matrix.getObject("GRD_STOCK") as DataGrid;
 const VS_KEYWORD: TextBox = Matrix.getObject("VS_KEYWORD") as TextBox;
-const GRP_TOTAL_1: Group = Matrix.getObject("GRP_TOTAL_1") as Group;
-const GRP_TOTAL_2: Group = Matrix.getObject("GRP_TOTAL_2") as Group;
-const GRP_TOTAL_3: Group = Matrix.getObject("GRP_TOTAL_3") as Group;
-const GRP_TOTAL_4: Group = Matrix.getObject("GRP_TOTAL_4") as Group;
 
 /* Button Controls */
 const BTN_ADD: Button = Matrix.getObject("BTN_ADD") as Button;
