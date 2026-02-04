@@ -53,25 +53,3 @@ BTN_VIEW_ALL.OnClick = function(s, e) {
 	Matrix.ShowReportDialog(reportCode, parameter, options, function(result) {});
 };
 /******** Button Click Event ********/
-
-Matrix.OnViewerSizeChanged = function(s, e) {
-	/* TOTAL */
-	const setTotalWidth = (e.Width - 100) / 4;
-	const setCardWidth = setTotalWidth * 2 + 20;
-	const setLeft = setTotalWidth * 2 + 60;
-
-	GRP_TOTAL_1.Width = setTotalWidth;
-	GRP_TOTAL_2.Width = setTotalWidth;
-	GRP_TOTAL_3.Width = setTotalWidth;
-	GRP_TOTAL_4.Width = setTotalWidth;
-
-	GRP_TOTAL_2.Left = setTotalWidth + 40;
-	GRP_TOTAL_3.Left = setLeft;
-	GRP_TOTAL_4.Left = setTotalWidth * 3 + 80;
-
-	/* BODY */
-	GRP_BODY_1.Width = setCardWidth;
-	GRP_BODY_3.Width = setCardWidth;
-	GRP_BODY_2.Left = setLeft;
-	GRP_BODY_4.Left = setLeft;
-};

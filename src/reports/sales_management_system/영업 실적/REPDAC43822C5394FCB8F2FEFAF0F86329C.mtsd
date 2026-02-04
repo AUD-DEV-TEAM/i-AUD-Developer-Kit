@@ -4,18 +4,130 @@
     "FolderCode": "FLDC7BAD63B598D40C69738638A26DE0C36",
     "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REPDAC43822C5394FCB8F2FEFAF0F86329C.mtsd",
     "ReportName": "영업 실적",
-    "Writer": "kimje1342",
-    "WriteDate": "2026-02-03 17:21:54",
-    "Editor": "kimje1342",
-    "EditDate": "2026-02-03 17:21:54",
+    "Writer": "sblim1417",
+    "WriteDate": "2026-02-04 14:14:28",
+    "Editor": "sblim1417",
+    "EditDate": "2026-02-04 14:14:28",
     "TabPosition": 0,
     "UseLayout": false,
     "DocumentVersion": "3.0.0.0",
-    "RefreshType": 0,
-    "CreateBy": "i-AUD Developer Kit"
+    "RefreshType": 0
   },
   "DataSources": {
     "Datas": [
+      {
+        "Id": "DS6AF0A062599548F6B09FA02A0C8CF1E6",
+        "Name": "VS_STATUS",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "RqcdFwrE75IJ8ts66KIvJosubnYeN1DMgZo+ZLvOl7rTEzyegU8P2Amd4CZcsLAfUtdQmY5MRsunoY36WrvGWaVjjoFLlHEhna8xwQawBoU5yvuFIPxaryvWi8P7OOBo7iv9/rOUgjG8oDSlD+wIZHKAK4Ava8UEK1ct91LCVa/x8E39zft8Wp3GONH78qqs",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "STATE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "STATE_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSF1394BD139F944A59A1428C3401F848A",
+        "Name": "VS_PIC",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "mMudaIRdYd33Q22VGLMpn0Ng+VKnTaaPCwkg5OfCax1BIjACNhFEmKn5yc+kpJpR",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "EMP_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "EMP_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS9FD1B8EC25224D5FB3C6B7E637A51A7C",
+        "Name": "VS_INP_PROD",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "SWLIeD7wnrKxW+FBCC3XtURo9UGarhwbeeV334BiStM23KbPQWLXtsBMstixuxvP",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "PROD_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "PROD_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS5C84391C6B5D4346AE88395EC2006520",
+        "Name": "VS_CUST",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "tH56Y4EOdalFMPsy/PiUhyjUKvYawE5c08ighfUi1f2sDKlXjDcN9GzMkq3JKqWga8fnY6VVLas2PtWy/XOaSQ==",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "CUST_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "CUST_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS59D154576EA54782BD378BC40DD50107",
+        "Name": "SET_SALES_ID",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "MukJgKhNTBZScoOLWBZ2IPX5ZG2K7QEiuMK18UlcpqrcSHbpQcm89zZJ8sn73exNyGikAGQeHyac065HEk9BnULsXvMeyUknnKcfUQ7Ga7Ir491r+2e34ZOO40aujUZViYGyyHUmJzsc+vRW7rdtxSulibHBCWs3mydR2LnMoBBbEGRhjTIGRARuZOr2bfVCRZG24rEWqrHnI0dlDGKaXFlAhud7sADIpyMiOv55BaQf1LWukq2o89F+XgyFz8LDvDZ1wqaMhn7yBZQWqoN2cFmvTwpxScIjJrrZLAj8iseAQ8PJoZdMovmzKOkBmk4i5YIiuiAbU2DiE/07TLThw019G30Jr3lDzxrfvhnrZ8ynYQYr2UqIJrmhzZRd5Ev3",
+        "Params": [
+          {
+            "Name": ":VS_YMD_TO",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": []
+      },
+      {
+        "Id": "DS8632BAB1147D4AF6A8C69F96C4D20B43",
+        "Name": "GRD_TOTAL",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "9I2SYN/GRWW1LktFUf2dfdUTqe/MUz53xTp6sIfhMlwg57fnYLcgI76o6JAByko7HQQlgB6nGr7qO25wAUDgyGK0CTC2p81ljz/VKpCH9IM+ObIAkz0buSWWLHkqZJRli0bIcmMZ4xDBEAEqzpsPSnLUMki8CBNz1Webt2W0+ILpjFLh2ej3fRsp8qcF8kfJBPQlW+V+G9iPqFN2mXjxiARvV+EiK24sB2189n10J2hitxdkUONmSuRQRn4ACBdjyda0OnpE37MenKzZ1Awev/HvtQjgdXy3nQKW0NqVQgbczawRwg4VOjhmxAhxQFA96YJWX9KmaXI/PR1mh2pWdPSa2hE86PwWrnvwYiolC0DIzp5lYC3UJZZwIsMTDAnDKFEQWdtGxVA/OVhEgNhDXnECrm81a9fiCZr4jt2AHurdVs8ypGJ9IAX/ndnN+0KcSk0n8K5xYJzEdj+darMLTgiAbGa/uxCnP+hgHReF/CduAQM1Hw9HnrXmBR+dHGO5x6nWVbsT1HzCgpLQk20gO1DNJyZjfmBdP5DnfwuDn9XzP3r9EU4/o/l3XcZxk9tVaQYDMDfG/Uf+bzufqhNWcGkFvs9CcCrlqeqv+k+0usgDAlCgtySvmCXUdEg4SLBFkJ36i333oowrqXGhb/CVlw==",
+        "Params": [],
+        "Columns": []
+      },
       {
         "Id": "DS2CC423CFD97345EF956862705446E22F",
         "Name": "GRD_PERF",
@@ -48,139 +160,26 @@
           }
         ],
         "Columns": []
-      },
-      {
-        "Id": "DS8632BAB1147D4AF6A8C69F96C4D20B43",
-        "Name": "GRD_TOTAL",
-        "UseMeta": "False",
-        "UseCache": "False",
-        "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": "True",
-        "DSType": 2,
-        "SQL": "9I2SYN/GRWW1LktFUf2dfdUTqe/MUz53xTp6sIfhMlwg57fnYLcgI76o6JAByko7HQQlgB6nGr7qO25wAUDgyGK0CTC2p81ljz/VKpCH9IM+ObIAkz0buSWWLHkqZJRli0bIcmMZ4xDBEAEqzpsPSnLUMki8CBNz1Webt2W0+ILpjFLh2ej3fRsp8qcF8kfJBPQlW+V+G9iPqFN2mXjxiARvV+EiK24sB2189n10J2hitxdkUONmSuRQRn4ACBdjyda0OnpE37MenKzZ1Awev/HvtQjgdXy3nQKW0NqVQgbczawRwg4VOjhmxAhxQFA96YJWX9KmaXI/PR1mh2pWdPSa2hE86PwWrnvwYiolC0DIzp5lYC3UJZZwIsMTDAnDKFEQWdtGxVA/OVhEgNhDXnECrm81a9fiCZr4jt2AHurdVs8ypGJ9IAX/ndnN+0KcSk0n8K5xYJzEdj+darMLTgiAbGa/uxCnP+hgHReF/CduAQM1Hw9HnrXmBR+dHGO5x6nWVbsT1HzCgpLQk20gO1DNJyZjfmBdP5DnfwuDn9XzP3r9EU4/o/l3XcZxk9tVaQYDMDfG/Uf+bzufqhNWcGkFvs9CcCrlqeqv+k+0usgDAlCgtySvmCXUdEg4SLBFkJ36i333oowrqXGhb/CVlw==",
-        "Params": [],
-        "Columns": []
-      },
-      {
-        "Id": "DS59D154576EA54782BD378BC40DD50107",
-        "Name": "SET_SALES_ID",
-        "UseMeta": "False",
-        "UseCache": "False",
-        "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": "True",
-        "DSType": 2,
-        "SQL": "MukJgKhNTBZScoOLWBZ2IPX5ZG2K7QEiuMK18UlcpqrcSHbpQcm89zZJ8sn73exNyGikAGQeHyac065HEk9BnULsXvMeyUknnKcfUQ7Ga7Ir491r+2e34ZOO40aujUZViYGyyHUmJzsc+vRW7rdtxSulibHBCWs3mydR2LnMoBBbEGRhjTIGRARuZOr2bfVCRZG24rEWqrHnI0dlDGKaXFlAhud7sADIpyMiOv55BaQf1LWukq2o89F+XgyFz8LDvDZ1wqaMhn7yBZQWqoN2cFmvTwpxScIjJrrZLAj8iseAQ8PJoZdMovmzKOkBmk4i5YIiuiAbU2DiE/07TLThw019G30Jr3lDzxrfvhnrZ8ynYQYr2UqIJrmhzZRd5Ev3",
-        "Params": [
-          {
-            "Name": ":VS_YMD_TO",
-            "ParamType": "String"
-          }
-        ],
-        "Columns": []
-      },
-      {
-        "Id": "DS5C84391C6B5D4346AE88395EC2006520",
-        "Name": "VS_CUST",
-        "UseMeta": "False",
-        "UseCache": "False",
-        "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": "True",
-        "DSType": 2,
-        "SQL": "tH56Y4EOdalFMPsy/PiUhyjUKvYawE5c08ighfUi1f2sDKlXjDcN9GzMkq3JKqWga8fnY6VVLas2PtWy/XOaSQ==",
-        "Params": [],
-        "Columns": [
-          {
-            "Name": "CUST_ID",
-            "Type": "String"
-          },
-          {
-            "Name": "CUST_NAME",
-            "Type": "String"
-          }
-        ]
-      },
-      {
-        "Id": "DS9FD1B8EC25224D5FB3C6B7E637A51A7C",
-        "Name": "VS_INP_PROD",
-        "UseMeta": "False",
-        "UseCache": "False",
-        "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": "True",
-        "DSType": 2,
-        "SQL": "SWLIeD7wnrKxW+FBCC3XtURo9UGarhwbeeV334BiStM23KbPQWLXtsBMstixuxvP",
-        "Params": [],
-        "Columns": [
-          {
-            "Name": "PROD_ID",
-            "Type": "String"
-          },
-          {
-            "Name": "PROD_NAME",
-            "Type": "String"
-          }
-        ]
-      },
-      {
-        "Id": "DSF1394BD139F944A59A1428C3401F848A",
-        "Name": "VS_PIC",
-        "UseMeta": "False",
-        "UseCache": "False",
-        "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": "True",
-        "DSType": 2,
-        "SQL": "mMudaIRdYd33Q22VGLMpn0Ng+VKnTaaPCwkg5OfCax1BIjACNhFEmKn5yc+kpJpR",
-        "Params": [],
-        "Columns": [
-          {
-            "Name": "EMP_ID",
-            "Type": "String"
-          },
-          {
-            "Name": "EMP_NAME",
-            "Type": "String"
-          }
-        ]
-      },
-      {
-        "Id": "DS6AF0A062599548F6B09FA02A0C8CF1E6",
-        "Name": "VS_STATUS",
-        "UseMeta": "False",
-        "UseCache": "False",
-        "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": "True",
-        "DSType": 2,
-        "SQL": "RqcdFwrE75IJ8ts66KIvJosubnYeN1DMgZo+ZLvOl7rTEzyegU8P2Amd4CZcsLAfUtdQmY5MRsunoY36WrvGWaVjjoFLlHEhna8xwQawBoU5yvuFIPxaryvWi8P7OOBo7iv9/rOUgjG8oDSlD+wIZHKAK4Ava8UEK1ct91LCVa/x8E39zft8Wp3GONH78qqs",
-        "Params": [],
-        "Columns": [
-          {
-            "Name": "STATE_CODE",
-            "Type": "String"
-          },
-          {
-            "Name": "STATE_NAME",
-            "Type": "String"
-          }
-        ]
       }
     ]
   },
-  "ScriptText": "/* Init Controls */\nvar VS_YMD_FROM = Matrix.getObject(\"VS_YMD_FROM\");\nvar GRD_PERF = Matrix.getObject(\"GRD_PERF\");\nvar GRP_TOTAL_1 = Matrix.getObject(\"GRP_TOTAL_1\");\nvar GRP_TOTAL_2 = Matrix.getObject(\"GRP_TOTAL_2\");\nvar GRP_TOTAL_3 = Matrix.getObject(\"GRP_TOTAL_3\");\nvar GRP_TOTAL_4 = Matrix.getObject(\"GRP_TOTAL_4\");\n/* Button Controls */\nvar BTN_ADD = Matrix.getObject(\"BTN_ADD\");\nvar BTN_REF = Matrix.getObject(\"BTN_REF\");\nvar BTN_RESET = Matrix.getObject(\"BTN_RESET\");\nvar BTN_DEL = Matrix.getObject(\"BTN_DEL\");\nvar BTN_CNC = Matrix.getObject(\"BTN_CNC\");\nvar BTN_SAV = Matrix.getObject(\"BTN_SAV\");\n/* Input Controls */\nvar VS_INP_ID = Matrix.getObject(\"VS_INP_ID\");\nvar VS_INP_YMD = Matrix.getObject(\"VS_INP_YMD\");\nvar VS_INP_PIC = Matrix.getObject(\"VS_INP_PIC\");\nvar VS_INP_CUST = Matrix.getObject(\"VS_INP_CUST\");\nvar VS_INP_PROD = Matrix.getObject(\"VS_INP_PROD\");\nvar VN_INP_QTY = Matrix.getObject(\"VN_INP_QTY\");\nvar VN_INP_PRICE = Matrix.getObject(\"VN_INP_PRICE\");\nvar VN_INP_COST = Matrix.getObject(\"VN_INP_COST\");\nvar VS_INP_STATUS = Matrix.getObject(\"VS_INP_STATUS\");\nvar popup = null;\nMatrix.OnDocumentLoadComplete = function (s, e) {\n    if (Matrix.GetDialogRequestParams()) {\n        var getYear = Number(Matrix.GetDialogRequestParams());\n        VS_YMD_FROM.InitDate = getYear + '0101;' + getYear + '1231';\n        BTN_ADD.Visible = false;\n        BTN_DEL.Visible = false;\n        GRD_PERF.GetField('CHK').Visible = false;\n    }\n    else {\n        VS_YMD_FROM.InitDate = 'DATE(0,F,F);DATE(0,L,L)';\n    }\n    VS_INP_ID.IsReadOnly = true;\n    GRD_PERF.GetField('SALES_ID').KeyType = 3; // KeyType: Primary\n};\nMatrix.OnMultiComboBoxExecuteStart = function (s, e) {\n    if (['VS_PIC', 'VS_CUST', 'VS_STATUS'].includes(e.Id)) {\n        Matrix.getObject(e.Id).CheckAll();\n    }\n};\nMatrix.OnDataBindEnd = function (s, e) {\n    if (e.Id == 'GRD_PERF') {\n        Matrix.getObject('LBL_TTL_2').Text = '   영업 실적 목록 (' + e.RecordCount + '건)';\n    }\n    else if (e.Id == 'GRD_TOTAL') {\n        if (!e.RecordCount) {\n            ['1', '2', '3', '4'].forEach(function (i) {\n                Matrix.getObject('LBL_TOTAL_VAL_' + i).Text = '';\n            });\n        }\n        var val = Matrix.getObject(e.Id).getRowValue(0, 'TOTAL_COMP_PERF_VAL');\n        var setColor = void 0;\n        if (val < 0)\n            setColor = '#ef4444'; // 빨강\n        else if (val > 0)\n            setColor = '#10b981'; // 초록\n        else\n            setColor = '#1e293b'; // 검정\n        Matrix.getObject('LBL_TOTAL_VAL_2').Style.Font.Color.SetColor(setColor);\n        Matrix.getObject('LBL_TOTAL_VAL_2').Update();\n    }\n};\n/******** Button Click Event ********/\n// 등록\nBTN_ADD.OnClick = function (s, e) {\n    setInputValue(null);\n    Matrix.SetGlobalParams('SALES_ID', '');\n    BTN_SAV.Text = '추가';\n    popup = Matrix.ShowWindow(\"실적 등록\", 0, 0, 460, 500, true, false, \"실적 등록\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\n// 검색\nBTN_REF.OnClick = function (s, e) {\n    Matrix.doRefresh('GRD_PERF');\n};\n// 초기화\nBTN_RESET.OnClick = function (s, e) {\n    ['VS_PIC', 'VS_CUST', 'VS_STATUS'].forEach(function (i) {\n        Matrix.getObject(i).CheckAll();\n    });\n};\n// 삭제\nBTN_DEL.OnClick = function (s, e) {\n    var checkCount = 0;\n    for (var i = 0; i < GRD_PERF.GetRowCount(); i++) {\n        if (GRD_PERF.getRowValue(i, 'CHK') == 'Y') {\n            GRD_PERF.ChangeRowStateAt(i, 'D');\n            checkCount++;\n        }\n    }\n    if (!checkCount) {\n        Matrix.Information('삭제할 항목을 선택하세요', '안내');\n        return;\n    }\n    Matrix.Confirm('선택한 항목을 삭제하시겠습니까?', '안내', function (ok) {\n        if (ok) {\n            Matrix.RunScript('GRD_PERF', 'GRD_DELETE', function (p) {\n                if (p.Success == false) {\n                    Matrix.Alert(p.Message);\n                    return;\n                }\n                Matrix.doRefresh('GRD_PERF');\n                Matrix.Information('삭제 완료되었습니다.', '안내');\n            });\n        }\n        else {\n            GRD_PERF.ClearRowState(false);\n        }\n    }, 0);\n};\n// 취소\nBTN_CNC.OnClick = function (s, e) {\n    popup.Close();\n};\n// 저장\nBTN_SAV.OnClick = function (s, e) {\n    var fields = [VS_INP_ID.Text, VS_INP_YMD.Value, VS_INP_PIC.Value, VS_INP_CUST.Value, VS_INP_PROD.Value,\n        VN_INP_QTY.Value, VN_INP_PRICE.Value, VN_INP_COST.Value, VS_INP_STATUS.Value];\n    var controls = [VS_INP_ID, VS_INP_YMD, VS_INP_PIC, VS_INP_CUST, VS_INP_PROD, VN_INP_QTY, VN_INP_PRICE, VN_INP_COST, VS_INP_STATUS];\n    var invalid = isInvalidInput(fields, controls);\n    if (invalid) {\n        Matrix.Information('필수 입력 항목을 확인해주세요', '안내');\n        invalid.Focus();\n        return;\n    }\n    var scriptName = Matrix.GetGlobalParamValue('VS_SALES_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';\n    Matrix.RunScript('', scriptName, function (p) {\n        if (p.Success == false) {\n            Matrix.Alert(p.Message);\n            return;\n        }\n        Matrix.doRefresh('GRD_PERF');\n        Matrix.Information(BTN_SAV.Text + ' 완료되었습니다.', '안내');\n        popup.Close();\n    });\n};\n/******** Button Click Event ********/\nGRD_PERF.OnGridMultiHeaderCheckBoxClicked = function (s, e) {\n    var checkValue = e.Checked ? 'Y' : 'N';\n    for (var i = 0; i < GRD_PERF.GetRowCount(); i++) {\n        GRD_PERF.setRowValue(i, 'CHK', checkValue);\n    }\n    GRD_PERF.Update();\n};\nGRD_PERF.OnCellDoubleClick = function (s, e) {\n    setInputValue(e.Row);\n    Matrix.SetGlobalParams('VS_SALES_ID', e.Row.GetValue('SALES_ID'));\n    BTN_SAV.Text = '저장';\n    popup = Matrix.ShowWindow(\"실적 등록\", 0, 0, 460, 500, true, false, \"실적 등록\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\nMatrix.OnViewerSizeChanged = function (s, e) {\n    var setWidth = (e.Width - 100) / 4;\n    GRP_TOTAL_1.Width = setWidth;\n    GRP_TOTAL_2.Width = setWidth;\n    GRP_TOTAL_3.Width = setWidth;\n    GRP_TOTAL_4.Width = setWidth;\n    GRP_TOTAL_2.Left = setWidth + 40;\n    GRP_TOTAL_3.Left = setWidth * 2 + 60;\n    GRP_TOTAL_4.Left = setWidth * 3 + 80;\n};\nvar setInputValue = function (row) {\n    if (row) {\n        VS_INP_ID.Text = row.GetValue('SALES_ID');\n        VS_INP_YMD.Value = row.GetValue('SALES_DATE');\n        VS_INP_PIC.Value = row.GetValue('EMP_ID');\n        VS_INP_CUST.Value = row.GetValue('CUST_ID');\n        VS_INP_PROD.Value = row.GetValue('PROD_ID');\n        VN_INP_QTY.Value = row.GetValue('QTY');\n        VN_INP_PRICE.Value = row.GetValue('UNIT_PRICE');\n        VN_INP_COST.Value = row.GetValue('COST_AMOUNT');\n        VS_INP_STATUS.Value = row.GetValue('STATUS_CODE');\n    }\n    else {\n        Matrix.Execute('SET_SALES_ID', function (p) {\n            if (p.Success == false) {\n                Matrix.Alert(p.Message);\n                return;\n            }\n            var dt = p.DataTable;\n            VS_INP_ID.Text = dt.getRowValue(0, 'SALES_ID');\n        });\n        VS_INP_ID.Text = '';\n        VS_INP_YMD.Value = '';\n        VS_INP_PIC.Value = '';\n        VS_INP_CUST.Value = '';\n        VS_INP_PROD.Value = '';\n        VN_INP_QTY.Value = 0;\n        VN_INP_PRICE.Value = 0;\n        VN_INP_COST.Value = 0;\n        VS_INP_STATUS.Value = '';\n    }\n};\nvar isInvalidInput = function (fields, controls) {\n    var idx = fields.findIndex(function (v) {\n        return v === null || v === undefined || v === '';\n    });\n    if (idx !== -1 && controls && controls[idx]) {\n        return controls[idx];\n    }\n    return idx !== -1 ? true : null;\n};\n",
+  "ScriptText": "/* Init Controls */\nvar VS_YMD_FROM = Matrix.getObject(\"VS_YMD_FROM\");\nvar GRD_PERF = Matrix.getObject(\"GRD_PERF\");\nvar GRP_TOTAL_1 = Matrix.getObject(\"GRP_TOTAL_1\");\nvar GRP_TOTAL_2 = Matrix.getObject(\"GRP_TOTAL_2\");\nvar GRP_TOTAL_3 = Matrix.getObject(\"GRP_TOTAL_3\");\nvar GRP_TOTAL_4 = Matrix.getObject(\"GRP_TOTAL_4\");\n/* Button Controls */\nvar BTN_ADD = Matrix.getObject(\"BTN_ADD\");\nvar BTN_REF = Matrix.getObject(\"BTN_REF\");\nvar BTN_RESET = Matrix.getObject(\"BTN_RESET\");\nvar BTN_DEL = Matrix.getObject(\"BTN_DEL\");\nvar BTN_CNC = Matrix.getObject(\"BTN_CNC\");\nvar BTN_SAV = Matrix.getObject(\"BTN_SAV\");\n/* Input Controls */\nvar VS_INP_ID = Matrix.getObject(\"VS_INP_ID\");\nvar VS_INP_YMD = Matrix.getObject(\"VS_INP_YMD\");\nvar VS_INP_PIC = Matrix.getObject(\"VS_INP_PIC\");\nvar VS_INP_CUST = Matrix.getObject(\"VS_INP_CUST\");\nvar VS_INP_PROD = Matrix.getObject(\"VS_INP_PROD\");\nvar VN_INP_QTY = Matrix.getObject(\"VN_INP_QTY\");\nvar VN_INP_PRICE = Matrix.getObject(\"VN_INP_PRICE\");\nvar VN_INP_COST = Matrix.getObject(\"VN_INP_COST\");\nvar VS_INP_STATUS = Matrix.getObject(\"VS_INP_STATUS\");\nvar popup = null;\nMatrix.OnDocumentLoadComplete = function (s, e) {\n    if (Matrix.GetDialogRequestParams()) {\n        var getYear = Number(Matrix.GetDialogRequestParams());\n        VS_YMD_FROM.InitDate = getYear + '0101;' + getYear + '1231';\n        BTN_ADD.Visible = false;\n        BTN_DEL.Visible = false;\n        GRD_PERF.GetField('CHK').Visible = false;\n    }\n    else {\n        VS_YMD_FROM.InitDate = 'DATE(0,F,F);DATE(0,L,L)';\n    }\n    VS_INP_ID.IsReadOnly = true;\n    GRD_PERF.GetField('SALES_ID').KeyType = 3; // KeyType: Primary\n};\nMatrix.OnMultiComboBoxExecuteStart = function (s, e) {\n    if (['VS_PIC', 'VS_CUST', 'VS_STATUS'].includes(e.Id)) {\n        Matrix.getObject(e.Id).CheckAll();\n    }\n};\nMatrix.OnDataBindEnd = function (s, e) {\n    if (e.Id == 'GRD_PERF') {\n        Matrix.getObject('LBL_TTL_2').Text = '   영업 실적 목록 (' + e.RecordCount + '건)';\n    }\n    else if (e.Id == 'GRD_TOTAL') {\n        if (!e.RecordCount) {\n            ['1', '2', '3', '4'].forEach(function (i) {\n                Matrix.getObject('LBL_TOTAL_VAL_' + i).Text = '';\n            });\n        }\n        var val = Matrix.getObject(e.Id).getRowValue(0, 'TOTAL_COMP_PERF_VAL');\n        var setColor = void 0;\n        if (val < 0)\n            setColor = '#ef4444'; // 빨강\n        else if (val > 0)\n            setColor = '#10b981'; // 초록\n        else\n            setColor = '#1e293b'; // 검정\n        Matrix.getObject('LBL_TOTAL_VAL_2').Style.Font.Color.SetColor(setColor);\n        Matrix.getObject('LBL_TOTAL_VAL_2').Update();\n    }\n};\n/******** Button Click Event ********/\n// 등록\nBTN_ADD.OnClick = function (s, e) {\n    setInputValue(null);\n    Matrix.SetGlobalParams('SALES_ID', '');\n    BTN_SAV.Text = '추가';\n    popup = Matrix.ShowWindow(\"실적 등록\", 0, 0, 460, 500, true, false, \"실적 등록\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\n// 검색\nBTN_REF.OnClick = function (s, e) {\n    Matrix.doRefresh('GRD_PERF');\n};\n// 초기화\nBTN_RESET.OnClick = function (s, e) {\n    ['VS_PIC', 'VS_CUST', 'VS_STATUS'].forEach(function (i) {\n        Matrix.getObject(i).CheckAll();\n    });\n};\n// 삭제\nBTN_DEL.OnClick = function (s, e) {\n    var checkCount = 0;\n    for (var i = 0; i < GRD_PERF.GetRowCount(); i++) {\n        if (GRD_PERF.getRowValue(i, 'CHK') == 'Y') {\n            GRD_PERF.ChangeRowStateAt(i, 'D');\n            checkCount++;\n        }\n    }\n    if (!checkCount) {\n        Matrix.Information('삭제할 항목을 선택하세요', '안내');\n        return;\n    }\n    Matrix.Confirm('선택한 항목을 삭제하시겠습니까?', '안내', function (ok) {\n        if (ok) {\n            Matrix.RunScript('GRD_PERF', 'GRD_DELETE', function (p) {\n                if (p.Success == false) {\n                    Matrix.Alert(p.Message);\n                    return;\n                }\n                Matrix.doRefresh('GRD_PERF');\n                Matrix.Information('삭제 완료되었습니다.', '안내');\n            });\n        }\n        else {\n            GRD_PERF.ClearRowState(false);\n        }\n    }, 0);\n};\n// 취소\nBTN_CNC.OnClick = function (s, e) {\n    popup.Close();\n};\n// 저장\nBTN_SAV.OnClick = function (s, e) {\n    var fields = [VS_INP_ID.Text, VS_INP_YMD.Value, VS_INP_PIC.Value, VS_INP_CUST.Value, VS_INP_PROD.Value,\n        VN_INP_QTY.Value, VN_INP_PRICE.Value, VN_INP_COST.Value, VS_INP_STATUS.Value];\n    var controls = [VS_INP_ID, VS_INP_YMD, VS_INP_PIC, VS_INP_CUST, VS_INP_PROD, VN_INP_QTY, VN_INP_PRICE, VN_INP_COST, VS_INP_STATUS];\n    var invalid = isInvalidInput(fields, controls);\n    if (invalid) {\n        Matrix.Information('필수 입력 항목을 확인해주세요', '안내');\n        invalid.Focus();\n        return;\n    }\n    var scriptName = Matrix.GetGlobalParamValue('VS_SALES_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';\n    Matrix.RunScript('', scriptName, function (p) {\n        if (p.Success == false) {\n            Matrix.Alert(p.Message);\n            return;\n        }\n        Matrix.doRefresh('GRD_PERF');\n        Matrix.Information(BTN_SAV.Text + ' 완료되었습니다.', '안내');\n        popup.Close();\n    });\n};\n/******** Button Click Event ********/\nGRD_PERF.OnGridMultiHeaderCheckBoxClicked = function (s, e) {\n    var checkValue = e.Checked ? 'Y' : 'N';\n    for (var i = 0; i < GRD_PERF.GetRowCount(); i++) {\n        GRD_PERF.setRowValue(i, 'CHK', checkValue);\n    }\n    GRD_PERF.Update();\n};\nGRD_PERF.OnCellDoubleClick = function (s, e) {\n    setInputValue(e.Row);\n    Matrix.SetGlobalParams('VS_SALES_ID', e.Row.GetValue('SALES_ID'));\n    BTN_SAV.Text = '저장';\n    popup = Matrix.ShowWindow(\"실적 등록\", 0, 0, 460, 500, true, false, \"실적 등록\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\nvar setInputValue = function (row) {\n    if (row) {\n        VS_INP_ID.Text = row.GetValue('SALES_ID');\n        VS_INP_YMD.Value = row.GetValue('SALES_DATE');\n        VS_INP_PIC.Value = row.GetValue('EMP_ID');\n        VS_INP_CUST.Value = row.GetValue('CUST_ID');\n        VS_INP_PROD.Value = row.GetValue('PROD_ID');\n        VN_INP_QTY.Value = row.GetValue('QTY');\n        VN_INP_PRICE.Value = row.GetValue('UNIT_PRICE');\n        VN_INP_COST.Value = row.GetValue('COST_AMOUNT');\n        VS_INP_STATUS.Value = row.GetValue('STATUS_CODE');\n    }\n    else {\n        Matrix.Execute('SET_SALES_ID', function (p) {\n            if (p.Success == false) {\n                Matrix.Alert(p.Message);\n                return;\n            }\n            var dt = p.DataTable;\n            VS_INP_ID.Text = dt.getRowValue(0, 'SALES_ID');\n        });\n        VS_INP_ID.Text = '';\n        VS_INP_YMD.Value = '';\n        VS_INP_PIC.Value = '';\n        VS_INP_CUST.Value = '';\n        VS_INP_PROD.Value = '';\n        VN_INP_QTY.Value = 0;\n        VN_INP_PRICE.Value = 0;\n        VN_INP_COST.Value = 0;\n        VS_INP_STATUS.Value = '';\n    }\n};\nvar isInvalidInput = function (fields, controls) {\n    var idx = fields.findIndex(function (v) {\n        return v === null || v === undefined || v === '';\n    });\n    if (idx !== -1 && controls && controls[idx]) {\n        return controls[idx];\n    }\n    return idx !== -1 ? true : null;\n};\n",
   "ServerScriptText": [
     {
       "Name": "GRD_DELETE",
-      "Key": "BIZ693450B904014583B79D544F01B3AD8A",
+      "Key": "BIZ3A59AA365DED4EDAAE68356D842FAB03",
       "Encrypted": true,
       "ScriptText": "SnGZTXoWgLwnWaQFwynZkMloOIQcnzfw03AihKOUcMghluSJqfuFzWYi6BHo9NxrzvuO7dhUG1p7r0hAhJJLLAeqACZhHRCcelqh/bXZB5a3HBv9p35aNSWaCD9hOPC6pGfKjANsEhftEfPprCCSXcnfSFub2jUjkWTDQsHCSuM2XEy4JapNsTDL328k10BlmJwMckIXkAzI/bcys8STbWtiwZWc+NgpP8pREC4/Z/oK0Oeu4e5aecB7TSh0xyiHCG4GWEI7TgnLRKHIvv4R0z4O/SmQxNFiNjs3RQJxXc5eU5/bYNzZOX9cOu18Zy55R1YIo/RZJyRktPB5iThwVdjTvXCLvJMb3FkXYr1pOcL3o6Td3GyvE46VBKO9/7CGx8TLya1dNR+zm2Rk+gRIkvvcg1ynXmY7/KaRpYOrBaZ2B1Ib9P7Y3sCTFgoqifbK0t43uRh3svHCNc17NpBcYOg2am1qDqHnbnGO3lEuIJ+QtBN0YmV56GCUkfubz0mK1AGT1d0DSu6d01J1VqaPJvIII6hzYCEwnx4pv5Y5wzfu/YOgU8J90l/DvktvLO/3XPLqwBE7ZAnYailVpf7Zzx7UV7pGx+UwOZ94S7SxFiv7qsfFroDONQ/ve3MhpUxIUVkaA5zPdMGz26xij1J8xblNjJxY8eGkV9XoNfgColWdFRcImL9B1ORR854pz09pYVbsmbhx7JUlqx/mfPmGjfoQXIrI2FwI7CzK7KcjTf5LdZ+ZjPliqn8a5T8LPXXmGtLnh/mRztu+K4scET3/oVYRI8hXG+qe3vC2izK2Nfn4GrVdKFBy6rzDgSGnLQBFZbV+TgHX071djBL0O8FOAm3B+jJ65hB+OySXnUmS8R3s9DndWV/T5edYB2RdOEEsp3vBtJBrWcwiLbMqgt5N2ElxFDwt4BpjN0hbv5CLJP/TIu8GsrEJkgOJwtjy9jYNfX2eLXF0NUZhZ+zSWiAKqWQafcSDnH5WoaFTrYVymcPdSeOh2lnJDm6VGmnJj10ap3sY/rhpwJIS4COoPHK+gW5RV9708O80Lc5XF61iLe5TDGPC6kEyhSNwW9zwzbkHGDwnTJ1ZHkRvWkPzIkvwKEJPkLLLB1pAJeQFwZom9v+w9vdZ+cl9asx3FDTsvDy9BNh48JxO88ZcrSDfRwgLCA0ikHpSCLhl3+PvvJQy3ShzeDVbYTbf9QcaKJqRTwyR5BXfr0R5WQJl/VoMqgVibSv/z8c7z0ZhZVlZsXLW45u6kG1S7sgzP7R9OfrMq2ATnKoZ2GXkV7ESHglM6k9TkixROW3cqyNQTa7OJNgo+MzD1M6UIUlJP/43FTcE7bTEDtoLTJV76plkxgR9+MsLuJqKPRyFn0md6GRPMvkxLVY1xfi1iRYuNjsWOZrpU3BpbVEOl2guvUwGDpympS9uI95wnNjRt5iXbpjyr/qcar6zwrJo/YXvvrIC11T4uID+eX8AH7lclJgrI7KYIxDl49pm7sTj3c59It1GEsY0+w4lbKcJ5FMhClXfMHmm+wvtB7STji9l+qipbAtSKGYM73fu7UpFr3Hxo9I0dqEWMLk="
     },
     {
       "Name": "GRD_INSERT",
-      "Key": "BIZAA81CF0B21BA4D1F892EB5CB9CBE5536",
+      "Key": "BIZ54240BDE8629449A82B11452AEE7BC5C",
       "Encrypted": true,
       "ScriptText": "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"
     },
     {
       "Name": "GRD_UPDATE",
-      "Key": "BIZ545F9E12E90B444988779984AB7FA2F3",
+      "Key": "BIZ57D759F5B7FE4BBD8BB98C2588188373",
       "Encrypted": true,
       "ScriptText": "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"
     }
@@ -244,7 +243,7 @@
               "Name": "BTN_ADD",
               "InGroup": "GRP_HEADER",
               "Position": {
-                "Left": 1501,
+                "Left": 1481,
                 "Top": 10,
                 "Width": 90,
                 "Height": 35,
@@ -308,7 +307,7 @@
           "Position": {
             "Left": 0,
             "Top": 0,
-            "Width": 1611,
+            "Width": 1591,
             "Height": 55,
             "ZIndex": 0,
             "TabIndex": 0,
@@ -1226,7 +1225,7 @@
               "DataFormat": "yyyyMMdd",
               "FormatLanguageCode": "",
               "IsReadOnly": false,
-              "FromText": "2019-01-02",
+              "FromText": "2026-01-01",
               "ToText": "2026-12-31",
               "MinDate": "DATE(F,F,F)",
               "MaxDate": "DATE(L,L,L)",
@@ -1238,7 +1237,7 @@
               "UseWeekNumberDefined": false,
               "HighlightWeekendDefined": false,
               "DisplayStartDayOfWeekDefined": false,
-              "FromDate": 1546354800000,
+              "FromDate": 1767193200000,
               "ToDate": 1798642800000,
               "Type": "CalendarFromTo",
               "Id": "CalendarFromTo0335A748D42771D2D8F6ED9209BFDABE",
@@ -1309,7 +1308,7 @@
           "Position": {
             "Left": 20,
             "Top": 205,
-            "Width": 1571,
+            "Width": 1551,
             "Height": 90,
             "ZIndex": 3,
             "TabIndex": 0,
@@ -1368,7 +1367,7 @@
           "ChildElements": [
             {
               "LanguageCode": "",
-              "Text": "   영업 실적 목록",
+              "Text": "   영업 실적 목록 (0건)",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -1389,7 +1388,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 1571,
+                "Width": 1551,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -1449,11 +1448,12 @@
               "Id": "DataGridF080EDCACB22D1D56A21D1B1E3AE9017",
               "Name": "GRD_PERF",
               "Visible": true,
+              "Custom": "2:1",
               "Position": {
                 "Left": 20,
                 "Top": 75,
-                "Width": 1531,
-                "Height": 463,
+                "Width": 1511,
+                "Height": 476,
                 "ZIndex": 21,
                 "TabIndex": 0,
                 "Docking": {
@@ -1957,7 +1957,7 @@
                         "Position": {
                           "Left": 100,
                           "Top": 0,
-                          "Width": 228,
+                          "Width": 227,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2042,7 +2042,7 @@
                         "Id": "LabelC5E706203ED0A4C0A5E0F06C3626224F",
                         "Name": "SALES_DATE",
                         "Position": {
-                          "Left": 328,
+                          "Left": 327,
                           "Top": 0,
                           "Width": 136,
                           "Height": 45,
@@ -2129,7 +2129,7 @@
                         "Id": "Label1D4B233FE9CB04BE4A1920DABFC1C9A2",
                         "Name": "EMP_NAME",
                         "Position": {
-                          "Left": 464,
+                          "Left": 463,
                           "Top": 0,
                           "Width": 136,
                           "Height": 45,
@@ -2216,7 +2216,7 @@
                         "Id": "Label4CA82831C85E22E21DCC7653B5133769",
                         "Name": "CUST_NAME",
                         "Position": {
-                          "Left": 600,
+                          "Left": 599,
                           "Top": 0,
                           "Width": 136,
                           "Height": 45,
@@ -2303,9 +2303,9 @@
                         "Id": "LabelA31DAF4D8503B820AB009E6163E58864",
                         "Name": "PROD_NAME",
                         "Position": {
-                          "Left": 736,
+                          "Left": 735,
                           "Top": 0,
-                          "Width": 228,
+                          "Width": 227,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2390,7 +2390,7 @@
                         "Id": "Label50F137570F8F2604D16AA4CE3CCDF05F",
                         "Name": "QTY",
                         "Position": {
-                          "Left": 964,
+                          "Left": 962,
                           "Top": 0,
                           "Width": 136,
                           "Height": 45,
@@ -2477,7 +2477,7 @@
                         "Id": "LabelA1FED094B5B2BB58B146B036B3F03884",
                         "Name": "UNIT_PRICE",
                         "Position": {
-                          "Left": 1100,
+                          "Left": 1098,
                           "Top": 0,
                           "Width": 136,
                           "Height": 45,
@@ -2564,7 +2564,7 @@
                         "Id": "Label406E8AF7950CFBCFF18096ACBD07EDB7",
                         "Name": "COST_AMOUNT",
                         "Position": {
-                          "Left": 1236,
+                          "Left": 1234,
                           "Top": 0,
                           "Width": 136,
                           "Height": 45,
@@ -2651,9 +2651,9 @@
                         "Id": "LabelAE373D69501C123FE0DE2DE95DBCD60F",
                         "Name": "SALES_STATUS",
                         "Position": {
-                          "Left": 1372,
+                          "Left": 1370,
                           "Top": 0,
-                          "Width": 142,
+                          "Width": 141,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2776,7 +2776,7 @@
               "Name": "BTN_DEL",
               "InGroup": "GRP_BODY",
               "Position": {
-                "Left": 1491,
+                "Left": 1471,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -2840,8 +2840,8 @@
           "Position": {
             "Left": 20,
             "Top": 295,
-            "Width": 1571,
-            "Height": 558,
+            "Width": 1551,
+            "Height": 571,
             "ZIndex": 4,
             "TabIndex": 0,
             "Docking": {
@@ -3054,7 +3054,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "",
+              "Text": "63건",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -3083,7 +3083,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 34,
-                "Width": 450,
+                "Width": 445,
                 "Height": 45,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -3161,7 +3161,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 76,
-                "Width": 450,
+                "Width": 445,
                 "Height": 23,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -3220,10 +3220,11 @@
           "Type": "Group",
           "Id": "Group572B030752D2EA7859E37DE6DBEF3AE5",
           "Name": "GRP_TOTAL_1",
+          "Custom": "1:1",
           "Position": {
             "Left": 20,
             "Top": 75,
-            "Width": 450,
+            "Width": 445,
             "Height": 110,
             "ZIndex": 4,
             "TabIndex": 0,
@@ -3360,7 +3361,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "",
+              "Text": "₩890,853,000",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -3389,7 +3390,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 34,
-                "Width": 161,
+                "Width": 156,
                 "Height": 45,
                 "ZIndex": 9,
                 "TabIndex": 0,
@@ -3467,7 +3468,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 76,
-                "Width": 161,
+                "Width": 156,
                 "Height": 23,
                 "ZIndex": 9,
                 "TabIndex": 0,
@@ -3526,10 +3527,11 @@
           "Type": "Group",
           "Id": "GroupD14156770D28CF0E8EF5FEE2F22C18ED",
           "Name": "GRP_TOTAL_4",
+          "Custom": "1:1",
           "Position": {
-            "Left": 1430,
+            "Left": 1415,
             "Top": 75,
-            "Width": 161,
+            "Width": 156,
             "Height": 110,
             "ZIndex": 5,
             "TabIndex": 0,
@@ -3666,7 +3668,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "",
+              "Text": "60건",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -3695,7 +3697,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 34,
-                "Width": 450,
+                "Width": 445,
                 "Height": 45,
                 "ZIndex": 8,
                 "TabIndex": 0,
@@ -3773,7 +3775,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 76,
-                "Width": 450,
+                "Width": 445,
                 "Height": 23,
                 "ZIndex": 8,
                 "TabIndex": 0,
@@ -3832,10 +3834,11 @@
           "Type": "Group",
           "Id": "GroupE45AD0F40EA88BBD62886FB14CDCE0B4",
           "Name": "GRP_TOTAL_2",
+          "Custom": "1:1",
           "Position": {
-            "Left": 490,
+            "Left": 485,
             "Top": 75,
-            "Width": 450,
+            "Width": 445,
             "Height": 110,
             "ZIndex": 6,
             "TabIndex": 0,
@@ -3972,7 +3975,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "",
+              "Text": "3,059",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -4001,7 +4004,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 34,
-                "Width": 450,
+                "Width": 445,
                 "Height": 45,
                 "ZIndex": 9,
                 "TabIndex": 0,
@@ -4079,7 +4082,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 76,
-                "Width": 450,
+                "Width": 445,
                 "Height": 23,
                 "ZIndex": 9,
                 "TabIndex": 0,
@@ -4138,10 +4141,11 @@
           "Type": "Group",
           "Id": "Group3B1A3CB81973E7F9F6B6F33C695DAC59",
           "Name": "GRP_TOTAL_3",
+          "Custom": "1:1",
           "Position": {
-            "Left": 960,
+            "Left": 950,
             "Top": 75,
-            "Width": 450,
+            "Width": 445,
             "Height": 110,
             "ZIndex": 7,
             "TabIndex": 0,
@@ -6013,7 +6017,138 @@
   "Modules": [],
   "ResponsiveLayout": [],
   "Langs": [],
-  "WorkFlowModules": [],
+  "WorkFlowModules": [
+    {
+      "EVENT_YN": "Y",
+      "CREATE_USER": "kimje1342",
+      "MODULE_DESCRIPTION": "Group의 Custom 속성에 '행번호:비율'의 값을 작성합니다.\ne.g. 1:1 - 1행, 비율 1\n      1:2 - 1행, 비율 2\n      2:1 - 2행, 비율 1",
+      "SCRIPT_TEXT": "var gap = parseInt(arguments[0]) || 20;\n\nvar allControls = Matrix.getAllObjects();\nvar groups = [];\nfor (var i = 0; i < allControls.length; i++) {\n\tvar ctl = allControls[i];\n\tif (!ctl.Custom) continue;\n\tvar match = ctl.Custom.match(/^(\\d+):(\\d+)$/);\n\tif (!match) continue;\n\tgroups.push({\n\t\tcontrol: ctl,\n\t\trow: parseInt(match[1]),\n\t\tratio: parseInt(match[2]),\n\t\torigLeft: ctl.Left\n\t});\n}\n\ngroups.sort(function(a, b) {\n\tif (a.row !== b.row) return a.row - b.row;\n\treturn a.origLeft - b.origLeft;\n});\n\nvar rows = {};\nfor (var i = 0; i < groups.length; i++) {\n\tvar g = groups[i];\n\tif (!rows[g.row]) rows[g.row] = [];\n\trows[g.row].push(g);\n}\n\nfunction applyLayout(viewerWidth) {\n\tfor (var rowKey in rows) {\n\t\tvar items = rows[rowKey];\n\t\tif (items.length === 0) continue;\n\t\tvar startLeft = items[0].origLeft;\n\t\tvar totalGap = gap * (items.length - 1);\n\t\tvar availableWidth = viewerWidth - startLeft - gap - totalGap;\n\t\tvar totalRatio = 0;\n\t\tfor (var i = 0; i < items.length; i++) {\n\t\t\ttotalRatio += items[i].ratio;\n\t\t}\n\t\tvar unitWidth = availableWidth / totalRatio;\n\t\tvar currentLeft = startLeft;\n\t\tfor (var i = 0; i < items.length; i++) {\n\t\t\tvar item = items[i];\n\t\t\tvar w = unitWidth * item.ratio;\n\t\t\titem.control.Width = Math.floor(w);\n\t\t\titem.control.Left = Math.floor(currentLeft);\n\t\t\tcurrentLeft += w + gap;\n\t\t}\n\t}\n}\n\nMatrix.OnViewerSizeChanged = function(s, e) {\n\tapplyLayout(e.Width);\n};",
+      "WF_YN": "",
+      "RESULT_TYPE": "",
+      "MODULE_SUBJECT": "Group 가변형 레이아웃",
+      "MODULE_TYPE": "",
+      "CREATE_DATE": "2026-02-04 13:56:35",
+      "DELETE_FLAG": "N",
+      "MODULE_SEQ": "1",
+      "ORIGINAL_MODULE_CODE": "",
+      "MODIFY_DATE": "2026-02-04 13:58:33",
+      "MODULE_CODE": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+      "EDIT_AUTHORITY": "9",
+      "MODIFY_USER": "kimje1342"
+    }
+  ],
   "WorkFlowInfo": "",
-  "schModel": {}
+  "schModel": {},
+  "WORK_FLOW": {
+    "Version": 1,
+    "UseEvent": true,
+    "Nodes": [
+      {
+        "ID": "_ROOT_",
+        "Type": "Report",
+        "ModuleCode": "",
+        "Name": "Report",
+        "Description": "",
+        "Left": 70,
+        "Top": 70,
+        "Width": 200,
+        "Height": 230,
+        "ControlType": "Report",
+        "Collapsed": false,
+        "IsEventActive": false,
+        "Deprecated": false,
+        "Parameters": [
+          {
+            "ID": "OnDocumentLoadComplete",
+            "Name": "OnDocumentLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnLoadComplete",
+            "Name": "OnLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnExecuteStart",
+            "Name": "OnExecuteStart",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnRefreshComplete",
+            "Name": "OnRefreshComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnActiveSheetChange",
+            "Name": "OnActiveSheetChange",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnDestroy",
+            "Name": "OnDestroy",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnViewerSizeChanged",
+            "Name": "OnViewerSizeChanged",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnReportFilterLoadComplete",
+            "Name": "OnReportFilterLoadComplete",
+            "Value": null,
+            "Description": ""
+          }
+        ]
+      },
+      {
+        "ID": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+        "Type": "Module",
+        "ModuleCode": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+        "Name": "Group 가변형 레이아웃",
+        "Description": "Group의 Custom 속성에 '행번호:비율'의 값을 작성합니다.\ne.g. 1:1 - 1행, 비율 1\n      1:2 - 1행, 비율 2\n      2:1 - 2행, 비율 1",
+        "Left": 311,
+        "Top": 70,
+        "Width": 200,
+        "Height": 87,
+        "ControlType": "",
+        "Collapsed": false,
+        "IsEventActive": true,
+        "Deprecated": false,
+        "Parameters": [
+          {
+            "Name": "그룹 간 간격 (px)",
+            "Value": "20",
+            "MODULE_CODE": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+            "DEFAULT_VALUE": "",
+            "NULLABLE": "Y",
+            "PARAM_DESCRIPTION": "그룹 간 간격 (px)",
+            "PARAM_SEQ": "1",
+            "PARAM_TYPE": "INP002",
+            "ATTR1": "",
+            "ATTR2": "",
+            "ATTR3": ""
+          }
+        ]
+      }
+    ],
+    "Links": [
+      {
+        "ID": "_ROOT_.OnDocumentLoadComplete~MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+        "From": "_ROOT_",
+        "To": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+        "Type": 0,
+        "FromParam": "OnDocumentLoadComplete"
+      }
+    ],
+    "MAP_NODES": {},
+    "MAP_LINKS": {}
+  }
 }

@@ -162,19 +162,6 @@ GRD_PLAN.OnCellDoubleClick = function(s, e) {
 	popup.MoveToCenter();
 };
 
-Matrix.OnViewerSizeChanged = function(s, e) {
-	const setWidth = (e.Width - 100) / 4;
-
-	GRP_TOTAL_1.Width = setWidth;
-	GRP_TOTAL_2.Width = setWidth;
-	GRP_TOTAL_3.Width = setWidth;
-	GRP_TOTAL_4.Width = setWidth;
-
-	GRP_TOTAL_2.Left = setWidth + 40;
-	GRP_TOTAL_3.Left = setWidth * 2 + 60;
-	GRP_TOTAL_4.Left = setWidth * 3 + 80;
-};
-
 var setInputValue = function(row) {
 	if (row) {
 		VS_INP_ID.Text      = row.GetValue('PLAN_ID');

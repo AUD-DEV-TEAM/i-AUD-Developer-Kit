@@ -4,14 +4,13 @@
     "FolderCode": "FLDC7BAD63B598D40C69738638A26DE0C36",
     "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REPA82E596856EC47BF990E9F9FD680339E.mtsd",
     "ReportName": "실적 분석",
-    "Writer": "kimje1342",
-    "WriteDate": "2026-02-03 10:43:18",
-    "Editor": "kimje1342",
-    "EditDate": "2026-02-03 10:43:18",
+    "Writer": "sblim1417",
+    "WriteDate": "2026-02-04 14:17:44",
+    "Editor": "sblim1417",
+    "EditDate": "2026-02-04 14:17:44",
     "TabPosition": 0,
     "DocumentVersion": "3.0.0.0",
-    "RefreshType": 0,
-    "CreateBy": "i-AUD Developer Kit"
+    "RefreshType": 0
   },
   "DataSources": {
     "Datas": [
@@ -391,7 +390,7 @@
       }
     ]
   },
-  "ScriptText": "/* Button Controls */\nvar BTN_REF = Matrix.getObject(\"BTN_REF\");\nvar LBL_TAB_ALL = Matrix.getObject(\"LBL_TAB_ALL\");\nvar LBL_TAB_TEAM1 = Matrix.getObject(\"LBL_TAB_TEAM1\");\nvar LBL_TAB_TEAM2 = Matrix.getObject(\"LBL_TAB_TEAM2\");\nMatrix.OnDocumentLoadComplete = function (s, e) {\n    Matrix.SetVariable('VS_DEPT', null);\n};\nMatrix.OnDataBindEnd = function (s, e) {\n    if (e.Id == \"GRD_CUST\") {\n        var lbl = Matrix.getObject(\"LBL_CUST_3\");\n        var val = Number(lbl.Value);\n        var displayVal = Math.abs(val).toFixed(1);\n        if (isNaN(val)) {\n            lbl.Text = \"\";\n            lbl.Update();\n            return;\n        }\n        if (val > 0) {\n            lbl.Text = \"▲ \" + displayVal + \" 전년 대비\";\n            lbl.Style.Font.Color.SetColor(\"#10b981\"); // 초록\n        }\n        else if (val < 0) {\n            lbl.Text = \"▼ \" + displayVal + \" 전년 대비\";\n            lbl.Style.Font.Color.SetColor(\"#ef4444\"); // 빨강\n        }\n        else {\n            lbl.Text = \"– 전년 대비\"; // 0일 때\n            lbl.Style.Font.Color.SetColor(\"#64748b\"); // 회색\n        }\n        lbl.Update();\n    }\n    else if (e.Id == 'GRD_TOTAL') {\n        if (!e.RecordCount) {\n            ['1', '2', '3', '4'].forEach(function (i) {\n                Matrix.getObject('LBL_TOTAL_VAL_' + i).Text = '';\n            });\n        }\n    }\n};\n/******** Button Click Event ********/\n// 검색\nBTN_REF.OnClick = function (s, e) {\n    Matrix.doRefresh(\"\");\n};\n/******** Button Click Event ********/\nvar setActiveTab = function (activeTab) {\n    var tabArr = [LBL_TAB_ALL, LBL_TAB_TEAM1, LBL_TAB_TEAM2];\n    tabArr.forEach(function (tab) {\n        tab.Style.Background.Color.SetColor(tab === activeTab ? \"#ffffff\" : \"#f1f5f9\");\n        tab.Update();\n    });\n};\n// 전체\nLBL_TAB_ALL.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_ALL);\n    Matrix.SetVariable('VS_DEPT', null);\n    Matrix.doRefresh('CHT_2');\n};\n// 영업1팀\nLBL_TAB_TEAM1.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_TEAM1);\n    Matrix.SetVariable('VS_DEPT', 'DEPT011');\n    Matrix.doRefresh('CHT_2');\n};\n// 영업2팀\nLBL_TAB_TEAM2.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_TEAM2);\n    Matrix.SetVariable('VS_DEPT', 'DEPT012');\n    Matrix.doRefresh('CHT_2');\n};\nMatrix.OnCellLoaded = function (s, e) {\n    if (e.Id == 'GRD_4' && e.Field.Name == 'DIFF') {\n        if (e.Cell.Value > 0)\n            e.FontColor = \"#10b981\"; // 초록\n        else if (e.Cell.Value < 0)\n            e.FontColor = \"#ef4444\"; // 빨강\n        else\n            e.FontColor = \"#1e293b\"; // 검정\n    }\n};\nMatrix.OnViewerSizeChanged = function (s, e) {\n    var GAP = 20;\n    var START = 20;\n    var setTotalWidth = (e.Width - 100) / 4;\n    var setBodyWidth = (e.Width - 80) / 3;\n    /*  TOTAL  */\n    [\"1\", \"2\", \"3\", \"4\"].forEach(function (i, idx) {\n        var grp = Matrix.getObject(\"GRP_TOTAL_\" + i);\n        var icon = Matrix.getObject(\"LBL_ICON_\" + i);\n        grp.Left = (setTotalWidth + GAP) * idx + START;\n        grp.Width = setTotalWidth;\n        icon.Left = (setTotalWidth - 50) / 2;\n    });\n    /*  BODY  */\n    var body = {};\n    [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\"].forEach(function (i) {\n        body[i] = Matrix.getObject(\"GRP_BODY_\" + i);\n    });\n    body[\"1\"].Width = setTotalWidth * 2 + GAP;\n    body[\"2\"].Left = setTotalWidth * 2 + GAP * 3;\n    [\"5\", \"6\", \"7\"].forEach(function (i, idx) {\n        body[i].Width = setBodyWidth;\n        body[i].Left = (setBodyWidth + GAP) * idx + START;\n    });\n    body[\"3\"].Width = setBodyWidth * 2 + GAP;\n    body[\"4\"].Left = setBodyWidth * 2 + GAP * 3;\n};\n",
+  "ScriptText": "/* Button Controls */\nvar BTN_REF = Matrix.getObject(\"BTN_REF\");\nvar LBL_TAB_ALL = Matrix.getObject(\"LBL_TAB_ALL\");\nvar LBL_TAB_TEAM1 = Matrix.getObject(\"LBL_TAB_TEAM1\");\nvar LBL_TAB_TEAM2 = Matrix.getObject(\"LBL_TAB_TEAM2\");\nMatrix.OnDocumentLoadComplete = function (s, e) {\n    Matrix.SetVariable('VS_DEPT', null);\n};\nMatrix.OnDataBindEnd = function (s, e) {\n    if (e.Id == \"GRD_CUST\") {\n        var lbl = Matrix.getObject(\"LBL_CUST_3\");\n        var val = Number(lbl.Value);\n        var displayVal = Math.abs(val).toFixed(1);\n        if (isNaN(val)) {\n            lbl.Text = \"\";\n            lbl.Update();\n            return;\n        }\n        if (val > 0) {\n            lbl.Text = \"▲ \" + displayVal + \" 전년 대비\";\n            lbl.Style.Font.Color.SetColor(\"#10b981\"); // 초록\n        }\n        else if (val < 0) {\n            lbl.Text = \"▼ \" + displayVal + \" 전년 대비\";\n            lbl.Style.Font.Color.SetColor(\"#ef4444\"); // 빨강\n        }\n        else {\n            lbl.Text = \"– 전년 대비\"; // 0일 때\n            lbl.Style.Font.Color.SetColor(\"#64748b\"); // 회색\n        }\n        lbl.Update();\n    }\n    else if (e.Id == 'GRD_TOTAL') {\n        if (!e.RecordCount) {\n            ['1', '2', '3', '4'].forEach(function (i) {\n                Matrix.getObject('LBL_TOTAL_VAL_' + i).Text = '';\n            });\n        }\n    }\n};\n/******** Button Click Event ********/\n// 검색\nBTN_REF.OnClick = function (s, e) {\n    Matrix.doRefresh(\"\");\n};\n/******** Button Click Event ********/\nvar setActiveTab = function (activeTab) {\n    var tabArr = [LBL_TAB_ALL, LBL_TAB_TEAM1, LBL_TAB_TEAM2];\n    tabArr.forEach(function (tab) {\n        tab.Style.Background.Color.SetColor(tab === activeTab ? \"#ffffff\" : \"#f1f5f9\");\n        tab.Update();\n    });\n};\n// 전체\nLBL_TAB_ALL.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_ALL);\n    Matrix.SetVariable('VS_DEPT', null);\n    Matrix.doRefresh('CHT_2');\n};\n// 영업1팀\nLBL_TAB_TEAM1.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_TEAM1);\n    Matrix.SetVariable('VS_DEPT', 'DEPT011');\n    Matrix.doRefresh('CHT_2');\n};\n// 영업2팀\nLBL_TAB_TEAM2.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_TEAM2);\n    Matrix.SetVariable('VS_DEPT', 'DEPT012');\n    Matrix.doRefresh('CHT_2');\n};\nMatrix.OnCellLoaded = function (s, e) {\n    if (e.Id == 'GRD_4' && e.Field.Name == 'DIFF') {\n        if (e.Cell.Value > 0)\n            e.FontColor = \"#10b981\"; // 초록\n        else if (e.Cell.Value < 0)\n            e.FontColor = \"#ef4444\"; // 빨강\n        else\n            e.FontColor = \"#1e293b\"; // 검정\n    }\n};\n",
   "ServerScriptText": [],
   "Forms": [
     {
@@ -452,7 +451,7 @@
               "Name": "BTN_REF",
               "InGroup": "GRP_HEADER",
               "Position": {
-                "Left": 1514,
+                "Left": 1803,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -522,13 +521,13 @@
               "HighlightWeekendDefined": false,
               "DisplayStartDayOfWeekDefined": false,
               "ViewFormat": "yyyy",
-              "Date": 1770044400000,
+              "Date": 1770130800000,
               "Type": "CalendarYear",
               "Id": "CalendarYear8DC86696C432B2F28B1BC7DD6DE36A8D",
               "Name": "VS_YEAR",
               "InGroup": "GRP_HEADER",
               "Position": {
-                "Left": 1349,
+                "Left": 1638,
                 "Top": 10,
                 "Width": 150,
                 "Height": 35,
@@ -606,7 +605,7 @@
               "Name": "LBL_YEAR",
               "InGroup": "GRP_HEADER",
               "Position": {
-                "Left": 1315,
+                "Left": 1604,
                 "Top": 10,
                 "Width": 29,
                 "Height": 35,
@@ -670,7 +669,7 @@
           "Position": {
             "Left": 0,
             "Top": 0,
-            "Width": 1594,
+            "Width": 1883,
             "Height": 55,
             "ZIndex": 7,
             "TabIndex": 0,
@@ -1529,10 +1528,7 @@
                   "MinorGridLineColor": "#E0E0E0",
                   "MinorGridLineWidth": 1,
                   "MinorGridLineStyle": 0,
-                  "Categories": [
-                    "영업1팀",
-                    "영업2팀"
-                  ],
+                  "Categories": [],
                   "AnnoFormat": "{0:N0}",
                   "Label": {
                     "FontSize": 12,
@@ -1801,6 +1797,7 @@
           "Type": "Group",
           "Id": "Group650B76B70FEFE8B6E214A83389266EF0",
           "Name": "GRP_BODY_1",
+          "Custom": "2:1",
           "Position": {
             "Left": 20,
             "Top": 270,
@@ -1940,7 +1937,7 @@
           "ChildElements": [
             {
               "LanguageCode": "",
-              "Text": "",
+              "Text": "9명",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -2184,6 +2181,7 @@
           "Type": "Group",
           "Id": "Group572B030752D2EA7859E37DE6DBEF3AE5",
           "Name": "GRP_TOTAL_1",
+          "Custom": "1:1",
           "Position": {
             "Left": 20,
             "Top": 75,
@@ -2490,6 +2488,7 @@
           "Type": "Group",
           "Id": "Group513875912A7AECEFA03698534B880E28",
           "Name": "GRP_TOTAL_2",
+          "Custom": "1:1",
           "Position": {
             "Left": 490,
             "Top": 74,
@@ -2796,6 +2795,7 @@
           "Type": "Group",
           "Id": "Group1F98B03C7DF1C0E19C95DEF24163AC6A",
           "Name": "GRP_TOTAL_3",
+          "Custom": "1:1",
           "Position": {
             "Left": 960,
             "Top": 75,
@@ -2858,7 +2858,7 @@
           "ChildElements": [
             {
               "LanguageCode": "",
-              "Text": "",
+              "Text": "0.0%",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -2887,7 +2887,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 90,
-                "Width": 144,
+                "Width": 433,
                 "Height": 30,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -2965,7 +2965,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 130,
-                "Width": 144,
+                "Width": 433,
                 "Height": 23,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -3102,10 +3102,11 @@
           "Type": "Group",
           "Id": "Group6A583154CA3EECCC786EB0C45627FD1D",
           "Name": "GRP_TOTAL_4",
+          "Custom": "1:1",
           "Position": {
             "Left": 1430,
             "Top": 75,
-            "Width": 144,
+            "Width": 433,
             "Height": 175,
             "ZIndex": 14,
             "TabIndex": 0,
@@ -3185,7 +3186,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 614,
+                "Width": 903,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -3248,7 +3249,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 75,
-                "Width": 574,
+                "Width": 863,
                 "Height": 387,
                 "ZIndex": 0,
                 "TabIndex": 0,
@@ -3502,7 +3503,7 @@
                         "Position": {
                           "Left": 0,
                           "Top": 0,
-                          "Width": 114,
+                          "Width": 172,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -3585,9 +3586,9 @@
                         "Id": "LabelC5753506A1E88C1EEEBE9EFACDD2E250",
                         "Name": "EMP_NAME",
                         "Position": {
-                          "Left": 114,
+                          "Left": 172,
                           "Top": 0,
-                          "Width": 114,
+                          "Width": 172,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -3671,9 +3672,9 @@
                         "Id": "Label6B48DCCDD205E652B50C83F5C1C9523A",
                         "Name": "DEPT_NAME",
                         "Position": {
-                          "Left": 228,
+                          "Left": 344,
                           "Top": 0,
-                          "Width": 114,
+                          "Width": 172,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -3757,9 +3758,9 @@
                         "Id": "LabelCC4A801784C4DA53CB4021866302138F",
                         "Name": "NET_AMOUNT_SUM",
                         "Position": {
-                          "Left": 342,
+                          "Left": 516,
                           "Top": 0,
-                          "Width": 114,
+                          "Width": 172,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -3843,9 +3844,9 @@
                         "Id": "LabelF83A2C667663823CCD36D2243B4E7AE9",
                         "Name": "RATE",
                         "Position": {
-                          "Left": 456,
+                          "Left": 688,
                           "Top": 0,
-                          "Width": 118,
+                          "Width": 175,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -3913,10 +3914,11 @@
           "Type": "Group",
           "Id": "Group68A9C5F33ABB0FB284A1DFB6DD40FFEE",
           "Name": "GRP_BODY_2",
+          "Custom": "2:1",
           "Position": {
             "Left": 960,
             "Top": 270,
-            "Width": 614,
+            "Width": 903,
             "Height": 482,
             "ZIndex": 12,
             "TabIndex": 0,
@@ -3996,7 +3998,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 1233,
+                "Width": 1226,
                 "Height": 55,
                 "ZIndex": 0,
                 "TabIndex": 0,
@@ -4072,7 +4074,7 @@
               "Name": "LBL_TAB_BACK",
               "InGroup": "GRP_BODY_3",
               "Position": {
-                "Left": 992,
+                "Left": 985,
                 "Top": 8,
                 "Width": 221,
                 "Height": 40,
@@ -4150,7 +4152,7 @@
               "Name": "LBL_TAB_TEAM2",
               "InGroup": "GRP_BODY_3",
               "Position": {
-                "Left": 1138,
+                "Left": 1131,
                 "Top": 13,
                 "Width": 70,
                 "Height": 30,
@@ -4228,7 +4230,7 @@
               "Name": "LBL_TAB_TEAM1",
               "InGroup": "GRP_BODY_3",
               "Position": {
-                "Left": 1068,
+                "Left": 1061,
                 "Top": 13,
                 "Width": 70,
                 "Height": 30,
@@ -4306,7 +4308,7 @@
               "Name": "LBL_TAB_ALL",
               "InGroup": "GRP_BODY_3",
               "Position": {
-                "Left": 998,
+                "Left": 991,
                 "Top": 13,
                 "Width": 70,
                 "Height": 30,
@@ -4416,20 +4418,7 @@
                   "MinorGridLineColor": "#E0E0E0",
                   "MinorGridLineWidth": 1,
                   "MinorGridLineStyle": 0,
-                  "Categories": [
-                    "2024-01",
-                    "2024-02",
-                    "2024-03",
-                    "2024-04",
-                    "2024-05",
-                    "2024-06",
-                    "2024-07",
-                    "2024-08",
-                    "2024-09",
-                    "2024-10",
-                    "2024-11",
-                    "2024-12"
-                  ],
+                  "Categories": [],
                   "AnnoFormat": "{0:N0}",
                   "Label": {
                     "FontSize": 12,
@@ -4559,35 +4548,6 @@
                   "DataLabelsColorBySeries": false
                 },
                 {
-                  "Name": "SALES_YM",
-                  "Label": "SALES_YM",
-                  "Type": 100,
-                  "BackgroundColor": "",
-                  "Axis": 1,
-                  "ValueField": "SALES_YM",
-                  "DataType": 0,
-                  "UsedNumberSeries": false,
-                  "CreateType": 0,
-                  "Format": "{0:N0}",
-                  "BorderWidth": "",
-                  "BorderColor": "",
-                  "Unit": 0,
-                  "X": 0,
-                  "Y": -6,
-                  "UsePointer": false,
-                  "ShowInLegend": true,
-                  "ColorByPoint": false,
-                  "SymbolType": "circle",
-                  "SymbolRadius": 4,
-                  "SymbolColor": "",
-                  "DashStyle": 0,
-                  "LineWidth": 2,
-                  "X2Axis": false,
-                  "Sequence": 1,
-                  "DataLabelsVisible": true,
-                  "DataLabelsColorBySeries": false
-                },
-                {
                   "Name": "TARGET_AMT",
                   "Label": "목표",
                   "Type": 100,
@@ -4613,6 +4573,35 @@
                   "LineWidth": 2,
                   "X2Axis": false,
                   "Sequence": 0,
+                  "DataLabelsVisible": true,
+                  "DataLabelsColorBySeries": false
+                },
+                {
+                  "Name": "SALES_YM",
+                  "Label": "SALES_YM",
+                  "Type": 100,
+                  "BackgroundColor": "",
+                  "Axis": 1,
+                  "ValueField": "SALES_YM",
+                  "DataType": 0,
+                  "UsedNumberSeries": false,
+                  "CreateType": 0,
+                  "Format": "{0:N0}",
+                  "BorderWidth": "",
+                  "BorderColor": "",
+                  "Unit": 0,
+                  "X": 0,
+                  "Y": -6,
+                  "UsePointer": false,
+                  "ShowInLegend": true,
+                  "ColorByPoint": false,
+                  "SymbolType": "circle",
+                  "SymbolRadius": 4,
+                  "SymbolColor": "",
+                  "DashStyle": 0,
+                  "LineWidth": 2,
+                  "X2Axis": false,
+                  "Sequence": 1,
                   "DataLabelsVisible": true,
                   "DataLabelsColorBySeries": false
                 },
@@ -4653,7 +4642,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 65,
-                "Width": 1193,
+                "Width": 1186,
                 "Height": 362,
                 "ZIndex": 54,
                 "TabIndex": 0,
@@ -4790,10 +4779,11 @@
           "Type": "Group",
           "Id": "GroupDA305198114A5B9C1B8415ED5727D6DB",
           "Name": "GRP_BODY_3",
+          "Custom": "3:2",
           "Position": {
             "Left": 20,
             "Top": 772,
-            "Width": 1233,
+            "Width": 1226,
             "Height": 447,
             "ZIndex": 12,
             "TabIndex": 0,
@@ -4873,7 +4863,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 301,
+                "Width": 597,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -4986,9 +4976,9 @@
                     "윤사원",
                     "최대리",
                     "오과장",
-                    "강팀장",
                     "정사원",
-                    "박팀장"
+                    "박팀장",
+                    "강팀장"
                   ],
                   "AnnoFormat": "{0:N0}",
                   "Label": {
@@ -5115,12 +5105,12 @@
                   "LineWidth": 2
                 },
                 {
-                  "Name": "ACHIEVEMENT_RATE",
-                  "Label": "ACHIEVEMENT_RATE",
+                  "Name": "ACHV_RATE",
+                  "Label": "ACHV_RATE",
                   "Type": 100,
                   "BackgroundColor": "",
                   "Axis": 1,
-                  "ValueField": "ACHIEVEMENT_RATE",
+                  "ValueField": "ACHV_RATE",
                   "DataType": 0,
                   "UsedNumberSeries": true,
                   "CreateType": 0,
@@ -5146,7 +5136,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 65,
-                "Width": 261,
+                "Width": 557,
                 "Height": 163,
                 "ZIndex": 55,
                 "TabIndex": 0,
@@ -5224,7 +5214,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 245,
-                "Width": 261,
+                "Width": 557,
                 "Height": 22,
                 "ZIndex": 60,
                 "TabIndex": 0,
@@ -5302,7 +5292,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 295,
-                "Width": 261,
+                "Width": 557,
                 "Height": 22,
                 "ZIndex": 61,
                 "TabIndex": 0,
@@ -5380,7 +5370,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 345,
-                "Width": 261,
+                "Width": 557,
                 "Height": 22,
                 "ZIndex": 62,
                 "TabIndex": 0,
@@ -5458,7 +5448,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 395,
-                "Width": 261,
+                "Width": 557,
                 "Height": 22,
                 "ZIndex": 63,
                 "TabIndex": 0,
@@ -5542,7 +5532,7 @@
               "Name": "LBL_RATE_VAL_1",
               "InGroup": "GRP_BODY_4",
               "Position": {
-                "Left": 231,
+                "Left": 527,
                 "Top": 245,
                 "Width": 50,
                 "Height": 23,
@@ -5628,7 +5618,7 @@
               "Name": "LBL_RATE_VAL_2",
               "InGroup": "GRP_BODY_4",
               "Position": {
-                "Left": 231,
+                "Left": 527,
                 "Top": 295,
                 "Width": 50,
                 "Height": 23,
@@ -5714,7 +5704,7 @@
               "Name": "LBL_RATE_VAL_3",
               "InGroup": "GRP_BODY_4",
               "Position": {
-                "Left": 231,
+                "Left": 527,
                 "Top": 345,
                 "Width": 50,
                 "Height": 23,
@@ -5800,7 +5790,7 @@
               "Name": "LBL_RATE_VAL_4",
               "InGroup": "GRP_BODY_4",
               "Position": {
-                "Left": 231,
+                "Left": 527,
                 "Top": 395,
                 "Width": 50,
                 "Height": 23,
@@ -5880,7 +5870,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 280,
-                "Width": 261,
+                "Width": 557,
                 "Height": 2,
                 "ZIndex": 80,
                 "TabIndex": 0,
@@ -5958,7 +5948,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 330,
-                "Width": 261,
+                "Width": 557,
                 "Height": 2,
                 "ZIndex": 81,
                 "TabIndex": 0,
@@ -6036,7 +6026,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 380,
-                "Width": 261,
+                "Width": 557,
                 "Height": 2,
                 "ZIndex": 82,
                 "TabIndex": 0,
@@ -6114,7 +6104,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 430,
-                "Width": 261,
+                "Width": 557,
                 "Height": 2,
                 "ZIndex": 83,
                 "TabIndex": 0,
@@ -6173,10 +6163,11 @@
           "Type": "Group",
           "Id": "Group546E3E2C9CD8BD6D611774C44ACD682C",
           "Name": "GRP_BODY_4",
+          "Custom": "3:1",
           "Position": {
-            "Left": 1273,
+            "Left": 1266,
             "Top": 772,
-            "Width": 301,
+            "Width": 597,
             "Height": 447,
             "ZIndex": 13,
             "TabIndex": 0,
@@ -6256,7 +6247,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 607,
+                "Width": 606,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -6319,7 +6310,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 190,
-                "Width": 567,
+                "Width": 566,
                 "Height": 228,
                 "ZIndex": 0,
                 "TabIndex": 0,
@@ -6538,7 +6529,7 @@
                         "Position": {
                           "Left": 0,
                           "Top": 0,
-                          "Width": 189,
+                          "Width": 188,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -6622,9 +6613,9 @@
                         "Id": "Label6A1135C8FD01069CBAAA4BE38F4EEA6A",
                         "Name": "EMP_ID",
                         "Position": {
-                          "Left": 189,
+                          "Left": 188,
                           "Top": 0,
-                          "Width": 189,
+                          "Width": 188,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -6709,9 +6700,9 @@
                         "Id": "Label3DB9EE289C8D316C44D664BA221EE7AF",
                         "Name": "NET_AMOUNT",
                         "Position": {
-                          "Left": 378,
+                          "Left": 376,
                           "Top": 0,
-                          "Width": 189,
+                          "Width": 190,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -6778,7 +6769,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": 0,
+              "Text": 16,
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -6807,7 +6798,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 81,
-                "Width": 607,
+                "Width": 606,
                 "Height": 40,
                 "ZIndex": 68,
                 "TabIndex": 0,
@@ -6885,7 +6876,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 129,
-                "Width": 607,
+                "Width": 606,
                 "Height": 23,
                 "ZIndex": 69,
                 "TabIndex": 0,
@@ -6942,7 +6933,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "– 전년 대비",
+              "Text": "▲ 16.0 전년 대비",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -6971,7 +6962,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 154,
-                "Width": 607,
+                "Width": 606,
                 "Height": 23,
                 "ZIndex": 70,
                 "TabIndex": 0,
@@ -7010,9 +7001,9 @@
                 },
                 "Font": {
                   "Color": {
-                    "R": 100,
-                    "G": 116,
-                    "B": 139,
+                    "R": 16,
+                    "G": 185,
+                    "B": 129,
                     "A": 1
                   },
                   "Size": 13,
@@ -7030,10 +7021,11 @@
           "Type": "Group",
           "Id": "GroupEFCCB7181C6128A41DF1777234CFAAC5",
           "Name": "GRP_BODY_5",
+          "Custom": "4:1",
           "Position": {
             "Left": 20,
             "Top": 1239,
-            "Width": 607,
+            "Width": 606,
             "Height": 438,
             "ZIndex": 13,
             "TabIndex": 0,
@@ -7113,7 +7105,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 607,
+                "Width": 606,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -7176,7 +7168,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 65,
-                "Width": 567,
+                "Width": 566,
                 "Height": 227,
                 "ZIndex": 0,
                 "TabIndex": 0,
@@ -7675,7 +7667,7 @@
                         "Position": {
                           "Left": 423,
                           "Top": 0,
-                          "Width": 144,
+                          "Width": 143,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -7871,7 +7863,7 @@
                   "MinorGridLineWidth": 1,
                   "MinorGridLineStyle": 0,
                   "Categories": [
-                    0.9811320754716981
+                    null
                   ],
                   "AnnoFormat": "{0:N0}",
                   "Label": {
@@ -8030,7 +8022,7 @@
               "Position": {
                 "Left": 15,
                 "Top": 345,
-                "Width": 572,
+                "Width": 571,
                 "Height": 52,
                 "ZIndex": 58,
                 "TabIndex": 0,
@@ -8087,7 +8079,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "98.1%",
+              "Text": "0.0%",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -8114,7 +8106,7 @@
               "Name": "LBL_ITEM_13",
               "InGroup": "GRP_BODY_6",
               "Position": {
-                "Left": 513,
+                "Left": 512,
                 "Top": 320,
                 "Width": 74,
                 "Height": 23,
@@ -8175,10 +8167,11 @@
           "Type": "Group",
           "Id": "Group725923B5DC5BE80995C33B0453BD0BE3",
           "Name": "GRP_BODY_6",
+          "Custom": "4:1",
           "Position": {
-            "Left": 647,
+            "Left": 646,
             "Top": 1239,
-            "Width": 607,
+            "Width": 606,
             "Height": 438,
             "ZIndex": 14,
             "TabIndex": 0,
@@ -8258,7 +8251,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 301,
+                "Width": 590,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -8321,7 +8314,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 65,
-                "Width": 261,
+                "Width": 550,
                 "Height": 353,
                 "ZIndex": 0,
                 "TabIndex": 0,
@@ -8725,10 +8718,11 @@
           "Type": "Group",
           "Id": "GroupB195181A65342C3C43553464097B5F72",
           "Name": "GRP_BODY_7",
+          "Custom": "4:1",
           "Position": {
             "Left": 1273,
             "Top": 1239,
-            "Width": 301,
+            "Width": 590,
             "Height": 438,
             "ZIndex": 15,
             "TabIndex": 0,
@@ -8805,7 +8799,7 @@
           "Position": {
             "Left": 0,
             "Top": 1679,
-            "Width": 1594,
+            "Width": 1883,
             "Height": 20,
             "ZIndex": 3,
             "TabIndex": 0,
@@ -9460,7 +9454,138 @@
   "Modules": [],
   "ResponsiveLayout": [],
   "Langs": [],
-  "WorkFlowModules": [],
+  "WorkFlowModules": [
+    {
+      "EVENT_YN": "Y",
+      "CREATE_USER": "kimje1342",
+      "MODULE_DESCRIPTION": "Group의 Custom 속성에 '행번호:비율'의 값을 작성합니다.\ne.g. 1:1 - 1행, 비율 1\n      1:2 - 1행, 비율 2\n      2:1 - 2행, 비율 1",
+      "SCRIPT_TEXT": "var gap = parseInt(arguments[0]) || 20;\n\nvar allControls = Matrix.getAllObjects();\nvar groups = [];\nfor (var i = 0; i < allControls.length; i++) {\n\tvar ctl = allControls[i];\n\tif (!ctl.Custom) continue;\n\tvar match = ctl.Custom.match(/^(\\d+):(\\d+)$/);\n\tif (!match) continue;\n\tgroups.push({\n\t\tcontrol: ctl,\n\t\trow: parseInt(match[1]),\n\t\tratio: parseInt(match[2]),\n\t\torigLeft: ctl.Left\n\t});\n}\n\ngroups.sort(function(a, b) {\n\tif (a.row !== b.row) return a.row - b.row;\n\treturn a.origLeft - b.origLeft;\n});\n\nvar rows = {};\nfor (var i = 0; i < groups.length; i++) {\n\tvar g = groups[i];\n\tif (!rows[g.row]) rows[g.row] = [];\n\trows[g.row].push(g);\n}\n\nfunction applyLayout(viewerWidth) {\n\tfor (var rowKey in rows) {\n\t\tvar items = rows[rowKey];\n\t\tif (items.length === 0) continue;\n\t\tvar startLeft = items[0].origLeft;\n\t\tvar totalGap = gap * (items.length - 1);\n\t\tvar availableWidth = viewerWidth - startLeft - gap - totalGap;\n\t\tvar totalRatio = 0;\n\t\tfor (var i = 0; i < items.length; i++) {\n\t\t\ttotalRatio += items[i].ratio;\n\t\t}\n\t\tvar unitWidth = availableWidth / totalRatio;\n\t\tvar currentLeft = startLeft;\n\t\tfor (var i = 0; i < items.length; i++) {\n\t\t\tvar item = items[i];\n\t\t\tvar w = unitWidth * item.ratio;\n\t\t\titem.control.Width = Math.floor(w);\n\t\t\titem.control.Left = Math.floor(currentLeft);\n\t\t\tcurrentLeft += w + gap;\n\t\t}\n\t}\n}\n\nMatrix.OnViewerSizeChanged = function(s, e) {\n\tapplyLayout(e.Width);\n};",
+      "WF_YN": "",
+      "RESULT_TYPE": "",
+      "MODULE_SUBJECT": "Group 가변형 레이아웃",
+      "MODULE_TYPE": "",
+      "CREATE_DATE": "2026-02-04 13:56:35",
+      "DELETE_FLAG": "N",
+      "MODULE_SEQ": "1",
+      "ORIGINAL_MODULE_CODE": "",
+      "MODIFY_DATE": "2026-02-04 13:58:33",
+      "MODULE_CODE": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+      "EDIT_AUTHORITY": "9",
+      "MODIFY_USER": "kimje1342"
+    }
+  ],
   "WorkFlowInfo": "",
-  "schModel": {}
+  "schModel": {},
+  "WORK_FLOW": {
+    "Version": 1,
+    "UseEvent": true,
+    "Nodes": [
+      {
+        "ID": "_ROOT_",
+        "Type": "Report",
+        "ModuleCode": "",
+        "Name": "Report",
+        "Description": "",
+        "Left": 70,
+        "Top": 70,
+        "Width": 200,
+        "Height": 230,
+        "ControlType": "Report",
+        "Collapsed": false,
+        "IsEventActive": false,
+        "Deprecated": false,
+        "Parameters": [
+          {
+            "ID": "OnDocumentLoadComplete",
+            "Name": "OnDocumentLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnLoadComplete",
+            "Name": "OnLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnExecuteStart",
+            "Name": "OnExecuteStart",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnRefreshComplete",
+            "Name": "OnRefreshComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnActiveSheetChange",
+            "Name": "OnActiveSheetChange",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnDestroy",
+            "Name": "OnDestroy",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnViewerSizeChanged",
+            "Name": "OnViewerSizeChanged",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnReportFilterLoadComplete",
+            "Name": "OnReportFilterLoadComplete",
+            "Value": null,
+            "Description": ""
+          }
+        ]
+      },
+      {
+        "ID": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+        "Type": "Module",
+        "ModuleCode": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+        "Name": "Group 가변형 레이아웃",
+        "Description": "Group의 Custom 속성에 '행번호:비율'의 값을 작성합니다.\ne.g. 1:1 - 1행, 비율 1\n      1:2 - 1행, 비율 2\n      2:1 - 2행, 비율 1",
+        "Left": 314,
+        "Top": 77,
+        "Width": 200,
+        "Height": 87,
+        "ControlType": "",
+        "Collapsed": false,
+        "IsEventActive": true,
+        "Deprecated": false,
+        "Parameters": [
+          {
+            "Name": "그룹 간 간격 (px)",
+            "Value": "20",
+            "MODULE_CODE": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+            "DEFAULT_VALUE": "",
+            "NULLABLE": "Y",
+            "PARAM_DESCRIPTION": "그룹 간 간격 (px)",
+            "PARAM_SEQ": "1",
+            "PARAM_TYPE": "INP002",
+            "ATTR1": "",
+            "ATTR2": "",
+            "ATTR3": ""
+          }
+        ]
+      }
+    ],
+    "Links": [
+      {
+        "ID": "_ROOT_.OnDocumentLoadComplete~MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+        "From": "_ROOT_",
+        "To": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+        "Type": 0,
+        "FromParam": "OnDocumentLoadComplete"
+      }
+    ],
+    "MAP_NODES": {},
+    "MAP_LINKS": {}
+  }
 }

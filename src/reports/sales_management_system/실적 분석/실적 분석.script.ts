@@ -92,33 +92,3 @@ Matrix.OnCellLoaded = function(s, e) {
 		else e.FontColor = "#1e293b"; 							// 검정
 	}
 };
-
-Matrix.OnViewerSizeChanged = function(s, e) {
-	const GAP = 20;
-	const START = 20;
-	let setTotalWidth = (e.Width - 100) / 4;
-	let setBodyWidth = (e.Width - 80) / 3;
-
-	/*  TOTAL  */
-	["1", "2", "3", "4"].forEach(function(i, idx) {
-		let grp = Matrix.getObject("GRP_TOTAL_" + i) as Group;
-		let icon = Matrix.getObject("LBL_ICON_" + i) as Label;
-		grp.Left = (setTotalWidth + GAP) * idx + START;
-		grp.Width = setTotalWidth;
-		icon.Left = (setTotalWidth - 50) / 2;
-	});
-
-	/*  BODY  */
-	let body: { [key: string]: Group } = {};
-	["1", "2", "3", "4", "5", "6", "7"].forEach(function(i) {
-		body[i] = Matrix.getObject("GRP_BODY_" + i) as Group;
-	});
-	body["1"].Width = setTotalWidth * 2 + GAP;
-	body["2"].Left = setTotalWidth * 2 + GAP * 3;
-	["5", "6", "7"].forEach(function(i, idx) {
-		body[i].Width = setBodyWidth;
-		body[i].Left = (setBodyWidth + GAP) * idx + START;
-	});
-	body["3"].Width = setBodyWidth * 2 + GAP;
-	body["4"].Left = setBodyWidth * 2 + GAP * 3;
-};

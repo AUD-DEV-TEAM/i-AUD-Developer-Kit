@@ -5,14 +5,13 @@
     "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REP66A793D155CA47C0897C0965E65C1E2F.mtsd",
     "ReportName": "매출 분석",
     "Writer": "kimje1342",
-    "WriteDate": "2026-02-03 11:09:07",
+    "WriteDate": "2026-02-04 14:18:11",
     "Editor": "kimje1342",
-    "EditDate": "2026-02-03 11:09:07",
+    "EditDate": "2026-02-04 14:18:11",
     "TabPosition": 0,
     "UseLayout": false,
     "DocumentVersion": "3.0.0.0",
-    "RefreshType": 0,
-    "CreateBy": "i-AUD Developer Kit"
+    "RefreshType": 0
   },
   "DataSources": {
     "Datas": [
@@ -261,7 +260,7 @@
       }
     ]
   },
-  "ScriptText": "/* Button Controls */\nvar BTN_REF = Matrix.getObject(\"BTN_REF\");\nvar BTN_DETAIL_CST = Matrix.getObject(\"BTN_DETAIL_CST\");\nvar BTN_DETAIL_PRD = Matrix.getObject(\"BTN_DETAIL_PRD\");\n/* Tab Controls */\nvar LBL_TAB_AMT = Matrix.getObject(\"LBL_TAB_AMT\");\nvar LBL_TAB_QTY = Matrix.getObject(\"LBL_TAB_QTY\");\nvar LBL_TAB_CNT = Matrix.getObject(\"LBL_TAB_CNT\");\nvar popup = null;\nMatrix.OnDocumentLoadComplete = function (s, e) {\n    Matrix.SetVariable('VN_RANK_CST', '1');\n    Matrix.SetVariable('VN_RANK_PRD', '1');\n};\nMatrix.OnDataBindEnd = function (s, e) {\n    if (['CHT_2', 'CHT_3', 'CHT_5'].includes(e.Id)) {\n        Matrix.getObject(e.Id).PlotOptions.DataLabelsDistance = 0;\n    }\n    else if (e.Id == 'GRD_TOTAL') {\n        if (!e.RecordCount) {\n            ['1', '2', '3', '4'].forEach(function (i) {\n                Matrix.getObject('LBL_TOTAL_VAL_' + i).Text = '';\n            });\n        }\n        ['1', '2', '3', '4'].forEach(function (i) {\n            var lbl = Matrix.getObject('LBL_RATE_' + i);\n            var val = Number(lbl.Value);\n            var displayVal = Math.abs(val).toFixed(1);\n            if (isNaN(val)) {\n                lbl.Text = '';\n                lbl.Update();\n                return;\n            }\n            if (val > 0) {\n                lbl.Text = '▲ ' + displayVal + '% 전년 대비';\n                lbl.Style.Font.Color.SetColor('#10b981'); // 초록\n            }\n            else if (val < 0) {\n                lbl.Text = '▼ ' + displayVal + '% 전년 대비';\n                lbl.Style.Font.Color.SetColor('#ef4444'); // 빨강\n            }\n            else {\n                lbl.Text = '– 전년 대비'; // 0일 때\n                lbl.Style.Font.Color.SetColor('#64748b'); // 회색\n            }\n            lbl.Update();\n        });\n    }\n};\n/******** Button Click Event ********/\n// 조회\nBTN_REF.OnClick = function (s, e) {\n    Matrix.doRefresh('');\n};\n// 고객별 매출 상세\nBTN_DETAIL_CST.OnClick = function (s, e) {\n    Matrix.SetVariable('VN_RANK_CST', '10');\n    Matrix.doRefresh('GRD_3_DTL');\n    popup = Matrix.ShowWindow(\"고객별 매출 상세\", 0, 0, 590, 573, true, false, \"고객별 매출 TOP 10\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\n// 제품별 매출 상세\nBTN_DETAIL_PRD.OnClick = function (s, e) {\n    Matrix.SetVariable('VN_RANK_PRD', '10');\n    Matrix.doRefresh('GRD_4_DTL');\n    popup = Matrix.ShowWindow(\"제품별 매출 상세\", 0, 0, 680, 573, true, false, \"제품별 매출 TOP 10\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\n/******** Button Click Event ********/\nvar setActiveTab = function (activeTab) {\n    var tabs = [\n        { tab: LBL_TAB_AMT, suffix: 'AMT' },\n        { tab: LBL_TAB_QTY, suffix: 'QTY' },\n        { tab: LBL_TAB_CNT, suffix: 'CNT' }\n    ];\n    tabs.forEach(function (item) {\n        var isActive = item.tab === activeTab;\n        Matrix.getObject('GRD_1_' + item.suffix).Visible = isActive;\n        Matrix.getObject('CHT_1_' + item.suffix).Visible = isActive;\n        item.tab.Style.Background.Color.SetColor(isActive ? '#ffffff' : '#f1f5f9');\n        item.tab.Update();\n    });\n};\n// 매출액\nLBL_TAB_AMT.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_AMT);\n};\n// 수량\nLBL_TAB_QTY.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_QTY);\n};\n// 건수\nLBL_TAB_CNT.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_CNT);\n};\nMatrix.OnViewerSizeChanged = function (s, e) {\n    var gap = 20;\n    var start = 20;\n    var setTotalWidth = (e.Width - 100) / 4;\n    var setBodyWidth = (e.Width - 80) / 3;\n    /*  TOTAL  */\n    ['1', '2', '3', '4'].forEach(function (i, idx) {\n        var grp = Matrix.getObject('GRP_TOTAL_' + i);\n        var icon = Matrix.getObject('LBL_ICON_' + i);\n        grp.Left = (setTotalWidth + gap) * idx + start;\n        grp.Width = setTotalWidth;\n        icon.Left = (setTotalWidth - 50) / 2;\n    });\n    /*  BODY  */\n    var body = {};\n    ['1', '2', '3', '4', '5', '6', '7'].forEach(function (i) {\n        body[i] = Matrix.getObject('GRP_BODY_' + i);\n    });\n    body[1].Width = setBodyWidth * 2 + gap;\n    body[2].Left = setBodyWidth * 2 + gap * 3;\n    ['5', '6', '7'].forEach(function (i, idx) {\n        body[i].Width = setBodyWidth;\n        body[i].Left = (setBodyWidth + gap) * idx + start;\n    });\n    body[3].Width = setTotalWidth * 2 + gap;\n    body[4].Left = setTotalWidth * 2 + gap * 3;\n};\n",
+  "ScriptText": "/* Button Controls */\nvar BTN_REF = Matrix.getObject(\"BTN_REF\");\nvar BTN_DETAIL_CST = Matrix.getObject(\"BTN_DETAIL_CST\");\nvar BTN_DETAIL_PRD = Matrix.getObject(\"BTN_DETAIL_PRD\");\n/* Tab Controls */\nvar LBL_TAB_AMT = Matrix.getObject(\"LBL_TAB_AMT\");\nvar LBL_TAB_QTY = Matrix.getObject(\"LBL_TAB_QTY\");\nvar LBL_TAB_CNT = Matrix.getObject(\"LBL_TAB_CNT\");\nvar popup = null;\nMatrix.OnDocumentLoadComplete = function (s, e) {\n    Matrix.SetVariable('VN_RANK_CST', '1');\n    Matrix.SetVariable('VN_RANK_PRD', '1');\n};\nMatrix.OnDataBindEnd = function (s, e) {\n    if (['CHT_2', 'CHT_3', 'CHT_5'].includes(e.Id)) {\n        Matrix.getObject(e.Id).PlotOptions.DataLabelsDistance = 0;\n    }\n    else if (e.Id == 'GRD_TOTAL') {\n        if (!e.RecordCount) {\n            ['1', '2', '3', '4'].forEach(function (i) {\n                Matrix.getObject('LBL_TOTAL_VAL_' + i).Text = '';\n            });\n        }\n        ['1', '2', '3', '4'].forEach(function (i) {\n            var lbl = Matrix.getObject('LBL_RATE_' + i);\n            var val = Number(lbl.Value);\n            var displayVal = Math.abs(val).toFixed(1);\n            if (isNaN(val)) {\n                lbl.Text = '';\n                lbl.Update();\n                return;\n            }\n            if (val > 0) {\n                lbl.Text = '▲ ' + displayVal + '% 전년 대비';\n                lbl.Style.Font.Color.SetColor('#10b981'); // 초록\n            }\n            else if (val < 0) {\n                lbl.Text = '▼ ' + displayVal + '% 전년 대비';\n                lbl.Style.Font.Color.SetColor('#ef4444'); // 빨강\n            }\n            else {\n                lbl.Text = '– 전년 대비'; // 0일 때\n                lbl.Style.Font.Color.SetColor('#64748b'); // 회색\n            }\n            lbl.Update();\n        });\n    }\n};\n/******** Button Click Event ********/\n// 조회\nBTN_REF.OnClick = function (s, e) {\n    Matrix.doRefresh('');\n};\n// 고객별 매출 상세\nBTN_DETAIL_CST.OnClick = function (s, e) {\n    Matrix.SetVariable('VN_RANK_CST', '10');\n    Matrix.doRefresh('GRD_3_DTL');\n    popup = Matrix.ShowWindow(\"고객별 매출 상세\", 0, 0, 590, 573, true, false, \"고객별 매출 TOP 10\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\n// 제품별 매출 상세\nBTN_DETAIL_PRD.OnClick = function (s, e) {\n    Matrix.SetVariable('VN_RANK_PRD', '10');\n    Matrix.doRefresh('GRD_4_DTL');\n    popup = Matrix.ShowWindow(\"제품별 매출 상세\", 0, 0, 680, 573, true, false, \"제품별 매출 TOP 10\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\n/******** Button Click Event ********/\nvar setActiveTab = function (activeTab) {\n    var tabs = [\n        { tab: LBL_TAB_AMT, suffix: 'AMT' },\n        { tab: LBL_TAB_QTY, suffix: 'QTY' },\n        { tab: LBL_TAB_CNT, suffix: 'CNT' }\n    ];\n    tabs.forEach(function (item) {\n        var isActive = item.tab === activeTab;\n        Matrix.getObject('GRD_1_' + item.suffix).Visible = isActive;\n        Matrix.getObject('CHT_1_' + item.suffix).Visible = isActive;\n        item.tab.Style.Background.Color.SetColor(isActive ? '#ffffff' : '#f1f5f9');\n        item.tab.Update();\n    });\n};\n// 매출액\nLBL_TAB_AMT.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_AMT);\n};\n// 수량\nLBL_TAB_QTY.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_QTY);\n};\n// 건수\nLBL_TAB_CNT.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_CNT);\n};\n",
   "ServerScriptText": [],
   "Forms": [
     {
@@ -313,7 +312,7 @@
               "Name": "LBL_COND_1",
               "InGroup": "GRP_HEADER",
               "Position": {
-                "Left": 1315,
+                "Left": 1584,
                 "Top": 10,
                 "Width": 29,
                 "Height": 35,
@@ -400,7 +399,7 @@
               "Name": "BTN_REF",
               "InGroup": "GRP_HEADER",
               "Position": {
-                "Left": 1514,
+                "Left": 1783,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -462,7 +461,7 @@
               "DataFormat": "yyyy",
               "FormatLanguageCode": "",
               "IsReadOnly": false,
-              "Text": "2024",
+              "Text": "2026",
               "MinDate": "DATE(F,F,F)",
               "MaxDate": "DATE(L,L,L)",
               "MxBinding": "",
@@ -470,13 +469,13 @@
               "HighlightWeekendDefined": false,
               "DisplayStartDayOfWeekDefined": false,
               "ViewFormat": "yyyy",
-              "Date": 1704034800000,
+              "Date": 1770130800000,
               "Type": "CalendarYear",
               "Id": "CalendarYear1CC53136EEBE1B635CA69261BC336F42",
               "Name": "VS_YEAR",
               "InGroup": "GRP_HEADER",
               "Position": {
-                "Left": 1349,
+                "Left": 1618,
                 "Top": 10,
                 "Width": 150,
                 "Height": 35,
@@ -540,7 +539,7 @@
           "Position": {
             "Left": 0,
             "Top": 0,
-            "Width": 1594,
+            "Width": 1863,
             "Height": 55,
             "ZIndex": 5,
             "TabIndex": 0,
@@ -620,7 +619,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 1233,
+                "Width": 1300,
                 "Height": 55,
                 "ZIndex": 0,
                 "TabIndex": 0,
@@ -696,7 +695,7 @@
               "Name": "LBL_TAB_BACK",
               "InGroup": "GRP_BODY_1",
               "Position": {
-                "Left": 993,
+                "Left": 1060,
                 "Top": 8,
                 "Width": 220,
                 "Height": 40,
@@ -774,7 +773,7 @@
               "Name": "LBL_TAB_AMT",
               "InGroup": "GRP_BODY_1",
               "Position": {
-                "Left": 998,
+                "Left": 1065,
                 "Top": 13,
                 "Width": 70,
                 "Height": 30,
@@ -852,7 +851,7 @@
               "Name": "LBL_TAB_QTY",
               "InGroup": "GRP_BODY_1",
               "Position": {
-                "Left": 1068,
+                "Left": 1135,
                 "Top": 13,
                 "Width": 70,
                 "Height": 30,
@@ -930,7 +929,7 @@
               "Name": "LBL_TAB_CNT",
               "InGroup": "GRP_BODY_1",
               "Position": {
-                "Left": 1138,
+                "Left": 1205,
                 "Top": 13,
                 "Width": 70,
                 "Height": 30,
@@ -995,7 +994,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 323,
-                "Width": 1193,
+                "Width": 1260,
                 "Height": 587,
                 "ZIndex": 22,
                 "TabIndex": 0,
@@ -1253,7 +1252,7 @@
                         "Position": {
                           "Left": 0,
                           "Top": 0,
-                          "Width": 161,
+                          "Width": 170,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1337,9 +1336,9 @@
                         "Id": "Label4CB9AC939DA5DFAEC4D4CC06D7A7D124",
                         "Name": "ACTUAL",
                         "Position": {
-                          "Left": 161,
+                          "Left": 170,
                           "Top": 0,
-                          "Width": 322,
+                          "Width": 340,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1424,9 +1423,9 @@
                         "Id": "LabelE20ECE43528B90E3526A2E786228BDF7",
                         "Name": "TARGET",
                         "Position": {
-                          "Left": 483,
+                          "Left": 510,
                           "Top": 0,
-                          "Width": 322,
+                          "Width": 340,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1511,9 +1510,9 @@
                         "Id": "LabelA5A8CEE2CBAD0706886C5BD97F0EE910",
                         "Name": "RATE",
                         "Position": {
-                          "Left": 805,
+                          "Left": 850,
                           "Top": 0,
-                          "Width": 257,
+                          "Width": 272,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1598,9 +1597,9 @@
                         "Id": "LabelF356B80302E285DE410CE1399A016724",
                         "Name": "TREND",
                         "Position": {
-                          "Left": 1062,
+                          "Left": 1122,
                           "Top": 0,
-                          "Width": 131,
+                          "Width": 138,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1673,7 +1672,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 323,
-                "Width": 1193,
+                "Width": 1260,
                 "Height": 587,
                 "ZIndex": 47,
                 "TabIndex": 0,
@@ -2232,7 +2231,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 323,
-                "Width": 1193,
+                "Width": 1260,
                 "Height": 587,
                 "ZIndex": 24,
                 "TabIndex": 0,
@@ -3051,20 +3050,7 @@
                   "MinorGridLineColor": "#E0E0E0",
                   "MinorGridLineWidth": 1,
                   "MinorGridLineStyle": 0,
-                  "Categories": [
-                    "202401",
-                    "202402",
-                    "202403",
-                    "202404",
-                    "202405",
-                    "202406",
-                    "202407",
-                    "202408",
-                    "202409",
-                    "202410",
-                    "202411",
-                    "202412"
-                  ],
+                  "Categories": [],
                   "AnnoFormat": "{0:N0}",
                   "Label": {
                     "FontSize": 12,
@@ -3190,7 +3176,7 @@
                 },
                 {
                   "Name": "ACTUAL",
-                  "Label": "매출액",
+                  "Label": "ACTUAL",
                   "Type": 100,
                   "BackgroundColor": "",
                   "Axis": 1,
@@ -3208,14 +3194,13 @@
                   "ShowInLegend": true,
                   "ColorByPoint": false,
                   "X2Axis": false,
-                  "Sequence": 0,
                   "DataLabelsVisible": true,
                   "DataLabelsColorBySeries": false,
                   "LineWidth": 2
                 },
                 {
                   "Name": "TARGET",
-                  "Label": "목표",
+                  "Label": "TARGET",
                   "Type": 100,
                   "BackgroundColor": "",
                   "Axis": 1,
@@ -3233,14 +3218,13 @@
                   "ShowInLegend": true,
                   "ColorByPoint": false,
                   "X2Axis": false,
-                  "Sequence": 1,
                   "DataLabelsVisible": true,
                   "DataLabelsColorBySeries": false,
                   "LineWidth": 2
                 },
                 {
                   "Name": "RATE",
-                  "Label": "달성률",
+                  "Label": "RATE",
                   "Type": 100,
                   "BackgroundColor": "",
                   "Axis": 1,
@@ -3258,7 +3242,6 @@
                   "ShowInLegend": true,
                   "ColorByPoint": false,
                   "X2Axis": false,
-                  "Sequence": 2,
                   "DataLabelsVisible": true,
                   "DataLabelsColorBySeries": false,
                   "LineWidth": 2
@@ -3295,7 +3278,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 65,
-                "Width": 1193,
+                "Width": 1260,
                 "Height": 250,
                 "ZIndex": 47,
                 "TabIndex": 0,
@@ -3403,20 +3386,7 @@
                   "MinorGridLineColor": "#E0E0E0",
                   "MinorGridLineWidth": 1,
                   "MinorGridLineStyle": 0,
-                  "Categories": [
-                    "202401",
-                    "202402",
-                    "202403",
-                    "202404",
-                    "202405",
-                    "202406",
-                    "202407",
-                    "202408",
-                    "202409",
-                    "202410",
-                    "202411",
-                    "202412"
-                  ],
+                  "Categories": [],
                   "AnnoFormat": "{0:N0}",
                   "Label": {
                     "FontSize": 12,
@@ -3645,7 +3615,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 65,
-                "Width": 1193,
+                "Width": 1260,
                 "Height": 250,
                 "ZIndex": 48,
                 "TabIndex": 0,
@@ -3753,20 +3723,7 @@
                   "MinorGridLineColor": "#E0E0E0",
                   "MinorGridLineWidth": 1,
                   "MinorGridLineStyle": 0,
-                  "Categories": [
-                    "202401",
-                    "202402",
-                    "202403",
-                    "202404",
-                    "202405",
-                    "202406",
-                    "202407",
-                    "202408",
-                    "202409",
-                    "202410",
-                    "202411",
-                    "202412"
-                  ],
+                  "Categories": [],
                   "AnnoFormat": "{0:N0}",
                   "Label": {
                     "FontSize": 12,
@@ -3947,7 +3904,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 65,
-                "Width": 1193,
+                "Width": 1260,
                 "Height": 250,
                 "ZIndex": 48,
                 "TabIndex": 0,
@@ -4006,10 +3963,11 @@
           "Type": "Group",
           "Id": "Group650B76B70FEFE8B6E214A83389266EF0",
           "Name": "GRP_BODY_1",
+          "Custom": "2:5",
           "Position": {
             "Left": 20,
             "Top": 295,
-            "Width": 1233,
+            "Width": 1300,
             "Height": 930,
             "ZIndex": 9,
             "TabIndex": 0,
@@ -4173,7 +4131,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 90,
-                "Width": 450,
+                "Width": 445,
                 "Height": 30,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -4251,7 +4209,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 130,
-                "Width": 450,
+                "Width": 445,
                 "Height": 23,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -4308,7 +4266,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "",
+              "Text": "– 전년 대비",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -4336,7 +4294,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 160,
-                "Width": 450,
+                "Width": 445,
                 "Height": 23,
                 "ZIndex": 8,
                 "TabIndex": 0,
@@ -4473,10 +4431,11 @@
           "Type": "Group",
           "Id": "Group572B030752D2EA7859E37DE6DBEF3AE5",
           "Name": "GRP_TOTAL_1",
+          "Custom": "1:1",
           "Position": {
             "Left": 20,
             "Top": 75,
-            "Width": 450,
+            "Width": 445,
             "Height": 205,
             "ZIndex": 9,
             "TabIndex": 0,
@@ -4563,7 +4522,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 90,
-                "Width": 450,
+                "Width": 445,
                 "Height": 30,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -4641,7 +4600,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 130,
-                "Width": 450,
+                "Width": 445,
                 "Height": 23,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -4698,7 +4657,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "",
+              "Text": "– 전년 대비",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -4726,7 +4685,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 160,
-                "Width": 450,
+                "Width": 445,
                 "Height": 23,
                 "ZIndex": 8,
                 "TabIndex": 0,
@@ -4863,10 +4822,11 @@
           "Type": "Group",
           "Id": "Group513875912A7AECEFA03698534B880E28",
           "Name": "GRP_TOTAL_2",
+          "Custom": "1:1",
           "Position": {
-            "Left": 490,
+            "Left": 485,
             "Top": 74,
-            "Width": 450,
+            "Width": 445,
             "Height": 205,
             "ZIndex": 10,
             "TabIndex": 0,
@@ -4953,7 +4913,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 90,
-                "Width": 450,
+                "Width": 445,
                 "Height": 30,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -5031,7 +4991,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 130,
-                "Width": 450,
+                "Width": 445,
                 "Height": 23,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -5088,7 +5048,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "",
+              "Text": "– 전년 대비",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -5116,7 +5076,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 160,
-                "Width": 450,
+                "Width": 445,
                 "Height": 23,
                 "ZIndex": 8,
                 "TabIndex": 0,
@@ -5253,10 +5213,11 @@
           "Type": "Group",
           "Id": "Group1F98B03C7DF1C0E19C95DEF24163AC6A",
           "Name": "GRP_TOTAL_3",
+          "Custom": "1:1",
           "Position": {
-            "Left": 960,
+            "Left": 950,
             "Top": 75,
-            "Width": 450,
+            "Width": 445,
             "Height": 205,
             "ZIndex": 11,
             "TabIndex": 0,
@@ -5343,7 +5304,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 90,
-                "Width": 144,
+                "Width": 428,
                 "Height": 30,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -5421,7 +5382,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 130,
-                "Width": 144,
+                "Width": 428,
                 "Height": 23,
                 "ZIndex": 7,
                 "TabIndex": 0,
@@ -5478,7 +5439,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "",
+              "Text": "– 전년 대비",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -5506,7 +5467,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 160,
-                "Width": 144,
+                "Width": 428,
                 "Height": 23,
                 "ZIndex": 8,
                 "TabIndex": 0,
@@ -5643,10 +5604,11 @@
           "Type": "Group",
           "Id": "Group6A583154CA3EECCC786EB0C45627FD1D",
           "Name": "GRP_TOTAL_4",
+          "Custom": "1:1",
           "Position": {
-            "Left": 1430,
+            "Left": 1415,
             "Top": 75,
-            "Width": 144,
+            "Width": 428,
             "Height": 205,
             "ZIndex": 12,
             "TabIndex": 0,
@@ -5726,7 +5688,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 301,
+                "Width": 503,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -6312,7 +6274,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 65,
-                "Width": 261,
+                "Width": 463,
                 "Height": 250,
                 "ZIndex": 54,
                 "TabIndex": 0,
@@ -6375,7 +6337,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 323,
-                "Width": 261,
+                "Width": 463,
                 "Height": 587,
                 "ZIndex": 13,
                 "TabIndex": 0,
@@ -6583,10 +6545,11 @@
           "Type": "Group",
           "Id": "Group68A9C5F33ABB0FB284A1DFB6DD40FFEE",
           "Name": "GRP_BODY_2",
+          "Custom": "2:2",
           "Position": {
-            "Left": 1273,
+            "Left": 1340,
             "Top": 295,
-            "Width": 301,
+            "Width": 503,
             "Height": 930,
             "ZIndex": 10,
             "TabIndex": 0,
@@ -6666,7 +6629,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 920,
+                "Width": 910,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -6729,7 +6692,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 74,
-                "Width": 880,
+                "Width": 870,
                 "Height": 92,
                 "ZIndex": 0,
                 "TabIndex": 0,
@@ -7068,7 +7031,7 @@
                         "Position": {
                           "Left": 50,
                           "Top": 0,
-                          "Width": 276,
+                          "Width": 273,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -7153,9 +7116,9 @@
                         "Id": "LabelE83AFA2BF2AA9143D50D4E9490C486EF",
                         "Name": "CUST_TYPE",
                         "Position": {
-                          "Left": 326,
+                          "Left": 323,
                           "Top": 0,
-                          "Width": 184,
+                          "Width": 182,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -7240,9 +7203,9 @@
                         "Id": "Label3B2D3ABC60C215E8B0ED869FFFE3EB14",
                         "Name": "SALES_AMOUNT",
                         "Position": {
-                          "Left": 510,
+                          "Left": 505,
                           "Top": 0,
-                          "Width": 184,
+                          "Width": 182,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -7327,9 +7290,9 @@
                         "Id": "Label4A8B7489D22919F74429C7CA3BE12CB4",
                         "Name": "SALES_RATIO",
                         "Position": {
-                          "Left": 694,
+                          "Left": 687,
                           "Top": 0,
-                          "Width": 186,
+                          "Width": 183,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -7424,7 +7387,7 @@
               "Name": "BTN_DETAIL_CST",
               "InGroup": "GRP_BODY_3",
               "Position": {
-                "Left": 830,
+                "Left": 820,
                 "Top": 13,
                 "Width": 70,
                 "Height": 30,
@@ -7485,10 +7448,11 @@
           "Type": "Group",
           "Id": "GroupDA305198114A5B9C1B8415ED5727D6DB",
           "Name": "GRP_BODY_3",
+          "Custom": "3:1",
           "Position": {
             "Left": 20,
             "Top": 1245,
-            "Width": 920,
+            "Width": 910,
             "Height": 186,
             "ZIndex": 10,
             "TabIndex": 0,
@@ -7568,7 +7532,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 614,
+                "Width": 893,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -7631,7 +7595,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 74,
-                "Width": 574,
+                "Width": 853,
                 "Height": 92,
                 "ZIndex": 0,
                 "TabIndex": 0,
@@ -7970,7 +7934,7 @@
                         "Position": {
                           "Left": 50,
                           "Top": 0,
-                          "Width": 174,
+                          "Width": 267,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -8055,9 +8019,9 @@
                         "Id": "Label8F4CCE060B176EAD7E306E6241D05DAC",
                         "Name": "CATEGORY",
                         "Position": {
-                          "Left": 224,
+                          "Left": 317,
                           "Top": 0,
-                          "Width": 116,
+                          "Width": 178,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -8142,9 +8106,9 @@
                         "Id": "LabelCC65A3DD3DBCDAC2864AF27C87EB6E20",
                         "Name": "SALES_QTY",
                         "Position": {
-                          "Left": 340,
+                          "Left": 495,
                           "Top": 0,
-                          "Width": 116,
+                          "Width": 178,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -8229,9 +8193,9 @@
                         "Id": "Label7197BB38BDAC7E7BD1D687009317AE9A",
                         "Name": "SALES_AMOUNT",
                         "Position": {
-                          "Left": 456,
+                          "Left": 673,
                           "Top": 0,
-                          "Width": 118,
+                          "Width": 180,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -8326,7 +8290,7 @@
               "Name": "BTN_DETAIL_PRD",
               "InGroup": "GRP_BODY_4",
               "Position": {
-                "Left": 524,
+                "Left": 803,
                 "Top": 13,
                 "Width": 70,
                 "Height": 30,
@@ -8387,10 +8351,11 @@
           "Type": "Group",
           "Id": "Group546E3E2C9CD8BD6D611774C44ACD682C",
           "Name": "GRP_BODY_4",
+          "Custom": "3:1",
           "Position": {
-            "Left": 960,
+            "Left": 950,
             "Top": 1245,
-            "Width": 614,
+            "Width": 893,
             "Height": 186,
             "ZIndex": 11,
             "TabIndex": 0,
@@ -8470,7 +8435,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 607,
+                "Width": 600,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -8533,7 +8498,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 326,
-                "Width": 567,
+                "Width": 560,
                 "Height": 272,
                 "ZIndex": 13,
                 "TabIndex": 0,
@@ -8751,7 +8716,7 @@
                         "Position": {
                           "Left": 0,
                           "Top": 0,
-                          "Width": 162,
+                          "Width": 160,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -8835,9 +8800,9 @@
                         "Id": "LabelCEC71302798E827DFBA019963737BD8D",
                         "Name": "",
                         "Position": {
-                          "Left": 162,
+                          "Left": 160,
                           "Top": 0,
-                          "Width": 202,
+                          "Width": 200,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -8922,9 +8887,9 @@
                         "Id": "Label7E0718F924DBB910049F5F8CEE5EC714",
                         "Name": "",
                         "Position": {
-                          "Left": 364,
+                          "Left": 360,
                           "Top": 0,
-                          "Width": 203,
+                          "Width": 200,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -9110,7 +9075,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 65,
-                "Width": 567,
+                "Width": 560,
                 "Height": 250,
                 "ZIndex": 56,
                 "TabIndex": 0,
@@ -9169,10 +9134,11 @@
           "Type": "Group",
           "Id": "GroupEFCCB7181C6128A41DF1777234CFAAC5",
           "Name": "GRP_BODY_5",
+          "Custom": "4:1",
           "Position": {
             "Left": 20,
             "Top": 1452,
-            "Width": 607,
+            "Width": 600,
             "Height": 618,
             "ZIndex": 11,
             "TabIndex": 0,
@@ -9252,7 +9218,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 607,
+                "Width": 600,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -9315,7 +9281,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 326,
-                "Width": 567,
+                "Width": 560,
                 "Height": 272,
                 "ZIndex": 0,
                 "TabIndex": 0,
@@ -9531,7 +9497,7 @@
                         "Position": {
                           "Left": 0,
                           "Top": 0,
-                          "Width": 162,
+                          "Width": 160,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -9615,9 +9581,9 @@
                         "Id": "Label9EFA19271D559D8F29495F5370FFFBDE",
                         "Name": "ORDER_CNT",
                         "Position": {
-                          "Left": 162,
+                          "Left": 160,
                           "Top": 0,
-                          "Width": 202,
+                          "Width": 200,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -9702,9 +9668,9 @@
                         "Id": "Label9131DD43C2A6EEC49C94A6B617BA2679",
                         "Name": "SALES_AMOUNT",
                         "Position": {
-                          "Left": 364,
+                          "Left": 360,
                           "Top": 0,
-                          "Width": 203,
+                          "Width": 200,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -10007,7 +9973,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 65,
-                "Width": 567,
+                "Width": 560,
                 "Height": 250,
                 "ZIndex": 48,
                 "TabIndex": 0,
@@ -10066,10 +10032,11 @@
           "Type": "Group",
           "Id": "Group725923B5DC5BE80995C33B0453BD0BE3",
           "Name": "GRP_BODY_6",
+          "Custom": "4:1",
           "Position": {
-            "Left": 647,
+            "Left": 640,
             "Top": 1452,
-            "Width": 607,
+            "Width": 600,
             "Height": 618,
             "ZIndex": 12,
             "TabIndex": 0,
@@ -10149,7 +10116,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 301,
+                "Width": 583,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -10212,7 +10179,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 326,
-                "Width": 261,
+                "Width": 543,
                 "Height": 272,
                 "ZIndex": 0,
                 "TabIndex": 0,
@@ -10457,7 +10424,7 @@
                         "Position": {
                           "Left": 0,
                           "Top": 0,
-                          "Width": 80,
+                          "Width": 114,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -10541,9 +10508,9 @@
                         "Id": "Label91EF0EB29907C7E32281AFBA092CFCC3",
                         "Name": "TARGET",
                         "Position": {
-                          "Left": 80,
+                          "Left": 114,
                           "Top": 0,
-                          "Width": 100,
+                          "Width": 142,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -10628,9 +10595,9 @@
                         "Id": "LabelA547277E30EE907EED9849C1C8C74FAC",
                         "Name": "ACTUAL",
                         "Position": {
-                          "Left": 180,
+                          "Left": 256,
                           "Top": 0,
-                          "Width": 81,
+                          "Width": 142,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -10715,9 +10682,9 @@
                         "Id": "Label93F78C22C99296E6140A9CCB622CB205",
                         "Name": "ACHIEVEMENT_RATE",
                         "Position": {
-                          "Left": 403,
+                          "Left": 398,
                           "Top": 0,
-                          "Width": 147,
+                          "Width": 145,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -10903,7 +10870,7 @@
               "Position": {
                 "Left": 20,
                 "Top": 65,
-                "Width": 261,
+                "Width": 543,
                 "Height": 250,
                 "ZIndex": 42,
                 "TabIndex": 0,
@@ -10962,10 +10929,11 @@
           "Type": "Group",
           "Id": "GroupB195181A65342C3C43553464097B5F72",
           "Name": "GRP_BODY_7",
+          "Custom": "4:1",
           "Position": {
-            "Left": 1273,
+            "Left": 1260,
             "Top": 1452,
-            "Width": 301,
+            "Width": 583,
             "Height": 618,
             "ZIndex": 13,
             "TabIndex": 0,
@@ -11042,7 +11010,7 @@
           "Position": {
             "Left": 0,
             "Top": 2070,
-            "Width": 1594,
+            "Width": 1863,
             "Height": 20,
             "ZIndex": 1,
             "TabIndex": 0,
@@ -11133,8 +11101,8 @@
           "Position": {
             "Left": 20,
             "Top": 20,
-            "Width": 1569,
-            "Height": 831,
+            "Width": 1549,
+            "Height": 844,
             "ZIndex": 1,
             "TabIndex": 0,
             "Docking": {
@@ -11571,7 +11539,7 @@
                     "Position": {
                       "Left": 70,
                       "Top": 0,
-                      "Width": 548,
+                      "Width": 541,
                       "Height": 45,
                       "ZIndex": 1,
                       "TabIndex": 0,
@@ -11656,9 +11624,9 @@
                     "Id": "LabelE83AFA2BF2AA9143D50D4E9490C486EF",
                     "Name": "",
                     "Position": {
-                      "Left": 618,
+                      "Left": 611,
                       "Top": 0,
-                      "Width": 365,
+                      "Width": 360,
                       "Height": 45,
                       "ZIndex": 1,
                       "TabIndex": 0,
@@ -11743,9 +11711,9 @@
                     "Id": "Label3B2D3ABC60C215E8B0ED869FFFE3EB14",
                     "Name": "",
                     "Position": {
-                      "Left": 983,
+                      "Left": 971,
                       "Top": 0,
-                      "Width": 292,
+                      "Width": 288,
                       "Height": 45,
                       "ZIndex": 1,
                       "TabIndex": 0,
@@ -11830,9 +11798,9 @@
                     "Id": "Label4A8B7489D22919F74429C7CA3BE12CB4",
                     "Name": "",
                     "Position": {
-                      "Left": 1275,
+                      "Left": 1259,
                       "Top": 0,
-                      "Width": 294,
+                      "Width": 290,
                       "Height": 45,
                       "ZIndex": 1,
                       "TabIndex": 0,
@@ -11933,8 +11901,8 @@
           "Position": {
             "Left": 20,
             "Top": 20,
-            "Width": 1569,
-            "Height": 831,
+            "Width": 1549,
+            "Height": 844,
             "ZIndex": 1,
             "TabIndex": 0,
             "Docking": {
@@ -12372,7 +12340,7 @@
                     "Position": {
                       "Left": 70,
                       "Top": 0,
-                      "Width": 499,
+                      "Width": 493,
                       "Height": 45,
                       "ZIndex": 1,
                       "TabIndex": 0,
@@ -12457,9 +12425,9 @@
                     "Id": "Label8F4CCE060B176EAD7E306E6241D05DAC",
                     "Name": "",
                     "Position": {
-                      "Left": 569,
+                      "Left": 563,
                       "Top": 0,
-                      "Width": 333,
+                      "Width": 328,
                       "Height": 45,
                       "ZIndex": 1,
                       "TabIndex": 0,
@@ -12544,9 +12512,9 @@
                     "Id": "LabelCC65A3DD3DBCDAC2864AF27C87EB6E20",
                     "Name": "",
                     "Position": {
-                      "Left": 902,
+                      "Left": 891,
                       "Top": 0,
-                      "Width": 333,
+                      "Width": 328,
                       "Height": 45,
                       "ZIndex": 1,
                       "TabIndex": 0,
@@ -12631,9 +12599,9 @@
                     "Id": "Label7197BB38BDAC7E7BD1D687009317AE9A",
                     "Name": "",
                     "Position": {
-                      "Left": 1235,
+                      "Left": 1219,
                       "Top": 0,
-                      "Width": 334,
+                      "Width": 330,
                       "Height": 45,
                       "ZIndex": 1,
                       "TabIndex": 0,
@@ -12960,13 +12928,13 @@
   "Variables": [
     {
       "Name": "VN_RANK_CST",
-      "Value": 1,
+      "Value": "1",
       "Desc": "",
       "Formula": ""
     },
     {
       "Name": "VN_RANK_PRD",
-      "Value": 1,
+      "Value": "1",
       "Desc": "",
       "Formula": ""
     }
@@ -12974,7 +12942,138 @@
   "Modules": [],
   "ResponsiveLayout": [],
   "Langs": [],
-  "WorkFlowModules": [],
+  "WorkFlowModules": [
+    {
+      "EVENT_YN": "Y",
+      "CREATE_USER": "kimje1342",
+      "MODULE_DESCRIPTION": "Group의 Custom 속성에 '행번호:비율'의 값을 작성합니다.\ne.g. 1:1 - 1행, 비율 1\n      1:2 - 1행, 비율 2\n      2:1 - 2행, 비율 1",
+      "SCRIPT_TEXT": "var gap = parseInt(arguments[0]) || 20;\n\nvar allControls = Matrix.getAllObjects();\nvar groups = [];\nfor (var i = 0; i < allControls.length; i++) {\n\tvar ctl = allControls[i];\n\tif (!ctl.Custom) continue;\n\tvar match = ctl.Custom.match(/^(\\d+):(\\d+)$/);\n\tif (!match) continue;\n\tgroups.push({\n\t\tcontrol: ctl,\n\t\trow: parseInt(match[1]),\n\t\tratio: parseInt(match[2]),\n\t\torigLeft: ctl.Left\n\t});\n}\n\ngroups.sort(function(a, b) {\n\tif (a.row !== b.row) return a.row - b.row;\n\treturn a.origLeft - b.origLeft;\n});\n\nvar rows = {};\nfor (var i = 0; i < groups.length; i++) {\n\tvar g = groups[i];\n\tif (!rows[g.row]) rows[g.row] = [];\n\trows[g.row].push(g);\n}\n\nfunction applyLayout(viewerWidth) {\n\tfor (var rowKey in rows) {\n\t\tvar items = rows[rowKey];\n\t\tif (items.length === 0) continue;\n\t\tvar startLeft = items[0].origLeft;\n\t\tvar totalGap = gap * (items.length - 1);\n\t\tvar availableWidth = viewerWidth - startLeft - gap - totalGap;\n\t\tvar totalRatio = 0;\n\t\tfor (var i = 0; i < items.length; i++) {\n\t\t\ttotalRatio += items[i].ratio;\n\t\t}\n\t\tvar unitWidth = availableWidth / totalRatio;\n\t\tvar currentLeft = startLeft;\n\t\tfor (var i = 0; i < items.length; i++) {\n\t\t\tvar item = items[i];\n\t\t\tvar w = unitWidth * item.ratio;\n\t\t\titem.control.Width = Math.floor(w);\n\t\t\titem.control.Left = Math.floor(currentLeft);\n\t\t\tcurrentLeft += w + gap;\n\t\t}\n\t}\n}\n\nMatrix.OnViewerSizeChanged = function(s, e) {\n\tapplyLayout(e.Width);\n};",
+      "WF_YN": "",
+      "RESULT_TYPE": "",
+      "MODULE_SUBJECT": "Group 가변형 레이아웃",
+      "MODULE_TYPE": "",
+      "CREATE_DATE": "2026-02-04 13:56:35",
+      "DELETE_FLAG": "N",
+      "MODULE_SEQ": "1",
+      "ORIGINAL_MODULE_CODE": "",
+      "MODIFY_DATE": "2026-02-04 13:58:33",
+      "MODULE_CODE": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+      "EDIT_AUTHORITY": "9",
+      "MODIFY_USER": "kimje1342"
+    }
+  ],
   "WorkFlowInfo": "",
-  "schModel": {}
+  "schModel": {},
+  "WORK_FLOW": {
+    "Version": 1,
+    "UseEvent": true,
+    "Nodes": [
+      {
+        "ID": "_ROOT_",
+        "Type": "Report",
+        "ModuleCode": "",
+        "Name": "Report",
+        "Description": "",
+        "Left": 70,
+        "Top": 70,
+        "Width": 200,
+        "Height": 230,
+        "ControlType": "Report",
+        "Collapsed": false,
+        "IsEventActive": false,
+        "Deprecated": false,
+        "Parameters": [
+          {
+            "ID": "OnDocumentLoadComplete",
+            "Name": "OnDocumentLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnLoadComplete",
+            "Name": "OnLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnExecuteStart",
+            "Name": "OnExecuteStart",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnRefreshComplete",
+            "Name": "OnRefreshComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnActiveSheetChange",
+            "Name": "OnActiveSheetChange",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnDestroy",
+            "Name": "OnDestroy",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnViewerSizeChanged",
+            "Name": "OnViewerSizeChanged",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnReportFilterLoadComplete",
+            "Name": "OnReportFilterLoadComplete",
+            "Value": null,
+            "Description": ""
+          }
+        ]
+      },
+      {
+        "ID": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+        "Type": "Module",
+        "ModuleCode": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+        "Name": "Group 가변형 레이아웃",
+        "Description": "Group의 Custom 속성에 '행번호:비율'의 값을 작성합니다.\ne.g. 1:1 - 1행, 비율 1\n      1:2 - 1행, 비율 2\n      2:1 - 2행, 비율 1",
+        "Left": 292,
+        "Top": 71,
+        "Width": 200,
+        "Height": 87,
+        "ControlType": "",
+        "Collapsed": false,
+        "IsEventActive": true,
+        "Deprecated": false,
+        "Parameters": [
+          {
+            "Name": "그룹 간 간격 (px)",
+            "Value": "20",
+            "MODULE_CODE": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+            "DEFAULT_VALUE": "",
+            "NULLABLE": "Y",
+            "PARAM_DESCRIPTION": "그룹 간 간격 (px)",
+            "PARAM_SEQ": "1",
+            "PARAM_TYPE": "INP002",
+            "ATTR1": "",
+            "ATTR2": "",
+            "ATTR3": ""
+          }
+        ]
+      }
+    ],
+    "Links": [
+      {
+        "ID": "_ROOT_.OnDocumentLoadComplete~MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+        "From": "_ROOT_",
+        "To": "MOD2A8FAF73C92B448A1DB03F6E44AB824A",
+        "Type": 0,
+        "FromParam": "OnDocumentLoadComplete"
+      }
+    ],
+    "MAP_NODES": {},
+    "MAP_LINKS": {}
+  }
 }

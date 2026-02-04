@@ -5,9 +5,9 @@
     "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REP2EDC58234142492D8829411E8C0FD90B.mtsd",
     "ReportName": "고객 관리",
     "Writer": "kimje1342",
-    "WriteDate": "2026-02-04 10:03:22",
+    "WriteDate": "2026-02-04 14:15:05",
     "Editor": "kimje1342",
-    "EditDate": "2026-02-04 10:03:22",
+    "EditDate": "2026-02-04 14:15:05",
     "TabPosition": 0,
     "UseLayout": false,
     "DocumentVersion": "3.0.0.0",
@@ -16,6 +16,48 @@
   },
   "DataSources": {
     "Datas": [
+      {
+        "Id": "DS3F97928C13CD495FA0D7C10DFFC76138",
+        "Name": "VS_TYPE",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "O22K1KGZiyHqNWMZIjFYcKfn3X5Abn/JIgW3S9KUO/BY21/JPdb5sXcIWKUjwqiwKbqC8qpuh4BUXytvd/uTq4i9JyozRo0kw55cRDoya+0l2+rjEbLjPXxfZ/Hw/83zO52AANhea5GRYBsCRXhyXXapJKNBbN8yw3mnCxfYfWE=",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "GRADE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "GRADE_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS6DCCFC7995CD465AA604209AD2120509",
+        "Name": "VS_GRADE",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "O22K1KGZiyHqNWMZIjFYcKfn3X5Abn/JIgW3S9KUO/BY21/JPdb5sXcIWKUjwqiwKbqC8qpuh4BUXytvd/uTq4i9JyozRo0kw55cRDoya+0l2+rjEbLjPXxfZ/Hw/83zoVmQHm9ZE7P1XLHsvID8hera9iOlpjMHA0nytQNtjSg=",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "GRADE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "GRADE_NAME",
+            "Type": "String"
+          }
+        ]
+      },
       {
         "Id": "DS902D12727EFC4373A2BCA30935FC6109",
         "Name": "GRD_CUSTOMER",
@@ -40,48 +82,6 @@
           }
         ],
         "Columns": []
-      },
-      {
-        "Id": "DS6DCCFC7995CD465AA604209AD2120509",
-        "Name": "VS_GRADE",
-        "UseMeta": "False",
-        "UseCache": "False",
-        "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": "True",
-        "DSType": 2,
-        "SQL": "O22K1KGZiyHqNWMZIjFYcKfn3X5Abn/JIgW3S9KUO/BY21/JPdb5sXcIWKUjwqiwKbqC8qpuh4BUXytvd/uTq4i9JyozRo0kw55cRDoya+0l2+rjEbLjPXxfZ/Hw/83zoVmQHm9ZE7P1XLHsvID8hera9iOlpjMHA0nytQNtjSg=",
-        "Params": [],
-        "Columns": [
-          {
-            "Name": "GRADE_CODE",
-            "Type": "String"
-          },
-          {
-            "Name": "GRADE_NAME",
-            "Type": "String"
-          }
-        ]
-      },
-      {
-        "Id": "DS3F97928C13CD495FA0D7C10DFFC76138",
-        "Name": "VS_TYPE",
-        "UseMeta": "False",
-        "UseCache": "False",
-        "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": "True",
-        "DSType": 2,
-        "SQL": "O22K1KGZiyHqNWMZIjFYcKfn3X5Abn/JIgW3S9KUO/BY21/JPdb5sXcIWKUjwqiwKbqC8qpuh4BUXytvd/uTq4i9JyozRo0kw55cRDoya+0l2+rjEbLjPXxfZ/Hw/83zO52AANhea5GRYBsCRXhyXXapJKNBbN8yw3mnCxfYfWE=",
-        "Params": [],
-        "Columns": [
-          {
-            "Name": "GRADE_CODE",
-            "Type": "String"
-          },
-          {
-            "Name": "GRADE_NAME",
-            "Type": "String"
-          }
-        ]
       }
     ]
   },
@@ -89,19 +89,19 @@
   "ServerScriptText": [
     {
       "Name": "GRD_DELETE",
-      "Key": "BIZB3CC44169D4E4F2F8B041FA10B1AF2C8",
+      "Key": "BIZE336BC7807A84885AED765950756E225",
       "Encrypted": true,
       "ScriptText": "SnGZTXoWgLwnWaQFwynZkMloOIQcnzfw03AihKOUcMghluSJqfuFzWYi6BHo9NxrzvuO7dhUG1p7r0hAhJJLLAeqACZhHRCcelqh/bXZB5a3HBv9p35aNSWaCD9hOPC6pGfKjANsEhftEfPprCCSXcnfSFub2jUjkWTDQsHCSuM2XEy4JapNsTDL328k10BlmJwMckIXkAzI/bcys8STbWtiwZWc+NgpP8pREC4/Z/oK0Oeu4e5aecB7TSh0xyiHCG4GWEI7TgnLRKHIvv4R008nk8JsnBLjuziE2MxrGdh3IpLkeUyIY/8t63qJwUCJyCKzjLsBAJJ8jk1auuNmHoiDuCJUx19EdSfWWWz+7JCFptfMlR+Hr5vZDto6ROW2VHSMHqSS/rnLeXstTVcFe58QTyJQSdHa75ymvQ1tRUz6ChBDSMx7+sXBDaA1FmyT2vyn4UvmJAiLZWxRXWOf7KIzjPTUa1OAoIyDu9g3oH05su2RI4h5McIssxHcn/gM2nPZ+96+8ebCizfQ7ZeLFNESpkYr6TmUXsANfHpNSd3c0dYkDk370sGU3rys3JTy2pHf6S48W+nh7RsJwg28tU3XuumIq4xyGmGcyQZ8JPcJfAyX/RdcQjqaQOKMuryPmsV2Q2x/kZszTld9Bl7EGh3duJs+Xi5tbP+E0IeO2ABZUR2hAEWSNk7QZWtjgsqyW5Glw+QP5pZCasFfdqbTLFuRpcPkD+aWQmrBX3am0yzPJn9Gdgw1+zrOv+5KJ3S/oKpqCu1AkbVuO394AbbdfWggLeA3eNVWBz0Ub30iwVdbkaXD5A/mlkJqwV92ptMsW5Glw+QP5pZCasFfdqbTLFuRpcPkD+aWQmrBX3am0yyGugCPduj93tkV5lfN+GblH8Ttf+SsMbHFgnBFx9MGIn2eRE9ntqOin3OV1trpzF6tPuPJwVddMXsqj/XoxoOH1J1SXuy4rUb70+WmMEBrEfgYLQzAgFNtl9BRCKyoxsUzxQKGfuOAARKqeRWl9rQBBCk1WEu8fUkUkONLEkdavdMWGg0GM1YViJytM8MCFWfk52eF5Zm7rmrZbQU7bH8Qok2BK77DJw9EhB9O00S7mpuZqArRGmwIQuIyKaWPdWCRdRErz8/bmicprHffdrEsHwga6HD0S/ZVDqF9pVH6zeuggkyXvfr/ezZexEBTu/WPIOkM8xAACS+ex9VD04TSTDkY2iYIGP7zUOAeTF/B0yxMLkTMX+Noc0J+JcHEjEiGSvHjkPafLUcQKJOrJPu/ijUZURpNrI34LcynHcAC2oBxDiY0pvDRZsPbiUjQxx8a/e6N1kg112oM2wVKRRb29IVPnuo5FkCn9t398+qeD+bw2ic2E7C/7BKR8eB1AVzHfH1HT5JJC14coJEUHqtsrOtu5doR7v6RtJ+jehvWz9YEP/6DAjAZg1txDpBKHJajYjyt5YUu/3nRHO2JyNcXgHEOJjSm8NFmw9uJSNDHHxr97o3WSDXXagzbBUpFFvZl346gfsHMa8bsCSZg4+/C7Z4ADrjIhmnUauN0B6O3dnNCMj/IKa9pL3wi/KrNf+aALEuNHjWhaE3N2MgDpcRqbfh/Y8ii5sfeAbAm6T5/rAqLkdXIN4LowbdMLUVS3z8sDKEFck5V+WyNcJYvAcoop5E1x3C1JeYwHG87lFy5+v1KY1J2Dm42u6GWx8gobRZhJKvP3aUkjMQ1jp90yCM7fc5gwPA9lQTrFlhfwpve/hL0QenGrke3/Wsg+gT8ChcPv17rm1YeIUWkfW7uUt2ZTMCXA8R4OuCSTG4ab5L2MwokH7VvoaawujESFS/lOO8VHiK2+Np7sWprXiNsAHE3+eQb80qzUxoF7szY6kz5v24eR8SY6p7OI7jcAgPvdD3oWh4vS6vllb1Y5l3u5dVU2RA1MOLRMnMs5KAMOev7AUqQnusfEZTmWR80kuGbYNrI5q3cJApR94PRPY9Km2fYEYhsSF9yWegk4EySte2T5l8uyGo7514Slalw6eQW6q2G+Vw++4jF3ui1xJE427geH+mV2+Qzl6FDAI6W+54j/PjVOe0nN6amFChdvl72TQ9tKU4YtGZ7fHUm132ntsCIgqGB2ENOVe0jqghrKh9MsLKUlfv0Bei3MJpAYS81sCKY/g0ssxi5Ww73R1yAPXsnhInK3xrzYxcU1kkr0g2hu9HYCRR8ElfT5t16lOpKf+buj5L7TzmFJCTt+xpOGmxhyyNMafoZUyZRvJI3WPYozyqEDTd2czPxqcOi2cN0r8U="
     },
     {
       "Name": "GRD_INSERT",
-      "Key": "BIZ4AE0583500324AD1A72829A63215D204",
+      "Key": "BIZF3979B911FED4FFBB3AFE061C5B7E0A2",
       "Encrypted": true,
       "ScriptText": "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"
     },
     {
       "Name": "GRD_UPDATE",
-      "Key": "BIZF9FDE8F7DBFC427EA5B7F41F6EC58300",
+      "Key": "BIZ3BC796198FB44340A29F749924A8D952",
       "Encrypted": true,
       "ScriptText": "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"
     }
@@ -141,7 +141,7 @@
           "Position": {
             "Left": 0,
             "Top": 0,
-            "Width": 1900,
+            "Width": 1611,
             "Height": 55,
             "ZIndex": 5,
             "TabIndex": 0,
@@ -206,8 +206,8 @@
               "Position": {
                 "Left": 0,
                 "Top": 55,
-                "Width": 1380,
-                "Height": 753,
+                "Width": 1314,
+                "Height": 723,
                 "ZIndex": 0,
                 "TabIndex": 0,
                 "Docking": {
@@ -648,7 +648,7 @@
                         "Position": {
                           "Left": 45,
                           "Top": 0,
-                          "Width": 192,
+                          "Width": 182,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -733,9 +733,9 @@
                         "Id": "LabelCD33E6EE606555F9044500BDC23ABAA0",
                         "Name": "CUST_NAME",
                         "Position": {
-                          "Left": 237,
+                          "Left": 227,
                           "Top": 0,
-                          "Width": 192,
+                          "Width": 182,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -820,9 +820,9 @@
                         "Id": "Label19A66E76FF277E8DC638D6AFF178A0CC",
                         "Name": "CUST_TYPE",
                         "Position": {
-                          "Left": 429,
+                          "Left": 409,
                           "Top": 0,
-                          "Width": 192,
+                          "Width": 182,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -907,9 +907,9 @@
                         "Id": "LabelDC2A2A1137C2ABE656181EFD4B26486B",
                         "Name": "CUST_GRADE",
                         "Position": {
-                          "Left": 621,
+                          "Left": 591,
                           "Top": 0,
-                          "Width": 192,
+                          "Width": 182,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -994,9 +994,9 @@
                         "Id": "Label9D0763B61166DD1EC426546CD666C838",
                         "Name": "REG_NO",
                         "Position": {
-                          "Left": 813,
+                          "Left": 773,
                           "Top": 0,
-                          "Width": 274,
+                          "Width": 260,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1081,9 +1081,9 @@
                         "Id": "LabelCCD7E105B491A6AD24C1CC2D6E91618F",
                         "Name": "PHONE",
                         "Position": {
-                          "Left": 1087,
+                          "Left": 1033,
                           "Top": 0,
-                          "Width": 276,
+                          "Width": 264,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1345,7 +1345,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "   고객 목록",
+              "Text": "   고객 목록 (16개사)",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -1366,7 +1366,7 @@
               "Position": {
                 "Left": 0,
                 "Top": 0,
-                "Width": 1380,
+                "Width": 1314,
                 "Height": 55,
                 "ZIndex": 1,
                 "TabIndex": 0,
@@ -1435,7 +1435,7 @@
               "Name": "VS_KEYWORD",
               "InGroup": "GRP_BODY",
               "Position": {
-                "Left": 1015,
+                "Left": 949,
                 "Top": 10,
                 "Width": 200,
                 "Height": 35,
@@ -1522,7 +1522,7 @@
               "Name": "BTN_REF",
               "InGroup": "GRP_BODY",
               "Position": {
-                "Left": 1235,
+                "Left": 1169,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -1609,7 +1609,7 @@
               "Name": "BTN_DEL",
               "InGroup": "GRP_BODY",
               "Position": {
-                "Left": 1300,
+                "Left": 1234,
                 "Top": 10,
                 "Width": 60,
                 "Height": 35,
@@ -1670,11 +1670,12 @@
           "Type": "Group",
           "Id": "Group650B76B70FEFE8B6E214A83389266EF0",
           "Name": "GRP_BODY",
+          "Custom": "1:5",
           "Position": {
             "Left": 20,
             "Top": 75,
-            "Width": 1380,
-            "Height": 808,
+            "Width": 1314,
+            "Height": 778,
             "ZIndex": 9,
             "TabIndex": 0,
             "Docking": {
@@ -2036,8 +2037,8 @@
             },
             {
               "DataSource": "DS3F97928C13CD495FA0D7C10DFFC76138",
-              "Value": "PUBLIC",
-              "Text": "공공",
+              "Value": "",
+              "Text": "",
               "InitType": "0",
               "RefreshType": 1,
               "IsReadOnly": false,
@@ -2051,7 +2052,7 @@
                 "LabelField": "GRADE_NAME",
                 "ValueField": "GRADE_CODE"
               },
-              "InitValue": "PUBLIC",
+              "InitValue": "",
               "Type": "ComboBox",
               "Id": "ComboBox974223E5E3F8F649965F6D538A2B02D5",
               "Name": "VS_INP_TYPE",
@@ -2116,8 +2117,8 @@
             },
             {
               "DataSource": "DS6DCCFC7995CD465AA604209AD2120509",
-              "Value": "VIP",
-              "Text": "VIP",
+              "Value": "",
+              "Text": "",
               "InitType": "0",
               "RefreshType": 1,
               "IsReadOnly": false,
@@ -2131,7 +2132,7 @@
                 "LabelField": "GRADE_NAME",
                 "ValueField": "GRADE_CODE"
               },
-              "InitValue": "VIP",
+              "InitValue": "",
               "Type": "ComboBox",
               "Id": "ComboBoxC931D3958D3D859914BC47E83B3C54DC",
               "Name": "VS_INP_GRADE",
@@ -2757,7 +2758,7 @@
               "InGroup": "GRP_DETAIL",
               "Position": {
                 "Left": 230,
-                "Top": 752,
+                "Top": 722,
                 "Width": 70,
                 "Height": 35,
                 "ZIndex": 4,
@@ -2844,7 +2845,7 @@
               "InGroup": "GRP_DETAIL",
               "Position": {
                 "Left": 310,
-                "Top": 752,
+                "Top": 722,
                 "Width": 60,
                 "Height": 35,
                 "ZIndex": 8,
@@ -3301,7 +3302,7 @@
               "InGroup": "GRP_DETAIL",
               "Position": {
                 "Left": 380,
-                "Top": 752,
+                "Top": 722,
                 "Width": 60,
                 "Height": 35,
                 "ZIndex": 34,
@@ -3361,11 +3362,12 @@
           "Type": "Group",
           "Id": "Group587916D186BAC30F4C4563089CB9F69B",
           "Name": "GRP_DETAIL",
+          "Custom": "1:2",
           "Position": {
-            "Left": 1420,
+            "Left": 1131,
             "Top": 75,
             "Width": 460,
-            "Height": 808,
+            "Height": 778,
             "ZIndex": 22,
             "TabIndex": 0,
             "Docking": {
@@ -3432,5 +3434,13 @@
   "Langs": [],
   "WorkFlowModules": [],
   "WorkFlowInfo": "",
-  "schModel": {}
+  "schModel": {},
+  "WORK_FLOW": {
+    "Version": 1,
+    "UseEvent": true,
+    "Nodes": [],
+    "Links": [],
+    "MAP_NODES": {},
+    "MAP_LINKS": {}
+  }
 }

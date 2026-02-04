@@ -120,39 +120,3 @@ LBL_TAB_QTY.OnClick = function(s, e) {
 LBL_TAB_CNT.OnClick = function(s, e) {
 	setActiveTab(LBL_TAB_CNT);
 };
-
-Matrix.OnViewerSizeChanged = function(s, e) {
-	let gap = 20;
-	let start = 20;
-
-	let setTotalWidth = (e.Width - 100) / 4;
-	let setBodyWidth  = (e.Width - 80)  / 3;
-
-	/*  TOTAL  */
-	['1', '2', '3', '4'].forEach(function(i, idx) {
-		let grp  = Matrix.getObject('GRP_TOTAL_' + i) as Group;
-		let icon = Matrix.getObject('LBL_ICON_' + i) as Label;
-
-		grp.Left  = (setTotalWidth + gap) * idx + start;
-		grp.Width = setTotalWidth;
-
-		icon.Left = (setTotalWidth - 50) / 2;
-	});
-
-	/*  BODY  */
-	let body = {};
-	['1', '2', '3', '4', '5', '6', '7'].forEach(function(i) {
-		body[i] = Matrix.getObject('GRP_BODY_' + i) as Group;
-	});
-
-	body[1].Width = setBodyWidth * 2 + gap;
-	body[2].Left  = setBodyWidth * 2 + gap * 3;
-
-	['5', '6', '7'].forEach(function(i, idx) {
-		body[i].Width = setBodyWidth;
-		body[i].Left  = (setBodyWidth + gap) * idx + start;
-	});
-
-	body[3].Width = setTotalWidth * 2 + gap;
-	body[4].Left  = setTotalWidth * 2 + gap * 3;
-};
