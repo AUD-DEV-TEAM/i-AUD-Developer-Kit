@@ -23,7 +23,7 @@ export interface ScriptPreparedStatement{
    * var stmt; 
    * 
    * try{	
-   * 	con.Connect("MTXRPTY");  
+   * 	con.Connect("AUD_SAMPLE_DB");  
    * 	sql = "SELECT * FROM MTX_REPORT";
    * 	stmt = con.PreparedStatement(sql ,true);
    * 	var filePath = fso.getTemplatePath("aaa.csv");
