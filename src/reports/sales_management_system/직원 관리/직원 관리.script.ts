@@ -114,8 +114,11 @@ BTN_CNC.OnClick = function(s, e) {
 BTN_SAV.OnClick = function(s, e) {
 	const fields = [VS_INP_NAME.Text, VS_INP_DEPT.Value, VS_INP_POSITION.Value, VS_INP_STATUS.Value, VS_INP_HIRE.Value];
 
-	if (isInvalidInput(fields)) {
+	const controls = [VS_INP_NAME, VS_INP_DEPT, VS_INP_POSITION, VS_INP_STATUS, VS_INP_HIRE];
+	const invalid = isInvalidInput(fields, controls);
+	if (invalid) {
 		Matrix.Information('필수 입력 항목을 확인해주세요', '안내');
+		invalid.Focus();
 		return;
 	}
 
@@ -155,7 +158,7 @@ GRD_EMPLOYEE.OnCellDoubleClick = function(s, e) {
 };
 
 var setInputValue = function(row) {
-	if (typeof row === 'object' && row !== null) {
+	if (row) {
 		VS_INP_NAME.Text     = row.GetValue('EMP_NAME');
 		VS_INP_DEPT.Value    = row.GetValue('DEPT_CODE');
 		VS_INP_POSITION.Value = row.GetValue('POSITION_CODE');
@@ -174,8 +177,12 @@ var setInputValue = function(row) {
 	}
 };
 
-var isInvalidInput = function(fields) {
-	return fields.some(function(v) {
+var isInvalidInput = function(fields, controls?): any {
+	var idx = fields.findIndex(function(v) {
 		return v === null || v === undefined || v === '';
 	});
+	if (idx !== -1 && controls && controls[idx]) {
+		return controls[idx];
+	}
+	return idx !== -1 ? true : null;
 };

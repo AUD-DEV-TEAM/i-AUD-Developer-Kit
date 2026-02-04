@@ -112,8 +112,11 @@ BTN_CNC.OnClick = function(s, e) {
 // 저장
 BTN_SAV.OnClick = function(s, e) {
 	let fields = [VS_INP_PROD.Text, VS_INP_CAT.Value, VS_INP_PRICE.Value, VS_INP_COST.Value, VS_INP_UNIT.Value];
-	if (isInvalidInput(fields)) {
+	let controls = [VS_INP_PROD, VS_INP_CAT, VS_INP_PRICE, VS_INP_COST, VS_INP_UNIT];
+	let invalid = isInvalidInput(fields, controls);
+	if (invalid) {
 		Matrix.Information('필수 입력 항목을 확인해주세요', '안내');
+		invalid.Focus();
 		return;
 	}
 
@@ -154,7 +157,7 @@ GRD_PRODUCT.OnCellDoubleClick = function(s, e) {
 };
 
 var setInputValue = function(row) {
-	if (typeof row === 'object' && row !== null) {
+	if (row) {
 		VS_INP_PROD.Text   = row.GetValue('PROD_NAME');
 		VS_INP_CAT.Value   = row.GetValue('CATEGORY_CODE');
 		VS_INP_PRICE.Text  = row.GetValue('STD_PRICE');
@@ -169,8 +172,12 @@ var setInputValue = function(row) {
 	}
 };
 
-var isInvalidInput = function(fields) {
-	return fields.some(function(v) {
+var isInvalidInput = function(fields, controls?): any {
+	var idx = fields.findIndex(function(v) {
 		return v === null || v === undefined || v === '';
 	});
+	if (idx !== -1 && controls && controls[idx]) {
+		return controls[idx];
+	}
+	return idx !== -1 ? true : null;
 };

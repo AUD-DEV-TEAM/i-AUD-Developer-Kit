@@ -164,8 +164,11 @@ BTN_GRP_CNC.OnClick = function(s, e) {
 // 추가 (그룹 추가)
 BTN_GRP_SAV.OnClick = function(s, e) {
 	const grpFields = [VS_INP_GROUP_CODE.Text, VS_INP_GROUP_NAME.Text];
-	if (isInvalidInput(grpFields)) {
+	const grpControls = [VS_INP_GROUP_CODE, VS_INP_GROUP_NAME];
+	const grpInvalid = isInvalidInput(grpFields, grpControls);
+	if (grpInvalid) {
 		Matrix.Information('필수 입력 항목을 확인해주세요', '안내');
+		grpInvalid.Focus();
 		return;
 	}
 
@@ -189,8 +192,11 @@ BTN_CD_CNC.OnClick = function(s, e) {
 // 추가/저장 (코드 추가)
 BTN_CD_SAV.OnClick = function(s, e) {
 	const cdFields = [VS_INP_CODE.Text, VS_CODE_NAME.Text];
-	if (isInvalidInput(cdFields)) {
+	const cdControls = [VS_INP_CODE, VS_CODE_NAME];
+	const cdInvalid = isInvalidInput(cdFields, cdControls);
+	if (cdInvalid) {
 		Matrix.Information('필수 입력 항목을 확인해주세요', '안내');
+		cdInvalid.Focus();
 		return;
 	}
 
@@ -239,7 +245,7 @@ var setInputValue = function(row) {
 		VS_INP_GROUP_NAME.Text = '';
 		VS_INP_CODE_DESC.Text  = '';
 
-	} else if (typeof row === 'object' && row !== null) {
+	} else if (row) {
 		VS_GROUP_CODE.Text = Matrix.GetGlobalParamValue('VS_GROUP_CD');
 		VS_INP_CODE.Text   = row.GetValue('CODE');
 		VS_CODE_NAME.Text  = row.GetValue('CODE_NAME');
@@ -266,10 +272,14 @@ var setInputValue = function(row) {
 	}
 };
 
-var isInvalidInput = function(fields: any[]) {
-	return fields.some(function(v) {
+var isInvalidInput = function(fields: any[], controls?): any {
+	var idx = fields.findIndex(function(v) {
 		return v === null || v === undefined || v === '';
 	});
+	if (idx !== -1 && controls && controls[idx]) {
+		return controls[idx];
+	}
+	return idx !== -1 ? true : null;
 };
 
 var setInit = function() {

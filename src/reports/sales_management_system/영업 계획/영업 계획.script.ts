@@ -124,8 +124,11 @@ BTN_CNC.OnClick = function(s, e) {
 // 저장
 BTN_SAV.OnClick = function(s, e) {
 	let fields = [VS_INP_ID.Text, VS_INP_YM.Value, VS_INP_PIC.Value, VS_INP_PROD.Value, VN_INP_QTY.Value, VS_INP_STATUS.Value];
-	if (isInvalidInput(fields)) {
+	let controls = [VS_INP_ID, VS_INP_YM, VS_INP_PIC, VS_INP_PROD, VN_INP_QTY, VS_INP_STATUS];
+	let invalid = isInvalidInput(fields, controls);
+	if (invalid) {
 		Matrix.Information('필수 입력 항목을 확인해주세요', '안내');
+		invalid.Focus();
 		return;
 	}
 
@@ -199,8 +202,12 @@ var setInputValue = function(row) {
 	}
 };
 
-var isInvalidInput = function(fields) {
-	return fields.some(function(v) {
+var isInvalidInput = function(fields, controls?): any {
+	var idx = fields.findIndex(function(v) {
 		return v === null || v === undefined || v === '';
 	});
+	if (idx !== -1 && controls && controls[idx]) {
+		return controls[idx];
+	}
+	return idx !== -1 ? true : null;
 };

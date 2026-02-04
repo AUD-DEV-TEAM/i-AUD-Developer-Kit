@@ -46,6 +46,12 @@ Matrix.OnLoadComplete = function(s, e) {
 Matrix.OnDataBindEnd = function(s, e) {
 	if (e.Id == 'GRD_CUSTOMER') {
 		(Matrix.getObject('LBL_TTL_2') as Label).Text = '   고객 목록 (' + e.RecordCount + '개사)';
+	
+	}else if(e.Id == 'VS_INP_TYPE'){
+		VS_INP_TYPE.Value = '';
+		
+	}else if(e.Id == 'VS_INP_GRADE'){
+		VS_INP_GRADE.Value = '';
 	}
 };
 
@@ -100,8 +106,11 @@ BTN_SAV.OnClick = function(s, e) {
 	}
 
 	const savFields = [VS_INP_NAME.Text, VS_INP_TYPE.Value, VS_INP_GRADE.Value];
-	if (isInvalidInput(savFields)) {
+	const savControls = [VS_INP_NAME, VS_INP_TYPE, VS_INP_GRADE];
+	const savInvalid = isInvalidInput(savFields, savControls);
+	if (savInvalid) {
 		Matrix.Information('필수 입력 항목을 확인해주세요', '안내');
+		savInvalid.Focus();
 		return;
 	}
 
@@ -123,8 +132,11 @@ BTN_ADD.OnClick = function(s, e) {
 	}
 
 	const addFields = [VS_INP_NAME.Text, VS_INP_TYPE.Value, VS_INP_GRADE.Value];
-	if (isInvalidInput(addFields)) {
+	const addControls = [VS_INP_NAME, VS_INP_TYPE, VS_INP_GRADE];
+	const addInvalid = isInvalidInput(addFields, addControls);
+	if (addInvalid) {
 		Matrix.Information('필수 입력 항목을 확인해주세요', '안내');
+		addInvalid.Focus();
 		return;
 	}
 
@@ -163,7 +175,7 @@ GRD_CUSTOMER.OnCellDoubleClick = function(s, e) {
 };
 
 var setInputValue = function(row) {
-	if (typeof row === 'object' && row !== null) {
+	if (row) {
 		VS_INP_NAME.Text = row.GetValue('CUST_NAME');
 		VS_INP_TYPE.Value = row.GetValue('TYPE_CODE');
 		VS_INP_GRADE.Value = row.GetValue('GRADE_CODE');
@@ -184,8 +196,12 @@ var setInputValue = function(row) {
 	}
 };
 
-var isInvalidInput = function(fields) {
-	return fields.some(function(v) {
+var isInvalidInput = function(fields, controls?): any {
+	var idx = fields.findIndex(function(v) {
 		return v === null || v === undefined || v === '';
 	});
+	if (idx !== -1 && controls && controls[idx]) {
+		return controls[idx];
+	}
+	return idx !== -1 ? true : null;
 };
