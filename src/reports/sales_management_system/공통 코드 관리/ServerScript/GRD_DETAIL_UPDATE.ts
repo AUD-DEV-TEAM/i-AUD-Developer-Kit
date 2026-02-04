@@ -8,21 +8,26 @@ let Matrix: Matrix;
 
 const req = Matrix.getRequest();
 let con = Matrix.getConnection();
+const gen = Matrix.getQueryGenerator();
+const DATE_TIME_NOW = gen.getDateTimeNowString(con.getDbType());
 
-const sql = "UPDATE SM_COMMON_CODE	 			"
-	+ "\n    SET CODE_NAME  	= ?  		"
-	+ "\n      , SORT_ORDER 	= ?  		"
-	+ "\n      , USE_YN 		= ?  		"
-	+ "\n      , UPDATED_AT  	= NOW()		"
-	+ "\n      , UPDATED_BY  	= ?     	"
-	+ "\n  WHERE GROUP_CD     	= ?   		"
-	+ "\n    AND CODE     		= ?;   		";
+let sql = "";
+let stmt = null;
 
 try {
 	con.Connect("AUD_SAMPLE_DB");
 	con.BeginTransaction();
 
-	const stmt = con.PreparedStatement(sql);
+	sql = "UPDATE SM_COMMON_CODE	 					"
+		+ "\n    SET CODE_NAME  	= ?  				"
+		+ "\n      , SORT_ORDER 	= ?  				"
+		+ "\n      , USE_YN 		= ?  				"
+		+ "\n      , UPDATED_AT = " + DATE_TIME_NOW + " "
+		+ "\n      , UPDATED_BY  	= ?     			"
+		+ "\n  WHERE GROUP_CD     	= ?   				"
+		+ "\n    AND CODE     		= ?;   				";
+
+	stmt = con.PreparedStatement(sql);
 
 	let IDX = 0;
 	stmt.setString(++IDX, req.getParam('VS_CODE_NAME'));	// CODE_NAME
@@ -35,6 +40,7 @@ try {
 	Matrix.WriteLog(sql);
 	stmt.executeUpdate();
 	stmt.close();
+	stmt = null;
 
 	con.CommitTransaction();
 	con.DisConnect();

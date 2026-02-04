@@ -8,31 +8,36 @@ let Matrix: Matrix;
 
 const req = Matrix.getRequest();
 let con = Matrix.getConnection();
+const gen = Matrix.getQueryGenerator();
+const DATE_TIME_NOW = gen.getDateTimeNowString(con.getDbType());
 
-const sql = "INSERT INTO SM_COMMON_CODE (		"
-	+ "\n     GROUP_CD	 				"
-	+ "\n   , CODE						"
-	+ "\n   , CODE_NAME					"
-	+ "\n   , SORT_ORDER 				"
-	+ "\n   , USE_YN  					"
-	+ "\n   , CREATED_AT  				"
-	+ "\n   , CREATED_BY  				"
-	+ "\n ) 							"
-	+ "\n VALUES (  					"
-	+ "\n     ?  						"
-	+ "\n   , ?  						"
-	+ "\n   , ? 						"
-	+ "\n   , ? 						"
-	+ "\n   , ? 						"
-	+ "\n   , NOW()						"
-	+ "\n   , ? 						"
-	+ "\n );  							";
+let sql = "";
+let stmt : ScriptPreparedStatement;
 
 try {
 	con.Connect("AUD_SAMPLE_DB");
 	con.BeginTransaction();
 
-	const stmt = con.PreparedStatement(sql);
+	sql = "INSERT INTO SM_COMMON_CODE (		"
+		+ "\n     GROUP_CD	 				"
+		+ "\n   , CODE						"
+		+ "\n   , CODE_NAME					"
+		+ "\n   , SORT_ORDER 				"
+		+ "\n   , USE_YN  					"
+		+ "\n   , CREATED_AT  				"
+		+ "\n   , CREATED_BY  				"
+		+ "\n ) 							"
+		+ "\n VALUES (  					"
+		+ "\n     ?  						"
+		+ "\n   , ?  						"
+		+ "\n   , ? 						"
+		+ "\n   , ? 						"
+		+ "\n   , ? 						"
+		+ "\n   , " + DATE_TIME_NOW + "		"
+		+ "\n   , ? 						"
+		+ "\n );  							";
+
+	stmt = con.PreparedStatement(sql);
 
 	let IDX = 0;
 	stmt.setString(++IDX, req.getParam('VS_GROUP_CODE'));	// GROUP_CD
@@ -45,6 +50,7 @@ try {
 	Matrix.WriteLog(sql);
 	stmt.executeUpdate();
 	stmt.close();
+	stmt = null;
 
 	con.CommitTransaction();
 	con.DisConnect();

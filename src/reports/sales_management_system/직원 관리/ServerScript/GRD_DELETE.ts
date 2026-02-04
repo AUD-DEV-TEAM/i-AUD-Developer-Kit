@@ -1,62 +1,52 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
+import { ScriptDataRow } from "@AUD_SERVER/matrix/script/ScriptDataRow";
 import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection";
 import { ScriptQueryGenerator } from "@AUD_SERVER/matrix/script/ScriptQueryGenerator";
 
- // Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
+// Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
 let CALL_BACK : Function;
 let Matrix : Matrix;
 
-/*************************************************************
- * SAMPLE #1 single table insert
- *************************************************************/
+const req = Matrix.getRequest();
+let con = Matrix.getConnection();
+const gen = Matrix.getQueryGenerator();
+const table = req.getTable("GRD_EMPLOYEE");
 
-const req = Matrix.getRequest(); // request
-const table = req.getTable("GRD_EMPLOYEE"); //get grid's work data
-
-let con = Matrix.getConnection(); // dbms connection
-const gen = Matrix.getQueryGenerator(); // query generator
+let stmt = null;
 let sql = "";
 let status = "";
-let row = null;
+let row : ScriptDataRow = null;
 
-try{
-	//connection
-	con.Connect("AUD_SAMPLE_DB");// set target dbms connection code
-	con.BeginTransaction();  // begin transaction	 
-	 
-	//------------------------------------------------------
-	// save table data
-	//------------------------------------------------------
-	for(let r=0;r<table.getRowCount();r++){
+try {
+	con.Connect("AUD_SAMPLE_DB");
+	con.BeginTransaction();
+
+	for (let r = 0; r < table.getRowCount(); r++) {
 		row = table.getRow(r);
-		status = row.getRowStatus(); 
-		
-		// auto generation dml sql
-		/*if(status == "N"){ // create
-			sql = gen.getDMLCommand(table ,row ,"TABLE_NAME", con.getDbType());			
-		}else if(status == "U"){ // update		
-			sql = gen.getDMLCommand(table ,row ,"TABLE_NAME", con.getDbType());		
-		}else */if(status == "D"){// delete		
-			sql = gen.getDMLCommand(table ,row ,"SM_EMPLOYEE", con.getDbType());
-		}			
-		Matrix.WriteLog(sql);
-		con.ExecuteUpdate(sql);
-		
-	}  
-	// COMMIT
+		status = row.getRowStatus();
+
+		if (status == "D") {
+			sql = gen.getDMLCommand(table, row, "SM_EMPLOYEE", con.getDbType());
+			stmt = con.PreparedStatement(sql);
+			stmt.addBatch();
+		}
+	}
+
+	Matrix.WriteLog(sql);
+	stmt.executeBatch();
+
 	con.CommitTransaction();
 	con.DisConnect();
-	con = null;	
-	
-}catch(e){
-	Matrix.WriteLog("ERROR" + e.message); 
-	if(con != null){
-		try{
+	con = null;
+
+} catch (e) {
+	Matrix.WriteLog("ERROR" + e.message);
+	if (con != null) {
+		try {
 			con.RollBackTransaction();
 			con.DisConnect();
 			con = null;
-		}catch(e){
-		}
-	} 
+		} catch (e) {}
+	}
 	Matrix.ThrowException("Server Exception:" + e.message);
 }

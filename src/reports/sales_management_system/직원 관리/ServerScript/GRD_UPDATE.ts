@@ -1,21 +1,23 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
 import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection";
+import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement";
 
- // Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
+// Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
 let CALL_BACK : Function;
 let Matrix : Matrix;
 
-const req = Matrix.getRequest(); // request
+const req = Matrix.getRequest();
+let con = Matrix.getConnection();
+const gen = Matrix.getQueryGenerator();
+const DATE_TIME_NOW = gen.getDateTimeNowString(con.getDbType());
 
-let con = Matrix.getConnection(); // dbms connection
 let sql = "";
 let stmt;
 
-try{
-	//connection
-	con.Connect("AUD_SAMPLE_DB");// set target dbms connection code
-	con.BeginTransaction();  // begin transaction	 
-	
+try {
+	con.Connect("AUD_SAMPLE_DB");
+	con.BeginTransaction();
+
 	// UPDATE
 	sql = "\n UPDATE SM_EMPLOYEE        						"
 		+ "\n    SET EMP_NAME   = ?     						"
@@ -25,42 +27,39 @@ try{
 		+ "\n      , EMAIL		= ?  							"
 		+ "\n      , PHONE      = ?     						"
 		+ "\n      , HIRE_DATE  = TO_TIMESTAMP(?, 'YYYYMMDD')	"
-		+ "\n      , UPDATED_AT = NOW()							"
+		+ "\n      , UPDATED_AT = " + DATE_TIME_NOW + "		 	"
 		+ "\n      , UPDATED_BY = ?    							"
-		+ "\n  WHERE EMP_ID     = ?;    						"
+		+ "\n  WHERE EMP_ID     = ?;    						";
 
 	stmt = con.PreparedStatement(sql);
-	
 	let IDX = 0;
-	stmt.setString(++IDX,req.getParam('VS_INP_NAME'));		// EMP_NAME
-	stmt.setString(++IDX,req.getParam('VS_INP_DEPT'));		// DEPT_ID
-	stmt.setString(++IDX,req.getParam('VS_INP_POSITION'));	// JOB_GRADE
-	stmt.setString(++IDX,req.getParam('VS_INP_STATUS'));	// EMP_STATUS
-	stmt.setString(++IDX,req.getParam('VS_INP_EMAIL'));		// EMAIL
-	stmt.setString(++IDX,req.getParam('VS_INP_PHONE'));		// PHONE
-	stmt.setString(++IDX,req.getParam('VS_INP_HIRE'));		// HIRE_DATE
-	stmt.setString(++IDX,req.getUserCode());				// UPDATED_BY
-	stmt.setString(++IDX,req.getParam('VS_EMP_ID'));		// EMP_ID
-	
+	stmt.setString(++IDX, req.getParam('VS_INP_NAME'));      // EMP_NAME
+	stmt.setString(++IDX, req.getParam('VS_INP_DEPT'));      // DEPT_ID
+	stmt.setString(++IDX, req.getParam('VS_INP_POSITION'));  // JOB_GRADE
+	stmt.setString(++IDX, req.getParam('VS_INP_STATUS'));    // EMP_STATUS
+	stmt.setString(++IDX, req.getParam('VS_INP_EMAIL'));     // EMAIL
+	stmt.setString(++IDX, req.getParam('VS_INP_PHONE'));     // PHONE
+	stmt.setString(++IDX, req.getParam('VS_INP_HIRE'));      // HIRE_DATE
+	stmt.setString(++IDX, req.getUserCode());                // UPDATED_BY
+	stmt.setString(++IDX, req.getParam('VS_EMP_ID'));        // EMP_ID
+
 	Matrix.WriteLog(sql);
 	stmt.executeUpdate();
 	stmt.close();
 	stmt = null;
-		
-	// COMMIT
+
 	con.CommitTransaction();
 	con.DisConnect();
-	con = null;	
+	con = null;
 
-}catch(e){
-	Matrix.WriteLog("ERROR" + e.message); 
-	if(con != null){
-		try{
+} catch (e) {
+	Matrix.WriteLog("ERROR" + e.message);
+	if (con != null) {
+		try {
 			con.RollBackTransaction();
 			con.DisConnect();
 			con = null;
-		}catch(e){
-		}
-	} 
+		} catch (e) {}
+	}
 	Matrix.ThrowException("Server Exception:" + e.message);
 }

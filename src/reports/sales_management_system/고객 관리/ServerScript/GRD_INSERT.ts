@@ -9,6 +9,8 @@ let Matrix : Matrix;
 
 const req = Matrix.getRequest();  /* Request */
 let   con = Matrix.getConnection(); /* DataBase Connection */
+const gen = Matrix.getQueryGenerator();
+const DATE_TIME_NOW = gen.getDateTimeNowString(con.getDbType());
 
 let sql = "";
 let stmt : ScriptPreparedStatement;
@@ -33,11 +35,11 @@ try{
 		+ "\n   , CREATED_BY  																	"
 		+ "\n ) 																				"
 		+ "\n VALUES (  																		"
-		+ "\n     (SELECT 'CUST'  																"
-		+ "\n           || RIGHT('000' || 														"
-		+ "\n                   CAST(COALESCE(MAX(SUBSTRING(CUST_ID, 5)),'0') AS INTEGER) + 1 	"
-		+ "\n                 , 3) AS CUST_ID 													"
-		+ "\n       FROM SM_CUSTOMER) 															"
+		+ "\n 	(SELECT 'CUST'																	"
+		+ "\n         || CAST(																	"
+		+ "\n             	COALESCE(MAX(CAST(SUBSTR(CUST_ID, 5,3) AS INTEGER)), 0) + 1		"
+		+ "\n            AS VARCHAR) AS CUST_ID													"
+		+ "\n 		FROM SM_CUSTOMER)															"
 		+ "\n   , ?  																			"
 		+ "\n   , ? 																			"
 		+ "\n   , ?  																			"
@@ -46,7 +48,7 @@ try{
 		+ "\n   , ?  																			"
 		+ "\n   , ?  																			"
 		+ "\n   , ?  																			"
-		+ "\n   , NOW()																			"
+		+ "\n   , " + DATE_TIME_NOW + "															"
 		+ "\n   , ? 																			"
 		+ "\n );  																				";
 

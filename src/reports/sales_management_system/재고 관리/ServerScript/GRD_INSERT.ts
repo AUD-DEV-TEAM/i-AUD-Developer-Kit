@@ -1,15 +1,18 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
+import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement";
 import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection";
 
  // Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
 let CALL_BACK : Function;
 let Matrix : Matrix;
 
-const req = Matrix.getRequest(); // request
+const req = Matrix.getRequest();  /* Request */
+let   con = Matrix.getConnection(); /* DataBase Connection */
+const gen = Matrix.getQueryGenerator();
+const DATE_TIME_NOW = gen.getDateTimeNowString(con.getDbType());
 
-let con = Matrix.getConnection(); // dbms connection
 let sql = "";
-let stmt;
+let stmt : ScriptPreparedStatement;
 
 try{
 	//connection
@@ -27,16 +30,16 @@ try{
 		+ "\n   , CREATED_BY  																	"
 		+ "\n ) 																				"
 		+ "\n VALUES (  																		"
-		+ "\n     (SELECT 'INV-'  																"
-		+ "\n           || RIGHT('000' || 														"
-		+ "\n                   CAST(COALESCE(MAX(SUBSTRING(INV_ID, 5)),'0') AS INTEGER) + 1 	"
-		+ "\n                 , 3) AS INV_ID 													"
-		+ "\n       FROM SM_INVENTORY) 															"
+		+ "\n 	(SELECT 'INV-'																	"
+		+ "\n         || CAST(																	"
+		+ "\n             	COALESCE(MAX(CAST(SUBSTR(INV_ID, 5,3) AS INTEGER)), 0) + 1		"
+		+ "\n            AS VARCHAR) AS INV_ID													"
+		+ "\n 		FROM SM_INVENTORY)															"
 		+ "\n   , ? 																			"
 		+ "\n   , ?  																			"
 		+ "\n   , ? 																			"
 		+ "\n   , ? 																			"
-		+ "\n   , NOW()																			"
+		+ "\n   , " + DATE_TIME_NOW + "															"
 		+ "\n   , ? 																			"
 		+ "\n );  																				";
 	
@@ -45,8 +48,8 @@ try{
 	let IDX = 0;
 	stmt.setString(++IDX,req.getParam('VS_INP_PRODUCT'));	// PROD_ID
 	stmt.setString(++IDX,req.getParam('VS_INP_STORAGE'));	// STORAGE_LOC
-	stmt.setInt(++IDX,req.getParam('VN_INP_CURR'));			// CURR_QTY
-	stmt.setInt(++IDX,req.getParam('VN_INP_SAFE'));			// SAFE_QTY
+	stmt.setInt(++IDX,Number(req.getParam('VN_INP_CURR'))); // CURR_QTY
+	stmt.setInt(++IDX,Number(req.getParam('VN_INP_SAFE'))); // SAFE_QTY
 	stmt.setString(++IDX,req.getUserCode());				// CREATED_BY
 	
 	Matrix.WriteLog(sql);

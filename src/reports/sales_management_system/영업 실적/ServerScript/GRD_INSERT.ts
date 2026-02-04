@@ -6,16 +6,20 @@ import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPrepare
 let CALL_BACK : Function;
 let Matrix : Matrix;
 
-const req = Matrix.getRequest();
-const res = Matrix.getResponse();
-let con = Matrix.getConnection();
+const req = Matrix.getRequest();  /* Request */
+let   con = Matrix.getConnection(); /* DataBase Connection */
+const gen = Matrix.getQueryGenerator();
+const DATE_TIME_NOW = gen.getDateTimeNowString(con.getDbType());
+
+let sql = "";
+let stmt : ScriptPreparedStatement;
 
 try {
 	con.Connect("AUD_SAMPLE_DB");
 	con.BeginTransaction();
 
 	// INSERT
-	const sql = "INSERT INTO SM_SALES_PERFORMANCE ( 			"
+	sql = "INSERT INTO SM_SALES_PERFORMANCE ( 			"
 		+ "\n     SALES_ID 								"
 		+ "\n   , SALES_DATE							"
 		+ "\n   , EMP_ID								"
@@ -40,25 +44,28 @@ try {
 		+ "\n   , ? 									"
 		+ "\n   , ? 									"
 		+ "\n   , 0										"
-		+ "\n   , NOW()									"
+		+ "\n   , " + DATE_TIME_NOW + "					"
 		+ "\n   , ? 									"
 		+ "\n );  										";
 
-	const stmt = con.PreparedStatement(sql);
-	stmt.setString(1, req.getParam('VS_INP_ID'));       // SALES_ID
-	stmt.setString(2, req.getParam('VS_INP_YMD'));      // SALES_DATE
-	stmt.setString(3, req.getParam('VS_INP_PIC'));      // EMP_ID
-	stmt.setString(4, req.getParam('VS_INP_CUST'));     // CUST_ID
-	stmt.setString(5, req.getParam('VS_INP_PROD'));     // PROD_ID
-	stmt.setInt(6, Number(req.getParam('VN_INP_QTY')));         // QTY
-	stmt.setInt(7, Number(req.getParam('VN_INP_PRICE')));       // UNIT_PRICE
-	stmt.setInt(8, Number(req.getParam('VN_INP_COST')));        // COST_AMOUNT
-	stmt.setString(9, req.getParam('VS_INP_STATUS'));   // SALES_STATUS
-	stmt.setString(10, req.getUserCode());              // CREATED_BY
+	stmt = con.PreparedStatement(sql);
+	
+	let IDX = 0;
+	stmt.setString(++IDX, req.getParam('VS_INP_ID'));       	// SALES_ID
+	stmt.setString(++IDX, req.getParam('VS_INP_YMD'));      	// SALES_DATE
+	stmt.setString(++IDX, req.getParam('VS_INP_PIC'));      	// EMP_ID
+	stmt.setString(++IDX, req.getParam('VS_INP_CUST'));     	// CUST_ID
+	stmt.setString(++IDX, req.getParam('VS_INP_PROD'));			// PROD_ID
+	stmt.setInt(++IDX, Number(req.getParam('VN_INP_QTY')));		// QTY
+	stmt.setInt(++IDX, Number(req.getParam('VN_INP_PRICE')));	// UNIT_PRICE
+	stmt.setInt(++IDX, Number(req.getParam('VN_INP_COST')));	// COST_AMOUNT
+	stmt.setString(++IDX, req.getParam('VS_INP_STATUS'));		// SALES_STATUS
+	stmt.setString(++IDX, req.getUserCode());					// CREATED_BY
 
 	Matrix.WriteLog(sql);
 	stmt.executeUpdate();
 	stmt.close();
+	stmt = null;
 
 	con.CommitTransaction();
 	con.DisConnect();

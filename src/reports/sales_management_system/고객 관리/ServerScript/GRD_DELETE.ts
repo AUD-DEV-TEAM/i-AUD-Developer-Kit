@@ -9,9 +9,10 @@ let Matrix : Matrix;
 
 const req = Matrix.getRequest();  /* Request */
 let   con = Matrix.getConnection(); /* DataBase Connection */
-
 const table = req.getTable("GRD_CUSTOMER"); //get grid's work data
 const gen = Matrix.getQueryGenerator(); // query generator
+
+let stmt = null;
 let sql = "";
 let status = "";
 let row : ScriptDataRow = null;
@@ -35,11 +36,14 @@ try{
 			sql = gen.getDMLCommand(table ,row ,"TABLE_NAME", con.getDbType());
 		}else */if(status == "D"){// delete
 			sql = gen.getDMLCommand(table ,row ,"SM_CUSTOMER", con.getDbType());
+			stmt = con.PreparedStatement(sql);
+			stmt.addBatch();
 		}
-		Matrix.WriteLog(sql);
-		con.ExecuteUpdate(sql);
-
 	}
+	
+	Matrix.WriteLog(sql);
+	stmt.executeBatch();
+
 	// COMMIT
 	con.CommitTransaction();
 	con.DisConnect();

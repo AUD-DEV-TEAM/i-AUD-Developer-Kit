@@ -1,4 +1,5 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
+import { ScriptDataRow } from "@AUD_SERVER/matrix/script/ScriptDataRow";
 import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection";
 import { ScriptQueryGenerator } from "@AUD_SERVER/matrix/script/ScriptQueryGenerator";
 
@@ -11,20 +12,28 @@ const table = req.getTable("GRD_MASTER");
 const gen = Matrix.getQueryGenerator();
 let con = Matrix.getConnection();
 
+let stmt = null;
+let sql = "";
+let status = "";
+let row : ScriptDataRow = null;
+
 try {
 	con.Connect("AUD_SAMPLE_DB");
 	con.BeginTransaction();
 
 	for (let r = 0; r < table.getRowCount(); r++) {
-		const row = table.getRow(r);
-		const status = row.getRowStatus();
+		row = table.getRow(r);
+		status = row.getRowStatus();
 
 		if (status == "D") {
-			const sql = gen.getDMLCommand(table, row, "SM_COMMON_CODE", con.getDbType());
-			Matrix.WriteLog(sql);
-			con.ExecuteUpdate(sql);
+			sql = gen.getDMLCommand(table, row, "SM_COMMON_CODE", con.getDbType());
+			stmt = con.PreparedStatement(sql);
+			stmt.addBatch();
 		}
 	}
+		
+	Matrix.WriteLog(sql);
+	stmt.executeBatch();
 
 	con.CommitTransaction();
 	con.DisConnect();

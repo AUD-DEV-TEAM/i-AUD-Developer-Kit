@@ -10,12 +10,13 @@ let Matrix : Matrix;
 
 const req = Matrix.getRequest();  /* Request */
 let   con = Matrix.getConnection(); /* DataBase Connection */
-
 const table = req.getTable("GRD_PLAN"); //get grid's work data
 const gen = Matrix.getQueryGenerator(); // query generator
+
 let sql = "";
 let status = "";
 let row = null;
+let stmt = null;
 
 try{
 	//connection
@@ -32,11 +33,14 @@ try{
 		// auto generation dml sql
 		if(status == "D"){// delete
 			sql = gen.getDMLCommand(table ,row ,"SM_SALES_PLAN", con.getDbType());
+			stmt = con.PreparedStatement(sql);
+			stmt.addBatch();
 		}
-		Matrix.WriteLog(sql);
-		con.ExecuteUpdate(sql);
-
 	}
+		
+	Matrix.WriteLog(sql);
+	stmt.executeBatch();
+
 	// COMMIT
 	con.CommitTransaction();
 	con.DisConnect();

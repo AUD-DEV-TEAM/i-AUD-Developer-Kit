@@ -1,4 +1,5 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
+import { ScriptDataRow } from "@AUD_SERVER/matrix/script/ScriptDataRow";
 import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection";
 import { ScriptQueryGenerator } from "@AUD_SERVER/matrix/script/ScriptQueryGenerator";
 
@@ -12,12 +13,13 @@ let Matrix : Matrix;
 
 const req = Matrix.getRequest(); // request
 const table = req.getTable("GRD_STOCK"); //get grid's work data
-
 let con = Matrix.getConnection(); // dbms connection
 const gen = Matrix.getQueryGenerator(); // query generator
+
+let stmt = null;
 let sql = "";
 let status = "";
-let row = null;
+let row : ScriptDataRow = null;
 
 try{
 	//connection
@@ -38,11 +40,14 @@ try{
 			sql = gen.getDMLCommand(table ,row ,"TABLE_NAME", con.getDbType());		
 		}else */if(status == "D"){// delete		
 			sql = gen.getDMLCommand(table ,row ,"SM_INVENTORY", con.getDbType());
-		}			
-		Matrix.WriteLog(sql);
-		con.ExecuteUpdate(sql);
-		
+			stmt = con.PreparedStatement(sql);
+			stmt.addBatch();
+		}	
 	}  
+		
+	Matrix.WriteLog(sql);
+	stmt.executeBatch();
+	
 	// COMMIT
 	con.CommitTransaction();
 	con.DisConnect();

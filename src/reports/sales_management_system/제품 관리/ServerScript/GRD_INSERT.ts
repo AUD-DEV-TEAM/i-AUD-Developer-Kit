@@ -1,15 +1,18 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
+import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement";
 import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection";
 
  // Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
 let CALL_BACK : Function;
 let Matrix : Matrix;
 
-const req = Matrix.getRequest(); // request
+const req = Matrix.getRequest();  /* Request */
+let   con = Matrix.getConnection(); /* DataBase Connection */
+const gen = Matrix.getQueryGenerator();
+const DATE_TIME_NOW = gen.getDateTimeNowString(con.getDbType());
 
-let con = Matrix.getConnection(); // dbms connection
 let sql = "";
-let stmt;
+let stmt : ScriptPreparedStatement;
 
 try{
 	//connection
@@ -28,17 +31,17 @@ try{
 		+ "\n   , CREATED_BY  																	"
 		+ "\n ) 																				"
 		+ "\n VALUES (  																		"
-		+ "\n     (SELECT 'PROD'  																"
-		+ "\n           || RIGHT('000' || 														"
-		+ "\n                   CAST(COALESCE(MAX(SUBSTRING(PROD_ID, 5)),'0') AS INTEGER) + 1 	"
-		+ "\n                 , 3) AS PROD_ID 													"
-		+ "\n       FROM SM_PRODUCT) 															"
+		+ "\n 	(SELECT 'PROD'																	"
+		+ "\n         || CAST(																	"
+		+ "\n             	COALESCE(MAX(CAST(SUBSTR(PROD_ID, 5,3) AS INTEGER)), 0) + 1			"
+		+ "\n            AS VARCHAR) AS PROD_ID													"
+		+ "\n 		FROM SM_PRODUCT)															"
 		+ "\n   , ? 																			"
 		+ "\n   , ?  																			"
 		+ "\n   , ? 																			"
 		+ "\n   , ? 																			"
 		+ "\n   , ?  																			"
-		+ "\n   , NOW()																			"
+		+ "\n   , " + DATE_TIME_NOW + "															"
 		+ "\n   , ? 																			"
 		+ "\n );  																				";
 	
@@ -47,8 +50,8 @@ try{
 	let IDX = 0;
 	stmt.setString(++IDX,req.getParam('VS_INP_PROD'));		// PROD_NAME
 	stmt.setString(++IDX,req.getParam('VS_INP_CAT'));		// CATEGORY
-	stmt.setInt(++IDX,req.getParam('VS_INP_PRICE'));		// STD_PRICE
-	stmt.setInt(++IDX,req.getParam('VS_INP_COST'));			// COST_PRICE
+	stmt.setInt(++IDX,Number(req.getParam('VS_INP_PRICE')));// STD_PRICE
+	stmt.setInt(++IDX,Number(req.getParam('VS_INP_COST')));	// COST_PRICE
 	stmt.setString(++IDX,req.getParam('VS_INP_UNIT'));		// STD_UNIT
 	stmt.setString(++IDX,req.getUserCode());				// CREATED_BY
 	

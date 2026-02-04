@@ -9,9 +9,11 @@ let Matrix : Matrix;
 
 const req = Matrix.getRequest();  /* Request */
 let   con = Matrix.getConnection(); /* DataBase Connection */
+const gen = Matrix.getQueryGenerator();
+const DATE_TIME_NOW = gen.getDateTimeNowString(con.getDbType());
 
 let sql = "";
-let stmt;
+let stmt : ScriptPreparedStatement;
 
 try{
 	//connection
@@ -40,7 +42,7 @@ try{
 		+ "\n   , ? 							"
 		+ "\n   , ? 							"
 		+ "\n   , ? 							"
-		+ "\n   , NOW()							"
+		+ "\n   , " + DATE_TIME_NOW + "			"
 		+ "\n   , ? 							"
 		+ "\n );  								";
 
@@ -52,8 +54,8 @@ try{
 	stmt.setString(++IDX,req.getParam('VS_INP_YM'));		// PLAN_MONTH
 	stmt.setString(++IDX,req.getParam('VS_INP_PIC'));		// EMP_ID
 	stmt.setString(++IDX,req.getParam('VS_INP_PROD'));		// PROD_ID
-	stmt.setInt(++IDX,req.getParam('VN_INP_QTY'));			// TARGET_QTY
-	stmt.setInt(++IDX,req.getParam('VN_INP_AMT'));			// TARGET_AMT
+	stmt.setInt(++IDX,Number(req.getParam('VN_INP_QTY')));	// TARGET_QTY
+	stmt.setInt(++IDX,Number(req.getParam('VN_INP_AMT')));	// TARGET_AMT
 	stmt.setString(++IDX,req.getParam('VS_INP_STATUS'));	// PLAN_STATUS
 	stmt.setString(++IDX,req.getUserCode());				// CREATED_BY
 
