@@ -1,5 +1,6 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
 import { ScriptDataRow } from "@AUD_SERVER/matrix/script/ScriptDataRow";
+import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement";
 
 
 // Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
@@ -11,7 +12,7 @@ const table = req.getTable("GRD_DETAIL");
 const gen = Matrix.getQueryGenerator();
 let con = Matrix.getConnection();
 
-let stmt = null;
+let stmt : ScriptPreparedStatement = null;
 let sql = "";
 let status = "";
 let row : ScriptDataRow = null;
@@ -35,17 +36,20 @@ try {
 	stmt.executeBatch();
 
 	con.CommitTransaction();
-	con.DisConnect();
-	con = null;
 
 } catch(e) {
 	Matrix.WriteLog("ERROR" + e.message);
 	if (con != null) {
 		try {
 			con.RollBackTransaction();
-			con.DisConnect();
-			con = null;
 		} catch(e) {}
 	}
-	Matrix.ThrowException("Server Exception:" + e.message);
+	Matrix.ThrowException("상세 코드 삭제 중 오류가 발생하였습니다.");
+}finally{
+	if(stmt){
+		stmt.close();
+	}
+	if(con){
+		con.DisConnect();
+	}
 }

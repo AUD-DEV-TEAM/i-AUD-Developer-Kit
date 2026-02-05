@@ -52,7 +52,7 @@ try {
 			con.RollBackTransaction();			
 		} catch(e) {}
 	}
-	Matrix.ThrowException("상세코드 수정 중 오류가 발생하였습니다.");
+	Matrix.ThrowException("상세 코드 수정 중 오류가 발생하였습니다.");
 }finally{
 	if(stmt){
 		stmt.close();

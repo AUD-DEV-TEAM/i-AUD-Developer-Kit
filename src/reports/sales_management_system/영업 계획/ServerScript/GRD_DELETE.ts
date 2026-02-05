@@ -1,4 +1,5 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
+import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement";
 
 
  // Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
@@ -13,7 +14,7 @@ const gen = Matrix.getQueryGenerator(); // query generator
 let sql = "";
 let status = "";
 let row = null;
-let stmt = null;
+let stmt : ScriptPreparedStatement = null;
 
 try{
 	//connection
@@ -40,18 +41,20 @@ try{
 
 	// COMMIT
 	con.CommitTransaction();
-	con.DisConnect();
-	con = null;
 
 }catch(e){
 	Matrix.WriteLog("ERROR" + e.message);
 	if(con != null){
 		try{
 			con.RollBackTransaction();
-			con.DisConnect();
-			con = null;
-		}catch(e){
-		}
+		}catch(e){}
 	}
-	Matrix.ThrowException("Server Exception:" + e.message);
+	Matrix.ThrowException("영업 계획 삭제 중 오류가 발생하였습니다.");
+}finally{
+	if(stmt){
+		stmt.close();
+	}
+	if(con){
+		con.DisConnect();
+	}
 }

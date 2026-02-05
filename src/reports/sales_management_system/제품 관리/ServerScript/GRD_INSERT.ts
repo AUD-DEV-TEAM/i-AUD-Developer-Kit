@@ -11,7 +11,7 @@ const gen = Matrix.getQueryGenerator();
 const DATE_TIME_NOW = gen.getDateTimeNowString(con.getDbType());
 
 let sql = "";
-let stmt : ScriptPreparedStatement;
+let stmt : ScriptPreparedStatement = null;
 
 try{
 	//connection
@@ -64,15 +64,19 @@ try{
 	con.DisConnect();
 	con = null;	
 
-}catch(e){
-	Matrix.WriteLog("ERROR" + e.message); 
-	if(con != null){
-		try{
+} catch(e) {
+	Matrix.WriteLog("ERROR" + e.message);
+	if (con != null) {
+		try {
 			con.RollBackTransaction();
-			con.DisConnect();
-			con = null;
-		}catch(e){
-		}
-	} 
-	Matrix.ThrowException("Server Exception:" + e.message);
+		} catch(e) {}
+	}
+	Matrix.ThrowException("제품 등록 중 오류가 발생하였습니다.");
+}finally{
+	if(stmt){
+		stmt.close();
+	}
+	if(con){
+		con.DisConnect();
+	}
 }

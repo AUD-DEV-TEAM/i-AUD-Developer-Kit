@@ -1,5 +1,6 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
 import { ScriptDataRow } from "@AUD_SERVER/matrix/script/ScriptDataRow";
+import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement";
 
 
  // Please do not modify or delete the following variables: "CALL_BACK", "Matrix".
@@ -15,7 +16,7 @@ const table = req.getTable("GRD_PRODUCT"); //get grid's work data
 let con = Matrix.getConnection(); // dbms connection
 const gen = Matrix.getQueryGenerator(); // query generator
 
-let stmt = null;
+let stmt : ScriptPreparedStatement = null;
 let sql = "";
 let status = "";
 let row : ScriptDataRow = null;
@@ -52,15 +53,19 @@ try{
 	con.DisConnect();
 	con = null;	
 	
-}catch(e){
-	Matrix.WriteLog("ERROR" + e.message); 
-	if(con != null){
-		try{
+} catch(e) {
+	Matrix.WriteLog("ERROR" + e.message);
+	if (con != null) {
+		try {
 			con.RollBackTransaction();
-			con.DisConnect();
-			con = null;
-		}catch(e){
-		}
-	} 
-	Matrix.ThrowException("Server Exception:" + e.message);
+		} catch(e) {}
+	}
+	Matrix.ThrowException("제품 삭제 중 오류가 발생하였습니다.");
+}finally{
+	if(stmt){
+		stmt.close();
+	}
+	if(con){
+		con.DisConnect();
+	}
 }
