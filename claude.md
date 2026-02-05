@@ -238,6 +238,20 @@ try {
 }
 ```
 
+### 샘플 코드 작성 규칙
+
+1. **데이터베이스 연결 코드**: 샘플 코드에서 데이터베이스 연결 코드는 반드시 `"AUD_SAMPLE_DB"`를 사용합니다.
+   ```typescript
+   // 올바른 예
+   con.Connect("AUD_SAMPLE_DB");
+   res.addAsyncTable("T1", "AUD_SAMPLE_DB", sql);
+
+   // 잘못된 예 (사용 금지)
+   con.Connect("MTXRPTY");
+   con.Connect("DBMS Code");
+   con.Connect("DBMS_CODE");
+   ```
+
 ### SQL 파라미터 바인딩
 
 ```sql

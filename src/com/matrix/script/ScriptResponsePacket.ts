@@ -54,11 +54,11 @@ export interface ScriptResponsePacket{
    * var res = Matrix.getResponse();
    * var sql =" SELECT user_code, meta_file_code, d1,d2,d3,d4,d5, m1,m2,m3,m4,m5 FROM mex_user_file_data limit 10000 ";
    * // 쿼리를 실행하여 결과를 테이블로 생성 (비동기 처리)
-   * res.addAsyncTable("T1", "MTXRPTY", sql );
-   * res.addAsyncTable("T2", "MTXRPTY", sql );
-   * res.addAsyncTable("T3", "MTXRPTY", sql );
-   * res.addAsyncTable("T4", "MTXRPTY", sql );
-   * res.addAsyncTable("T5", "MTXRPTY", sql );
+   * res.addAsyncTable("T1", "AUD_SAMPLE_DB", sql );
+   * res.addAsyncTable("T2", "AUD_SAMPLE_DB", sql );
+   * res.addAsyncTable("T3", "AUD_SAMPLE_DB", sql );
+   * res.addAsyncTable("T4", "AUD_SAMPLE_DB", sql );
+   * res.addAsyncTable("T5", "AUD_SAMPLE_DB", sql );
    * //등록된 쿼리를 실행 (서버의 메모리를 사용하지 않고 바로 Client레 출력 합니다.)
    * res.ExecuteAsyncTables();
    * ```
@@ -84,7 +84,7 @@ ScriptPreparedStatement와 해당 데이터 베이스의 Connection 객체는 �
    * 	var sql; 
    * 	var stmt; 
    * 		
-   * 	con.Connect("MTXRPTY"); //데이터 베이스 연결
+   * 	con.Connect("AUD_SAMPLE_DB"); //데이터 베이스 연결
    * 	sql = "SELECT * FROM MTX_REPORT";	
    * 	stmt = con.PreparedStatement(sql);	
    * 	
@@ -131,7 +131,7 @@ DataTable의 결과 데이터가 많은 경우 서버 메모리 점유 문제를
    * var con      = Matrix.getConnection(); 
    * var sql; 
    * try{
-   * 	con.Connect("DBMS Code");
+   * 	con.Connect("AUD_SAMPLE_DB");
    * 	sql = "SELECT * FROM TABLE";
    * 	
    * 	//쿼리 결과를 JSON 형태로 출력 합니다.

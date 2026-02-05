@@ -55,7 +55,7 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    * var con      = Matrix.getConnection(); 
    * var sql; 
    * try{
-   * 	con.Connect("DBMS Code");
+   * 	con.Connect("AUD_SAMPLE_DB");
    * 	sql = "SELECT * FROM TABLE";
    * 	
    * 	//쿼리 결과를 JSON 형태로 출력 합니다.
@@ -135,7 +135,7 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    * @example
    * ```js
    *   	var con = Matrix.getConnection();
-   * 	con.Connect("MTXRPTY");
+   * 	con.Connect("AUD_SAMPLE_DB");
    * 	var rs = con.ExecuteRecordSet("SELECT * FROM table");
    * 	while(rs.next()){
    * 		rs.getString("DBMS_CODE");

@@ -176,15 +176,9 @@ export interface Matrix{
    *     Matrix.doRefresh("DataGrid");
    * });
    * ```
-  * @param name
-  * 파라미터 명
-  *
-  * @param value
-  * 파라미터의 값
-  *
-  * @param type
-  * 데이터 타입 (0: Numeric, 1: String)
-  *
+  * @param name 파라미터 이름
+  * @param value 파라미터 값
+  * @param type 데이터 타입 (0: Numeric, 1: String)
   */
   AddGlobalParams(name: string, value: string, type: enQueryParamType): void;
 
@@ -197,33 +191,26 @@ export interface Matrix{
    * // 알림창
    * Matrix.Alert("Test");
    * ```
-  * @param msg
-  * 메시지
-  * 
+  * @param msg 메시지
   */
   Alert(msg: string): void;
 
   /** 
-   * 여러개의 컨트롤들의 스타일 및 사이즈를 수정하기 전 성능 향상을 위해
-   * 
-   * 일괄 업데이트 하도록 유도 합니다.
-   * 
-   * 모든 작업이 끝난 후 Matrix.EndUpdate()를 호출 해서 실제 화면을 업데이트 합니다.
+   * 여러 컨트롤의 스타일 및 크기를 일괄 변경하기 전에 호출합니다.
+   *
+   * 성능 향상을 위해 개별 변경 시마다 화면을 갱신하지 않고,
+   * 모든 작업이 끝난 후 {@link EndUpdate}를 호출하여 한 번에 반영합니다.
    * 
    *
   */
   BeginUpdate(): void;
 
   /** 
-   * 외부에 정의된 메소드를 호출합니다.
+   * 외부에 정의된 메서드를 호출합니다.
    * 
    *
-  * @param name
-  * 호출하고자 하는 메소드의 이름
-  * 
-  * @param valuelist
-  * [ {"KEY":"parameter name", "VALUE":"값"},{...} ]
-  *
+  * @param name 호출할 메서드 이름
+  * @param valuelist 파라미터 배열 (예: `[{KEY:"이름", VALUE:"값"}]`)
   * @hidden
   */
   CallExtentionFunc(name: string, valuelist: Array<{KEY: string, VALUE: string}>): void;
@@ -232,15 +219,9 @@ export interface Matrix{
    * RestAPI를 호출합니다.
    * 
    *
-  * @param url
-  * RestAPI 주소
-  * 
-  * @param req
-  * RestAPI에 전달할 파라미터
-  * 
-  * @param callback
-  * RestAPI 실행 결과를 전달받을 callback 함수
-  * 
+  * @param url REST API URL
+  * @param req 요청 파라미터 객체
+  * @param callback 실행 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, Result}`)
   */
   CallRestAPI(url: string, req: object, callback: (p: {"Success":boolean, "Message":string, "Result":any}) => void): void;
 
@@ -266,10 +247,8 @@ export interface Matrix{
 
   /** 
    * 컨트롤의 데이터셋을 삭제합니다.
-   * 
    *
-  * @param names
-  * 대상 컨트롤 목록(string 타입으로 입력하는 경우 컴마(,)로 분리하여 입력, *.* 로 모든 컨트롤 선택가능, Form이름.* 로 특정 Form의 전체 컨트롤 선택가능)
+  * @param names 대상 컨트롤 이름. 콤마 구분 문자열 또는 배열. `"*.*"`로 전체, `"Form1.*"`로 특정 폼 전체 선택 가능
   * 
   */
   ClearDataSet(names: string|string[]): void;
@@ -328,18 +307,10 @@ export interface Matrix{
    *     }
    * }, 1);  // 1: 확인/취소
    * ```
-  * @param msg
-  * 메시지
-  *
-  * @param title
-  * 제목
-  *
-  * @param callback
-  * 확인 버튼 클릭 후 callback 실행 Func.
-  *
-  * @param buttonType
-  * 버튼 유형(0:예/아니오, 1:확인/취소), 값이 없거나 전달하지 않을 경우 기본 유형으로 설정.
-  *
+  * @param msg 메시지
+  * @param title 대화 상자 제목
+  * @param callback 확인/취소 버튼 클릭 후 호출되는 콜백 함수. `ok`가 `true`이면 확인/예 클릭
+  * @param buttonType 버튼 유형 (0: 예/아니오, 1: 확인/취소). 생략 시 기본값 적용
   */
   Confirm(msg: string, title: string, callback: (ok: boolean) => void, buttonType: number): void;
 
@@ -370,35 +341,10 @@ export interface Matrix{
    *     }
    * }, 0);  // 0: 예/아니오
    * ```
-  * @param msg
-  * 메시지
-  * 
-  * @param title
-  * 제목
-  * 
-  * @param callback
-  * 확인(예)/취소(아니오)/닫기(Esc) 후 callback 실행 Function
-  * 
-  * ```
-  * function (ok) {
-  * 	if (ok === true) {
-  * 		// '예' 또는 '확인' 버튼이 클릭된 경우의 동작
-  * 	} else if (ok === false) {
-  * 		// '아니오' 또는 '취소' 버튼이 클릭된 경우의 동작
-  * 	} else if (ok === null) {
-  * 		// 창이 '닫기' 버튼 또는 'Esc' 키로 닫힌 경우의 동작
-  * 	}
-  * }
-  * ```
-  * @param buttonType
-  * 버튼 유형
-  * 
-  * 0: 예/아니오(기본값)
-  * 
-  * 1: 확인/취소
-  * 
-  * 값이 없거나 전달하지 않을 경우 기본값으로 설정
-  * 
+  * @param msg 메시지
+  * @param title 대화 상자 제목
+  * @param callback 확인/취소/닫기 후 호출되는 콜백 함수. `true`: 확인(예), `false`: 취소(아니오), `null`: 닫기(Esc)
+  * @param buttonType 버튼 유형 (0: 예/아니오, 1: 확인/취소). 생략 시 기본값 0
   */
   ConfirmWithClose(msg: string, title: string, callback: Function, buttonType?: number): void;
 
@@ -406,10 +352,8 @@ export interface Matrix{
    * Style 객체를 BackColor 객체로 변환합니다.
    * 
    *
-  * @param style
-  * style 객체
-  * 
-   * @hidden
+  * @param style Style 객체
+  * @hidden
   */
   ConvertToBackColor(style?: Style): any;
 
@@ -442,16 +386,10 @@ export interface Matrix{
    *     keywords: ["Sum", "Average", "Count", "Max", "Min"]
    * });
    * ```
-  * @param richTextBoxName
-  * RichTextBox 컨트롤 이름
-  *
-  * @param callback
-  * CodeMirror 인스턴스 생성 완료 후 호출되는 콜백 함수
-  *
-  * @param mode
-  * 에디터 모드. 문자열("javascript", "sql") 또는 CodeMirror 옵션 객체
-  *
-   * @hidden
+  * @param richTextBoxName RichTextBox 컨트롤 이름
+  * @param callback CodeMirror 인스턴스 생성 완료 후 호출되는 콜백 함수
+  * @param mode 에디터 모드. 문자열(`"javascript"`, `"sql"`) 또는 CodeMirror 옵션 객체
+  * @hidden
   */
   CreateCodeMirror(richTextBoxName: string, callback: Function, mode: string | object): void;
 
@@ -478,15 +416,9 @@ export interface Matrix{
    * });
    * Matrix.AddContextMenu(child2);
    * ```
-  * @param parentId
-  * 부모 컨텍스트 메뉴 아이템의 ID
-  *
-  * @param name
-  * 생성할 컨텍스트 메뉴 아이템의 캡션명
-  *
-  * @param callbackFunc
-  * 컨텍스트 메뉴 아이템을 클릭시 작동하는 콜백 함수
-  *
+  * @param parentId 부모 컨텍스트 메뉴 아이템의 ID
+  * @param name 메뉴 아이템 표시 이름
+  * @param callbackFunc 메뉴 클릭 시 실행되는 콜백 함수
   */
   CreateContextMenuChildItem(parentId: string, name: string, callbackFunc: Function): ContextMenuItem;
 
@@ -507,12 +439,8 @@ export interface Matrix{
    * disabledMenu.isDisabled = true;
    * Matrix.AddContextMenu(disabledMenu);
    * ```
-  * @param name
-  * 생성할 컨텍스트 메뉴 아이템의 캡션명
-  *
-  * @param callbackFunc
-  * 컨텍스트 메뉴 아이템을 클릭시 작동하는 콜백 함수
-  *
+  * @param name 메뉴 아이템 표시 이름
+  * @param callbackFunc 메뉴 클릭 시 실행되는 콜백 함수
   */
   CreateContextMenuItem(name: string, callbackFunc: Function): ContextMenuItem;
 
@@ -535,15 +463,9 @@ export interface Matrix{
    *         var ds  = Matrix.CreateDataSet("T1", columns, rows);
    *         Matrix.getObject("comboBox").SetDataSet(ds);
    * ```
-  * @param tableName
-  * 테이블 이름 (생략 가능)
-  * 
-  * @param columns
-  * 컬럼이름 목록
-  * 
-  * @param rows
-  * Row 데이터 (컬럼 수에 따라 1차원 배열 또는 2차원 배열 사용 가능)
-  * 
+  * @param tableName 테이블 이름 (생략 가능)
+  * @param columns 컬럼 이름 배열
+  * @param rows 행 데이터. 단일 컬럼이면 1차원 배열, 다중 컬럼이면 2차원 배열
   */
   CreateDataSet(tableName?: string, columns?: string[], rows?: Array<any>|Array<Array<any>>): DataSet;
 
@@ -573,12 +495,8 @@ export interface Matrix{
    * var lbl = Matrix.CreateObject(3, "lblTitle");  // 3: Label
    * lbl.Text = "제목";
    * ```
-  * @param type
-  * 컨트롤 타입 (0:MultiComboBox, 1:ComboBox, 2:PickList, 3:Label, 4:Button, 5:TextBox, 6:MaskTextBox, 7:NumberBox, 8:RichTextBox, 9:RadioButton, 10:CheckBox, 11:Calendar, 19:DataGrid, 21:Chart 등)
-  *
-  * @param controlName
-  * 컨트롤 이름 (생략 시 자동 생성)
-  *
+  * @param type 컨트롤 타입 (0:MultiComboBox, 1:ComboBox, 2:PickList, 3:Label, 4:Button, 5:TextBox, 6:MaskTextBox, 7:NumberBox, 8:RichTextBox, 9:RadioButton, 10:CheckBox, 11:Calendar, 19:DataGrid, 21:Chart 등)
+  * @param controlName 컨트롤 이름 (생략 시 자동 생성)
   */
   CreateObject(type: enScriptControlType, controlName?: string): Control;
 
@@ -594,22 +512,12 @@ export interface Matrix{
    * // 상하 분할: 여러 스플리터 컨트롤 지정
    * Matrix.CreateSplitter("Row", "TopGrid", "BottomGrid", ["Splitter1", "Splitter2"]);
    * ```
-  * @param direction
-  * 방향 ("Row": 상하 분할, "Col": 좌우 분할)
-  *
-  * @param firstControlName
-  * 첫번째(상단/좌측) 컨트롤 이름
-  *
-  * @param secondControlName
-  * 두번째(하단/우측) 컨트롤 이름
-  *
-  * @param splitterControlNames
-  * 스플리터로 사용할 컨트롤 이름 (문자열 또는 배열)
-  *
-  * @param option
-  * 옵션
-  *
-   * @hidden
+  * @param direction 방향 (`"Row"`: 상하 분할, `"Col"`: 좌우 분할)
+  * @param firstControlName 첫 번째(상단/좌측) 컨트롤 이름
+  * @param secondControlName 두 번째(하단/우측) 컨트롤 이름
+  * @param splitterControlNames 스플리터로 사용할 컨트롤 이름 (문자열 또는 배열)
+  * @param option 옵션
+  * @hidden
   */
   CreateSplitter(direction: string, firstControlName: string, secondControlName: string, splitterControlNames: string | Array<string>, option?: any): any;
 
@@ -633,22 +541,12 @@ export interface Matrix{
    *     "SplitterCtrl2"
    * );
    * ```
-  * @param splitterType
-  * Splitter의 방향 ("Row": 상하 분할, "Col": 좌우 분할)
-  *
-  * @param leftControls
-  * 좌측(또는 상단)에 배치할 컨트롤 이름 목록
-  *
-  * @param rightControls
-  * 우측(또는 하단)에 배치할 컨트롤 이름 목록
-  *
-  * @param splitterControl
-  * 스플리터로 사용할 컨트롤 이름
-  *
-  * @param option
-  * 옵션
-  *
-   * @hidden
+  * @param splitterType 방향 (`"Row"`: 상하 분할, `"Col"`: 좌우 분할)
+  * @param leftControls 좌측(또는 상단)에 배치할 컨트롤 이름 배열
+  * @param rightControls 우측(또는 하단)에 배치할 컨트롤 이름 배열
+  * @param splitterControl 스플리터로 사용할 컨트롤 이름
+  * @param option 옵션
+  * @hidden
   */
   CreateSplitterEx(splitterType: string, leftControls: string[], rightControls: string[], splitterControl: string, option?: any): Splitter;
 
@@ -666,24 +564,16 @@ export interface Matrix{
    * 	Matrix.CustomReportOpen(report_code, false);	// 새 탭으로 연다
    * };
    * ```
-  * @param reportCode
-  * 보고서 코드
-  * 
-  * @param isRecycle
-  * 현재 탭 재사용 여부
-  * 
+  * @param reportCode 보고서 코드
+  * @param isRecycle `true`: 현재 탭 재사용, `false`: 새 탭에서 열기
   */
   CustomReportOpen(reportCode: string, isRecycle: boolean): void;
 
   /** 
-   * Matrix Trace에 디버깅 메시지를 출력합니다.
-   * 
+   * Matrix Trace 창에 디버깅 메시지를 출력합니다.
    *
-  * @param id
-  * 구분자
-  * 
-  * @param msg
-  * 메시지
+  * @param id 메시지 분류 구분자
+  * @param msg 출력할 메시지
   * 
   */
   DebugWrite(id: string, msg: any): void;
@@ -729,21 +619,17 @@ export interface Matrix{
   DrillToDetail(sender: OlapGrid, xml: string, DataGridName: string, KeepOlapGridLayout: boolean): void;
 
   /** 
-   * 일괄 업데이트 작업을 종료 하고 현재 화면의 컨트롤들을 업데이트 합니다.
+   * {@link BeginUpdate}로 시작한 일괄 업데이트 작업을 종료하고, 변경 사항을 화면에 반영합니다.
    * 
    *
   */
   EndUpdate(): void;
 
   /** 
-   * 사용자에게 에러 대화 상자를 보여줍니다
-   * 
+   * 사용자에게 오류 대화 상자를 표시합니다.
    *
-  * @param msg
-  * 메시지
-  * 
-  * @param detail
-  * 오류 상세 메세지
+  * @param msg 오류 메시지
+  * @param detail 오류 상세 메시지
   * 
   */
   Error(msg: string, detail: string): void;
@@ -817,54 +703,24 @@ export interface Matrix{
    *         
    *     });
    * ```
-  * @param json
-  * 데이터 엑셀 내보내기 JSON 객체
-  * 
-  * @param params
-  * parameters e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
-  * 
-  * @param callBack
-  * CallBack함수
-  * 
-  * ```
-  * 
-  * function(e){
-  * 	if(e.Success == false){
-  * 		alert("export fail" + e.Message);
-  * 		return;
-  * 	}
-  * 
-  * 	// download file
-  * 	var row = e.DataSet.GetTable(0).GetRow(0);
-  * 	var folderName = row.GetValue("FolderName");
-  * 	var fileName = row.GetValue("FileName");
-  * 	var nowText = Matrix.GetDateTime().ToString("yyyy-MM-dd HH:mm:ss");
-  * 	var newFileName = Matrix.GetReportInfo().NAME + "_" + nowText + ".xlsx";
-  * 
-  * 	Matrix.DownloadFile(folderName + "/" ,fileName ,newFileName ,true);
-  * 
-  * }
-  * ```
+  * @param json WORKBOOK 구조의 내보내기 설정 객체
+  * @param params 서버 조회 파라미터 배열. 불필요하면 `null`
+  * @param callBack 내보내기 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, DataSet}`)
   */
   ExcelExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
-   * 데이터소스를 실행 합니다.(처리 완료 후 OnExecutCompleted 이벤트가 발생합니다.)
-   * 
+   * 데이터소스를 실행합니다. 처리 완료 후 {@link OnExecuteCompleted} 이벤트가 발생합니다.
    *
-  * @param dataSourceName
-  * 데이터 소스명
-  * 
-  * @param tag
-  * 구분자(tag)
+  * @param dataSourceName 데이터소스 이름
+  * @param tag 사용자 지정 구분자
   * 
    * @hidden
   */
   Execute(dataSourceName: string, tag: string): void;
 
   /**
-   * 데이터소스를 실행 합니다.(처리 완료 후 OnExecutCompleted 이벤트가 발생합니다.)
-   *
+   * 데이터소스를 실행합니다. 처리 완료 후 {@link OnExecuteCompleted} 이벤트가 발생합니다.
    *
    * @example
    * ```js
@@ -892,11 +748,8 @@ export interface Matrix{
    *     });
    * });
    * ```
-  * @param dataSourceName
-  * 데이터 소스명
-  *
-  * @param callBack
-  * 실행 완료 후 호출되는 callback 함수. 인자 p의 속성: Success(boolean), Message(string), DataSet(DataSet), DataTable(DataTable)
+  * @param dataSourceName 데이터소스 이름
+  * @param callBack 실행 완료 후 호출되는 콜백 함수. 인자 속성: `Success`, `Message`, `DataSet`, `DataTable`
   *
   */
   Execute(dataSourceName: string, callBack: Function): void;
@@ -935,15 +788,9 @@ export interface Matrix{
    *     }
    * });
    * ```
-  * @param planName
-  * 실행 계획 명
-  *
-  * @param option
-  * 서버로 전달할 파라미터 목록 (e.g. [{'Key':'VS_CODE','Value':'100'}])
-  *
-  * @param callBack
-  * 실행 완료 후 호출되는 callback 함수
-  *
+  * @param planName 실행 계획 이름
+  * @param option 서버 파라미터 배열 (예: `[{Key:'VS_CODE',Value:'100'}]`). 불필요하면 `null`
+  * @param callBack 실행 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, DataSet}`)
   */
   ExecutePlan(planName: string, option: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
@@ -951,16 +798,10 @@ export interface Matrix{
    * 데이터소스를 실행 합니다.(처리 완료 후 OnExecutCompleted 이벤트가 발생합니다.)
    * 
    *
-  * @param planName
-  * 실행 계획 명
-  * 
-  * @param option
-  * 옵션(예약)
-  * 
-  * @param tag
-  * 구분자(tag)
-  * 
-   * @hidden
+  * @param planName 실행 계획 이름
+  * @param option 서버 파라미터 배열
+  * @param tag 사용자 지정 구분자
+  * @hidden
   */
   ExecutePlan(planName: string, option: Array<{"Key":string,"Value":string}>, tag: any): void;
 
@@ -986,23 +827,9 @@ export interface Matrix{
    *     });
    * };
    * ```
-  * @param controlNames
-  * 내보내기 할 컨트롤 객체 이름 목록([] : All Controls)
-  * 
-  * @param exportType
-  * 내보내기 할 파일 유형(2: Excel, 3:HML, 4:PPT, 5:DOC, 6:PNG(Default), 7:PDF)
-  * 
-  * @param option
-  * {'fileName' : [File 명], 'useDocHeaderTitle' : [문서 타이틀 사용 여부], 'useProgressBar': [ProgressBar 사용 여부], callbackFunc' : [Callback 함수]}
-  * 
-  * ```
-  * {
-  *   'fileName' : Matrix.GetReportInfo().NAME,
-  *   'useDocHeaderTitle': true,
-  *   'useProgressBar': true,
-  *   'callbackFunc' : null
-  * }
-  * ```
+  * @param controlNames 내보내기 대상 컨트롤 이름 배열. 빈 배열(`[]`)이면 전체 컨트롤
+  * @param exportType 내보내기 파일 유형 (2:Excel, 3:HML, 4:PPT, 5:DOC, 6:PNG, 7:PDF)
+  * @param option 내보내기 옵션 (`fileName`, `useDocHeaderTitle`, `useProgressBar`, `callbackFunc`)
   */
   ExportImageEx(controlNames: string[], exportType: enExportType, option: {fileName?: string, useDocHeaderTitle?: boolean, useProgressBar?: boolean, callbackFunc?: Function}): void;
 
@@ -1027,12 +854,8 @@ export interface Matrix{
    * ```
    * 
    *
-  * @param controlName
-  * 컨트롤 이름
-  * 
-  * @param exportType
-  * 내보낼 파일 형식
-  * 
+  * @param controlName 컨트롤 이름
+  * @param exportType 내보낼 파일 형식. 생략 시 Excel
   */
   ExportServiceCall(controlName: string, exportType: enExportType): void;
 
@@ -1040,10 +863,8 @@ export interface Matrix{
    * AUD Base64 Image 정보를 반환합니다.
    * 
    *
-  * @param key
-  * Base64 Key
-  * 
-   * @hidden
+  * @param key Base64 키
+  * @hidden
   */
   GetAUDBase64ImageData(key?: string): string;
 
@@ -1051,12 +872,8 @@ export interface Matrix{
    *  AUD 옵션의 값을 반환 합니다.
    * 옵션 데이터 참조 페이지 : https://{AUD Server}/AUD/500/settingStudioConfig.jsp
    *
-  * @param optionName
-  * 옵션명
-  * 
-  * @param defaultValue
-  * 옵션이 없을 경우의 기본값
-  * 
+  * @param optionName 옵션 이름
+  * @param defaultValue 옵션이 없을 경우 반환할 기본값
   */
   GetAUDOption(optionName: string, defaultValue: any): any;
 
@@ -1110,35 +927,20 @@ export interface Matrix{
    * DataSet.maf 로 전달할 Packet 정보를 생성합니다.
    * 
    *
-  * @param gridNames
-  * 데이터 입력/수정/삭제 정보를 전송할 그리드 목록(string 타입인 경우 콤마(,)로 분리
-  * 
-   * @hidden
+  * @param gridNames 데이터 전송 대상 그리드 이름. 콤마 구분 문자열 또는 배열
+  * @hidden
   */
   GetDataSetMafPacket(gridNames: string|string[]): object;
 
-  /** 
-   * 날짜 처리 객체를 반환합니다.
-   * 
+  /**
+   * 지정한 날짜와 시간으로 날짜 처리 객체를 반환합니다.
    *
-  * @param year
-  * 년
-  * 
-  * @param month
-  * 월
-  * 
-  * @param day
-  * 일
-  * 
-  * @param hour
-  * 시간
-  * 
-  * @param minutes
-  * 분
-  * 
-  * @param second
-  * 초
-  * 
+  * @param year 년
+  * @param month 월
+  * @param day 일
+  * @param hour 시
+  * @param minutes 분
+  * @param second 초
   */
   GetDate(year: number, month: number, day: number, hour: number, minutes: number, second: number): ScriptDateUtil;
 
@@ -1170,57 +972,32 @@ export interface Matrix{
    */
   GetDate(): ScriptDateUtil;
 
-  /** 
-   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
-   * 
+  /**
+   * 지정한 연/월로 날짜 처리 객체를 반환합니다. (시간: 00:00:00)
    *
-  * @param year
-  * 년
-  * 
-  * @param month
-  * 월
-  * 
+  * @param year 년
+  * @param month 월
   */
   GetDate(year: number, month: number): ScriptDateUtil;
 
-  /** 
-   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
-   * 
+  /**
+   * 지정한 날짜로 날짜 처리 객체를 반환합니다. (시간: 00:00:00)
    *
-  * @param year
-  * 년
-  * 
-  * @param month
-  * 월
-  * 
-  * @param day
-  * 일
-  * 
+  * @param year 년
+  * @param month 월
+  * @param day 일
   */
   GetDate(year: number, month: number, day: number): ScriptDateUtil;
 
-  /** 
-   * 날짜 처리 객체를 반환합니다.
-   * 
+  /**
+   * 지정한 날짜와 시간으로 날짜 처리 객체를 반환합니다.
    *
-  * @param year
-  * 년
-  * 
-  * @param month
-  * 월
-  * 
-  * @param day
-  * 일
-  * 
-  * @param hour
-  * 시간
-  * 
-  * @param minutes
-  * 분
-  * 
-  * @param second
-  * 초
-  * 
+  * @param year 년
+  * @param month 월
+  * @param day 일
+  * @param hour 시
+  * @param minutes 분
+  * @param second 초
   */
   GetDateTime(year: number, month: number, day: number, hour: number, minutes: number, second: number): ScriptDateUtil;
 
@@ -1245,32 +1022,20 @@ export interface Matrix{
    */
   GetDateTime(): ScriptDateUtil;
 
-  /** 
-   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
-   * 
+  /**
+   * 지정한 연/월로 날짜 처리 객체를 반환합니다. (시간: 00:00:00)
    *
-  * @param year
-  * 년
-  * 
-  * @param month
-  * 월
-  * 
+  * @param year 년
+  * @param month 월
   */
   GetDateTime(year: number, month: number): ScriptDateUtil;
 
-  /** 
-   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
-   * 
+  /**
+   * 지정한 날짜로 날짜 처리 객체를 반환합니다. (시간: 00:00:00)
    *
-  * @param year
-  * 년
-  * 
-  * @param month
-  * 월
-  * 
-  * @param day
-  * 일
-  * 
+  * @param year 년
+  * @param month 월
+  * @param day 일
   */
   GetDateTime(year: number, month: number, day: number): ScriptDateUtil;
 
@@ -1367,11 +1132,9 @@ export interface Matrix{
   GetGlobalConfig(): GlobalConfig;
 
   /** 
-   * 특정 이름을 가진 전역 쿼리 파라미터 값을 반환합니다.
-   * 
+   * 지정한 이름의 전역 쿼리 파라미터 값을 반환합니다.
    *
-  * @param name
-  * 파라미터 명
+  * @param name 파라미터 이름
   * 
   */
   GetGlobalParamValue(name: string): string;
@@ -1415,23 +1178,8 @@ export interface Matrix{
    *                                
    *                                });
    * ```
-  * @param controlName
-  * 컨트롤명
-  * 
-  * @param callBack
-  * CallBack함수
-  * 
-  * ```
-  * 
-  * function(e){
-  * 	if(e.Success == false){
-  * 		alert(e.Message);
-  * 		return;
-  * 	}
-  *     alert(e.SQLText);
-  * 
-  * }
-  * ```
+  * @param controlName 컨트롤 이름
+  * @param callBack 실행 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, SQLText}`)
   */
   GetMetaExecuteQuery(controlName: string, callBack: (p: {"Success":boolean, "Message":string, "SQLText":string}) => void): void;
 
@@ -1488,10 +1236,8 @@ export interface Matrix{
    * 주어진 컨트롤의 선택값을 반환합니다.
    * 
    *
-  * @param control
-  * 컨트롤 객체
-  * 
-   * @hidden
+  * @param control 컨트롤 객체
+  * @hidden
   */
   GetParamValue(control: Control): Array<any>;
 
@@ -1522,11 +1268,8 @@ export interface Matrix{
    * 스케줄 조회 조건을 조회합니다.
    * 
    *
-  * @param isCondition
-  * 스케줄 예약 실행 여부(true:예약 실행)
-  * 
-   * @hidden
-  * 
+  * @param isCondition 스케줄 예약 실행 여부 (`true`: 예약 실행)
+  * @hidden
   */
   GetScheduleCondition(isCondition: boolean): any;
 
@@ -1534,13 +1277,9 @@ export interface Matrix{
    * 스케줄 실행 layout을 조회합니다.
    * 
    *
-  * @param workbook
-  * 엑셀 내보내기 layout
-  * 
-  * @param isCondition
-  * 스케줄 예약 실행 여부(true:예약 실행)
-  * 
-   * @hidden
+  * @param workbook 엑셀 내보내기 레이아웃
+  * @param isCondition 스케줄 예약 실행 여부 (`true`: 예약 실행)
+  * @hidden
   */
   GetScheduleParam(workbook: any, isCondition: boolean): any;
 
@@ -1588,23 +1327,19 @@ export interface Matrix{
 
   /** 
    * 특정 변수의 값을 반환합니다.
-   * 
    *
-  * @param name
-  * 변수명
+  * @param name 변수 이름
   * 
   */
   GetVariable(name: string): string;
 
   /** 
-   * 변수편집기 통해 등록한 객체의 목록을 반환합니다.
-   * 
-   *
-  */
+   * 변수편집기를 통해 등록한 변수 목록을 반환합니다.
+   */
   GetVariables(): Variable[];
 
   /** 
-   * 한글(HML) 형식으로 다운로드합니다.
+   * 컨트롤 데이터를 한글(HML) 형식으로 내보내기합니다.
    * 
    *
    * @example
@@ -1654,39 +1389,14 @@ export interface Matrix{
    *        
    *     });
    * ```
-  * @param json
-  * json 형식의 보고서 정보
-  * 
-  * @param params
-  * parameters e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
-  * 
-  * @param callBack
-  * CallBack함수
-  * 
-  * ```
-  * 
-  * function(e){
-  * 	if(e.Success == false){
-  * 		alert("export fail" + e.Message);
-  * 		return;
-  * 	}
-  * 
-  * 	// download file
-  * 	var row = e.DataSet.GetTable(0).GetRow(0);
-  * 	var folderName = row.GetValue("FolderName");
-  * 	var fileName = row.GetValue("FileName");
-  * 	var nowText = Matrix.GetDateTime().ToString("yyyy-MM-dd HH:mm:ss");
-  * 	var newFileName = Matrix.GetReportInfo().NAME + "_" + nowText + ".hwp";
-  * 
-  * 	Matrix.DownloadFile(folderName + "/" ,fileName ,newFileName ,true);
-  * 
-  * }
-  * ```
+  * @param json WORKBOOK 구조의 내보내기 설정 객체
+  * @param params 서버 조회 파라미터 배열. 불필요하면 `null`
+  * @param callBack 내보내기 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, DataSet}`)
   */
   HMLExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
-   * 웹(HTML) 형식으로 다운로드합니다.
+   * 컨트롤 데이터를 웹(HTML) 형식으로 내보내기합니다.
    * 
    *
    * @example
@@ -1732,34 +1442,9 @@ export interface Matrix{
    *          
    *     });
    * ```
-  * @param json
-  * json 형식의 보고서 정보
-  * 
-  * @param params
-  * parameters e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
-  * 
-  * @param callBack
-  * CallBack함수
-  * 
-  * ```
-  * 
-  * function(e){
-  * 	if(e.Success == false){
-  * 		alert("export fail" + e.Message);
-  * 		return;
-  * 	}
-  * 
-  * 	// download file
-  * 	var row = e.DataSet.GetTable(0).GetRow(0);
-  * 	var folderName = row.GetValue("FolderName");
-  * 	var fileName = row.GetValue("FileName");
-  * 	var nowText = Matrix.GetDateTime().ToString("yyyy-MM-dd HH:mm:ss");
-  * 	var newFileName = Matrix.GetReportInfo().NAME + "_" + nowText + ".htm";
-  * 
-  * 	Matrix.DownloadFile(folderName + "/" ,fileName ,newFileName ,true);
-  * 
-  * }
-  * ```
+  * @param json WORKBOOK 구조의 내보내기 설정 객체
+  * @param params 서버 조회 파라미터 배열. 불필요하면 `null`
+  * @param callBack 내보내기 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, DataSet}`)
   */
   HTMLExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
@@ -1818,17 +1503,11 @@ export interface Matrix{
   ImportScript(scriptfiles: string|string[], callback: Function): void;
 
   /** 
-   * 사용자에게 정보 대화 상자를 보여줍니다.
-   * 
+   * 사용자에게 정보 대화 상자를 표시합니다.
    *
-  * @param msg
-  * 메시지
-  * 
-  * @param title
-  * 제목
-  * 
-  * @param callback
-  * 메시지 박스가 닫힌 뒤 호출될 함수
+  * @param msg 표시할 메시지
+  * @param title 대화 상자 제목
+  * @param callback 대화 상자가 닫힌 뒤 호출되는 함수
   * 
   */
   Information(msg: string, title?: string, callback?: Function): void;
@@ -1867,10 +1546,8 @@ export interface Matrix{
    * 컨트롤의 데이터소스가 i-META일 경우 자동으로 i-META 조회 조건 컨트롤을 생성합니다.
    * 
    *
-  * @param options
-  * 그룹 사용여부, 조회 조건 컨트롤의 시작위치, 라벨 스타일 등을 지정
-  * 
-   * @hidden
+  * @param options 그룹 사용 여부, 조회 조건 컨트롤의 시작 위치, 라벨 스타일 등
+  * @hidden
   */
   MakeMetaFilterControls(options: any): void;
 
@@ -2028,9 +1705,7 @@ export interface Matrix{
    * 컨트롤을 삭제합니다.
    * 
    *
-  * @param arrNames
-  * 컨트롤 이름
-  * 
+  * @param arrNames 삭제할 컨트롤 이름 배열
   */
   RemoveObject(arrNames: string[]): void;
 
@@ -2071,62 +1746,27 @@ export interface Matrix{
    * 데이터 내보내기 서비스를 호출합니다.(처리 완료 후 OnServiceCallBack 이벤트가 발생합니다.)
    * 
    *
-  * @param json
-  * 데이터 내보내기 JSON 객체
-  * 
-  * @param params
-  * parameters e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
-  * 
-  * @param tag
-  * 구분자(tag)
-  * 
-  * @param type
-  * 내보낼 파일 형식
-  * 
-   * @hidden
+  * @param json 내보내기 설정 JSON 객체
+  * @param params 서버 조회 파라미터 배열. 불필요하면 `null`
+  * @param tag 사용자 지정 구분자
+  * @param type 내보낼 파일 형식
+  * @hidden
   */
   ReportExport(json: object, params: Array<{"Key":string,"Value":string}> | null, tag: any, type: enExportType): void;
 
   /** 
-   * 데이터 내보내기 서비스를 호출합니다.(처리 완료 후 OnServiceCallBack 이벤트가 발생합니다.)
-   * 
+   * 데이터 내보내기 서비스를 호출합니다.
    *
-  * @param json
-  * 데이터 내보내기 JSON 객체
-  * 
-  * @param params
-  * parameters e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
-  * 
-  * @param callBack
-  * CallBack함수
-  * 
-  * ```
-  * 
-  * function(e){
-  * 	if(e.Success == false){
-  * 		alert("export fail" + e.Message);
-  * 		return;
-  * 	}
-  * 
-  * 	// download file
-  * 	var row = e.DataSet.GetTable(0).GetRow(0);
-  * 	var folderName = row.GetValue("FolderName");
-  * 	var fileName = row.GetValue("FileName");
-  * 	var nowText = Matrix.GetDateTime().ToString("yyyy-MM-dd HH:mm:ss");
-  * 	var newFileName = Matrix.GetReportInfo().NAME + "_" + nowText + ".xlsx";
-  * 
-  * 	Matrix.DownloadFile(folderName + "/" ,fileName ,newFileName ,true);
-  * 
-  * }
-  * ```
-  * @param type
-  * 내보낼 파일 형식
+  * @param json 내보내기 설정 JSON 객체
+  * @param params 서버 조회 파라미터 배열. 불필요하면 `null`
+  * @param callBack 내보내기 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, DataSet}`)
+  * @param type 내보낼 파일 형식
   * 
   */
   ReportExport(json: object, params: Array<{"Key":string,"Value":string}> | null, callBack: Function, type: enExportType): void;
 
   /** 
-   * 문서 전체를 리사이즈합니다.
+   * 문서 전체를 크기를 재계산합니다.
    * 
    *
   */
@@ -2136,16 +1776,10 @@ export interface Matrix{
    * 서버 측 js Business 서비스를 호출합니다. (처리 완료 후 OnServiceCallBack 이벤트가 실행됩니다.)
    * 
    *
-  * @param gridNames
-  * 데이터 입력/수정/삭제 정보를 전송할 그리드 이름 (string 타입인 경우 콤마(,)로 분리)
-  * 
-  * @param scriptName
-  * 서버 스트립트 이름(@로 시작하는 경우 서버의 SERVER_SCRIPT 아래 파일 탐색, @보고서코드@스크립트코드 는 특정 보고서의 @로 시작하는 스크립트 탐색)
-  * 
-  * @param tag
-  * 구분자(tag) 또는 CallBack함수
-  * 
-   * @hidden
+  * @param gridNames 데이터 전송 대상 그리드 이름. 콤마 구분 문자열 또는 배열
+  * @param scriptName 서버 스크립트 이름
+  * @param tag 사용자 지정 구분자
+  * @hidden
   */
   RunScript(gridNames: string|string[], scriptName: string, tag: any): void;
 
@@ -2221,28 +1855,11 @@ export interface Matrix{
    * 						
    *                        });
    * ```
-  * @param gridNames
-  * 데이터 입력/수정/삭제 정보를 전송할 그리드 이름 배열 또는 그리드 이름을 , 분리해서 입력
-  * 
-  * @param scriptName
-  * 서버 스트립트 이름(@로 시작하는 경우 서버의 SERVER_SCRIPT 아래 파일 탐색, @보고서코드@스크립트코드 는 특정 보고서의 @로 시작하는 스크립트 탐색)
-  * 
-  * @param params
-  * 서버로 전달할 파라미터 목록 (e.g. {'VS_CODE':'100', 'VS_NAME':'PC'} )
-  * 
-  * @param callBack
-  * CallBack함수
-  * 
-  * ```
-  * 
-  * function(p){
-  *  	if(p.Success == false){
-  * 		Matrix.Alert(p.Message);
-  * 		return;
-  * 	}
-  * 	var  ds = p.DataSet; 
-  * }
-  * ```
+  * @param gridNames 데이터 전송 대상 그리드 이름. 전송할 데이터가 없으면 `""`. 콤마 구분 문자열 또는 배열
+  * @param scriptName 서버 스크립트 이름.
+  * - 현재 보고서: `"doSave"` / 서버 공용: `"@COMMON_UTIL"` / 다른 보고서: `"@보고서코드@스크립트코드"`
+  * @param params 서버로 전달할 파라미터 객체 (예: `{VS_CODE:'100', VS_NAME:'PC'}`)
+  * @param callBack 실행 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, DataSet}`)
   */
   RunScriptEx(gridNames: string|string[], scriptName: string, params: {[key:string]:any}, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
@@ -2253,22 +1870,13 @@ export interface Matrix{
   */
   SaveExcel(): void;
 
-  /** 
+  /**
    * 보고서를 저장합니다.
-   * 
    *
-  * @param reportCode
-  * 보고서 코드
-  * 
-  * @param reportName
-  * 보고서 명
-  * 
-  * @param folderCode
-  * 보고서를 저장할 폴더 코드
-  * 
-  * @param reportDesc
-  * 보고서에 대한 설명
-  * 
+  * @param reportCode 보고서 코드
+  * @param reportName 보고서 이름
+  * @param folderCode 보고서를 저장할 폴더 코드
+  * @param reportDesc 보고서 설명
   */
   SaveReport(reportCode: string, reportName: string, folderCode: string, reportDesc: string): void;
 
@@ -2276,19 +1884,11 @@ export interface Matrix{
    * 서버측 서비스를 호출합니다.(처리 완료 후 OnServiceCallBack 이벤트가 발생합니다.)
    * 
    *
-  * @param gridNames
-  * 데이터 입력/수정/삭제 정보를 전송할 그리드 목록(string 타입인 경우 콤마(,)로 분리
-  * 
-  * @param className
-  * 클래스 이름(ex:com.matrix.Data.BizExecuteDML)
-  * 
-  * @param params
-  * 파라미터 리스트 e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
-  * 
-  * @param tag
-  * 구분자(tag)
-  * 
-   * @hidden
+  * @param gridNames 데이터 전송 대상 그리드 이름. 콤마 구분 문자열 또는 배열
+  * @param className 서버 서비스 클래스 이름
+  * @param params 서버 조회 파라미터 배열
+  * @param tag 사용자 지정 구분자
+  * @hidden
   */
   ServiceCall(gridNames: string|string[], className: string, params: Array<{"Key":string,"Value":string}>, tag: any): void;
 
@@ -2332,119 +1932,80 @@ export interface Matrix{
    * 		 
    * };
    * ```
-  * @param gridNames
-  * 데이터 입력/수정/삭제 정보를 전송할 그리드 목록(string 타입인 경우 콤마(,)로 분리
-  * 
-  * @param className
-  * 클래스 이름(e.g.:com.matrix.Data.BizExecuteDML)
-  * 
-  * @param params
-  * 파라미터 리스트 e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
-  * 
-  * @param callBack
-  * CallBack함수
-  * 
-  * ```
-  * 
-  * function(p){
-  *  	if(p.Success == false){
-  * 		Matrix.Alert(p.Message);
-  * 		return;
-  * 	}
-  * 	var  ds = p.DataSet; 
-  * }
-  * ```
+  * @param gridNames 데이터 전송 대상 그리드 이름. 콤마 구분 문자열 또는 배열
+  * @param className 서버 서비스 클래스 이름 (예: `com.matrix.Data.BizExecuteDML`)
+  * @param params 서버 조회 파라미터 배열 (예: `[{Key:'VS_CODE',Value:'100'}]`)
+  * @param callBack 실행 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, DataSet}`)
   */
   ServiceCall(gridNames: string|string[], className: string, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
-   * 내보내기 및 디자인 속성 ContextMenu 표시 여부를 설정합니다.
-   * 
+   * 내보내기 및 디자인 속성 컨텍스트 메뉴의 표시 여부를 설정합니다.
    *
-  * @param name
-  * Excel, HML, PPT, DOC, CSV, Text, Design
-  * 
-  * @param flag
-  * 표시여부
+  * @param name 메뉴 항목 이름 (`"Excel"`, `"HML"`, `"PPT"`, `"DOC"`, `"CSV"`, `"Text"`, `"Design"`)
+  * @param flag 표시 여부
   * 
   */
   SetContextMenuOption(name: string, flag: boolean): void;
 
   /** 
-   * 전역 쿼리 파라미터 값 객체를 추가합니다.
-   * 
+   * 전역 쿼리 파라미터를 추가합니다. 타입 지정이 필요하면 {@link AddGlobalParams}를 사용하십시오.
    *
-  * @param name
-  * 파라미터 명
-  * 
-  * @param value
-  * 파라미터의 값
-  * 
+  * @param name 파라미터 이름
+  * @param value 파라미터 값
   */
   SetGlobalParams(name: string, value: string): void;
 
   /** 
-   * 스케줄 등록 화면에서 사용할 정보를 셋팅합니다.
+   * 스케줄 등록 화면에서 사용할 정보를 설정합니다.
    * 
    *
-  * @param method
-  * 스케줄 정보 반환 메소드
-  * 
-   * @hidden
+  * @param method 스케줄 정보 반환 메서드
+  * @hidden
   */
   SetScheduleParam(method: Function): void;
 
   /** 
-   * 특정 폼을 활성화 시킵니다.
-   * 
+   * 지정한 폼을 활성화합니다.
    *
-  * @param idx
-  * 활성화 시킬 폼의 이름 또는 인덱스
+  * @param idx 활성화할 폼의 이름 또는 인덱스
   * 
   */
   SetSheetActive(idx: string | number): void;
 
   /** 
-   * 프로그레스 바 표시 여부를 셋팅합니다.
-   * 
+   * 프로그레스 바 표시 여부를 설정합니다.
    *
-  * @param flag
-  * true:표시, false:비표시
+  * @param flag `true`: 표시, `false`: 비표시
   * 
   */
   SetUseProgressBar(flag: boolean): void;
 
   /** 
-   * 특정 변수의 값을 셋팅합니다.
-   * 
+   * 특정 변수의 값을 설정합니다.
    *
-  * @param name
-  * 변수명
-  * 
-  * @param value
-  * 변수값
+  * @param name 변수 이름
+  * @param value 설정할 값
   * 
   */
   SetVariable(name: string, value: string | object): void;
 
-  /** 
-   * 공통 팝업을 생성합니다.
-   * 
+  /**
+   * 공통 팝업을 표시합니다.
    *
-  * @param code
-  * 공통데이터소스 코드
-  * 
-  * @param callBack
-  * CallBack함수
-  * 
-  * ```
-  * 
-  * function(rows){
-  * // Array rows
-  * rows.forEach(function(row){
-  * });
-  * }
-  * ```
+   * 공통 데이터소스에 등록된 팝업을 호출하고, 사용자가 선택한 행 목록을 콜백으로 반환합니다.
+   *
+   * @example
+   * ```ts
+   * Matrix.ShowCommonPopup("DS_DEPT", function(rows) {
+   *     rows.forEach(function(row) {
+   *         let code = row.GetValue("DEPT_CODE");
+   *         let name = row.GetValue("DEPT_NAME");
+   *     });
+   * });
+   * ```
+  * @param code 공통 데이터소스 코드
+  * @param callBack 선택 완료 후 호출되는 콜백 함수. 선택된 행 배열이 전달됨
   */
   ShowCommonPopup(code: string, callBack: (rows: Array<DataRow>) => void): void;
 
@@ -2532,18 +2093,10 @@ export interface Matrix{
    *     Matrix.ReportDialogResult(resultParam, true, "OK");
    * };
    * ```
-  * @param reportCode
-  * 팝업으로 표시할 보고서코드
-  *
-  * @param parameter
-  * 팝업으로 넘길 파라미터 (팝업에서 Matrix.GetDialogRequestParams()로 수신)
-  *
-  * @param options
-  * 팝업 표시 옵션
-  *
-  * @param callBack
-  * 팝업에서 Matrix.ReportDialogResult(param, true)로 전달한 값을 수신하는 callback 함수
-  *
+  * @param reportCode 팝업으로 표시할 보고서 코드
+  * @param parameter 팝업에 전달할 파라미터 (팝업에서 `Matrix.GetDialogRequestParams()`로 수신)
+  * @param options 팝업 표시 옵션 (Width, Height, Center, IsModal, Title 등)
+  * @param callBack 팝업에서 `Matrix.ReportDialogResult(param, true)`로 전달한 값을 수신하는 콜백 함수
   */
   ShowReportDialog(reportCode: string, parameter: any, options: {Width?: number, Height?: number, MinWidth?: number, MinHeight?: number, Left?: number, Top?: number, Center?: boolean, IsModal?: boolean, Title?: string, Maximize?: boolean, Resizable?: boolean, Buttons?: number, Minimizable?: boolean}, callBack: (resultData:any) => void): DialogBox;
 
@@ -2571,45 +2124,19 @@ export interface Matrix{
    * 	POP_DATASET.Close(); 
    * };
    * ```
-  * @param formName
-  * 폼이름
-  * 
-  * @param left
-  * 팝업 창위치(Left)
-  * 
-  * @param top
-  * 팝업 창위치(Top)
-  * 
-  * @param width
-  * 팝업창 넓이
-  * 
-  * @param height
-  * 팝업창 높이
-  * 
-  * @param isModal
-  * 모달 창 여부
-  * 
-  * @param resizable
-  * 사용자가 사이즈를 임의 조정 가능한지 여부
-  * 
-  * @param header
-  * 창 상단 헤더 텍스트
-  * 
-  * @param isAutoClose
-  * 프로그레스바가 올라올때 자동으로 닫힐 지 여부
-  * 
-  * @param backColor
-  * 모달 창일 경우 배경 색상
-  * 
-  * @param buttons
-  * 0:버튼없음,1:닫기,2:확인+취소
-  * 
-  * @param absCoord
-  * 팝업창을 절대좌표 기준 위치에 표시한다.
-  * 
-  * @param maximize
-  * 최대/최소 버튼 사용 여부
-  * 
+  * @param formName 표시할 폼 이름
+  * @param left 팝업 X 좌표
+  * @param top 팝업 Y 좌표
+  * @param width 팝업 너비
+  * @param height 팝업 높이
+  * @param isModal 모달 창 여부
+  * @param resizable 사용자 크기 조정 허용 여부
+  * @param header 팝업 상단 헤더 텍스트
+  * @param isAutoClose 프로그레스 바 표시 시 자동 닫힘 여부
+  * @param backColor 모달 배경 색상
+  * @param buttons 버튼 유형 (0: 없음, 1: 닫기, 2: 확인+취소)
+  * @param absCoord 절대 좌표 기준 위치 표시 여부
+  * @param maximize 최대화/최소화 버튼 표시 여부
   */
   ShowWindow(formName: string, left: number, top: number, width: number, height: number, isModal: boolean, resizable: boolean, header: string, isAutoClose: boolean, backColor: string, buttons: number, absCoord?: boolean, maximize?: boolean): FormDialog;
 
@@ -2624,13 +2151,10 @@ export interface Matrix{
   */
   StyleVerticalText(labelControl: Label): void;
 
-  /** 
-   * 보고서 마법사를 사용하여 선택한 i-META를 특정 컨트롤에 바인딩 합니다.
-   * 
+  /**
+   * 보고서 마법사를 사용하여 선택한 i-META를 특정 컨트롤에 바인딩합니다.
    *
-  * @param name
-  * 컨트롤 명
-  * 
+  * @param name 컨트롤 이름
   */
   TemplateLoadedSetting(name: string): void;
 
@@ -2655,257 +2179,122 @@ export interface Matrix{
   */
   Update(): void;
 
-  /** 
-   * 박스 스타일 목록을 Update 합니다.
-   * 
+  /**
+   * 박스 스타일 목록을 서버에 업로드합니다.
    *
-  * @param list
-  * Update할 박스 스타일 목록
-  * 
-  * @param callback
-  * 콜백 함수
-  * 
+  * @param list 업로드할 박스 스타일 목록
+  * @param callback 업로드 완료 후 호출되는 콜백 함수
   */
   UploadBoxStyleList(list: BoxStyleList, callback: Function): BoxStyleList;
 
-  /** 
-   * 사용자의 로컬의 파일을 서버로 업로드 합니다.
-   * 
+  /**
+   * 사용자의 로컬 파일을 서버로 업로드합니다.
    *
-  * @param folderName
-  * 업로드 파일 저장 경로 
-  * 
-  * ※ 폴더 경로는 반드시 `_TEMP_` 경로에 지정해야 합니다. (권장 경로: `_TEMP_`) 
-  * 
-  * ※ 단, 영구 저장이 필요한 파일에 한하여 `UPLOAD` 경로를 사용하시기 바랍니다.
-  * 
-  * @param filter
-  * 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
-  * 
-  * @param tag
-  * 사용자 태그
-  * 
+  * @param folderName 업로드 파일 저장 경로 (권장: `_TEMP_`, 영구 저장: `UPLOAD`)
+  * @param filter 파일 필터 (예: `".jpg,.png"`, `"*.*"`)
+  * @param tag 사용자 태그
    * @hidden
   */
   UploadLocalFile(folderName: string, filter: string, tag: any): void;
 
-  /** 
-   * 사용자의 로컬의 파일을 서버로 업로드 합니다.
-   * 
+  /**
+   * 사용자의 로컬 파일을 서버로 업로드합니다.
    *
-  * @param folderName
-  * 업로드 파일 저장 경로 
-  * 
-  * ※ 폴더 경로는 반드시 `_TEMP_` 경로에 지정해야 합니다. (권장 경로: `_TEMP_`) 
-  * 
-  * ※ 단, 영구 저장이 필요한 파일에 한하여 `UPLOAD` 경로를 사용하시기 바랍니다.
-  * 
-  * @param saveName
-  * 저장할 파일 명 (한글 및 특수문자 금지)
-  * 
-  * @param filter
-  * 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
-  * 
-  * @param callBack
-  * CallBack 함수
-  * 
-  * ```
-  * 
-  * function(p){
-  *  	if(p.Success == false){
-  * 		Matrix.Alert(p.Message);
-  * 		return;
-  * 	}
-  * 	p.FolderName;
-  * 	p.SaveFileName;
-  * 	p.FileName;
-  * 	p.FileSize;
-  * 	p.FileExtention;
-  * }
-  * ```
+  * @param folderName 업로드 파일 저장 경로 (권장: `_TEMP_`, 영구 저장: `UPLOAD`)
+  * @param saveName 저장할 파일 이름 (한글 및 특수문자 금지)
+  * @param filter 파일 필터 (예: `".jpg,.png"`, `"*.*"`)
+  * @param callBack 업로드 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, FolderName, SaveFileName, FileName, FileSize, FileExtention}`)
   */
   UploadLocalFile(folderName: string, saveName: string, filter: string, callBack: (p: {"Success":boolean, "Message":string, "FolderName":string, "SaveFileName" : string, "FileName" : string, "FileSize":number, "FileExtention":string, "Tag":any}) => void): void;
 
-  /** 
-   * 사용자의 로컬의 파일을 서버로 업로드 합니다.
-   * 
+  /**
+   * 사용자의 로컬 파일을 서버로 업로드합니다.
    *
-  * @param folderName
-  * 업로드 파일 저장 경로 
-  * 
-  * ※ 폴더 경로는 반드시 `_TEMP_` 경로에 지정해야 합니다. (권장 경로: `_TEMP_`) 
-  * 
-  * ※ 단, 영구 저장이 필요한 파일에 한하여 `UPLOAD` 경로를 사용하시기 바랍니다.
-  * 
-  * @param saveName
-  * 저장할 파일 명 (한글 및 특수문자 금지)
-  * 
-  * @param filter
-  * 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
-  * 
-  * @param limitsize
-  * 업로드 제한 사이즈(bytes)
-  * 
-  * @param callBack
-  * CallBack 함수
-  * 
-  * ```
-  * 
-  * function(p){
-  *  	if(p.Success == false){
-  * 		Matrix.Alert(p.Message);
-  * 		return;
-  * 	}
-  * 	p.FolderName;
-  * 	p.SaveFileName;
-  * 	p.FileName;
-  * 	p.FileSize;
-  * 	p.FileExtention;
-  * }
-  * ```
+  * @param folderName 업로드 파일 저장 경로 (권장: `_TEMP_`, 영구 저장: `UPLOAD`)
+  * @param saveName 저장할 파일 이름 (한글 및 특수문자 금지)
+  * @param filter 파일 필터 (예: `".jpg,.png"`, `"*.*"`)
+  * @param limitsize 업로드 제한 크기 (bytes)
+  * @param callBack 업로드 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, FolderName, SaveFileName, FileName, FileSize, FileExtention}`)
   */
   UploadLocalFile(folderName: string, saveName: string, filter: string, limitsize: number, callBack: (p: {"Success":boolean, "Message":string, "FolderName":string, "SaveFileName" : string, "FileName" : string, "FileSize":number, "FileExtention":string, "Tag":any}) => void): void;
 
-  /** 
-   * 사용자의 로컬의 파일을 서버로 업로드 합니다.
-   * 
+  /**
+   * 사용자의 로컬 파일을 서버로 업로드합니다.
    *
-  * @param folderName
-  * 업로드 파일 저장 경로 
-  * 
-  * ※ 폴더 경로는 반드시 `_TEMP_` 경로에 지정해야 합니다. (권장 경로: `_TEMP_`) 
-  * 
-  * ※ 단, 영구 저장이 필요한 파일에 한하여 `UPLOAD` 경로를 사용하시기 바랍니다.
-  * 
-  * @param saveName
-  * 저장할 파일 명 (한글 및 특수문자 금지)
-  * 
-  * @param filter
-  * 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
-  * 
-  * @param limitsize
-  * 업로드 제한 사이즈(bytes)
-  * 
-  * @param tag
-  * 사용자 태그
-  * 
+  * @param folderName 업로드 파일 저장 경로 (권장: `_TEMP_`, 영구 저장: `UPLOAD`)
+  * @param saveName 저장할 파일 이름 (한글 및 특수문자 금지)
+  * @param filter 파일 필터 (예: `".jpg,.png"`, `"*.*"`)
+  * @param limitsize 업로드 제한 크기 (bytes)
+  * @param tag 사용자 태그
    * @hidden
   */
   UploadLocalFile(folderName: string, saveName: string, filter: string, limitsize: number, tag: any): void;
 
-  /** 
-   * 사용자의 로컬의 파일을 서버로 업로드 합니다.
-   * 
+  /**
+   * 사용자의 로컬 파일을 서버로 업로드합니다.
    *
-  * @param folderName
-  * 업로드 파일 저장 경로 
-  * 
-  * ※ 폴더 경로는 반드시 `_TEMP_` 경로에 지정해야 합니다. (권장 경로: `_TEMP_`) 
-  * 
-  * ※ 단, 영구 저장이 필요한 파일에 한하여 `UPLOAD` 경로를 사용하시기 바랍니다.
-  * 
-  * @param saveName
-  * 저장할 파일 명 (한글 및 특수문자 금지)
-  * 
-  * @param filter
-  * 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
-  * 
-  * @param tag
-  * 사용자 태그
-  * 
+  * @param folderName 업로드 파일 저장 경로 (권장: `_TEMP_`, 영구 저장: `UPLOAD`)
+  * @param saveName 저장할 파일 이름 (한글 및 특수문자 금지)
+  * @param filter 파일 필터 (예: `".jpg,.png"`, `"*.*"`)
+  * @param tag 사용자 태그
    * @hidden
   */
   UploadLocalFile(folderName: string, saveName: string, filter: string, tag: any): void;
 
-  /** 
-   * 사용자의 로컬의 파일을 서버로 업로드 합니다.
-   * 
+  /**
+   * 사용자의 로컬 파일을 서버로 업로드합니다.
    *
-  * @param folderName
-  * 업로드 파일 저장 경로 
-  * 
-  * ※ 폴더 경로는 반드시 `_TEMP_` 경로에 지정해야 합니다. (권장 경로: `_TEMP_`) 
-  * 
-  * ※ 단, 영구 저장이 필요한 파일에 한하여 `UPLOAD` 경로를 사용하시기 바랍니다.
-  * 
-  * @param filter
-  * 파일 필터(Image files(*.jpg,*.png) : '.jpg,.png' 또는 All files(*.*) : '*.*')
-  * 
-  * @param callBack
-  * CallBack 함수
-  * 
-  * ```
-  * 
-  * function(p){
-  *  	if(p.Success == false){
-  * 		Matrix.Alert(p.Message);
-  * 		return;
-  * 	}
-  * 	p.FolderName;
-  * 	p.SaveFileName;
-  * 	p.FileName;
-  * 	p.FileSize;
-  * 	p.FileExtention;
-  * }
-  * ```
+   * @example
+   * ```ts
+   * Matrix.UploadLocalFile("_TEMP_", ".xlsx,.csv", function(p) {
+   *     if (p.Success == false) {
+   *         Matrix.Alert(p.Message);
+   *         return;
+   *     }
+   *     // p.FolderName  - 저장 폴더 경로
+   *     // p.SaveFileName - 서버에 저장된 파일 이름
+   *     // p.FileName     - 원본 파일 이름
+   *     // p.FileSize     - 파일 크기 (bytes)
+   *     // p.FileExtention - 파일 확장자
+   * });
+   * ```
+  * @param folderName 업로드 파일 저장 경로 (권장: `_TEMP_`, 영구 저장: `UPLOAD`)
+  * @param filter 파일 필터 (예: `".jpg,.png"`, `"*.*"`)
+  * @param callBack 업로드 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, FolderName, SaveFileName, FileName, FileSize, FileExtention}`)
   */
   UploadLocalFile(folderName: string, filter: string, callBack: (p: {"Success":boolean, "Message":string, "FolderName":string, "SaveFileName" : string, "FileName" : string, "FileSize":number, "FileExtention":string, "Tag":any}) => void): void;
 
-  /** 
+  /**
    * i-META를 데이터소스로 사용하는 컨트롤의 필수 입력 유효성 검사를 수행하고, 값이 없는 항목의 이름을 반환합니다.
-   * 
    *
-  * @param controlName
-  * 컨트롤 명
-  * 
+  * @param controlName 컨트롤 이름
   */
   ValidateMetaFilterValues(controlName: string): string;
 
   /** 
-   * 사용자에게 위험 대화 상자를 보여줍니다
-   * 
+   * 사용자에게 경고 대화 상자를 표시합니다.
    *
-  * @param msg
-  * 메시지
-  * 
-  * @param title
-  * 제목
+  * @param msg 경고 메시지
+  * @param title 대화 상자 제목
   * 
   */
   Warning(msg: string, title: string): void;
 
   /** 
-   * 사용자에게 버튼이 있는 위험 대화 상자를 보여줍니다
-   * 
+   * 사용자에게 확인 버튼이 있는 경고 대화 상자를 표시합니다.
    *
-  * @param msg
-  * 메시지
-  * 
-  * @param title
-  * 제목
-  * 
-  * @param callback
-  * 확인 버튼 클릭 후 callback 실행 Func.
-  * 
-  * ```
-  * 
-  *               function(ok){
-  *                  if(ok){ // click ok or yes
-  *                    // do something ...
-  *                   
-  *                 }
-  *               }
-  * ```
-  * @param buttonType
-  * 버튼 유형(0:예/아니오, 1:확인/취소), 값이 없거나 전달하지 않을 경우 기본 유형으로 설정.
+  * @param msg 경고 메시지
+  * @param title 대화 상자 제목
+  * @param callback 확인/취소 버튼 클릭 후 호출되는 콜백 함수. `ok`가 `true`이면 확인/예 클릭
+  * @param buttonType 버튼 유형 (0: 예/아니오, 1: 확인/취소). 생략 시 기본값 적용
   * 
   */
   WarningConfirm(msg: string, title: string, callback: (ok: boolean) => void, buttonType: number): void;
 
   /** 
-   * 사용자에게 버튼이 있는 위험 대화 상자를 보여줍니다.
-   * 
-   * close 동작 시에 callback 으로 null 을 전달합니다.
+   * 사용자에게 확인 버튼이 있는 경고 대화 상자를 표시합니다.
+   *
+   * 닫기(X) 또는 Esc 동작 시 콜백에 `null`이 전달됩니다.
    * 
    *
    * @example
@@ -2922,40 +2311,15 @@ export interface Matrix{
    * 	TextBox.Text = text;
    * }, 0);
    * ```
-  * @param msg
-  * 메시지
-  * 
-  * @param title
-  * 제목
-  * 
-  * @param callback
-  * 확인(예)/취소(아니오)/닫기(Esc) 후 callback 실행 Function
-  * 
-  * ```
-  * function (ok) {
-  * 	if (ok === true) {
-  * 		// '예' 또는 '확인' 버튼이 클릭된 경우의 동작
-  * 	} else if (ok === false) {
-  * 		// '아니오' 또는 '취소' 버튼이 클릭된 경우의 동작
-  * 	} else if (ok === null) {
-  * 		// 창이 '닫기' 버튼 또는 'Esc' 키로 닫힌 경우의 동작
-  * 	}
-  * }
-  * ```
-  * @param buttonType
-  * 버튼 유형
-  * 
-  * 0: 예/아니오(기본값)
-  * 
-  * 1: 확인/취소
-  * 
-  * 값이 없거나 전달하지 않을 경우 기본값으로 설정
-  * 
+  * @param msg 경고 메시지
+  * @param title 대화 상자 제목
+  * @param callback 확인/취소/닫기 후 호출되는 콜백 함수. `true`: 확인(예), `false`: 취소(아니오), `null`: 닫기(Esc)
+  * @param buttonType 버튼 유형 (0: 예/아니오, 1: 확인/취소). 생략 시 기본값 0
   */
   WarningConfirmWithClose(msg: string, title: string, callback: Function, buttonType?: number): void;
 
   /** 
-   * Word 형식으로 다운로드합니다.
+   * 컨트롤 데이터를 Word 형식으로 내보내기합니다.
    * 
    *
    * @example
@@ -3005,118 +2369,59 @@ export interface Matrix{
    *         Matrix.DownloadFile(folderName, fileName, EXPORT_NAME, true);
    *     });
    * ```
-  * @param json
-  * json 형식의 보고서 정보
-  * 
-  * @param params
-  * parameters e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
-  * 
-  * @param callBack
-  * CallBack함수
-  * 
-  * ```
-  * 
-  * function(e){
-  * 	if(e.Success == false){
-  * 		alert("export fail" + e.Message);
-  * 		return;
-  * 	}
-  * 
-  * 	// download file
-  * 	var row = e.DataSet.GetTable(0).GetRow(0);
-  * 	var folderName = row.GetValue("FolderName");
-  * 	var fileName = row.GetValue("FileName");
-  * 	var nowText = Matrix.GetDateTime().ToString("yyyy-MM-dd HH:mm:ss");
-  * 	var newFileName = Matrix.GetReportInfo().NAME + "_" + nowText + ".docx";
-  * 
-  * 	Matrix.DownloadFile(folderName + "/" ,fileName ,newFileName ,true);
-  * 
-  * }
-  * ```
+  * @param json WORKBOOK 구조의 내보내기 설정 객체
+  * @param params 서버 조회 파라미터 배열. 불필요하면 `null`
+  * @param callBack 내보내기 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, DataSet}`)
   */
   WordExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
-   * Excel 2003 형식으로 다운로드합니다.
-   * 
+   * 컨트롤 데이터를 Excel 2003(XLS) 형식으로 내보내기합니다.
    *
-  * @param json
-  * json 형식의 보고서 정보
-  * 
-  * @param params
-  * parameters e.g.:[{'Key':'VS_CODE','Value':'100'},{'Key':'VS_NAME', 'Value':'JAMES'}]
-  * 
-  * @param callBack
-  * CallBack함수
-  * 
-  * ```
-  * 
-  * function(e){
-  * 	if(e.Success == false){
-  * 		alert("export fail" + e.Message);
-  * 		return;
-  * 	}
-  * 
-  * 	// download file
-  * 	var row = e.DataSet.GetTable(0).GetRow(0);
-  * 	var folderName = row.GetValue("FolderName");
-  * 	var fileName = row.GetValue("FileName");
-  * 	var nowText = Matrix.GetDateTime().ToString("yyyy-MM-dd HH:mm:ss");
-  * 	var newFileName = Matrix.GetReportInfo().NAME + "_" + nowText + ".xls";
-  * 
-  * 	Matrix.DownloadFile(folderName + "/" ,fileName ,newFileName ,true);
-  * 
-  * }
-  * ```
+  * @param json WORKBOOK 구조의 내보내기 설정 객체
+  * @param params 서버 조회 파라미터 배열. 불필요하면 `null`
+  * @param callBack 내보내기 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, DataSet}`)
   */
   XLSExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
-   * 특정 컨트롤들의 데이터를 Refresh 합니다.
-   * 
+   * 지정한 컨트롤의 데이터를 다시 조회합니다.
    *
    * @example
    * ```js
-   *  //1. 여러개의 컨트롤 이름을 "," 분리자로 연결
-   *  Matrix.doRefresh("Grid1,Grid2");
-   *  
-   *  //2. 여러개의 컨트롤 이름을 []로 전달 
-   *  Matrix.doRefresh(["Grid1","Grid2"]);
-   *  
-   *  //3. DoRefresh가  true인 전체 컨트롤 실행
-   *  Matrix.doRefresh("");
-   *  Matrix.doRefresh();
-   *  Matrix.doRefresh("*.*");
-   *  
-   *  //4. 특정 폼하위 DoRefresh가 true인 전체 컨트롤 실행 
-   *  Matrix.doRefresh("Form1.*");
+   * // 1. 콤마 구분 문자열
+   * Matrix.doRefresh("Grid1,Grid2");
+   *
+   * // 2. 배열
+   * Matrix.doRefresh(["Grid1","Grid2"]);
+   *
+   * // 3. DoRefresh가 true인 전체 컨트롤 실행
+   * Matrix.doRefresh("");
+   * Matrix.doRefresh("*.*");
+   *
+   * // 4. 특정 폼의 전체 컨트롤 실행
+   * Matrix.doRefresh("Form1.*");
    * ```
-  * @param names
-  * 컨트롤 이름(string타입으로 입력하는 경우 컴마(,)를 분리자로 여러개 입력)
+  * @param names 대상 컨트롤 이름. 콤마 구분 문자열 또는 배열
   * 
   */
   doRefresh(names: string|string[]): void;
 
   /** 
-   * 전체 컨트롤 목록을 반환합니다.
-   * 
-   *
-  */
+   * 현재 보고서의 전체 컨트롤 목록을 반환합니다.
+   */
   getAllObjects(): Control[];
 
   /** 
-   * 해당 이름을 가진 박스스타일을 반환합니다
-   * 
+   * 지정한 이름의 BoxStyle 객체를 반환합니다.
    *
-  * @param name
-  * 박스스타일 이름
+  * @param name BoxStyle 이름
   * 
   */
   getBoxStyle(name: string): BoxStyle;
 
   /** 
-   * 컨트롤이 가지는 데이터소스 객체를 반환합니다.
-   * 
+   * 컨트롤에 바인딩된 데이터소스 객체를 반환합니다.
    *
    * @example
    * ```js
@@ -3132,210 +2437,134 @@ export interface Matrix{
    * 	//ds.ConnectionCode <= 데이터 베이스 연결 정보	
    *  }
    * ```
-  * @param controlName
-  * 컨트롤 이름
-  * 
+  * @param controlName 컨트롤 이름
   */
   getControlDataSource(controlName: string): DataSource;
 
   /** 
-   * 특정 데이터소스 객체를 반환합니다.
-   * 
+   * 지정한 이름의 데이터소스 객체를 반환합니다.
    *
-  * @param datasourceName
-  * 데이터 소스명
+  * @param datasourceName 데이터소스 이름
   * 
   */
   getDataSource(datasourceName: string): DataSource;
 
-  /** 
-   * 날짜 처리 객체를 반환합니다.
-   * 
+  /**
+   * 지정한 날짜와 시간으로 날짜 처리 객체를 반환합니다.
    *
-  * @param year
-  * 년
-  * 
-  * @param month
-  * 월
-  * 
-  * @param day
-  * 일
-  * 
-  * @param hour
-  * 시간
-  * 
-  * @param minutes
-  * 분
-  * 
-  * @param second
-  * 초
-  * 
+  * @param year 년
+  * @param month 월
+  * @param day 일
+  * @param hour 시
+  * @param minutes 분
+  * @param second 초
   */
   getDate(year: number, month: number, day: number, hour: number, minutes: number, second: number): ScriptDateUtil;
 
-  /** 
-   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
-   * 
-   *
-  */
+  /**
+   * 현재 날짜의 날짜 처리 객체를 반환합니다. (시간: 00:00:00)
+   */
   getDate(): ScriptDateUtil;
 
-  /** 
-   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
-   * 
+  /**
+   * 날짜 문자열을 파싱하여 날짜 처리 객체를 반환합니다. (시간: 00:00:00)
    *
-  * @param dateText
-  * 날짜 문자열(eg. 2020-01-01 08:50:10 )
-  * 
-  * @param format
-  * 포멧 (eg.yyyy-MM-dd HH:mm:ss)
-  * 
+  * @param dateText 날짜 문자열 (예: `"2020-01-01 08:50:10"`)
+  * @param format 날짜 형식 (예: `"yyyy-MM-dd HH:mm:ss"`)
   */
   getDate(dateText: string, format: string): ScriptDateUtil;
 
-  /** 
-   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
-   * 
+  /**
+   * 지정한 날짜로 날짜 처리 객체를 반환합니다. (시간: 00:00:00)
    *
-  * @param year
-  * 년
-  * 
-  * @param month
-  * 월
-  * 
-  * @param day
-  * 일
-  * 
+  * @param year 년
+  * @param month 월
+  * @param day 일
   */
   getDate(year: number, month: number, day: number): ScriptDateUtil;
 
-  /** 
-   * 날짜 처리 객체를 반환합니다.
-   * 
+  /**
+   * 지정한 날짜와 시간으로 날짜 처리 객체를 반환합니다.
    *
-  * @param year
-  * 년
-  * 
-  * @param month
-  * 월
-  * 
-  * @param day
-  * 일
-  * 
-  * @param hour
-  * 시간
-  * 
-  * @param minutes
-  * 분
-  * 
-  * @param second
-  * 초
-  * 
+  * @param year 년
+  * @param month 월
+  * @param day 일
+  * @param hour 시
+  * @param minutes 분
+  * @param second 초
   */
   getDateTime(year: number, month: number, day: number, hour: number, minutes: number, second: number): ScriptDateUtil;
 
-  /** 
-   * 날짜 처리 객체를 반환합니다.
-   * 
-   *
-  */
+  /**
+   * 현재 날짜/시간의 날짜 처리 객체를 반환합니다.
+   */
   getDateTime(): ScriptDateUtil;
 
-  /** 
-   * 현재 시간을 특정 포맷으로 출력 합니다.
-   * 
+  /**
+   * 현재 날짜/시간을 지정한 형식의 문자열로 반환합니다.
    *
-  * @param format
-  * 출력 포멧(eg.yyyy-MM-dd HH:mm:ss)
-  * 
+  * @param format 출력 형식 (예: `"yyyy-MM-dd HH:mm:ss"`)
   */
   getDateTime(format: string): string;
 
-  /** 
-   * 날짜 처리 객체를 반환합니다.(based time 00:00:00)
-   * 
+  /**
+   * 지정한 날짜로 날짜 처리 객체를 반환합니다. (시간: 00:00:00)
    *
-  * @param year
-  * 년
-  * 
-  * @param month
-  * 월
-  * 
-  * @param day
-  * 일
-  * 
+  * @param year 년
+  * @param month 월
+  * @param day 일
   */
   getDateTime(year: number, month: number, day: number): ScriptDateUtil;
 
-  /** 
-   * 서식 Converter를 불러옵니다.
-   * 
+  /**
+   * 서식 변환 객체를 반환합니다.
    *
-  * @param format
-  * 서식 포맷(ex. {0:N0})
-  * 
+  * @param format 서식 형식 (예: `"{0:N0}"`)
   */
   getFormatConverter(format: string): FormatConverter;
 
-  /** 
+  /**
    * 다국어 문자열의 값을 반환합니다.
-   * 
    *
-  * @param name
-  * 문자열 키
-  * 
-  * @param defaultValue
-  * 기본 값
-  * 
+  * @param name 문자열 키
+  * @param defaultValue 해당 키가 없을 경우 반환할 기본값
   */
   getLanguage(name: string, defaultValue: string): string;
 
   /** 
-   * 해당 이름을 가진 컨트롤을 반환합니다.
-   * 
+   * 지정한 이름의 컨트롤 객체를 반환합니다.
    *
-  * @param name
-  * 컨트롤 이름
+  * @param name 컨트롤 이름
   * 
   */
   getObject(name: string): Control;
 
   /** 
-   * 보고서 내 파라미터 리스트를 생성하여 객체를 반환합니다.(이름을 전달 시 해당 파라미터의 값을 반환합니다.)
-   * 
+   * 보고서 내 파라미터 목록을 반환합니다. 이름을 전달하면 해당 파라미터의 값을 반환합니다.
    *
-  * @param name
-  * 파라미터 이름(optional)
+  * @param name 파라미터 이름 (생략 가능)
   * 
   */
   getParamList(name: string): {[key: string]: any};
 
   /** 
-   * 컨트롤의 특정 속성을 반환합니다.
-   * 
+   * 컨트롤의 특정 속성 값을 반환합니다.
    *
-  * @param controlName
-  * 컨트롤 명
-  * 
-  * @param propertieName
-  * 속성 명
+  * @param controlName 컨트롤 이름
+  * @param propertieName 속성 이름
   * 
   */
   getProperty(controlName: string, propertieName: string): any;
 
   /** 
-   * 문자열 처리 객체를 반환합니다.
-   * 
-   *
-  */
+   * 문자열 처리 유틸리티 객체를 반환합니다.
+   */
   getScriptUtil(): StringUtility;
 
   /** 
-   * 유일 키를 생성합니다.
-   * 
+   * 고유 키를 생성하여 반환합니다.
    *
-  * @param prefix
-  * prefix
+  * @param prefix 키 접두사
   * 
   */
   getUniqueKey(prefix: string): string;
@@ -3349,41 +2578,29 @@ export interface Matrix{
   getViewer(): any;
 
   /** 
-   * 뷰어 모드를 반환합니다.
-   * 
-   *
-  */
+   * 현재 뷰어 모드를 반환합니다.
+   */
   getViewerMode(): enViewerMode;
 
   /** 
-   * LoadDocument의 매개변수로 보낸 params가 있을 경우 그 params를 반환합니다.
-   * 
-   *
-  */
+   * {@link LoadDocument}로 전달된 파라미터를 반환합니다. 전달된 파라미터가 없으면 `undefined`를 반환합니다.
+   */
   getViewerParams(): object | undefined;
 
   /** 
-   * 간편 메세지를 표시합니다.
-   * 
+   * 화면 하단에 간편 메시지(토스트)를 표시합니다.
    *
-  * @param message
-  * 간편 메세지에 표시할 Text.
+  * @param message 표시할 메시지
   * 
   */
   iMessage(message: string): void;
 
   /** 
    * 컨트롤의 특정 속성을 설정합니다.
-   * 
    *
-  * @param controlName
-  * 컨트롤 명
-  * 
-  * @param propName
-  * 속성 명
-  * 
-  * @param value
-  * 속성 값
+  * @param controlName 컨트롤 이름
+  * @param propName 속성 이름
+  * @param value 설정할 값
   * 
   */
   setProperty(controlName: string, propName: string, value: any): boolean;
@@ -3469,7 +2686,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 버튼 컨트롤이 클릭되는 시점에 발생합니다.
+   * 버튼 컨트롤이 클릭될 때 발생합니다.
    * 
    *
    * @param args
@@ -3484,7 +2701,7 @@ export interface Matrix{
     */
     Id: string
     /**
-     * 라벨 값
+     * 표시 텍스트
      * 
     */
     Text: string
@@ -3804,7 +3021,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 년 FromTo 선택 컨트롤의 값이 변결될 때 발생합니다.
+   * 년 FromTo 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
    * @param args
@@ -3845,7 +3062,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 년 From 선택 컨트롤의 값이 변결될 때 발생합니다.
+   * 년 From 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
    * @param args
@@ -3876,7 +3093,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 년 선택 컨트롤의 값이 변결될 때 발생합니다.
+   * 년 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
    * @param args
@@ -3907,7 +3124,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 그리드의 셀을 클릭할 떄 발생합니다.
+   * 그리드의 셀을 클릭할 때 발생합니다.
    * 
    *
    * @param args
@@ -3948,7 +3165,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 그리드의 셀을 더블 클릭할 떄 발생합니다.
+   * 그리드의 셀을 더블 클릭할 때 발생합니다.
    * 
    *
    * @param args
@@ -3984,7 +3201,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 그리드의 셀을 더블 터치할 떄 발생합니다.
+   * 그리드의 셀을 더블 터치할 때 발생합니다.
    * 
    *
    * @param args
@@ -4086,7 +3303,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 그리드의 셀을 터치할 떄 발생합니다.
+   * 그리드의 셀을 터치할 때 발생합니다.
    * 
    *
    * @param args
@@ -4173,7 +3390,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * Tree의 체크박스를 클릭하는 순간 발생합니다.
+   * Tree의 체크박스를 클릭할 때 발생합니다.
    * 
    *
    * @param args
@@ -4214,7 +3431,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 체크박스 컨트롤의 값이 변경될 경우 발생합니다.
+   * 체크박스 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
    * @param args
@@ -4250,7 +3467,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 컬러픽커 컨트롤의 색상이 변경될 경우 발생합니다.
+   * 컬러픽커 컨트롤의 색상이 변경될 때 발생합니다.
    * 
    *
    * @param args
@@ -4355,7 +3572,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 테이블레이아웃 내부의 수직선위에 마우스가 올라갈 경우 발생합니다.
+   * 테이블레이아웃 내부의 수직선위에 마우스가 올라갈 때 발생합니다.
    * 
    *
    * @param args
@@ -4433,7 +3650,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 데이터 그리드의 레코드가 추가되는 시점에 발생합니다.
+   * 데이터 그리드의 레코드가 추가될 때 발생합니다.
    * 
    *
    * @param args
@@ -4510,7 +3727,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 데이터 그리드의 행이 변경될 때 발생합니다/
+   * 데이터 그리드의 행이 변경될 때 발생합니다.
    * 
    *
    * @param args
@@ -4551,7 +3768,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * Chart-EX의 데이터가 바인딩 되는 시점해 발생합니다.
+   * Chart-EX의 데이터가 바인딩 될 때 발생합니다.
    * 
    *
    * @param args
@@ -4671,7 +3888,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 항목을 drop 시 발생하는 이벤트
+   * 항목을 드롭할 때 발생합니다.
    * 
    *
    * @param args
@@ -4804,7 +4021,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 데이터소스 실행 작업 (Execute, ExecuteDML)이 종료된 시점에 발생합니다.
+   * 데이터소스 실행 작업 (Execute, ExecuteDML)이 종료된 후 발생합니다.
    * 
    *
    * @param args
@@ -4845,7 +4062,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * Refresh가 실행되는 시점에 발생합니다.
+   * Refresh가 실행될 때 발생합니다.
    * 
    *
    * @param args
@@ -4881,7 +4098,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 파일 업로드 버튼 컨트롤이 클릭되는 시점에 발생합니다.
+   * 파일 업로드 버튼 컨트롤이 클릭될 때 발생합니다.
    * 
    *
    * @param args
@@ -4896,7 +4113,7 @@ export interface Matrix{
     */
     Id: string
     /**
-     * 라벨 값
+     * 표시 텍스트
      * 
     */
     Text: string
@@ -4973,7 +4190,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 조회 조건이 변경되는 경우 발생하는 이벤트
+   * 조회 조건이 변경될 때 발생합니다.
    * 
    *
    * @param args
@@ -5009,7 +4226,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 그리드의 체크박스를 클릭하는 순간 발생합니다.
+   * 그리드의 체크박스를 클릭할 때 발생합니다.
    * 
    *
    * @param args
@@ -5071,7 +4288,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 그리드의 컬럼 헤더를 클릭하는 순간 발생합니다.
+   * 그리드의 컬럼 헤더를 클릭할 때 발생합니다.
    * 
    *
    * @param args
@@ -5102,7 +4319,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 그리드의 컬럼 헤더를 더블 클릭하는 순간 발생합니다.
+   * 그리드의 컬럼 헤더를 더블 클릭할 때 발생합니다.
    * 
    *
    * @param args
@@ -5286,7 +4503,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 데이터 그리드의 필터가 변경된 시점에 발생합니다.
+   * 데이터 그리드의 필터가 변경된 후 발생합니다.
    * 
    *
    * @param args
@@ -5343,7 +4560,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 그리드의 멀티 헤더 체크박스를 클릭하는 순간 발생합니다.
+   * 그리드의 멀티 헤더 체크박스를 클릭할 때 발생합니다.
    * 
    *
    * @param args
@@ -5379,7 +4596,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 그리드의 멀티헤더 셀을 클릭하는 순간 발생합니다.
+   * 그리드의 멀티헤더 셀을 클릭할 때 발생합니다.
    * 
    *
    * @param args
@@ -5410,7 +4627,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 그리드의 멀티헤더 셀을 더블클릭하는 순간 발생합니다.
+   * 그리드의 멀티헤더 셀을 더블클릭할 때 발생합니다.
    * 
    *
    * @param args
@@ -5441,7 +4658,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 그리드 및 피벗그리드의 데이터소스 파라미터가 변경되었을 경우 발생합니다.
+   * 그리드 및 피벗그리드의 데이터소스 파라미터가 변경되었을 때 발생합니다.
    * 
    *
    * @param args
@@ -5493,7 +4710,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 이미지 컨트롤이 클릭되는 시점에 발생합니다.
+   * 이미지 컨트롤이 클릭될 때 발생합니다.
    * 
    *
    * @param args
@@ -5508,7 +4725,7 @@ export interface Matrix{
     */
     Id: string
     /**
-     * 라벨 값
+     * 표시 텍스트
      * 
     */
     Text: string
@@ -5561,7 +4778,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 문서가 로드되고 AutoRefresh가 완료되는 시점에 발생합니다.
+   * 문서가 로드되고 AutoRefresh가 완료될 때 발생합니다.
    * 
    *
    * @param args
@@ -5784,7 +5001,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * Execute 실행되는 시점에 발생합니다.
+   * Execute 실행될 때 발생합니다.
    * 
    *
    * @param args
@@ -5820,7 +5037,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 멀티 콤보박스의 트리 노드 객체를 클릭할 경우 발생합니다.
+   * 멀티 콤보박스의 트리 노드 객체를 클릭할 때 발생합니다.
    * 
    *
    * @param args
@@ -6295,7 +5512,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * i-OLAP의 데이터 셀을 더블 클릭하는 시점에 발생합니다.
+   * i-OLAP의 데이터 셀을 더블 클릭할 때 발생합니다.
    * 
    *
    * @param args
@@ -6445,7 +5662,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 피벗 그리드의 선택 영역이 변경된 시점에 발생합니다.
+   * 피벗 그리드의 선택 영역이 변경된 후 발생합니다.
    * 
    *
    * @param args
@@ -6599,7 +5816,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 라디오 컨트롤의 값이 변경될 경우 발생합니다.
+   * 라디오 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
    * @param args
@@ -6619,7 +5836,7 @@ export interface Matrix{
     */
     GroupName: string
     /**
-     * 라벨 값
+     * 표시 텍스트
      * 
     */
     Text: string
@@ -6635,7 +5852,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 모든 종류의 서버 요청(doRefresh, Execute, RunScript 등)이 완료(응답을 받은 상태)되면 발생하는 이벤트입니다. 여러 개의 요청이 동시에 진행된 경우, 마지막 요청이 완료됐을 때 발생합니다.
+   * 모든 종류의 서버 요청(doRefresh, Execute, RunScript 등)이 완료되면 발생합니다. 여러 요청이 동시에 진행된 경우, 마지막 요청이 완료됐을 때 발생합니다.
    * 
    *
    * @param args
@@ -6880,7 +6097,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 테이블레이아웃 내부의 수평선위에 마우스가 올라갈 경우 발생합니다.
+   * 테이블레이아웃 내부의 수평선위에 마우스가 올라갈 때 발생합니다.
    * 
    *
    * @param args
@@ -7003,7 +6220,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * ServiceCall 작업이 종료된 시점에 발생합니다.
+   * ServiceCall 작업이 종료된 후 발생합니다.
    * 
    *
    * @param args
@@ -7162,7 +6379,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 드래그 시작 시 발생하는 이벤트
+   * 드래그를 시작할 때 발생합니다.
    * 
    *
    * @param args
@@ -7275,7 +6492,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 텍스트블럭이 클릭되는 시점에 발생합니다.
+   * 텍스트블럭이 클릭될 때 발생합니다.
    * 
    *
    * @param args
@@ -7290,7 +6507,7 @@ export interface Matrix{
     */
     Id: string
     /**
-     * 라벨 값
+     * 표시 텍스트
      * 
     */
     Text: string
@@ -7301,7 +6518,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 텍스트블럭에 마우스를 아웃하는 시점에 발생합니다.
+   * 텍스트블럭에 마우스를 아웃할 때 발생합니다.
    * 
    *
    * @param args
@@ -7316,7 +6533,7 @@ export interface Matrix{
     */
     Id: string
     /**
-     * 라벨 값
+     * 표시 텍스트
      * 
     */
     Text: string
@@ -7327,7 +6544,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 텍스트블럭에 마우스를 오버하는 시점에 발생합니다.
+   * 텍스트블럭에 마우스를 오버할 때 발생합니다.
    * 
    *
    * @param args
@@ -7342,7 +6559,7 @@ export interface Matrix{
     */
     Id: string
     /**
-     * 라벨 값
+     * 표시 텍스트
      * 
     */
     Text: string
@@ -8014,7 +7231,7 @@ export interface Matrix{
   /**
    * @event 
    *
-   * MX-Grid Selection Change 이벤트
+   * MX-Grid의 선택 영역이 변경될 때 발생합니다.
    * 
    *
    * @param args
