@@ -1,23 +1,24 @@
 {
   "ReportInfo": {
     "ReportCode": "REP7F2A0D73D570455E994A3F4795DBF0C1",
-    "FolderCode": "FLDA68F89120C644E9BA99C1BA5BD3EE6DA",
-    "SavePath": "FLDA68F89120C644E9BA99C1BA5BD3EE6DA/REP7F2A0D73D570455E994A3F4795DBF0C1.mtsd",
+    "FolderCode": "MYDOCUMENT.yglee",
+    "SavePath": "MYDOCUMENT.yglee/REP7F2A0D73D570455E994A3F4795DBF0C1.mtsd",
     "ReportName": "AddIn_001",
     "Writer": "kimje1342",
     "WriteDate": "2026-01-21 14:37:38",
-    "Editor": "kimje1342",
-    "EditDate": "2026-01-21 14:37:38",
+    "Editor": "yglee",
+    "EditDate": "2026-02-05 17:37:55",
     "TabPosition": 0,
     "UseLayout": false,
     "DocumentVersion": "3.0.0.0",
     "Description": "SmartEditor",
-    "RefreshType": 0
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
     "Datas": []
   },
-  "ScriptText": "var val \t\t\t= '<p class=\"lyrics\" style=\"color: rgb(66, 66, 66); font-family: -apple-system, BlinkMacSystemFont, &quot;Malgun Gothic&quot;, &quot;맑은 고딕&quot;, helvetica, &quot;Apple SD Gothic Neo&quot;, helvetica, &quot;나눔바른고딕 옛한글&quot;, &quot;NanumBarunGothic YetHangul&quot;, sans-serif; font-size: 14px; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\"><span style=\"font-size: 12pt;\">그대 작은 나의 세상이 되어</span></p><p class=\"lyrics\" style=\"color: rgb(66, 66, 66); font-family: -apple-system, BlinkMacSystemFont, &quot;Malgun Gothic&quot;, &quot;맑은 고딕&quot;, helvetica, &quot;Apple SD Gothic Neo&quot;, helvetica, &quot;나눔바른고딕 옛한글&quot;, &quot;NanumBarunGothic YetHangul&quot;, sans-serif; font-size: 14px; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\"><b>그려 본 적 없는 꿈을 꾸게 해</b></p><p class=\"lyrics\" style=\"color: rgb(66, 66, 66); font-family: -apple-system, BlinkMacSystemFont, &quot;Malgun Gothic&quot;, &quot;맑은 고딕&quot;, helvetica, &quot;Apple SD Gothic Neo&quot;, helvetica, &quot;나눔바른고딕 옛한글&quot;, &quot;NanumBarunGothic YetHangul&quot;, sans-serif; font-size: 14px; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\"><u>만약 이게 나의 착각이래도</u></p><p class=\"lyrics\" style=\"color: rgb(66, 66, 66); font-family: -apple-system, BlinkMacSystemFont, &quot;Malgun Gothic&quot;, &quot;맑은 고딕&quot;, helvetica, &quot;Apple SD Gothic Neo&quot;, helvetica, &quot;나눔바른고딕 옛한글&quot;, &quot;NanumBarunGothic YetHangul&quot;, sans-serif; font-size: 14px; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\"><i>그대 오늘만은 품이 돼 주오</i></p><p class=\"lyrics\" style=\"color: rgb(66, 66, 66); font-family: -apple-system, BlinkMacSystemFont, &quot;Malgun Gothic&quot;, &quot;맑은 고딕&quot;, helvetica, &quot;Apple SD Gothic Neo&quot;, helvetica, &quot;나눔바른고딕 옛한글&quot;, &quot;NanumBarunGothic YetHangul&quot;, sans-serif; font-size: 14px; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\"><span style=\"background-color: rgb(222, 247, 229);\">마음은 쉽게 변할 수도</span></p><p class=\"lyrics\" style=\"color: rgb(66, 66, 66); font-family: -apple-system, BlinkMacSystemFont, &quot;Malgun Gothic&quot;, &quot;맑은 고딕&quot;, helvetica, &quot;Apple SD Gothic Neo&quot;, helvetica, &quot;나눔바른고딕 옛한글&quot;, &quot;NanumBarunGothic YetHangul&quot;, sans-serif; font-size: 14px; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\"><span style=\"color: rgb(239, 0, 124);\">어쩌면 쉽게 굳어지게 되는 걸 알아</span></p>'\r\nvar TXT_HTML \t\t=  Matrix.getObject(\"TXT_HTML\");\r\nvar webEditor \t\t= null; \r\nvar articleViewer \t= null; \r\n\r\nTXT_HTML.Text \t\t= \"\";\r\n\r\n/**************************************\r\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n * * arguments :  \r\n**************************************/\r\n var OnLoadComplete  = function(sender, args){\r\n \tvar getValue = Matrix.getObject(\"ADD_EDITOR\");\r\n\t//OnDocumentLoadComplete 외에 다른곳으로 넣으면 오류가 납니다.\r\n\twebEditor = getValue.getScriptClass(\"BIMatrix.SmartEditor.SmartEditor\");\t\r\n\twebEditor.SetValue(val);\t\t\r\n\t\r\n\tvar setValue = Matrix.getObject(\"ADD_VIEWER\");\r\n\t//OnDocumentLoadComplete 외에 다른곳으로 넣으면 오류가 납니다.\r\n\tarticleViewer = setValue.getScriptClass(\"BIMatrix.SmartEditor.SmartEditor\");\t\r\n\tarticleViewer.SetViewerMode();\r\n\tarticleViewer.SetValue('');\r\n };\r\n \r\n/*****************************************\r\n* 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n* * arguments :  \r\n*\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n*\t\t string\tText (Readonly:False) : 라벨 값 \r\n*****************************************/\r\n var OnButtonClick  = function(sender, args){\r\n \tif(args.Id == \"BTN_GET_VAL\"){\r\n\t\tTXT_HTML.Text = webEditor.GetValue();\r\n\t\t\r\n\t}else if(args.Id == \"BTN_SET_VAL\"){\r\n\t\tarticleViewer.SetValue(TXT_HTML.Text);\r\n\t}\r\n };\r\n\r\n\r\n",
+  "ScriptText": "var sampleHtml = '<p class=\"lyrics\"><span style=\"font-size: 12pt;\">Sample Text Line 1</span></p><p class=\"lyrics\"><b>Sample Text Line 2</b></p>';\r\nvar TXT_HTML = Matrix.getObject(\"TXT_HTML\");\r\nvar webEditor = null;\r\nvar articleViewer = null;\r\nTXT_HTML.Text = \"\";\r\n/**************************************\r\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n * * arguments :\r\n **************************************/\r\nvar OnLoadComplete = function (_sender, _args) {\r\n    var getValue = Matrix.getObject(\"ADD_EDITOR\");\r\n    webEditor = getValue.getScriptClass(\"SmartEditor\");\r\n    webEditor.SetValue(sampleHtml);\r\n    var setValue = Matrix.getObject(\"ADD_VIEWER\");\r\n    articleViewer = setValue.getScriptClass(\"SmartEditor\");\r\n    articleViewer.SetViewerMode();\r\n    articleViewer.SetValue('');\r\n};\r\n/*****************************************\r\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤이름\r\n *\t\t string\tText (Readonly:False) : 라벨 값\r\n *****************************************/\r\nvar OnButtonClick = function (_sender, args) {\r\n    if (args.Id == \"BTN_GET_VAL\") {\r\n        TXT_HTML.Text = webEditor.GetValue();\r\n    }\r\n    else if (args.Id == \"BTN_SET_VAL\") {\r\n        articleViewer.SetValue(TXT_HTML.Text);\r\n    }\r\n};\r\n",
   "ServerScriptText": [],
   "Forms": [
     {

@@ -1,12 +1,16 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
 import { AddIn } from "@AUD_CLIENT/control/AddIn";
+import { SmartEditor } from "@AUD_CLIENT/ext/SmartEditor";
 
 declare const Matrix: Matrix;
+/**
+ * SmartEditor Addin 컴포넌트 샘플
+ */
 
 const sampleHtml = '<p class="lyrics"><span style="font-size: 12pt;">Sample Text Line 1</span></p><p class="lyrics"><b>Sample Text Line 2</b></p>';
 const TXT_HTML: RichTextBox = Matrix.getObject("TXT_HTML") as RichTextBox;
-let webEditor: any = null;
+let webEditor: SmartEditor = null;
 let articleViewer: any = null;
 
 TXT_HTML.Text = "";
@@ -17,11 +21,11 @@ TXT_HTML.Text = "";
  **************************************/
 const OnLoadComplete = function(_sender: any, _args: any): void {
 	const getValue = Matrix.getObject("ADD_EDITOR") as AddIn;
-	webEditor = getValue.getScriptClass("BIMatrix.SmartEditor.SmartEditor");
+	webEditor = getValue.getScriptClass("SmartEditor") as SmartEditor;
 	webEditor.SetValue(sampleHtml);
 
 	const setValue = Matrix.getObject("ADD_VIEWER") as AddIn;
-	articleViewer = setValue.getScriptClass("BIMatrix.SmartEditor.SmartEditor");
+	articleViewer = setValue.getScriptClass("SmartEditor") as SmartEditor;
 	articleViewer.SetViewerMode();
 	articleViewer.SetValue('');
 };
@@ -39,8 +43,4 @@ const OnButtonClick = function(_sender: any, args: any): void {
 		articleViewer.SetValue(TXT_HTML.Text);
 	}
 };
-
-export {
-	OnLoadComplete,
-	OnButtonClick
-};
+ 
