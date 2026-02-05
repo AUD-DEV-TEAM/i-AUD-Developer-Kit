@@ -1,13 +1,31 @@
 import { Control } from "../../aud/control/Control";
 import { Event } from "../../aud/data/Event";
 /**
-* 숫자 입력을 위한 넘버 박스 컨트롤입니다.
-*/
+ * 숫자 입력을 위한 넘버 박스 컨트롤입니다.
+ *
+ * @example
+ * ```js
+ * // 넘버박스 기본 사용
+ * var nbxAmount = Matrix.getObject("nbxAmount");
+ * nbxAmount.Format = "#,##0";
+ * nbxAmount.Value = 1234567;
+ * console.log(nbxAmount.Text); // "1,234,567"
+ * ```
+ */
 export interface NumberBox extends Control{
 
   /**
    * 숫자 포맷을 가져오거나 설정합니다. (허용 포맷: #, 0, 콤마, 마침표)
-  */
+   *
+   * @example
+   * ```js
+   * // 다양한 숫자 포맷 예시
+   * nbxAmount.Format = "#,##0";        // 천단위 콤마: 1,234,567
+   * nbxPrice.Format = "#,##0.00";      // 소수점 2자리: 1,234.56
+   * nbxRate.Format = "0.0%";           // 퍼센트: 12.5%
+   * nbxQty.Format = "###0";            // 콤마 없음: 1234
+   * ```
+   */
   Format: string;
 
   /**

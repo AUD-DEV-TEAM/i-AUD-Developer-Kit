@@ -164,7 +164,14 @@ export interface MultiComboBox extends Control{
   /**
    * 전체 노드를 선택합니다.
    *
-  */
+   * @example
+   * ```js
+   * // 멀티콤보박스 전체 선택
+   * var mcbDept = Matrix.getObject("mcbDept");
+   * mcbDept.CheckAll();
+   * console.log(mcbDept.IsSelectedAll); // true
+   * ```
+   */
   CheckAll(): void;
 
   /**
@@ -242,8 +249,18 @@ export interface MultiComboBox extends Control{
   /**
    * 컨트롤의 값을 설정합니다.
    *
-  * @param values 값 (string 타입인 경우 쉼표로 구분하여 여러 개 입력)
-  */
+   * @example
+   * ```js
+   * var mcbDept = Matrix.getObject("mcbDept");
+   *
+   * // 배열로 여러 값 설정
+   * mcbDept.SetValue(["001", "002", "003"]);
+   *
+   * // 문자열로 여러 값 설정 (콤마 구분)
+   * mcbDept.SetValue("001,002,003");
+   * ```
+   * @param values 값 (string 타입인 경우 쉼표로 구분하여 여러 개 입력)
+   */
   SetValue(values: string|string[]): void;
 
   /**
@@ -400,11 +417,22 @@ export interface MultiComboBox extends Control{
    *
    * 멀티콤보박스의 값이 변경될 때 발생합니다.
    *
+   * @example
+   * ```js
+   * var mcbDept = Matrix.getObject("mcbDept");
+   * mcbDept.OnValueChange = function(sender, args) {
+   *     console.log("이전 값: " + args.OldValue);
+   *     console.log("현재 값: " + args.Value);
+   *
+   *     // 선택된 값으로 그리드 조회
+   *     Matrix.doRefresh("grdEmployee");
+   * };
+   * ```
    * @param sender 이벤트가 발생한 멀티콤보박스 컨트롤
    * @param args 이벤트 인자
    *
    * Target : {@link MultiComboBox}
-  */
+   */
   OnValueChange : (sender : MultiComboBox
   , args : {
     /**

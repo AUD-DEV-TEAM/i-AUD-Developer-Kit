@@ -1,13 +1,31 @@
 import { Control } from "../../aud/control/Control";
 import { Event } from "../../aud/data/Event";
 /**
-* 마스크 텍스트 박스 컨트롤입니다.
-*/
+ * 마스크 텍스트 박스 컨트롤입니다.
+ *
+ * @example
+ * ```js
+ * // 마스크 텍스트박스 기본 사용
+ * var mtbPhone = Matrix.getObject("mtbPhone");
+ * mtbPhone.Format = "000-0000-0000"; // 전화번호 형식
+ * mtbPhone.Value = "01012345678";
+ * console.log(mtbPhone.Text); // "010-1234-5678"
+ * ```
+ */
 export interface MaskTextBox extends Control{
 
   /**
    * 마스크 포맷을 가져오거나 설정합니다.
-  */
+   *
+   * @example
+   * ```js
+   * // 다양한 마스크 포맷 예시
+   * mtbPhone.Format = "000-0000-0000";    // 전화번호
+   * mtbDate.Format = "0000-00-00";        // 날짜 (YYYY-MM-DD)
+   * mtbBizNo.Format = "000-00-00000";     // 사업자번호
+   * mtbPostal.Format = "00000";           // 우편번호
+   * ```
+   */
   Format: string;
 
   /**
