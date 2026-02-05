@@ -1,7 +1,7 @@
 import { Style } from "../../../aud/control/charts/Style";
 /**
-* 차트의 제목 옵션 정보를 제공합니다.
-*/
+ * 차트의 제목 옵션 정보를 제공합니다.
+ */
 export interface Title{
 
   /**
@@ -15,8 +15,8 @@ export interface Title{
   LanguageCode: string;
 
   /**
-   * 제목과 실제 차트가 표현되는 영역과의 marign(default:15)
-  */
+   * 제목과 실제 차트가 표현되는 영역과의 margin (default: 15)
+   */
   Margin: number;
 
   /**

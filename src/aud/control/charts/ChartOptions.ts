@@ -1,7 +1,7 @@
 import { enChartType } from "../../../aud/enums/chart/enChartType";
 /**
-* 차트의 영역과 기본적인 옵션 정보를 제공 합니다.
-*/
+ * 차트의 영역과 기본적인 옵션 정보를 제공합니다.
+ */
 export interface ChartOptions{
 
   /**
@@ -50,9 +50,8 @@ export interface ChartOptions{
   UsePPTExport: boolean;
 
   /**
-   * 확대 기능 활성화 여부
-(Polygon Chart 는 지원하지 않는 기능)
-  */
+   * 확대 기능 활성화 여부 (Polygon Chart는 지원하지 않음)
+   */
   Zoom: boolean;
 
   /** 

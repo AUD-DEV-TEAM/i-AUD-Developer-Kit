@@ -1,8 +1,8 @@
 import { DataLabels } from "../../../aud/control/charts/DataLabels";
 import { enChartType } from "../../../aud/enums/chart/enChartType";
 /**
-* Polygon 차트의 계열 정보를 제공합니다.
-*/
+ * Polygon 차트의 계열 정보를 제공합니다.
+ */
 export interface PolygonSeries{
 
   /**
@@ -37,13 +37,13 @@ export interface PolygonSeries{
 
   /**
    * 데이터레이블의 테두리 색상을 계열의 색상 값과 동일하게 설정할지 여부
-(데이터레이블 필드, 수식이 설정된 상태 및 ValueLabel 으로 설정된 상태에서만 유효)
-  */
+   * (데이터레이블 필드, 수식이 설정된 상태 및 ValueLabel로 설정된 상태에서만 유효)
+   */
   DataLabelsColorBySeries: boolean;
 
   /**
-   * 데이더레이블 표시 여부
-  */
+   * 데이터레이블 표시 여부
+   */
   DataLabelsVisible: boolean;
 
   /**
@@ -118,13 +118,13 @@ export interface PolygonSeries{
   Visible: boolean;
 
   /**
-   * 데이더레이블의 offset X(default:0)
-  */
+   * 데이터레이블의 offset X (default: 0)
+   */
   X: number;
 
   /**
-   * 데이더레이블의 offset Y(default:-6)
-  */
+   * 데이터레이블의 offset Y (default: -6)
+   */
   Y: number;
 
   /** 

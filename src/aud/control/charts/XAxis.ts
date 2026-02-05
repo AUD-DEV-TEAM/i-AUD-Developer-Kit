@@ -1,7 +1,7 @@
 import { Axis } from "../../../aud/control/charts/Axis";
 /**
-* X축에 대한 정보를 제공합니다.
-*/
+ * X축에 대한 정보를 제공합니다.
+ */
 export interface XAxis extends Axis{
 
   /**
@@ -10,8 +10,8 @@ export interface XAxis extends Axis{
   AnnoFormat: string;
 
   /**
-   * 축의 Items(데이터)을 반환합니다.
-  */
+   * X축의 카테고리(항목) 목록을 반환합니다.
+   */
    readonly Categories: string[];
 
   /**

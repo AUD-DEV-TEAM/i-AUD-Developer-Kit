@@ -2,6 +2,7 @@ import { Control } from "../../../aud/control/Control";
 import { TableColumn } from "../../../aud/control/table/TableColumn";
 import { TableCell } from "../../../aud/control/table/TableCell";
 import { TableRow } from "../../../aud/control/table/TableRow";
+import { TableLayoutModel } from "../../../aud/control/table/TableLayoutModel";
 /**
 * 특정 영역을 테이블 형태로 구성해주는 레이아웃 컨트롤
 */
@@ -134,13 +135,13 @@ export interface TableLayout extends Control{
   */
   InsertRow(index: number): boolean;
 
-  /** 
+  /**
    * 테이블 레이아웃을 구성시켜주는 메소드
    *
-  * @param columns 열 객체(Name은 필수로 정의 필요)
-  * @param model 구성하려는 테이블 모델 객체
+  * @param columns 열 객체 배열. Name 속성은 필수로 정의 필요
+  * @param model 구성하려는 테이블 모델 객체. MaxRow와 Children 속성을 포함
   */
-  SetJSONModel(columns: any, model: any): void;
+  SetJSONModel(columns: TableColumn[], model: TableLayoutModel): void;
 
   /** 
    * 전체 영역을 다시 그려준다.

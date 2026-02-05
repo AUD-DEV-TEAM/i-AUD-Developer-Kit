@@ -38,11 +38,12 @@ export interface ScriptHitTestResult{
   */
   getField(): OlapField;
 
-  /** 
+  /**
    * 현재 마우스 위치와 관련있는 특정 필드의 값을 반환 합니다.
    *
-  * @param fldName 필드명(입력하지 않을 경우 현재영역의 기본 필드의 값을 반환 합니다.)
+  * @param fldName 필드명. 입력하지 않을 경우 현재 영역의 기본 필드 값을 반환합니다.
+  * @returns 필드 값. 문자열, 숫자 또는 null
   */
-  getValue(fldName: string): any;
+  getValue(fldName?: string): string | number | null;
 
 }

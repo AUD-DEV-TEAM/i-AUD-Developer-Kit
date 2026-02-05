@@ -1,13 +1,13 @@
 import { NamedDictionary } from "../../../aud/data/NamedDictionary";
 /**
-* 트리 컨트롤을 구성하는 노드 Class
+* 트리 컨트롤을 구성하는 노드 인터페이스. 계층 구조의 트리 데이터를 표현합니다.
 */
 export interface MTXTreeNode{
 
   /**
    * 자식 노드 목록
   */
-  Childs: any;
+  Childs: MTXTreeNode[];
 
   /**
    * 코드

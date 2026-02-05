@@ -39,12 +39,12 @@ export interface ScriptDataCell{
   /**
    * 셀의 값
   */
-   readonly Value: any;
+   readonly Value: string | number | null;
 
   /**
    * 셀의 참조값
   */
-   readonly Value2: any;
+   readonly Value2: string | number | undefined;
 
   /** 
    * Drill to Detail를 가져오기 위한 셀의 상세 정보를 반환 합니다.

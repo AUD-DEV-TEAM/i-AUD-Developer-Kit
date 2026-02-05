@@ -29,14 +29,12 @@ export interface TabItem{
   */
    readonly Visible: boolean;
 
-  /** 
-   * 탭 아이템의 속성을 return 합니다.
+  /**
+   * 탭 아이템의 속성을 반환합니다.
    *
-   * @example
-   * ```js
-   * var style = TabItem.GetAttribute("ActiveStyle");
-   * ```
+  * @param attributeName 속성명 (예: "ActiveStyle", "InactiveStyle", "MouseOverStyle", "MouseDownStyle", "TooltipLanguageCode", "TextLanguageCode" 등)
+  * @returns 속성 값. 속성이 없으면 undefined 반환
   */
-  GetProperty(): any;
+  GetProperty(attributeName: string): any;
 
 }

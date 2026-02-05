@@ -1,7 +1,7 @@
 import { Axis } from "../../../aud/control/charts/Axis";
 /**
-* Y축에 대한 정보를 제공합니다.
-*/
+ * Y축에 대한 정보를 제공합니다.
+ */
 export interface YAxis extends Axis{
 
   /**

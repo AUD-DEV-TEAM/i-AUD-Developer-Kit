@@ -1,4 +1,5 @@
 import { ICell } from "../../../aud/control/igrids/ICell";
+import { IStyle } from "../../../aud/control/igrids/IStyle";
 /**
 * MXGrid 컨트롤의 데이터 셀 모델
 */
@@ -50,18 +51,20 @@ export interface Cell{
   */
   getFormat(): string;
 
-  /** 
+  /**
    * 셀의 특정 속성의 값을 반환 합니다.
    *
-  * @param name 속성명
+  * @param name 속성명 (예: "Editable", "Formula", "MaskFormat" 등)
+  * @returns 속성 값 문자열. 속성이 없으면 빈 문자열 반환
   */
-  getProperty(name: string): any;
+  getProperty(name: string): string;
 
-  /** 
+  /**
    * 셀의 스타일을 반환 합니다.
    *
+  * @returns 셀 스타일 정보. 스타일이 없으면 null 반환
   */
-  getStyle(): any;
+  getStyle(): IStyle | null;
 
   /** 
    * 셀의 텍스트를 반환 합니다.
@@ -69,11 +72,12 @@ export interface Cell{
   */
   getText(): string;
 
-  /** 
-   * 셀의 값을 반환 합니다. 값은 문자열 또는 수치형 데이터 입니다.
+  /**
+   * 셀의 값을 반환 합니다.
    *
+  * @returns 셀 값. 문자열 또는 숫자 타입
   */
-  getValue(): any;
+  getValue(): string | number;
 
   /** 
    * 셀의 서식을 설정 합니다.
@@ -82,20 +86,20 @@ export interface Cell{
   */
   setFormat(format: string): void;
 
-  /** 
+  /**
    * 셀의 특정 속성을 설정 합니다.
    *
-  * @param name 속성명
+  * @param name 속성명 (예: "Editable", "Formula", "MaskFormat" 등)
   * @param value 속성 값
   */
-  setProperty(name: string, value: any): void;
+  setProperty(name: string, value: string | number | boolean): void;
 
-  /** 
+  /**
    * 셀의 스타일을 설정 합니다.
    *
-  * @param style 스타일 객체
+  * @param style 스타일 객체 (IStyle 인터페이스 참조)
   */
-  setStyle(style: any): void;
+  setStyle(style: IStyle): void;
 
   /** 
    * 셀의 텍스트를 설정 합니다.
@@ -104,11 +108,11 @@ export interface Cell{
   */
   setText(text: string): void;
 
-  /** 
+  /**
    * 셀의 값을 설정 합니다.
    *
-  * @param value 값
+  * @param value 설정할 값. 문자열 또는 숫자 타입
   */
-  setValue(value: any): void;
+  setValue(value: string | number): void;
 
 }

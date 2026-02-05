@@ -1,12 +1,12 @@
 import { enChartDataLabelType } from "../../../aud/enums/chart/enChartDataLabelType";
 /**
-* Pie 차트의 데이터 표시 영역에 대한 정보를 제공합니다.
-*/
+ * Pie 차트의 데이터 표시 영역에 대한 정보를 제공합니다.
+ */
 export interface PiePlotOptions{
 
   /**
-   * 데이터 영역 클릭, animation 효과 사용 여부(efault:true)
-  */
+   * 데이터 영역 클릭, animation 효과 사용 여부 (기본값: true)
+   */
   AllowPointSelect: boolean;
 
   /**

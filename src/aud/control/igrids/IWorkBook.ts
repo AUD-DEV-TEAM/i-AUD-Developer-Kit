@@ -24,9 +24,10 @@ export interface IWorkBook{
   */
   Tables: IWorkSheet[];
 
-  /** 
-   * MX-GRID 엑셀 제어 모델
-   *
+  /**
+   * MX-GRID 내부 엑셀 제어 모델을 반환 합니다.
+   * @hidden 내부 사용 목적. 직접 사용을 권장하지 않음
+  * @returns 내부 엑셀 제어 모델 객체
   */
   getWorkBook(): any;
 

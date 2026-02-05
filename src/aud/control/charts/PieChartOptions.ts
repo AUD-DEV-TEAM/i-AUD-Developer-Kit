@@ -1,7 +1,7 @@
 import { enChartType } from "../../../aud/enums/chart/enChartType";
 /**
-* Pie 차트의 영역과 기본적인 옵션 정보를 제공 합니다.
-*/
+ * Pie 차트의 영역과 기본적인 옵션 정보를 제공합니다.
+ */
 export interface PieChartOptions{
 
   /**

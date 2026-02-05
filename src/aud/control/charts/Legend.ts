@@ -1,6 +1,6 @@
 /**
-* 차트의 범례 정보를 제공합니다.
-*/
+ * 차트의 범례 정보를 제공합니다.
+ */
 export interface Legend{
 
   /**
@@ -34,8 +34,8 @@ export interface Legend{
   Enabled: boolean;
 
   /**
-   * 범례 표시 옵션. 차트 데이터 영역과의 간섭여부.(기본값:false)
-  */
+   * 범례 표시 옵션. 차트 데이터 영역과의 간섭 여부 (0: 간섭 없음, 기본값: 0)
+   */
   Floating: number;
 
   /**

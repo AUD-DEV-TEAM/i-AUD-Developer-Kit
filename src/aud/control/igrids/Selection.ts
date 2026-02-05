@@ -2,8 +2,9 @@ import { IRow } from "../../../aud/control/igrids/IRow";
 import { ISelectionArea } from "../../../aud/control/igrids/ISelectionArea";
 import { ICell } from "../../../aud/control/igrids/ICell";
 import { IValValidator } from "../../../aud/control/igrids/IValValidator";
+import { IStyle } from "../../../aud/control/igrids/IStyle";
 /**
-* MX-GRID Selection 모델
+* MX-GRID Selection 모델. 선택된 셀 영역에 대한 조작 기능을 제공합니다.
 */
 export interface Selection{
 
@@ -135,11 +136,12 @@ export interface Selection{
   */
   getSelectionRectangle(): ISelectionArea;
 
-  /** 
+  /**
    * 선택된 영역의 스타일 공통 정보를 반환 합니다.
    *
+  * @returns 선택 영역의 공통 스타일 정보. 스타일이 없으면 null 반환
   */
-  getStyle(): any;
+  getStyle(): IStyle | null;
 
   /** 
    * 현재 선택된 셀의 유효성 검사 정보를 반환 합니다.
@@ -186,14 +188,14 @@ export interface Selection{
   */
   setFreezePanes(freeze: boolean, row?: number, col?: number): void;
 
-  /** 
+  /**
    * 선택된 영역에 스타일을 설정 합니다.
    *
-  * @param style 스타일 모델 정보
+  * @param style 스타일 모델 정보 (IStyle 인터페이스 참조)
   * @param targetRect (옵션)스타일을 설정할 영역을 지정합니다.
-  * @param forceUpdate (옵션)true로 설정 시 주어진 스타일이 없는 셀에 스타일은 무시합니다.
+  * @param forceUpdate (옵션)true로 설정 시 주어진 스타일이 없는 셀의 스타일은 무시합니다.
   */
-  setStyle(style: any, targetRect?: ISelectionArea, forceUpdate?: boolean): void;
+  setStyle(style: Partial<IStyle>, targetRect?: ISelectionArea, forceUpdate?: boolean): void;
 
   /** 
    * 현재 선택된 셀의 유효성 검사 정보를 설정합니다.
