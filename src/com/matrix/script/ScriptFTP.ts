@@ -5,7 +5,7 @@ import { ScriptDataTable } from "../../../com/matrix/script/ScriptDataTable";
 export interface ScriptFTP{
 
   /** 
-   * 연결하기
+   * FTP(SFTP) 서버에 연결합니다.
    *
   * @param address FTP 주소
   * @param port port 번호
@@ -16,13 +16,13 @@ export interface ScriptFTP{
   Connect(address: string, port: number, userID: string, password: string, passiveMode: boolean): void;
 
   /** 
-   * 연결 해제
+   * FTP(SFTP) 서버 연결을 해제합니다.
    *
   */
   DisConnect(): void;
 
   /** 
-   * FTP(SFTP) 연결을 통해 파일을 다운로드 합니다.
+   * FTP(SFTP) 연결을 통해 파일을 다운로드합니다.
    *
    * @example
    * ```js
@@ -55,7 +55,7 @@ export interface ScriptFTP{
   Download(filePath: string, saveFileNnme: string): void;
 
   /** 
-   * FTP(SFTP) 연결을 통해 파일을 업로드 합니다.
+   * FTP(SFTP) 연결을 통해 파일을 업로드합니다.
    *
    * @example
    * ```js
@@ -88,7 +88,7 @@ export interface ScriptFTP{
   getFolderPath(): string;
 
   /** 
-   * FTP 서버의 작업 폴더 내 파일 리스트를 반환 합니다.
+   * FTP 서버의 작업 폴더 내 파일 리스트를 반환합니다.
    *
   */
   getListFiles(): ScriptDataTable;

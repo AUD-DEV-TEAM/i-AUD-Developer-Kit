@@ -4,7 +4,7 @@
 export interface ScriptAxis{
 
   /** 
-   * 축의 최소/최대값을 자동으로 설정합니다..
+   * 축의 최소/최대값을 자동으로 설정합니다.
    *
   * @param isAuto 기본값 true
   */

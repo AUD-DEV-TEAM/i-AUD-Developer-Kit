@@ -217,7 +217,7 @@ export interface ScriptPreparedStatement{
   executeUpdate(): number;
 
   /** 
-   * 실제 실행된 쿼리 정보를 반환 합니다.
+   * 실제 실행된 쿼리 정보를 반환합니다.
    *
   */
   getParameterBindingSQL(): string;

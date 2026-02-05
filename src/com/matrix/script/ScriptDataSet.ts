@@ -40,7 +40,7 @@ export interface ScriptDataSet{
   getTable(key: string): ScriptDataTable;
 
   /** 
-   * 데이터셋이 가지고 잇는 테이블 개수를 반환합니다.
+   * 데이터셋이 가지고 있는 테이블 개수를 반환합니다.
    *
   */
   getTableCount(): number;

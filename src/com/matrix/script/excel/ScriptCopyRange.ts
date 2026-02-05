@@ -6,7 +6,7 @@ import { RangeArea } from "../../../../com/matrix/Excel/Drawing/RangeArea";
 export interface ScriptCopyRange{
 
   /** 
-   * 현재 영역을 계층 구조로 자동 병합 합니다.
+   * 현재 영역을 계층 구조로 자동 병합합니다.
    *
   */
   HierarchyMergeRows(): void;
@@ -91,7 +91,7 @@ export interface ScriptCopyRange{
   Paste(worksheet: ScriptWorkSheet, range: string): void;
 
   /** 
-   * 현재 영역 정보를 반환 합니다.
+   * 현재 영역 정보를 반환합니다.
    *
   */
   getRangeArea(): RangeArea;

@@ -13,7 +13,7 @@ export interface ScriptSeriesDataLabel{
   addTextArray(values: string[]): void;
 
   /** 
-   * 데이터레이블의 스타일 객체을 반환합니다.
+   * 데이터레이블의 스타일 객체를 반환합니다.
    *
   */
   getStyle(): ScriptSeriesDataLabelStyle;

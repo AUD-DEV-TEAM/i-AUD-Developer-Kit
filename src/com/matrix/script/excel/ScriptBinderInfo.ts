@@ -12,13 +12,13 @@ export interface ScriptBinderInfo{
   Clear(): void;
 
   /** 
-   * 바인딩 영역을 반환 합니다.
+   * 바인딩 영역을 반환합니다.
    *
   */
   getRange(): ScriptCopyRange;
 
   /** 
-   * 바인딩된 영역의 Worksheet 객체를 반환 합니다.
+   * 바인딩된 영역의 Worksheet 객체를 반환합니다.
    *
   */
   getWorkSheet(): ScriptWorkSheet;

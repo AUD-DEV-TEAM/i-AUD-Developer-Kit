@@ -1,22 +1,22 @@
 /**
-* Invoke Result
+* 메서드 호출 결과를 제공합니다.
 */
 export interface ScriptInvokeResult{
 
-  /** 
-   * Error가 있는지 판단하는 메서드
+  /**
+   * 오류 발생 여부를 반환합니다.
    *
   */
   HasError(): boolean;
 
-  /** 
-   * Error 텍스트를 가져오는 메서드
+  /**
+   * 오류 메시지를 반환합니다.
    *
   */
   getError(): string;
 
-  /** 
-   * 값을 가져오는 메서드
+  /**
+   * 결과 값을 반환합니다.
    *
   */
   getValue(): any;

@@ -6,13 +6,13 @@ import { ScriptCellStyle } from "../../../../com/matrix/script/excel/ScriptCellS
 export interface ScriptFontSettingList{
 
   /** 
-   * 모든 스타일 항목을 삭제 합니다.
+   * 모든 스타일 항목을 삭제합니다.
    *
   */
   Clear(): void;
 
   /** 
-   * 스타일 항목의 개수를 반환 합니다.
+   * 스타일 항목의 개수를 반환합니다.
    *
   */
   Count(): number;

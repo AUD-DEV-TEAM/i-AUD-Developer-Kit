@@ -9,9 +9,9 @@ import { ScriptDataRow } from "../../../com/matrix/script/ScriptDataRow";
 export interface ScriptDataTable{
 
   /** 
-   * Column을 추가 합니다.
+   * 컬럼을 추가합니다. 키 유형, 데이터 유형, 저장 방식을 지정할 수 있습니다.
    *
-  * @param columnName Column 명
+  * @param columnName 컬럼명
   * @param isNumber 수치형인지 여부
   * @param keyType 키 유형
   * @param dataType 데이터 유형
@@ -20,9 +20,9 @@ export interface ScriptDataTable{
   AddColumn(columnName: string, isNumber: boolean, keyType: enKeyType, dataType: enDataType, saveMode: enSaveMode): ScriptDataColumn;
 
   /** 
-   * Column을 추가합니다.
+   * 컬럼을 추가합니다.
    *
-  * @param columnName Column 명
+  * @param columnName 컬럼명
   * @param isNumber 수치형인지 여부
   */
   AddColumn(columnName: string, isNumber: boolean): ScriptDataColumn;
@@ -48,7 +48,7 @@ export interface ScriptDataTable{
   AppendTableRows(table: ScriptDataTable): void;
 
   /** 
-   * 테이블 내 모든 레코드의 작업 상태 (N: 신규, U: 수정, D: 삭제)를 삭제 합니다.
+   * 테이블 내 모든 레코드의 작업 상태 (N: 신규, U: 수정, D: 삭제)를 삭제합니다.
    *
   */
   ClearRowStatus(): void;
@@ -60,15 +60,15 @@ export interface ScriptDataTable{
   ClearRows(): void;
 
   /** 
-   * 레코드를 순회 합니다.
+   * 레코드를 순회합니다.
    *
   */
   FetchRows(): void;
 
   /** 
-   * 테이블내 레코드를 조회 합니다.(Olap의 Write-back은 레코드가 많으므로 반드시 이 함수에서 처리 합니다.)
+   * 테이블 내 레코드를 조회합니다. OLAP의 Write-back은 레코드가 많으므로 반드시 이 함수에서 처리합니다.
    *
-  * @param callbackRow call back 함수
+  * @param callbackRow 콜백 함수
   * ```
   * 
   *                     CALL_BACK(function(row){
@@ -82,7 +82,7 @@ export interface ScriptDataTable{
   FetchRows(callbackRow: (row: ScriptDataRow )=>boolean|null): void;
 
   /** 
-   * 필터 조건에 충족하는 데이터테이블을 반환 합니다.
+   * 필터 조건에 충족하는 데이터 테이블을 반환합니다.
    *
   * @param filterText 필터 구분(e.g.FIELD_NAME = 'Korea'  )
   */
@@ -153,7 +153,7 @@ export interface ScriptDataTable{
   getInt(recordIndex: number, columnName: string): number;
 
   /** 
-   * 테이블 객체의 고유 이름을 반환 합니다.
+   * 테이블 객체의 고유 이름을 반환합니다.
    *
   */
   getName(): string;
@@ -209,7 +209,7 @@ export interface ScriptDataTable{
   setTableName(name: string): void;
 
   /** 
-   * SAP RFC DataTable 형태로 변환 합니다.
+   * SAP RFC DataTable 형태로 변환합니다.
    *
   */
   toSapDataTable(): any;

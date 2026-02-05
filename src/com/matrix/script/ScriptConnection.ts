@@ -15,7 +15,7 @@ export interface ScriptConnection{
   BeginTransaction(): boolean;
 
   /** 
-   * 트랜잭션을 커밋 합니다.
+   * 트랜잭션을 커밋합니다.
    *
   */
   CommitTransaction(): boolean;
@@ -28,7 +28,7 @@ export interface ScriptConnection{
   Connect(code: string): boolean;
 
   /** 
-   * 데이터베이스 연결을 해제 합니다.
+   * 데이터베이스 연결을 해제합니다.
    *
   */
   DisConnect(): void;
@@ -130,7 +130,7 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   ExecuteProcedure(sql: string, limitRows: number): ScriptDataTable;
 
   /** 
-   * SQL 실행한 ResuletSet을 반환 합니다.
+   * SQL을 실행하고 {@link ScriptRecordSet}을 반환합니다.
    *
    * @example
    * ```js
@@ -155,14 +155,14 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   ExecuteScalar(sql: string): number;
 
   /** 
-   * 입력/수정/삭제 쿼리를 실행 합니다.
+   * 입력/수정/삭제 쿼리를 실행합니다.
    *
   * @param sql 실행 쿼리
   */
   ExecuteUpdate(sql: string): number;
 
   /** 
-   * 입력/수정/삭제 쿼리를 실행 합니다.(PreparedStatement의 바인딩 기능 사용)
+   * 입력/수정/삭제 쿼리를 실행합니다. {@link ScriptPreparedStatement}의 바인딩 기능을 사용합니다.
    *
   * @param table 테이블 객체
   * @param row 대상 레코드
@@ -202,7 +202,7 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   PreparedStatement(sql: string, useName: boolean): ScriptPreparedStatement;
 
   /** 
-   * 트랜잭션을 롤 백 합니다.
+   * 트랜잭션을 롤백합니다.
    *
   */
   RollBackTransaction(): boolean;
@@ -214,7 +214,7 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   createStatement(): ScriptPreparedStatement;
 
   /** 
-   * 데이터베이스 연결의 카탈로그 정보를 반환 합니다.
+   * 데이터베이스 연결의 카탈로그 정보를 반환합니다.
    *
   */
   getCatalog(): string;

@@ -1,6 +1,6 @@
 import { ScriptFileInfo } from "../../../com/matrix/script/io/ScriptFileInfo";
 /**
-* 파일의 읽기 쓰기에 대한 기능 제공
+* 파일의 읽기/쓰기에 대한 기능을 제공합니다.
 */
 export interface ScriptFileSystemObject{
 
@@ -50,7 +50,7 @@ export interface ScriptFileSystemObject{
   DeleteFolder(path: string, recurcive: boolean): boolean;
 
   /** 
-   * 파일 또는 폴더가 존재하는지 점검합니다..
+   * 파일 또는 폴더가 존재하는지 점검합니다.
    *
   * @param path 경로
   */
@@ -84,7 +84,7 @@ export interface ScriptFileSystemObject{
    * @example
    * ```js
    *   var fso = Matrix.getFileSystemObject();
-   *   //주어진 경로를 조합한 경로를 반환 합니다.
+   *   //주어진 경로를 조합한 경로를 반환합니다.
    *   //경로 문자열은 OS에 따라 자동으로 치환 됩니다.
    *   var path = fso.PathCombine("DATA/TEMP" ,"FILENAME.xlsx");
    *   // WINDOW : path = DATA\TEMP\FILENAME.xlsx
@@ -102,7 +102,7 @@ export interface ScriptFileSystemObject{
    * ```js
    *   
    *   var fso = Matrix.getFileSystemObject();
-   *   //주어진 경로를 조합한 경로를 반환 합니다.
+   *   //주어진 경로를 조합한 경로를 반환합니다.
    *   //경로 문자열은 OS에 따라 자동으로 치환 됩니다.
    *   var path = fso.PathCombine(["DATA","TEMP","FILENAME.xlsx"]);
    *   // WINDOW : path = DATA\TEMP\FILENAME.xlsx
@@ -144,7 +144,7 @@ export interface ScriptFileSystemObject{
   UnZipFile(zipPath: string, unzipFolder: string): string[];
 
   /** 
-   * 폴더를 포함한 압축 파일의 압축을 해제 합니다.
+   * 폴더를 포함한 압축 파일의 압축을 해제합니다.
    *
   * @param zipPath 압축 파일 경로
   * @param folderPath 출력 대상 폴더명
@@ -194,40 +194,40 @@ export interface ScriptFileSystemObject{
   ZipFolder(folderPath: string, zipPath: string): boolean;
 
   /** 
-   * 파일 정보를 반환 합니다.
+   * 파일 정보를 반환합니다.
    *
   * @param path 파일 경로
   */
   getFileInfo(path: string): ScriptFileInfo;
 
   /** 
-   * 디렉토리 구분 문자를 반환 합니다.
+   * 디렉토리 구분 문자를 반환합니다.
    *
   */
   getFileSeparator(): string;
 
   /** 
-   * 폴더의 하위 파일 목록을 반환 합니다.
+   * 폴더의 하위 파일 목록을 반환합니다.
    *
   * @param folder 폴더경로
   */
   getFiles(folder: string): string[];
 
   /** 
-   * 폴더의 하위 폴더 목록을 반환 합니다.
+   * 폴더의 하위 폴더 목록을 반환합니다.
    *
   * @param folder 폴더경로
   */
   getFolders(folder: string): string[];
 
   /** 
-   * 임시 저장 경로의 폴더 이름을  반환 합니다.
+   * 임시 저장 경로의 폴더 이름을  반환합니다.
    *
   */
   getTemplateFolderName(): string;
 
   /** 
-   * 임시 저장 경로 상의 파일의 경로를 반환 합니다.
+   * 임시 저장 경로 상의 파일의 경로를 반환합니다.
    *
   * @param filaNeme 파일이름
   */

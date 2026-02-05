@@ -1,17 +1,17 @@
 import { ScriptCellStyle } from "../../../../com/matrix/script/excel/ScriptCellStyle";
 /**
-* 다중 스타일 하목
+* 다중 스타일 항목
 */
 export interface ScriptFontSetting{
 
   /** 
-   * 항목의 스타일 정보를 반환 합니다.
+   * 항목의 스타일 정보를 반환합니다.
    *
   */
   getCellStyle(): ScriptCellStyle;
 
   /** 
-   * 텍스트를 반환 합니다.
+   * 텍스트를 반환합니다.
    *
   */
   getText(): string;
@@ -24,7 +24,7 @@ export interface ScriptFontSetting{
   setCellStyle(style: ScriptCellStyle): void;
 
   /** 
-   * 텍스트를 수정 합니다.
+   * 텍스트를 수정합니다.
    *
   * @param text text
   */

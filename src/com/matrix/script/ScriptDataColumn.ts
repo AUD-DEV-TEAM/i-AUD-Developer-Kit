@@ -13,13 +13,13 @@ export interface ScriptDataColumn{
   IsNumeric(): boolean;
 
   /** 
-   * 필드의 원본 데이터 타입코드를 반환 합니다.
+   * 필드의 원본 데이터 타입코드를 반환합니다.
    *
   */
   getColumnType(): number;
 
   /** 
-   * 필드의 원본 데이터 타입 이름을 반환 합니다.
+   * 필드의 원본 데이터 타입 이름을 반환합니다.
    *
   */
   getColumnTypeName(): string;
@@ -37,13 +37,13 @@ export interface ScriptDataColumn{
   getKeyType(): enKeyType;
 
   /** 
-   * 필드의 최대 데이터 사이즈를 반환 합니다.
+   * 필드의 최대 데이터 사이즈를 반환합니다.
    *
   */
   getMaxDataLength(): number;
 
   /** 
-   * Column 명을 반환합니다.
+   * 컬럼명을 반환합니다.
    *
   */
   getName(): string;

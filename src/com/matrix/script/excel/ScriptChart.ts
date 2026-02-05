@@ -4,7 +4,7 @@ import { ScriptLegend } from "../../../../com/matrix/script/excel/ScriptLegend";
 import { ScriptSeries } from "../../../../com/matrix/script/excel/ScriptSeries";
 import { enChartType } from "../../../../com/matrix/script/excel/enChartType";
 /**
-* Excel chart object
+* 엑셀 차트 객체에 대한 접근을 제공합니다.
 */
 export interface ScriptChart{
 
@@ -22,13 +22,13 @@ export interface ScriptChart{
   CreateLegend(): ScriptLegend;
 
   /** 
-   * 차트에 시리즈를 추가 합니다.
+   * 차트에 시리즈를 추가합니다.
    *
   */
   CreateSeries(): ScriptSeries;
 
   /** 
-   * 차트에 시리즈를 추가 합니다.
+   * 차트에 시리즈를 추가합니다.
    *
   * @param chartType 차트 타입
   */
@@ -41,7 +41,7 @@ export interface ScriptChart{
   getChartType(): enChartType;
 
   /** 
-   * 특정 인덱스의 시리즈를 반환 합니다.
+   * 특정 인덱스의 시리즈를 반환합니다.
    *
   * @param index series index
   */

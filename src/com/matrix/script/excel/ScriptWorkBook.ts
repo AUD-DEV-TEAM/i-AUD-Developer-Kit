@@ -23,22 +23,22 @@ export interface ScriptWorkBook{
   AddWorkSheet(worksheet: ScriptWorkSheet, name: string): ScriptWorkSheet;
 
   /** 
-   * 엑셀 문서 내 모든 수식을 계산 합니다.
+   * 엑셀 문서 내 모든 수식을 계산합니다.
    *
   * @param removeFormula 계산 후 모든 수식을 삭제합니다.
-  * @param sheetNames 계산할 시트 이름 목록을 전달 합니다.
+  * @param sheetNames 계산할 시트 이름 목록을 전달합니다.
   */
   Calculate(removeFormula: boolean, sheetNames: string[]): void;
 
   /** 
-   * 엑셀 문서 내 모든 수식을 계산 합니다.
+   * 엑셀 문서 내 모든 수식을 계산합니다.
    *
   * @param removeFormula 계산 후 모든 수식을 삭제합니다.
   */
   Calculate(removeFormula: boolean): void;
 
   /** 
-   * 엑셀 문서 내 모든 수식을 계산 합니다.
+   * 엑셀 문서 내 모든 수식을 계산합니다.
    *
   */
   Calculate(): void;
@@ -222,7 +222,7 @@ export interface ScriptWorkBook{
   MergeSheets(): void;
 
   /** 
-   * worksheet 객체를 삭제 합니다.
+   * worksheet 객체를 삭제합니다.
    *
   * @param key name or index
   */
@@ -355,26 +355,26 @@ export interface ScriptWorkBook{
   SaveXLS(path: string, targetSheets: string): void;
 
   /** 
-   * 현재 엑셀 모델의 수식 참조 관계를 업데이트 합니다.
+   * 현재 엑셀 모델의 수식 참조 관계를 업데이트합니다.
    *
   */
   UpdateFormulaReference(): void;
 
   /** 
-   * worsheet의 수량을 반환 합니다.
+   * worsheet의 수량을 반환합니다.
    *
   */
   WorkSheetCount(): number;
 
   /** 
-   * 현재 엑셀 모델을 MX-GRID 템플릿 파일로 저장 합니다.
+   * 현재 엑셀 모델을 MX-GRID 템플릿 파일로 저장합니다.
    *
   * @param filePath 파일 경로
   */
   WriteTemplate(filePath?: string): void;
 
   /** 
-   * 엑셀의 이름정의 영역을 추가 합니다.
+   * 엑셀의 이름정의 영역을 추가합니다.
    *
   * @param name 이름
   * @param workSheetName 대상 시트명
@@ -383,7 +383,7 @@ export interface ScriptWorkBook{
   addName(name: string, workSheetName: string, rangeArea: string): ScriptName;
 
   /** 
-   * 엑셀 파일의 활성화된 시트를 반환 합니다.
+   * 엑셀 파일의 활성화된 시트를 반환합니다.
    *
   */
   getActiveSheet(): ScriptWorkSheet;
@@ -408,13 +408,13 @@ export interface ScriptWorkBook{
   getHtmlTableConverter(): HTMLTableConverter;
 
   /** 
-   *  내보내기 시 전체 시트를 내보내기 하는지 여부를 반환 합니다.
+   *  내보내기 시 전체 시트를 내보내기 하는지 여부를 반환합니다.
    *
   */
   getIsAllSheetExport(): boolean;
 
   /** 
-   * 디자인 모드로 동작하는지 여부를 반환 합니다.
+   * 디자인 모드로 동작하는지 여부를 반환합니다.
    *
   */
   getIsDesignMode(): boolean;
@@ -426,7 +426,7 @@ export interface ScriptWorkBook{
   getJsonConverter(): JsonTableConverter;
 
   /** 
-   * 엑셀의 이름 정의 정보를 반환 합니다.
+   * 엑셀의 이름 정의 정보를 반환합니다.
    *
   * @param name 이름정의 명
   */
@@ -439,7 +439,7 @@ export interface ScriptWorkBook{
   getNameList(): string[];
 
   /** 
-   * 엑셀 이름정의 또는 셀주소로 셀 정보를 반환 합니다.
+   * 엑셀 이름정의 또는 셀주소로 셀 정보를 반환합니다.
 (이름정의 객체는 단일셀을 참조해야 합니다.
 셀 이름은 시트명을 포함해야 합니다.)
    *
@@ -448,7 +448,7 @@ export interface ScriptWorkBook{
   getNameRange(name: string): ScriptCellRange;
 
   /** 
-   * 엑셀 이름정의 또는 셀의 텍스트를 반환 합니다.
+   * 엑셀 이름정의 또는 셀의 텍스트를 반환합니다.
 (이름정의 객체는 단일셀을 참조해야 합니다.
 셀 이름은 시트명을 포함해야 합니다.)
    *
@@ -457,7 +457,7 @@ export interface ScriptWorkBook{
   getNameRangeText(name: string): string;
 
   /** 
-   * 엑셀 이름정의 또는 셀의 값을 반환 합니다.
+   * 엑셀 이름정의 또는 셀의 값을 반환합니다.
 (이름정의 객체는 단일셀을 참조해야 합니다.
 셀 이름은 시트명을 포함해야 합니다.)
    *
@@ -466,20 +466,20 @@ export interface ScriptWorkBook{
   getNameRangeValue(name: string): any;
 
   /** 
-   * 엑셀 저장 시 시트명의 예약 헤더 문자 "V_"를 자동 제거하는 옵션의 활성화 여부를 반환 합니다.
+   * 엑셀 저장 시 시트명의 예약 헤더 문자 "V_"를 자동 제거하는 옵션의 활성화 여부를 반환합니다.
    *
   */
   getUseExportSheetName(): boolean;
 
   /** 
-   * 이름 또는 순번에 해당하는 시트를 반환 합니다.
+   * 이름 또는 순번에 해당하는 시트를 반환합니다.
    *
   * @param key 이름 또는 Index
   */
   getWorkSheet(key: string|number): ScriptWorkSheet;
 
   /** 
-   * 엑셀 내 특정 영역을 순차적으로 읽기 위한 객체를 반환 합니다.
+   * 엑셀 내 특정 영역을 순차적으로 읽기 위한 객체를 반환합니다.
    *
    * @example
    * ```js
@@ -518,7 +518,7 @@ export interface ScriptWorkBook{
 
   /** 
    * 디자인 모드로 동작할지 여부를 설정합니다.
-디자인 모드는 Client로 출력 시 디자인에 필요한 모든 정보를 출력합니다.
+디자인 모드는 클라이언트로 출력 시 디자인에 필요한 모든 정보를 출력합니다.
    *
   * @param value 콜백 함수
   */
@@ -553,7 +553,7 @@ export interface ScriptWorkBook{
   setNameRangeValue(name: string, value: any): void;
 
   /** 
-   * 엑셀 저장 시 시트명의 예약 헤더 문자 "V_"를 자동 제거하는 옵션의 활성화 여부를 설정 합니다.
+   * 엑셀 저장 시 시트명의 예약 헤더 문자 "V_"를 자동 제거하는 옵션의 활성화 여부를 설정합니다.
    *
   * @param updated 옵션 사용 여부
   */

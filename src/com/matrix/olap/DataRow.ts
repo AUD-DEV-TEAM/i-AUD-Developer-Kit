@@ -4,14 +4,14 @@
 export interface DataRow{
 
   /** 
-   * 특정 컬럼이 Lock인지 여부를 반환 합니다.
+   * 특정 컬럼이 Lock인지 여부를 반환합니다.
    *
   * @param dataColumnIndex OlapField의 DataColumnIndex
   */
   IsLockColumn(dataColumnIndex: number): boolean;
 
   /** 
-   * 특정 컬럼의 값을 반환 합니다. Measure 필드의 값만 허용 합니다.
+   * 특정 컬럼의 값을 반환합니다. Measure 필드의 값만 허용합니다.
    *
   * @param dataColumnIndex OlapField의 DataColumnIndex
   */

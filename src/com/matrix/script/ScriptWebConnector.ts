@@ -1,10 +1,10 @@
 /**
-* HTTP, HTTPS 프로토콜을 통한 서버 연결을 지원하는 Client 객체 입니다.
+* HTTP, HTTPS 프로토콜을 통한 서버 연결을 지원하는 클라이언트 객체입니다.
 */
 export interface ScriptWebConnector{
 
   /** 
-   * 특정 URL의 내용을 다운로드해서 파일로 저장 합니다.
+   * 특정 URL의 내용을 다운로드해서 파일로 저장합니다.
    *
   * @param targetUrl 대상 URL
   * @param filePath 파일 저장 경로
@@ -15,7 +15,7 @@ export interface ScriptWebConnector{
   DownLoadFile(targetUrl: string, filePath: string, method: string, postData: string, headers: string[]): void;
 
   /** 
-   * http 연결을 실행 하고 결과를 반환 합니다.
+   * HTTP 연결을 실행하고 결과를 반환합니다.
    *
   * @param targetUrl 대상 URL
   * @param method 연결 방식 (POST,GET,PUT,DELETE)
@@ -33,7 +33,7 @@ export interface ScriptWebConnector{
   URLEncode(text: string, charset: string): string;
 
   /** 
-   * http 연결을 통해 파일을 업로드 합니다.
+   * HTTP 연결을 통해 파일을 업로드합니다.
    *
   * @param targetUrl 대상 URL
   * @param fileFieldName 업로드 파일의 식별할 이름
@@ -44,7 +44,7 @@ export interface ScriptWebConnector{
   UploadFile(targetUrl: string, fileFieldName: string, filePath: string, postData: string[], headers: string[]): string;
 
   /** 
-   * 특정 URL에 파일들을 업로드 합니다.
+   * 특정 URL에 파일들을 업로드합니다.
    *
   * @param targetUrl 대상 URL
   * @param fileList 파일 목록(e.g.['_TEMP_/aaa.htm@업로드이름.htm','_TEMP_/zasdfasdf.xlsx@첨부파일.xlsx'])
@@ -74,13 +74,13 @@ export interface ScriptWebConnector{
   UseAudAuthority(): void;
 
   /** 
-   * 원격 서버 연결에 대한 마지막 http response 코드를 반환 합니다.
+   * 원격 서버 연결에 대한 마지막 HTTP 응답 코드를 반환합니다.
    *
   */
   getLastResponseCode(): number;
 
   /** 
-   * 해당 메소드 호출 전에 연결한 서버에서 받은 쿠키 정보를 제공해드립니다.
+   * 해당 메서드 호출 전에 연결한 서버에서 받은 쿠키 정보를 반환합니다.
    *
   */
   getResponseCookie(): string;

@@ -8,33 +8,33 @@ import { enMarkerType } from "../../../../com/matrix/script/excel/enMarkerType";
 export interface ScriptSeries{
 
   /** 
-   * 시리즈 항목 리스트를 초기화 합니다.
+   * 시리즈 항목 리스트를 초기화합니다.
    *
   */
   ClearCategory(): void;
 
   /** 
-   * 시리즈 값 목록을 초기화 합니다.
+   * 시리즈 값 목록을 초기화합니다.
    *
   */
   ClearValues(): void;
 
   /** 
-   * 시리즈 항목 값을 추가 합니다.
+   * 시리즈 항목 값을 추가합니다.
    *
   * @param text 항목 값
   */
   addCategory(text: string): void;
 
   /** 
-   * 시리즈 항목 값을 추가 합니다.
+   * 시리즈 항목 값을 추가합니다.
    *
   * @param text 항목 값
   */
   addCategoryArray(text: string[]): void;
 
   /** 
-   * 시리즈의 함목과 값을 추가 합니다.
+   * 시리즈의 항목과 값을 추가합니다.
    *
   * @param text 항목 값
   * @param value 값
@@ -42,42 +42,42 @@ export interface ScriptSeries{
   addCategoryValue(text: string, value: number): void;
 
   /** 
-   * 시리즈의 배경 색상을 추가 합니다.
+   * 시리즈의 배경 색상을 추가합니다.
    *
   * @param color 색상 값(eg.#FF00FF)
   */
   addFillColors(color: string): void;
 
   /** 
-   * 시리즈의 배경 색상을 지정 합니다.
+   * 시리즈의 배경 색상을 지정합니다.
    *
   * @param colors 색상 값 목록(eg.['#FF00FF',...,'#FFFF00'])
   */
   addFillColors(colors: string[]): void;
 
   /** 
-   * 시리즈의 테두리 라인 색상을 추가 합니다.
+   * 시리즈의 테두리 라인 색상을 추가합니다.
    *
   * @param color 색상 값(eg.#FF00FF)
   */
   addLineColors(color: string): void;
 
   /** 
-   * 시리즈의 테두리 라인 색상을 지정 합니다.
+   * 시리즈의 테두리 라인 색상을 지정합니다.
    *
   * @param colors 색상 값 목록(eg.['#FF00FF',...,'#FFFF00'])
   */
   addLineColors(colors: string[]): void;
 
   /** 
-   * 시리즈의 값을 추가 합니다.
+   * 시리즈의 값을 추가합니다.
    *
   * @param value 값
   */
   addValue(value: number): void;
 
   /** 
-   * 시리즈의 X/Y/Size 값을 추가 합니다.(차트 유형:Scatter,Bubble-Size)
+   * 시리즈의 X/Y/Size 값을 추가합니다.(차트 유형:Scatter,Bubble-Size)
    *
   * @param value 값
   * @param isXYZ 시리즈 구성 데이터 유형(X/Y/Size)
@@ -85,14 +85,14 @@ export interface ScriptSeries{
   addValue(value: string, isXYZ: string): void;
 
   /** 
-   * 시리즈의 레이블 값을 추가 합니다.(차트 유형:Scatter,Bubble)
+   * 시리즈의 레이블 값을 추가합니다.(차트 유형:Scatter,Bubble)
    *
   * @param value 값
   */
   addValue(value: string): void;
 
   /** 
-   * 시리즈의 값을 추가 합니다.
+   * 시리즈의 값을 추가합니다.
    *
   * @param value 값
   */
@@ -145,7 +145,7 @@ export interface ScriptSeries{
   setExplosion(size: number): void;
 
   /** 
-   * 시리즈의 배경 색상을 지정 합니다.
+   * 시리즈의 배경 색상을 지정합니다.
    *
   * @param color 색상 값(eg.#FF00FF)
   */
@@ -159,7 +159,7 @@ export interface ScriptSeries{
   setFirstSliceAng(angle: number): void;
 
   /** 
-   * 값 필드의 서식을 설저합니다.
+   * 값 필드의 서식을 설정합니다.
    *
   * @param fmt eg. #,##0
   */
@@ -187,7 +187,7 @@ export interface ScriptSeries{
   setLabelText(text: string): void;
 
   /** 
-   * 시리즈의 테두리 라인 색상을 지정 합니다.
+   * 시리즈의 테두리 라인 색상을 지정합니다.
    *
   * @param color 색상 값(eg.#FF00FF)
   */
@@ -201,7 +201,7 @@ export interface ScriptSeries{
   setLineDashType(type: enLineDashType): void;
 
   /** 
-   * 시리즈의 테두리 라인 굵기를 지정 합니다.
+   * 시리즈의 테두리 라인 굵기를 지정합니다.
    *
   * @param width 기본값 1
   */
@@ -250,21 +250,21 @@ export interface ScriptSeries{
   setValueRange(range: string): void;
 
   /** 
-   * 값 필드의 서식을 설저합니다.(차트 유형:Scatter,Bubble)
+   * 값 필드의 서식을 설정합니다.(차트 유형:Scatter,Bubble)
    *
   * @param fmt eg. #,##0
   */
   setXFormat(fmt: string): void;
 
   /** 
-   * 값 필드의 서식을 설저합니다.(차트 유형:Scatter,Bubble)
+   * 값 필드의 서식을 설정합니다.(차트 유형:Scatter,Bubble)
    *
   * @param fmt eg. #,##0
   */
   setYFormat(fmt: string): void;
 
   /** 
-   * 값 필드의 서식을 설저합니다.(차트 유형:Bubble)
+   * 값 필드의 서식을 설정합니다.(차트 유형:Bubble)
    *
   * @param fmt eg. #,##0
   */

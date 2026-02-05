@@ -8,7 +8,7 @@ import { ScriptDataRow } from "../../../com/matrix/script/ScriptDataRow";
 export interface ScrpitCallableStatement extends ScriptPreparedStatement{
 
   /** 
-   * 다음 결과셋을 데이터 테이블 형태로 반환 합니다.
+   * 다음 결과셋을 데이터 테이블 형태로 반환합니다.
    *
   * @param callbackRow 파일의 Row 단위 데이터 처리 함수
   * ```

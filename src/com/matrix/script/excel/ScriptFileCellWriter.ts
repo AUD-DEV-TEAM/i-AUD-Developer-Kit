@@ -5,7 +5,7 @@ import { ScriptCellRange } from "../../../../com/matrix/script/excel/ScriptCellR
 export interface ScriptFileCellWriter{
 
   /** 
-   * 버퍼에 셀들 등록 합니다.(셀 출력 시 주소 기준으로 정렬을 보장합니다.)
+   * 버퍼에 셀들 등록합니다.(셀 출력 시 주소 기준으로 정렬을 보장합니다.)
    *
   * @param cell 추가할 셀 객체
    * @hidden

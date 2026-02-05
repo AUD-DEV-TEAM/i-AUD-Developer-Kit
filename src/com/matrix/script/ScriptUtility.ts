@@ -34,9 +34,38 @@ export interface ScriptUtility{
   */
   CreateInstance(className: string): any;
 
-  /** 
-   * PDF 파일 작성을 위한 객체를 반환합니다.
+  /**
+   * PDF 파일 작성을 위한 {@link ScriptPdfDocument} 객체를 반환합니다.
    *
+   * @example
+   * ```js
+   * var req = Matrix.getRequest();
+   * var res = Matrix.getResponse();
+   * var util = Matrix.getUtility();
+   * var fso = Matrix.getFileSystemObject();
+   *
+   * // 여러 MX-GRID를 각각 PDF로 변환 후 하나의 파일로 병합
+   * var pdfFiles = [];
+   * var grids = ["MX_GRID_01", "MX_GRID_02", "MX_GRID_03"];
+   * for (var i = 0; i < grids.length; i++) {
+   *     var wb = Matrix.OpenWorkBook(req.getReportCode(), grids[i], true);
+   *     wb.Calculate(true);
+   *     var pdfPath = fso.getTemplatePath(util.getUniqueKey("PDF") + ".pdf");
+   *     wb.SaveAsPDF(pdfPath);
+   *     pdfFiles.push(pdfPath);
+   * }
+   *
+   * // PDF 병합
+   * var pdf = util.CreatePDFDocument();
+   * var mergedPath = fso.getTemplatePath(util.getUniqueKey("PDF") + ".pdf");
+   * pdf.MergeFiles(pdfFiles, mergedPath);
+   *
+   * // 클라이언트에 파일 경로 전달
+   * var mergedFileName = fso.getFileName(mergedPath);
+   * res.WriteResponseText(JSON.stringify({
+   *     "FILE_NAME": mergedFileName
+   * }));
+   * ```
   */
   CreatePDFDocument(): ScriptPdfDocument;
 
@@ -48,7 +77,7 @@ export interface ScriptUtility{
   CreatePPT(templatePath: string): ScriptPPT;
 
   /** 
-   * ScriptDataTable의 결과를 텍스트 파일로 저장 합니다.
+   * ScriptDataTable의 결과를 텍스트 파일로 저장합니다.
    *
    * @example
    * ```js
@@ -183,7 +212,7 @@ export interface ScriptUtility{
   Day(date: Date): number;
 
   /** 
-   * 파일의 DRM을 해제 합니다.
+   * 파일의 DRM을 해제합니다.
 DRM 해제를 위해서는 사전에 서버에 DRM 해제 모듈의 설치가 필요하며,
 시스템 옵션에 "DRM_DECRYPT_URL"의 값이 설정되어야 합니다.
 DRM_DECRYPT_URL은  서버에서 접속 가능한 주소로 설정해야 합니다. 
@@ -195,7 +224,7 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
    * var util = Matrix.getUtility(); 
    * var XLS_PATH = fso.PathCombine("_TEMP_", "USER_UPLOAD.xlsx");
    * 
-   * //파일의 DRM을 해제 합니다.
+   * //파일의 DRM을 해제합니다.
    * //DRM 해제를 위해서는 사전에 서버에 DRM 해제 모듈의 설치가 필요하며,
    * //시스템 옵션에 "DRM_DECRYPT_URL"의 값이 설정되어야 합니다.
    * //DRM_DECRYPT_URL은  서버에서 접속 가능한 주소로 설정해야 합니다. 
@@ -298,7 +327,7 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
   Left(text: string, length: number): string;
 
   /** 
-   * 대상 문자열의 길이를 반환 합니다.
+   * 대상 문자열의 길이를 반환합니다.
    *
   * @param text 대상 문자열
   */
@@ -416,25 +445,54 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   */
   ReadCSVFile(path: string, firstLineIsColumnHeader: boolean, colSeparator: string, rowSeparator: string, defColumns: string): ScriptDataTable;
 
-  /** 
+  /**
    * CSV 형태 파일의 내용을 데이터 테이블 형태로 반환합니다.
-대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
-callback을 지원하는 함수를 사용하시기 바랍니다.
+   * Row 단위 콜백을 통해 대용량 파일을 메모리 부담 없이 처리할 수 있습니다.
    *
-  * @param path 엑셀 파일의 경로
+   * @example
+   * ```js
+   * var req = Matrix.getRequest();
+   * var res = Matrix.getResponse();
+   * var util = Matrix.getUtility();
+   * var fso = Matrix.getFileSystemObject();
+   * var con = Matrix.getConnection();
+   *
+   * // 사용자가 업로드한 CSV 파일을 읽어 DB에 저장
+   * var csvPath = fso.getTemplatePath(req.getParam("VS_FILE_NAME"));
+   *
+   * con.Connect("AUD_SAMPLE_DB");
+   * con.BeginTransaction();
+   * var sql = "INSERT INTO TB_UPLOAD(NAME, DEPT, AMOUNT) VALUES(?, ?, ?)";
+   * var stmt = con.PrepareCall(sql, true);
+   * var rowCount = 0;
+   *
+   * // CSV 읽기: 첫 행=헤더, 구분자=콤마, 줄바꿈=\n
+   * var table = util.ReadCSVFile(csvPath, true, ",", "\n",
+   *     CALL_BACK(function(row) {
+   *         // 빈 행 건너뛰기
+   *         if (!row.getData("NAME")) return null;
+   *
+   *         stmt.setString(1, row.getData("NAME"));
+   *         stmt.setString(2, row.getData("DEPT"));
+   *         stmt.setDouble(3, row.getDouble("AMOUNT"));
+   *         stmt.addBatch();
+   *         rowCount++;
+   *
+   *         // 500건 단위로 배치 실행
+   *         if (rowCount % 500 == 0) stmt.executeBatch();
+   *         return null; // 다음 row 읽기
+   *     }));
+   *
+   * stmt.executeBatch();
+   * con.CommitTransaction();
+   * stmt.close();
+   * con.DisConnect();
+   * ```
+  * @param path CSV 파일의 경로
   * @param firstLineIsColumnHeader 첫 행이 컬럼명인지 여부
-  * @param colSeparator 행 분리자(기본값:,)
-  * @param rowSeparator 열 분리자(기본값:개행)
-  * @param callbackRow 파일의 Row 단위 데이터 반환 함수
-  * ```
-  * 
-  *       CALL_BACK(function(row){
-  *       //row == com.matrix.script.ScriptDataRow
-  *       //return true : 해당 row 를 데이터 테이블에 추가
-  *       //      false : 엑셀 파일 읽기 종료
-  *       //       null : 다음 row 읽기
-  * })
-  * ```
+  * @param colSeparator 컬럼 분리자 (기본값: `,`)
+  * @param rowSeparator 행 분리자 (기본값: `\n`)
+  * @param callbackRow Row 단위 콜백 — `return true`: 테이블에 추가, `false`: 읽기 종료, `null`: 다음 row
   */
   ReadCSVFile(path: string, firstLineIsColumnHeader: boolean, colSeparator: string, rowSeparator: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
 
@@ -476,21 +534,57 @@ ReadExcelFile(path, callbackRow)을 사용하십시요.
   */
   ReadExcelFile(path: string): ScriptDataTable;
 
-  /** 
-   * 엑셀파일의 내용을 데이터 테이블 형태로 반환합니다.
+  /**
+   * 엑셀 파일의 내용을 데이터 테이블 형태로 반환합니다.
+   * 컬럼 타입을 지정하여 문자/숫자 데이터를 정확히 구분할 수 있으며,
+   * Row 단위 콜백으로 대용량 파일을 처리할 수 있습니다.
    *
+   * @example
+   * ```js
+   * var req = Matrix.getRequest();
+   * var res = Matrix.getResponse();
+   * var util = Matrix.getUtility();
+   * var fso = Matrix.getFileSystemObject();
+   * var con = Matrix.getConnection();
+   *
+   * // 사용자가 업로드한 엑셀 파일을 읽어 DB에 저장
+   * var xlsPath = fso.getTemplatePath(req.getParam("VS_FILE_NAME"));
+   *
+   * con.Connect("AUD_SAMPLE_DB");
+   * con.BeginTransaction();
+   * var sql = "INSERT INTO TB_UPLOAD(CODE, NAME, QTY, PRICE) VALUES(?, ?, ?, ?)";
+   * var stmt = con.PrepareCall(sql, true);
+   * var rowCount = 0;
+   *
+   * // 컬럼 타입 정의: S=문자열, N=숫자 (컬럼명;타입 을 | 로 구분)
+   * var defColumns = "CODE;S|NAME;S|QTY;N|PRICE;N";
+   *
+   * var table = util.ReadExcelFile(xlsPath, defColumns,
+   *     CALL_BACK(function(row) {
+   *         // CODE가 비어있으면 건너뛰기
+   *         if (!row.getData("CODE")) return null;
+   *
+   *         stmt.setString(1, row.getData("CODE"));
+   *         stmt.setString(2, row.getData("NAME"));
+   *         stmt.setDouble(3, row.getDouble("QTY"));
+   *         stmt.setDouble(4, row.getDouble("PRICE"));
+   *         stmt.addBatch();
+   *         rowCount++;
+   *
+   *         if (rowCount % 500 == 0) stmt.executeBatch();
+   *         return null; // 다음 row 읽기
+   *     }));
+   *
+   * stmt.executeBatch();
+   * con.CommitTransaction();
+   * stmt.close();
+   * con.DisConnect();
+   *
+   * res.WriteResponseText(JSON.stringify({ "ROW_COUNT": rowCount }));
+   * ```
   * @param path 엑셀 파일의 경로
-  * @param defColumns 컬럼의 데이터 타입을 정의합니다.(STR1;S|NUM1;N|STR2;S|NUM2;N)
-  * @param callbackRow 파일의 Row 단위 데이터 반환 함수
-  * ```
-  * 
-  *       CALL_BACK(function(row){
-  *       //row == com.matrix.script.ScriptDataRow
-  *       //return true : 해당 row 를 데이터 테이블에 추가
-  *       //      false : 엑셀 파일 읽기 종료
-  *       //       null : 다음 row 읽기
-  * })
-  * ```
+  * @param defColumns 컬럼의 데이터 타입 정의 (형식: `컬럼명;S|컬럼명;N` — `S`=문자열, `N`=숫자)
+  * @param callbackRow Row 단위 콜백 — `return true`: 테이블에 추가, `false`: 읽기 종료, `null`: 다음 row
   */
   ReadExcelFile(path: string, defColumns: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
 
@@ -529,10 +623,10 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
    * var util = Matrix.getUtility();
    * var fso  = Matrix.getFileSystemObject();
    * 
-   * //엑셀의 특정 영역을 테이블 형태로 반환 합니다.
+   * //엑셀의 특정 영역을 테이블 형태로 반환합니다.
    * var path = fso.PathCombine(["_TEMP_", "uploaded.xlsx"]);
    * //Sheet1의 A1 셀을 기준으로 데이터가 없을 때 까지 레코드를 읽습니다.
-   * // 특정 영역을 지정하고자 하면 'Sheet1'!C1:D3 와 같이 엑셀의 영역 주소를 입력 합니다.
+   * // 특정 영역을 지정하고자 하면 'Sheet1'!C1:D3 와 같이 엑셀의 영역 주소를 입력합니다.
    * var range = "Sheet1'!A1"; 
    * var options = ["ColumnHeader=false"];//컬럼명이 첫번째 줄에 포함되지 않은 경우 자동으로 컬럼명을 생성합니다.
    * var table = util.ReadExcelToDataTable(path ,range ,options ,CALL_BACK(function(row){
@@ -567,7 +661,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   ReadRFile(path: string): ScriptDataSet;
 
   /** 
-   * 텍스트 파일을 읽고 그 내용을 반환 합니다.
+   * 텍스트 파일을 읽고 그 내용을 반환합니다.
    *
   * @param path 파일의 경로
   */
@@ -748,7 +842,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   StringEqualsIgnoreCase(textA: string, textB: string): boolean;
 
   /** 
-   * 지정된 형식에 따라 개체의 값을 문자열로 변환하여 다른 문자열에 삽입 합니다.
+   * 지정된 형식에 따라 개체의 값을 문자열로 변환하여 다른 문자열에 삽입합니다.
    *
   * @param text 문자열
   * @param value1 값1
@@ -758,7 +852,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   StringFormat(text: string, value1: any, value2: any, valueN: any): number;
 
   /** 
-   * 문자열의 길이를 반환 합니다.
+   * 문자열의 길이를 반환합니다.
    *
   * @param text 대상 문자열
   */
@@ -854,12 +948,12 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   Weekday(date: Date): number;
 
   /** 
-   * XML parsing 한  org.w3c.dom.Document 객체를 반환 합니다.
+   * XML parsing 한  org.w3c.dom.Document 객체를 반환합니다.
    *
    * @example
    * ```js
    * //XML Parse
-   * //org.w3c.dom.Document 객체를 반환 합니다.
+   * //org.w3c.dom.Document 객체를 반환합니다.
    * //https://www.w3.org/2003/01/dom2-javadoc/org/w3c/dom/Document.html
    * var xDoc = Matrix.XmlParse(xml);
    * var nodes = xDoc.getChildNodes();
@@ -901,41 +995,41 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   Year(date: Date): number;
 
   /** 
-   * 현재 요청의 암호화 키값의 소스를 반환 합니다.
+   * 현재 요청의 암호화 키값의 소스를 반환합니다.
    *
   */
   getAESKey(): string;
 
   /** 
-   * 주어진 문자열을 Base64 Decoding 한 문자열을 반환 합니다.
+   * 주어진 문자열을 Base64 Decoding 한 문자열을 반환합니다.
    *
   * @param text 문자열
   */
   getBase64DecodingString(text: string): string;
 
   /** 
-   * 주어진 문자열을 Base64 Encoding 한 문자열을 반환 합니다.
+   * 주어진 문자열을 Base64 Encoding 한 문자열을 반환합니다.
    *
   * @param text 문자열
   */
   getBase64EncodingString(text: string): string;
 
   /** 
-   * 이미지 파일을 base64로 변환한 문자열을 반환 합니다.
+   * 이미지 파일을 base64로 변환한 문자열을 반환합니다.
    *
   * @param filePath 이미지 파일 경로
   */
   getBase64TextFromImage(filePath: string): string;
 
   /** 
-   * 암호화된 문자열을 복호화 합니다.
+   * 암호화된 문자열을 복호화합니다.
    *
   * @param encText 문자열
   */
   getDecrypt(encText: string): string;
 
   /** 
-   * 암호화(AES-128)된 문자열을 복호화 합니다.
+   * 암호화(AES-128)된 문자열을 복호화합니다.
    *
   * @param encText 문자열
   * @param key Encryption Key
@@ -943,7 +1037,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   getDecryptAES(encText: string, key: string): string;
 
   /** 
-   * 주어진 문자열을 Encoding 한 문자열을 반환 합니다.
+   * 주어진 문자열을 Encoding 한 문자열을 반환합니다.
    *
   * @param text 문자열
   * @param charsetName 문자셋 명(eg.8859-1)
@@ -951,14 +1045,14 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   getEncodingString(text: string, charsetName: string): string;
 
   /** 
-   * 문자열을 암호화 합니다.
+   * 문자열을 암호화합니다.
    *
   * @param fureText 문자열
   */
   getEncrypt(fureText: string): string;
 
   /** 
-   * 문자열을 암호화(AES-128) 합니다.
+   * 문자열을 암호화(AES-128)합니다.
    *
   * @param fureText 문자열
   * @param key Encryption Key
@@ -966,28 +1060,28 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   getEncryptAES(fureText: string, key: string): string;
 
   /** 
-   * 엑셀 파일 전체 시트의 이름 목록을 반환 합니다.
+   * 엑셀 파일 전체 시트의 이름 목록을 반환합니다.
    *
   * @param xlsPath Excel 파일 경로
   */
   getExcelWorkSheets(xlsPath: string): string[];
 
   /** 
-   * 주어진 파일에  대한 MD5 해시 코드를 반환 합니다.
+   * 주어진 파일에  대한 MD5 해시 코드를 반환합니다.
    *
   * @param filePath File path
   */
   getFileMD5Hash(filePath: string): string;
 
   /** 
-   * 이미지 파일의 사이즈를 반환 합니다.
+   * 이미지 파일의 사이즈를 반환합니다.
    *
   * @param filePath 이미지 파일 경로
   */
   getImageSize(filePath: string): Size;
 
   /** 
-   * 서버 옵션 값을 반환 합니다.
+   * 서버 옵션 값을 반환합니다.
    *
   * @param name 옵션 코드
   * @param defaultValue 기본 값
@@ -995,7 +1089,7 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   getServerOption(name: string, defaultValue: string): string;
 
   /** 
-   * 주어진 문자열에 대한 MD5 해시 코드를 반환 합니다..
+   * 주어진 문자열에 대한 MD5 해시 코드를 반환합니다.
    *
   * @param text original text
   */

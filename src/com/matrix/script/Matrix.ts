@@ -143,6 +143,56 @@ export interface Matrix{
    *
    * @param reportCode 보고서 코드
    * @param mxGridCode MX-Grid에 연결된 i-MATRIX 코드
+   *
+   * @example
+   * ```js
+   * //──────────────────────────────────────────────────
+   * // MX-Grid 모델(엑셀)을 열어서 특정 시트의 셀 값 읽기
+   * //──────────────────────────────────────────────────
+   * var req = Matrix.getRequest();
+   * var res = Matrix.getResponse();
+   *
+   * // MX-Grid 모델 열기 (데이터셋 실행 포함)
+   * var wb = Matrix.OpenWorkBook(req.getReportCode(), "MX_GRID_CODE", true);
+   *
+   * // 수식계산 후 수식 비활성화 (중복 수식 계산 방지)
+   * wb.Calculate(true);
+   *
+   * //── 방법 1: WorkSheet → getRange → 셀 값 읽기 ──
+   * var sheet = wb.getWorkSheet("V1");
+   *
+   * // 셀 주소로 접근
+   * var cell = sheet.getRange("B2");
+   * var textValue = cell.getText();    // 서식 적용된 텍스트
+   * var numValue  = cell.getNumber();  // 수치 값
+   * var anyValue  = cell.getValue();   // 원본 값 (any)
+   *
+   * // 행/열 번호로 접근 (1부터 시작)
+   * var cell2 = sheet.getRange(3, 2);       // 3행 2열 = B3
+   * var cellType = cell2.getCellType();     // 셀 타입 (String, Number, DateTime 등)
+   * Matrix.WriteLog("B3 타입: " + cellType + ", 값: " + cell2.getText());
+   *
+   * //── 방법 2: WorkBook에서 시트명!셀주소로 직접 읽기 ──
+   * // 이름정의(Named Range) 또는 "시트명!셀주소" 형식 사용
+   * var val = wb.getNameRangeValue("V1!C5");  // 값 반환
+   * var txt = wb.getNameRangeText("V1!C5");   // 서식 적용 텍스트 반환
+   *
+   * //── 특정 영역을 순회하며 읽기 ──
+   * for (var r = 1; r <= 10; r++) {
+   *     for (var c = 1; c <= 5; c++) {
+   *         if (sheet.hasRange(r, c)) {
+   *             var v = sheet.getRange(r, c).getText();
+   *             Matrix.WriteLog("Cell[" + r + "," + c + "] = " + v);
+   *         }
+   *     }
+   * }
+   *
+   * res.WriteResponseText(JSON.stringify({
+   *     TEXT_VALUE: textValue,
+   *     NUM_VALUE: numValue,
+   *     DIRECT_VALUE: val
+   * }));
+   * ```
    */
   OpenWorkBook(reportCode: string, mxGridCode: string): ScriptWorkBook;
 
@@ -156,11 +206,43 @@ export interface Matrix{
   OpenWorkBook(reportCode: string, mxGridCode: string, executeDataSet: boolean): ScriptWorkBook;
 
   /**
-   * 엑셀 파일을 MX-Grid용 문서로 변환한 뒤 변환된 파일의 경로를 반환합니다.
+   * 엑셀 파일을 MX-Grid용 문서(`.json2`)로 변환한 뒤 변환된 파일의 경로를 반환합니다.
+   *
+   * 변환된 파일은 원본 엑셀 파일과 동일한 경로에 `.json2` 확장자로 생성됩니다.
    *
    * @param xlsFilePath 엑셀 파일 경로
-   * @param allSheets 모든 시트를 파싱할지 여부. `false`이면 V로 시작하는 시트, 활성 시트, 수식 참조 시트만 대상으로 합니다.
-   * @returns 변환된 파일 경로
+   * @param allSheets 모든 시트를 파싱할지 여부. `false`이면 `V`로 시작하는 시트, 활성 시트, 수식 참조 시트만 대상으로 합니다.
+   * @returns 변환된 `.json2` 파일 경로
+   *
+   * @example
+   * ```js
+   * //──────────────────────────────────────────────────
+   * // 패턴 1: 업로드된 엑셀 파일을 MX-Grid 문서로 변환
+   * //──────────────────────────────────────────────────
+   * var fso = Matrix.getFileSystemObject();
+   *
+   * // 업로드된 엑셀 파일 경로
+   * var xlsPath = fso.getTemplatePath("upload_report.xlsx");
+   *
+   * // 전체 시트 파싱
+   * var json2Path = Matrix.ParseExcel(xlsPath, true);
+   * Matrix.WriteLog("변환 결과: " + json2Path);
+   * // 결과: ..._TEMP_/upload_report.json2
+   *
+   * //──────────────────────────────────────────────────
+   * // 패턴 2: V 시트만 선택적 파싱 후 클라이언트에 전달
+   * //──────────────────────────────────────────────────
+   * var res = Matrix.getResponse();
+   * var fso = Matrix.getFileSystemObject();
+   *
+   * var xlsPath = fso.getTemplatePath("template.xlsx");
+   *
+   * // allSheets=false: V로 시작하는 시트 + 활성 시트 + 수식 참조 시트만 파싱
+   * var json2Path = Matrix.ParseExcel(xlsPath, false);
+   *
+   * // 변환된 파일 내용을 클라이언트에 전달
+   * res.WriteResponseTextFile(json2Path);
+   * ```
    */
   ParseExcel(xlsFilePath: string, allSheets: boolean): string;
 
@@ -267,11 +349,105 @@ export interface Matrix{
 
   /**
    * Multipart 방식의 HTTP 요청을 위한 {@link ScriptHttpClient} 객체를 반환합니다.
+   *
+   * 파일 업로드와 텍스트 파라미터를 함께 전송해야 하는 경우에 사용합니다.
+   * 메서드 체이닝을 지원하여 요청을 간결하게 구성할 수 있습니다.
+   *
+   * @example
+   * ```js
+   * //──────────────────────────────────────────────────
+   * // 패턴 1: 파일 업로드 + 텍스트 파라미터
+   * //──────────────────────────────────────────────────
+   * var http = Matrix.getHttpClient();
+   * var fso = Matrix.getFileSystemObject();
+   *
+   * // 업로드할 파일 준비 (reports 하위 경로)
+   * var filePath = fso.getTemplatePath("export_data.xlsx");
+   *
+   * // 요청 구성 및 실행
+   * var result = http.Create("http://api.example.com/upload", "POST")
+   *     .setHeader("Accept", "application/json")
+   *     .addTextBody("userCode", "matrix")
+   *     .addTextBody("description", "월별 매출 리포트")
+   *     .addBinaryBody(filePath, "file", "매출리포트.xlsx")
+   *     .execute();
+   *
+   * var json = JSON.parse(result);
+   * Matrix.WriteLog("업로드 결과: " + json.status);
+   *
+   * //──────────────────────────────────────────────────
+   * // 패턴 2: 다중 파일 업로드 (MIME 타입 지정)
+   * //──────────────────────────────────────────────────
+   * var http = Matrix.getHttpClient();
+   * var fso = Matrix.getFileSystemObject();
+   *
+   * var result = http.Create("http://api.example.com/files", "POST")
+   *     .setHeader("Authorization", "Bearer token123")
+   *     .addTextBody("category", "report")
+   *     .addBinaryBody(fso.getTemplatePath("data.csv"), "files", "데이터.csv",
+   *         "text/csv", "UTF-8")
+   *     .addBinaryBody(fso.getTemplatePath("image.png"), "files", "이미지.png",
+   *         "image/png", "UTF-8")
+   *     .execute();
+   * ```
    */
   getHttpClient(): ScriptHttpClient;
 
   /**
-   * HTTP 연결을 위한 {@link ScriptWebConnector} 객체를 반환합니다.
+   * HTTP/HTTPS 프로토콜을 통한 외부 서버 연결을 위한 {@link ScriptWebConnector} 객체를 반환합니다.
+   *
+   * REST API 호출, 파일 다운로드/업로드 등 서버 간 통신에 사용합니다.
+   *
+   * @example
+   * ```js
+   * //──────────────────────────────────────────────────
+   * // 패턴 1: REST API 호출 (JSON POST)
+   * //──────────────────────────────────────────────────
+   * var web = Matrix.getHttpConnector();
+   *
+   * var targetUrl = "http://api.example.com/users";
+   * var method = "POST";
+   * var postData = JSON.stringify({
+   *     "userName": "홍길동",
+   *     "deptCode": "D001"
+   * });
+   * var headers = ["Content-Type=application/json",
+   *                "Accept=application/json"];
+   *
+   * var result = web.SendRequest(targetUrl, method, postData, headers);
+   * var json = JSON.parse(result);
+   * Matrix.WriteLog("응답: " + json.status);
+   *
+   * //──────────────────────────────────────────────────
+   * // 패턴 2: 파일 다운로드
+   * //──────────────────────────────────────────────────
+   * var web = Matrix.getHttpConnector();
+   * var fso = Matrix.getFileSystemObject();
+   *
+   * var downloadUrl = "http://api.example.com/files/report.xlsx";
+   * var savePath = fso.getTemplatePath("download_report.xlsx");
+   *
+   * web.DownLoadFile(downloadUrl, savePath, "GET", "", []);
+   *
+   * //──────────────────────────────────────────────────
+   * // 패턴 3: 파일 업로드
+   * //──────────────────────────────────────────────────
+   * var web = Matrix.getHttpConnector();
+   *
+   * var uploadUrl = "http://api.example.com/upload";
+   * // 단일 파일 업로드
+   * var response = web.UploadFile(uploadUrl, "file",
+   *     "_TEMP_/export.xlsx",
+   *     ["userCode=matrix"],              // POST 데이터
+   *     ["Accept=application/json"]);     // 헤더
+   *
+   * // 다중 파일 업로드 (파일경로@업로드명 형식)
+   * var response2 = web.UploadFiles(uploadUrl,
+   *     ["_TEMP_/data.csv@데이터.csv", "_TEMP_/image.png@이미지.png"],
+   *     ["userCode=matrix"],
+   *     ["Accept=application/json"]);
+   *
+   * ```
    */
   getHttpConnector(): ScriptWebConnector;
 

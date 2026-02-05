@@ -188,14 +188,14 @@ export interface ScriptWorkSheet{
   CreateImageByBase64(base64Text: string, beginRow: number, beginCol: number, endRow: number, endCol: number): ScriptImage;
 
   /** 
-   * 특정 행을 삭제 합니다.
+   * 특정 행을 삭제합니다.
    *
   * @param idx column Index
   */
   DeleteColumn(idx: number): void;
 
   /** 
-   * 특정 범위의 행들을 삭제 합니다.
+   * 특정 범위의 행들을 삭제합니다.
    *
   * @param beginIndex start column
   * @param endIndex end column
@@ -261,13 +261,13 @@ export interface ScriptWorkSheet{
   IsActive(active: boolean): void;
 
   /** 
-   * 현재 시트가 활성화 되어 있는지를 반환 합니다.
+   * 현재 시트가 활성화 되어 있는지를 반환합니다.
    *
   */
   IsActive(): boolean;
 
   /** 
-   * 현재 시트의 Visible 속성을 반환 합니다.
+   * 현재 시트의 Visible 속성을 반환합니다.
    *
   */
   IsVisible(): boolean;
@@ -280,7 +280,7 @@ export interface ScriptWorkSheet{
   IsVisible(visible: boolean): void;
 
   /** 
-   * 셀을 병합 합니다.
+   * 셀을 병합합니다.
    *
   * @param beginRow 시작 열 번호(1부터 시작 됨)
   * @param beginCol 시작 행 번호(1부터 시작 됨)
@@ -290,7 +290,7 @@ export interface ScriptWorkSheet{
   MergeCell(beginRow: number, beginCol: number, endRow: number, endCol: number): void;
 
   /** 
-   * 셀을 병합 합니다.
+   * 셀을 병합합니다.
    *
   * @param fromRange 범위 시작 셀의 주소(eg.B1)
   * @param toRange 범위 종료 셀의 주소(eg.G10)
@@ -298,7 +298,7 @@ export interface ScriptWorkSheet{
   MergeCell(fromRange: string, toRange: string): void;
 
   /** 
-   * 셀을 병합 합니다.
+   * 셀을 병합합니다.
    *
   * @param range 셀의 주소(eg.B1:G10)
   */
@@ -312,7 +312,7 @@ export interface ScriptWorkSheet{
   UnMerge(mergeArea: RangeArea): void;
 
   /** 
-   * WorkSheet의 보호 옵션을 설정 합니다.
+   * WorkSheet의 보호 옵션을 설정합니다.
    *
   * @param allowSelectingLockedCell 잠김셀을 선택할 수 있는지 여부
   * @param allowSelectingUnlockedCell 잠기지 않은 셀을 선택할 수 있는지 여부
@@ -320,13 +320,13 @@ export interface ScriptWorkSheet{
   UpdateProtection(allowSelectingLockedCell: boolean, allowSelectingUnlockedCell: boolean): void;
 
   /** 
-   * 조건부 서식 목록을 반환 합니다.
+   * 조건부 서식 목록을 반환합니다.
    *
   */
   getConditionFormat(): ConditionFormatList;
 
   /** 
-   * DataTable로 바인딩을 지원하는 객체를 반환 합니다.
+   * DataTable로 바인딩을 지원하는 객체를 반환합니다.
    *
   * @param range 위치 (eg. A1)
   * @param headerWrite 표의 헤더를 표시할지 여부
@@ -362,7 +362,7 @@ export interface ScriptWorkSheet{
   getFileCellWriter(rangeName: string): ScriptFileCellWriter;
 
   /** 
-   * 병합 셀 목록을 반환 합니다.
+   * 병합 셀 목록을 반환합니다.
    *
   */
   getMergeCells(): Array<RangeArea>;
@@ -380,14 +380,14 @@ export interface ScriptWorkSheet{
   getPageSetup(): WorkSheetPageSetup;
 
   /** 
-   * 셀 영역 객체를 반환 합니다.
+   * 셀 영역 객체를 반환합니다.
    *
   * @param rangeName RangeName
   */
   getRange(rangeName: string): ScriptCellRange;
 
   /** 
-   * 셀 영역 객체를 반환 합니다.
+   * 셀 영역 객체를 반환합니다.
    *
   * @param row row number
   * @param col column number
@@ -565,7 +565,7 @@ export interface ScriptWorkSheet{
   setCellValue(rowIndex: number, columnIndex: number, value: number): void;
 
   /** 
-   * 컬럼 헤더 영역을 설정 합니다.
+   * 컬럼 헤더 영역을 설정합니다.
    *
   * @param rangeName RangeName
   */
@@ -637,7 +637,7 @@ export interface ScriptWorkSheet{
   setDisplayGridlines(visible: boolean): void;
 
   /** 
-   * 셀 고정 헤더 영역을 지정 합니다.
+   * 셀 고정 헤더 영역을 지정합니다.
    *
   * @param row row number
   * @param col column number

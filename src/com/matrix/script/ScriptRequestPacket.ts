@@ -60,13 +60,13 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   /** 
    * 현재 접속한 사용자의 권한 정보를 확인할 수 있습니다. 해당 정보는 객체(보고서, 폴더, 데이터베이스)에 대한 것입니다.
    *
-  * @param authObjectCode 객체 코드(보고서코드, 폴더코드, 데이터 베이스 코드)
-  * @param objectCode 객체 타입 코드(보고서 : R0, 폴더: F0, 데이터 베이스: D0)
+  * @param authObjectCode 객체 코드(보고서코드, 폴더코드, 데이터베이스 코드)
+  * @param objectCode 객체 타입 코드(보고서 : R0, 폴더: F0, 데이터베이스: D0)
   */
   getAuthority(authObjectCode: string, objectCode?: string): number;
 
   /** 
-   * 로그인한 사용자의 인증 쿠키 정보를 반환 합니다.
+   * 로그인한 사용자의 인증 쿠키 정보를 반환합니다.
 만약, 인증이 필요한 AUD 서버의 특정 페이지 또는 RestAPI를 호출할 때, 해당 값을 사용하여 인증을 유지할 수 있습니다.
    *
    * @example
@@ -89,7 +89,7 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   getCookieList(): string[];
 
   /** 
-   * 로그인한 사용자의 인증 쿠키 정보를 반환 합니다.
+   * 로그인한 사용자의 인증 쿠키 정보를 반환합니다.
 만약, 인증이 필요한 AUD 서버의 특정 페이지 또는 RestAPI를 호출할 때, 해당 값을 사용하여 인증을 유지할 수 있습니다.
    *
    * @example
@@ -109,12 +109,12 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    * var headers = ['Content-Type:application/json'
    * 			,"Accept:application/json"
    * 			,"charset:UTF-8"
-   * 			,'Cookie:' +req.getCookieString("UTF-8")]; //인증을 위해 Cookie를 전달 합니다.
+   * 			,'Cookie:' +req.getCookieString("UTF-8")]; //인증을 위해 Cookie를 전달합니다.
    * //URL 호출			
    * var result = web.SendRequest(targetUrl ,method ,postData ,headers);
    * Matrix.WriteLog(result);
    * ```
-  * @param encodeName Cookie값에 대해 URLEncoding 할 캐릭터셋 입니다.
+  * @param encodeName Cookie값에 대해 URLEncoding 할 캐릭터셋입니다.
   */
   getCookieString(encodeName: string[]): string;
 
@@ -151,20 +151,20 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   getRemoteAddr(): string;
 
   /** 
-   * Return the reportcode currently connected.
+   * 현재 연결된 보고서 코드를 반환합니다.
    *
   */
   getReportCode(): string;
 
   /** 
-   * 보고서내  데이터 소스를  반환 합니다.
+   * 보고서 내 데이터 소스를 반환합니다.
    *
   * @param key 데이터 소스 명 or 아이디
   */
   getReportDataSource(key: string): DataSourceInfo;
 
   /** 
-   * 보고서내 서버 스크립트의 내용을 문자열로  반환 합니다.(@로 지정한 스크립트만 허용함)
+   * 보고서 내 서버 스크립트의 내용을 문자열로 반환합니다. (`@`로 시작하는 공통 모듈만 허용)
    *
   * @param name 서버 스크립트 이름
   */

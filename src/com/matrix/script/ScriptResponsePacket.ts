@@ -4,7 +4,7 @@ import { ScriptDataSet } from "../../../com/matrix/script/ScriptDataSet";
 import { JsonFileWriter } from "../../../com/matrix/Excel/io/JsonFileWriter";
 import { ResponsePrintWriter } from "../../../com/matrix/Excel/Writer/ResponsePrintWriter";
 /**
-* 클라이언트로 출력할 응답을 제어할 수 있는 객체로 다중의 데이터테이블 객체를 출력 할 수 있습니다.
+* 클라이언트로 출력할 응답을 제어할 수 있는 객체로 다중의 데이터 테이블 객체를 출력할 수 있습니다.
 */
 export interface ScriptResponsePacket{
 
@@ -31,7 +31,7 @@ export interface ScriptResponsePacket{
   ExecuteAsyncTables(): void;
 
   /** 
-   * Client로 텍스트 결과를 전달 합니다.
+   * 클라이언트로 텍스트 결과를 전달합니다.
    *
   * @param text text
   */
@@ -59,11 +59,11 @@ export interface ScriptResponsePacket{
    * res.addAsyncTable("T3", "AUD_SAMPLE_DB", sql );
    * res.addAsyncTable("T4", "AUD_SAMPLE_DB", sql );
    * res.addAsyncTable("T5", "AUD_SAMPLE_DB", sql );
-   * //등록된 쿼리를 실행 (서버의 메모리를 사용하지 않고 바로 Client레 출력 합니다.)
+   * //등록된 쿼리를 실행 (서버의 메모리를 사용하지 않고 바로 클라이언트로 출력합니다.)
    * res.ExecuteAsyncTables();
    * ```
   * @param tableName DataTabel의 이름
-  * @param connectionCode 데이터 베이스 연결 코드
+  * @param connectionCode 데이터베이스 연결 코드
   * @param sql SQL
   */
   addAsyncTable(tableName: string, connectionCode: string, sql: string): ScriptDataTable;
@@ -71,7 +71,7 @@ export interface ScriptResponsePacket{
   /** 
    * Client에서 사용할 DataTable을 등록합니다.
 DataTable의 결과 데이터가 많아도 서버의 메모리에 저장하지 않습니다.
-ScriptPreparedStatement와 해당 데이터 베이스의 Connection 객체는 데이터 출력 후 자동으로 연결을 해제합니다.
+ScriptPreparedStatement와 해당 데이터베이스의 Connection 객체는 데이터 출력 후 자동으로 연결을 해제합니다.
 강제로 해당 객체를 닫을 경우 Client 데이터 출력 중 에러가 발생합니다.
    *
    * @example
@@ -84,7 +84,7 @@ ScriptPreparedStatement와 해당 데이터 베이스의 Connection 객체는 �
    * 	var sql; 
    * 	var stmt; 
    * 		
-   * 	con.Connect("AUD_SAMPLE_DB"); //데이터 베이스 연결
+   * 	con.Connect("AUD_SAMPLE_DB"); //데이터베이스 연결
    * 	sql = "SELECT * FROM MTX_REPORT";	
    * 	stmt = con.PreparedStatement(sql);	
    * 	
@@ -119,7 +119,7 @@ DataTable의 결과 데이터가 많은 경우 서버 메모리 점유 문제를
   getDataSet(): ScriptDataSet;
 
   /** 
-   * Client에 json 결과를 작성할 수 있는 객체를 반환 합니다.
+   * 클라이언트에 JSON 결과를 작성할 수 있는 객체를 반환합니다.
    *
    * @example
    * ```js
@@ -178,7 +178,7 @@ DataTable의 결과 데이터가 많은 경우 서버 메모리 점유 문제를
   getJsonResponseWriter(): JsonFileWriter;
 
   /** 
-   * Client에 텍스트 결과를 전달 할 수 있는 객체를 반환 합니다.
+   * 클라이언트에 텍스트 결과를 전달할 수 있는 객체를 반환합니다.
    *
   */
   getResponseWriter(): ResponsePrintWriter;

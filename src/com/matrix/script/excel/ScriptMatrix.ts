@@ -16,11 +16,11 @@ export interface ScriptMatrix{
   Dispose(): void;
 
   /** 
-   * 현재 보고서의 MX-GRID 엑셀 원본 파일을 로드 합니다.
+   * 현재 보고서의 MX-GRID 엑셀 원본 파일을 로드합니다.
    *
    * @example
    * ```js
-   *   //MX-GRID의 엑셀 파일 원본을 서버에서 실행 합니다.
+   *   //MX-GRID의 엑셀 파일 원본을 서버에서 실행합니다.
    *   var  mtx = Matrix.getMATRIX();
    *   // 현재 보고서의 MX-GRID의 원본 엑셀 열기
    *   mtx.LoadMXGrid("6A272D800BDD40BB97E1FBCF34B612D3");
@@ -45,7 +45,7 @@ export interface ScriptMatrix{
   Open(reportCodeOrPath: string): ScriptMatrix;
 
   /** 
-   * 현재 열려진 i-MATRIX 보고서의 데이터를 조회하고 셀의 수식을 계산 합니다.
+   * 현재 열려진 i-MATRIX 보고서의 데이터를 조회하고 셀의 수식을 계산합니다.
    *
   */
   Refresh(): ScriptMatrix;
@@ -66,7 +66,7 @@ export interface ScriptMatrix{
   SaveExcel(folderName: string, fileName: string): ScriptMatrix;
 
   /** 
-   * 엑셀의 특정 시트를 이미지 파일로 저장하고, 저장된 이미지 파일 목록을 반환 합니다.
+   * 엑셀의 특정 시트를 이미지 파일로 저장하고, 저장된 이미지 파일 목록을 반환합니다.
    *
   * @param workSheetName 이미지로 출력할 시트의 이름 (생략하면 Active 시트)
   * @param onePagePerSheet 단일 시트를 한개의 이미지로 출력할 지 여부
@@ -82,14 +82,14 @@ export interface ScriptMatrix{
   SavePDF(folderName: string, fileName: string): ScriptMatrix;
 
   /** 
-   * i-MATRIX 보고서 내 이미지를 Client에서 전달받은 이미지로 교체합니다.
+   * i-MATRIX 보고서 내 이미지를 클라이언트에서 전달받은 이미지로 교체합니다.
    *
   * @param pictureNames 이미지 객체 이름 (여러개 입력 시 ,로 분리하여 입력)
   */
   UpdatePictures(pictureNames: string): ScriptMatrix;
 
   /** 
-   * i-MATRIX 보고서 내 모든 시트의 이름 목록을 반환 합니다.
+   * i-MATRIX 보고서 내 모든 시트의 이름 목록을 반환합니다.
    *
   */
   getSheetNames(): string[];

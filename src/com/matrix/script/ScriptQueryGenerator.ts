@@ -34,14 +34,14 @@ export interface ScriptQueryGenerator{
   getMergeCommand(table: ScriptDataTable, row: ScriptDataRow, tableName: string, dbType: enDBType): string;
 
   /** 
-   * 쿼리의 바인딩 변수의 값을 대입한 SQL을 반환 합니다.
+   * 쿼리의 바인딩 변수의 값을 대입한 SQL을 반환합니다.
    *
   * @param sql SQL
   */
   getParameterBindedSQL(sql: string): string;
 
   /** 
-   * 쿼리의 바인딩 변수의 값을 대입한 SQL을 반환 합니다.
+   * 쿼리의 바인딩 변수의 값을 대입한 SQL을 반환합니다.
    *
   * @param sql SQL
   * @param dbmsCode DBMS Code
@@ -49,7 +49,7 @@ export interface ScriptQueryGenerator{
   getParameterBindedSQL(sql: string, dbmsCode: string): string;
 
   /** 
-   * 쿼리 내에서 바인딩 변수의 목록을 추출 합니다.
+   * 쿼리 내에서 바인딩 변수의 목록을 추출합니다.
    *
   * @param sql SQL
   */
@@ -63,7 +63,7 @@ export interface ScriptQueryGenerator{
   isProcedure(sql: string): boolean;
 
   /** 
-   * 데이터 베이스 연결 옵션에서 인용 기호(")의  삭제 옵션이 활성화된 경우 주어진 쿼리에서 인용 기호(")를 삭제 한 쿼리를 반환 합니다.
+   * 데이터베이스 연결 옵션에서 인용 기호(`"`)의 삭제 옵션이 활성화된 경우, 주어진 쿼리에서 인용 기호(`"`)를 삭제한 쿼리를 반환합니다.
    *
   * @param sql SQL
   * @param dbmsCode DBMS Code
