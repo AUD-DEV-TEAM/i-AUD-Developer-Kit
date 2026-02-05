@@ -7,16 +7,134 @@ import { Control } from "../../aud/control/Control";
  *
  * @example
  * ```ts
- * // 버튼 컨트롤 가져오기
+ * //----------------------------------------------
+ * // 패턴1: 기본 버튼 클릭 이벤트 처리
+ * //----------------------------------------------
  * let btnSearch: Button = Matrix.getObject("btnSearch") as Button;
  *
- * // 클릭 이벤트 등록
  * btnSearch.OnClick = function(sender, args) {
  *     Matrix.Alert("버튼 '" + args.Text + "'이(가) 클릭되었습니다.");
  * };
  *
- * // 버튼 텍스트 변경
- * btnSearch.Text = "조회";
+ * //----------------------------------------------
+ * // 패턴2: 서버 스크립트 호출 및 데이터 조회
+ * //----------------------------------------------
+ * let btnLoad: Button = Matrix.getObject("btnLoad") as Button;
+ * let grid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
+ *
+ * btnLoad.OnClick = function(sender, args) {
+ *     // 파라미터 구성
+ *     let params = {
+ *         VS_SEARCH_TEXT: "검색어",
+ *         VN_PAGE_NO: 1
+ *     };
+ *
+ *     // 서버 스크립트 호출
+ *     Matrix.RunScript("", "SearchService", params, function(p) {
+ *         if (p.Success == false) {
+ *             Matrix.Alert(p.Message);
+ *             return;
+ *         }
+ *         grid.SetDataSet(p.DataSet);
+ *         Matrix.Alert("조회 완료: " + p.DataSet.Tables[0].Rows.length + "건");
+ *     });
+ * };
+ *
+ * //----------------------------------------------
+ * // 패턴3: 버튼 텍스트 및 스타일 동적 변경
+ * //----------------------------------------------
+ * let btnToggle: Button = Matrix.getObject("btnToggle") as Button;
+ * let isActive = false;
+ *
+ * btnToggle.OnClick = function(sender, args) {
+ *     isActive = !isActive;
+ *
+ *     if (isActive) {
+ *         btnToggle.Text = "활성화됨";
+ *         btnToggle.SetMouseOverBoxStyle("PRIMARY_BTN_Active");
+ *     } else {
+ *         btnToggle.Text = "비활성화됨";
+ *         btnToggle.SetMouseOverBoxStyle("PRIMARY_BTN_Inactive");
+ *     }
+ * };
+ *
+ * //----------------------------------------------
+ * // 패턴4: 버튼 비활성화/활성화 제어
+ * //----------------------------------------------
+ * let btnSave: Button = Matrix.getObject("btnSave") as Button;
+ * let btnCancel: Button = Matrix.getObject("btnCancel") as Button;
+ *
+ * btnSave.OnClick = function(sender, args) {
+ *     // 저장 중 다른 버튼 비활성화
+ *     btnSave.Enabled = false;
+ *     btnCancel.Enabled = false;
+ *     btnSave.Text = "저장 중...";
+ *
+ *     Matrix.RunScript("", "SaveService", function(p) {
+ *         if (p.Success) {
+ *             Matrix.Alert("저장되었습니다.");
+ *         } else {
+ *             Matrix.Alert("저장 실패: " + p.Message);
+ *         }
+ *
+ *         // 버튼 다시 활성화
+ *         btnSave.Enabled = true;
+ *         btnCancel.Enabled = true;
+ *         btnSave.Text = "저장";
+ *     });
+ * };
+ *
+ * //----------------------------------------------
+ * // 패턴5: 데이터 검증 후 서버 호출
+ * //----------------------------------------------
+ * let btnSubmit: Button = Matrix.getObject("btnSubmit") as Button;
+ * let txtName: TextBox = Matrix.getObject("txtName") as TextBox;
+ * let txtEmail: TextBox = Matrix.getObject("txtEmail") as TextBox;
+ *
+ * btnSubmit.OnClick = function(sender, args) {
+ *     // 입력값 검증
+ *     if (!txtName.Text || txtName.Text.trim() === "") {
+ *         Matrix.Alert("이름을 입력하세요.");
+ *         txtName.Focus();
+ *         return;
+ *     }
+ *
+ *     if (!txtEmail.Text || txtEmail.Text.indexOf("@") === -1) {
+ *         Matrix.Alert("올바른 이메일을 입력하세요.");
+ *         txtEmail.Focus();
+ *         return;
+ *     }
+ *
+ *     // 검증 통과 후 서버 전송
+ *     let params = {
+ *         VS_NAME: txtName.Text,
+ *         VS_EMAIL: txtEmail.Text
+ *     };
+ *
+ *     Matrix.RunScript("", "RegisterService", params, function(p) {
+ *         if (p.Success) {
+ *             Matrix.Alert("등록되었습니다.");
+ *             txtName.Text = "";
+ *             txtEmail.Text = "";
+ *         }
+ *     });
+ * };
+ *
+ * //----------------------------------------------
+ * // 패턴6: 마우스 오버/다운 스타일 적용
+ * //----------------------------------------------
+ * Matrix.OnDocumentLoadComplete = function(sender, args) {
+ *     let btnAction: Button = Matrix.getObject("btnAction") as Button;
+ *
+ *     // 마우스 오버 시 스타일
+ *     btnAction.SetMouseOverBoxStyle("PRIMARY_BTN_Hover");
+ *
+ *     // 마우스 다운 시 스타일
+ *     btnAction.SetMouseDownBoxStyle("PRIMARY_BTN_Pressed");
+ *
+ *     // 커서 모양 변경
+ *     btnAction.Cursor = "pointer";
+ * };
  * ```
  */
 export interface Button extends Control{
