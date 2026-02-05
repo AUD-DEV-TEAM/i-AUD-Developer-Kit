@@ -21,13 +21,7 @@ const session  = Matrix.getSession(); /* Session */
 const util = Matrix.getUtility(); /* Utility */ 
 const fso = Matrix.getFileSystemObject(); /* File Access */ 
 let   con = Matrix.getConnection(); /* DataBase Connection */ 
- 
-var req = Matrix.getRequest();
-var res = Matrix.getResponse();
-var util = Matrix.getUtility(); 
- var fso = Matrix.getFileSystemObject();
- var util = Matrix.getUtility();
- 
+  
  
  var path = req.getParam("VS_REPORT_PATH");
  var report = util.JsonParse(util.ReadTextFile(path));
@@ -45,6 +39,6 @@ var util = Matrix.getUtility();
  JSON.beginObject()
  	 .addProperty("ScriptText", scriptText.join("\n"))
      .endObject()
-	 .close();
+	 .close(); 
 	 
  res.WriteResponseTextFile(path);
