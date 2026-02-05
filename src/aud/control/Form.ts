@@ -1,26 +1,26 @@
 import { NamedDictionary } from "../../aud/data/NamedDictionary";
 /**
-* i-AUD의 폼 모델
-*/
+ * i-AUD의 폼 모델입니다.
+ */
 export interface Form{
 
   /**
-   * 컨트롤 목록
+   * 컨트롤 목록을 가져옵니다.
   */
   Controls: NamedDictionary;
 
   /**
-   * 폼의 Id
+   * 폼의 ID를 가져옵니다.
   */
   Id: string;
 
   /**
-   * 폼 이름
+   * 폼의 이름을 가져오거나 설정합니다.
   */
   Name: string;
 
   /**
-   * 화면에 표시 여부
+   * 화면 표시 여부를 가져오거나 설정합니다.
   */
   Visible: boolean;
 

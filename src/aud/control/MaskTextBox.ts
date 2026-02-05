@@ -1,68 +1,69 @@
 import { Control } from "../../aud/control/Control";
 import { Event } from "../../aud/data/Event";
 /**
-* 마스크텍스트박스 컨트롤 입니다.
+* 마스크 텍스트 박스 컨트롤입니다.
 */
 export interface MaskTextBox extends Control{
 
   /**
-   * 마스크 포멧
+   * 마스크 포맷을 가져오거나 설정합니다.
   */
   Format: string;
 
   /**
-   * 계산 수식
+   * 계산 수식을 가져오거나 설정합니다.
   */
   Formula: string;
 
   /**
-   * 읽기전용
+   * 읽기 전용 여부를 가져오거나 설정합니다.
   */
   IsReadOnly: boolean;
 
   /**
-   * 컨트롤의 PaddingLeft(default: 6)
+   * 컨트롤의 왼쪽 여백을 가져오거나 설정합니다. (기본값: 6)
   */
   PaddingLeft: number;
 
   /**
-   * 컨트롤의 PaddingRight(default: 6)
+   * 컨트롤의 오른쪽 여백을 가져오거나 설정합니다. (기본값: 6)
   */
   PaddingRight: number;
 
   /**
-   * 텍스트
+   * 표시 텍스트를 가져오거나 설정합니다.
   */
   Text: string;
 
   /**
-   * Placeholder 사용 유무(default: false)
+   * Placeholder 사용 여부를 가져오거나 설정합니다. (기본값: false)
   */
   UsePlaceholder: boolean;
 
   /**
-   * 값
+   * 값을 가져오거나 설정합니다.
   */
   Value: string;
 
-  /** 
-   * 해당 컨트롤의 Placeholder 텍스트를 지정합니다. UsePlaceholder가 true일 경우만 사용 가능합니다.
+  /**
+   * Placeholder 텍스트를 지정합니다. UsePlaceholder가 true일 경우만 사용 가능합니다.
    *
-  * @param placeholdervalue String 형식의 텍스트
+  * @param placeholdervalue Placeholder 텍스트
   */
   SetPlaceholder(placeholdervalue: string): void;
 
   /**
-   * @event 
+   * @event
    *
-   * 마스크 텍스트 박스 컨트롤의 값이 변경될 때 발생합니다.
+   * 마스크 텍스트 박스의 값이 변경될 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 마스크 텍스트 박스 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link MaskTextBox}
   */
   OnTextChange : (sender : MaskTextBox
-  , args : { 
+  , args : {
     /**
      * 컨트롤 이름
     */
@@ -84,16 +85,17 @@ export interface MaskTextBox extends Control{
 
 
   /**
-   * @event 
+   * @event
    *
-   * 마스크 텍스트 박스 컨트롤의 key 입력 시 발생합니다.
+   * 마스크 텍스트 박스에서 키를 누를 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 마스크 텍스트 박스 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link MaskTextBox}
   */
   OnTextKeydown : (sender : MaskTextBox
-  , args : { 
+  , args : {
     /**
      * 컨트롤 이름
     */
@@ -103,7 +105,7 @@ export interface MaskTextBox extends Control{
     */
     Text: string
     /**
-     * 마스크 텍스트 박스 key event 객체
+     * 키 이벤트 객체
     */
     Event: Event
   }
@@ -111,26 +113,27 @@ export interface MaskTextBox extends Control{
 
 
   /**
-   * @event 
+   * @event
    *
-   * 마스크 텍스트 박스 컨트롤의 key 입력 누르는 동안 발생합니다.
+   * 마스크 텍스트 박스에서 키를 누르고 있는 동안 발생합니다.
    *
    * @example
    * ```js
-   *     //텍스트 박스에 Enter 입력 시 조회 하기
-   *     var tbxFilter = Matrix.getObject("tbxFilter");
-   *     tbxFilter.OnTextKeypress = function (s, e) {
-   *         if (e.Event.isEnter()) { //Enter 키 클릭 시
-   * 			Matrix.doRefresh("Grid");
-   *         }
-   *     };
+   * // 텍스트 박스에 Enter 입력 시 조회하기
+   * var tbxFilter = Matrix.getObject("tbxFilter");
+   * tbxFilter.OnTextKeypress = function (s, e) {
+   *     if (e.Event.isEnter()) {
+   *         Matrix.doRefresh("Grid");
+   *     }
+   * };
    * ```
-   * @param args
+   * @param sender 이벤트가 발생한 마스크 텍스트 박스 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link MaskTextBox}
   */
   OnTextKeypress : (sender : MaskTextBox
-  , args : { 
+  , args : {
     /**
      * 컨트롤 이름
     */
@@ -140,7 +143,7 @@ export interface MaskTextBox extends Control{
     */
     Text: string
     /**
-     * 마스크 텍스트 박스 key event 객체
+     * 키 이벤트 객체
     */
     Event: Event
   }
@@ -148,16 +151,17 @@ export interface MaskTextBox extends Control{
 
 
   /**
-   * @event 
+   * @event
    *
-   * 마스크 텍스트 박스 컨트롤의 key 입력 후 발생합니다.
+   * 마스크 텍스트 박스에서 키를 뗄 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 마스크 텍스트 박스 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link MaskTextBox}
   */
   OnTextKeyup : (sender : MaskTextBox
-  , args : { 
+  , args : {
     /**
      * 컨트롤 이름
     */
@@ -167,7 +171,7 @@ export interface MaskTextBox extends Control{
     */
     Text: string
     /**
-     * 마스크 텍스트 박스 key event 객체
+     * 키 이벤트 객체
     */
     Event: Event
   }

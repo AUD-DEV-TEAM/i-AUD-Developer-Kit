@@ -239,7 +239,7 @@ export interface Matrix{
   CloseAllMessageBox(): void;
 
   /** 
-   * 사용자 정의 컨텍스트 메뉴를 초기화 합니다.
+   * 사용자 정의 컨텍스트 메뉴를 초기화합니다.
    * 
    *
   */
@@ -519,7 +519,7 @@ export interface Matrix{
   * @param option 옵션
   * @hidden
   */
-  CreateSplitter(direction: string, firstControlName: string, secondControlName: string, splitterControlNames: string | Array<string>, option?: any): any;
+  CreateSplitter(direction: string, firstControlName: string, secondControlName: string, splitterControlNames: string | Array<string>, option?: object): Splitter;
 
   /**
    * 복수의 컨트롤을 좌우 또는 상하로 분할하는 Splitter를 생성합니다.
@@ -548,7 +548,7 @@ export interface Matrix{
   * @param option 옵션
   * @hidden
   */
-  CreateSplitterEx(splitterType: string, leftControls: string[], rightControls: string[], splitterControl: string, option?: any): Splitter;
+  CreateSplitterEx(splitterType: string, leftControls: string[], rightControls: string[], splitterControl: string, option?: object): Splitter;
 
   /** 
    * portal 에서 다른 보고서를 탭 형식으로 열 수 있도록 하는 함수입니다. 
@@ -599,7 +599,7 @@ export interface Matrix{
   DownloadFile(folderName: string, fileName: string, newFileName: string, isDelete: boolean): void;
 
   /** 
-   * OlapGrid의 DrillToDetail 정보를 대상 컨트롤에 전달하여 조회한다.
+   * OlapGrid의 DrillToDetail 정보를 대상 컨트롤에 전달하여 조회합니다.
    * 
    *
   * @param sender
@@ -869,7 +869,7 @@ export interface Matrix{
   GetAUDBase64ImageData(key?: string): string;
 
   /**
-   *  AUD 옵션의 값을 반환 합니다.
+   * AUD 옵션의 값을 반환합니다.
    * 옵션 데이터 참조 페이지 : https://{AUD Server}/AUD/500/settingStudioConfig.jsp
    *
   * @param optionName 옵션 이름
@@ -1898,7 +1898,7 @@ export interface Matrix{
    *
    * @example
    * ```js
-   * //서버에 업로드된 파일을 읽어서 데이터 테이블로 반환 합니다.
+   * //서버에 업로드된 파일을 읽어서 데이터 테이블로 반환합니다.
    * var filToDataSet = function(fileName, callback){
    * 
    * 	var params = [{'Key':'#FILE_PATH#','Value':'_TEMP_/'+fileName}];
@@ -2173,7 +2173,7 @@ export interface Matrix{
   Trans(key: string, options?: any): string;
 
   /** 
-   * 현재 뷰어의 모든 컨트롤에 스타일과 사이즈를 업데이트 합니다.
+   * 현재 뷰어의 모든 컨트롤에 스타일과 크기를 업데이트합니다.
    * 
    *
   */
@@ -2426,12 +2426,12 @@ export interface Matrix{
    * @example
    * ```js
    *  
-   * //특정 컨트롤의 데이터 소스를 반환 합니다.
+   * //특정 컨트롤의 데이터소스를 반환합니다.
    *  var ds = Matrix.getControlDataSource("Grid");
    *  if(!ds){
-   *  	//데이터 소스가 없음.
+   *  	//데이터소스가 없음.
    *  }else{
-   *  	//컨트롤의 데이터 소스 접근
+   *  	//컨트롤의 데이터소스 접근
    *  	//ds.Code <= 코드
    * 	//ds.Name <= 이름
    * 	//ds.ConnectionCode <= 데이터 베이스 연결 정보	
@@ -2608,17 +2608,18 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 뷰어의 활성화 폼이 바뀔때 발생합니다.
+   * 뷰어의 활성화 폼이 바뀔 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
   OnActiveSheetChange : (sender : Matrix
   , args : { 
     /**
-     * 폼 아이디
+     * 폼 ID
      * 
     */
     Id: string
@@ -2637,7 +2638,8 @@ export interface Matrix{
    * View 모드에서 Addin의 로드된 라이브러리의 Component 객체가 생성된 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link AddIn}
   */
@@ -2658,7 +2660,8 @@ export interface Matrix{
    * 내보내기 파일을 다운로드 받기 직전에 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
@@ -2689,7 +2692,8 @@ export interface Matrix{
    * 버튼 컨트롤이 클릭될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Button}
   */
@@ -2715,7 +2719,8 @@ export interface Matrix{
    * 날짜 FromTo 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link CalendarFromTo}
   */
@@ -2756,7 +2761,8 @@ export interface Matrix{
    * 날짜 From 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link CalendarFromTo}
   */
@@ -2787,7 +2793,8 @@ export interface Matrix{
    * 날짜 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Calendar}
   */
@@ -2818,7 +2825,8 @@ export interface Matrix{
    * 주간 FromTo 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link CalendarWeeklyFromTo}
   */
@@ -2859,7 +2867,8 @@ export interface Matrix{
    * 주간 From 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link CalendarWeeklyFromTo}
   */
@@ -2890,7 +2899,8 @@ export interface Matrix{
    * 주간 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link CalendarWeekly}
   */
@@ -2921,7 +2931,8 @@ export interface Matrix{
    * 년월 FromTo 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link CalendarYMFromTo}
   */
@@ -2962,7 +2973,8 @@ export interface Matrix{
    * 년월 From 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link CalendarYMFromTo}
   */
@@ -2993,7 +3005,8 @@ export interface Matrix{
    * 년월 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link CalendarYM}
   */
@@ -3024,7 +3037,8 @@ export interface Matrix{
    * 년 FromTo 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link CalendarYearFromTo}
   */
@@ -3065,7 +3079,8 @@ export interface Matrix{
    * 년 From 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link CalendarYearFromTo}
   */
@@ -3096,7 +3111,8 @@ export interface Matrix{
    * 년 선택 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link CalendarYear}
   */
@@ -3127,7 +3143,8 @@ export interface Matrix{
    * 그리드의 셀을 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -3168,7 +3185,8 @@ export interface Matrix{
    * 그리드의 셀을 더블 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -3204,7 +3222,8 @@ export interface Matrix{
    * 그리드의 셀을 더블 터치할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -3237,10 +3256,11 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 데이터 그리드의 셀이 Load될때 발생합니다.
+   * 데이터 그리드의 셀이 Load될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -3277,17 +3297,17 @@ export interface Matrix{
     */
     FontColor: string
     /**
-     * 셀의 텍스트를 Bold처리하여 표현할지 유무. true일 경우 Bold처리가 됩니다.
+     * 셀의 텍스트를 Bold처리하여 표현할지 여부. true일 경우 Bold처리가 됩니다.
      * 
     */
     FontBold: boolean
     /**
-     * 셀의 텍스트를 Italic처리하여 표현할지 유무. true일 경우 Italic처리가 됩니다.
+     * 셀의 텍스트를 Italic처리하여 표현할지 여부. true일 경우 Italic처리가 됩니다.
      * 
     */
     FontItalic: boolean
     /**
-     * 셀의 텍스트 아래 밑줄을 표현할지 유무. true일 경우 밑줄이 표시됩니다.
+     * 셀의 텍스트 아래 밑줄을 표현할지 여부. true일 경우 밑줄이 표시됩니다.
      * 
     */
     FontUnderline: boolean
@@ -3306,7 +3326,8 @@ export interface Matrix{
    * 그리드의 셀을 터치할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -3342,7 +3363,8 @@ export interface Matrix{
    * 차트 컨트롤의 데이터 포인트를 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Chart}
   */
@@ -3393,7 +3415,8 @@ export interface Matrix{
    * Tree의 체크박스를 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link TreeView}
   */
@@ -3405,7 +3428,7 @@ export interface Matrix{
     */
     Id: string
     /**
-     * 체크 유무
+     * 체크 여부
      * 
     */
     Checked: boolean
@@ -3434,7 +3457,8 @@ export interface Matrix{
    * 체크박스 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link CheckBox}
   */
@@ -3470,7 +3494,8 @@ export interface Matrix{
    * 컬러픽커 컨트롤의 색상이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link ColorPicker}
   */
@@ -3493,12 +3518,13 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 테이블레이아웃 내부의 수직선을 드래그 완료할때 발생합니다.
+   * 테이블레이아웃 내부의 수직선을 드래그 완료할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
-   * Parameter Info
+   * Target : {@link Matrix}
    * @hidden
   */
   OnColumnLineDragEnd : (sender : Matrix
@@ -3530,12 +3556,13 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 테이블레이아웃 내부의 수직선을 드래그 시작할때 발생합니다.
+   * 테이블레이아웃 내부의 수직선을 드래그 시작할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
-   * Parameter Info
+   * Target : {@link Matrix}
    * @hidden
   */
   OnColumnLineDragStart : (sender : Matrix
@@ -3561,7 +3588,7 @@ export interface Matrix{
     */
     Column: TableColumn
     /**
-     * 드래그를 시작하지 않을지 유무. True이면 드래그 동작이 발생하지 않는다.
+     * 드래그 취소 여부. true이면 드래그가 시작되지 않습니다.
      * 
     */
     Handled: boolean
@@ -3575,9 +3602,10 @@ export interface Matrix{
    * 테이블레이아웃 내부의 수직선위에 마우스가 올라갈 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
-   * Parameter Info
+   * Target : {@link Matrix}
    * @hidden
   */
   OnColumnLineMouseOver : (sender : Matrix
@@ -3608,7 +3636,7 @@ export interface Matrix{
     */
     LineIndex: number
     /**
-     * 마우스 오버 이벤트가 발생하지 않을지 설정 유무. True이면 마우스 오버 이벤트가 발생하지 않는다.
+     * 마우스 오버 이벤트 취소 여부. true이면 마우스 오버 이벤트가 발생하지 않습니다.
      * 
     */
     Handled: boolean
@@ -3619,10 +3647,11 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 콤보박스 컨트롤의 값이 변경될때 발생합니다.
+   * 콤보박스 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link ComboBox}
   */
@@ -3653,7 +3682,8 @@ export interface Matrix{
    * 데이터 그리드의 레코드가 추가될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -3684,7 +3714,8 @@ export interface Matrix{
    * 데이터 그리드의 셀이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -3730,7 +3761,8 @@ export interface Matrix{
    * 데이터 그리드의 행이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -3771,7 +3803,8 @@ export interface Matrix{
    * Chart-EX의 데이터가 바인딩 될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link HighChart_C}
   */
@@ -3797,7 +3830,8 @@ export interface Matrix{
    * 컨트롤에 데이터셋이 바인딩된 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
@@ -3820,10 +3854,11 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 그리드의 행이 키입력으로 인하여 삭제될때 발생합니다.
+   * 그리드의 행이 키입력으로 인하여 삭제될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -3854,7 +3889,8 @@ export interface Matrix{
    * 문서가 닫힐 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
@@ -3875,7 +3911,8 @@ export interface Matrix{
    * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
@@ -3891,7 +3928,8 @@ export interface Matrix{
    * 항목을 드롭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link MetaTreeView}
   */
@@ -3932,7 +3970,8 @@ export interface Matrix{
    * [Ctrl + V] 키를 이용해 클립보드에 데이터를 붙여넣기 종료 시 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -3978,7 +4017,8 @@ export interface Matrix{
    * 그리드의 셀의 값이 수정된 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -4024,7 +4064,8 @@ export interface Matrix{
    * 데이터소스 실행 작업 (Execute, ExecuteDML)이 종료된 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
@@ -4065,7 +4106,8 @@ export interface Matrix{
    * Refresh가 실행될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
@@ -4101,7 +4143,8 @@ export interface Matrix{
    * 파일 업로드 버튼 컨트롤이 클릭될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link FileUploadButton}
   */
@@ -4132,9 +4175,10 @@ export interface Matrix{
    * 메타 큐브 또는 메타뷰 파일을 연 후에 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
-   * Parameter Info
+   * Target : {@link Matrix}
   */
   OnFileOpened : (sender : Matrix
   , args : { 
@@ -4193,7 +4237,8 @@ export interface Matrix{
    * 조회 조건이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link MetaTreeView}
   */
@@ -4229,7 +4274,8 @@ export interface Matrix{
    * 그리드의 체크박스를 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -4241,7 +4287,7 @@ export interface Matrix{
     */
     Id: string
     /**
-     * 체크 유무
+     * 체크 여부
      * 
     */
     Checked: boolean
@@ -4270,7 +4316,8 @@ export interface Matrix{
    * 그리드 계열(DataGrid, OlapGrid..) 컨트롤 클릭 시 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
@@ -4291,7 +4338,8 @@ export interface Matrix{
    * 그리드의 컬럼 헤더를 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -4322,7 +4370,8 @@ export interface Matrix{
    * 그리드의 컬럼 헤더를 더블 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -4353,7 +4402,8 @@ export interface Matrix{
    * 데이터 그리드의 ComboBox 값이 바뀔 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -4404,7 +4454,8 @@ export interface Matrix{
    * 그리드의 컨텍스트 메뉴가 열리기 전에 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -4450,7 +4501,8 @@ export interface Matrix{
    * 그리드의 엑셀 내보내기 전에 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -4506,7 +4558,8 @@ export interface Matrix{
    * 데이터 그리드의 필터가 변경된 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -4529,10 +4582,11 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 데이터 그리드의 멀티헤더 셀이 로드될때 발생합니다.
+   * 데이터 그리드의 멀티헤더 셀이 로드될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -4563,7 +4617,8 @@ export interface Matrix{
    * 그리드의 멀티 헤더 체크박스를 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -4580,7 +4635,7 @@ export interface Matrix{
     */
     HeaderCell: MultiHeaderCell
     /**
-     * 체크 유무
+     * 체크 여부
      * 
     */
     Checked: boolean
@@ -4599,7 +4654,8 @@ export interface Matrix{
    * 그리드의 멀티헤더 셀을 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -4630,7 +4686,8 @@ export interface Matrix{
    * 그리드의 멀티헤더 셀을 더블클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -4661,7 +4718,8 @@ export interface Matrix{
    * 그리드 및 피벗그리드의 데이터소스 파라미터가 변경되었을 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
@@ -4687,7 +4745,8 @@ export interface Matrix{
    * 컨트롤에 Grouping 데이터셋이 바인딩된 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -4713,7 +4772,8 @@ export interface Matrix{
    * 이미지 컨트롤이 클릭될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Image}
   */
@@ -4739,9 +4799,10 @@ export interface Matrix{
    * 사용자가 ShowImageEditor 명령을 통해 이미지 파일 업로드 실행 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
-   * Parameter Info
+   * Target : {@link Matrix}
    * @hidden
   */
   OnImageEditCompleted : (sender : Matrix
@@ -4781,14 +4842,15 @@ export interface Matrix{
    * 문서가 로드되고 AutoRefresh가 완료될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
   OnLoadComplete : (sender : Matrix
   , args : { 
     /**
-     * 성공여부
+     * 성공 여부
      * 
     */
     Success: boolean
@@ -4807,9 +4869,10 @@ export interface Matrix{
    * Local에 메타뷰 파일을 연 후에 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
-   * Parameter Info
+   * Target : {@link Matrix}
   */
   OnLocalFileOpened : (sender : Matrix
   , args : { 
@@ -4828,7 +4891,8 @@ export interface Matrix{
    * 마스크 텍스트박스 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link MaskTextBox}
   */
@@ -4864,7 +4928,8 @@ export interface Matrix{
    * 마스크 텍스트박스 컨트롤의 key 입력 시 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link MaskTextBox}
   */
@@ -4895,7 +4960,8 @@ export interface Matrix{
    * 마스크 텍스트박스 컨트롤의 key 입력 누르는 동안 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link MaskTextBox}
   */
@@ -4926,7 +4992,8 @@ export interface Matrix{
    * 마스크 텍스트박스 컨트롤의 key 입력 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link MaskTextBox}
   */
@@ -4957,9 +5024,10 @@ export interface Matrix{
    * 컨트롤에 메타뷰어 데이터소스를 적용완료한 후에 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
-   * Parameter Info
+   * Target : {@link Matrix}
   */
   OnMetaViewerBindClosed : (sender : Matrix
   , args : { 
@@ -4983,9 +5051,10 @@ export interface Matrix{
    * 메타 뷰어를 연 후에 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
-   * Parameter Info
+   * Target : {@link Matrix}
   */
   OnMetaViewerOpened : (sender : Matrix
   , args : { 
@@ -5004,7 +5073,8 @@ export interface Matrix{
    * Execute 실행될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link MultiComboBox}
   */
@@ -5040,7 +5110,8 @@ export interface Matrix{
    * 멀티 콤보박스의 트리 노드 객체를 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link MultiComboBox}
   */
@@ -5071,7 +5142,8 @@ export interface Matrix{
    * MultiComboBox의 텍스트박스에 key 입력 후 발생합니다.(단, EditableValueText==true일 경우만)
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link MultiComboBox}
   */
@@ -5102,7 +5174,8 @@ export interface Matrix{
    * 멀티 콤보박스의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link MultiComboBox}
   */
@@ -5133,7 +5206,8 @@ export interface Matrix{
    * 디자이너에서 메타뷰어의 배치가 변경되면 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
@@ -5149,7 +5223,8 @@ export interface Matrix{
    * 트리컨트롤의 노드를 접은 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Tree}
   */
@@ -5175,7 +5250,8 @@ export interface Matrix{
    * 트리컨트롤의 노드를 펼친 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Tree}
   */
@@ -5201,7 +5277,8 @@ export interface Matrix{
    * 트리컨트롤의 노드를 접기 전에 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Tree}
   */
@@ -5227,7 +5304,8 @@ export interface Matrix{
    * 트리컨트롤의 노드를 펼치기 전에 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Tree}
   */
@@ -5253,7 +5331,8 @@ export interface Matrix{
    * 넘버 박스 컨트롤의 key 입력 시 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link NumberBox}
   */
@@ -5284,7 +5363,8 @@ export interface Matrix{
    * 넘버 박스 컨트롤의 key 입력 누르는 동안 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link NumberBox}
   */
@@ -5315,7 +5395,8 @@ export interface Matrix{
    * 넘버 박스 컨트롤의 key 입력 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link NumberBox}
   */
@@ -5346,7 +5427,8 @@ export interface Matrix{
    * 넘버 박스 컨트롤의 숫자가 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link NumberBox}
   */
@@ -5377,7 +5459,8 @@ export interface Matrix{
    * 데이터 셀을 수정 후에 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -5423,7 +5506,8 @@ export interface Matrix{
    * 데이터 셀 수정 모드로 진입할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -5454,7 +5538,8 @@ export interface Matrix{
    * Export 직전에 호출합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -5515,7 +5600,8 @@ export interface Matrix{
    * i-OLAP의 데이터 셀을 더블 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -5541,7 +5627,8 @@ export interface Matrix{
    * 헤더셀을 클릭 시 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -5572,7 +5659,8 @@ export interface Matrix{
    * 헤더셀을 더블 클릭 시 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -5603,7 +5691,8 @@ export interface Matrix{
    * 멀티 헤더셀을 클릭 시 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -5634,7 +5723,8 @@ export interface Matrix{
    * 멀티 헤더셀을 더블 클릭 시 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -5665,7 +5755,8 @@ export interface Matrix{
    * 피벗 그리드의 선택 영역이 변경된 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -5691,7 +5782,8 @@ export interface Matrix{
    * 픽리스트의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link PickList}
   */
@@ -5722,7 +5814,8 @@ export interface Matrix{
    * 원형 차트 컨트롤의 데이터 포인트를 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Chart}
   */
@@ -5768,7 +5861,8 @@ export interface Matrix{
    * 방사형 차트 컨트롤의 데이터 포인트를 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Chart}
   */
@@ -5819,7 +5913,8 @@ export interface Matrix{
    * 라디오 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link RadioButton}
   */
@@ -5855,14 +5950,15 @@ export interface Matrix{
    * 모든 종류의 서버 요청(doRefresh, Execute, RunScript 등)이 완료되면 발생합니다. 여러 요청이 동시에 진행된 경우, 마지막 요청이 완료됐을 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
   OnRefreshComplete : (sender : Matrix
   , args : { 
     /**
-     * 성공여부
+     * 성공 여부
      * 
     */
     Success: boolean
@@ -5881,7 +5977,8 @@ export interface Matrix{
    * 조건 개인화가 적용된 후에 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
@@ -5897,7 +5994,8 @@ export interface Matrix{
    * 리치 텍스트박스 컨트롤의 key 입력 시 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link RichTextBox}
   */
@@ -5928,7 +6026,8 @@ export interface Matrix{
    * 리치 텍스트박스 컨트롤의 key 입력 누르는 동안 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link RichTextBox}
   */
@@ -5959,7 +6058,8 @@ export interface Matrix{
    * 리치 텍스트박스 컨트롤의 key 입력 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link RichTextBox}
   */
@@ -5990,7 +6090,8 @@ export interface Matrix{
    * 리치 텍스트박스 컨트롤의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link RichTextBox}
   */
@@ -6018,12 +6119,13 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 테이블레이아웃 내부의 수평선을 드래그 완료할때 발생합니다.
+   * 테이블레이아웃 내부의 수평선을 드래그 완료할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
-   * Parameter Info
+   * Target : {@link Matrix}
    * @hidden
   */
   OnRowLineDragEnd : (sender : Matrix
@@ -6055,12 +6157,13 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 테이블레이아웃 내부의 수평선을 드래그 시작할때 발생합니다.
+   * 테이블레이아웃 내부의 수평선을 드래그 시작할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
-   * Parameter Info
+   * Target : {@link Matrix}
    * @hidden
   */
   OnRowLineDragStart : (sender : Matrix
@@ -6086,7 +6189,7 @@ export interface Matrix{
     */
     Column: TableColumn
     /**
-     * 드래그를 시작하지 않을지 유무. True이면 드래그 동작이 발생하지 않는다.
+     * 드래그 취소 여부. true이면 드래그가 시작되지 않습니다.
      * 
     */
     Handled: boolean
@@ -6100,9 +6203,10 @@ export interface Matrix{
    * 테이블레이아웃 내부의 수평선위에 마우스가 올라갈 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
-   * Parameter Info
+   * Target : {@link Matrix}
    * @hidden
   */
   OnRowLineMouseOver : (sender : Matrix
@@ -6133,7 +6237,7 @@ export interface Matrix{
     */
     LineIndex: number
     /**
-     * 마우스 오버 이벤트가 발생하지 않을지 설정 유무. True이면 마우스 오버 이벤트가 발생하지 않는다.
+     * 마우스 오버 이벤트 취소 여부. true이면 마우스 오버 이벤트가 발생하지 않습니다.
      * 
     */
     Handled: boolean
@@ -6147,7 +6251,8 @@ export interface Matrix{
    * 분산형/거품형 차트 컨트롤의 데이터 포인트를 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Chart}
   */
@@ -6223,7 +6328,8 @@ export interface Matrix{
    * ServiceCall 작업이 종료된 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
@@ -6259,7 +6365,8 @@ export interface Matrix{
    * 슬라이더 컨트롤의 핸들을 드래그하는 동안 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Slider}
   */
@@ -6297,10 +6404,11 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 슬라이더 컨트롤의 핸들 드래그를 완료할때 발생합니다.
+   * 슬라이더 컨트롤의 핸들 드래그를 완료할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Slider}
   */
@@ -6341,7 +6449,8 @@ export interface Matrix{
    * [Ctrl + V] 키를 이용해 클립보드에 데이터를 붙여넣기 실행 시 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -6382,7 +6491,8 @@ export interface Matrix{
    * 드래그를 시작할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link TreeView}
   */
@@ -6423,7 +6533,8 @@ export interface Matrix{
    * 그리드의 셀이 수정모드로 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -6464,7 +6575,8 @@ export interface Matrix{
    * 현재 활성화된 탭이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Tab}
   */
@@ -6495,7 +6607,8 @@ export interface Matrix{
    * 텍스트블럭이 클릭될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Label}
   */
@@ -6521,7 +6634,8 @@ export interface Matrix{
    * 텍스트블럭에 마우스를 아웃할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Label}
   */
@@ -6547,7 +6661,8 @@ export interface Matrix{
    * 텍스트블럭에 마우스를 오버할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Label}
   */
@@ -6573,7 +6688,8 @@ export interface Matrix{
    * 텍스트박스 컨트롤의 텍스트가 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link TextBox}
   */
@@ -6599,7 +6715,8 @@ export interface Matrix{
    * 텍스트박스 컨트롤의 key 입력 시 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link TextBox}
   */
@@ -6640,7 +6757,8 @@ export interface Matrix{
    *         }
    *     };
    * ```
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link TextBox}
   */
@@ -6671,7 +6789,8 @@ export interface Matrix{
    * 텍스트박스 컨트롤의 key 입력 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link TextBox}
   */
@@ -6702,7 +6821,8 @@ export interface Matrix{
    * 트리 그리드의 트리형태 셀을 클릭할 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -6738,7 +6858,8 @@ export interface Matrix{
    * 컨텍스트 메뉴가 열리기 전에 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Tree}
   */
@@ -6774,7 +6895,8 @@ export interface Matrix{
    * 트리컨트롤 노드의 채크박스를 클릭했을때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Tree}
   */
@@ -6800,7 +6922,8 @@ export interface Matrix{
    * 트리컨트롤의 노드를 클릭했을때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Tree}
   */
@@ -6826,7 +6949,8 @@ export interface Matrix{
    * 트리컨트롤의 노드를 더블클릭했을때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Tree}
   */
@@ -6852,7 +6976,8 @@ export interface Matrix{
    * 트리컨트롤의 노드에서 마우스 우클릭 시 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Tree}
   */
@@ -6875,10 +7000,11 @@ export interface Matrix{
   /**
    * @event 
    *
-   * UserComponent가 로딩 완료된 후 발생한다.
+   * UserComponent가 로딩 완료된 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
@@ -6904,14 +7030,15 @@ export interface Matrix{
    * 사용자가 UploadLocalFile 명령을 통해 파일을 업로드 실행 후 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
   OnUserFileUploadCompleted : (sender : Matrix
   , args : { 
     /**
-     * 성공여부
+     * 성공 여부
      * 
     */
     Success: boolean
@@ -6936,7 +7063,7 @@ export interface Matrix{
     */
     FileName: string
     /**
-     * 파일 사이즈
+     * 파일 크기
      * 
     */
     FileSize: number
@@ -6960,7 +7087,8 @@ export interface Matrix{
    * 데이터 그리드의 셀의 값이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : Grid
   */
@@ -6998,10 +7126,11 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 뷰어의 사이즈가 변경될 때 발생합니다.
+   * 뷰어의 크기가 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link Matrix}
   */
@@ -7027,7 +7156,8 @@ export interface Matrix{
    * MX-Grid 셀 데이터 수정 시작 이벤트
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link iGrid}
   */
@@ -7049,12 +7179,12 @@ export interface Matrix{
     */
     Cancel: boolean
     /**
-     * 텍스트 편집기의 너비를 여러 셀에 걸처 병합한 사이즈로 표현합니다.(병합 셀 갯수 입력)
+     * 텍스트 편집기의 너비를 여러 셀에 걸쳐 병합한 크기로 표현합니다. (병합 셀 개수 입력)
      * 
     */
     MergeColumn: number
     /**
-     * 콤보 상자의 목록을 설정 합니다.
+     * 콤보 상자의 목록을 설정합니다.
      * 
     */
     LOVList: string[]
@@ -7068,7 +7198,8 @@ export interface Matrix{
    * MX-Grid Cell Click 이벤트
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link iGrid}
   */
@@ -7094,7 +7225,8 @@ export interface Matrix{
    * MX-Grid Cell Double Click 이벤트
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link iGrid}
   */
@@ -7120,7 +7252,8 @@ export interface Matrix{
    * MX-Grid 셀 데이터 수정 완료 이벤트
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link iGrid}
   */
@@ -7151,7 +7284,8 @@ export interface Matrix{
    * 컨트롤 클릭 시 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link iGrid}
   */
@@ -7172,7 +7306,8 @@ export interface Matrix{
    * 컨텍스트 메뉴가 열리기 전에 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link iGrid}
   */
@@ -7208,7 +7343,8 @@ export interface Matrix{
    * 스크롤이 움직일 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link iGrid}
   */
@@ -7234,7 +7370,8 @@ export interface Matrix{
    * MX-Grid의 선택 영역이 변경될 때 발생합니다.
    * 
    *
-   * @param args
+   * @param sender 이벤트가 발생한 Matrix 객체
+   * @param args 이벤트 인자
    *
    * Target : {@link iGrid}
   */

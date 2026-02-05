@@ -17,14 +17,16 @@ import { MultiHeaderCell } from "../../aud/control/grids/MultiHeaderCell";
 import { StyleOption } from "../../aud/control/grids/StyleOption";
 import { DataRow } from "../../aud/data/DataRow";
 import { ContextMenu } from "../../aud/control/ContextMenu";
+import { MultiHeaderLayout } from "../../aud/control/grids/MultiHeaderLayout";
+import { ExportRowItem } from "../../aud/control/grids/ExportRowItem";
 /**
-* 데이터그리드, 트리그리드의 부모 클래스
-* @hidden
-*/
+ * 데이터그리드, 트리그리드의 부모 클래스입니다.
+ * @hidden
+ */
 export interface Grid extends Control{
 
   /**
-   * 보고서가 열리면서 자동으로 Refresh를 할지 여부
+   * 보고서가 열리면서 자동으로 데이터를 조회할지 여부를 가져오거나 설정합니다.
   */
   AutoRefresh: boolean;
 
@@ -35,7 +37,7 @@ export interface Grid extends Control{
   Background: SolidColorBrush;
 
   /**
-   * 컨트롤의 하단 영역 데이터 소스 키값
+   * 하단 영역 데이터소스 키 값을 가져오거나 설정합니다.
   */
   BottomRowDataSource: string;
 
@@ -46,57 +48,57 @@ export interface Grid extends Control{
   ColumnHeaderHeight: number;
 
   /**
-   * 마우스 커서 타입(ex: 'pointer', 'crosshair')
+   * 마우스 커서 타입을 가져오거나 설정합니다. (예: `"pointer"`, `"crosshair"`)
   */
   CursorType: string;
 
   /**
-   * CRUD 수행 시 DML유형(0:Default, 1:Batch, 2:Merge)
+   * CRUD 수행 시 DML 유형을 가져오거나 설정합니다. (0: Default, 1: Batch, 2: Merge)
   */
   DMLType: number;
 
   /**
-   * 데이터 제한 건수
+   * 데이터 제한 건수를 가져오거나 설정합니다.
   */
   DataLimit: number;
 
   /**
-   * 데이터 셋
+   * 데이터셋을 가져오거나 설정합니다.
   */
   DataSet: DataSet;
 
   /**
-   * 컨트롤의 데이터 소스 키값
+   * 데이터소스 키 값을 가져오거나 설정합니다.
   */
   DataSource: string;
 
   /**
-   * 내보내기 활성화 여부
+   * 내보내기 대상 여부를 가져오거나 설정합니다.
   */
   DoExport: boolean;
 
   /**
-   * 전체 Refresh동작 에서 Refresh 대상인지 여부
+   * 전체 Refresh 동작에서 조회 대상 여부를 가져오거나 설정합니다.
   */
   DoRefresh: boolean;
 
   /**
-   * 수정 가능 유무
+   * 수정 가능 여부를 가져오거나 설정합니다.
   */
   Editable: boolean;
 
   /**
-   * 엔터 키 입력 시 다음 셀 선택 방향
+   * 엔터 키 입력 시 다음 셀 선택 방향을 가져오거나 설정합니다.
   */
   EnterKeyDirection: enOrientationType;
 
   /**
-   * 내보내기 시 Row 제한 개수(0일 경우에는 전체 내보내기)
+   * 내보내기 시 행 제한 개수를 가져오거나 설정합니다. (0일 경우 전체 내보내기)
   */
   ExportCount: number;
 
   /**
-   * 필터창 데이터 제한 건수
+   * 필터 창 데이터 제한 건수를 가져오거나 설정합니다.
   */
   FilterLOVLimit: number;
 
@@ -131,22 +133,22 @@ export interface Grid extends Control{
   Foreground: SolidColorBrush;
 
   /**
-   * 좌측 고정열의 수
+   * 좌측 고정열 설정을 가져오거나 설정합니다.
   */
   FreezeColumn: FreezeColumnSetting;
 
   /**
-   * 세로 병합 규칙
+   * 세로 병합 규칙을 가져오거나 설정합니다.
   */
   MergeRule: enMergeRuleType;
 
   /**
-   * 멀티 헤더 모델
+   * 멀티 헤더 모델을 가져옵니다.
   */
   MultiHeader: MultiHeader;
 
   /**
-   * 멀티라인 팝업 객체
+   * 멀티라인 팝업 객체를 가져옵니다.
   */
   MultiLinePopup: CompactMultiLine;
 
@@ -169,17 +171,17 @@ export interface Grid extends Control{
   RowHeight: number;
 
   /**
-   * Scroll의 offsetleft 값
+   * 스크롤의 왼쪽(offsetLeft) 값을 가져오거나 설정합니다.
   */
   ScrollLeft: number;
 
   /**
-   * Scroll의 offsettop 값
+   * 스크롤의 위쪽(offsetTop) 값을 가져오거나 설정합니다.
   */
   ScrollTop: number;
 
   /**
-   * 선택 규칙
+   * 선택 규칙을 가져오거나 설정합니다.
   */
   SelectRule: enSelectRuleType;
 
@@ -190,97 +192,97 @@ export interface Grid extends Control{
   ShowHeader: enHeaderType;
 
   /**
-   * Text 유형 내보내기 시 Column 구분자(eg. \\t)
+   * 텍스트 내보내기 시 컬럼 구분자를 가져오거나 설정합니다. (예: `"\\t"`)
   */
   TextExportColSeparator: string;
 
   /**
-   * Text 유형 내보내기 시 Row 구분자(eg. \\n)
+   * 텍스트 내보내기 시 행 구분자를 가져오거나 설정합니다. (예: `"\\n"`)
   */
   TextExportRowSeparator: string;
 
   /**
-   * 컨트롤의 상단 영역 데이터 소스 키값
+   * 상단 영역 데이터소스 키 값을 가져오거나 설정합니다.
   */
   TopRowDataSource: string;
 
   /**
-   * 분석항목설정 기능 사용 유무
+   * 분석항목설정 기능 사용 여부를 가져오거나 설정합니다.
   */
   UseAnalysisItemSetting: boolean;
 
   /**
-   * CSV 내보내기 기능 사용 유무
+   * CSV 내보내기 기능 사용 여부를 가져오거나 설정합니다.
   */
   UseCSVExport: boolean;
 
   /**
-   * ClipBoard Copy&Paste 사용 가능 여부
+   * 클립보드 복사/붙여넣기 사용 여부를 가져오거나 설정합니다.
   */
   UseClipboard: boolean;
 
   /**
-   * 워드 내보내기 기능 사용 유무
+   * 워드 내보내기 기능 사용 여부를 가져오거나 설정합니다.
   */
   UseDOCExport: boolean;
 
   /**
-   * 디자인 기능 사용 유무
+   * 디자인 기능 사용 여부를 가져오거나 설정합니다.
   */
   UseDesign: boolean;
 
   /**
-   * 엑셀 내보내기 기능 사용 유무
+   * 엑셀 내보내기 기능 사용 여부를 가져오거나 설정합니다.
   */
   UseExcelExport: boolean;
 
   /**
-   * 내보내기 시 필터 및 정렬 사용
+   * 내보내기 시 필터 및 정렬 사용 여부를 가져오거나 설정합니다.
   */
   UseExportFilterOrOrderbyInfo: boolean;
 
   /**
-   * 내보내기 시 서버 조회 사용
+   * 내보내기 시 서버 조회 사용 여부를 가져오거나 설정합니다.
   */
   UseExportServerRetrieve: boolean;
 
   /**
-   * 필터 초기화 기능 사용 유무
+   * 필터 초기화 기능 사용 여부를 가져오거나 설정합니다.
   */
   UseFilterInit: boolean;
 
   /**
-   * 서식 설정 기능 사용 유무
+   * 서식 설정 기능 사용 여부를 가져오거나 설정합니다.
   */
   UseFormatSetting: boolean;
 
   /**
-   * HML 내보내기 기능 사용 유무
+   * HML 내보내기 기능 사용 여부를 가져오거나 설정합니다.
   */
   UseHMLExport: boolean;
 
   /**
-   * 멀티 헤더 사용 유무
+   * 멀티 헤더 사용 여부를 가져오거나 설정합니다.
   */
   UseMultiHeader: boolean;
 
   /**
-   * 멀티 헤더 설정 기능 사용 유무
+   * 멀티 헤더 설정 기능 사용 여부를 가져오거나 설정합니다.
   */
   UseMultiHeaderMenu: boolean;
 
   /**
-   * PPT 내보내기 기능 사용 유무
+   * PPT 내보내기 기능 사용 여부를 가져오거나 설정합니다.
   */
   UsePPTExport: boolean;
 
   /**
-   * 텍스트 내보내기 기능 사용 유무
+   * 텍스트 내보내기 기능 사용 여부를 가져오거나 설정합니다.
   */
   UseTextExport: boolean;
 
   /**
-   * 행 번호 보여줄지 여부
+   * 행 번호 표시 여부를 가져오거나 설정합니다.
   */
   ViewLineNumber: boolean;
 
@@ -297,41 +299,55 @@ export interface Grid extends Control{
   */
   AddColumn(name: string, isNumber?: boolean): DataGridColumn;
 
-  /** 
-   * 특정 필드에 필터를 추가하는 메소드
+  /**
+   * 지정한 필드에 필터를 추가합니다.
    *
-  * @param fieldName 필드 명
-  * @param type 필터 타입(0 : Dimension, 1 : Measure)
-  * @param operator 비교 연산자(Dimension : [In,NotIn,Between], Measure : [=,>,<,>=,<=,<>])
+   * @example
+   * ```js
+   * var grid = Matrix.getObject("DataGrid");
+   * // Dimension 필터: DEPT_CODE가 "D001"인 행만 표시합니다.
+   * grid.AddFilter("DEPT_CODE", 0, "In", ["D001"], true);
+   * grid.Calculate();
+   * ```
+  * @param fieldName 필드명
+  * @param type 필터 타입 (0: Dimension, 1: Measure)
+  * @param operator 비교 연산자 (Dimension: `In`, `NotIn`, `Between` / Measure: `=`, `>`, `<`, `>=`, `<=`, `<>`)
   * @param value 필터 조건 값
-  * @param isAnd AND 인지 OR인지 유무(필터 타입이 Measure일 경우에만 사용. 기본값은 true)
+  * @param isAnd AND 인지 OR인지 여부 (필터 타입이 Measure일 경우에만 사용. 기본값은 `true`)
   */
-  AddFilter(fieldName: string, type: number, operator: string, value: any, isAnd: boolean): void;
+  AddFilter(fieldName: string, type: number, operator: string, value: string | string[] | number, isAnd: boolean): void;
 
   /** 
-   * 특정 필드에  정렬 정보를 추가하는 메소드
+   * 지정한 필드에 정렬 정보를 추가합니다.
    *
   * @param fieldName 필드 명
   * @param sortType 정렬 타입(1 : 내림차순, 2 : 오름차순)
-  * @param isNotDraw 정렬 정보를 추가 한 후에 그리드를 다시 그릴지 유무. 기본값은 false이다.(true : 그리지 않음)
+  * @param isNotDraw 정렬 정보 추가 후 그리드를 다시 그릴지 여부. 기본값은 `false` (`true`: 그리지 않음)
   */
   AddSort(fieldName: string, sortType: number, isNotDraw: boolean): void;
 
-  /** 
+  /**
    * 행을 추가하고 추가된 행 정보를 반환합니다.
    *
-  * @param isNotDraw 행을 추가 한 후에 그리드를 다시 그릴지 유무. 기본값은 false이다.(true : 그리지 않음)
+   * @example
+   * ```js
+   * var grid = Matrix.getObject("DataGrid");
+   * var newRow = grid.AppendRow();
+   * newRow.SetValue("NAME", "홍길동");
+   * newRow.SetValue("DEPT", "개발팀");
+   * ```
+  * @param isNotDraw 행을 추가한 후에 그리드를 다시 그릴지 여부. 기본값은 `false` (`true`: 그리지 않음)
   */
   AppendRow(isNotDraw?: boolean): DataGridRow;
 
   /** 
-   * 컨트롤의 데이터 정보를 계산해서 다시 그려준다.
+   * 컨트롤의 데이터 정보를 계산하여 다시 그립니다.
    *
   */
   Calculate(): void;
 
   /** 
-   * 특정 행의 상태를 바꿔주는 메소드
+   * 지정한 행의 상태를 변경합니다.
    *
   * @param row 행
   * @param updateState 바꿔줄 상태값('' : 일반, 'N' : 추가, 'U' : 수정, 'D' : 삭제)
@@ -339,7 +355,7 @@ export interface Grid extends Control{
   ChangeRowState(row: DataGridRow, updateState: string): void;
 
   /** 
-   * 특정 행의 상태를 바꿔주는 메소드
+   * 지정한 인덱스 행의 상태를 변경합니다.
    *
   * @param index 행의 인덱스
   * @param updateState 바꿔줄 상태값('' : 일반, 'N' : 추가, 'U' : 수정, 'D' : 삭제)
@@ -347,34 +363,34 @@ export interface Grid extends Control{
   ChangeRowStateAt(index: number, updateState: string): void;
 
   /** 
-   * 전체 화면을 지운다.
+   * 전체 화면을 지웁니다.
    *
   */
   ClearCanvas(): void;
 
   /** 
-   * 그리드의 데이터를 초기화 합니다.
+   * 그리드의 데이터를 초기화합니다.
    *
   */
   ClearData(): void;
 
   /** 
-   * 그리드의 데이터셋을 초기화 합니다.
+   * 그리드의 데이터셋을 초기화합니다.
    *
-  * @param isClearFields 필드 목록도 삭제할지 유무 True이면 필드 목록도 삭제한다.
+  * @param isClearFields 필드 목록도 삭제할지 여부. `true`이면 필드 목록도 삭제합니다.
   */
   ClearDataSet(isClearFields: boolean): void;
 
   /** 
-   * 필드를 초기화한다.
+   * 필드를 초기화합니다.
    *
   */
   ClearFields(): void;
 
   /** 
-   * 필터 모델 정보를 삭제해준다.(UI로 반영은 Calculate를 호출해줘야만 한다.)
+   * 필터 모델 정보를 삭제합니다. (UI 반영은 Calculate()를 호출해야 합니다.)
    *
-  * @param fieldNames 필터를 제거할 필드 모델 이름 목록 없으면 모든 필터 정보를 삭제해준다.
+  * @param fieldNames 필터를 제거할 필드 이름 목록. 없으면 모든 필터 정보를 삭제합니다.
   */
   ClearFilters(fieldNames: string[]): void;
 
@@ -392,13 +408,13 @@ export interface Grid extends Control{
   ClearRows(): void;
 
   /** 
-   * 선택 영역을 초기화 해준다.
+   * 선택 영역을 초기화합니다.
    *
   */
   ClearSelect(): void;
 
   /** 
-   * 그리드의 모든 정렬 정보를 초기화 시켜주는 메소드(다시 그리지는 않는다.)
+   * 그리드의 모든 정렬 정보를 초기화합니다. 화면은 다시 그리지 않습니다.
    *
   */
   ClearSort(): void;
@@ -423,7 +439,7 @@ export interface Grid extends Control{
   DeleteColumn(name: string): void;
 
   /** 
-   * 오직 헤더 영역만 그려준다.
+   * 헤더 영역만 다시 그립니다.
    *
   */
   DrawOnlyHeader(): void;
@@ -442,21 +458,10 @@ export interface Grid extends Control{
   ExecuteSort(sortExpression: string): void;
 
   /** 
-   * Export 서비스를 호출 합니다.
+   * 내보내기 서비스를 호출합니다.
    *
-  * @param exportType Export Type(Excel, PPT, CSV, Text)
-  * @param callBack CallBack 함수
-  * ```
-  * 
-  * function(p){
-  * //   
-  * //   p.FolderName = file path
-  * //   p.FileName = file name
-  * //   
-  *   var newName = "MXGrid_" + Matrix.GetDateTime().ToString("yyyyMMddHHmmss") + ".xlsx";
-  *   Matrix.DownloadFile(p.FolderName, p.FileName ,newName ,true);
-  * }
-  * ```
+  * @param exportType 내보내기 유형 (Excel, PPT, CSV, Text)
+  * @param callBack 내보내기 완료 후 호출되는 콜백 함수
   */
   ExportServiceCall(exportType: enExportType, callBack: (p: {"FolderName":string,"FileName":string})=>void): void;
 
@@ -511,21 +516,9 @@ export interface Grid extends Control{
   GetDataTable(datasourceType: number): DataTable;
 
   /** 
-   * DrillToDetail의 쿼리를 반환해주는 메소드
+   * DrillToDetail의 쿼리를 반환합니다.
    *
-  * @param callbackFunc 반환 받을 콜백 함수(매개 변수 목록 : 결과 코드[0:성공,1:실패], 쿼리, 에러 메세지)
-  * ```
-  * 
-  *                         		function(resultCode, resultQuery, resultMessage){
-  *                         			if(resultCode == 0){
-  *                         				var sql = resultQuery;
-  *                         			}
-  * 
-  *                         			else{
-  *                         				Matrix.Error("Error", resultMessage);
-  *                         			}
-  *                         		} 
-  * ```
+  * @param callbackFunc 결과를 받을 콜백 함수 (resultCode: 0=성공/1=실패, resultQuery: 쿼리, resultMessage: 에러 메시지)
   */
   GetDrillToDetailSQL(callbackFunc: (resultCode:number, resultQuery:string, resultMessage:string)=>void): void;
 
@@ -537,7 +530,7 @@ export interface Grid extends Control{
   GetExcelExportJSON(range: string): string;
 
   /** 
-   * 특정 필드를 찾아준다.
+   * 지정한 필드를 반환합니다.
    *
   * @param fieldInfo 필드명 또는 필드 위치
   */
@@ -557,7 +550,7 @@ export interface Grid extends Control{
   GetFieldNames(): string[];
 
   /** 
-   * 필드의 목록을 반환해주는 메소드
+   * 필드 목록을 반환합니다.
    *
   */
   GetFields(): DataGridColumn[];
@@ -593,7 +586,7 @@ export interface Grid extends Control{
    * 멀티헤더의 Layout을 JSON형태로 반환합니다.
    *
   */
-  GetMultiHeaderLayout(): any;
+  GetMultiHeaderLayout(): MultiHeaderLayout;
 
   /** 
    * 레코드의 수를 반환합니다.
@@ -627,9 +620,17 @@ export interface Grid extends Control{
   */
   GetSelectedCells(): DataGridCell[];
 
-  /** 
-   * 현재 선택된 행의 목록을 반환해주는 메소드
+  /**
+   * 현재 선택된 행의 목록을 반환합니다.
    *
+   * @example
+   * ```js
+   * var grid = Matrix.getObject("DataGrid");
+   * var rows = grid.GetSelectedRows();
+   * for (var i = 0; i < rows.length; i++) {
+   *     var name = rows[i].GetValue("NAME");
+   * }
+   * ```
   */
   GetSelectedRows(): DataGridRow[];
 
@@ -640,7 +641,7 @@ export interface Grid extends Control{
   GetTotalRowCount(): number;
 
   /** 
-   * 데이터의 수정 유무를 결과로 반환해주는 메소드
+   * 데이터의 수정 여부를 반환합니다.
    *
   */
   IsModified(): boolean;
@@ -654,30 +655,28 @@ export interface Grid extends Control{
   MoveField(key: string, areaIndex: number): boolean;
 
   /** 
-   * 그리드를 다시 그려주는 메소드
-(Update(): 스크롤바와 정렬을 유지하지 않음)
-(ReDraw(): 스크롤바와 정렬을 유지)
+   * 그리드를 다시 그립니다. 스크롤바와 정렬을 유지합니다.
    *
   */
   ReDraw(): void;
 
   /** 
-   * 데이터를 다시 요청하는 메소드(OnExecuteStart 이벤트는 발생하지 않는다.)
+   * 데이터를 다시 요청합니다. OnExecuteStart 이벤트는 발생하지 않습니다.
    *
   */
   RefreshData(): void;
 
-  /** 
-   * 특정 선택한 레코드를 삭제합니다.
+  /**
+   * 현재 선택된 레코드를 삭제합니다.
    *
   */
   RemoveRow(): void;
 
-  /** 
-   * 특정 레코드를 삭제합니다.
+  /**
+   * 지정한 레코드를 삭제합니다.
    *
-  * @param row 레코드
-  * @param isNotDraw 행을 추가 한 후에 그리드를 다시 그릴지 유무. 기본값은 false이다.(true : 그리지 않음)
+  * @param row 삭제할 레코드
+  * @param isNotDraw 삭제 후 그리드를 다시 그릴지 여부. 기본값은 `false` (`true`: 그리지 않음)
   */
   RemoveRow(row: DataGridRow, isNotDraw: boolean): void;
 
@@ -685,34 +684,34 @@ export interface Grid extends Control{
    * 특정 위치의 레코드를 삭제합니다.
    *
   * @param idx 레코드 위치
-  * @param isNotDraw 행을 추가 한 후에 그리드를 다시 그릴지 유무. 기본값은 false이다.(true : 그리지 않음)
+  * @param isNotDraw 삭제 후 그리드를 다시 그릴지 여부. 기본값은 `false` (`true`: 그리지 않음)
   */
   RemoveRowAt(idx: number, isNotDraw: boolean): void;
 
   /** 
-   * 특정 셀을 선택하는 메소드
+   * 지정한 셀을 선택합니다.
    *
   * @param idx 레코드 인덱스
   * @param fieldName 필드명
   */
   SelectCell(idx: number, fieldName: string): void;
 
-  /** 
-   * 특정 레코드를 선택하는 메소드
+  /**
+   * 지정한 인덱스의 레코드를 선택합니다.
    *
   * @param idx 레코드 인덱스
   */
   SelectRow(idx: number): void;
 
   /** 
-   * 특정 영역의 행을 선택하는 메소드(시작 행부터 끝까지 선택)
+   * 시작 행부터 마지막 행까지 선택합니다.
    *
   * @param startIndex 시작 행 인덱스
   */
   SelectRowRange(startIndex: number): void;
 
   /** 
-   * 특정 영역의 행을 선택하는 메소드
+   * 시작 행부터 종료 행까지 선택합니다.
    *
   * @param startIndex 시작 행 인덱스
   * @param endIndex 종료 행 인덱스
@@ -743,10 +742,22 @@ export interface Grid extends Control{
   */
   SetColumnFormula(name: string, Formula: string): void;
 
-  /** 
+  /**
    * 그리드의 데이터셋을 설정합니다.
    *
-  * @param dataSet 데이터소스
+   * @example
+   * ```js
+   * // 서버 스크립트 호출 결과를 그리드에 바인딩합니다.
+   * Matrix.RunScript("DataGrid", "SearchService", function(p) {
+   *     if (p.Success == false) {
+   *         Matrix.Alert(p.Message);
+   *         return;
+   *     }
+   *     var grid = Matrix.getObject("DataGrid");
+   *     grid.SetDataSet(p.DataSet);
+   * });
+   * ```
+  * @param dataSet 바인딩할 데이터셋 객체
   */
   SetDataSet(dataSet: DataSet): void;
 
@@ -784,12 +795,10 @@ export interface Grid extends Control{
    *
   * @param layout GetMultiHeaderLayout()에서 return한 모델(type  0:None, 1:Label, 2:TextBox, 21:NumberBox, 3:Checkbox, 4:Button, 5:ComboBox, 6:Daily, 61:DFromTo, 62:Month, 63:MFromTo, 7:Image, 
   */
-  SetMultiHeaderLayout(layout: any): boolean;
+  SetMultiHeaderLayout(layout: MultiHeaderLayout): boolean;
 
   /** 
-   * 그리드를 다시 그려주는 메소드
-(Update(): 스크롤바와 정렬을 유지하지 않음)
-(ReDraw(): 스크롤바와 정렬을 유지)
+   * 그리드를 다시 그립니다. 스크롤바와 정렬을 유지하지 않습니다.
    *
   */
   Update(): void;
@@ -825,34 +834,36 @@ export interface Grid extends Control{
   */
   getDataTable(): DataTable;
 
-  /** 
-   * 현재 선택된 행의 필드의 값을 반환합니다.
+  /**
+   * 현재 선택된 행의 필드 값을 반환합니다.
    *
   * @param fieldInfo 필드명 또는 필드 위치
   */
-  getRowValue(fieldInfo: string | number): any;
+  getRowValue(fieldInfo: string | number): string | number | null;
 
-  /** 
-   * 특정 위치행의 필드의 값을 반환합니다.
-   *
-  * @param idx 레코드 인덱스
-  * @param fieldInfo 필드명 또는 필드 위치
-  */
-  getRowValue(idx: number, fieldInfo: string | number): any;
-
-  /** 
-   * 그리드 컨트롤의 스타일 옵션을 반환합니다.
+  /**
+   * 지정한 위치 행의 필드 값을 반환합니다.
    *
    * @example
    * ```js
-   * var DataGrid = Matrix.getObject("DataGrid");
-   * var options = DataGrid.getStyleOption();
+   * var grid = Matrix.getObject("DataGrid");
+   * for (var i = 0; i < grid.GetRowCount(); i++) {
+   *     var name = grid.getRowValue(i, "NAME");
+   * }
    * ```
+  * @param idx 레코드 인덱스
+  * @param fieldInfo 필드명 또는 필드 위치
+  */
+  getRowValue(idx: number, fieldInfo: string | number): string | number | null;
+
+  /**
+   * 그리드 컨트롤의 스타일 옵션을 반환합니다.
+   *
   */
   getStyleOption(): StyleOption;
 
   /** 
-   * 특정 필드에 Dimension 필터(Between)를 추가하는 메소드
+   * 지정한 필드에 Dimension 필터(Between)를 추가합니다.
    *
   * @param fieldName 필드 명
   * @param value1 첫번째 필터 조건 값
@@ -861,7 +872,7 @@ export interface Grid extends Control{
   setDimensionFilterBetWeen(fieldName: string, value1: string, value2: string): void;
 
   /** 
-   * 특정 필드에 Dimension 필터(In)를 추가하는 메소드
+   * 지정한 필드에 Dimension 필터(In)를 추가합니다.
    *
   * @param fieldName 필드 명
   * @param values 필터 조건 값 목록
@@ -869,7 +880,7 @@ export interface Grid extends Control{
   setDimensionFilterIn(fieldName: string, values: string[]): void;
 
   /** 
-   * 특정 필드에 Dimension 필터(NotIn)를 추가하는 메소드
+   * 지정한 필드에 Dimension 필터(NotIn)를 추가합니다.
    *
   * @param fieldName 필드 명
   * @param values 필터 조건 값 목록
@@ -877,7 +888,7 @@ export interface Grid extends Control{
   setDimensionFilterNotIn(fieldName: string, values: string[]): void;
 
   /** 
-   * 특정 필드에 Measure 필터 하나를 추가하는 메소드
+   * 지정한 필드에 Measure 필터 하나를 추가합니다.
    *
   * @param fieldName 필드 명
   * @param operator1 첫번째 비교 연산자(=,>,<,>=,<=,<>))
@@ -886,42 +897,52 @@ export interface Grid extends Control{
   setMeasureFilter(fieldName: string, operator1: string, value1: string): void;
 
   /** 
-   * 특정 필드에 Measure 필터 두개를 추가하는 메소드
+   * 지정한 필드에 Measure 필터 두 개를 추가합니다.
    *
   * @param fieldName 필드 명
   * @param operator1 첫번째 비교 연산자(=,>,<,>=,<=,<>))
   * @param value1 첫번째 필터 조건 값
   * @param operator2 두번째 비교 연산자(=,>,<,>=,<=,<>). 두번째 조건을 사용하지 않을 경우에는 넣어주지 않아야 한다.
   * @param value2 두번째 필터 조건 값
-  * @param isAnd AND 인지 FALSE인지 유무(필터 타입이 Measure일 경우에만 사용. 기본값은 true)
+  * @param isAnd AND 인지 OR인지 여부(필터 타입이 Measure일 경우에만 사용. 기본값은 true)
   */
   setMeasureFilter(fieldName: string, operator1: string, value1: string, operator2: string, value2: string, isAnd: boolean): void;
 
-  /** 
-   * 현재 선택된 행의 필드값을 수정합니다.
+  /**
+   * 현재 선택된 행의 필드 값을 수정합니다.
    *
   * @param fieldName 필드명
-  * @param value 값
+  * @param value 설정할 값
   */
   setRowValue(fieldName: string, value: string | object): boolean;
 
-  /** 
-   * 특정 위치행의 필드값을 변경합니다.
+  /**
+   * 지정한 위치 행의 필드 값을 변경합니다.
    *
+   * @example
+   * ```js
+   * var grid = Matrix.getObject("DataGrid");
+   * // 모든 행의 CHK 필드를 "Y"로 설정합니다.
+   * for (var r = 0; r < grid.GetRowCount(); r++) {
+   *     grid.setRowValue(r, "CHK", "Y");
+   * }
+   * grid.Update();
+   * ```
   * @param rowIdx 레코드 인덱스
   * @param fieldName 필드명
-  * @param value 값
+  * @param value 설정할 값
   */
   setRowValue(rowIdx: number, fieldName: string, value: string | object): boolean;
 
   /**
    * @event 
    *
-   * 그리드의 셀을 클릭할 떄 발생합니다.
+   * 그리드의 셀을 클릭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnCellClick : (sender : Grid
   , args : { 
@@ -952,11 +973,12 @@ export interface Grid extends Control{
   /**
    * @event 
    *
-   * 그리드의 셀을 더블 클릭할 떄 발생합니다.
+   * 그리드의 셀을 더블 클릭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnCellDoubleClick : (sender : Grid
   , args : { 
@@ -983,11 +1005,12 @@ export interface Grid extends Control{
   /**
    * @event 
    *
-   * 그리드의 셀을 더블 터치할 떄 발생합니다.
+   * 그리드의 셀을 더블 터치할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnCellDoubleTouch : (sender : Grid
   , args : { 
@@ -1030,9 +1053,10 @@ export interface Grid extends Control{
    * 	grid.AppendRow(false);
    * }
    * ```
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnCellKeyDown : (sender : Grid
   , args : { 
@@ -1061,13 +1085,29 @@ export interface Grid extends Control{
 
 
   /**
-   * @event 
+   * @event
    *
-   * 데이터 그리드의 셀이 Load될때 발생합니다.
+   * 데이터 그리드의 셀이 로드될 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
+   *
+   * @example
+   * ```js
+   * // 조건부 서식: AMOUNT가 음수이면 빨간색으로 표시합니다.
+   * var grid = Matrix.getObject("DataGrid");
+   * grid.OnCellLoaded = function(sender, args) {
+   *     if (args.Field.Name == "AMOUNT") {
+   *         var value = Number(args.Row.GetValue("AMOUNT"));
+   *         if (value < 0) {
+   *             args.FontColor = "#FF0000";
+   *             args.FontBold = true;
+   *         }
+   *     }
+   * };
+   * ```
   */
   OnCellLoaded : (sender : Grid
   , args : { 
@@ -1096,15 +1136,15 @@ export interface Grid extends Control{
     */
     FontColor: string
     /**
-     * 셀의 텍스트를 Bold처리하여 표현할지 유무. true일 경우 Bold처리가 됩니다.
+     * 셀의 텍스트를 Bold처리하여 표현할지 여부. true일 경우 Bold처리가 됩니다.
     */
     FontBold: boolean
     /**
-     * 셀의 텍스트를 Italic처리하여 표현할지 유무. true일 경우 Italic처리가 됩니다.
+     * 셀의 텍스트를 Italic처리하여 표현할지 여부. true일 경우 Italic처리가 됩니다.
     */
     FontItalic: boolean
     /**
-     * 셀의 텍스트 아래 밑줄을 표현할지 유무. true일 경우 밑줄이 표시됩니다.
+     * 셀의 텍스트 아래 밑줄을 표현할지 여부. true일 경우 밑줄이 표시됩니다.
     */
     FontUnderline: boolean
     /**
@@ -1118,11 +1158,12 @@ export interface Grid extends Control{
   /**
    * @event 
    *
-   * 그리드의 셀을 터치할 떄 발생합니다.
+   * 그리드의 셀을 터치할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnCellTouch : (sender : Grid
   , args : { 
@@ -1149,11 +1190,12 @@ export interface Grid extends Control{
   /**
    * @event 
    *
-   * 데이터 그리드가 클릭되는 시점에 발생합니다.
+   * 데이터 그리드를 클릭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnClick : (sender : Grid
   , args : { 
@@ -1168,11 +1210,12 @@ export interface Grid extends Control{
   /**
    * @event 
    *
-   * 데이터 그리드의 레코드가 추가되는 시점에 발생합니다.
+   * 데이터 그리드에 레코드가 추가될 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnCreateNewRow : (sender : Grid
   , args : { 
@@ -1197,9 +1240,10 @@ export interface Grid extends Control{
    *
    * 데이터 그리드의 셀이 변경될 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnCurrentCellChanged : (sender : Grid
   , args : { 
@@ -1232,13 +1276,23 @@ export interface Grid extends Control{
 
 
   /**
-   * @event 
+   * @event
    *
-   * 데이터 그리드의 행이 변경될 때 발생합니다/
+   * 데이터 그리드의 행이 변경될 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
+   *
+   * @example
+   * ```js
+   * var grid = Matrix.getObject("DataGrid");
+   * grid.OnCurrentRowChanged = function(sender, args) {
+   *     var name = args.Row.GetValue("NAME");
+   *     Matrix.getObject("lblSelected").Text = "선택: " + name;
+   * };
+   * ```
   */
   OnCurrentRowChanged : (sender : Grid
   , args : { 
@@ -1251,15 +1305,15 @@ export interface Grid extends Control{
     */
     Row: DataGridRow
     /**
-     * 셀 데이타 정보
+     * 데이터 레코드 정보
     */
-    Record: any
+    Record: DataRow
     /**
      * 이 값을 true 설정하면 자동 선택 기능이 취소됩니다.
     */
     Handled: boolean
     /**
-     * 이전 행 요소
+     * 이전 행 객체
     */
     OldRow: DataGridRow
   }
@@ -1267,18 +1321,30 @@ export interface Grid extends Control{
 
 
   /**
-   * @event 
+   * @event
    *
    * 컨트롤에 데이터셋이 바인딩된 후 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
+   *
+   * @example
+   * ```js
+   * var grid = Matrix.getObject("DataGrid");
+   * grid.OnDataBindEnd = function(sender, args) {
+   *     // 조회 결과가 없으면 알림을 표시합니다.
+   *     if (args.RecordCount == 0) {
+   *         Matrix.Alert("조회 결과가 없습니다.");
+   *     }
+   * };
+   * ```
   */
   OnDataBindEnd : (sender : Grid
   , args : { 
     /**
-     * 컨트롤이름
+     * 컨트롤 이름
     */
     Id: string
     /**
@@ -1292,11 +1358,12 @@ export interface Grid extends Control{
   /**
    * @event 
    *
-   * 그리드의 행이 키입력으로 인하여 삭제될때 발생합니다.
+   * 그리드의 행이 키입력으로 인하여 삭제될 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnDeletingRow : (sender : Grid
   , args : { 
@@ -1321,9 +1388,10 @@ export interface Grid extends Control{
    *
    * [Ctrl + V] 키를 이용해 클립보드에 데이터를 붙여넣기 종료 시 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnEndClipBoardPaste : (sender : Grid
   , args : { 
@@ -1340,11 +1408,11 @@ export interface Grid extends Control{
     */
     Cell: DataGridCell
     /**
-     * 셀 데이타 정보
+     * 데이터 레코드 정보
     */
-    Record: any
+    Record: DataRow
     /**
-     * 수정되거나 추가된 레코드 목록을 반환합니다.
+     * 수정되거나 추가된 레코드 목록
     */
     UpdatedRows: DataGridRow[]
     /**
@@ -1356,13 +1424,28 @@ export interface Grid extends Control{
 
 
   /**
-   * @event 
+   * @event
    *
-   * 그리드의 셀의 값이 수정된 후 발생합니다.
+   * 그리드의 셀 값이 수정된 후 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
+   *
+   * @example
+   * ```js
+   * var grid = Matrix.getObject("DataGrid");
+   * grid.OnEndEdit = function(sender, args) {
+   *     if (args.Field.Name == "AMOUNT") {
+   *         // 수정된 금액이 음수이면 수정을 취소합니다.
+   *         if (Number(args.AfterValue) < 0) {
+   *             args.Cancel = true;
+   *             Matrix.Alert("금액은 0 이상이어야 합니다.");
+   *         }
+   *     }
+   * };
+   * ```
   */
   OnEndEdit : (sender : Grid
   , args : { 
@@ -1381,11 +1464,11 @@ export interface Grid extends Control{
     /**
      * 수정 되기 전 값
     */
-    BeforeValue: any
+    BeforeValue: string | number | null
     /**
      * 수정된 값
     */
-    AfterValue: any
+    AfterValue: string | number | null
     /**
      * 행 객체
     */
@@ -1397,11 +1480,12 @@ export interface Grid extends Control{
   /**
    * @event 
    *
-   * 그리드의 체크 박스를 클릭하는 순간 발생합니다.
+   * 그리드의 체크 박스를 클릭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnGridCheckBoxClicked : (sender : Grid
   , args : { 
@@ -1410,7 +1494,7 @@ export interface Grid extends Control{
     */
     Id: string
     /**
-     * 체크 유무
+     * 체크 여부
     */
     Checked: boolean
     /**
@@ -1422,9 +1506,9 @@ export interface Grid extends Control{
     */
     Row: DataGridRow
     /**
-     * 클릭한 셀의 데이터
+     * 데이터 레코드 정보
     */
-    Record: any
+    Record: DataRow
   }
   ) => void;
 
@@ -1432,11 +1516,12 @@ export interface Grid extends Control{
   /**
    * @event 
    *
-   * 그리드의 컬럼 헤더를 클릭하는 순간 발생합니다.
+   * 그리드의 컬럼 헤더를 클릭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnGridColumnHeaderClicked : (sender : Grid
   , args : { 
@@ -1459,11 +1544,12 @@ export interface Grid extends Control{
   /**
    * @event 
    *
-   * 그리드의 컬럼 헤더를 더블 클릭하는 순간 발생합니다.
+   * 그리드의 컬럼 헤더를 더블 클릭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnGridColumnHeaderDoubleClicked : (sender : Grid
   , args : { 
@@ -1488,9 +1574,10 @@ export interface Grid extends Control{
    *
    * 데이터 그리드의 ComboBox 값이 바뀔 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnGridComboBoxChanged : (sender : Grid
   , args : { 
@@ -1507,9 +1594,9 @@ export interface Grid extends Control{
     */
     Cell: DataGridCell
     /**
-     * 셀 데이타 정보
+     * 데이터 레코드 정보
     */
-    Record: any
+    Record: DataRow
     /**
      * 필드 정보
     */
@@ -1531,9 +1618,10 @@ export interface Grid extends Control{
    *
    * 그리드의 컨텍스트 메뉴가 열리기 전에 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnGridContextMenuOpening : (sender : Grid
   , args : { 
@@ -1570,9 +1658,10 @@ export interface Grid extends Control{
    *
    * 그리드의 엑셀 내보내기 전에 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnGridExportStart : (sender : Grid
   , args : { 
@@ -1595,13 +1684,13 @@ export interface Grid extends Control{
     /**
      * Excel로 내보내기 할 경우 상단 Row에 데이터를 추가할 수 있습니다.(string array 또는 {"Range":"A1","ColSpan":10,"Value":"■ 보고서 명 : ","Style":{"Border":"border:Thin,#000000;","Font":"font-color:#000000"}}형태로 지정)
     */
-    ExportRows: any
+    ExportRows: Array<string | ExportRowItem>
     /**
      * DataGrid의 엑셀 위치 (default : A1)
     */
     ExportGridCell: string
     /**
-     * 서버 조회 데이타 사용 여부
+     * 서버 조회 데이터 사용 여부
     */
     ExportServerData: boolean
     /**
@@ -1615,11 +1704,12 @@ export interface Grid extends Control{
   /**
    * @event 
    *
-   * 데이터 그리드의 필터가 변경된 시점에 발생합니다.
+   * 데이터 그리드의 필터가 변경된 후 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnGridFilterChanged : (sender : Grid
   , args : { 
@@ -1638,11 +1728,12 @@ export interface Grid extends Control{
   /**
    * @event 
    *
-   * 데이터 그리드의 멀티헤더 셀이 로드될때 발생합니다.
+   * 데이터 그리드의 멀티헤더 셀이 로드될 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnGridMultiHeaderCellLoaded : (sender : Grid
   , args : { 
@@ -1665,11 +1756,12 @@ export interface Grid extends Control{
   /**
    * @event 
    *
-   * 그리드의 멀티 헤더 체크 박스를 클릭하는 순간 발생합니다.
+   * 그리드의 멀티 헤더 체크 박스를 클릭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnGridMultiHeaderCheckBoxClicked : (sender : Grid
   , args : { 
@@ -1682,7 +1774,7 @@ export interface Grid extends Control{
     */
     HeaderCell: MultiHeaderCell
     /**
-     * 체크 유무
+     * 체크 여부
     */
     Checked: boolean
     /**
@@ -1696,11 +1788,12 @@ export interface Grid extends Control{
   /**
    * @event 
    *
-   * 그리드의 멀티헤더 셀을 클릭하는 순간 발생합니다.
+   * 그리드의 멀티헤더 셀을 클릭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnGridMultiHeaderClicked : (sender : Grid
   , args : { 
@@ -1723,11 +1816,12 @@ export interface Grid extends Control{
   /**
    * @event 
    *
-   * 그리드의 멀티헤더 셀을 더블클릭하는 순간 발생합니다.
+   * 그리드의 멀티헤더 셀을 더블클릭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnGridMultiHeaderDoubleClicked : (sender : Grid
   , args : { 
@@ -1752,14 +1846,15 @@ export interface Grid extends Control{
    *
    * 컨트롤에 Grouping 데이터셋이 바인딩된 후 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnGroupDataBindEnd : (sender : Grid
   , args : { 
     /**
-     * 컨트롤이름
+     * 컨트롤 이름
     */
     Id: string
     /**
@@ -1775,9 +1870,10 @@ export interface Grid extends Control{
    *
    * 컨트롤에 마우스를 이동하는 동안 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnMouseMove : (sender : Grid
   , args : { 
@@ -1795,9 +1891,10 @@ export interface Grid extends Control{
    *
    * 스크롤의 위치값이 변경되면 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnScroll : (sender : Grid
   , args : { 
@@ -1824,9 +1921,10 @@ export interface Grid extends Control{
    * 	e.Cancel = true;
    * }
    * ```
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnSelectedCellsDeleted : (sender : Grid
   , args : { 
@@ -1855,9 +1953,10 @@ export interface Grid extends Control{
    *
    * [Ctrl + V] 키를 이용해 클립보드에 데이터를 붙여넣기 실행 시 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnStartClipBoardPaste : (sender : Grid
   , args : { 
@@ -1874,11 +1973,11 @@ export interface Grid extends Control{
     */
     Cell: DataGridCell
     /**
-     * 셀 데이타 정보
+     * 데이터 레코드 정보
     */
-    Record: any
+    Record: DataRow
     /**
-     * 클립보드 텍스트로, 작업을 취소하려면 이 값을 제거하십시오.
+     * 클립보드 텍스트. 작업을 취소하려면 이 값을 제거하십시오.
     */
     ClipBoardText: string
   }
@@ -1890,9 +1989,10 @@ export interface Grid extends Control{
    *
    * 그리드의 셀이 수정모드로 변경될 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnStartEdit : (sender : Grid
   , args : { 
@@ -1911,7 +2011,7 @@ export interface Grid extends Control{
     /**
      * 셀의 값
     */
-    Value: any
+    Value: string | number | null
     /**
      * 행 객체
     */
@@ -1925,9 +2025,10 @@ export interface Grid extends Control{
    *
    * 데이터 그리드의 셀의 값이 변경될 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 그리드 컨트롤
+   * @param args 이벤트 인자
    *
-   * Target : Grid
+   * Target : {@link Grid}
   */
   OnValidate : (sender : Grid
   , args : { 

@@ -1,16 +1,16 @@
 import { Control } from "../../aud/control/Control";
 /**
-* 라디오 버튼 컨트롤 입니다.
+* 라디오 버튼 컨트롤입니다.
 */
 export interface RadioButton extends Control{
 
   /**
-   * 선택 여부
+   * 선택 여부를 가져오거나 설정합니다.
   */
   Checked: boolean;
 
   /**
-   * 선택된 상태의 값
+   * 선택된 상태의 값을 가져오거나 설정합니다.
   */
   CheckedValue: string;
 
@@ -21,62 +21,59 @@ export interface RadioButton extends Control{
   ElementRadio: HTMLDivElement;
 
   /**
-   * 그룹 명
+   * 그룹 이름을 가져오거나 설정합니다.
   */
   GroupName: string;
 
   /**
-   * 선택 여부
+   * 선택 여부를 가져오거나 설정합니다.
   */
   IsChecked: boolean;
 
   /**
-   * 컨트롤 다국어 코드
+   * 다국어 코드를 가져오거나 설정합니다.
   */
   LanguageCode: string;
 
   /**
-   * 텍스트
+   * 표시 텍스트를 가져오거나 설정합니다.
   */
   Text: string;
 
   /**
-   * 텍스트 위치(front,back)
+   * 텍스트 위치를 가져오거나 설정합니다. (front, back)
   */
   TextPosition: string;
 
-  /** 
-   * ToolTip 을 지정하는 함수 ( 연구소 전용 )
+  /**
+   * 툴팁을 지정합니다.
    *
    * @hidden
   */
   SetTooltip(): void;
 
   /**
-   * @event 
+   * @event
    *
-   * 라디오 컨트롤의 값이 변경될 경우 발생합니다.
+   * 라디오 컨트롤의 값이 변경될 때 발생합니다.
    *
-   * @example
-   * ```js
-   * RadioButton.OnValueChange();
-   * ```
-   * @param args
+   * @param sender 이벤트가 발생한 라디오 버튼 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link RadioButton}
   */
   OnValueChange : (sender : RadioButton
-  , args : { 
+  , args : {
     /**
-     * 컨트롤이름
+     * 컨트롤 이름
     */
     Id: string
     /**
-     * 그룹명
+     * 그룹 이름
     */
     GroupName: string
     /**
-     * 라벨 값
+     * 표시 텍스트
     */
     Text: string
     /**

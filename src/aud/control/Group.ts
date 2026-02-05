@@ -1,8 +1,8 @@
 import { Control } from "../../aud/control/Control";
 import { NamedDictionary } from "../../aud/data/NamedDictionary";
 /**
-* 그룹 컨트롤로 다양한 종류의 컨트롤을 묶을 수 있습니다.
-*/
+ * 다양한 종류의 컨트롤을 묶을 수 있는 그룹 컨트롤입니다.
+ */
 export interface Group extends Control{
 
   /**
@@ -11,38 +11,32 @@ export interface Group extends Control{
   */
   Controls: NamedDictionary;
 
-  /** 
-   * Group 에 컨트롤을 추가합니다.
+  /**
+   * 그룹에 컨트롤을 추가합니다.
    *
-  * @param control 컨트롤
+  * @param control 추가할 컨트롤
   */
   AddControl(control: Control): void;
 
-  /** 
-   * Group 에 컨트롤들을 추가합니다.
+  /**
+   * 그룹에 컨트롤 목록을 추가합니다.
    *
-  * @param controls Controls
+  * @param controls 컨트롤 목록
    * @hidden
   */
   AddControls(controls?: NamedDictionary): boolean;
 
-  /** 
-   * 지정한 이름의 컨트롤을 Group 에서 제거합니다.
+  /**
+   * 지정한 이름의 컨트롤을 그룹에서 제거합니다.
    *
-  * @param name 이름
+  * @param name 컨트롤 이름
   */
   RemoveControl(name: string): boolean;
 
-  /** 
-   * base64 encoding된 이미지 결과를 반환 합니다.
+  /**
+   * Base64 인코딩된 이미지를 반환합니다.
    *
-  * @param callback 이미지 변환 완료 후 함수
-  * ```
-  *  
-  *                   function(base64ext){
-  *                       
-  *                     }	
-  * ```
+  * @param callback 이미지 변환 완료 후 호출되는 콜백 함수 (인자: Base64 문자열)
   */
   getBase64Image(callback: (value:string) => void): void;
 

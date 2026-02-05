@@ -1,115 +1,116 @@
 import { Control } from "../../aud/control/Control";
 /**
-* 주를 FromTo로 선택할 수 있는 컨트롤입니다.
-*/
+ * 시작 주와 종료 주를 선택할 수 있는 기간 선택 달력 컨트롤입니다.
+ */
 export interface CalendarWeeklyFromTo extends Control{
 
   /**
-   * 데이터용 날짜 포멧.
+   * 데이터 저장용 날짜 포맷을 가져오거나 설정합니다. (예: `"yyyyMMdd"`)
   */
   DataFormat: string;
 
   /**
-   * From Date형 선택된 날짜
+   * From(시작) 날짜를 `Date` 객체로 가져오거나 설정합니다.
   */
   FromDate: Date;
 
   /**
-   * From 날짜를 설정하거나 반환한다.(ViewFormat)
+   * From(시작) 날짜를 {@link ViewFormat} 형식의 문자열로 가져오거나 설정합니다.
   */
   FromText: string;
 
   /**
-   * 초기 선택된 날짜
+   * 초기 선택 날짜를 가져오거나 설정합니다.
   */
   InitDate: string;
 
   /**
-   * 읽기전용
+   * 읽기 전용 여부를 가져오거나 설정합니다.
   */
   IsReadOnly: boolean;
 
   /**
-   * 최대 선택 가능 날짜
+   * 최대 선택 가능 날짜를 가져오거나 설정합니다.
   */
   MaxDate: string;
 
   /**
-   * 최소 선택 가능 날짜
+   * 최소 선택 가능 날짜를 가져오거나 설정합니다.
   */
   MinDate: string;
 
   /**
-   * To 달력 컨트롤 이름
+   * To(종료) 달력 컨트롤의 이름을 가져옵니다.
   */
   Name2: string;
 
   /**
-   * To Date형 선택된 날짜
+   * To(종료) 날짜를 `Date` 객체로 가져오거나 설정합니다.
   */
   ToDate: Date;
 
   /**
-   * To 날짜를 설정하거나 반환한다.(ViewFormat)
+   * To(종료) 날짜를 {@link ViewFormat} 형식의 문자열로 가져오거나 설정합니다.
   */
   ToText: string;
 
   /**
-   * From 에 선택된 날짜를 DataFormat에 맞춰서 반환한다.
+   * From(시작) 날짜를 {@link DataFormat} 형식의 문자열로 가져오거나 설정합니다.
   */
   Value: string;
 
   /**
-   * To 에 선택된 날짜를 DataFormat에 맞춰서 반환한다.
+   * To(종료) 날짜를 {@link DataFormat} 형식의 문자열로 가져오거나 설정합니다.
   */
   Value2: string;
 
   /**
-   * 출력용 날짜 포멧
+   * 출력용 날짜 포맷을 가져오거나 설정합니다. (예: `"yyyy-MM-dd"`)
   */
   ViewFormat: string;
 
-  /** 
-   * 날짜 선택 팝업을 닫습니다
+  /**
+   * 날짜 선택 팝업을 닫습니다.
    *
   */
   HidePopup(): void;
 
-  /** 
-   * To 선택 컨트롤의 유효기간 검증에 사용 되는 MaxDate 값을 변경합니다.
+  /**
+   * To(종료) 달력의 최대 선택 가능 날짜를 변경합니다.
    *
-  * @param format String 형식의 MaxDate 형식(컨트롤 속성의 [Validator] > [MaxDate] 항목의 값과 동일한 형식).
+  * @param format MaxDate 형식 문자열 (컨트롤 속성의 [Validator] > [MaxDate] 항목과 동일한 형식)
   * @param measureDate 기준이 되는 날짜
   */
   SetToCalendarMaxDate(format: string, measureDate: Date): void;
 
-  /** 
+  /**
    * 날짜 선택 팝업을 표시합니다.
    *
   */
   ShowPopup(): void;
 
   /**
-   * @event 
+   * @event
    *
-   * 주간 From 선택 컨트롤의 값이 변경될 때 이벤트가 발생합니다.
+   * From(시작) 주가 변경될 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 달력 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link CalendarWeeklyFromTo}
   */
   OnFromValueChanged : (sender : CalendarWeeklyFromTo
-  , args : { 
+  , args : {
     /**
      * 컨트롤 이름
     */
     Id: string
     /**
-     * String 형식의 From 날짜
+     * {@link ViewFormat} 형식의 From 날짜 문자열
     */
     Text: string
     /**
-     * Date 형식의 From 날짜
+     * `Date` 객체 형식의 From 날짜
     */
     Date: Date
   }
@@ -117,34 +118,35 @@ export interface CalendarWeeklyFromTo extends Control{
 
 
   /**
-   * @event 
+   * @event
    *
-   * 주간 FromTo 선택 컨트롤의 값이 변경될 때 발생합니다.
+   * From(시작) 또는 To(종료) 주가 변경될 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 달력 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link CalendarWeeklyFromTo}
   */
   OnValueChanged : (sender : CalendarWeeklyFromTo
-  , args : { 
+  , args : {
     /**
-     * 컨트롤이름
+     * 컨트롤 이름
     */
     Id: string
     /**
-     * String 형식의 From 날짜
+     * {@link ViewFormat} 형식의 From 날짜 문자열
     */
     Text: string
     /**
-     * String 형식의 To 날짜
+     * {@link ViewFormat} 형식의 To 날짜 문자열
     */
     Text2: string
     /**
-     * Date 형식의 From 날짜
+     * `Date` 객체 형식의 From 날짜
     */
     Date: Date
     /**
-     * Date 형식의 To 날짜
+     * `Date` 객체 형식의 To 날짜
     */
     Date2: Date
   }

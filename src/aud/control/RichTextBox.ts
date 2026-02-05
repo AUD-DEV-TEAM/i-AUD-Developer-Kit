@@ -1,65 +1,66 @@
 import { Control } from "../../aud/control/Control";
 import { Event } from "../../aud/data/Event";
 /**
-* 리치텍스트 박스 컨트롤 입니다.
+* 리치 텍스트 박스 컨트롤입니다.
 */
 export interface RichTextBox extends Control{
 
   /**
-   * 계산 수식
+   * 계산 수식을 가져오거나 설정합니다.
   */
   Formula: string;
 
   /**
-   * 읽기전용
+   * 읽기 전용 여부를 가져오거나 설정합니다.
   */
   IsReadOnly: boolean;
 
   /**
-   * 최대 입력 글자수 제한
+   * 최대 입력 글자 수 제한을 가져오거나 설정합니다.
   */
   MaxLength: number;
 
   /**
-   * 컨트롤의 PaddingLeft(default: 6)
+   * 컨트롤의 왼쪽 여백을 가져오거나 설정합니다. (기본값: 6)
   */
   PaddingLeft: number;
 
   /**
-   * 컨트롤의 PaddingRight(default: 6)
+   * 컨트롤의 오른쪽 여백을 가져오거나 설정합니다. (기본값: 6)
   */
   PaddingRight: number;
 
   /**
-   * 텍스트
+   * 텍스트를 가져오거나 설정합니다.
   */
   Text: string;
 
   /**
-   * Placeholder 사용 유무(default: false)
+   * Placeholder 사용 여부를 가져오거나 설정합니다. (기본값: false)
   */
   UsePlaceholder: boolean;
 
-  /** 
+  /**
    * 해당 컨트롤의 Placeholder 텍스트를 지정합니다. UsePlaceholder가 true일 경우만 사용 가능합니다. (개행 문자: \n)
    *
-  * @param placeholdervalue String 형식의 텍스트
+  * @param placeholdervalue 문자열 형식의 텍스트
   */
   SetPlaceholder(placeholdervalue: string): void;
 
   /**
-   * @event 
+   * @event
    *
    * 리치 텍스트 박스 컨트롤의 값이 변경될 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 리치 텍스트 박스 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link RichTextBox}
   */
   OnTextChange : (sender : RichTextBox
-  , args : { 
+  , args : {
     /**
-     * 컨트롤이름
+     * 컨트롤 이름
     */
     Id: string
     /**
@@ -75,16 +76,17 @@ export interface RichTextBox extends Control{
 
 
   /**
-   * @event 
+   * @event
    *
-   * 리치 텍스트 박스 컨트롤의 key 입력 시 발생합니다.
+   * 리치 텍스트 박스 컨트롤에서 키를 누를 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 리치 텍스트 박스 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link RichTextBox}
   */
   OnTextKeydown : (sender : RichTextBox
-  , args : { 
+  , args : {
     /**
      * 컨트롤 이름
     */
@@ -94,7 +96,7 @@ export interface RichTextBox extends Control{
     */
     Text: string
     /**
-     * 리치 텍스트 박스 key event 객체
+     * 키 이벤트 객체
     */
     Event: Event
   }
@@ -102,16 +104,17 @@ export interface RichTextBox extends Control{
 
 
   /**
-   * @event 
+   * @event
    *
-   * 리치 텍스트 박스 컨트롤의 key 입력 누르는 동안 발생합니다.
+   * 리치 텍스트 박스 컨트롤에서 키를 누르고 있는 동안 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 리치 텍스트 박스 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link RichTextBox}
   */
   OnTextKeypress : (sender : RichTextBox
-  , args : { 
+  , args : {
     /**
      * 컨트롤 이름
     */
@@ -121,7 +124,7 @@ export interface RichTextBox extends Control{
     */
     Text: string
     /**
-     * 리치 텍스트 박스 key event 객체
+     * 키 이벤트 객체
     */
     Event: Event
   }
@@ -129,16 +132,17 @@ export interface RichTextBox extends Control{
 
 
   /**
-   * @event 
+   * @event
    *
-   * 리치 텍스트 박스 컨트롤의 key 입력 후 발생합니다.
+   * 리치 텍스트 박스 컨트롤에서 키를 뗄 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 리치 텍스트 박스 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link RichTextBox}
   */
   OnTextKeyup : (sender : RichTextBox
-  , args : { 
+  , args : {
     /**
      * 컨트롤 이름
     */
@@ -148,7 +152,7 @@ export interface RichTextBox extends Control{
     */
     Text: string
     /**
-     * 리치 텍스트 박스 key event 객체
+     * 키 이벤트 객체
     */
     Event: Event
   }

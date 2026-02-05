@@ -3,61 +3,62 @@ import { FilterInfo } from "../../aud/control/metaTreeViews/FilterInfo";
 import { TreeViewNode } from "../../aud/control/treeviews/TreeViewNode";
 import { DataRow } from "../../aud/data/DataRow";
 /**
-* i-META 항목 표시를 위한 컨트롤
+* i-META 항목을 표시하는 트리뷰 컨트롤입니다.
 */
 export interface MetaTreeView extends TreeView{
 
   /**
-   * LOV 팝업 시 다른 조회조건을 포함할지 여부
+   * LOV 팝업 시 다른 조회 조건을 포함할지 여부를 가져오거나 설정합니다.
   */
   IncludeFilterItem: boolean;
 
-  /** 
-   * 모든 필터를 삭제하는 api
+  /**
+   * 모든 필터를 삭제합니다.
    *
   */
   ClearAllFilter(): void;
 
-  /** 
-   * 조회 조건 삭제하는 api
+  /**
+   * 지정한 코드의 조회 조건을 삭제합니다.
    *
   * @param code 코드
   */
   ClearFilter(code: string): void;
 
-  /** 
-   * meta layout에 걸려 있는 filter 정보 조회
+  /**
+   * 메타 레이아웃에 설정된 필터 정보를 반환합니다.
    *
   */
   GetLOVFilterInfo(): FilterInfo[];
 
-  /** 
-   * Check 상태가 변경된 항목을 추가 또는 삭제하는 api
+  /**
+   * 체크 상태가 변경된 항목을 추가하거나 삭제합니다.
    *
-  * @param notRefresh 연결된 그리드를 조회할 지 여부
+  * @param notRefresh 연결된 그리드를 조회하지 않을지 여부
   */
   UpdateCheckedItems(notRefresh: boolean): void;
 
-  /** 
-   * 필터 상태가 변경된 항목을 추가 또는 삭제하는 api
+  /**
+   * 필터 상태가 변경된 항목을 추가하거나 삭제합니다.
    *
-  * @param autoRefresh 연결된 그리드를 조회할 지 여부
+  * @param autoRefresh 연결된 그리드를 자동 조회할지 여부
   */
   UpdateFilterItem(autoRefresh: boolean): void;
 
   /**
-   * @event 
+   * @event
    *
-   * 메타 보고서 오픈 후 발생하는 이벤트
+   * 메타 보고서가 열린 후 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 메타 트리뷰 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link MetaTreeView}
   */
   OnDataBindEnd : (sender : MetaTreeView
-  , args : { 
+  , args : {
     /**
-     * Id
+     * 컨트롤 이름
     */
     Id: string
     /**
@@ -69,26 +70,27 @@ export interface MetaTreeView extends TreeView{
 
 
   /**
-   * @event 
+   * @event
    *
-   * 항목을 drop 시 발생하는 이벤트
+   * 항목을 드롭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 메타 트리뷰 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link MetaTreeView}
   */
   OnDrop : (sender : MetaTreeView
-  , args : { 
+  , args : {
     /**
-     * Id
+     * 컨트롤 이름
     */
     Id: string
     /**
-     * Row들
+     * 드롭된 노드 목록
     */
     Rows: TreeViewNode[]
     /**
-     * Row: 1, Column:2, Filter: 3, Data 4
+     * 드롭 영역 (Row: 1, Column: 2, Filter: 3, Data: 4)
     */
     Area: number
     /**
@@ -96,7 +98,7 @@ export interface MetaTreeView extends TreeView{
     */
     Cancel: boolean
     /**
-     * Handled
+     * 이벤트 처리 여부
     */
     Handled: boolean
   }
@@ -104,18 +106,19 @@ export interface MetaTreeView extends TreeView{
 
 
   /**
-   * @event 
+   * @event
    *
-   * 조회 조건이 변경되는 경우 발생하는 이벤트
+   * 조회 조건이 변경될 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 메타 트리뷰 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link MetaTreeView}
   */
   OnFilterChanged : (sender : MetaTreeView
-  , args : { 
+  , args : {
     /**
-     * Id
+     * 컨트롤 이름
     */
     Id: string
     /**
@@ -127,7 +130,7 @@ export interface MetaTreeView extends TreeView{
     */
     FilterInfo: FilterInfo[]
     /**
-     * 연결된 grid refresh할지 여부
+     * 연결된 그리드를 자동 조회할지 여부
     */
     Handled: boolean
   }
@@ -135,18 +138,19 @@ export interface MetaTreeView extends TreeView{
 
 
   /**
-   * @event 
+   * @event
    *
-   * 검색어 검색 후 발생하는 이벤트
+   * 검색어 검색이 완료된 후 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 메타 트리뷰 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link MetaTreeView}
   */
   OnSearchComplete : (sender : MetaTreeView
-  , args : { 
+  , args : {
     /**
-     * Id
+     * 컨트롤 이름
     */
     Id: string
     /**

@@ -21,98 +21,97 @@ import { IMultiHeaderCell } from "../../aud/control/olap/IMultiHeaderCell";
 export interface OlapGrid extends Control{
 
   /**
-   * 필터용으로 바인딩 된 콤보박스의 값이 변경되면 자동으로 Refresh를 수행 할지 여부
+   * 필터용으로 바인딩된 콤보박스의 값이 변경되면 자동으로 조회를 수행할지 여부를 가져오거나 설정합니다.
   */
   AutoBindingRefresh: boolean;
 
   /**
-   * 보고서가 열리면서 자동으로 Refresh를 할지 여부
+   * 보고서가 열리면서 자동으로 조회할지 여부를 가져오거나 설정합니다.
   */
   AutoRefresh: boolean;
 
   /**
-   * 컨트롤 캡션
+   * 컨트롤 캡션을 가져오거나 설정합니다.
   */
   Caption: string;
 
   /**
-   * 데이터 영역의 Column 수
+   * 데이터 영역의 열 수를 가져옵니다.
   */
   ColumnCount: number;
 
   /**
-   * 데이터 소스의 키값
+   * 데이터소스의 키값을 가져오거나 설정합니다.
   */
   DataSourceKey: string;
 
   /**
-   * ClipBoard 비활성화 여부
+   * 클립보드 비활성화 여부를 가져오거나 설정합니다.
   */
   DisableClipBoard: boolean;
 
   /**
-   * 데이터 내보내기 버튼 클릭 시 대상 여부
+   * 데이터 내보내기 버튼 클릭 시 대상 여부를 가져오거나 설정합니다.
   */
   DoExport: boolean;
 
   /**
-   * 데이터 조회 버튼 클릭 시 조회 대상 여부
+   * 데이터 조회 버튼 클릭 시 조회 대상 여부를 가져오거나 설정합니다.
   */
   DoRefresh: boolean;
 
   /**
-   * 필드 목록
+   * 필드 목록을 가져옵니다.
   */
   Fields: OlapField[];
 
   /**
-   * 옵션 정보
+   * 옵션 정보를 가져옵니다.
   */
    readonly Options: Options;
 
   /**
-   * 데이터 영역의 Row 수
+   * 데이터 영역의 행 수를 가져옵니다.
   */
   RowCount: number;
 
   /**
-   * Scroll의 offsetleft 값
+   * 스크롤의 가로 오프셋 값을 가져오거나 설정합니다.
   */
   ScrollLeft: number;
 
   /**
-   * Scroll의 offsettop 값
+   * 스크롤의 세로 오프셋 값을 가져오거나 설정합니다.
   */
   ScrollTop: number;
 
   /**
-   * 셀렉션 객체
+   * 선택 영역 객체를 가져옵니다.
   */
   Selection: ScriptSelection;
 
   /**
-   * 현재 컨트롤의 자식 컨트롤
-(자식 컨트롤은 현재 컨트롤 조회 시 한번에 계산된 결과를 출력합니다.)
+   * 현재 컨트롤의 자식 컨트롤을 가져오거나 설정합니다. (자식 컨트롤은 현재 컨트롤 조회 시 한번에 계산된 결과를 출력합니다.)
   */
   SubOlapGrid: OlapGrid;
 
   /**
-   * 차트 소스 바인딩 시 총소계 표시 여부
+   * 차트 소스 바인딩 시 총소계 표시 여부를 가져오거나 설정합니다.
   */
   UseChartSourceGrandTotal: boolean;
 
   /**
-   * 차트 소스 바인딩 시 반전된 DataTable 사용 여부
+   * 차트 소스 바인딩 시 반전된 DataTable 사용 여부를 가져오거나 설정합니다.
   */
   UseChartSourceReverse: boolean;
 
   /**
-   * 차트 소스 바인딩 시 소계 표시 여부
+   * 차트 소스 바인딩 시 소계 표시 여부를 가져오거나 설정합니다.
   */
   UseChartSourceTotal: boolean;
 
   /** 
-   * 필드 그룹를 생성합니다.
+   * 필드 그룹을 생성합니다.
    *
    * @example
    * ```js
@@ -131,13 +130,13 @@ export interface OlapGrid extends Control{
    * OlapGrid.AddFieldGroup("GRP_FIELDS_01",flds);
    * OlapGrid.Refresh();
    * ```
-  * @param name 그룹명
-  * @param childrens 자식 필드 이름 목록([] 또는 ,로 분리한 문자열)
+  * @param name 그룹 이름
+  * @param childrens 자식 필드 이름 목록 (배열 또는 콤마로 분리한 문자열)
   */
   AddFieldGroup(name: string, childrens: string[]): FieldGroup;
 
   /** 
-   * 특정셀을 숨김 처리 합니다.
+   * 특정 셀을 숨김 처리합니다.
    *
    * @example
    * ```js
@@ -184,7 +183,7 @@ export interface OlapGrid extends Control{
    *     return path;
    * };
    * ```
-  * @param path 경로 표현식 (eg. [DIMENSION_PATH1][DIMENSION_PATH2]...)
+  * @param path 경로 표현식 (예: [DIMENSION_PATH1][DIMENSION_PATH2]...)
   */
   AddHiddenPaths(path: string): void;
 
@@ -210,119 +209,112 @@ export interface OlapGrid extends Control{
    * OlapGrid.Refresh();
    * ```
   * @param name 그룹이름
-  * @param caption 화면 표시명
-  * @param childrens 자식 필드 이름 목록([] 또는 ,로 분리한 문자열)
+  * @param caption 화면 표시 이름
+  * @param childrens 자식 필드 이름 목록 (배열 또는 콤마로 분리한 문자열)
   */
   AddHierarchyGroupInfo(name: string, caption: string, childrens: string[]): OlapField;
 
   /** 
-   * 필드를 추가하고 추가된 필드를 반환 합니다.
+   * 필드를 추가하고 추가된 필드를 반환합니다.
    *
-  * @param name 필드명
+  * @param name 필드 이름
   */
   AppendField(name: string): OlapField;
 
   /** 
-   * 필드를 제어하기 시작 작업을 컨트롤에 알립니다.
+   * 필드 제어 시작을 컨트롤에 알립니다.
    *
   */
   BeginFieldUpdate(): void;
 
   /** 
-   * 현재 뷰에서 변경된 내용을 다시 계산 하고 화면을 다시 그립니다.
+   * 현재 뷰에서 변경된 내용을 다시 계산하고 화면을 다시 그립니다.
    *
   */
   Calculate(): void;
 
-  /** 
-   * 현재 뷰에서 변경된 내용을 다시 계산 하고 화면을 다시 그립니다.
+  /**
+   * 현재 뷰에서 변경된 내용을 다시 계산하고 화면을 다시 그립니다.
    *
   * @param resetScroll 스크롤 초기화 여부
   */
   Calculate(resetScroll: boolean): void;
 
   /** 
-   * 수정된 데이터 셀들을 서버에서 계산 하도록 지시합니다.
+   * 수정된 데이터 셀들을 서버에서 계산하도록 지시합니다.
    *
-  * @param callback Callback  function
-  * ```
-  *  
-  *               // succsss only //
-  *               function(){
-  *                   
-  *               }	
-  * ```
+  * @param callback 계산 완료 후 호출되는 콜백 함수
   */
   CalculateWriteBack(callback: Function): boolean;
 
   /** 
-   * 수정된 데이터 셀 중 계산하지 않은 셀인 있는지 여부를 반환 합니다.
+   * 수정된 데이터 셀 중 계산하지 않은 셀이 있는지 여부를 반환합니다.
    *
   */
   CanCalculateWriteBack(): boolean;
 
   /** 
-   * 모든 필드의 사용자 정의 항목을 제거 합니다.
+   * 모든 필드의 사용자 정의 항목을 제거합니다.
    *
   */
   ClearCustomDimensions(): void;
 
   /** 
-   * 모든 필드의 사용자 정의 정렬 리스트를 제거 합니다.
+   * 모든 필드의 사용자 정의 정렬 리스트를 제거합니다.
    *
   */
   ClearCustomSort(): void;
 
   /** 
-   * 화면의 데이터를 초기화 합니다.
+   * 화면의 데이터를 초기화합니다.
    *
   */
   ClearData(): void;
 
   /** 
-   * 컨트롤에 바인딩 되어져 있는 데이터를 초기화 합니다.
+   * 컨트롤에 바인딩되어 있는 데이터를 초기화합니다.
    *
   */
   ClearDataSet(): void;
 
   /** 
-   * 모든 필드의 디멘젼 그룹 정보를 제거 합니다.
+   * 모든 필드의 디멘전 그룹 정보를 제거합니다.
    *
   */
   ClearDimensionGroups(): void;
 
   /** 
-   * 컨트롤내 모든 필드 그룹 정보를 삭제합니다.
+   * 컨트롤 내 모든 필드 그룹 정보를 삭제합니다.
    *
   */
   ClearFieldGroup(): void;
 
   /** 
-   * 모든 필드를 삭제 합니다.
+   * 모든 필드를 삭제합니다.
    *
   */
   ClearFields(): void;
 
   /** 
-   * 모든 필드의 필터 정보를 초기화 합니다.
+   * 모든 필드의 필터 정보를 초기화합니다.
    *
   */
   ClearFilters(): void;
 
   /** 
-   * 숨김 처리 정보를 모두 삭제한다.
+   * 숨김 처리 정보를 모두 삭제합니다.
    *
   */
   ClearHiddenPaths(): void;
 
   /** 
-   * Hierarchy 필드를 모두 삭제 합니다.
+   * Hierarchy 필드를 모두 삭제합니다.
    *
   */
   ClearHierarchyGroup(): void;
 
   /** 
-   * 헤더 영역의 전체 노드를 축소 합니다.
+   * 헤더 영역의 전체 노드를 축소합니다.
    *
   */
   CollapsedAll(): void;
@@ -370,12 +362,12 @@ export interface OlapGrid extends Control{
    * }
    * OlapGrid.Refresh();
    * ```
-  * @param rowCount 생성할 Row 수량
+  * @param rowCount 생성할 행 수
   */
   CreateMultiHeaders(rowCount: number): ScriptMultiHeader;
 
   /** 
-   * 수전된 필드 정보를 일괄 반영합니다.
+   * 수정된 필드 정보를 일괄 반영합니다.
    *
   */
   EndFieldUpdate(): void;
@@ -389,70 +381,64 @@ export interface OlapGrid extends Control{
   ExecuteDrillToDetail(dataCell: ScriptDataCell, dataGridName: string): void;
 
   /** 
-   * 특정 헤더를 확장 하거나 축소 합니다.
+   * 특정 헤더를 확장 하거나 축소합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   * @param items 찾을 아이템 목록(,로 분리하여 입력)
   * @param expand 축소/확장 여부
   */
   Expand(fieldName: string, items: string, expand: boolean): void;
 
   /** 
-   * 특정 헤더를 확장 하거나 축소 합니다.
+   * 특정 헤더를 확장 하거나 축소합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   * @param items 찾을 아이템 목록
   * @param expand 축소/확장 여부
   */
   Expand(fieldName: string, items: string[], expand: boolean): void;
 
   /** 
-   * 헤더 영역의 전체 노드를 확장 합니다.
+   * 헤더 영역의 전체 노드를 확장합니다.
    *
   */
   ExpandAll(): void;
 
   /** 
-   * CSV파일 Export를 실행 합니다.
+   * CSV 파일 내보내기를 실행합니다.
    *
   */
   ExportCSV(): void;
 
   /** 
-   * CSV파일 Export를 실행 합니다.
+   * CSV 파일 내보내기를 실행합니다.
    *
-  * @param callbackFunc 내보내기가 완료되었을 때 호출할 콜백 함수를 설정합니다.
-\n\t반환 결과 : {Type:string, Path:string, Extention:string, UpdateDate:string}
-  * ```
-  * function(ret){
-  * \t// ret : {"Type":string,"Path":string,"Extention":string,"UpdateDate":string}
-  * }
-  * ```
+  * @param callbackFunc 내보내기가 완료되었을 때 호출할 콜백 함수
    * @hidden
   */
   ExportCSV(callbackFunc: Function): Function;
 
   /** 
-   * Excel 파일 Export를 실행 합니다.
+   * 엑셀 파일 내보내기를 실행합니다.
    *
   */
   ExportExcel(): void;
 
   /** 
-   * Text파일 Export를 실행 합니다.
+   * 텍스트 파일 내보내기를 실행합니다.
    *
   */
   ExportText(): void;
 
   /** 
-   * Excel Export 데이터를 반환 합니다.
+   * 엑셀 내보내기 데이터를 반환합니다.
    *
-  * @param range Excel 의 출력 시작 셀 주소
+  * @param range 엑셀의 출력 시작 셀 주소
   */
-  GetExcelExportJSON(range: string): any;
+  GetExcelExportJSON(range: string): string;
 
   /** 
-   * 그리드에서 수정된 데이터가 존재하는지 여부를 반환 합니다.
+   * 그리드에서 수정된 데이터가 존재하는지 여부를 반환합니다.
    *
   */
   IsModified(): boolean;
@@ -460,17 +446,17 @@ export interface OlapGrid extends Control{
   /** 
    * 필드의 위치를 변경합니다.
    *
-  * @param name 필드명
-  * @param index 영역내 위치(0부터 시작함)
+  * @param name 필드 이름
+  * @param index 영역 내 위치 (0부터 시작)
   * @param update 이동 후 자동 업데이트 여부
   */
   MoveField(name: string, index: number, update: boolean): boolean;
 
-  /** 
+  /**
    * 필드의 위치를 변경합니다.
    *
-  * @param name 필드명
-  * @param index 영역내 위치(0부터 시작함)
+  * @param name 필드 이름
+  * @param index 영역 내 위치 (0부터 시작)
   */
   MoveField(name: string, index: number): boolean;
 
@@ -482,42 +468,42 @@ export interface OlapGrid extends Control{
   MovePage(page: number): void;
 
   /** 
-   * i-META Layout 창을 실행 합니다.
+   * i-META 레이아웃 창을 실행합니다.
    *
   */
   OpenDialogAnalysisItemsSettings(): void;
 
   /** 
-   * 계산 필드 편집 창을 실행 합니다.
+   * 계산 필드 편집 창을 실행합니다.
    *
   */
   OpenDialogCalculatorField(): void;
 
   /** 
-   * 사용자 정의 항목을 편집할 수 있는 창을 실행 합니다.
+   * 사용자 정의 항목을 편집할 수 있는 창을 실행합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   */
   OpenDialogCustomDimension(fieldName: string): void;
 
   /** 
-   * 필드의 사용자 정의 정렬을 수행 할 수 있는 창을 실행 합니다.
+   * 필드의 사용자 정의 정렬을 수행 할 수 있는 창을 실행합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   */
   OpenDialogCustomSort(fieldName: string): void;
 
   /** 
-   * 필드의 디멘젼 그룹을 설정 할 수 있는 창을 실행 합니다.
+   * 필드의 디멘전 그룹을 설정 할 수 있는 창을 실행합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   */
   OpenDialogDimensionGroup(fieldName: string): void;
 
   /** 
    * 필터 대화 상자를 실행합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   */
   OpenDialogFilter(fieldName: string): void;
 
@@ -528,20 +514,20 @@ export interface OlapGrid extends Control{
   OpenDialogFilterManager(): void;
 
   /** 
-   * 필드의 포멧을 일괄 수정할 수 있는 창을 실행합니다.
+   * 필드의 포맷을 일괄 수정할 수 있는 창을 실행합니다.
    *
   */
   OpenDialogFormatting(): void;
 
   /** 
-   * 필드의 수식 편집 창을 실행 합니다.
+   * 필드의 수식 편집 창을 실행합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   */
   OpenDialogFormulaEditor(fieldName: string): void;
 
   /** 
-   * 필드의 배치를 관리할 수 있는 창을 실행 합니다.
+   * 필드의 배치를 관리할 수 있는 창을 실행합니다.
    *
   */
   OpenDialogLayout(): void;
@@ -553,13 +539,13 @@ export interface OlapGrid extends Control{
   OpenDialogMultiHeader(): void;
 
   /** 
-   * Pivot 컨트롤의 상세 속성을 설정할 수 있는 창을 실행합니다.
+   * 피벗 컨트롤의 상세 속성을 설정할 수 있는 창을 실행합니다.
    *
   */
   OpenDialogProperties(): void;
 
   /** 
-   * 데이터를 실행합니다.
+   * 데이터를 조회합니다.
    *
   */
   Refresh(): void;
@@ -567,28 +553,28 @@ export interface OlapGrid extends Control{
   /** 
    * 특정 필드의 사용자 정의 항목을 제거합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   */
   RemoveCustomDimension(fieldName: string): void;
 
   /** 
-   * 필드의 사용자 정의 정렬 리스트를 삭제 합니다.
+   * 필드의 사용자 정의 정렬 리스트를 삭제합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   */
   RemoveCustomSort(fieldName: string): void;
 
   /** 
-   * 필드의 디멘젼 그룹 정보를 제거 합니다.
+   * 필드의 디멘전 그룹 정보를 제거합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   */
   RemoveDimensionGroup(fieldName: string): void;
 
   /** 
-   * 특정 이름을 가진 필드를 삭제 합니다.
+   * 지정한 이름의 필드를 삭제합니다.
    *
-  * @param name 필드명
+  * @param name 필드 이름
   */
   RemoveField(name: string): void;
 
@@ -600,21 +586,21 @@ export interface OlapGrid extends Control{
   RemoveFieldGroup(name: string): void;
 
   /** 
-   * 필드의 필터 정보를 초기화 합니다.
+   * 필드의 필터 정보를 초기화합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   */
   RemoveFilter(fieldName: string): void;
 
   /** 
-   * 주어진 필드명을 가진 Hierarchy 필드를 삭제 합니다.
+   * 주어진 이름의 Hierarchy 필드를 삭제합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   */
   RemoveHierarchyGroup(fieldName: string): void;
 
   /** 
-   * 화면을 다시 그립니다.(Offset등의 값은 유지됩니다.)
+   * 화면을 다시 그립니다. (Offset 등의 값은 유지됩니다.)
    *
   */
   ScreenUpdate(): void;
@@ -640,13 +626,13 @@ export interface OlapGrid extends Control{
    * nDim.DataCellStyle = "BXcc50e79a-71cb-4105-96a5-98a025fdf8bc";
    * OlapGrid.Refresh();		
    * ```
-  * @param fieldName 필드명
-  * @param dimensionName 디멘젼 이름
+  * @param fieldName 필드 이름
+  * @param dimensionName 디멘전 이름
   */
   addCustomDimension(fieldName: string, dimensionName: string): ScriptCustomDimension;
 
   /** 
-   * 필드의 디멘젼 그룹 정보를 생성합니다.
+   * 필드의 디멘전 그룹 정보를 생성합니다.
    *
    * @example
    * ```js
@@ -680,13 +666,13 @@ export interface OlapGrid extends Control{
    * OlapGrid.MoveField("창고코드" ,1, true);
    * OlapGrid.Refresh();
    * ```
-  * @param fieldName 대상 필드명
-  * @param caption 디멘젼 그룹 필드 라벨
+  * @param fieldName 대상 필드 이름
+  * @param caption 디멘전 그룹 필드 라벨
   */
   addDimensionGroup(fieldName: string, caption: string): OlapField;
 
   /** 
-   * OlapGrid의 사전 필터를 추가 합니다.
+   * OlapGrid의 사전 필터를 추가합니다.
 (사전 필터는 특정 배치 기준으로 수식으로 필터를 할 수 있습니다.)
    *
    * @example
@@ -700,14 +686,13 @@ export interface OlapGrid extends Control{
    * 
    * OlapGrid.Refresh();
    * ```
-  * @param groupByFields  그룹할 필드의 이름 또는 라벨을 배열 형태로 전달 합니다.
-  * @param formula 수식을 입력합니다.
-수식의 결과는 boolean 타입을 반환해야 합니다.
+  * @param groupByFields 그룹할 필드의 이름 또는 라벨을 배열 형태로 전달합니다.
+  * @param formula 수식을 입력합니다. 수식의 결과는 boolean 타입을 반환해야 합니다.
   */
   addPreFilter(groupByFields: string[], formula: string): void;
 
   /** 
-   * OlapGrid 의 설정된 ColumnSort 를 초기화 합니다.
+   * OlapGrid 의 설정된 ColumnSort 를 초기화합니다.
    *
    * @example
    * ```js
@@ -719,7 +704,7 @@ export interface OlapGrid extends Control{
   clearColumnSort(update: boolean): void;
 
   /** 
-   * OlapGrid 의 설정된 ColumnSort 를 초기화 합니다.
+   * OlapGrid 의 설정된 ColumnSort 를 초기화합니다.
    *
    * @example
    * ```js
@@ -731,7 +716,7 @@ export interface OlapGrid extends Control{
   clearColumnSort(): void;
 
   /** 
-   * OlapGrid의 사전 필터를 모두 제거 합니다.
+   * OlapGrid의 사전 필터를 모두 제거합니다.
    *
   */
   clearPreFilter(): void;
@@ -743,26 +728,20 @@ export interface OlapGrid extends Control{
   clearTopFilter(): void;
 
   /** 
-   * base64 encoding된 이미지 결과를 반환 합니다.
+   * Base64 인코딩된 이미지 결과를 반환합니다.
    *
   */
   getBase64Image(): string;
 
   /** 
-   * base64 encoding된 이미지 결과를 반환 합니다.
+   * Base64 인코딩된 이미지 결과를 반환합니다.
    *
-  * @param callback 이미지 변환 완료 후 함수
-  * ```
-  *  
-  *                       function(base64ext){
-  *                           
-  *                        }	
-  * ```
+  * @param callback 이미지 변환 완료 후 호출되는 콜백 함수
   */
   getBase64Image(callback: (value:string) => void): void;
 
   /** 
-   * 특정 위치의 데이터셀을 반환 합니다.
+   * 특정 위치의 데이터셀을 반환합니다.
    *
   * @param r Row Index
   * @param c Column Index
@@ -770,72 +749,65 @@ export interface OlapGrid extends Control{
   getCell(r: number, c: number): ScriptDataCell;
 
   /** 
-   * 필드의 사용자 정의 항목 리스트를 반환 합니다.
+   * 필드의 사용자 정의 항목 리스트를 반환합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   */
   getCustomDimension(fieldName: string): ScriptCustomDimension[];
 
   /** 
-   * 필드의 사용자 정의 정렬 리스트를 반환 합니다.
+   * 필드의 사용자 정의 정렬 리스트를 반환합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   */
   getCustomSort(fieldName: string): string[];
 
   /** 
-   * 필드의 디멘젼 그룹 정보를 반환 합니다.
+   * 필드의 디멘전 그룹 정보를 반환합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   */
   getDimensionGroup(fieldName: string): DimensionGroup;
 
   /** 
-   * i-META를 통해 Drill To Detail 정보를 조회하기 위한 정보 XML 반환
+   * i-META를 통해 Drill To Detail 정보를 조회하기 위한 XML을 반환합니다.
    *
   * @param cell 데이터셀
   */
   getDrillToDetailXml(cell: ScriptDataCell): string;
 
   /** 
-   * 특정 이름을 가진 필드를 반환 합니다.
+   * 지정한 이름의 필드를 반환합니다.
    *
-  * @param name 필드명
+  * @param name 필드 이름
   */
   getField(name: string): OlapField;
 
   /** 
-   * 필드의 구성원 목록을 반환 합니다.
+   * 필드의 구성원 목록을 반환합니다.
    *
-  * @param fieldName Field name
-  * @param callback Callback  function
-  * ```
-  *  
-  *               // allItems : string[] , selectedItems : string []//
-  *               function(allItems, selectedItems){
-  *                   
-  *               }	
-  * ```
+  * @param fieldName 필드 이름
+  * @param callback 전체 항목과 선택된 항목을 전달받는 콜백 함수
   */
   getFieldMembers(fieldName: string, callback: (allItems:Array<string>, selectedItems:Array<string>)=>void): void;
 
   /** 
-   * 특정 영역의 필드 목록을 반환 합니다.
+   * 특정 영역의 필드 목록을 반환합니다.
    *
-  * @param area 영역명(입력하지 않을 경우 전체 목록 반환)
+  * @param area 영역 (입력하지 않을 경우 전체 목록 반환)
   */
   getFieldNames(area: enArea): string[];
 
   /** 
-   * 필드 목록을 반환 합니다.
+   * 전체 필드 목록을 반환합니다.
    *
   */
   getFields(): OlapField[];
 
   /** 
-   * 필드의 필터 정보를 반환 합니다.
+   * 필드의 필터 정보를 반환합니다.
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   */
   getFilter(fieldName: string): OlapFilter;
 
@@ -846,7 +818,7 @@ export interface OlapGrid extends Control{
   getMenuOption(): ScriptMenuOption;
 
   /** 
-   * 멀티 헤더를 반환 합니다.
+   * 멀티 헤더를 반환합니다.
    *
   */
   getMultiHeader(): ScriptMultiHeader;
@@ -854,13 +826,13 @@ export interface OlapGrid extends Control{
   /** 
    * Excel의 GETPIVOTDATA  함수
    *
-  * @param dataFieldName 데이터 필드명
-  * @param expression 표현식 (eg. [FLD_NAME1][FindValue1],[FLD_NAME2][FindValue2]...)
+  * @param dataFieldName 데이터 필드 이름
+  * @param expression 표현식 (예: [FLD_NAME1][FindValue1],[FLD_NAME2][FindValue2]...)
   */
   getPivotData(dataFieldName: string, expression: string): number;
 
   /** 
-   * OlapGrid의 사전 필터 목록을 반환 합니다.
+   * OlapGrid의 사전 필터 목록을 반환합니다.
    *
    * @example
    * ```js
@@ -881,21 +853,21 @@ export interface OlapGrid extends Control{
   getPreFilters(): Array<{"GroupBy":Array<string>, "Formula":string}>;
 
   /** 
-   * 셀렉션 객체
+   * 선택 영역 객체를 반환합니다.
    *
   */
   getSelection(): ScriptSelection;
 
   /** 
-   * OlapGrid 의 ColumnSort 를 설정 합니다.
+   * OlapGrid 의 ColumnSort 를 설정합니다.
    *
    * @example
    * ```js
    * var OlapGrid = Matrix.getObject("OlapGrid");
    * OlapGrid.setColumnSort(1, 0, true); // column leaf node 의 첫번째 셀(0) 기준으로  오름차순(1) 설정 후 자동 조회
-   * //또는 결로 값으로 설정 가능 합니다.
+   * //또는 경로 값으로 설정 가능합니다.
    * OlapGrid.setColumnSort(1, {"PRODUCT":"SmartPhone", "CUSTOMER":"Korea"},  true);
-   * //컬럼 경로에 Product가 SmartPhone이고 CUSTOMER가 Korea인 첫번쨰 항목을 찾아서 정렬 합니다.
+   * //컬럼 경로에 Product가 SmartPhone이고 CUSTOMER가 Korea인 첫 번째 항목을 찾아서 정렬합니다.
    * ```
   * @param sortType Asc:1/Desc:2
   * @param indexOrPath Column Header LeafNode Index(0부터 시작)
@@ -904,16 +876,16 @@ export interface OlapGrid extends Control{
   setColumnSort(sortType: number, indexOrPath: number | {[key:string]:string}, update: boolean): void;
 
   /** 
-   * OlapGrid 의 ColumnSort 를 설정 합니다.
+   * OlapGrid 의 ColumnSort 를 설정합니다.
    *
    * @example
    * ```js
    * 
    * var OlapGrid = Matrix.getObject("OlapGrid");
    * OlapGrid.setColumnSort(1, 0); // column leaf node 의 첫번째 셀(0) 기준으로  오름차순(1) 설정
-   * //또는 결로 값으로 설정 가능 합니다.
+   * //또는 경로 값으로 설정 가능합니다.
    * OlapGrid.setColumnSort(1, {"PRODUCT":"SmartPhone", "CUSTOMER":"Korea"});
-   * //컬럼 경로에 Product가 SmartPhone이고 CUSTOMER가 Korea인 첫번쨰 항목을 찾아서 정렬 합니다.
+   * //컬럼 경로에 Product가 SmartPhone이고 CUSTOMER가 Korea인 첫 번째 항목을 찾아서 정렬합니다.
    * OlapGrid.Refresh(false); // 설정 유지된 상태로 조회
    * ```
   * @param sortType Asc:1/Desc:2
@@ -922,23 +894,23 @@ export interface OlapGrid extends Control{
   setColumnSort(sortType: number, indexOrPath: number | {[key:string]:string}): void;
 
   /** 
-   * 컨트롤의 커서를 지정 합니다.
+   * 컨트롤의 커서를 지정합니다.
    *
   * @param cursorName 커서 모양
   */
   setCursor(cursorName: string): void;
 
   /** 
-   * 주어진 이름의 데이터 소스를 바인딩 합니다.
+   * 주어진 이름의 데이터소스를 바인딩합니다.
    *
-  * @param name 데이터 소스 명
+  * @param name 데이터소스 이름
   */
   setDataSourceName(name: string): void;
 
   /** 
    * 필드에 필터를 설정합니다.(Between)
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   * @param valueA 값 A
   * @param valueB 값 B
   */
@@ -947,7 +919,7 @@ export interface OlapGrid extends Control{
   /** 
    * 필드에 필터를 설정합니다.(In)
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   * @param values 값 목록
   */
   setDimensionFilterIn(fieldName: string, values: string[]): void;
@@ -955,7 +927,7 @@ export interface OlapGrid extends Control{
   /** 
    * 필드에 필터를 설정합니다.(Not In)
    *
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   * @param values 값 목록
   */
   setDimensionFilterNotIn(fieldName: string, values: string[]): void;
@@ -976,7 +948,7 @@ export interface OlapGrid extends Control{
    * OlapGrid.setMeasureFilter('판매단가', '>=',10000 ,'<=',30000,true);
    * OlapGrid.Refresh();
    * ```
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   * @param operator1 연산자 1(eg. <, >,<>,>=,<=)
   * @param value1 값 1
   * @param operator2 연산자 2(eg. <, >,<>,>=,<=)
@@ -994,7 +966,7 @@ export interface OlapGrid extends Control{
    * OlapGrid.setMeasureFilter('판매단가', '>=',10000);
    * OlapGrid.Refresh();
    * ```
-  * @param fieldName 필드명
+  * @param fieldName 필드 이름
   * @param operator 연산자 (eg. <, >,<>,>=,<=)
   * @param value 값
   */
@@ -1013,8 +985,8 @@ export interface OlapGrid extends Control{
   /** 
    * Top n 필터 정보를 설정합니다.
    *
-  * @param filterFiledName 필터 대상 필드명
-  * @param valueFiledName 값 필드명
+  * @param filterFiledName 필터 대상 필드 이름
+  * @param valueFiledName 값 필드 이름
   * @param rank 순위 값
   * @param isTop 상위 여부(true:내림 차순으로 정렬, false:오름 차순으로 정렬)
   * @param groupBy 상위 그룹 필드 목록
@@ -1026,7 +998,8 @@ export interface OlapGrid extends Control{
    *
    * 정렬 정보 변경 전에 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -1057,7 +1030,8 @@ export interface OlapGrid extends Control{
    *
    *  Write-Back 계산 결과를 바인딩 후 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -1076,7 +1050,8 @@ export interface OlapGrid extends Control{
    *
    * 컨트롤의 셀의 너비를 변경하게 되면 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -1095,7 +1070,8 @@ export interface OlapGrid extends Control{
    *
    * 컨트롤 클릭 시 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -1114,7 +1090,8 @@ export interface OlapGrid extends Control{
    *
    * 컨텍스트 메뉴가 열리기 전에 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -1125,7 +1102,7 @@ export interface OlapGrid extends Control{
     */
     Id: string
     /**
-     * Hit test info
+     * 히트 테스트 정보
     */
     HitInfo: ScriptHitTestResult
     /**
@@ -1145,18 +1122,19 @@ export interface OlapGrid extends Control{
    *
    * 컨트롤에 데이터셋이 바인딩된 후 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
   OnDataBindEnd : (sender : OlapGrid
   , args : { 
     /**
-     * 컨트롤이름
+     * 컨트롤 이름
     */
     Id: string
     /**
-     * 데이터셋의 레코드 수량
+     * 데이터셋의 레코드 수
     */
     RecordCount: number
   }
@@ -1166,16 +1144,17 @@ export interface OlapGrid extends Control{
   /**
    * @event 
    *
-   * i-OLAP의 데이터 셀을 더블 클릭하는 시점에 발생합니다.
+   * 데이터 셀을 더블 클릭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
   OnDataCellDoubleClick : (sender : OlapGrid
   , args : { 
     /**
-     * 컨트롤 명
+     * 컨트롤 이름
     */
     Id: string
     /**
@@ -1189,9 +1168,10 @@ export interface OlapGrid extends Control{
   /**
    * @event 
    *
-   * 헤더 셀의 확장/축소가 변경된 이후에 발생합니다.
+   * 헤더 셀의 확장/축소가 변경된 후 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -1212,9 +1192,10 @@ export interface OlapGrid extends Control{
   /**
    * @event 
    *
-   * Export 직전에 호출합니다.
+   * 내보내기 직전에 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -1265,7 +1246,8 @@ export interface OlapGrid extends Control{
    *
    * 필드의 필터가 변경되면 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -1282,9 +1264,10 @@ export interface OlapGrid extends Control{
   /**
    * @event 
    *
-   * 헤더셀을 클릭 시 발생합니다.
+   * 헤더 셀을 클릭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -1309,9 +1292,10 @@ export interface OlapGrid extends Control{
   /**
    * @event 
    *
-   * 헤더셀을 더블 클릭 시 발생합니다.
+   * 헤더 셀을 더블 클릭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -1336,9 +1320,10 @@ export interface OlapGrid extends Control{
   /**
    * @event 
    *
-   * 필드의 배치 정보가 변경될 때 발생합니다.
+   * 필드의 배치 정보가 변경된 후 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -1351,16 +1336,17 @@ export interface OlapGrid extends Control{
   /**
    * @event 
    *
-   * 컨트롤에 마우스를 이동하는 동안 발생합니다.
+   * 컨트롤 위에서 마우스를 이동하는 동안 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
   OnMouseMove : (sender : OlapGrid
   , args : { 
     /**
-     * Hit test info
+     * 히트 테스트 정보
     */
     HitInfo: ScriptHitTestResult
   }
@@ -1370,9 +1356,10 @@ export interface OlapGrid extends Control{
   /**
    * @event 
    *
-   * 멀티 헤더셀을 클릭 시 발생합니다.
+   * 멀티 헤더 셀을 클릭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -1397,9 +1384,10 @@ export interface OlapGrid extends Control{
   /**
    * @event 
    *
-   * 멀티 헤더셀을 더블 클릭 시 발생합니다.
+   * 멀티 헤더 셀을 더블 클릭할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
@@ -1424,16 +1412,17 @@ export interface OlapGrid extends Control{
   /**
    * @event 
    *
-   * 데이터 셀을 수정 후에 발생합니다.
+   * 데이터 셀 수정 후 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
   OnOlapDataCellEndEdit : (sender : OlapGrid
   , args : { 
     /**
-     * 컨트롤 명
+     * 컨트롤 이름
     */
     Id: string
     /**
@@ -1465,14 +1454,15 @@ export interface OlapGrid extends Control{
    *
    * 데이터 셀 수정 모드로 진입할 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
   OnOlapDataCellStartEdit : (sender : OlapGrid
   , args : { 
     /**
-     * 컨트롤 명
+     * 컨트롤 이름
     */
     Id: string
     /**
@@ -1490,7 +1480,7 @@ export interface OlapGrid extends Control{
   /**
    * @event 
    *
-   * Occurs when the position value of the scroll changes.
+   * 스크롤 위치가 변경될 때 발생합니다.
    *
    * @example
    * ```js
@@ -1505,18 +1495,19 @@ export interface OlapGrid extends Control{
    * 	}catch(e){}
    * }; 
    * ```
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
   OnScroll : (sender : OlapGrid
   , args : { 
     /**
-     * offset left
+     * 가로 스크롤 오프셋
     */
     ScrollLeft: number
     /**
-     * offset top
+     * 세로 스크롤 오프셋
     */
     ScrollTop: number
   }
@@ -1526,20 +1517,21 @@ export interface OlapGrid extends Control{
   /**
    * @event 
    *
-   * 피벗 그리드의 선택 영역이 변경된 시점에 발생합니다.
+   * 피벗 그리드의 선택 영역이 변경될 때 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
   OnSelectionChanged : (sender : OlapGrid
   , args : { 
     /**
-     * 컨트롤 명
+     * 컨트롤 이름
     */
     Id: string
     /**
-     * 선택 영역이 컨트롤러
+     * 선택 영역 객체
     */
     Selection: ScriptSelection
   }
@@ -1549,9 +1541,10 @@ export interface OlapGrid extends Control{
   /**
    * @event 
    *
-   * 화면이 업데이트 되면 발생합니다.
+   * 화면이 업데이트되면 발생합니다.
    *
-   * @param args
+   * @param sender 이벤트가 발생한 OlapGrid 컨트롤
+   * @param args 이벤트 인자
    *
    * Target : {@link OlapGrid}
   */
