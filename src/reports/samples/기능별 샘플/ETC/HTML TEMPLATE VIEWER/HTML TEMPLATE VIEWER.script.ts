@@ -7,10 +7,7 @@ import { DataTable } from "@AUD_CLIENT/data/DataTable";
 import { DataRow } from "@AUD_CLIENT/data/DataRow";
 import { WebContainer } from "@AUD_CLIENT/control/WebContainer";
  
-let Matrix : Matrix; 
-/*****************************
- *  
- *****************************/
+let Matrix : Matrix;
 
 class TemplateBinder{
 	

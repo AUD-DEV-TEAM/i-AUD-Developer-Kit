@@ -5,8 +5,8 @@ import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { Label } from "@AUD_CLIENT/control/Label";
 import { Image } from "@AUD_CLIENT/control/Image";
 import { Control } from "@AUD_CLIENT/control/Control";
-let Matrix : Matrix; 
 
+let Matrix : Matrix; 
 
 interface IOnItemSelected {
     (text:string): void;

@@ -1,15 +1,4 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix"; 
-import { ScriptRecordSet } from "@AUD_SERVER/matrix/script/ScriptRecordSet"; 
-import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement"; 
-import { ScriptDataRow } from "@AUD_SERVER/matrix/script/ScriptDataRow"; 
-import { ScriptTextFileWriter } from "@AUD_SERVER/matrix/script/io/ScriptTextFileWriter"; 
-import { ScriptRequestPacket } from "@AUD_SERVER/matrix/script/ScriptRequestPacket"; 
-import { ScriptResponsePacket } from "@AUD_SERVER/matrix/script/ScriptResponsePacket"; 
-import { ScriptUtility } from "@AUD_SERVER/matrix/script/ScriptUtility"; 
-import { ScriptFileSystemObject } from "@AUD_SERVER/matrix/script/ScriptFileSystemObject";  
-import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection"; 
-import { ScriptSession } from "@AUD_SERVER/matrix/script/ScriptSession"; 
-import { ScriptQueryGenerator } from "@AUD_SERVER/matrix/script/ScriptQueryGenerator"; 
 import { DataRow } from "@AUD_SERVER/matrix/olap/DataRow";
 import { WriteBackDataCell } from "@AUD_SERVER/matrix/olap/WriteBackDataCell";
 import { OlapField } from "@AUD_SERVER/matrix/olap/OlapField";
@@ -62,9 +51,7 @@ const UpdateCellValue = function(cell : WriteBackDataCell, rows: Array<DataRow>,
 	//가감해야 하는 값 
 	let diff  = cell.After - beforeValue;
 
-	
-         
-	let  diviedValue = diff / unLockedRows.length;//균등 배분 값
+let  diviedValue = diff / unLockedRows.length;//균등 배분 값
 
 	OLAPContext.WriteLog("OLAP_WRITE_BACK"
 		, "diviedValue:"+diviedValue+", diff:"+diff
@@ -120,17 +107,12 @@ const UpdateCellValue = function(cell : WriteBackDataCell, rows: Array<DataRow>,
 	}			
 
 }
- 
-
-
-
 
 const editCells  = OLAPContext.getEditCells();//수정된 데이터 셀
 
 let rows   : Array<DataRow>;//데이터셀을 구성하는 Rows
 let dataCell : WriteBackDataCell;//수정된 데이터 셀
 let dataField : OlapField;//수정된 데이터 셀의 필드 정보
-
 
 let beforeValue : number;//수정전 값
 let afterValue  : number;//수정후 값

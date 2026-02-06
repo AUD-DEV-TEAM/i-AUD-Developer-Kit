@@ -1,15 +1,4 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix"; 
-import { ScriptRecordSet } from "@AUD_SERVER/matrix/script/ScriptRecordSet"; 
-import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement"; 
-import { ScriptDataRow } from "@AUD_SERVER/matrix/script/ScriptDataRow"; 
-import { ScriptTextFileWriter } from "@AUD_SERVER/matrix/script/io/ScriptTextFileWriter"; 
-import { ScriptRequestPacket } from "@AUD_SERVER/matrix/script/ScriptRequestPacket"; 
-import { ScriptResponsePacket } from "@AUD_SERVER/matrix/script/ScriptResponsePacket"; 
-import { ScriptUtility } from "@AUD_SERVER/matrix/script/ScriptUtility"; 
-import { ScriptFileSystemObject } from "@AUD_SERVER/matrix/script/ScriptFileSystemObject";  
-import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection"; 
-import { ScriptSession } from "@AUD_SERVER/matrix/script/ScriptSession"; 
-import { ScriptQueryGenerator } from "@AUD_SERVER/matrix/script/ScriptQueryGenerator"; 
 
  // Please do not modify or delete the following variables: "CALL_BACK", "Matrix". 
 let CALL_BACK : Function;
@@ -26,8 +15,6 @@ let   con = Matrix.getConnection(); /* DataBase Connection */
 // OLAP Write-Back에서는 OlapContext만 사용할 수 있습니다.
 // OLAP Context
 var OLAPContext = Matrix.getOlapScriptContext();
-
-
 
 /**
  * 데이터 수정 하기

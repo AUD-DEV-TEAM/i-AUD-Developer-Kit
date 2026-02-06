@@ -1,16 +1,4 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix"; 
-import { ScriptRecordSet } from "@AUD_SERVER/matrix/script/ScriptRecordSet"; 
-import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement"; 
-import { ScriptDataRow } from "@AUD_SERVER/matrix/script/ScriptDataRow"; 
-import { ScriptTextFileWriter } from "@AUD_SERVER/matrix/script/io/ScriptTextFileWriter"; 
-import { ScriptRequestPacket } from "@AUD_SERVER/matrix/script/ScriptRequestPacket"; 
-import { ScriptResponsePacket } from "@AUD_SERVER/matrix/script/ScriptResponsePacket"; 
-import { ScriptUtility } from "@AUD_SERVER/matrix/script/ScriptUtility"; 
-import { ScriptFileSystemObject } from "@AUD_SERVER/matrix/script/ScriptFileSystemObject";  
-import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection"; 
-import { ScriptSelection } from "@AUD_CLIENT/control/olap/ScriptSelection"; 
-import { ScriptSession } from "@AUD_SERVER/matrix/script/ScriptSession"; 
-import { ScriptQueryGenerator } from "@AUD_SERVER/matrix/script/ScriptQueryGenerator"; 
  /* Please do not modify or delete the following let iables: "CALL_BACK", "Matrix". */
 let CALL_BACK : Function;
 let Matrix : Matrix; 
@@ -33,7 +21,6 @@ if (!fso.Exists(xlsFilePath)) {
 let pdfName : string = util.getUniqueKey("PDF") + ".pdf";
 let pdfPath : string = fso.getTemplatePath(pdfName);
 Matrix.ExcelToPDF(xlsFilePath, pdfPath);
-
 
 //client에 해당 파일의 경로 정보를 전달합니다.
 res.WriteResponseText(JSON.stringify({

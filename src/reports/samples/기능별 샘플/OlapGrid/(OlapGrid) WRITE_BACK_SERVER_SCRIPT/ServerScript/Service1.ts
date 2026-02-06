@@ -1,15 +1,4 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix"; 
-import { ScriptRecordSet } from "@AUD_SERVER/matrix/script/ScriptRecordSet"; 
-import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement"; 
-import { ScriptDataRow } from "@AUD_SERVER/matrix/script/ScriptDataRow"; 
-import { ScriptTextFileWriter } from "@AUD_SERVER/matrix/script/io/ScriptTextFileWriter"; 
-import { ScriptRequestPacket } from "@AUD_SERVER/matrix/script/ScriptRequestPacket"; 
-import { ScriptResponsePacket } from "@AUD_SERVER/matrix/script/ScriptResponsePacket"; 
-import { ScriptUtility } from "@AUD_SERVER/matrix/script/ScriptUtility"; 
-import { ScriptFileSystemObject } from "@AUD_SERVER/matrix/script/ScriptFileSystemObject";  
-import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection"; 
-import { ScriptSession } from "@AUD_SERVER/matrix/script/ScriptSession"; 
-import { ScriptQueryGenerator } from "@AUD_SERVER/matrix/script/ScriptQueryGenerator"; 
 
  // Please do not modify or delete the following variables: "CALL_BACK", "Matrix". 
 let CALL_BACK : Function;
@@ -36,18 +25,16 @@ try{
 	//connection
 	con.Connect("MTXRPTY");// set target dbms connection code
 	con.BeginTransaction();  // begin transaction	 
-	
-	 
-	//------------------------------------------------------
+
+//------------------------------------------------------
 	// save table data
 	//------------------------------------------------------	
 	var table = req.getTable("OlapGrid"); //get grid's work data
 	
 	sql = "UPDATE MEX_USER_CRUD_DATA SET  M1=?, M2=?, M3=?  WHERE P1=?";
 	stmt = con.PreparedStatement(sql);
-	
-	
-	sql = " INSERT INTO MEX_USER_CRUD_DATA(P1,D1,D2,D3,D4,D5,D6,D7,D8,M1,M2,M3) "
+
+sql = " INSERT INTO MEX_USER_CRUD_DATA(P1,D1,D2,D3,D4,D5,D6,D7,D8,M1,M2,M3) "
 	    + "                    VALUES (?, ?,?,?,?,?,?,?,?,?,?,?)";
 	stmtInsert	 = con.PreparedStatement(sql);
 	
