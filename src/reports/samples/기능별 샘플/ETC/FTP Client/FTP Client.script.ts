@@ -1,20 +1,7 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
-import { NumberBox } from "@AUD_CLIENT/control/NumberBox";
-import { CheckBox } from "@AUD_CLIENT/control/CheckBox";
-import { Label } from "@AUD_CLIENT/control/Label";
-import { iGrid } from "@AUD_CLIENT/control/iGrid";
-import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
-import { Image } from "@AUD_CLIENT/control/Image";
-import { ColorPicker } from "@AUD_CLIENT/control/ColorPicker";
 import { Button } from "@AUD_CLIENT/control/Button";
 import { TextBox } from "@AUD_CLIENT/control/TextBox";
-import { RadioButton } from "@AUD_CLIENT/control/RadioButton";
-import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
-import { DataSet } from "@AUD_CLIENT/data/DataSet";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
-import { Group } from "@AUD_CLIENT/control/Group";
-import { Chart } from "@AUD_CLIENT/control/Chart";
-import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
  
 let Matrix : Matrix; 
 /*****************************
@@ -23,12 +10,7 @@ let Matrix : Matrix;
  *****************************/
 
 let DataGrid : DataGrid =   Matrix.getObject("DataGrid") as DataGrid;
-let VS_FTP_SERVER : TextBox =   Matrix.getObject("VS_FTP_SERVER") as TextBox;
-let VS_USER_CODE : TextBox =   Matrix.getObject("VS_USER_CODE") as TextBox;
-let VS_USER_PWD : TextBox =   Matrix.getObject("VS_USER_PWD") as TextBox;
 let VS_WORK_FOLDER : TextBox =   Matrix.getObject("VS_WORK_FOLDER") as TextBox;
-let VS_PROTOCOL : ComboBox =   Matrix.getObject("VS_PROTOCOL") as ComboBox;
-let VN_PORT : TextBox =   Matrix.getObject("VN_PORT") as TextBox;
 let btnUpload : Button =   Matrix.getObject("btnUpload") as Button;
 let btnConnect : Button =   Matrix.getObject("btnConnect") as Button;
 /**
@@ -119,7 +101,7 @@ const readFolders = function(){
  DataGrid.OnCellDoubleClick  = function(sender, args)
  {
  	var type  = args.Row.GetValue("TYPE");
-	var name  = args.Row.GetValue("NAME");
+	var name  = args.Row.GetValue("NAME") as string;
 	if(type == "DIRECTORY"){
 		
 		var paths = VS_WORK_FOLDER.Text.split("/");

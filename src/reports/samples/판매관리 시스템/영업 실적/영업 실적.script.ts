@@ -71,7 +71,7 @@ Matrix.OnDataBindEnd = function(s, e) {
 			});
 		}
 
-		const val = (Matrix.getObject(e.Id) as DataGrid).getRowValue(0, 'TOTAL_COMP_PERF_VAL');
+		const val = (Matrix.getObject(e.Id) as DataGrid).getRowValue(0, 'TOTAL_COMP_PERF_VAL') as number;
 		let setColor: string;
 
 		if (val < 0) setColor = '#ef4444';      // 빨강
@@ -185,7 +185,7 @@ GRD_PERF.OnCellDoubleClick = function(s, e) {
 	popup.MoveToCenter();
 };
 
-var setInputValue = function(row) {
+const setInputValue = function(row) {
 	if (row) {
 		VS_INP_ID.Text      = row.GetValue('SALES_ID');
 		VS_INP_YMD.Value    = row.GetValue('SALES_DATE');
@@ -217,8 +217,8 @@ var setInputValue = function(row) {
 	}
 };
 
-var isInvalidInput = function(fields, controls?): any {
-	var idx = fields.findIndex(function(v) {
+const isInvalidInput = function(fields, controls?): any {
+	const idx = fields.findIndex(function(v) {
 		return v === null || v === undefined || v === '';
 	});
 	if (idx !== -1 && controls && controls[idx]) {

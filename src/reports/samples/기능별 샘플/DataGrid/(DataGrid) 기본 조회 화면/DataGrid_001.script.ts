@@ -11,6 +11,5 @@ declare let Matrix: Matrix;
 var OnButtonClick = function (sender, args) {
   if (args.Id == "BTN_REF") {
     Matrix.doRefresh("GRD, CHT");
-    Matrix.Alert("11");
   }
 };

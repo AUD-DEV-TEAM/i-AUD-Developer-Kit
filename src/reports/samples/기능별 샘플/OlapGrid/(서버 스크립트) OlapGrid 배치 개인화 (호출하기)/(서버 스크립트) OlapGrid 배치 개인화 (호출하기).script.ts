@@ -2,17 +2,13 @@ import { Matrix } from "@AUD_CLIENT/control/Matrix";
 
 declare let Matrix: Matrix;
 
-/*****************************
- *
- *****************************/
-
 /*****************************************
  * 버튼 컨트롤이 클릭되는 시점에 발생합니다.
  * * arguments :
  *		 string	Id (Readonly:False) : 컨트롤이름
  *		 string	Text (Readonly:False) : 라벨 값
  *****************************************/
-var OnButtonClick = function (sender: any, args: any) {
+const OnButtonClick = function (_sender: any, args: any): void {
   if (args.Id == "btnSaveLayout") {
     ShowLayoutWindow("CREATE", "OlapGrid");
   } else if (args.Id == "btnLoadLayout") {
@@ -20,7 +16,7 @@ var OnButtonClick = function (sender: any, args: any) {
   }
 };
 
-var ShowLayoutWindow = function (jobType: string, olapName: string) {
+const ShowLayoutWindow = function (jobType: string, olapName: string): void {
   if (!Matrix.GetReportInfo().CODE) {
     Matrix.Information(
       "배치 저장/복원 기능은 현재 보고서를 저장 후 사용 가능합니다.",
@@ -29,8 +25,8 @@ var ShowLayoutWindow = function (jobType: string, olapName: string) {
     return;
   }
   // 팝업창으로 넘길 파라미터 설정.
-  var olapGrid = Matrix.getObject(olapName) as any;
-  var param = {
+  const olapGrid = Matrix.getObject(olapName) as any;
+  const param = {
     VS_LAYOUT_REPORT_CODE: Matrix.GetReportInfo().CODE,
     VS_LAYOUT_INFO: jobType == "CREATE" ? getLayoutInfo(olapName) : "",
     VS_CONTROL_CODE: olapName,
@@ -39,9 +35,9 @@ var ShowLayoutWindow = function (jobType: string, olapName: string) {
     REPORT_NAME: Matrix.GetReportInfo().NAME,
   };
   // 팝업창에 표시할 보고서 코드.
-  var reportCode = "REPA57EA3E7DDBB4576841598FC91055FE9";
+  const reportCode = "REPA57EA3E7DDBB4576841598FC91055FE9";
   // 팝업창 옵션 설정.
-  var opt = {
+  const opt = {
     Width: 500,
     Height: 400,
     Left: 30,
@@ -54,7 +50,7 @@ var ShowLayoutWindow = function (jobType: string, olapName: string) {
     Buttons: 0, // Button  0 : 없음, 1:닫기, 2:확인/취소
   };
 
-  Matrix.ShowReportDialog(reportCode, param, opt, function (result) {
+  Matrix.ShowReportDialog(reportCode, param, opt, function (result: any): void {
     if (result) {
       if (jobType == "SELECT") {
         setLayoutInfo(result);
@@ -63,14 +59,13 @@ var ShowLayoutWindow = function (jobType: string, olapName: string) {
   });
 };
 
-var getLayoutInfo = function (id: string) {
-  var ctl = Matrix.getObject(id) as any;
-  //var ctl = Matrix.getObject("OlapGrid");
-  var fields = ctl.getFields();
-  var RESULT: any[] = [];
-  for (var i = 0; i < fields.length; i++) {
-    var fld = fields[i];
-    var item = {
+const getLayoutInfo = function (id: string): string {
+  const ctl = Matrix.getObject(id) as any;
+  const fields = ctl.getFields();
+  const RESULT: any[] = [];
+  for (let i = 0; i < fields.length; i++) {
+    const fld = fields[i];
+    const item = {
       Name: fld.Name,
       Area: fld.Area,
       AreaIndex: fld.AreaIndex,
@@ -98,12 +93,12 @@ var getLayoutInfo = function (id: string) {
   return JSON.stringify(RESULT);
 };
 
-var setLayoutInfo = function (result: any) {
-  var ctl = Matrix.getObject(result.CONTROL) as any;
-  var fields = result.MODEL;
-  for (var i = 0; i < fields.length; i++) {
-    var fld = fields[i];
-    var oldFld = ctl.getField(fld.Name);
+const setLayoutInfo = function (result: any): void {
+  const ctl = Matrix.getObject(result.CONTROL) as any;
+  const fields = result.MODEL;
+  for (let i = 0; i < fields.length; i++) {
+    const fld = fields[i];
+    const oldFld = ctl.getField(fld.Name);
     if (oldFld != null) {
       oldFld.Name = fld.Name;
       oldFld.Area = fld.Area;
@@ -130,3 +125,5 @@ var setLayoutInfo = function (result: any) {
   }
   ctl.Refresh();
 };
+
+export { OnButtonClick };

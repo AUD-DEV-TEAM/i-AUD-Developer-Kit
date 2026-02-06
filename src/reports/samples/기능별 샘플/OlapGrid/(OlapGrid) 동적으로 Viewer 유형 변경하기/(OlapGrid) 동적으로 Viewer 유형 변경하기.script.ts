@@ -4,24 +4,18 @@ import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
 declare let Matrix: Matrix;
 
-/*****************************
- *
- *****************************/
+let olapGrid: OlapGrid | null = null;
+let RD_DEFAULT: RadioButton | null = null;
+let RD_TREEVIEW: RadioButton | null = null;
 
-var olapGrid: OlapGrid | null = null;
-var BTN_APPLY: any = null;
-var RD_DEFAULT: RadioButton | null = null;
-var RD_TREEVIEW: RadioButton | null = null;
-
-var initControlVariables = function () {
+const initControlVariables = function (): void {
   olapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
-  BTN_APPLY = Matrix.getObject("BTN_APPLY");
   RD_DEFAULT = Matrix.getObject("RD_DEFAULT") as RadioButton;
-  RD_DEFAULT.OnValueChange = function (s, e) {
+  RD_DEFAULT.OnValueChange = function (_s: any, e: any): void {
     if (e.IsChecked === true) fnChangeViewType(0);
   };
   RD_TREEVIEW = Matrix.getObject("RD_TREEVIEW") as RadioButton;
-  RD_TREEVIEW.OnValueChange = function (s, e) {
+  RD_TREEVIEW.OnValueChange = function (_s: any, e: any): void {
     if (e.IsChecked === true) fnChangeViewType(1);
   };
 };
@@ -30,12 +24,12 @@ var initControlVariables = function () {
  * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.
  * * arguments :
  *****************************************/
-var OnDocumentLoadComplete = function (sender: any, args: any) {
+const OnDocumentLoadComplete = function (_sender: any, _args: any): void {
   initControlVariables();
 };
 
 //OlapGrid 의 ViewType 을 변경합니다.
-var fnChangeViewType = function (vType: number) {
+const fnChangeViewType = function (vType: number): void {
   if (!olapGrid) olapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
 
   if (olapGrid.Options.ViewType != vType) {
@@ -43,3 +37,5 @@ var fnChangeViewType = function (vType: number) {
     olapGrid.Refresh();
   }
 };
+
+export { OnDocumentLoadComplete };

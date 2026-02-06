@@ -4,29 +4,26 @@ import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
 declare let Matrix: Matrix;
 
-/*****************************
- *
- *****************************/
-var button: Button | null = null;
-var olapGrid: OlapGrid | null = null;
+let button: Button | null = null;
+let olapGrid: OlapGrid | null = null;
 
-var initControlVariables = function () {
+const initControlVariables = function (): void {
   button = Matrix.getObject("Button") as Button;
   olapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
 
-  button.OnClick = function (s, e) {
+  button.OnClick = function (s: any, e: any): void {
     HIDE_PATH();
   };
 };
 initControlVariables();
 
-var HIDE_PATH = function () {
+const HIDE_PATH = function (): void {
   olapGrid!.ClearHiddenPaths(); //전체 숨김 내역 제거
 
   //년도가 2012 년이면 판매 단가를 표시하지 않는다.
-  var cell: any;
-  var path: string;
-  for (var c = 0, len = olapGrid!.ColumnCount; c < len; c++) {
+  let cell: any;
+  let path: string;
+  for (let c = 0, len = olapGrid!.ColumnCount; c < len; c++) {
     cell = olapGrid!.getCell(0, c);
     if (cell.Field && cell.Field.Name == "판매단가") {
       if (cell.getHeaderValue("년도") == "2012") {
@@ -39,9 +36,9 @@ var HIDE_PATH = function () {
   Matrix.doRefresh("OlapGrid");
 };
 
-var getHiddenPath = function (hCell: any): string {
-  var path = "";
-  var cell = hCell;
+const getHiddenPath = function (hCell: any): string {
+  let path = "";
+  let cell = hCell;
   while (true) {
     if (!cell || !cell.Field) break;
 

@@ -4,14 +4,11 @@ import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
 declare let Matrix: Matrix;
 
-/*****************************
- *
- *****************************/
-var olapGrid: OlapGrid | null = null;
-var tbxFieldNames: TextBox | null = null;
-var tbxGroupName: TextBox | null = null;
+let olapGrid: OlapGrid | null = null;
+let tbxFieldNames: TextBox | null = null;
+let tbxGroupName: TextBox | null = null;
 
-var initControlVariables = function () {
+const initControlVariables = function (): void {
   olapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
   tbxFieldNames = Matrix.getObject("tbxFieldNames") as TextBox;
   tbxGroupName = Matrix.getObject("tbxGroupName") as TextBox;
@@ -24,10 +21,10 @@ initControlVariables();
  *		 string	Id (Readonly:False) : 컨트롤이름
  *		 string	Text (Readonly:False) : 라벨 값
  *****************************************/
-var OnButtonClick = function (sender: any, args: any) {
-  var flds = tbxFieldNames!.Text.split(",");
-  var fld: any;
-  for (var i = 0; i < flds.length; i++) {
+const OnButtonClick = function (_sender: any, args: any): void {
+  const flds = tbxFieldNames!.Text.split(",");
+  let fld: any;
+  for (let i = 0; i < flds.length; i++) {
     fld = olapGrid!.getField(flds[i]);
     if (fld) {
       fld.Area = 1; /*Row*/
@@ -48,3 +45,5 @@ var OnButtonClick = function (sender: any, args: any) {
     olapGrid!.Refresh();
   }
 };
+
+export { OnButtonClick };

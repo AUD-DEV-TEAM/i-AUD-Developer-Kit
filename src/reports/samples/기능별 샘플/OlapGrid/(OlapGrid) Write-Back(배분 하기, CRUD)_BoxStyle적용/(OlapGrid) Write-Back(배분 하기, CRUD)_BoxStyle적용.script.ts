@@ -1,33 +1,20 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
-import { CheckBox } from "@AUD_CLIENT/control/CheckBox";
 import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
-import { Button } from "@AUD_CLIENT/control/Button";
 import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
 declare let Matrix: Matrix;
 
-/*****************************
- *
- *****************************/
-var btnCalculate: Button | null = null;
-var btnUpate: Button | null = null;
-var chkEnableCreateRecord: CheckBox | null = null;
-var chkManualUpdate: CheckBox | null = null;
-var olapGrid: OlapGrid | null = null;
-var VN_BAEBUN_TYPE: ComboBox | null = null;
-var tbxLockCellFormula: RichTextBox | null = null;
+let olapGrid: OlapGrid | null = null;
+let VN_BAEBUN_TYPE: ComboBox | null = null;
+let tbxLockCellFormula: RichTextBox | null = null;
 
-var initControlVariables = function () {
-  btnCalculate = Matrix.getObject("btnCalculate") as Button;
-  btnUpate = Matrix.getObject("btnUpate") as Button;
-  chkEnableCreateRecord = Matrix.getObject("chkEnableCreateRecord") as CheckBox;
-  chkManualUpdate = Matrix.getObject("chkManualUpdate") as CheckBox;
+const initControlVariables = function (): void {
   olapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
   VN_BAEBUN_TYPE = Matrix.getObject("VN_BAEBUN_TYPE") as ComboBox;
   tbxLockCellFormula = Matrix.getObject("tbxLockCellFormula") as RichTextBox;
 
-  tbxLockCellFormula.OnTextChange = function (s, e) {
+  tbxLockCellFormula.OnTextChange = function (s: any, e: any): void {
     olapGrid!.setLockCellFormula(tbxLockCellFormula!.Text);
   };
 };
@@ -35,7 +22,7 @@ var initControlVariables = function () {
 /**
  * Write-Back 기능 활성화 하기
  **/
-var initWriteBack = function () {
+const initWriteBack = function (): void {
   olapGrid!.Options.EnableWriteBack = true; //Write-back 활성화
   olapGrid!.Options.EnableCreateRecord = false; //레코드가 없는 셀의 경우 데이터 생성 여부
   olapGrid!.Options.ManualUpdate = false; //수동 계산 실행 여
@@ -47,7 +34,7 @@ var initWriteBack = function () {
  * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.
  * * arguments :
  *****************************************/
-var OnDocumentLoadComplete = function (sender: any, args: any) {
+const OnDocumentLoadComplete = function (sender: any, args: any): void {
   initControlVariables();
   initWriteBack();
 };
@@ -58,11 +45,11 @@ var OnDocumentLoadComplete = function (sender: any, args: any) {
  *		 string	Id (Readonly:False) : 컨트롤이름
  *		 string	Text (Readonly:False) : 라벨 값
  *****************************************/
-var OnButtonClick = function (sender: any, args: any) {
+const OnButtonClick = function (sender: any, args: any): void {
   if (args.Id == "btnCalculate") {
     if (olapGrid!.CanCalculateWriteBack()) {
       //계산할 대상이 있으면..
-      olapGrid!.CalculateWriteBack(function () {});
+      olapGrid!.CalculateWriteBack(function (): void {});
     }
   } else if (args.Id == "btnUpate") {
     if (olapGrid!.IsModified() == false) {
@@ -81,12 +68,11 @@ var OnButtonClick = function (sender: any, args: any) {
       );
       return;
     }
-    Matrix.RunScript("OlapGrid", "Service1", function (p) {
+    Matrix.RunScript("OlapGrid", "Service1", function (p: any): void {
       if (p.Success == false) {
         Matrix.Alert(p.Message);
         return;
       }
-      //alert("정상적으로 처리되었습니다.");
       Matrix.doRefresh("OlapGrid");
     });
   }
@@ -97,8 +83,8 @@ var OnButtonClick = function (sender: any, args: any) {
  *		 string	Id (Readonly:False) : 컨트롤이름
  *		 string	Value (Readonly:False) : 컨트롤 값
  *****************************************/
-var OnComboBoxValueChanged = function (sender: any, args: any) {
-  var fld = olapGrid!.getField("M1");
+const OnComboBoxValueChanged = function (sender: any, args: any): void {
+  let fld = olapGrid!.getField("M1");
   fld.EditMethod = parseFloat(VN_BAEBUN_TYPE!.Value);
   fld.EditPrecision = 0; //소수점 자리수
   //fld.EditMethodRef = "M2";//참조 필드(가중치 기준 필드)
@@ -117,7 +103,7 @@ var OnComboBoxValueChanged = function (sender: any, args: any) {
  *		 string	Id (Readonly:False) : 컨트롤이름
  *		 bool	IsChecked (Readonly:False) : 체크 상태
  *****************************************/
-var OnCheckValueChange = function (sender: any, args: any) {
+const OnCheckValueChange = function (sender: any, args: any): void {
   if (args.Id == "chkManualUpdate") {
     olapGrid!.Options.ManualUpdate = args.IsChecked;
   } else if (args.Id == "chkEnableCreateRecord") {
@@ -132,7 +118,7 @@ var OnCheckValueChange = function (sender: any, args: any) {
  *		 iOLAP.ScriptDataCell	Cell (Readonly:True) : 데이터 셀 객체
  *		 bool	Cancel (Readonly:False) : 이 값을 true 로 설정 할 경우 수정 모드로 진입이 취소됩니다.
  *****************************************/
-var OnOlapDataCellStartEdit = function (sender: any, args: any) {};
+const OnOlapDataCellStartEdit = function (sender: any, args: any): void {};
 
 /*****************************************
  * 데이터 셀을 수정 후에 발생합니다.
@@ -144,10 +130,10 @@ var OnOlapDataCellStartEdit = function (sender: any, args: any) {};
  *		 double	LockedValue (Readonly:True) : 잠긴 레코드의 값
  *		 bool	Cancel (Readonly:False) : 이 값을 true 로 설정 할 경우 수정 작업이 취소됩니다.
  *****************************************/
-var OnOlapDataCellEndEdit = function (sender: any, args: any) {
+const OnOlapDataCellEndEdit = function (sender: any, args: any): void {
   if (args.LockedValue > args.AfterValue) {
     args.Cancel = true;
-    var fmtValue = Matrix.getFormatConverter(args.Cell.Field.Format).Convert(
+    const fmtValue = Matrix.getFormatConverter(args.Cell.Field.Format).Convert(
       args.LockedValue
     ).Value;
 
@@ -156,4 +142,13 @@ var OnOlapDataCellEndEdit = function (sender: any, args: any) {
       "i-AUD"
     );
   }
+};
+
+export {
+  OnDocumentLoadComplete,
+  OnButtonClick,
+  OnComboBoxValueChanged,
+  OnCheckValueChange,
+  OnOlapDataCellStartEdit,
+  OnOlapDataCellEndEdit,
 };

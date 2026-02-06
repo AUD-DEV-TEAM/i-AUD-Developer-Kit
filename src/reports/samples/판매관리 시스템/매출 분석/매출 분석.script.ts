@@ -90,7 +90,7 @@ BTN_DETAIL_PRD.OnClick = function(s, e) {
 };
 /******** Button Click Event ********/
 
-var setActiveTab = function(activeTab: Label) {
+const setActiveTab = function(activeTab: Label) {
 	let tabs = [
 		{ tab: LBL_TAB_AMT, suffix: 'AMT' },
 		{ tab: LBL_TAB_QTY, suffix: 'QTY' },

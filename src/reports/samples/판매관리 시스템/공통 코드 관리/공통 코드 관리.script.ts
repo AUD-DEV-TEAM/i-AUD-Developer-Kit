@@ -103,7 +103,7 @@ BTN_MST_DEL.OnClick = function(s, e) {
 		GRD_MASTER.GetCurrentRow().Data.RowState = 'D';
 	}
 
-	if (GRD_MASTER.GetCurrentRow().GetValue('CODE') > 0) {
+	if (GRD_MASTER.GetCurrentRow().GetValue('CODE') as number > 0) {
 		Matrix.Information('모든 상세 코드를 삭제한 후 다시 시도하세요', '안내');
 		return;
 	}
@@ -239,7 +239,7 @@ GRD_DETAIL.OnGridMultiHeaderCheckBoxClicked = function(s, e) {
 	GRD_DETAIL.Update();
 };
 
-var setInputValue = function(row) {
+const setInputValue = function(row) {
 	if (row == 'GRD_MASTER') {
 		VS_INP_GROUP_CODE.Text = '';
 		VS_INP_GROUP_NAME.Text = '';
@@ -272,8 +272,8 @@ var setInputValue = function(row) {
 	}
 };
 
-var isInvalidInput = function(fields: any[], controls?): any {
-	var idx = fields.findIndex(function(v) {
+const isInvalidInput = function(fields: any[], controls?): any {
+	const idx = fields.findIndex(function(v) {
 		return v === null || v === undefined || v === '';
 	});
 	if (idx !== -1 && controls && controls[idx]) {
@@ -282,7 +282,7 @@ var isInvalidInput = function(fields: any[], controls?): any {
 	return idx !== -1 ? true : null;
 };
 
-var setInit = function() {
+const setInit = function() {
 	LBL_DTL_CNT.Text = '0';
 	Matrix.SetGlobalParams('VS_GROUP_CD', null);
 	LBL_TTL_3.Text = '  상세 코드 – 그룹을 선택하세요';

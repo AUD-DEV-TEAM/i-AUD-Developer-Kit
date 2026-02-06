@@ -5,10 +5,6 @@ declare const Matrix: Matrix;
 
 const DataGrid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
 
-/*****************************
- *
- *****************************/
-
 /*****************************************
 * Occurs when the value of the checkbox control changes.
 * * arguments :

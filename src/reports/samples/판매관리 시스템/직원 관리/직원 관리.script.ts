@@ -157,7 +157,7 @@ GRD_EMPLOYEE.OnCellDoubleClick = function(s, e) {
 	popup.MoveToCenter();
 };
 
-var setInputValue = function(row) {
+const setInputValue = function(row) {
 	if (row) {
 		VS_INP_NAME.Text     = row.GetValue('EMP_NAME');
 		VS_INP_DEPT.Value    = row.GetValue('DEPT_CODE');
@@ -177,8 +177,8 @@ var setInputValue = function(row) {
 	}
 };
 
-var isInvalidInput = function(fields, controls?): any {
-	var idx = fields.findIndex(function(v) {
+const isInvalidInput = function(fields, controls?): any {
+	const idx = fields.findIndex(function(v) {
 		return v === null || v === undefined || v === '';
 	});
 	if (idx !== -1 && controls && controls[idx]) {

@@ -55,7 +55,7 @@ BTN_REF.OnClick = function(s, e) {
 };
 /******** Button Click Event ********/
 
-var setActiveTab = function(activeTab: Label) {
+const setActiveTab = function(activeTab: Label) {
 	let tabArr = [LBL_TAB_ALL, LBL_TAB_TEAM1, LBL_TAB_TEAM2];
 	tabArr.forEach(function(tab) {
 		tab.Style.Background.Color.SetColor(tab === activeTab ? "#ffffff" : "#f1f5f9");
@@ -86,8 +86,8 @@ LBL_TAB_TEAM2.OnClick = function(s, e) {
 
 Matrix.OnCellLoaded = function(s, e) {
 	if (e.Id == 'GRD_4' && e.Field.Name == 'DIFF') {
-		if (e.Cell.Value > 0) e.FontColor = "#10b981"; 		// 초록
-		else if (e.Cell.Value < 0) e.FontColor = "#ef4444"; 	// 빨강
+		if (e.Cell.Value as number > 0) e.FontColor = "#10b981"; 		// 초록
+		else if (e.Cell.Value as number < 0) e.FontColor = "#ef4444"; 	// 빨강
 		else e.FontColor = "#1e293b"; 							// 검정
 	}
 };

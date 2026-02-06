@@ -8,7 +8,7 @@ declare let Matrix: Matrix;
  *		 boolean	Success (Readonly:False) : 성공여부
  *		 string	Message (Readonly:False) : 에러 메시지
  **************************************/
-var OnLoadComplete = function (sender, args) {
+const OnLoadComplete = function (sender, args) {
   Matrix.doRefresh("GRD, CHT"); // DataGrid, Chart 조회
 };
 
@@ -18,7 +18,7 @@ var OnLoadComplete = function (sender, args) {
  *		 string	Id (Readonly:False) : 컨트롤이름
  *		 string	Text (Readonly:False) : 라벨 값
  **************************************/
-var OnButtonClick = function (sender, args) {
+const OnButtonClick = function (sender, args) {
   if (args.Id == "BTN_REF") {
     // '조회' 버튼 클릭 시
     Matrix.doRefresh("GRD, CHT"); // DataGrid, Chart 조회

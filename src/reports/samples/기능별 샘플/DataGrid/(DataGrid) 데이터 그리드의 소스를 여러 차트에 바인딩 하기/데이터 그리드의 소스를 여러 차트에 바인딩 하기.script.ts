@@ -8,10 +8,6 @@ const DataGrid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
 const Chart: Chart = Matrix.getObject("Chart") as Chart;
 const Chart1: Chart = Matrix.getObject("Chart1") as Chart;
 
-/*****************************
- *
- *****************************/
-
 const bind = function(): void {
 	DataGrid.OnDataBindEnd = function(_s: any, _e: any): void {
 		const dataSet = DataGrid.GetDataSet();

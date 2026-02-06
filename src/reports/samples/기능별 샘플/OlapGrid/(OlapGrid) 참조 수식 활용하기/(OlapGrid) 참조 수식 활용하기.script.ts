@@ -4,16 +4,13 @@ import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
 declare let Matrix: Matrix;
 
-/*****************************
- *
- *****************************/
-var olapGrid: OlapGrid | null = null;
-var richTextBox: RichTextBox | null = null;
+let olapGrid: OlapGrid | null = null;
+let richTextBox: RichTextBox | null = null;
 
-var initControlVariables = function () {
+const initControlVariables = function (): void {
   olapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
   richTextBox = Matrix.getObject("RichTextBox") as RichTextBox;
-  olapGrid.OnDataCellDoubleClick = function (s, e) {
+  olapGrid.OnDataCellDoubleClick = function (s: any, e: any): void {
     richTextBox!.Text +=
       "품목코드:" +
       e.DataCell.getHeaderCell("CB9B03EAE").Value2 +

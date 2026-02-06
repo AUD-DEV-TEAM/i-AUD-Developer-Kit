@@ -157,7 +157,7 @@ GRD_PLAN.OnCellDoubleClick = function(s, e) {
 	popup.MoveToCenter();
 };
 
-var setInputValue = function(row) {
+const setInputValue = function(row) {
 	if (row) {
 		VS_INP_ID.Text      = row.GetValue('PLAN_ID');
 		VS_INP_YM.Value     = row.GetValue('PLAN_YM');
@@ -184,8 +184,8 @@ var setInputValue = function(row) {
 	}
 };
 
-var isInvalidInput = function(fields, controls?): any {
-	var idx = fields.findIndex(function(v) {
+const isInvalidInput = function(fields, controls?): any {
+	const idx = fields.findIndex(function(v) {
 		return v === null || v === undefined || v === '';
 	});
 	if (idx !== -1 && controls && controls[idx]) {

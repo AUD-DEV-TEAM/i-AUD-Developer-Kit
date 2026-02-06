@@ -57,7 +57,7 @@ function loadSampleData() {
         // 요약 정보 표시
         displaySummary(p.DataSet);
 
-        Matrix.Alert("데이터 조회 완료: " + p.DataSet.Tables[0].Rows.length + "건");
+        Matrix.Alert("데이터 조회 완료: " + p.DataSet.GetTable(0).Rows.length + "건");
     });
 }
 

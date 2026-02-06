@@ -1,41 +1,27 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
-import { NumberBox } from "@AUD_CLIENT/control/NumberBox";
-import { CheckBox } from "@AUD_CLIENT/control/CheckBox";
-import { Label } from "@AUD_CLIENT/control/Label";
-import { iGrid } from "@AUD_CLIENT/control/iGrid";
-import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
-import { Image } from "@AUD_CLIENT/control/Image";
-import { ColorPicker } from "@AUD_CLIENT/control/ColorPicker";
 import { Button } from "@AUD_CLIENT/control/Button";
-import { TextBox } from "@AUD_CLIENT/control/TextBox";
-import { RadioButton } from "@AUD_CLIENT/control/RadioButton";
-import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
-import { DataSet } from "@AUD_CLIENT/data/DataSet";
-import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
-import { Group } from "@AUD_CLIENT/control/Group";
-import { Chart } from "@AUD_CLIENT/control/Chart";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-let Matrix: Matrix;
+declare let Matrix: Matrix;
 /*****************************
  * i-AUD Client Sample
  *****************************/
-let btnExecute: Button = Matrix.getObject("btnExecute") as Button;
-let btnClear: Button = Matrix.getObject("btnClear") as Button;
-let OlapGrid: OlapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
+const btnExecute: Button = Matrix.getObject("btnExecute") as Button;
+const btnClear: Button = Matrix.getObject("btnClear") as Button;
+const olapGrid: OlapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
 
 
-btnClear.OnClick = function (sender, args) {
+btnClear.OnClick = function (sender: any, args: any): void {
 	//Field Group 제거
-	OlapGrid.ClearDimensionGroups();
-	OlapGrid.Refresh();
+	olapGrid.ClearDimensionGroups();
+	olapGrid.Refresh();
 }
-btnExecute.OnClick = function (sender, args) {
+btnExecute.OnClick = function (sender: any, args: any): void {
 
 	//그룹 필드 추가
-	let targetField = "PRODUCT";
-	let newField = OlapGrid.addDimensionGroup(targetField, "상품 그룹");
-	let group = newField.DimensionGroupInfo; //디멘젼 그룹 정보
+	const targetField = "PRODUCT";
+	const newField = olapGrid.addDimensionGroup(targetField, "상품 그룹");
+	const group = newField.DimensionGroupInfo; //디멘젼 그룹 정보
 
 	let item = group.AddItem("1.전체");
 	item.ItemType = 2; /*All*/
@@ -56,15 +42,9 @@ btnExecute.OnClick = function (sender, args) {
 	item.ItemType = 1; /*Others*/
 
 	newField.Area = 1; /*Row*/
-	OlapGrid.MoveField(newField.Name, 0, false);
-	//OlapGrid.getField("창고코드").Area = 1  /*Row*/;
-	//OlapGrid.MoveField("창고코드" ,1, true);
-	OlapGrid.Refresh();
+	olapGrid.MoveField(newField.Name, 0, false);
+	//olapGrid.getField("창고코드").Area = 1  /*Row*/;
+	//olapGrid.MoveField("창고코드" ,1, true);
+	olapGrid.Refresh();
 
 };
-
-
-
-
-
-

@@ -11,10 +11,6 @@ import { TableLayout } from "@AUD_CLIENT/control/table/TableLayout";
 declare const Matrix: Matrix;
 declare const parent: any;
 
-/*****************************
- *
- *****************************/
-
 /*
  * script name    : DataList Template
  * script version : 1.4

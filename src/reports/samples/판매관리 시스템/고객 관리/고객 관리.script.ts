@@ -174,7 +174,7 @@ GRD_CUSTOMER.OnCellDoubleClick = function(s, e) {
 	setInputValue(e.Row);
 };
 
-var setInputValue = function(row) {
+const setInputValue = function(row) {
 	if (row) {
 		VS_INP_NAME.Text = row.GetValue('CUST_NAME');
 		VS_INP_TYPE.Value = row.GetValue('TYPE_CODE');
@@ -196,8 +196,8 @@ var setInputValue = function(row) {
 	}
 };
 
-var isInvalidInput = function(fields, controls?): any {
-	var idx = fields.findIndex(function(v) {
+const isInvalidInput = function(fields, controls?): any {
+	const idx = fields.findIndex(function(v) {
 		return v === null || v === undefined || v === '';
 	});
 	if (idx !== -1 && controls && controls[idx]) {

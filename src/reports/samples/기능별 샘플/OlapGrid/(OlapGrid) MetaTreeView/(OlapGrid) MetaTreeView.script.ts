@@ -7,23 +7,16 @@ import { Chart } from "@AUD_CLIENT/control/Chart";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
 import { RadioButton } from "@AUD_CLIENT/control/RadioButton";
 import { TextBox } from "@AUD_CLIENT/control/TextBox";
-import { CheckBox } from "@AUD_CLIENT/control/CheckBox";
 import { enArea } from "@AUD_CLIENT/enums/olap/enArea";
 
 // i-AUD 런타임에서 제공하는 전역 Matrix 객체
 let Matrix: Matrix;
-
-/*****************************
- *
- *****************************/
 
 /*
  * script name    : ANALYSIS Template
  * script version : 7.4
  * modified date  : 2023-07-14
  */
-const TEMPLATE_VERSION = "7.0";
-const TEMPLATE_NAME = "OLAP";
 
 let WIN_EXPORT: any = null; // export window
 const GRP_CONDITION_NAME = "GRP_CONDITION";
@@ -41,10 +34,8 @@ let USERDEFINED_LAYOUT_MGR: any = null; //@USERDEFINED_LAYOUT_MGR
 let chartCtrl: Chart | null = null;
 let drillToDetailCtrl: DataGrid | null = null;
 let grpConditionCtrl: Group | null = null;
-let imglayoutCtrl: Image | null = null;
 let imgchartCtrl: Image | null = null;
 let imgMetaCtrl: Image | null = null;
-let imgOptionCtrl: Image | null = null;
 let olapGridCtrl: OlapGrid | null = null;
 let tbxReportNameCtrl: Label | null = null;
 let grpChartCtrl: Group | null = null;
@@ -62,9 +53,7 @@ let columnSeperatorCtrl: TextBox | null = null;
 let rowSeperatorCtrl: TextBox | null = null;
 
 let WIN_OPTION: any = null;
-let chkUseUserDefinedLayoutCtrl: CheckBox | null = null;
 let isViewerMode = false;
-const activeControlName = "OlapGrid";
 
 // 2022-09-14 (BCRM#C2708) 툴바('GDP&GNI')에서 제공되는 옵션 기능('그래프 표시', '설정')에 대한 툴팁이 제공되지 않아 해당 기능을 알 수 없음
 const langNS = "iStudioExtra:META:";
@@ -827,7 +816,6 @@ const getFilterCondition = function (): FilterRow[] {
  *		 bool	IsChecked (Readonly:False) : 체크 상태
  *****************************************/
 const OnRadioValueChange = function (sender: any, args: any): void {
-  const selectedID = args.Id;
   switch (args.Id) {
     case "rdoText":
       grpSeperateCtrl!.Visible = true;

@@ -3,13 +3,9 @@ import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
 declare let Matrix: Matrix;
 
-/*****************************
- *
- *****************************/
+let olapGrid: OlapGrid | null = null;
 
-var olapGrid: OlapGrid | null = null;
-
-var initControlVariables = function () {
+const initControlVariables = function (): void {
   olapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
 };
 
@@ -17,7 +13,7 @@ var initControlVariables = function () {
  * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.
  * * arguments :
  *****************************************/
-var OnDocumentLoadComplete = function (sender: any, args: any) {
+const OnDocumentLoadComplete = function (_sender: any, _args: any): void {
   initControlVariables();
 };
 /*****************************************
@@ -26,7 +22,7 @@ var OnDocumentLoadComplete = function (sender: any, args: any) {
  *		 string	Id (Readonly:False) : 컨트롤이름
  *		 string	Text (Readonly:False) : 라벨 값
  *****************************************/
-var OnButtonClick = function (sender: any, args: any) {
+const OnButtonClick = function (_sender: any, args: any): void {
   if (args.Id == "btn02") {
     updateMultiHeader();
   } else if (args.Id == "btn03") {
@@ -39,16 +35,16 @@ var OnButtonClick = function (sender: any, args: any) {
  * 멀티 헤더 변경하기
  *   년도 별도 묶는다.
  */
-var updateMultiHeader = function () {
-  var mHeader = olapGrid!.CreateMultiHeaders(2);
+const updateMultiHeader = function (): void {
+  const mHeader = olapGrid!.CreateMultiHeaders(2);
   mHeader.UseMultiHeader = true;
-  var beforeYear = "";
-  var currentYear = "";
-  var beginIndex = -1;
-  var colspan = 1;
-  var lastRowIndex = mHeader.RowCount - 1;
-  var cell: any;
-  for (var c = 0; c < mHeader.ColumnCount; c++) {
+  let beforeYear = "";
+  let currentYear = "";
+  let beginIndex = -1;
+  let colspan = 1;
+  const lastRowIndex = mHeader.RowCount - 1;
+  let cell: any;
+  for (let c = 0; c < mHeader.ColumnCount; c++) {
     cell = mHeader.getCell(lastRowIndex, c);
     cell.Align = 2;
     currentYear = cell.Text; //마지막 셀(필드명이 표시된 셀을 읽어 온다
@@ -79,3 +75,5 @@ var updateMultiHeader = function () {
 
   olapGrid!.Refresh();
 };
+
+export { OnDocumentLoadComplete, OnButtonClick };

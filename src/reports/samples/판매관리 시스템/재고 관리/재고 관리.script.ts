@@ -54,7 +54,7 @@ Matrix.OnDataBindEnd = function(s, e) {
 			});
 		}
 
-		let val = (Matrix.getObject(e.Id) as DataGrid).getRowValue(0, 'UNDER_SAFETY_STOCK_COUNT_VAL');
+		let val = (Matrix.getObject(e.Id) as DataGrid).getRowValue(0, 'UNDER_SAFETY_STOCK_COUNT_VAL') as number;
 		let setColor = val < 0 ? '#ef4444' : '#1e293b';
 
 		(Matrix.getObject('LBL_TOTAL_VAL_3') as Label).Style.Font.Color.SetColor(setColor);
@@ -169,7 +169,7 @@ GRD_STOCK.OnCellDoubleClick = function(s, e) {
 	popup.MoveToCenter();
 };
 
-var setInputValue = function(row) {
+const setInputValue = function(row) {
 	if (row) {
 		VS_INP_PRODUCT.IsReadOnly = true;
 		VS_INP_PRODUCT.Text  = row.GetValue('PROD_NAME');
@@ -185,8 +185,8 @@ var setInputValue = function(row) {
 	}
 };
 
-var isInvalidInput = function(fields, controls?): any {
-	var idx = fields.findIndex(function(v) {
+const isInvalidInput = function(fields, controls?): any {
+	const idx = fields.findIndex(function(v) {
 		return v === null || v === undefined || v === '';
 	});
 	if (idx !== -1 && controls && controls[idx]) {

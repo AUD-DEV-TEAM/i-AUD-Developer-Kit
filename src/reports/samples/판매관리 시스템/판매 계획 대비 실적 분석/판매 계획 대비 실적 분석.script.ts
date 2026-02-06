@@ -9,7 +9,7 @@ let olapGrid: OlapGrid;
 /**************************************
  * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.
  **************************************/
-var OnDocumentLoadComplete = function (sender, args) {
+const OnDocumentLoadComplete = function (sender, args) {
     olapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
 };
 
@@ -19,7 +19,7 @@ var OnDocumentLoadComplete = function (sender, args) {
  *       string  Id (Readonly:False) : 컨트롤이름
  *       number  RecordCount (Readonly:False) : 데이터셋의 레코드 수량
  **************************************/
-var OnDataBindEnd = function (sender, args) {
+const OnDataBindEnd = function (sender, args) {
     if (args.Id === "OlapGrid") {
         // 데이터 바인딩 완료 
     }

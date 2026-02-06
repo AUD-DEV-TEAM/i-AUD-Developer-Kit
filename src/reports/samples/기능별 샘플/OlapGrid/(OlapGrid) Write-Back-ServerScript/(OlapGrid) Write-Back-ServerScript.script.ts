@@ -1,31 +1,15 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
-import { CheckBox } from "@AUD_CLIENT/control/CheckBox";
-import { iGrid } from "@AUD_CLIENT/control/iGrid";
 import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
-import { Button } from "@AUD_CLIENT/control/Button";
 import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
-import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
 declare const Matrix: Matrix;
 
-let btnCalculate: Button;
-let btnUpate: Button;
-let chkEnableCreateRecord: CheckBox;
-let chkManualUpdate: CheckBox;
-let dataGrid: DataGrid;
-let MXGrid: iGrid;
 let olapGrid: OlapGrid;
 let VN_BAEBUN_TYPE: ComboBox;
 let tbxLockCellFormula: RichTextBox;
 
 const initControlVariables = function (): void {
-  btnCalculate = Matrix.getObject("btnCalculate") as Button;
-  btnUpate = Matrix.getObject("btnUpate") as Button;
-  chkEnableCreateRecord = Matrix.getObject("chkEnableCreateRecord") as CheckBox;
-  chkManualUpdate = Matrix.getObject("chkManualUpdate") as CheckBox;
-  dataGrid = Matrix.getObject("DataGrid") as DataGrid;
-  MXGrid = Matrix.getObject("MXGrid") as iGrid;
   olapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
   VN_BAEBUN_TYPE = Matrix.getObject("VN_BAEBUN_TYPE") as ComboBox;
   tbxLockCellFormula = Matrix.getObject("tbxLockCellFormula") as RichTextBox;

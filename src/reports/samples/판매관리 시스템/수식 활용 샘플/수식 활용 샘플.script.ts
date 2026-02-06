@@ -16,7 +16,7 @@ const GRD_SALES : DataGrid = Matrix.getObject("GRD_SALES") as DataGrid;
  *		 string	Id (Readonly:False) : 컨트롤이름
  *		 string	Text (Readonly:False) : 라벨 값
  **************************************/
-var OnButtonClick = function(sender, args) {
+const OnButtonClick = function(sender, args) {
 	switch (args.Id) {
 		case 'BTN_REF':
 			Matrix.doRefresh('');
@@ -31,7 +31,7 @@ var OnButtonClick = function(sender, args) {
  *		 string	Id (Readonly:False) : 컨트롤이름
  *		 number	RecordCount (Readonly:False) : 데이터셋의 레코드 수량
  **************************************/
-var OnDataBindEnd = function(sender, args) {
+const OnDataBindEnd = function(sender, args) {
 	if (args.Id == 'GRD_SALES') {
 		(Matrix.getObject('LBL_GRD_TITLE') as Label).Text = '  매출 실적 데이터 (' + args.RecordCount + '건)';
 	}

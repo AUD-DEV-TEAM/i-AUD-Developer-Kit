@@ -2,25 +2,15 @@ import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
-import { Label } from "@AUD_CLIENT/control/Label";
 import { TextBox } from "@AUD_CLIENT/control/TextBox";
-import { Button } from "@AUD_CLIENT/control/Button";
 
 declare const Matrix: Matrix;
-/*****************************
- *
- *****************************/
 
 const tbxDebug: RichTextBox = Matrix.getObject("tbxDebug") as RichTextBox;
 const olapGrid: OlapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
 const cboOperator: ComboBox = Matrix.getObject("cboOperator") as ComboBox;
 const cboFields: ComboBox = Matrix.getObject("cboFields") as ComboBox;
-const label: Label = Matrix.getObject("Label") as Label;
-const label1: Label = Matrix.getObject("Label1") as Label;
-const label2: Label = Matrix.getObject("Label2") as Label;
 const tbxValues: TextBox = Matrix.getObject("tbxValues") as TextBox;
-const btnExecute: Button = Matrix.getObject("btnExecute") as Button;
-const label3: Label = Matrix.getObject("Label3") as Label;
 
 /** OlapGrid 필드를 데이터 셋으로 생성합니다.  */
 const bindOlapFields = function (): void {
