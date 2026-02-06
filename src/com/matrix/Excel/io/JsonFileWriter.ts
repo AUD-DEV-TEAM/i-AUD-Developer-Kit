@@ -28,7 +28,7 @@
 *
 * var writer = res.getJsonResponseWriter();
 * writer.beginArray();
-* con.ExecuteDataTable(sql, CALL_BACK(function(row) {
+* con.ExecuteDataTable(sql, function(row) {
 *     var rs = row.getDataTable();
 *     writer.beginObject();
 *     for (var c = 0, len = rs.getColumnCount(); c < len; c++) {
@@ -37,7 +37,7 @@
 *     }
 *     writer.endObject();
 *     return null; // 다음 row 읽기
-* }));
+* });
 * writer.endArray();
 * writer.close();
 * con.DisConnect();

@@ -35,7 +35,6 @@ import { ScriptSession } from "@AUD_SERVER/matrix/script/ScriptSession";
 import { ScriptQueryGenerator } from "@AUD_SERVER/matrix/script/ScriptQueryGenerator";
 
 // 필수 변수 선언 (삭제/수정 금지)
-let CALL_BACK: Function;
 let Matrix: Matrix;
 
 // 핵심 객체 초기화
@@ -383,14 +382,14 @@ try {
 
 ```typescript
 // 행 단위 처리 (메모리 절약)
-con.ExecuteDataTable(sql, CALL_BACK(function(row) {
+con.ExecuteDataTable(sql, function(row) {
     let table = row.getDataTable();
     let value = row.getString("COLUMN");
 
     // 처리 로직...
 
     return null;  // null: 다음 행, true: 테이블에 추가, false: 종료
-}));
+});
 ```
 
 ### 비동기 테이블

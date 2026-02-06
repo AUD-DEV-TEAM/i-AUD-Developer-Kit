@@ -70,13 +70,13 @@ export interface ScriptDataTable{
    *
   * @param callbackRow 콜백 함수
   * ```
-  * 
-  *                     CALL_BACK(function(row){
+  *
+  *                     function(row){
   *                     //row == com.matrix.script.ScriptDataRow
   *                     //return true : 해당 row 를 데이터 테이블에 추가
   *                     //      false : 엑셀 파일 읽기 종료
   *                     //       null : 다음 row 읽기
-  *               })
+  *               }
   * ```
   */
   FetchRows(callbackRow: (row: ScriptDataRow )=>boolean|null): void;

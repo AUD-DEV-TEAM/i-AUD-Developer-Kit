@@ -153,13 +153,13 @@ export interface ScriptPreparedStatement{
    * 	
    * 	//파일 읽기
    * 	if(fileExt.toLowerCase() == "xlsx"){
-   * 		util.ReadExcelFile(path , CALL_BACK(function(row){
+   * 		util.ReadExcelFile(path , function(row){
    * 									return PROCESS_ROW(row);
-   * 								}));
+   * 								});
    * 	}else{  
-   * 		util.ReadCSVFile(path ,false ,"," ,"\n" , CALL_BACK(function(row){
+   * 		util.ReadCSVFile(path ,false ,"," ,"\n" , function(row){
    * 													return PROCESS_ROW(row);
-   * 												}));
+   * 												});
    * 	}		
    * 		
    * 	stmt.executeBatch(); // 배치 실행
@@ -199,13 +199,13 @@ export interface ScriptPreparedStatement{
    *
   * @param callbackRow 파일의 Row 단위 데이터 처리 함수
   * ```
-  * 
-  *                     CALL_BACK(function(row){
+  *
+  *                     function(row){
   *                     //row == com.matrix.script.ScriptDataRow
   *                     //return true : 해당 row 를 데이터 테이블에 추가
   *                     //      false : 엑셀 파일 읽기 종료
   *                     //       null : 다음 row 읽기
-  *               })
+  *               }
   * ```
   */
   executeQuery(callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;

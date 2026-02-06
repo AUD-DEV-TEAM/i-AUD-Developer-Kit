@@ -143,9 +143,9 @@ DataTable의 결과 데이터가 많은 경우 서버 메모리 점유 문제를
    * 	writer.beginArray();
    *   	//쿼리를 실행 후 Row 단위로 반복 작업 수행
    * 	//데이터를 메모리에 적재하지 않으므로 대용량 처리시 적합함.
-   * 	con.ExecuteDataTable(sql 
-   * 						,CALL_BACK(function(row){
-   *                            var rs = row.getDataTable();     
+   * 	con.ExecuteDataTable(sql
+   * 						,function(row){
+   *                            var rs = row.getDataTable();
    * 						   var name;
    * 						   var data;
    * 						   writer.beginObject();
@@ -155,7 +155,7 @@ DataTable의 결과 데이터가 많은 경우 서버 메모리 점유 문제를
    * 						   }
    * 						   writer.endObject();
    * 						   return null;//다음 row 읽기
-   *                         }));
+   *                         });
    *   	writer.endArray();
    * 	writer.close();
    * 	

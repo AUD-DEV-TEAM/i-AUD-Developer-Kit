@@ -231,12 +231,12 @@ e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
    * //e.g. http://127.0.0.1:8080/webquery/un_drm.jsp
    * util.DecryptDRM(XLS_PATH);
    * 
-   * var table = util.ReadExcelFile(XLS_PATH ,CALL_BACK(function(row){
+   * var table = util.ReadExcelFile(XLS_PATH ,function(row){
    *                        if(row.getData("CODE")){
    * 					   		return true;//행을 테이블에 추가
    * 					   }
    * 					   return null;// : 다음 row 읽기
-   *                   }));
+   *                   });
    * ```
   * @param encryptedFilePath  DRM 해제할 파일의 경로
   */
@@ -422,12 +422,12 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   * @param callbackRow 파일의 Row 단위 데이터 반환 함수
   * ```
   * 
-  *       CALL_BACK(function(row){
+  *       function(row){
   *       //row == com.matrix.script.ScriptDataRow
   *       //return true : 해당 row 를 데이터 테이블에 추가
   *       //      false : 엑셀 파일 읽기 종료
   *       //       null : 다음 row 읽기
-  * })
+  * }
   * ```
   */
   ReadCSVFile(path: string, firstLineIsColumnHeader: boolean, colSeparator: string, rowSeparator: string, defColumns: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
@@ -468,7 +468,7 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    *
    * // CSV 읽기: 첫 행=헤더, 구분자=콤마, 줄바꿈=\n
    * var table = util.ReadCSVFile(csvPath, true, ",", "\n",
-   *     CALL_BACK(function(row) {
+   *     function(row) {
    *         // 빈 행 건너뛰기
    *         if (!row.getData("NAME")) return null;
    *
@@ -481,7 +481,7 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    *         // 500건 단위로 배치 실행
    *         if (rowCount % 500 == 0) stmt.executeBatch();
    *         return null; // 다음 row 읽기
-   *     }));
+   *     });
    *
    * stmt.executeBatch();
    * con.CommitTransaction();
@@ -515,12 +515,12 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   * @param callbackRow 파일의 Row 단위 데이터 반환 함수
   * ```
   * 
-  *       CALL_BACK(function(row){
+  *       function(row){
   *       //row == com.matrix.script.ScriptDataRow
   *       //return true : 해당 row 를 데이터 테이블에 추가
   *       //      false : 엑셀 파일 읽기 종료
   *       //       null : 다음 row 읽기
-  * })
+  * }
   * ```
   */
   ReadCSVFile(path: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
@@ -560,7 +560,7 @@ ReadExcelFile(path, callbackRow)을 사용하십시요.
    * var defColumns = "CODE;S|NAME;S|QTY;N|PRICE;N";
    *
    * var table = util.ReadExcelFile(xlsPath, defColumns,
-   *     CALL_BACK(function(row) {
+   *     function(row) {
    *         // CODE가 비어있으면 건너뛰기
    *         if (!row.getData("CODE")) return null;
    *
@@ -573,7 +573,7 @@ ReadExcelFile(path, callbackRow)을 사용하십시요.
    *
    *         if (rowCount % 500 == 0) stmt.executeBatch();
    *         return null; // 다음 row 읽기
-   *     }));
+   *     });
    *
    * stmt.executeBatch();
    * con.CommitTransaction();
@@ -605,12 +605,12 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param callbackRow 파일의 Row 단위 데이터 반환 함수
   * ```
   * 
-  *       CALL_BACK(function(row){
+  *       function(row){
   *       //row == com.matrix.script.ScriptDataRow
   *       //return true : 해당 row 를 데이터 테이블에 추가
   *       //      false : 엑셀 파일 읽기 종료
   *       //       null : 다음 row 읽기
-  * })
+  * }
   * ```
   */
   ReadExcelFile(path: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
@@ -629,12 +629,12 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
    * // 특정 영역을 지정하고자 하면 'Sheet1'!C1:D3 와 같이 엑셀의 영역 주소를 입력합니다.
    * var range = "Sheet1'!A1"; 
    * var options = ["ColumnHeader=false"];//컬럼명이 첫번째 줄에 포함되지 않은 경우 자동으로 컬럼명을 생성합니다.
-   * var table = util.ReadExcelToDataTable(path ,range ,options ,CALL_BACK(function(row){
+   * var table = util.ReadExcelToDataTable(path ,range ,options ,function(row){
    *                                                //row == com.matrix.script.ScriptDataRow
    *                                                //return true : 해당 row 를 데이터 테이블에 추가
    *                                                //      false : 엑셀 파일 읽기 종료
    *                                                //       null : 다음 row 읽기
-   *                                          }));
+   *                                          });
    * 										 
    * ```
   * @param path 엑셀 파일의 경로
@@ -643,12 +643,12 @@ ReadExcelFile(path, defColumns, callbackRow)을 사용하십시요.
   * @param callbackRow 파일의 Row 단위 데이터 반환 함수
   * ```
   * 
-  *       CALL_BACK(function(row){
+  *       function(row){
   *       //row == com.matrix.script.ScriptDataRow
   *       //return true : 해당 row 를 데이터 테이블에 추가
   *       //      false : 엑셀 파일 읽기 종료
   *       //       null : 다음 row 읽기
-  * })
+  * }
   * ```
   */
   ReadExcelToDataTable(path: string, range: string, options: string[], callbackRow: Function): ScriptDataTable;

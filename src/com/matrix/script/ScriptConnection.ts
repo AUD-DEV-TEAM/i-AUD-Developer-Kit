@@ -67,9 +67,9 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    * 	writer.beginArray();
    *   	//쿼리를 실행 후 Row 단위로 반복 작업 수행
    * 	//데이터를 메모리에 적재하지 않으므로 대용량 처리시 적합함.
-   * 	con.ExecuteDataTable(sql 
-   * 						,CALL_BACK(function(row){
-   *                            var rs = row.getDataTable();     
+   * 	con.ExecuteDataTable(sql
+   * 						,function(row){
+   *                            var rs = row.getDataTable();
    * 						   var name;
    * 						   var data;
    * 						   writer.beginObject();
@@ -79,7 +79,7 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    * 						   }
    * 						   writer.endObject();
    * 						   return null;//다음 row 읽기
-   *                         }));
+   *                         });
    *   	writer.endArray();
    * 	writer.close();
    * 	
@@ -101,13 +101,13 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   * @param sql 실행 쿼리
   * @param callbackRow 파일의 Row 단위 데이터 처리 함수
   * ```
-  * 
-  *                     CALL_BACK(function(row){
+  *
+  *                     function(row){
   *                     //row == com.matrix.script.ScriptDataRow
   *                     //return true : 해당 row 를 데이터 테이블에 추가
   *                     //      false : 엑셀 파일 읽기 종료
   *                     //       null : 다음 row 읽기
-  *               })
+  *               }
   * ```
   */
   ExecuteDataTable(sql: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;

@@ -12,13 +12,13 @@ export interface ScrpitCallableStatement extends ScriptPreparedStatement{
    *
   * @param callbackRow 파일의 Row 단위 데이터 처리 함수
   * ```
-  * 
-  *                     CALL_BACK(function(row){
+  *
+  *                     function(row){
   *                     //row == com.matrix.script.ScriptDataRow
   *                     //return true : 해당 row 를 데이터 테이블에 추가
   *                     //      false : 엑셀 파일 읽기 종료
   *                     //       null : 다음 row 읽기
-  *               })
+  *               }
   * ```
   */
   FetchTable(callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
@@ -102,13 +102,13 @@ export interface ScrpitCallableStatement extends ScriptPreparedStatement{
   * @param paramName 파라미터 명
   * @param callbackRow 파일의 Row 단위 데이터 처리 함수
   * ```
-  * 
-  *                     CALL_BACK(function(row){
+  *
+  *                     function(row){
   *                     //row == com.matrix.script.ScriptDataRow
   *                     //return true : 해당 row 를 데이터 테이블에 추가
   *                     //      false : 엑셀 파일 읽기 종료
   *                     //       null : 다음 row 읽기
-  *               })
+  *               }
   * ```
   */
   getDataTable(paramName: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
@@ -126,13 +126,13 @@ export interface ScrpitCallableStatement extends ScriptPreparedStatement{
   * @param idx 파라미터 인덱스
   * @param callbackRow 파일의 Row 단위 데이터 처리 함수
   * ```
-  * 
-  *                     CALL_BACK(function(row){
+  *
+  *                     function(row){
   *                     //row == com.matrix.script.ScriptDataRow
   *                     //return true : 해당 row 를 데이터 테이블에 추가
   *                     //      false : 엑셀 파일 읽기 종료
   *                     //       null : 다음 row 읽기
-  *               })
+  *               }
   * ```
   */
   getDataTable(idx: number, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;

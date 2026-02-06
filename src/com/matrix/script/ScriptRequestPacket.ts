@@ -14,18 +14,18 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    *
    * @example
    * ```js
-   * 		var req = Matrix.getRequest();  
+   * 		var req = Matrix.getRequest();
    * 		req.ExecuteReportDataSource("Data1"
-   *   			,CALL_BACK(function(row){				
+   *   			,function(row){
    * 				//테이블 객체 반환
-   * 				var rowTable = row.getDataTable();				
+   * 				var rowTable = row.getDataTable();
    * 				for(var i=0,i<rowTable.getColumnCount(); i++){
    * 					var value = row.getString(i);
    * 				}
    * 				//다음행 읽기 계속
    * 			   	return null;
-   * 			   
-   *          }));
+   *
+   *          });
    * ```
   * @param key 데이터 소스 명 or 아이디
   */
@@ -39,13 +39,13 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
   * @param key 데이터 소스 명 or 아이디
   * @param callbackRow 파일의 Row 단위 데이터 처리 함수
   * ```
-  * 
-  *                     CALL_BACK(function(row){
+  *
+  *                     function(row){
   *                     //row == com.matrix.script.ScriptDataRow
   *                     //return true : 해당 row 를 데이터 테이블에 추가
   *                     //      false : 엑셀 파일 읽기 종료
   *                     //       null : 다음 row 읽기
-  *               })
+  *               }
   * ```
   */
   ExecuteReportDataSource(key: string, callbackRow: (row: ScriptDataRow )=>boolean|null): ScriptDataTable;
