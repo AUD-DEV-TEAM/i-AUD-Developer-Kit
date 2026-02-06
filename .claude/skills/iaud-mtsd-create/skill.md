@@ -22,6 +22,34 @@ MTSD (.mtsd) 파일은 i-AUD 보고서의 화면 UI 배치, 데이터소스, 서
 | `validate_part` | 부분 검증 (Element, DataSource 등 개별 검증) |
 | `fix_mtsd` | MTSD 파일 자동 보정 (파일 경로 입력 → 읽고 수정 후 덮어쓰기) |
 
+### ID 생성 규칙 (UUID 형식)
+
+MTSD 문서에서 사용하는 모든 **Id** 값은 **접두사 + 32자리 대문자 HEX** (UUID without dashes) 형식을 따릅니다.
+
+| 항목 | 접두사 | 예시 |
+|------|--------|------|
+| ReportCode | `REP` | `REP2EDC58234142492D8829411E8C0FD90B` |
+| DataSource Id | `DS` | `DS902D12727EFC4373A2BCA30935FC6109` |
+| Form Id | `Form` | `FormD64B8652095A4B9798E93B38EDBCCCD4` |
+| Element Id | `{타입명}` | `Group2B4BD0E69A92CDBCD029B105CA49D457` |
+|  |  | `DataGridF080EDCACB22D1D56A21D1B1E3AE9017` |
+|  |  | `LabelA9693D8ACAE63C7AEDBE7AA0D37A9CEB` |
+|  |  | `Button31C6D3784F6E49F90EE81B75752BC500` |
+|  |  | `TextBoxDA3777D9E0B17780BCB31B58D859EA40` |
+|  |  | `ComboBox974223E5E3F8F649965F6D538A2B02D5` |
+
+> **Id vs Name 구분**:
+> - **Id**: 시스템 내부 식별자 → 반드시 `접두사 + UUID(32 HEX)` 형식
+> - **Name**: 사람이 읽는 이름 → `GRP_HEADER`, `GRD_SALES`, `BTN_SEARCH` 등 의미 있는 이름 사용
+
+> **중요**: `REPSALESPERF0001...`, `REPMYREPORT...` 같은 의미 있는 문자열을 Id에 사용하지 마세요. 반드시 랜덤 UUID를 생성합니다.
+
+**UUID HEX 생성 방법** (32자리 랜덤 대문자 HEX):
+```javascript
+crypto.randomUUID().replace(/-/g, '').toUpperCase()
+// 결과: "2EDC58234142492D8829411E8C0FD90B"
+```
+
 ---
 
 ## 2. MTSD 루트 구조 템플릿
@@ -452,7 +480,7 @@ WHERE STATUS = :VS_STATUS              -- 문자열 바인딩 (자동 따옴표 
 
 ## 8. 주의사항
 
-1. **ID 명명 규칙**: `{타입약어}_{용도}` (예: `LBL_TTL`, `BTN_SEARCH`, `GRD_MAIN`, `GRP_HEADER`, `CMB_STATUS`)
+1. **ID/Name 규칙**: Id는 `{타입접두사}` + 32자리 UUID HEX (예: `LabelA9693D8ACAE63C7AEDBE7AA0D37A9CEB`). Name은 `{타입약어}_{용도}` 형식의 의미 있는 이름 (예: `LBL_TTL`, `BTN_SEARCH`, `GRD_MAIN`). ReportCode는 `REP` + UUID, DataSource Id는 `DS` + UUID, Form Id는 `Form` + UUID. 상세 규칙은 섹션 1의 "ID 생성 규칙" 참조
 2. **Group 내 Element**: Group의 `ChildElements[]`에 넣고, 자식 Element에 `"InGroup": "그룹ID"` 설정
 3. **DataGrid.DataSource**: DataSource의 `Id` 값이 아닌 `Name` 값을 사용
 4. **MCP 검증 + 자동 보정 필수**: MTSD 파일을 **생성 또는 수정할 때마다** `validate_mtsd`로 전체 검증 후 `fix_mtsd`로 자동 보정을 수행합니다. `fix_mtsd`는 파일 경로를 받아 직접 파일을 수정하므로 반드시 Write/Edit 이후에 실행합니다.
