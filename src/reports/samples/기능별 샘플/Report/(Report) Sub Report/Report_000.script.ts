@@ -1,7 +1,7 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 const RichTextBox: RichTextBox = Matrix.getObject("RichTextBox") as RichTextBox;
 
@@ -18,8 +18,4 @@ const OnDocumentLoadComplete = function(_sender: any, _args: any): void {
 	for (let i = 0; i < getParam.length; i++) {
 		RichTextBox.Text += getParam[i].Name + " : " + getParam[i].Value + "\n";
 	}
-};
-
-export {
-	OnDocumentLoadComplete
 };

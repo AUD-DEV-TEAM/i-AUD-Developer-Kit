@@ -4,7 +4,7 @@ import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
 import { TextBox } from "@AUD_CLIENT/control/TextBox";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 const tbxDebug: RichTextBox = Matrix.getObject("tbxDebug") as RichTextBox;
 const olapGrid: OlapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
@@ -127,6 +127,3 @@ const OnButtonClick = function (_sender: object, args: { Id: string; Text: strin
     setOlapFieldFilter();
   }
 };
-
-// Export event handlers for i-AUD runtime
-export { OnDocumentLoadComplete, OnComboBoxValueChanged, OnButtonClick };

@@ -1,6 +1,6 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 declare const parent: any;
 declare const top: any;
 
@@ -60,8 +60,4 @@ const getParameterList = function(ctrlNames: string[]): any[] {
 	}
 
 	return params;
-};
-
-export {
-	OnButtonClick
 };

@@ -826,16 +826,3 @@ const OnRadioValueChange = function (sender: any, args: any): void {
 };
 
 // Export event handlers for i-AUD runtime
-export {
-  OnDocumentLoadComplete,
-  OnLoadComplete,
-  OnNewReportWizardChanged,
-  OnExecuteStart,
-  OnMetaLayoutChange,
-  OnDataBindEnd,
-  OnStartExport,
-  OnImageClick,
-  OnOlapViewDataCellDoubleClick,
-  OnExcelExportStart,
-  OnRadioValueChange,
-};

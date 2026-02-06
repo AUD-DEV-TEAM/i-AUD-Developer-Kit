@@ -7,7 +7,7 @@ import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 let btnCalculate: Button;
 let btnUpate: Button;
@@ -199,13 +199,4 @@ const OnOlapDataCellEndEdit = function (_sender: unknown, args: OlapDataCellEndE
       "i-AUD"
     );
   }
-};
-
-export {
-  OnDocumentLoadComplete,
-  OnButtonClick,
-  OnComboBoxValueChanged,
-  OnCheckValueChange,
-  OnOlapDataCellStartEdit,
-  OnOlapDataCellEndEdit
 };

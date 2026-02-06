@@ -142,12 +142,3 @@ const OnOlapDataCellEndEdit = function (_sender: any, args: any): void {
     );
   }
 };
-
-export {
-  OnDocumentLoadComplete,
-  OnButtonClick,
-  OnComboBoxValueChanged,
-  OnCheckValueChange,
-  OnOlapDataCellStartEdit,
-  OnOlapDataCellEndEdit,
-};

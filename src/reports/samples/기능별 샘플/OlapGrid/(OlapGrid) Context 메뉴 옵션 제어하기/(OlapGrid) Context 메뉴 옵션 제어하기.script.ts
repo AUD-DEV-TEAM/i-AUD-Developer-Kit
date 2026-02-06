@@ -3,7 +3,7 @@ import { CheckBox } from "@AUD_CLIENT/control/CheckBox";
 import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 /*****************************
  * OlapGrid의 Context Menu  API 샘플
  *****************************/
@@ -44,5 +44,3 @@ const OnCheckValueChange = function (sender: any, args: any): void {
 		}
 	}
 };
-
-export { OnCheckValueChange };

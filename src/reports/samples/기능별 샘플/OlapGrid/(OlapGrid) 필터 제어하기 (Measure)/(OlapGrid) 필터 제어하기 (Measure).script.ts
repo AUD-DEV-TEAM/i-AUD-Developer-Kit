@@ -5,7 +5,7 @@ import { Button } from "@AUD_CLIENT/control/Button";
 import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 /*****************************
  * OlapGrid 메져 필드의 필터 제어 하기
  *****************************/

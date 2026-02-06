@@ -1,5 +1,4 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
-import { ScriptConnection } from "@AUD_SERVER/matrix/script/ScriptConnection";
 
 // 필수 변수
 let CALL_BACK: Function;

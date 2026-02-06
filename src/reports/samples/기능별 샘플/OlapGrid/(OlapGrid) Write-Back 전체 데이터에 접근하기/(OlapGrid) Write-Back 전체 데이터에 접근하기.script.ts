@@ -3,7 +3,7 @@ import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
 import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 let olapGrid: OlapGrid;
 let VN_BAEBUN_TYPE: ComboBox;
@@ -172,13 +172,4 @@ const OnOlapDataCellEndEdit = function (_sender: unknown, args: OlapDataCellEndE
       "i-AUD"
     );
   }
-};
-
-export {
-  OnDocumentLoadComplete,
-  OnButtonClick,
-  OnComboBoxValueChanged,
-  OnCheckValueChange,
-  OnOlapDataCellStartEdit,
-  OnOlapDataCellEndEdit
 };

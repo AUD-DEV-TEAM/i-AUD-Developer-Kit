@@ -3,7 +3,7 @@ import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
 import { AddIn } from "@AUD_CLIENT/control/AddIn";
 import { SmartEditor } from "@AUD_CLIENT/ext/SmartEditor";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 /**
  * SmartEditor Addin 컴포넌트 샘플
  */
@@ -43,4 +43,3 @@ const OnButtonClick = function(_sender: any, args: any): void {
 		articleViewer.SetValue(TXT_HTML.Text);
 	}
 };
- 

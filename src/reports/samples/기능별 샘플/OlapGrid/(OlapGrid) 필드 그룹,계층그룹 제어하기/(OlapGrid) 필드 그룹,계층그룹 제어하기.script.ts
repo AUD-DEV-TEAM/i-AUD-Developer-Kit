@@ -3,7 +3,7 @@ import { TextBox } from "@AUD_CLIENT/control/TextBox";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 import { OlapField } from "@AUD_CLIENT/control/olap/OlapField";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 /*****************************
  * OLAP 필드 그룹, 계층 그룹 제어하기
  *****************************/
@@ -61,5 +61,3 @@ const OnButtonClick = function (sender: any, args: any): void {
 
 	}
 };
-
-export { OnButtonClick };

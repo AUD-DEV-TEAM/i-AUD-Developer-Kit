@@ -8,8 +8,13 @@ import { Group } from "@AUD_CLIENT/control/Group";
 import { Chart } from "@AUD_CLIENT/control/Chart";
 import { TableLayout } from "@AUD_CLIENT/control/table/TableLayout";
 
-declare const Matrix: Matrix;
-declare const parent: any;
+let Matrix: Matrix;
+
+interface IStudioConfig {
+	DataGridTextExportColSeparator: string;
+	DataGridTextExportRowSeparator: string;
+}
+let parent: { iStudioConfig?: IStudioConfig };
 
 /*
  * script name    : DataList Template
@@ -24,8 +29,8 @@ let chartCellHeight = 250;
 let firstLoading = false;
 
 // controls
-let Chart: Chart | null = null;
-let DataGrid: DataGrid | null = null;
+let chart: Chart | null = null;
+let dataGrid: DataGrid | null = null;
 let GRP_CONDITION: Group | null = null;
 let imgchart: Image | null = null;
 let imgMeta: Image | null = null;
@@ -35,7 +40,7 @@ let rdoHWP: RadioButton | null = null;
 let rdoText: RadioButton | null = null;
 let rdoWord: RadioButton | null = null;
 let rdoXlsx: RadioButton | null = null;
-let TableLayout: TableLayout | null = null;
+let tableLayout: TableLayout | null = null;
 let tbxReportName: Label | null = null;
 
 let grpSeperate: Group | null = null;
@@ -57,8 +62,8 @@ const initControlVariables = function(): void {
 	const allElements = Matrix.getAllObjects();
 	allElements.forEach(function(ele: any, _idx: number): void {
 		switch (ele.Name) {
-			case "Chart": Chart = ele; break;
-			case "DataGrid": DataGrid = ele; break;
+			case "Chart": chart = ele; break;
+			case "DataGrid": dataGrid = ele; break;
 			case "GRP_CONDITION": GRP_CONDITION = ele; break;
 			case "imgchart": imgchart = ele; break;
 			case "imgMeta": imgMeta = ele; break;
@@ -68,7 +73,7 @@ const initControlVariables = function(): void {
 			case "rdoText": rdoText = ele; break;
 			case "rdoWord": rdoWord = ele; break;
 			case "rdoXlsx": rdoXlsx = ele; break;
-			case "TableLayout": TableLayout = ele; break;
+			case "TableLayout": tableLayout = ele; break;
 			case "tbxReportName": tbxReportName = ele; break;
 			case "grpSeperate": grpSeperate = ele; break;
 			case "ColumnSeperator": ColumnSeperator = ele; break;
@@ -83,7 +88,7 @@ const initControlVariables = function(): void {
 *****************************************/
 const OnDocumentLoadComplete = function(_sender: any, _args: any): void {
 	initControlVariables();
-	const chartCell = TableLayout!.GetCell(0, 0);
+	const chartCell = tableLayout!.GetCell(0, 0);
 	if (chartCell.Row.Height > 0) {
 		chartToggle = true;
 	}
@@ -102,11 +107,11 @@ const OnDocumentLoadComplete = function(_sender: any, _args: any): void {
 *****************************************/
 const OnLoadComplete = function(_sender: any, _args: any): void {
 	try {
-		if (Matrix.getControlDataSource(DataGrid!.Name) == null) {
+		if (Matrix.getControlDataSource(dataGrid!.Name) == null) {
 			// Meta를 GRID_NAME 컨트롤에 바인딩
-			Matrix.TemplateLoadedSetting(DataGrid!.Name);
+			Matrix.TemplateLoadedSetting(dataGrid!.Name);
 			makeMetaFilters(true);
-			const ds = Matrix.getControlDataSource(DataGrid!.Name);
+			const ds = Matrix.getControlDataSource(dataGrid!.Name);
 			if (ds != null) {
 				if ((tbxReportName as Label).Text == "") {
 					(tbxReportName as Label).Text = "  " + (ds as any).name;
@@ -119,7 +124,7 @@ const OnLoadComplete = function(_sender: any, _args: any): void {
 };
 
 const OnNewReportWizardChanged = function(_sender: any, args: any): void {
-	Matrix.TemplateLoadedSetting(DataGrid!.Name);
+	Matrix.TemplateLoadedSetting(dataGrid!.Name);
 	makeMetaFilters(true);
 	args.Handled = true;
 };
@@ -144,7 +149,7 @@ const makeMetaFilters = function(isLoading: boolean): void {
 
 const Execute = function(isLoading: boolean): void {
 	firstLoading = isLoading;
-	Matrix.doRefresh(DataGrid!.Name);
+	Matrix.doRefresh(dataGrid!.Name);
 };
 
 /*****************************************
@@ -157,7 +162,7 @@ const Execute = function(isLoading: boolean): void {
 const OnExecuteStart = function(_sender: any, args: any): void {
 	if (args.IsAutoRefresh) return;
 	try {
-		const result = Matrix.ValidateMetaFilterValues(DataGrid!.Name);
+		const result = Matrix.ValidateMetaFilterValues(dataGrid!.Name);
 		if (result != "") {
 			args.Cancel = true;
 			if (!firstLoading)
@@ -185,10 +190,10 @@ const OnMetaLayoutChange = function(_sender: any, args: any): void {
 *****************************************/
 const OnImageClick = function(_sender: any, args: any): void {
 	if (args.Id == "imgMeta") {
-		const meta = (Matrix as any).getMetaController(DataGrid!.Name);
+		const meta = (Matrix as any).getMetaController(dataGrid!.Name);
 		meta.ShowModal();
 	} else if (args.Id == "imgchart") {
-		const chartCell = TableLayout!.GetCell(0, 0);
+		const chartCell = tableLayout!.GetCell(0, 0);
 		if (chartToggle) {
 			chartCellHeight = chartCell.Row.Height;
 			chartCell.Row.Height = 0;
@@ -197,7 +202,7 @@ const OnImageClick = function(_sender: any, args: any): void {
 			chartCell.Row.Height = chartCellHeight;
 			chartToggle = true;
 		}
-		TableLayout!.Update();
+		tableLayout!.Update();
 	}
 };
 
@@ -235,7 +240,7 @@ const OnExcelExportStart = function(_sender: any, _args: any): void {
 
 const exportFile = function(type: string): void {
 	const nowText = Matrix.GetDateTime().ToString("yyyy-MM-dd HH:mm:ss");
-	const columnCount = DataGrid!.GetColumnCount();
+	const columnCount = dataGrid!.GetColumnCount();
 	let colspan = columnCount;
 	if (type == "xlsx") colspan = Math.min(columnCount, 13);
 
@@ -274,15 +279,15 @@ const exportFile = function(type: string): void {
 
 	if (chartToggle) {
 		try {
-			chartToggle = Chart!.GetDataSet().GetTableCount() > 0;
+			chartToggle = chart!.GetDataSet().GetTableCount() > 0;
 		} catch (e) { chartToggle = false; }
 	}
 	if (chartToggle) {
-		WORKBOOK.WorkSheets[0].Controls.push({ "Name": Chart!.Name, "Range": "A" + startRow + ":" + getColumnName(colspan) + (startRow + 10), "ImageExport": true });
+		WORKBOOK.WorkSheets[0].Controls.push({ "Name": chart!.Name, "Range": "A" + startRow + ":" + getColumnName(colspan) + (startRow + 10), "ImageExport": true });
 		WORKBOOK.WorkSheets[0].Ranges.push({ "Range": "A" + startRow, "ColSpan": colspan, "RowSpan": 11 });
-		WORKBOOK.WorkSheets[0].Controls.push({ "Name": DataGrid!.Name, "Range": "A" + (startRow + 12) });
+		WORKBOOK.WorkSheets[0].Controls.push({ "Name": dataGrid!.Name, "Range": "A" + (startRow + 12) });
 	} else {
-		WORKBOOK.WorkSheets[0].Controls.push({ "Name": DataGrid!.Name, "Range": "A" + (startRow) });
+		WORKBOOK.WorkSheets[0].Controls.push({ "Name": dataGrid!.Name, "Range": "A" + (startRow) });
 	}
 
 	if ("xlsx" == type) {
@@ -387,15 +392,4 @@ const OnRadioValueChange = function(_sender: any, args: any): void {
 		default:
 			grpSeperate!.Visible = false;
 	}
-};
-
-export {
-	OnDocumentLoadComplete,
-	OnLoadComplete,
-	OnNewReportWizardChanged,
-	OnExecuteStart,
-	OnMetaLayoutChange,
-	OnImageClick,
-	OnExcelExportStart,
-	OnRadioValueChange
 };

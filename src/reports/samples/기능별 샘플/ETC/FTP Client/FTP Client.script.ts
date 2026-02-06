@@ -135,4 +135,4 @@ const readFolders = function(){
 									, true);
                                });
 	}
- }; 
+ };

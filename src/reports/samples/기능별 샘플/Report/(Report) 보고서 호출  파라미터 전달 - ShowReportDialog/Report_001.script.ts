@@ -1,6 +1,6 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 const ctrls = ["TextBox", "NumberBox", "Calendar", "CalendarYMFromTo"];
 
@@ -74,8 +74,4 @@ const getParameterList = function(ctrlNames: string[]): any[] {
 	}
 
 	return params;
-};
-
-export {
-	OnButtonClick
 };

@@ -5,7 +5,7 @@ import { TextBox } from "@AUD_CLIENT/control/TextBox";
 import { RadioButton } from "@AUD_CLIENT/control/RadioButton";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 /*****************************
  * i-AUD Client Sample
  *****************************/

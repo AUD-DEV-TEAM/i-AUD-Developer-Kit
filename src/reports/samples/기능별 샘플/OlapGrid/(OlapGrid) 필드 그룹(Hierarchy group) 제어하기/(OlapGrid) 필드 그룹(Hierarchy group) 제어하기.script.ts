@@ -2,7 +2,7 @@ import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { TextBox } from "@AUD_CLIENT/control/TextBox";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 
 let olapGrid: OlapGrid | null = null;
 let tbxFieldNames: TextBox | null = null;
@@ -45,5 +45,3 @@ const OnButtonClick = function (_sender: any, args: any): void {
     olapGrid!.Refresh();
   }
 };
-
-export { OnButtonClick };

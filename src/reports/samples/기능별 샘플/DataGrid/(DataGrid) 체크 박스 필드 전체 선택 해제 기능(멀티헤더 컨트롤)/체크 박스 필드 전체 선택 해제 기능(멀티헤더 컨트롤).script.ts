@@ -1,7 +1,7 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 const DataGrid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
 
@@ -27,5 +27,3 @@ const OnCheckValueChange = function(_sender: any, args: any): void {
 		grid.Update();
 	}
 };
-
-export { OnCheckValueChange };

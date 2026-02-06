@@ -70,4 +70,3 @@ Matrix.OnDocumentLoadComplete = function (sender, args) {
         debugBox.Text += "\nColumnHeader Path = " + readHeaderPath(dataCell.ColumnHeader);
     };
 };
- 

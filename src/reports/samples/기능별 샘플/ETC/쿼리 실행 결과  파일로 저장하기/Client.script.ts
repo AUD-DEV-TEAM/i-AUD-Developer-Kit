@@ -22,4 +22,4 @@ btnExport.OnClick = function(sender,args){
 								Matrix.DownloadFile(folderName ,fileName , saveName +".csv", true);
                                });
  
- }; 
+ };

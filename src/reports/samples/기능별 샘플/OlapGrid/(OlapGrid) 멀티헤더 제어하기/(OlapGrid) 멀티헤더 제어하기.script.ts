@@ -1,7 +1,7 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 
 let olapGrid: OlapGrid | null = null;
 
@@ -75,5 +75,3 @@ const updateMultiHeader = function (): void {
 
   olapGrid!.Refresh();
 };
-
-export { OnDocumentLoadComplete, OnButtonClick };

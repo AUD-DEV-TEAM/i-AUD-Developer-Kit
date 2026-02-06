@@ -1,7 +1,7 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 const OLAP_EXPORT: OlapGrid = Matrix.getObject("OLAP_EXPORT") as OlapGrid;
 
@@ -152,9 +152,4 @@ const OnTreeNodeClick = function(_sender: any, args: any): void {
 			args.Node.ExpandCollapsed();
 		}
 	}
-};
-
-export {
-	OnButtonClick,
-	OnTreeNodeClick
 };

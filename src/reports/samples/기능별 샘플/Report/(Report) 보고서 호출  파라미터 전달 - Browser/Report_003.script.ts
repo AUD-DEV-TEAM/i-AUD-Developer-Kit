@@ -75,4 +75,3 @@ const buildUrlParams = function(params: any[]): string {
 
 	return query;
 };
- 

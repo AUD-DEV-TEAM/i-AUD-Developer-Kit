@@ -1,7 +1,7 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { iGrid } from "@AUD_CLIENT/control/iGrid";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 const MX_HIDE: iGrid = Matrix.getObject("MX_HIDE") as iGrid;
 
@@ -17,8 +17,4 @@ const OnCheckValueChange = function(_sender: any, args: any): void {
 	if (args.Id == "VS_HIDE") {
 		MX_HIDE.Calculate(true);
 	}
-};
-
-export {
-	OnCheckValueChange
 };

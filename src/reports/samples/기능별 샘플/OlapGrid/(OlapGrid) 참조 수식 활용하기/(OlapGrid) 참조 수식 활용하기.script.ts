@@ -2,7 +2,7 @@ import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 
 let olapGrid: OlapGrid | null = null;
 let richTextBox: RichTextBox | null = null;

@@ -5,7 +5,7 @@ import { TextBox } from "@AUD_CLIENT/control/TextBox";
 import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 /*****************************
  * OlapGrid 디멘젼 필드의 필터 제어 하기
  *****************************/
@@ -116,5 +116,3 @@ cboFields.OnValueChanged = function (sender: any, args: any): void {
 btnExecute.OnClick = function (sender: any, args: any): void {
 	setOlapFieldFilter();
 };
-
-export { OnDocumentLoadComplete };

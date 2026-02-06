@@ -1,7 +1,7 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { iGrid } from "@AUD_CLIENT/control/iGrid";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 const MX_PROPERTY: iGrid = Matrix.getObject("MX_PROPERTY") as iGrid;
 
@@ -19,8 +19,4 @@ const OniGridCellDoubleClick = function(_sender: any, args: any): void {
 			alert("IS_CLICK : false");
 		}
 	}
-};
-
-export {
-	OniGridCellDoubleClick
 };

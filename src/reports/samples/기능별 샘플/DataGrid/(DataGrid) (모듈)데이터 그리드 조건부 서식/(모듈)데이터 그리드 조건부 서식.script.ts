@@ -8,7 +8,7 @@ import { Group } from "@AUD_CLIENT/control/Group";
 import { Chart } from "@AUD_CLIENT/control/Chart";
 import { TableLayout } from "@AUD_CLIENT/control/table/TableLayout";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 declare const parent: any;
 
 /*
@@ -387,15 +387,4 @@ const OnRadioValueChange = function(_sender: any, args: any): void {
 		default:
 			grpSeperate!.Visible = false;
 	}
-};
-
-export {
-	OnDocumentLoadComplete,
-	OnLoadComplete,
-	OnNewReportWizardChanged,
-	OnExecuteStart,
-	OnMetaLayoutChange,
-	OnImageClick,
-	OnExcelExportStart,
-	OnRadioValueChange
 };

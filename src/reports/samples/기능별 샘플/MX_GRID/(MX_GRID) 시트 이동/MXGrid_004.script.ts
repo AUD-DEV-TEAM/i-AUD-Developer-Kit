@@ -1,7 +1,7 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { iGrid } from "@AUD_CLIENT/control/iGrid";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 const MX_CHANGE: iGrid = Matrix.getObject("MX_CHANGE") as iGrid;
 
@@ -29,8 +29,4 @@ const OnButtonClick = function(_sender: any, args: any): void {
 			MX_CHANGE.ChangeSheet("V4");
 			break;
 	}
-};
-
-export {
-	OnButtonClick
 };

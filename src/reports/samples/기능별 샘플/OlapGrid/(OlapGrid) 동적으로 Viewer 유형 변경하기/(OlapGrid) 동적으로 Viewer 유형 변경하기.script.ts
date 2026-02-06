@@ -2,7 +2,7 @@ import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { RadioButton } from "@AUD_CLIENT/control/RadioButton";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 
 let olapGrid: OlapGrid | null = null;
 let RD_DEFAULT: RadioButton | null = null;
@@ -37,5 +37,3 @@ const fnChangeViewType = function (vType: number): void {
     olapGrid.Refresh();
   }
 };
-
-export { OnDocumentLoadComplete };

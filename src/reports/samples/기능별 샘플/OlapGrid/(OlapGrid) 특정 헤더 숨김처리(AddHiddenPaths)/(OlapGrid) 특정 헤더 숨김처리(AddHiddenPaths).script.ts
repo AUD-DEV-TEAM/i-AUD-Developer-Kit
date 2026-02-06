@@ -2,7 +2,7 @@ import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { Button } from "@AUD_CLIENT/control/Button";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 
 let button: Button | null = null;
 let olapGrid: OlapGrid | null = null;

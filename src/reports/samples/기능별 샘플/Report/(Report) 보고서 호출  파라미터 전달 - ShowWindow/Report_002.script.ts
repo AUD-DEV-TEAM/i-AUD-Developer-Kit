@@ -1,7 +1,7 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 const RichTextBox: RichTextBox = Matrix.getObject("RichTextBox") as RichTextBox;
 
@@ -64,8 +64,4 @@ const getParameterList = function(ctrlNames: string[]): any[] {
 	}
 
 	return params;
-};
-
-export {
-	OnButtonClick
 };

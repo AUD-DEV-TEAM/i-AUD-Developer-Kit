@@ -1,6 +1,6 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 
 /*****************************************
  * 버튼 컨트롤이 클릭되는 시점에 발생합니다.
@@ -125,5 +125,3 @@ const setLayoutInfo = function (result: any): void {
   }
   ctl.Refresh();
 };
-
-export { OnButtonClick };

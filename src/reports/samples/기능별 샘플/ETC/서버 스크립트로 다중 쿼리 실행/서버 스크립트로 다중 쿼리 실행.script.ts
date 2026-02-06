@@ -19,5 +19,4 @@ Button.OnClick = function(sender, args){
 								DataGrid.SetDataSet(ds.GetTable("FOLDER").ToDataSet());
 								DataGrid1.SetDataSet(ds.GetTable("REPORT").ToDataSet()); 
                                });
- };	
-  
+ };

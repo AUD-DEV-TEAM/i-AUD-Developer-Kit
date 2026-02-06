@@ -1,7 +1,7 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 const DG_IMPORT: DataGrid = Matrix.getObject("DG_IMPORT") as DataGrid;
 
@@ -42,8 +42,4 @@ const OnButtonClick = function(_sender: any, args: any): void {
 			}
 		);
 	}
-};
-
-export {
-	OnButtonClick
 };

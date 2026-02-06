@@ -3,7 +3,7 @@ import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
 import { RichTextBox } from "@AUD_CLIENT/control/RichTextBox";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 
 let olapGrid: OlapGrid;
 let VN_BAEBUN_TYPE: ComboBox;
@@ -155,13 +155,4 @@ const OnOlapDataCellEndEdit = function (_sender: any, args: any): void {
 
     Matrix.Information("입력한 값은 M2의 값보다 클 수 없습니다..", "i-AUD");
   }
-};
-
-export {
-  OnDocumentLoadComplete,
-  OnButtonClick,
-  OnComboBoxValueChanged,
-  OnCheckValueChange,
-  OnOlapDataCellStartEdit,
-  OnOlapDataCellEndEdit,
 };

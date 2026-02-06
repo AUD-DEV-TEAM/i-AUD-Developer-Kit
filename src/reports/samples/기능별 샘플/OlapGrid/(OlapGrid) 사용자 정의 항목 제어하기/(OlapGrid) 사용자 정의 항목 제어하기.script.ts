@@ -3,7 +3,7 @@ import { Button } from "@AUD_CLIENT/control/Button";
 import { TextBox } from "@AUD_CLIENT/control/TextBox";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 
 const olapGrid: OlapGrid = Matrix.getObject("OlapGrid") as OlapGrid;
 const btnExecute: Button = Matrix.getObject("btnExecute") as Button;

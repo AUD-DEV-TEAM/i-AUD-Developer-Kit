@@ -1,6 +1,6 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 
 /**************************************
  * 문서가 로드되고 AutoRefresh가 완료되는 시점에 발생합니다.

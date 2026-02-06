@@ -2,7 +2,7 @@ import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { CheckBox } from "@AUD_CLIENT/control/CheckBox";
 import { OlapGrid } from "@AUD_CLIENT/control/OlapGrid";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 
 let chkSyncScroll: CheckBox | null = null;
 let olapGrid: OlapGrid | null = null;
@@ -28,5 +28,3 @@ const OnDocumentLoadComplete = function (_sender: any, _args: any): void {
     } catch (ex) {}
   };
 };
-
-export { OnDocumentLoadComplete };

@@ -1,7 +1,7 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { ComboBox } from "@AUD_CLIENT/control/ComboBox";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 
 const VS_ORD_STS: ComboBox = Matrix.getObject("VS_ORD_STS") as ComboBox;
 

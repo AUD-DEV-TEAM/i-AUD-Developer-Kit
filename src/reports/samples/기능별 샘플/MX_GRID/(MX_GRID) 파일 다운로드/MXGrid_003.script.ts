@@ -1,7 +1,7 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { iGrid } from "@AUD_CLIENT/control/iGrid";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 const MX_EXPORT: iGrid = Matrix.getObject("MX_EXPORT") as iGrid;
 
@@ -48,8 +48,4 @@ const OnButtonClick = function(_sender: any, args: any): void {
 			});
 			break;
 	}
-};
-
-export {
-	OnButtonClick
 };

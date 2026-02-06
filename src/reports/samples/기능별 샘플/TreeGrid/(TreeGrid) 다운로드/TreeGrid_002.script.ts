@@ -1,7 +1,7 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { TreeGrid } from "@AUD_CLIENT/control/TreeGrid";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 const TREE_EXPORT: TreeGrid = Matrix.getObject("TREE_EXPORT") as TreeGrid;
 
@@ -152,9 +152,4 @@ const OnTreeNodeClick = function(_sender: any, args: any): void {
 			args.Node.ExpandCollapsed();
 		}
 	}
-};
-
-export {
-	OnButtonClick,
-	OnTreeNodeClick
 };

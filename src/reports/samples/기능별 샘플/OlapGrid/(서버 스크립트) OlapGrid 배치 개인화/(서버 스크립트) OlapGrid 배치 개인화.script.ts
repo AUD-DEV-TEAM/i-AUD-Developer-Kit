@@ -1,7 +1,7 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
 
-declare let Matrix: Matrix;
+let Matrix: Matrix;
 
 
 let VS_LAYOUT_REPORT_CODE: string | null = null; //대상 보고서 (사용자 화면 보고서 코드)
@@ -126,5 +126,3 @@ const OnButtonClick = function (_sender: any, args: any): void {
     Matrix.ReportDialogResult(null, true, "");
   }
 };
-
-export { OnDocumentLoadComplete, OnCellDoubleClick, OnButtonClick };
