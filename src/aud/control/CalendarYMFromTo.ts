@@ -6,18 +6,18 @@ import { Control } from "../../aud/control/Control";
  * {@link OnValueChanged} 이벤트를 통해 연도 기간 변경을 처리합니다.
  *
  * @example
- * ```ts
+ * ```js
  * //----------------------------------------------
  * // 패턴1: 기본 연도 기간 선택 및 값 읽기
  * //----------------------------------------------
- * let calYearRange: CalendarYMFromTo = Matrix.getObject("calYearRange") as CalendarYMFromTo;
+ * var calYearRange = Matrix.getObject("calYearRange");
  *
  * calYearRange.OnValueChanged = function(sender, args) {
- *     let fromYear = args.Text;   // ViewFormat 형식 시작 연도 (예: "2020")
- *     let toYear = args.Text2;    // ViewFormat 형식 종료 연도 (예: "2024")
+ *     var fromYear = args.Text;   // ViewFormat 형식 시작 연도 (예: "2020")
+ *     var toYear = args.Text2;    // ViewFormat 형식 종료 연도 (예: "2024")
  *
  *     // 년 수 계산
- *     let yearCount = parseInt(toYear) - parseInt(fromYear) + 1;
+ *     var yearCount = parseInt(toYear) - parseInt(fromYear) + 1;
  *     Matrix.Alert("선택된 기간: " + yearCount + "년간 (" + fromYear + " ~ " + toYear + ")");
  * };
  *
@@ -25,18 +25,18 @@ import { Control } from "../../aud/control/Control";
  * // 패턴2: 최근 3년 기간으로 초기화
  * //----------------------------------------------
  * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     let calThreeYears: CalendarYMFromTo = Matrix.getObject("calThreeYears") as CalendarYMFromTo;
+ *     var calThreeYears = Matrix.getObject("calThreeYears");
  *
  *     // 포맷 설정
  *     calThreeYears.DataFormat = "yyyy";
  *     calThreeYears.ViewFormat = "yyyy";
  *
  *     // 올해
- *     let today = new Date();
- *     let thisYear = new Date(today.getFullYear(), 0, 1);
+ *     var today = new Date();
+ *     var thisYear = new Date(today.getFullYear(), 0, 1);
  *
  *     // 2년 전
- *     let twoYearsAgo = new Date(today.getFullYear() - 2, 0, 1);
+ *     var twoYearsAgo = new Date(today.getFullYear() - 2, 0, 1);
  *
  *     calThreeYears.FromDate = twoYearsAgo;  // 시작 연도
  *     calThreeYears.ToDate = thisYear;       // 종료 연도 (올해)
@@ -45,9 +45,9 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴3: 연도별 기간 조회
  * //----------------------------------------------
- * let btnYearlySearch: Button = Matrix.getObject("btnYearlySearch") as Button;
- * let calPeriod: CalendarYMFromTo = Matrix.getObject("calPeriod") as CalendarYMFromTo;
- * let grid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
+ * var btnYearlySearch = Matrix.getObject("btnYearlySearch");
+ * var calPeriod = Matrix.getObject("calPeriod");
+ * var grid = Matrix.getObject("DataGrid");
  *
  * btnYearlySearch.OnClick = function(sender, args) {
  *     if (!calPeriod.Value || !calPeriod.Value2) {
@@ -57,14 +57,14 @@ import { Control } from "../../aud/control/Control";
  *     }
  *
  *     // 각 연도의 시작일과 종료일 계산
- *     let fromYear = parseInt(calPeriod.Value);
- *     let fromFirst = new Date(fromYear, 0, 1);
+ *     var fromYear = parseInt(calPeriod.Value);
+ *     var fromFirst = new Date(fromYear, 0, 1);
  *
- *     let toYear = parseInt(calPeriod.Value2);
- *     let toLast = new Date(toYear, 11, 31);
+ *     var toYear = parseInt(calPeriod.Value2);
+ *     var toLast = new Date(toYear, 11, 31);
  *
  *     // 서버 스크립트 호출
- *     let params = {
+ *     var params = {
  *         VS_FROM_YEAR: calPeriod.Value,         // "2020"
  *         VS_TO_YEAR: calPeriod.Value2,          // "2024"
  *         VS_FROM_DATE: formatDateToString(fromFirst),  // "20200101"
@@ -75,34 +75,34 @@ import { Control } from "../../aud/control/Control";
  *         if (p.Success) {
  *             grid.SetDataSet(p.DataSet);
  *
- *             let yearCount = toYear - fromYear + 1;
+ *             var yearCount = toYear - fromYear + 1;
  *             Matrix.Alert(yearCount + "년간 데이터 조회 완료");
  *         }
  *     });
  * };
  *
- * function formatDateToString(date: Date): string {
- *     let year = date.getFullYear();
- *     let month = ("0" + (date.getMonth() + 1)).slice(-2);
- *     let day = ("0" + date.getDate()).slice(-2);
+ * function formatDateToString(date) {
+ *     var year = date.getFullYear();
+ *     var month = ("0" + (date.getMonth() + 1)).slice(-2);
+ *     var day = ("0" + date.getDate()).slice(-2);
  *     return year + month + day;
  * }
  *
  * //----------------------------------------------
  * // 패턴4: 최대 기간 제한 (최대 5년)
  * //----------------------------------------------
- * let calLimit: CalendarYMFromTo = Matrix.getObject("calLimit") as CalendarYMFromTo;
+ * var calLimit = Matrix.getObject("calLimit");
  *
  * calLimit.OnValueChanged = function(sender, args) {
- *     let fromYear = parseInt(args.Text);
- *     let toYear = parseInt(args.Text2);
- *     let yearCount = toYear - fromYear + 1;
+ *     var fromYear = parseInt(args.Text);
+ *     var toYear = parseInt(args.Text2);
+ *     var yearCount = toYear - fromYear + 1;
  *
  *     if (yearCount > 5) {
  *         Matrix.Alert("최대 5년까지만 선택할 수 있습니다.");
  *
  *         // 시작 연도 기준 5년 후로 종료 연도 자동 조정
- *         let maxTo = new Date(args.Date.getFullYear() + 4, 0, 1);
+ *         var maxTo = new Date(args.Date.getFullYear() + 4, 0, 1);
  *         sender.ToDate = maxTo;
  *     }
  * };
@@ -110,12 +110,12 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴5: 시작 연도 변경 시 종료 연도 자동 설정
  * //----------------------------------------------
- * let calAuto: CalendarYMFromTo = Matrix.getObject("calAuto") as CalendarYMFromTo;
+ * var calAuto = Matrix.getObject("calAuto");
  *
  * calAuto.OnFromValueChanged = function(sender, args) {
  *     // 시작 연도 선택 시 자동으로 3년 후를 종료 연도로 설정
- *     let fromYear = args.Date.getFullYear();
- *     let toDate = new Date(fromYear + 2, 0, 1);
+ *     var fromYear = args.Date.getFullYear();
+ *     var toDate = new Date(fromYear + 2, 0, 1);
  *
  *     sender.ToDate = toDate;
  *     Matrix.Alert("3년 기간으로 설정되었습니다.");
@@ -124,9 +124,9 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴6: 장기 트렌드 분석
  * //----------------------------------------------
- * let calTrend: CalendarYMFromTo = Matrix.getObject("calTrend") as CalendarYMFromTo;
- * let btnAnalyzeLongTerm: Button = Matrix.getObject("btnAnalyzeLongTerm") as Button;
- * let chart: Chart = Matrix.getObject("Chart") as Chart;
+ * var calTrend = Matrix.getObject("calTrend");
+ * var btnAnalyzeLongTerm = Matrix.getObject("btnAnalyzeLongTerm");
+ * var chart = Matrix.getObject("Chart");
  *
  * btnAnalyzeLongTerm.OnClick = function(sender, args) {
  *     if (!calTrend.Value || !calTrend.Value2) {
@@ -134,12 +134,12 @@ import { Control } from "../../aud/control/Control";
  *         return;
  *     }
  *
- *     let fromYear = parseInt(calTrend.Value);
- *     let toYear = parseInt(calTrend.Value2);
- *     let yearCount = toYear - fromYear + 1;
+ *     var fromYear = parseInt(calTrend.Value);
+ *     var toYear = parseInt(calTrend.Value2);
+ *     var yearCount = toYear - fromYear + 1;
  *
  *     // 장기 트렌드 데이터 조회
- *     let params = {
+ *     var params = {
  *         VS_FROM_YEAR: calTrend.Value,
  *         VS_TO_YEAR: calTrend.Value2,
  *         VN_YEAR_COUNT: yearCount.toString()
@@ -156,9 +156,9 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴7: 다년간 데이터 비교
  * //----------------------------------------------
- * let calCompare: CalendarYMFromTo = Matrix.getObject("calCompare") as CalendarYMFromTo;
- * let btnCompare: Button = Matrix.getObject("btnCompare") as Button;
- * let grid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
+ * var calCompare = Matrix.getObject("calCompare");
+ * var btnCompare = Matrix.getObject("btnCompare");
+ * var grid = Matrix.getObject("DataGrid");
  *
  * btnCompare.OnClick = function(sender, args) {
  *     if (!calCompare.Value || !calCompare.Value2) {
@@ -166,16 +166,16 @@ import { Control } from "../../aud/control/Control";
  *         return;
  *     }
  *
- *     let fromYear = parseInt(calCompare.Value);
- *     let toYear = parseInt(calCompare.Value2);
+ *     var fromYear = parseInt(calCompare.Value);
+ *     var toYear = parseInt(calCompare.Value2);
  *
  *     // 연도별 데이터를 배열로 조회하여 비교
- *     let yearList: string[] = [];
- *     for (let year = fromYear; year <= toYear; year++) {
+ *     var yearList = [];
+ *     for (var year = fromYear; year <= toYear; year++) {
  *         yearList.push(year.toString());
  *     }
  *
- *     let params = {
+ *     var params = {
  *         VS_YEAR_LIST: yearList.join(","),  // "2020,2021,2022,2023,2024"
  *         VS_FROM_YEAR: calCompare.Value,
  *         VS_TO_YEAR: calCompare.Value2
@@ -192,8 +192,8 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴8: 연도 범위 검증
  * //----------------------------------------------
- * let calValidate: CalendarYMFromTo = Matrix.getObject("calValidate") as CalendarYMFromTo;
- * let btnValidate: Button = Matrix.getObject("btnValidate") as Button;
+ * var calValidate = Matrix.getObject("calValidate");
+ * var btnValidate = Matrix.getObject("btnValidate");
  *
  * btnValidate.OnClick = function(sender, args) {
  *     if (!calValidate.Value || !calValidate.Value2) {
@@ -201,12 +201,12 @@ import { Control } from "../../aud/control/Control";
  *         return;
  *     }
  *
- *     let fromYear = parseInt(calValidate.Value);
- *     let toYear = parseInt(calValidate.Value2);
- *     let yearCount = toYear - fromYear + 1;
+ *     var fromYear = parseInt(calValidate.Value);
+ *     var toYear = parseInt(calValidate.Value2);
+ *     var yearCount = toYear - fromYear + 1;
  *
  *     // 검증: 미래 연도 선택 불가
- *     let currentYear = new Date().getFullYear();
+ *     var currentYear = new Date().getFullYear();
  *     if (toYear > currentYear) {
  *         Matrix.Alert("미래 연도는 선택할 수 없습니다.");
  *         calValidate.ToDate = new Date(currentYear, 0, 1);
@@ -222,7 +222,7 @@ import { Control } from "../../aud/control/Control";
  *     // 검증: 최대 10년까지
  *     if (yearCount > 10) {
  *         Matrix.Alert("최대 10년까지만 선택할 수 있습니다.");
- *         let maxTo = new Date(fromYear + 9, 0, 1);
+ *         var maxTo = new Date(fromYear + 9, 0, 1);
  *         calValidate.ToDate = maxTo;
  *         return;
  *     }

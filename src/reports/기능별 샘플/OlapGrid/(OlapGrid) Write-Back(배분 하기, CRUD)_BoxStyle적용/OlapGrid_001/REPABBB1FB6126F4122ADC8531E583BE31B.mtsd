@@ -1,0 +1,1331 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPABBB1FB6126F4122ADC8531E583BE31B",
+    "FolderCode": "FLD3A0EB0AA207A45DA98FAB4D0BA96EAAD",
+    "SavePath": "FLD3A0EB0AA207A45DA98FAB4D0BA96EAAD/REPABBB1FB6126F4122ADC8531E583BE31B.mtsd",
+    "ReportName": "OlapGrid_001",
+    "Writer": "sblim1417",
+    "WriteDate": "2026-01-21 15:17:16",
+    "Editor": "sblim1417",
+    "EditDate": "2026-01-21 15:17:16",
+    "TabPosition": 0,
+    "DocumentVersion": "3.0.0.0",
+    "Description": "바인딩 및 Slicer",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS0DC61AD7926F4F5F8900B31B97D22317",
+        "Name": "OLAP_PAYMENT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "X6a1rNcP9osjBEqfDNbiFzpQLdSXWEXYoOLwDM9yG9P9T5m1Z0kXDpaaaR0YOi4/",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "ORDER_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "PAYMENT_SEQUENTIAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "PAYMENT_TYPE",
+            "Type": "String"
+          },
+          {
+            "Name": "PAYMENT_INSTALLMENTS",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "PAYMENT_VALUE",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DS0DC61AD7926F4F5F8900B31B97D22317",
+        "Name": "OLAP_PAYMENT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "X6a1rNcP9osjBEqfDNbiFzpQLdSXWEXYoOLwDM9yG9P9T5m1Z0kXDpaaaR0YOi4/",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "ORDER_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "PAYMENT_SEQUENTIAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "PAYMENT_TYPE",
+            "Type": "String"
+          },
+          {
+            "Name": "PAYMENT_INSTALLMENTS",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "PAYMENT_VALUE",
+            "Type": "Numeric"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "var HEADER = Matrix.getObject(\"HEADER\");\nvar BTN_REF = Matrix.getObject(\"BTN_REF\");\nvar Slicer = Matrix.getObject(\"Slicer\");\nvar CHT = Matrix.getObject(\"CHT\");\n/**************************************\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤이름\n *\t\t string\tText (Readonly:False) : 라벨 값\n **************************************/\nvar OnButtonClick = function (sender, args) {\n    if (args.Id == \"BTN_REF\") {\n        // '조회' 버튼 클릭 시\n        Matrix.doRefresh(\"OLAP, CHT\"); // OlapGrid, Chart 조회\n    }\n};\n",
+  "ServerScriptText": [],
+  "Forms": [
+    {
+      "Id": "Form9ABEEFD85D775617F784F6E458656642",
+      "Name": "Form1",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "ChildElements": [
+            {
+              "LanguageCode": "",
+              "Value": "조회\n",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 255,
+                "ColorG": 255,
+                "ColorB": 255,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "Button3C8029C5C28462434B0EFA5957761443",
+              "Name": "BTN_REF",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 1529,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 154,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": true,
+                  "Bottom": false,
+                  "Margin": "0,12,20,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 12,
+                    "G": 56,
+                    "B": 134,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Text": "OlapGrid_001",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": true,
+              "Margin": {
+                "Left": 3,
+                "Top": 0,
+                "Right": 3,
+                "Bottom": 0,
+                "Text": "3,0,3,0"
+              },
+              "Type": "Label",
+              "Id": "LabelD848DF0B8D4F2EFCC1D846772C42717A",
+              "Name": "LBL_TTL_1",
+              "InGroup": "HEADER",
+              "Position": {
+                "Left": 15,
+                "Top": 12,
+                "Width": 129,
+                "Height": 23,
+                "ZIndex": 7,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": true,
+                  "Bottom": false,
+                  "Margin": "0,12,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 85,
+                    "G": 142,
+                    "B": 213,
+                    "A": 1
+                  },
+                  "LineType": "none",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 48,
+                    "G": 48,
+                    "B": 49,
+                    "A": 1
+                  },
+                  "Size": 16,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            }
+          ],
+          "Type": "Group",
+          "Id": "GroupF48E450533B7EF09DE707540C0D50B86",
+          "Name": "HEADER",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1609,
+            "Height": 50,
+            "ZIndex": 5,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "0,0,0,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "DataSource": "DS0DC61AD7926F4F5F8900B31B97D22317",
+          "AutoRefresh": true,
+          "DoRefresh": true,
+          "DoExport": true,
+          "iOLAPView": {
+            "Options": {
+              "ViewType": 0,
+              "IsExpandAll": true,
+              "ShowExpandButtons": true,
+              "EmptyCellText": "-",
+              "NotAvaliableCellText": "N/A",
+              "ZeroDivisioinCellText": "#DIV/0!",
+              "ErrorCellText": "NG",
+              "RowGrandTotalText": "Grand Total",
+              "ColumnGrandTotalText": "Grand Total",
+              "RowTotalText": " Total",
+              "ColumnTotalText": " Total",
+              "RowTotalLocation": 0,
+              "ColumnTotalLocation": 0,
+              "RowGrandTotalLocation": 0,
+              "ColumnGrandTotalLocation": 0,
+              "DisplayColumnSubTotal": true,
+              "HideTotalChildIsOneColumn": false,
+              "HideTotalChildIsOneRow": false,
+              "HideEmptyMeasureRows": false,
+              "HideEmptyMeasureColumns": false,
+              "DisplayRowSubTotal": true,
+              "DisplayColumnGrandTotal": true,
+              "DisplayRowGrandTotal": true,
+              "ShowFilterArea": true,
+              "ShowColumnrArea": true,
+              "ShowRowArea": true,
+              "ShowDataArea": true,
+              "UseMultiHeader": false,
+              "RowAreaText": "Row Area",
+              "ColumnAreaText": "Column Area",
+              "DataAreaText": "Data Area",
+              "FilterAreaText": "Filter Area",
+              "MeasuresText": "Measures",
+              "AutoSelection": true,
+              "AutoSelectionRangeLeft": 0,
+              "AutoSelectionRangeTop": 0,
+              "AutoSelectionRangeRight": 10,
+              "AutoSelectionRangeBottom": 10,
+              "HideHorizontalScrollBar": false,
+              "HideVerticalScrollBar": false,
+              "DisableClipBoard": false,
+              "CellHeight": 23,
+              "HeaderCellHeight": 23,
+              "CanResizeCellWidth": true,
+              "RowHeaderUnFix": false,
+              "MeasuresCreateArea": 2,
+              "TreeHeaderWidth": 300,
+              "TreeIndentWidth": 20,
+              "DisableColumnSort": false,
+              "MergeColumnHeaders": false,
+              "MergeRowHeaders": false,
+              "OptimizingHybridFilter": false,
+              "AutoHideGrandTotalRow": false,
+              "AutoHideGrandTotalColumn": false,
+              "ExportOption": {
+                "ExportSheetSize": 1000000,
+                "ExportDisableRowMerge": false,
+                "UseServerExport": true
+              },
+              "PagerInfo": {
+                "PageSize": 100,
+                "UsePaging": true,
+                "IgnoreTotalCount": false
+              },
+              "Style": {
+                "ColumnHeaderVerticalAlignment": 0,
+                "RowHeaderVerticalAlignment": 0,
+                "LineColor": "",
+                "BackgroundColor": ""
+              },
+              "CacheOption": {
+                "CacheMode": 1,
+                "ExpiredMinutes": 480,
+                "UpdateMinutes": 60,
+                "UseHybrid": false,
+                "HybridSort": false
+              }
+            },
+            "TopFilter": {
+              "Dimension": "",
+              "Measure": "",
+              "Rank": 10,
+              "IsTop": true,
+              "GroupBy": []
+            },
+            "PreFilters": [],
+            "Fields": [
+              {
+                "Key": "ORDER_ID",
+                "Caption": "ORDER_ID",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 1,
+                "Area": 0,
+                "SummaryType": 5,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "",
+                "Formula": "",
+                "Formula2": "",
+                "RefFormula": "",
+                "Width": 100,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 1,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 1,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                },
+                "RelationFields": []
+              },
+              {
+                "Key": "PAYMENT_TYPE",
+                "Caption": "PAYMENT_TYPE",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "",
+                "Formula": "",
+                "Formula2": "",
+                "RefFormula": "",
+                "Width": 100,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 1,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 1,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                },
+                "RelationFields": []
+              },
+              {
+                "Key": "#MEASURES_HEADER#",
+                "Caption": "Measures",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 2,
+                "Area": 2,
+                "SummaryType": 0,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "",
+                "Formula": "",
+                "Formula2": "",
+                "RefFormula": "",
+                "Width": 100,
+                "Unit": 1,
+                "CreateType": 1,
+                "SortType": 0,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": false,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": false,
+                "KeyType": 0,
+                "DataType": 0,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                },
+                "RelationFields": []
+              },
+              {
+                "Key": "PAYMENT_SEQUENTIAL",
+                "Caption": "PAYMENT_SEQUENTIAL",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 2,
+                "Area": 4,
+                "SummaryType": 1,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "{0:N0}",
+                "Formula": "",
+                "Formula2": "",
+                "RefFormula": "",
+                "Width": 100,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 0,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 0,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                },
+                "RelationFields": []
+              },
+              {
+                "Key": "PAYMENT_INSTALLMENTS",
+                "Caption": "PAYMENT_INSTALLMENTS",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 2,
+                "Area": 4,
+                "SummaryType": 1,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "{0:N0}",
+                "Formula": "",
+                "Formula2": "",
+                "RefFormula": "",
+                "Width": 100,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 0,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 0,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                },
+                "RelationFields": []
+              },
+              {
+                "Key": "PAYMENT_VALUE",
+                "Caption": "PAYMENT_VALUE",
+                "ToolTipField": "",
+                "ToolTipText": "",
+                "Category": 2,
+                "Area": 4,
+                "SummaryType": 1,
+                "TotalSummaryType": 0,
+                "SummaryVariation": 0,
+                "GroupByType": 0,
+                "Format": "{0:N0}",
+                "Formula": "",
+                "Formula2": "",
+                "RefFormula": "",
+                "Width": 100,
+                "Unit": 1,
+                "CreateType": 0,
+                "SortType": 0,
+                "MeasureSortField": "",
+                "SortBaseField": "",
+                "MoveAble": true,
+                "SortAble": true,
+                "FilterAble": true,
+                "AllowFilter": true,
+                "AllowRow": true,
+                "AllowColumn": true,
+                "AllowData": true,
+                "KeyType": 0,
+                "DataType": 0,
+                "SaveMode": 0,
+                "LanguageCode": "",
+                "UseChartSource": true,
+                "VisibleSubTotal": true,
+                "SummaryBaseFieldKey": "",
+                "TextAlignment": 1,
+                "HeaderAlignment": 0,
+                "InDimensions": "",
+                "Visible": true,
+                "Expanded": true,
+                "MetaItemCode": "",
+                "MetaItemName": "",
+                "MetaRollupType": 0,
+                "MetaCalculatorField": false,
+                "MetaSummaryTypeIsDistinct": false,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2
+                },
+                "RelationFields": []
+              }
+            ],
+            "MultiHeaderCells": []
+          },
+          "ExtraOption": {
+            "CurrentPageSize": 100,
+            "UseMeta": false,
+            "UseChartSourceTotal": false,
+            "UseChartSourceGrandTotal": false,
+            "UseChartSourceReverse": false,
+            "ChartLabelDepth": -1,
+            "ConditionalStyleName": "",
+            "BackgroundColorBoxStyleKey": "",
+            "EtcExportData": true,
+            "EtcExportExcel": true,
+            "EtcExportCSV": true,
+            "EtcExportText": true,
+            "EtcExpandAll": true,
+            "EtcExpandAllClose": true,
+            "EtcFormat": true,
+            "EtcVisibleTotal": true,
+            "EtcSort": true,
+            "EtcFilterClean": true,
+            "EtcSwitchRowAndColumn": true,
+            "EtcLayoutEditor": true,
+            "EtcProperties": true,
+            "EtcAnalysisItemsSettings": true,
+            "EtcFormulaEditor": true,
+            "EtcCustomDimensionFields": true,
+            "EtcHiding": false,
+            "EtcStyle": true,
+            "EtcMultiHeader": true,
+            "EtcCacheInfo": true,
+            "EtcFieldGroup": true,
+            "EtcFilterManager": true,
+            "EtcTopFilter": true
+          },
+          "Type": "OlapGrid",
+          "Id": "OlapGrid1768890258177",
+          "Name": "OLAP",
+          "Position": {
+            "Left": 20,
+            "Top": 70,
+            "Width": 830,
+            "Height": 775,
+            "ZIndex": 168,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": false,
+              "Top": true,
+              "Bottom": true,
+              "Margin": "20,70,0,26",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "SortType": "ASC",
+          "CellHeight": 23,
+          "ColumnCount": 1,
+          "ButtonMargin": 3,
+          "UseMultiSelect": false,
+          "Text": "PAYMENT_TYPE",
+          "HeaderHeight": 30,
+          "HeaderColor": "rgba(243,243,247,1)",
+          "AutoRefresh": true,
+          "SelectedColor": "#D2DEFF",
+          "SelectedBorderColor": "#7E9BF6",
+          "ItemColor": "#F9F9FB",
+          "ItemBorderColor": "#c5c5c5",
+          "ManualUpdate": false,
+          "Binding": {
+            "OlapGrid": {
+              "OlapGridID": "OlapGrid1768890258177",
+              "OlapGridName": "OlapGrid",
+              "OlapGridColumn": "PAYMENT_TYPE",
+              "OlapGridColumnID": "OlapGrid.PAYMENT_TYPE",
+              "OlapGridColumnCaption": "PAYMENT_TYPE"
+            }
+          },
+          "Type": "Slicer",
+          "Id": "Slicer1768890345736",
+          "Name": "Slicer",
+          "Position": {
+            "Left": 1389,
+            "Top": 73,
+            "Width": 200,
+            "Height": 320,
+            "ZIndex": 169,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": true,
+              "Top": true,
+              "Bottom": false,
+              "Margin": "0,73,20,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 115,
+                "G": 115,
+                "B": 119,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "DataSource": "",
+          "AutoRefresh": true,
+          "DoRefresh": true,
+          "DoExport": true,
+          "PivotGrid": "OlapGrid1768890258177",
+          "DataGrid": "",
+          "UseListGridFormat": true,
+          "Chart": {
+            "ChartType": 3,
+            "FontFamily": "default",
+            "FontColor": "rgb(0,0,0)",
+            "BackgroundColor": "rgb(255,255,255)",
+            "BorderColor": "",
+            "BorderWidth": "3",
+            "BorderRadius": 10,
+            "Palette": 0,
+            "TooltipBGColor": "rgba(255, 255, 255, 0.7)",
+            "SwitchSeriesLegend": false,
+            "Tooltip": true,
+            "Inverted": false,
+            "TooltipShared": false,
+            "TooltipSharedType": 0,
+            "UseChartTypeMenu": true,
+            "Options3d": {
+              "Enabled": false,
+              "Alpha": 15,
+              "Beta": 15,
+              "Depth": 50
+            },
+            "UseChartPaletteMenu": true,
+            "UseDesignMenu": true,
+            "UseExcelExport": true,
+            "UseHMLExport": true,
+            "UsePPTExport": true,
+            "UseDOCExport": true
+          },
+          "Axis": {
+            "XAxis": {
+              "Text": "",
+              "Visible": true,
+              "Name": "Legend",
+              "AutoTickInterval": true,
+              "UseMinorTickInterval": false,
+              "AutoMax": true,
+              "AutoMin": true,
+              "GridLineColor": "#D8D8D8",
+              "GridLineWidth": 1,
+              "GridLineStyle": 0,
+              "MinorGridLineColor": "#E0E0E0",
+              "MinorGridLineWidth": 1,
+              "MinorGridLineStyle": 0,
+              "Categories": [
+                "PAYMENT_SEQUENTIAL",
+                "PAYMENT_INSTALLMENTS",
+                "PAYMENT_VALUE"
+              ],
+              "AnnoFormat": "{0:N0}",
+              "Label": {
+                "FontBold": false,
+                "FontItalic": false,
+                "LabelAngle": "auto"
+              },
+              "PlotLinesWidth": 0,
+              "PlotLinesColor": "red",
+              "PlotLinesValue": 0,
+              "PlotLinesDashStyle": "Solid",
+              "PlotLinesValueVisibled": false,
+              "Caption": "Legend",
+              "TitleLabelAngle": 0,
+              "TickColor": "#D8D8D8",
+              "TickWidth": 0
+            },
+            "Y1Axis": {
+              "Text": "",
+              "Visible": true,
+              "AutoTickInterval": true,
+              "UseMinorTickInterval": false,
+              "AutoMax": true,
+              "AutoMin": true,
+              "GridLineColor": "#D8D8D8",
+              "GridLineWidth": 1,
+              "GridLineStyle": 0,
+              "MinorGridLineColor": "#E0E0E0",
+              "MinorGridLineWidth": 1,
+              "MinorGridLineStyle": 0,
+              "Label": {
+                "FontColor": "rgb(0,0,0)",
+                "AnnoFormat": "{0:N0}",
+                "LabelAngle": "auto"
+              },
+              "PlotLinesWidth": 0,
+              "PlotLinesColor": "red",
+              "PlotLinesValue": 0,
+              "PlotLinesDashStyle": "Solid",
+              "PlotLinesValueVisibled": false,
+              "TitleLabelAngle": 270,
+              "TickColor": "#D8D8D8",
+              "TickWidth": 0
+            },
+            "Y2Axis": {
+              "Text": "",
+              "Visible": false,
+              "Opposite": true,
+              "AutoTickInterval": true,
+              "UseMinorTickInterval": true,
+              "AutoMinorTickInterval": false,
+              "AutoMax": true,
+              "AutoMin": true,
+              "GridLineColor": "#D8D8D8",
+              "GridLineWidth": 1,
+              "GridLineStyle": 0,
+              "MinorGridLineColor": "#E0E0E0",
+              "MinorGridLineWidth": 1,
+              "MinorGridLineStyle": 0,
+              "Label": {
+                "FontColor": "rgb(0,0,0)",
+                "AnnoFormat": "{0:N0}",
+                "LabelAngle": "auto"
+              },
+              "PlotLinesWidth": 0,
+              "PlotLinesColor": "red",
+              "PlotLinesValue": 0,
+              "PlotLinesDashStyle": "Solid",
+              "PlotLinesValueVisibled": false,
+              "TitleLabelAngle": 270,
+              "TickColor": "#D8D8D8",
+              "TickWidth": 0
+            }
+          },
+          "PlotOptions": {
+            "Animation": 1000,
+            "EnableMouseTracking": true,
+            "DataLabels": {},
+            "ConnectNulls": false
+          },
+          "Title": {
+            "Text": "",
+            "LanguageCode": ""
+          },
+          "Legend": {
+            "VerticalAlign": "top",
+            "UseFontStyle": false,
+            "FontFamily": "default",
+            "FontSize": 11,
+            "FontBold": false,
+            "FontItalic": false,
+            "FontColor": "rgb(0,0,0)",
+            "Floating": false,
+            "Reversed": false,
+            "MarginTop": 2,
+            "Distance": 20
+          },
+          "SeriesSet": [
+            {
+              "Name": "Legend",
+              "Label": "Legend",
+              "Type": 100,
+              "BackgroundColor": "",
+              "Axis": 1,
+              "ValueField": "Legend",
+              "DataType": 1,
+              "UsedNumberSeries": true,
+              "CreateType": 0,
+              "Format": "{0:N0}",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "Unit": 0,
+              "X": 0,
+              "Y": -6,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
+              "X2Axis": false,
+              "Sequence": 0,
+              "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
+              "LineWidth": 2
+            },
+            {
+              "Name": "boleto",
+              "Label": "boleto",
+              "Type": 100,
+              "BackgroundColor": "",
+              "Axis": 1,
+              "ValueField": "boleto",
+              "DataType": 0,
+              "UsedNumberSeries": true,
+              "CreateType": 0,
+              "Format": "{0:N0}",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "Unit": 0,
+              "X": 0,
+              "Y": -6,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
+              "X2Axis": false,
+              "Sequence": 1,
+              "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
+              "LineWidth": 2
+            },
+            {
+              "Name": "credit_card",
+              "Label": "credit_card",
+              "Type": 100,
+              "BackgroundColor": "",
+              "Axis": 1,
+              "ValueField": "credit_card",
+              "DataType": 0,
+              "UsedNumberSeries": true,
+              "CreateType": 0,
+              "Format": "{0:N0}",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "Unit": 0,
+              "X": 0,
+              "Y": -6,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
+              "X2Axis": false,
+              "Sequence": 2,
+              "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
+              "LineWidth": 2
+            },
+            {
+              "Name": "debit_card",
+              "Label": "debit_card",
+              "Type": 100,
+              "BackgroundColor": "",
+              "Axis": 1,
+              "ValueField": "debit_card",
+              "DataType": 0,
+              "UsedNumberSeries": true,
+              "CreateType": 0,
+              "Format": "{0:N0}",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "Unit": 0,
+              "X": 0,
+              "Y": -6,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
+              "X2Axis": false,
+              "Sequence": 3,
+              "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
+              "LineWidth": 2
+            },
+            {
+              "Name": "not_defined",
+              "Label": "not_defined",
+              "Type": 100,
+              "BackgroundColor": "",
+              "Axis": 1,
+              "ValueField": "not_defined",
+              "DataType": 0,
+              "UsedNumberSeries": true,
+              "CreateType": 0,
+              "Format": "{0:N0}",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "Unit": 0,
+              "X": 0,
+              "Y": -6,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
+              "X2Axis": false,
+              "Sequence": 4,
+              "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
+              "LineWidth": 2
+            },
+            {
+              "Name": "voucher",
+              "Label": "voucher",
+              "Type": 100,
+              "BackgroundColor": "",
+              "Axis": 1,
+              "ValueField": "voucher",
+              "DataType": 0,
+              "UsedNumberSeries": true,
+              "CreateType": 0,
+              "Format": "{0:N0}",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "Unit": 0,
+              "X": 0,
+              "Y": -6,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
+              "X2Axis": false,
+              "Sequence": 5,
+              "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
+              "LineWidth": 2
+            }
+          ],
+          "Type": "Chart",
+          "Id": "ChartC2F801AEF076AC92ABEB5ED012DED78B",
+          "Name": "CHT",
+          "Position": {
+            "Left": 860,
+            "Top": 70,
+            "Width": 522,
+            "Height": 781,
+            "ZIndex": 171,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": true,
+              "Bottom": true,
+              "Margin": "860,70,227,20",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {}
+}

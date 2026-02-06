@@ -1,0 +1,434 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REP7F2A0D73D570455E994A3F4795DBF0C1",
+    "FolderCode": "MYDOCUMENT.yglee",
+    "SavePath": "MYDOCUMENT.yglee/REP7F2A0D73D570455E994A3F4795DBF0C1.mtsd",
+    "ReportName": "AddIn_001",
+    "Writer": "kimje1342",
+    "WriteDate": "2026-01-21 14:37:38",
+    "Editor": "yglee",
+    "EditDate": "2026-02-05 17:37:55",
+    "TabPosition": 0,
+    "UseLayout": false,
+    "DocumentVersion": "3.0.0.0",
+    "Description": "SmartEditor",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": []
+  },
+  "ScriptText": "var sampleHtml = '<p class=\"lyrics\"><span style=\"font-size: 12pt;\">Sample Text Line 1</span></p><p class=\"lyrics\"><b>Sample Text Line 2</b></p>';\r\nvar TXT_HTML = Matrix.getObject(\"TXT_HTML\");\r\nvar webEditor = null;\r\nvar articleViewer = null;\r\nTXT_HTML.Text = \"\";\r\n/**************************************\r\n * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.\r\n * * arguments :\r\n **************************************/\r\nvar OnLoadComplete = function (_sender, _args) {\r\n    var getValue = Matrix.getObject(\"ADD_EDITOR\");\r\n    webEditor = getValue.getScriptClass(\"SmartEditor\");\r\n    webEditor.SetValue(sampleHtml);\r\n    var setValue = Matrix.getObject(\"ADD_VIEWER\");\r\n    articleViewer = setValue.getScriptClass(\"SmartEditor\");\r\n    articleViewer.SetViewerMode();\r\n    articleViewer.SetValue('');\r\n};\r\n/*****************************************\r\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n * * arguments :\r\n *\t\t string\tId (Readonly:False) : 컨트롤이름\r\n *\t\t string\tText (Readonly:False) : 라벨 값\r\n *****************************************/\r\nvar OnButtonClick = function (_sender, args) {\r\n    if (args.Id == \"BTN_GET_VAL\") {\r\n        TXT_HTML.Text = webEditor.GetValue();\r\n    }\r\n    else if (args.Id == \"BTN_SET_VAL\") {\r\n        articleViewer.SetValue(TXT_HTML.Text);\r\n    }\r\n};\r\n",
+  "ServerScriptText": [],
+  "Forms": [
+    {
+      "Id": "Formaf90a7f9-d4e9-b88a-0a4d-82221b2f4b23",
+      "Name": "Form1",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 2,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "ComponentType": "SmartEditor",
+          "ComponentElement": {},
+          "Type": "AddIn",
+          "Id": "AddIn1bfd8c47-a5af-ab71-4d72-0dc16efc88af",
+          "Name": "ADD_EDITOR",
+          "Position": {
+            "Left": 27,
+            "Top": 81,
+            "Width": 655,
+            "Height": 498,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "ComponentType": "SmartEditor",
+          "ComponentElement": {},
+          "Type": "AddIn",
+          "Id": "AddIn9b4fd737-4d48-cefa-eb8c-3fe3568f5bb4",
+          "Name": "ADD_VIEWER",
+          "Position": {
+            "Left": 875,
+            "Top": 82,
+            "Width": 645,
+            "Height": 500,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Value": "값 가져오기 →",
+          "Cursor": "pointer",
+          "UseTooltip": true,
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": false,
+          "Type": "Button",
+          "Id": "Buttonc77861cf-906f-dded-5255-a8f4ec47f521",
+          "Name": "BTN_GET_VAL",
+          "Position": {
+            "Left": 629,
+            "Top": 53,
+            "Width": 119,
+            "Height": 23,
+            "ZIndex": 2,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 46,
+                "G": 87,
+                "B": 160,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 12,
+                "G": 56,
+                "B": 134,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "12,12,12,12"
+            },
+            "Font": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "Formula": "",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "MxBinding": "",
+          "Value": "",
+          "Text": "",
+          "Type": "RichTextBox",
+          "Id": "RichTextBox7c85983b-e866-605d-d277-73f54190190d",
+          "Name": "TXT_HTML",
+          "Position": {
+            "Left": 685,
+            "Top": 81,
+            "Width": 189,
+            "Height": 500,
+            "ZIndex": 3,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Value": "값 넣기 →",
+          "Cursor": "pointer",
+          "UseTooltip": true,
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": false,
+          "Type": "Button",
+          "Id": "Button5a7b14ae-7b04-4e44-3d9d-f0524677d43d",
+          "Name": "BTN_SET_VAL",
+          "Position": {
+            "Left": 819,
+            "Top": 53,
+            "Width": 109,
+            "Height": 23,
+            "ZIndex": 3,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 46,
+                "G": 87,
+                "B": 160,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 12,
+                "G": 56,
+                "B": 134,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "12,12,12,12"
+            },
+            "Font": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {}
+}

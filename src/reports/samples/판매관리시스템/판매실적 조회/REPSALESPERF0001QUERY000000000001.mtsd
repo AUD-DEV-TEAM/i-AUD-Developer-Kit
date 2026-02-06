@@ -1,0 +1,1778 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPSALESPERF0001QUERY000000000001",
+    "FolderCode": "MYDOCUMENT.yglee",
+    "SavePath": "MYDOCUMENT.yglee/REPSALESPERF0001QUERY000000000001.mtsd",
+    "ReportName": "판매실적 조회",
+    "Writer": "yglee",
+    "WriteDate": "2026-02-06 00:00:00",
+    "Editor": "yglee",
+    "EditDate": "2026-02-06 10:22:40",
+    "TabPosition": 0,
+    "UsePersonalConditions": false,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS9339A11B2FE12C684296A940CF00C4A7",
+        "Name": "GRD_SALES",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "False",
+        "DSType": 0,
+        "SQL": "SELECT SP.SALES_ID\r\n\t , SP.SALES_DATE\r\n\t , E.EMP_NAME\r\n\t , C.CUST_NAME\r\n\t , P.PROD_NAME\r\n\t , P.CATEGORY\r\n\t , SP.QTY\r\n\t , SP.UNIT_PRICE\r\n\t , SP.NET_AMOUNT\r\n\t , SP.COST_AMOUNT\r\n\t , CG.CODE_NAME\t\tAS SALES_STATUS\r\n\t , PM.CODE_NAME\t\tAS PAY_METHOD\r\n\t , SP.REMARKS\r\n\t , SP.EMP_ID\r\n\t , SP.CUST_ID\r\n\t , SP.PROD_ID\r\n  FROM SM_SALES_PERFORMANCE\tSP\r\n  LEFT JOIN SM_EMPLOYEE E\r\n\tON SP.EMP_ID = E.EMP_ID\r\n  LEFT JOIN SM_CUSTOMER C\r\n\tON SP.CUST_ID = C.CUST_ID\r\n  LEFT JOIN SM_PRODUCT P\r\n\tON SP.PROD_ID = P.PROD_ID\r\n  LEFT JOIN SM_COMMON_CODE CG\r\n\tON CG.GROUP_CD = 'SALES_STATUS'\r\n   AND SP.SALES_STATUS = CG.CODE\r\n  LEFT JOIN SM_COMMON_CODE PM\r\n\tON PM.GROUP_CD = 'PAY_METHOD'\r\n   AND SP.PAY_METHOD = PM.CODE\r\n WHERE 1=1\r\n   AND SP.SALES_DATE BETWEEN @:VS_YMD_FROM AND @:VS_YMD_TO\r\n   AND SP.CUST_ID IN (@:VS_CUST_IDS)\r\n   AND SP.EMP_ID IN (@:VS_PIC)\r\n   AND SP.SALES_STATUS IN (@:VS_STATUS)\r\n ORDER BY SP.SALES_DATE DESC, SP.SALES_ID\r\n",
+        "Params": [
+          {
+            "Name": ":VS_YMD_FROM",
+            "Value": ""
+          },
+          {
+            "Name": ":VS_YMD_TO",
+            "Value": ""
+          },
+          {
+            "Name": ":VS_CUST_IDS",
+            "Value": ""
+          },
+          {
+            "Name": ":VS_PIC",
+            "Value": ""
+          },
+          {
+            "Name": ":VS_STATUS",
+            "Value": ""
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "SALES_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "SALES_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "EMP_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "CUST_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "PROD_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "CATEGORY",
+            "Type": "String"
+          },
+          {
+            "Name": "QTY",
+            "Type": "Number"
+          },
+          {
+            "Name": "UNIT_PRICE",
+            "Type": "Number"
+          },
+          {
+            "Name": "NET_AMOUNT",
+            "Type": "Number"
+          },
+          {
+            "Name": "COST_AMOUNT",
+            "Type": "Number"
+          },
+          {
+            "Name": "SALES_STATUS",
+            "Type": "String"
+          },
+          {
+            "Name": "PAY_METHOD",
+            "Type": "String"
+          },
+          {
+            "Name": "REMARKS",
+            "Type": "String"
+          },
+          {
+            "Name": "EMP_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "CUST_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "PROD_ID",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS6427F03A4D6BA2C89AC503647E5B16BB",
+        "Name": "GRD_TOTAL",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "False",
+        "DSType": 0,
+        "SQL": "SELECT COUNT(DISTINCT SP.SALES_ID)\t\t\t\t\t\t\t\t\t\tAS TOTAL_COUNT\r\n\t , TO_CHAR(SUM(SP.QTY), 'FM999,999,999,999')\t\t\t\t\t\tAS TOTAL_QTY\r\n\t , TO_CHAR(SUM(SP.NET_AMOUNT), 'FM999,999,999,999')\t\t\t\tAS TOTAL_AMT\r\n\t , TO_CHAR(SUM(SP.COST_AMOUNT), 'FM999,999,999,999')\t\t\t\tAS TOTAL_COST\r\n  FROM SM_SALES_PERFORMANCE\tSP\r\n WHERE 1=1\r\n   AND SP.SALES_DATE BETWEEN @:VS_YMD_FROM AND @:VS_YMD_TO\r\n   AND SP.CUST_ID IN (@:VS_CUST_IDS)\r\n   AND SP.EMP_ID IN (@:VS_PIC)\r\n   AND SP.SALES_STATUS IN (@:VS_STATUS)\r\n",
+        "Params": [
+          {
+            "Name": ":VS_YMD_FROM",
+            "Value": ""
+          },
+          {
+            "Name": ":VS_YMD_TO",
+            "Value": ""
+          },
+          {
+            "Name": ":VS_CUST_IDS",
+            "Value": ""
+          },
+          {
+            "Name": ":VS_PIC",
+            "Value": ""
+          },
+          {
+            "Name": ":VS_STATUS",
+            "Value": ""
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "TOTAL_COUNT",
+            "Type": "Number"
+          },
+          {
+            "Name": "TOTAL_QTY",
+            "Type": "String"
+          },
+          {
+            "Name": "TOTAL_AMT",
+            "Type": "String"
+          },
+          {
+            "Name": "TOTAL_COST",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS5127DDD43154ED01C758A48435C75C0D",
+        "Name": "VS_PIC",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "False",
+        "DSType": 0,
+        "SQL": "SELECT EMP_ID\r\n\t , EMP_NAME\r\n  FROM SM_EMPLOYEE\r\n ORDER BY EMP_NAME\r\n",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "EMP_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "EMP_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSC109437AFCF6CF7C16BC49597DD82305",
+        "Name": "VS_STATUS",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "False",
+        "DSType": 0,
+        "SQL": "SELECT CODE\t\tAS STATUS_CODE\r\n\t , CODE_NAME\tAS STATUS_NAME\r\n  FROM SM_COMMON_CODE\r\n WHERE GROUP_CD = 'SALES_STATUS'\r\n ORDER BY SORT_ORDER\r\n",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "STATUS_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "STATUS_NAME",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "/* Controls */\r\nvar VS_YMD_FROM = Matrix.getObject(\"VS_YMD_FROM\");\r\nvar GRD_SALES = Matrix.getObject(\"GRD_SALES\");\r\nvar GRD_TOTAL = Matrix.getObject(\"GRD_TOTAL\");\r\nvar BTN_SEARCH = Matrix.getObject(\"BTN_SEARCH\");\r\nvar BTN_EXCEL = Matrix.getObject(\"BTN_EXCEL\");\r\nvar BTN_CUST = Matrix.getObject(\"BTN_CUST\");\r\nvar BTN_CUST_CLEAR = Matrix.getObject(\"BTN_CUST_CLEAR\");\r\nvar LBL_CUST_FILTER = Matrix.getObject(\"LBL_CUST_FILTER\");\r\n// 선택된 고객 목록 (CUST_ID, CUST_NAME)\r\nvar selectedCustomers = [];\r\nMatrix.OnDocumentLoadComplete = function (s, e) {\r\n    VS_YMD_FROM.InitDate = 'DATE(0,F,F);DATE(0,L,L)';\r\n};\r\nMatrix.OnMultiComboBoxExecuteStart = function (s, e) {\r\n    if (['VS_PIC', 'VS_STATUS'].includes(e.Id)) {\r\n        Matrix.getObject(e.Id).CheckAll();\r\n    }\r\n};\r\nMatrix.OnDataBindEnd = function (s, e) {\r\n    if (e.Id == 'GRD_SALES') {\r\n        Matrix.getObject('LBL_TTL_2').Text = '판매실적 목록 (' + e.RecordCount + '건)';\r\n    }\r\n    else if (e.Id == 'GRD_TOTAL') {\r\n        if (!e.RecordCount) {\r\n            Matrix.getObject('LBL_TOTAL_VAL_1').Text = '';\r\n            Matrix.getObject('LBL_TOTAL_VAL_2').Text = '';\r\n            Matrix.getObject('LBL_TOTAL_VAL_3').Text = '';\r\n            return;\r\n        }\r\n        Matrix.getObject('LBL_TOTAL_VAL_1').Text = GRD_TOTAL.getRowValue(0, 'TOTAL_QTY');\r\n        Matrix.getObject('LBL_TOTAL_VAL_2').Text = GRD_TOTAL.getRowValue(0, 'TOTAL_AMT');\r\n        Matrix.getObject('LBL_TOTAL_VAL_3').Text = GRD_TOTAL.getRowValue(0, 'TOTAL_COST');\r\n    }\r\n};\r\n// 조회\r\nBTN_SEARCH.OnClick = function (s, e) {\r\n    applyCustomerFilter();\r\n    Matrix.doRefresh('GRD_SALES');\r\n};\r\n// Excel 내보내기\r\nBTN_EXCEL.OnClick = function (s, e) {\r\n    GRD_SALES.ExportExcel('판매실적_조회');\r\n};\r\n// 고객 검색 팝업 열기\r\nBTN_CUST.OnClick = function (s, e) {\r\n    // 이미 선택된 고객 ID 목록을 팝업에 전달\r\n    var params = {\r\n        SELECTED_IDS: selectedCustomers.map(function (c) { return c.CUST_ID; }).join(',')\r\n    };\r\n    Matrix.ShowReportDialog(\"REPCUSTSEARCH0001POPUP0000000001\", params, {\r\n        Width: 650,\r\n        Height: 500,\r\n        Center: true,\r\n        IsModal: true,\r\n        Title: \"고객 검색\",\r\n        Resizable: true,\r\n        Buttons: 0\r\n    }, function (result) {\r\n        if (result && result.customers) {\r\n            selectedCustomers = result.customers;\r\n            updateCustomerLabel();\r\n        }\r\n    });\r\n};\r\n// 고객 필터 초기화\r\nBTN_CUST_CLEAR.OnClick = function (s, e) {\r\n    selectedCustomers = [];\r\n    updateCustomerLabel();\r\n};\r\n// 고객 라벨 업데이트\r\nvar updateCustomerLabel = function () {\r\n    if (selectedCustomers.length === 0) {\r\n        LBL_CUST_FILTER.Text = '  전체';\r\n    }\r\n    else if (selectedCustomers.length === 1) {\r\n        LBL_CUST_FILTER.Text = '  ' + selectedCustomers[0].CUST_NAME;\r\n    }\r\n    else {\r\n        LBL_CUST_FILTER.Text = '  ' + selectedCustomers[0].CUST_NAME + ' 외 ' + (selectedCustomers.length - 1) + '건';\r\n    }\r\n    LBL_CUST_FILTER.Update();\r\n};\r\n// 고객 필터를 전역 파라미터로 적용\r\nvar applyCustomerFilter = function () {\r\n    if (selectedCustomers.length > 0) {\r\n        var custIds = selectedCustomers.map(function (c) { return c.CUST_ID; }).join(',');\r\n        Matrix.SetGlobalParams('VS_CUST_IDS', custIds);\r\n    }\r\n    else {\r\n        Matrix.SetGlobalParams('VS_CUST_IDS', '');\r\n    }\r\n};\r\n",
+  "ServerScriptText": [],
+  "Forms": [
+    {
+      "Id": "FormA1B2C3D4E5F6A7B8C9D0E1F2A3B4C5D6",
+      "Name": "Form1",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "CornerRadius": "0,0,0,0",
+          "LineType": "none",
+          "Thickness": "0,0,0,0"
+        },
+        "Background": {}
+      },
+      "Elements": [
+        {
+          "Type": "Group",
+          "Id": "GRP_HEADER",
+          "Name": "GRP_HEADER",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1200,
+            "Height": 55,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 255
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 255
+              },
+              "CornerRadius": "0,0,0,0",
+              "LineType": "solid",
+              "Thickness": "0,0,1,0"
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LBL_TTL",
+              "Name": "LBL_TTL",
+              "InGroup": "GRP_HEADER",
+              "Position": {
+                "Left": 15,
+                "Top": 12,
+                "Width": 200,
+                "Height": 30,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 30,
+                    "G": 41,
+                    "B": 59,
+                    "A": 255
+                  },
+                  "Size": 16,
+                  "Family": "Malgun Gothic",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle"
+                }
+              },
+              "LanguageCode": "",
+              "Text": "판매실적 조회",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "LineSpacing": 0,
+              "HasLineSpacing": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": false
+            },
+            {
+              "Type": "Button",
+              "Id": "BTN_SEARCH",
+              "Name": "BTN_SEARCH",
+              "InGroup": "GRP_HEADER",
+              "Position": {
+                "Left": 1110,
+                "Top": 13,
+                "Width": 75,
+                "Height": 30,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                }
+              },
+              "LanguageCode": "",
+              "Value": "조회",
+              "Cursor": "pointer",
+              "HasNewRadius": false
+            },
+            {
+              "Type": "Button",
+              "Id": "BTN_EXCEL",
+              "Name": "BTN_EXCEL",
+              "InGroup": "GRP_HEADER",
+              "Position": {
+                "Left": 1030,
+                "Top": 13,
+                "Width": 75,
+                "Height": 30,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                }
+              },
+              "LanguageCode": "",
+              "Value": "Excel",
+              "Cursor": "pointer",
+              "HasNewRadius": false
+            }
+          ]
+        },
+        {
+          "Type": "Group",
+          "Id": "GRP_SEARCH",
+          "Name": "GRP_SEARCH",
+          "Position": {
+            "Left": 0,
+            "Top": 55,
+            "Width": 1200,
+            "Height": 45,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 248,
+                "G": 250,
+                "B": 252,
+                "A": 255
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 255
+              },
+              "CornerRadius": "0,0,0,0",
+              "LineType": "solid",
+              "Thickness": "0,0,1,0"
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LBL_YMD",
+              "Name": "LBL_YMD",
+              "InGroup": "GRP_SEARCH",
+              "Position": {
+                "Left": 15,
+                "Top": 10,
+                "Width": 40,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 71,
+                    "G": 85,
+                    "B": 105,
+                    "A": 255
+                  },
+                  "Size": 12,
+                  "Family": "Malgun Gothic",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle"
+                }
+              },
+              "LanguageCode": "",
+              "Text": "기간",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "LineSpacing": 0,
+              "HasLineSpacing": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": false
+            },
+            {
+              "Type": "CalendarFromTo",
+              "Id": "VS_YMD_FROM",
+              "Name": "VS_YMD_FROM",
+              "InGroup": "GRP_SEARCH",
+              "Position": {
+                "Left": 55,
+                "Top": 10,
+                "Width": 240,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                }
+              },
+              "InitDate": "DATE(0,F,F);DATE(0,L,L)"
+            },
+            {
+              "Type": "Label",
+              "Id": "LBL_CUST",
+              "Name": "LBL_CUST",
+              "InGroup": "GRP_SEARCH",
+              "Position": {
+                "Left": 310,
+                "Top": 10,
+                "Width": 40,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 71,
+                    "G": 85,
+                    "B": 105,
+                    "A": 255
+                  },
+                  "Size": 12,
+                  "Family": "Malgun Gothic",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle"
+                }
+              },
+              "LanguageCode": "",
+              "Text": "고객",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "LineSpacing": 0,
+              "HasLineSpacing": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": false
+            },
+            {
+              "Type": "Label",
+              "Id": "LBL_CUST_FILTER",
+              "Name": "LBL_CUST_FILTER",
+              "InGroup": "GRP_SEARCH",
+              "Position": {
+                "Left": 355,
+                "Top": 10,
+                "Width": 160,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "Color": {
+                    "R": 203,
+                    "G": 213,
+                    "B": 225,
+                    "A": 255
+                  }
+                },
+                "Font": {
+                  "Color": {
+                    "R": 51,
+                    "G": 65,
+                    "B": 85,
+                    "A": 255
+                  },
+                  "Size": 12,
+                  "Family": "Malgun Gothic",
+                  "Bold": false,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle"
+                }
+              },
+              "LanguageCode": "",
+              "Text": "  전체",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": true,
+              "UseAutoLineBreak": false,
+              "LineSpacing": 0,
+              "HasLineSpacing": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": false
+            },
+            {
+              "Type": "Button",
+              "Id": "BTN_CUST",
+              "Name": "BTN_CUST",
+              "InGroup": "GRP_SEARCH",
+              "Position": {
+                "Left": 520,
+                "Top": 10,
+                "Width": 30,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                }
+              },
+              "LanguageCode": "",
+              "Value": "...",
+              "Cursor": "pointer",
+              "HasNewRadius": false
+            },
+            {
+              "Type": "Button",
+              "Id": "BTN_CUST_CLEAR",
+              "Name": "BTN_CUST_CLEAR",
+              "InGroup": "GRP_SEARCH",
+              "Position": {
+                "Left": 555,
+                "Top": 10,
+                "Width": 30,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                }
+              },
+              "LanguageCode": "",
+              "Value": "X",
+              "Cursor": "pointer",
+              "HasNewRadius": false
+            },
+            {
+              "Type": "Label",
+              "Id": "LBL_PIC",
+              "Name": "LBL_PIC",
+              "InGroup": "GRP_SEARCH",
+              "Position": {
+                "Left": 600,
+                "Top": 10,
+                "Width": 50,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 71,
+                    "G": 85,
+                    "B": 105,
+                    "A": 255
+                  },
+                  "Size": 12,
+                  "Family": "Malgun Gothic",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle"
+                }
+              },
+              "LanguageCode": "",
+              "Text": "담당자",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "LineSpacing": 0,
+              "HasLineSpacing": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": false
+            },
+            {
+              "Type": "MultiComboBox",
+              "Id": "VS_PIC",
+              "Name": "VS_PIC",
+              "InGroup": "GRP_SEARCH",
+              "Position": {
+                "Left": 655,
+                "Top": 10,
+                "Width": 180,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                }
+              },
+              "DataSource": "DS5127DDD43154ED01C758A48435C75C0D",
+              "Value": "",
+              "Text": "",
+              "InitType": 0,
+              "RefreshType": 0,
+              "IsReadOnly": false,
+              "SortType": 0,
+              "AutoRefresh": false,
+              "AfterRefresh": "",
+              "UseAllItems": false,
+              "UseAllItemsText": "",
+              "DisplayType": 0,
+              "DataSourceInfo": {
+                "LabelField": "EMP_NAME",
+                "ValueField": "EMP_ID"
+              },
+              "InitValue": ""
+            },
+            {
+              "Type": "Label",
+              "Id": "LBL_STATUS",
+              "Name": "LBL_STATUS",
+              "InGroup": "GRP_SEARCH",
+              "Position": {
+                "Left": 850,
+                "Top": 10,
+                "Width": 40,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 71,
+                    "G": 85,
+                    "B": 105,
+                    "A": 255
+                  },
+                  "Size": 12,
+                  "Family": "Malgun Gothic",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle"
+                }
+              },
+              "LanguageCode": "",
+              "Text": "상태",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "LineSpacing": 0,
+              "HasLineSpacing": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": false
+            },
+            {
+              "Type": "MultiComboBox",
+              "Id": "VS_STATUS",
+              "Name": "VS_STATUS",
+              "InGroup": "GRP_SEARCH",
+              "Position": {
+                "Left": 895,
+                "Top": 10,
+                "Width": 120,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                }
+              },
+              "DataSource": "DSC109437AFCF6CF7C16BC49597DD82305",
+              "Value": "",
+              "Text": "",
+              "InitType": 0,
+              "RefreshType": 0,
+              "IsReadOnly": false,
+              "SortType": 0,
+              "AutoRefresh": false,
+              "AfterRefresh": "",
+              "UseAllItems": false,
+              "UseAllItemsText": "",
+              "DisplayType": 0,
+              "DataSourceInfo": {
+                "LabelField": "STATUS_NAME",
+                "ValueField": "STATUS_CODE"
+              },
+              "InitValue": ""
+            }
+          ]
+        },
+        {
+          "Type": "Group",
+          "Id": "GRP_INFO",
+          "Name": "GRP_INFO",
+          "Position": {
+            "Left": 0,
+            "Top": 100,
+            "Width": 1200,
+            "Height": 40,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 255
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 255
+              },
+              "CornerRadius": "0,0,0,0",
+              "LineType": "solid",
+              "Thickness": "0,0,1,0"
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LBL_TTL_2",
+              "Name": "LBL_TTL_2",
+              "InGroup": "GRP_INFO",
+              "Position": {
+                "Left": 15,
+                "Top": 8,
+                "Width": 300,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 71,
+                    "G": 85,
+                    "B": 105,
+                    "A": 255
+                  },
+                  "Size": 12,
+                  "Family": "Malgun Gothic",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle"
+                }
+              },
+              "LanguageCode": "",
+              "Text": "판매실적 목록",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "LineSpacing": 0,
+              "HasLineSpacing": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": false
+            },
+            {
+              "Type": "Label",
+              "Id": "LBL_TOTAL_1",
+              "Name": "LBL_TOTAL_1",
+              "InGroup": "GRP_INFO",
+              "Position": {
+                "Left": 700,
+                "Top": 8,
+                "Width": 60,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 100,
+                    "G": 116,
+                    "B": 139,
+                    "A": 255
+                  },
+                  "Size": 11,
+                  "Family": "Malgun Gothic",
+                  "Bold": false,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "right",
+                  "VerticalAlignment": "middle"
+                }
+              },
+              "LanguageCode": "",
+              "Text": "총 수량:",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "LineSpacing": 0,
+              "HasLineSpacing": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": false
+            },
+            {
+              "Type": "Label",
+              "Id": "LBL_TOTAL_VAL_1",
+              "Name": "LBL_TOTAL_VAL_1",
+              "InGroup": "GRP_INFO",
+              "Position": {
+                "Left": 765,
+                "Top": 8,
+                "Width": 100,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 30,
+                    "G": 41,
+                    "B": 59,
+                    "A": 255
+                  },
+                  "Size": 11,
+                  "Family": "Malgun Gothic",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle"
+                }
+              },
+              "LanguageCode": "",
+              "Text": "",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "LineSpacing": 0,
+              "HasLineSpacing": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": false
+            },
+            {
+              "Type": "Label",
+              "Id": "LBL_TOTAL_2",
+              "Name": "LBL_TOTAL_2",
+              "InGroup": "GRP_INFO",
+              "Position": {
+                "Left": 870,
+                "Top": 8,
+                "Width": 60,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 100,
+                    "G": 116,
+                    "B": 139,
+                    "A": 255
+                  },
+                  "Size": 11,
+                  "Family": "Malgun Gothic",
+                  "Bold": false,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "right",
+                  "VerticalAlignment": "middle"
+                }
+              },
+              "LanguageCode": "",
+              "Text": "매출합계:",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "LineSpacing": 0,
+              "HasLineSpacing": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": false
+            },
+            {
+              "Type": "Label",
+              "Id": "LBL_TOTAL_VAL_2",
+              "Name": "LBL_TOTAL_VAL_2",
+              "InGroup": "GRP_INFO",
+              "Position": {
+                "Left": 935,
+                "Top": 8,
+                "Width": 120,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 30,
+                    "G": 41,
+                    "B": 59,
+                    "A": 255
+                  },
+                  "Size": 11,
+                  "Family": "Malgun Gothic",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle"
+                }
+              },
+              "LanguageCode": "",
+              "Text": "",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "LineSpacing": 0,
+              "HasLineSpacing": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": false
+            },
+            {
+              "Type": "Label",
+              "Id": "LBL_TOTAL_3",
+              "Name": "LBL_TOTAL_3",
+              "InGroup": "GRP_INFO",
+              "Position": {
+                "Left": 1060,
+                "Top": 8,
+                "Width": 50,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 100,
+                    "G": 116,
+                    "B": 139,
+                    "A": 255
+                  },
+                  "Size": 11,
+                  "Family": "Malgun Gothic",
+                  "Bold": false,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "right",
+                  "VerticalAlignment": "middle"
+                }
+              },
+              "LanguageCode": "",
+              "Text": "원가:",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "LineSpacing": 0,
+              "HasLineSpacing": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": false
+            },
+            {
+              "Type": "Label",
+              "Id": "LBL_TOTAL_VAL_3",
+              "Name": "LBL_TOTAL_VAL_3",
+              "InGroup": "GRP_INFO",
+              "Position": {
+                "Left": 1115,
+                "Top": 8,
+                "Width": 80,
+                "Height": 25,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 0,
+                "BoxStyle": "",
+                "Background": {},
+                "Border": {
+                  "CornerRadius": "0,0,0,0",
+                  "LineType": "none",
+                  "Thickness": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 30,
+                    "G": 41,
+                    "B": 59,
+                    "A": 255
+                  },
+                  "Size": 11,
+                  "Family": "Malgun Gothic",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle"
+                }
+              },
+              "LanguageCode": "",
+              "Text": "",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "LineSpacing": 0,
+              "HasLineSpacing": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": false
+            }
+          ]
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "GRD_SALES",
+          "Name": "GRD_SALES",
+          "Position": {
+            "Left": 0,
+            "Top": 140,
+            "Width": 1200,
+            "Height": 500,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": true,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {},
+            "Border": {
+              "CornerRadius": "0,0,0,0",
+              "LineType": "none",
+              "Thickness": "0,0,0,0"
+            }
+          },
+          "DataSource": "DS9339A11B2FE12C684296A940CF00C4A7",
+          "CellMargin": "2",
+          "Columns": [
+            {
+              "Name": "SALES_DATE",
+              "Caption": "판매일자",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "center"
+            },
+            {
+              "Name": "EMP_NAME",
+              "Caption": "담당자",
+              "Width": 90,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "center"
+            },
+            {
+              "Name": "CUST_NAME",
+              "Caption": "고객명",
+              "Width": 130,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "PROD_NAME",
+              "Caption": "제품명",
+              "Width": 130,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "CATEGORY",
+              "Caption": "분류",
+              "Width": 80,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "center"
+            },
+            {
+              "Name": "QTY",
+              "Caption": "수량",
+              "Width": 70,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "right",
+              "DataType": 1,
+              "Format": "#,##0"
+            },
+            {
+              "Name": "UNIT_PRICE",
+              "Caption": "단가",
+              "Width": 90,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "right",
+              "DataType": 1,
+              "Format": "#,##0"
+            },
+            {
+              "Name": "NET_AMOUNT",
+              "Caption": "매출액",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "right",
+              "DataType": 1,
+              "Format": "#,##0"
+            },
+            {
+              "Name": "COST_AMOUNT",
+              "Caption": "원가",
+              "Width": 90,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "right",
+              "DataType": 1,
+              "Format": "#,##0"
+            },
+            {
+              "Name": "SALES_STATUS",
+              "Caption": "상태",
+              "Width": 80,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "center"
+            },
+            {
+              "Name": "PAY_METHOD",
+              "Caption": "결제방법",
+              "Width": 80,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "center"
+            },
+            {
+              "Name": "REMARKS",
+              "Caption": "비고",
+              "Width": 150,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center"
+            }
+          ],
+          "UsePPTExport": false
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "GRD_TOTAL",
+          "Name": "GRD_TOTAL",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 0,
+            "Height": 0,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {},
+            "Border": {
+              "CornerRadius": "0,0,0,0",
+              "LineType": "none",
+              "Thickness": "0,0,0,0"
+            }
+          },
+          "Visible": false,
+          "DataSource": "DS6427F03A4D6BA2C89AC503647E5B16BB",
+          "CellMargin": "2",
+          "Columns": [
+            {
+              "Name": "TOTAL_COUNT",
+              "Caption": "건수",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "TOTAL_QTY",
+              "Caption": "수량",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "TOTAL_AMT",
+              "Caption": "매출합계",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "TOTAL_COST",
+              "Caption": "원가합계",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 0,
+              "HeaderPosition": "center"
+            }
+          ],
+          "UsePPTExport": false
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": [],
+    "TemplateMeta": {
+      "TemplateName": "",
+      "TemplateCode": "",
+      "Code": "",
+      "ConnectionCode": "",
+      "SQLText": "",
+      "FilterInfo": [],
+      "MetaFields": []
+    },
+    "Items": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": ""
+}

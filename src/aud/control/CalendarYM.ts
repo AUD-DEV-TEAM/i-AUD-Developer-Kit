@@ -6,19 +6,19 @@ import { Control } from "../../aud/control/Control";
  * {@link OnValueChanged} 이벤트를 통해 연도 변경을 처리합니다.
  *
  * @example
- * ```ts
+ * ```js
  * //----------------------------------------------
  * // 패턴1: 기본 연도 선택 및 값 읽기
  * //----------------------------------------------
- * let calYear: CalendarYM = Matrix.getObject("calYear") as CalendarYM;
+ * var calYear = Matrix.getObject("calYear");
  *
  * calYear.OnValueChanged = function(sender, args) {
- *     let year = args.Text;  // ViewFormat 형식 (예: "2024")
- *     let date = args.Date;
+ *     var year = args.Text;  // ViewFormat 형식 (예: "2024")
+ *     var date = args.Date;
  *
  *     // 해당 연도의 첫날과 마지막날 계산
- *     let firstDay = new Date(date.getFullYear(), 0, 1);
- *     let lastDay = new Date(date.getFullYear(), 11, 31);
+ *     var firstDay = new Date(date.getFullYear(), 0, 1);
+ *     var lastDay = new Date(date.getFullYear(), 11, 31);
  *
  *     Matrix.Alert("선택된 연도: " + year + " (1월 1일 ~ 12월 31일)");
  * };
@@ -27,23 +27,23 @@ import { Control } from "../../aud/control/Control";
  * // 패턴2: 올해로 초기화
  * //----------------------------------------------
  * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     let calThisYear: CalendarYM = Matrix.getObject("calThisYear") as CalendarYM;
+ *     var calThisYear = Matrix.getObject("calThisYear");
  *
  *     // 포맷 설정
  *     calThisYear.DataFormat = "yyyy";
  *     calThisYear.ViewFormat = "yyyy";
  *
  *     // 올해로 설정
- *     let today = new Date();
+ *     var today = new Date();
  *     calThisYear.Date = today;
  * };
  *
  * //----------------------------------------------
  * // 패턴3: 연도별 보고서 조회
  * //----------------------------------------------
- * let btnYearlyReport: Button = Matrix.getObject("btnYearlyReport") as Button;
- * let calReportYear: CalendarYM = Matrix.getObject("calReportYear") as CalendarYM;
- * let grid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
+ * var btnYearlyReport = Matrix.getObject("btnYearlyReport");
+ * var calReportYear = Matrix.getObject("calReportYear");
+ * var grid = Matrix.getObject("DataGrid");
  *
  * btnYearlyReport.OnClick = function(sender, args) {
  *     if (!calReportYear.Value) {
@@ -53,12 +53,12 @@ import { Control } from "../../aud/control/Control";
  *     }
  *
  *     // 해당 연도의 시작일과 종료일 계산
- *     let year = parseInt(calReportYear.Value);
- *     let firstDay = new Date(year, 0, 1);
- *     let lastDay = new Date(year, 11, 31);
+ *     var year = parseInt(calReportYear.Value);
+ *     var firstDay = new Date(year, 0, 1);
+ *     var lastDay = new Date(year, 11, 31);
  *
  *     // 서버 스크립트 호출
- *     let params = {
+ *     var params = {
  *         VS_YEAR: calReportYear.Value,  // "2024"
  *         VS_FROM_DATE: formatDateToString(firstDay),  // "20240101"
  *         VS_TO_DATE: formatDateToString(lastDay)      // "20241231"
@@ -72,27 +72,27 @@ import { Control } from "../../aud/control/Control";
  *     });
  * };
  *
- * function formatDateToString(date: Date): string {
- *     let year = date.getFullYear();
- *     let month = ("0" + (date.getMonth() + 1)).slice(-2);
- *     let day = ("0" + date.getDate()).slice(-2);
+ * function formatDateToString(date) {
+ *     var year = date.getFullYear();
+ *     var month = ("0" + (date.getMonth() + 1)).slice(-2);
+ *     var day = ("0" + date.getDate()).slice(-2);
  *     return year + month + day;
  * }
  *
  * //----------------------------------------------
  * // 패턴4: 전년 대비 분석
  * //----------------------------------------------
- * let calCompare: CalendarYM = Matrix.getObject("calCompare") as CalendarYM;
- * let lblComparison: Label = Matrix.getObject("lblComparison") as Label;
+ * var calCompare = Matrix.getObject("calCompare");
+ * var lblComparison = Matrix.getObject("lblComparison");
  *
  * calCompare.OnValueChanged = function(sender, args) {
- *     let currentYear = parseInt(args.Text);
- *     let previousYear = currentYear - 1;
+ *     var currentYear = parseInt(args.Text);
+ *     var previousYear = currentYear - 1;
  *
  *     lblComparison.Text = "비교 대상: " + currentYear + "년 vs " + previousYear + "년";
  *
  *     // 전년 대비 데이터 조회
- *     let params = {
+ *     var params = {
  *         VS_CURRENT_YEAR: currentYear.toString(),
  *         VS_PREVIOUS_YEAR: previousYear.toString()
  *     };
@@ -107,21 +107,21 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴5: 이전/다음 년도 버튼
  * //----------------------------------------------
- * let btnPrevYear: Button = Matrix.getObject("btnPrevYear") as Button;
- * let btnNextYear: Button = Matrix.getObject("btnNextYear") as Button;
- * let calNav: CalendarYM = Matrix.getObject("calNav") as CalendarYM;
+ * var btnPrevYear = Matrix.getObject("btnPrevYear");
+ * var btnNextYear = Matrix.getObject("btnNextYear");
+ * var calNav = Matrix.getObject("calNav");
  *
  * // 이전 년도
  * btnPrevYear.OnClick = function(sender, args) {
- *     let current = calNav.Date;
- *     let prevYear = new Date(current.getFullYear() - 1, 0, 1);
+ *     var current = calNav.Date;
+ *     var prevYear = new Date(current.getFullYear() - 1, 0, 1);
  *     calNav.Date = prevYear;
  * };
  *
  * // 다음 년도
  * btnNextYear.OnClick = function(sender, args) {
- *     let current = calNav.Date;
- *     let nextYear = new Date(current.getFullYear() + 1, 0, 1);
+ *     var current = calNav.Date;
+ *     var nextYear = new Date(current.getFullYear() + 1, 0, 1);
  *     calNav.Date = nextYear;
  * };
  *
@@ -129,11 +129,11 @@ import { Control } from "../../aud/control/Control";
  * // 패턴6: 선택 가능 연도 제한 (최근 5년)
  * //----------------------------------------------
  * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     let calRecent: CalendarYM = Matrix.getObject("calRecent") as CalendarYM;
+ *     var calRecent = Matrix.getObject("calRecent");
  *
  *     // 올해부터 5년 전까지만 선택 가능
- *     let today = new Date();
- *     let fiveYearsAgo = new Date(today.getFullYear() - 5, 0, 1);
+ *     var today = new Date();
+ *     var fiveYearsAgo = new Date(today.getFullYear() - 5, 0, 1);
  *
  *     calRecent.MinDate = fiveYearsAgo.getFullYear().toString();  // "2019"
  *     calRecent.MaxDate = today.getFullYear().toString();         // "2024"
@@ -142,9 +142,9 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴7: 연도별 데이터 입력
  * //----------------------------------------------
- * let calInput: CalendarYM = Matrix.getObject("calInput") as CalendarYM;
- * let txtRevenue: TextBox = Matrix.getObject("txtRevenue") as TextBox;
- * let btnSaveYearly: Button = Matrix.getObject("btnSaveYearly") as Button;
+ * var calInput = Matrix.getObject("calInput");
+ * var txtRevenue = Matrix.getObject("txtRevenue");
+ * var btnSaveYearly = Matrix.getObject("btnSaveYearly");
  *
  * btnSaveYearly.OnClick = function(sender, args) {
  *     if (!calInput.Value) {
@@ -158,7 +158,7 @@ import { Control } from "../../aud/control/Control";
  *     }
  *
  *     // 연도별 실적 저장
- *     let params = {
+ *     var params = {
  *         VS_YEAR: calInput.Value,  // "2024"
  *         VN_REVENUE: txtRevenue.Text
  *     };
@@ -169,7 +169,7 @@ import { Control } from "../../aud/control/Control";
  *             txtRevenue.Text = "";
  *
  *             // 다음 연도로 자동 이동
- *             let nextYear = new Date(calInput.Date.getFullYear() + 1, 0, 1);
+ *             var nextYear = new Date(calInput.Date.getFullYear() + 1, 0, 1);
  *             calInput.Date = nextYear;
  *         }
  *     });
@@ -178,11 +178,11 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴8: 회계연도 표시
  * //----------------------------------------------
- * let calFiscal: CalendarYM = Matrix.getObject("calFiscal") as CalendarYM;
- * let lblFiscalYear: Label = Matrix.getObject("lblFiscalYear") as Label;
+ * var calFiscal = Matrix.getObject("calFiscal");
+ * var lblFiscalYear = Matrix.getObject("lblFiscalYear");
  *
  * calFiscal.OnValueChanged = function(sender, args) {
- *     let year = parseInt(args.Text);
+ *     var year = parseInt(args.Text);
  *
  *     // 회계연도 계산 (4월 시작 기준)
  *     // 예: 2024년 선택 시 → FY2024는 2024.04~2025.03

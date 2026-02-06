@@ -3,6 +3,19 @@ import { enInputType } from "../../aud/enums/comm/enInputType";
 import { Event } from "../../aud/data/Event";
 /**
  * 텍스트박스 컨트롤입니다.
+ *
+ * @example
+ * ```js
+ * // 텍스트박스 기본 사용
+ * var tbxName = Matrix.getObject("tbxName");
+ * tbxName.MaxLength = 50;
+ * tbxName.UsePlaceholder = true;
+ * tbxName.SetPlaceholder("이름을 입력하세요");
+ *
+ * // 값 설정 및 조회
+ * tbxName.Text = "홍길동";
+ * console.log(tbxName.Text); // "홍길동"
+ * ```
  */
 export interface TextBox extends Control {
 
@@ -49,6 +62,12 @@ export interface TextBox extends Control {
   /**
    * 해당 컨트롤의 Placeholder 텍스트를 지정합니다. `UsePlaceholder`가 `true`일 경우에만 사용 가능합니다.
    *
+   * @example
+   * ```js
+   * var tbxSearch = Matrix.getObject("tbxSearch");
+   * tbxSearch.UsePlaceholder = true;
+   * tbxSearch.SetPlaceholder("검색어를 입력하세요");
+   * ```
    * @param placeholdervalue 문자열 형식의 텍스트
    */
   SetPlaceholder(placeholdervalue: string): void;
@@ -58,6 +77,17 @@ export interface TextBox extends Control {
    *
    * 텍스트박스 컨트롤의 텍스트가 변경될 때 발생합니다.
    *
+   * @example
+   * ```js
+   * var tbxSearch = Matrix.getObject("tbxSearch");
+   * tbxSearch.OnTextChange = function(sender, args) {
+   *     console.log("변경된 텍스트: " + args.Text);
+   *
+   *     // 입력 값에 따른 실시간 필터링
+   *     var grid = Matrix.getObject("grdData");
+   *     grid.SetFilter("NAME LIKE '%" + args.Text + "%'");
+   * };
+   * ```
    * @param sender 이벤트가 발생한 텍스트박스 컨트롤
    * @param args 이벤트 인자
    *

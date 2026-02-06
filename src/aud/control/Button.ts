@@ -6,11 +6,11 @@ import { Control } from "../../aud/control/Control";
  * {@link OnClick} 이벤트를 통해 클릭 동작을 처리합니다.
  *
  * @example
- * ```ts
+ * ```js
  * //----------------------------------------------
  * // 패턴1: 기본 버튼 클릭 이벤트 처리
  * //----------------------------------------------
- * let btnSearch: Button = Matrix.getObject("btnSearch") as Button;
+ * var btnSearch = Matrix.getObject("btnSearch");
  *
  * btnSearch.OnClick = function(sender, args) {
  *     Matrix.Alert("버튼 '" + args.Text + "'이(가) 클릭되었습니다.");
@@ -19,12 +19,12 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴2: 서버 스크립트 호출 및 데이터 조회
  * //----------------------------------------------
- * let btnLoad: Button = Matrix.getObject("btnLoad") as Button;
- * let grid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
+ * var btnLoad = Matrix.getObject("btnLoad");
+ * var grid = Matrix.getObject("DataGrid");
  *
  * btnLoad.OnClick = function(sender, args) {
  *     // 파라미터 구성
- *     let params = {
+ *     var params = {
  *         VS_SEARCH_TEXT: "검색어",
  *         VN_PAGE_NO: 1
  *     };
@@ -43,8 +43,8 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴3: 버튼 텍스트 및 스타일 동적 변경
  * //----------------------------------------------
- * let btnToggle: Button = Matrix.getObject("btnToggle") as Button;
- * let isActive = false;
+ * var btnToggle = Matrix.getObject("btnToggle");
+ * var isActive = false;
  *
  * btnToggle.OnClick = function(sender, args) {
  *     isActive = !isActive;
@@ -61,8 +61,8 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴4: 버튼 비활성화/활성화 제어
  * //----------------------------------------------
- * let btnSave: Button = Matrix.getObject("btnSave") as Button;
- * let btnCancel: Button = Matrix.getObject("btnCancel") as Button;
+ * var btnSave = Matrix.getObject("btnSave");
+ * var btnCancel = Matrix.getObject("btnCancel");
  *
  * btnSave.OnClick = function(sender, args) {
  *     // 저장 중 다른 버튼 비활성화
@@ -87,9 +87,9 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴5: 데이터 검증 후 서버 호출
  * //----------------------------------------------
- * let btnSubmit: Button = Matrix.getObject("btnSubmit") as Button;
- * let txtName: TextBox = Matrix.getObject("txtName") as TextBox;
- * let txtEmail: TextBox = Matrix.getObject("txtEmail") as TextBox;
+ * var btnSubmit = Matrix.getObject("btnSubmit");
+ * var txtName = Matrix.getObject("txtName");
+ * var txtEmail = Matrix.getObject("txtEmail");
  *
  * btnSubmit.OnClick = function(sender, args) {
  *     // 입력값 검증
@@ -106,7 +106,7 @@ import { Control } from "../../aud/control/Control";
  *     }
  *
  *     // 검증 통과 후 서버 전송
- *     let params = {
+ *     var params = {
  *         VS_NAME: txtName.Text,
  *         VS_EMAIL: txtEmail.Text
  *     };
@@ -124,7 +124,7 @@ import { Control } from "../../aud/control/Control";
  * // 패턴6: 마우스 오버/다운 스타일 적용
  * //----------------------------------------------
  * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     let btnAction: Button = Matrix.getObject("btnAction") as Button;
+ *     var btnAction = Matrix.getObject("btnAction");
  *
  *     // 마우스 오버 시 스타일
  *     btnAction.SetMouseOverBoxStyle("PRIMARY_BTN_Hover");
@@ -143,8 +143,8 @@ export interface Button extends Control{
    * 컨트롤의 마우스 커서 모양을 CSS cursor 값으로 지정합니다.
    *
    * @example
-   * ```ts
-   * let btn: Button = Matrix.getObject("btnAction") as Button;
+   * ```js
+   * var btn = Matrix.getObject("btnAction");
    * btn.Cursor = "pointer";   // 손 모양
    * btn.Cursor = "wait";      // 로딩 모양
    * btn.Cursor = "not-allowed"; // 사용 불가 표시
@@ -163,14 +163,14 @@ export interface Button extends Control{
    * 버튼에 표시되는 텍스트를 가져오거나 설정합니다.
    *
    * @example
-   * ```ts
-   * let btn: Button = Matrix.getObject("btnSave") as Button;
+   * ```js
+   * var btn = Matrix.getObject("btnSave");
    *
    * // 텍스트 설정
    * btn.Text = "저장";
    *
    * // 텍스트 읽기
-   * let label = btn.Text; // "저장"
+   * var label = btn.Text; // "저장"
    * ```
    */
   Text: string;
@@ -182,8 +182,8 @@ export interface Button extends Control{
    * 해당 BoxStyle이 존재하지 않거나 Style 속성이 없으면 적용되지 않습니다.
    *
    * @example
-   * ```ts
-   * let btn: Button = Matrix.getObject("btnAction") as Button;
+   * ```js
+   * var btn = Matrix.getObject("btnAction");
    *
    * // BoxStyle Key로 지정
    * btn.SetMouseDownBoxStyle("BX5DF3C663CEBD410DB823074438DD30C6");
@@ -202,8 +202,8 @@ export interface Button extends Control{
    * 해당 BoxStyle이 존재하지 않거나 Style 속성이 없으면 적용되지 않습니다.
    *
    * @example
-   * ```ts
-   * let btn: Button = Matrix.getObject("btnAction") as Button;
+   * ```js
+   * var btn = Matrix.getObject("btnAction");
    *
    * // BoxStyle Key로 지정
    * btn.SetMouseOverBoxStyle("BXCAF656A487E84A92A16419B0ACC273D0");
@@ -228,9 +228,9 @@ export interface Button extends Control{
    * Target : {@link Button}
    *
    * @example
-   * ```ts
-   * let btnSearch: Button = Matrix.getObject("btnSearch") as Button;
-   * let grid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
+   * ```js
+   * var btnSearch = Matrix.getObject("btnSearch");
+   * var grid = Matrix.getObject("DataGrid");
    *
    * btnSearch.OnClick = function(sender, args) {
    *     // 서버 스크립트 호출을 통한 데이터 조회

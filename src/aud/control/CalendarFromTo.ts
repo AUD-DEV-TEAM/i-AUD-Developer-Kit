@@ -6,39 +6,39 @@ import { Control } from "../../aud/control/Control";
  * {@link OnValueChanged} 이벤트를 통해 기간 변경을 처리합니다.
  *
  * @example
- * ```ts
+ * ```js
  * //----------------------------------------------
  * // 패턴1: 기본 기간 선택 및 값 읽기
  * //----------------------------------------------
- * let calPeriod: CalendarFromTo = Matrix.getObject("calPeriod") as CalendarFromTo;
+ * var calPeriod = Matrix.getObject("calPeriod");
  *
  * calPeriod.OnValueChanged = function(sender, args) {
- *     let fromDate = args.Text;   // ViewFormat 형식 시작일 (예: "2024-01-01")
- *     let toDate = args.Text2;    // ViewFormat 형식 종료일 (예: "2024-01-31")
+ *     var fromDate = args.Text;   // ViewFormat 형식 시작일 (예: "2024-01-01")
+ *     var toDate = args.Text2;    // ViewFormat 형식 종료일 (예: "2024-01-31")
  *
  *     Matrix.Alert("선택 기간: " + fromDate + " ~ " + toDate);
  * };
  *
  * // 현재 선택된 기간 읽기
- * let startDate = calPeriod.Value;   // DataFormat 형식 (예: "20240101")
- * let endDate = calPeriod.Value2;    // DataFormat 형식 (예: "20240131")
+ * var startDate = calPeriod.Value;   // DataFormat 형식 (예: "20240101")
+ * var endDate = calPeriod.Value2;    // DataFormat 형식 (예: "20240131")
  *
  * //----------------------------------------------
  * // 패턴2: 초기 기간 설정 (당월 1일~말일)
  * //----------------------------------------------
  * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     let calMonth: CalendarFromTo = Matrix.getObject("calMonth") as CalendarFromTo;
+ *     var calMonth = Matrix.getObject("calMonth");
  *
  *     // 포맷 설정
  *     calMonth.DataFormat = "yyyyMMdd";
  *     calMonth.ViewFormat = "yyyy-MM-dd";
  *
  *     // 당월 1일
- *     let today = new Date();
- *     let firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+ *     var today = new Date();
+ *     var firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
  *
  *     // 당월 말일
- *     let lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+ *     var lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
  *
  *     calMonth.FromDate = firstDay;
  *     calMonth.ToDate = lastDay;
@@ -47,9 +47,9 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴3: 기간 검색 조건으로 사용
  * //----------------------------------------------
- * let btnSearch: Button = Matrix.getObject("btnSearch") as Button;
- * let calRange: CalendarFromTo = Matrix.getObject("calRange") as CalendarFromTo;
- * let grid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
+ * var btnSearch = Matrix.getObject("btnSearch");
+ * var calRange = Matrix.getObject("calRange");
+ * var grid = Matrix.getObject("DataGrid");
  *
  * btnSearch.OnClick = function(sender, args) {
  *     // 기간 유효성 검증
@@ -60,7 +60,7 @@ import { Control } from "../../aud/control/Control";
  *     }
  *
  *     // 서버 스크립트 호출
- *     let params = {
+ *     var params = {
  *         VS_FROM_DATE: calRange.Value,   // "20240101"
  *         VS_TO_DATE: calRange.Value2     // "20240131"
  *     };
@@ -70,34 +70,34 @@ import { Control } from "../../aud/control/Control";
  *             grid.SetDataSet(p.DataSet);
  *
  *             // 기간 일수 계산
- *             let days = calculateDays(calRange.FromDate, calRange.ToDate);
+ *             var days = calculateDays(calRange.FromDate, calRange.ToDate);
  *             Matrix.Alert("조회 완료 (" + days + "일간)");
  *         }
  *     });
  * };
  *
- * function calculateDays(from: Date, to: Date): number {
- *     let diff = to.getTime() - from.getTime();
+ * function calculateDays(from, to) {
+ *     var diff = to.getTime() - from.getTime();
  *     return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
  * }
  *
  * //----------------------------------------------
  * // 패턴4: 최대 기간 제한 (최대 31일)
  * //----------------------------------------------
- * let calLimit: CalendarFromTo = Matrix.getObject("calLimit") as CalendarFromTo;
+ * var calLimit = Matrix.getObject("calLimit");
  *
  * calLimit.OnValueChanged = function(sender, args) {
- *     let from = args.Date;
- *     let to = args.Date2;
+ *     var from = args.Date;
+ *     var to = args.Date2;
  *
  *     // 기간 일수 계산
- *     let diffDays = Math.floor((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
+ *     var diffDays = Math.floor((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
  *
  *     if (diffDays > 31) {
  *         Matrix.Alert("최대 31일까지만 선택할 수 있습니다.");
  *
  *         // 시작일 기준 31일 후로 종료일 자동 조정
- *         let maxTo = new Date(from);
+ *         var maxTo = new Date(from);
  *         maxTo.setDate(maxTo.getDate() + 31);
  *         sender.ToDate = maxTo;
  *     }
@@ -106,12 +106,12 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴5: 시작일 변경 시 종료일 자동 설정
  * //----------------------------------------------
- * let calAuto: CalendarFromTo = Matrix.getObject("calAuto") as CalendarFromTo;
+ * var calAuto = Matrix.getObject("calAuto");
  *
  * calAuto.OnFromValueChanged = function(sender, args) {
  *     // 시작일 선택 시 자동으로 7일 후를 종료일로 설정
- *     let fromDate = args.Date;
- *     let toDate = new Date(fromDate);
+ *     var fromDate = args.Date;
+ *     var toDate = new Date(fromDate);
  *     toDate.setDate(toDate.getDate() + 6);  // 7일간 (시작일 포함)
  *
  *     sender.ToDate = toDate;
@@ -121,11 +121,11 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴6: 종료일 최대값 동적 제어
  * //----------------------------------------------
- * let calDynamic: CalendarFromTo = Matrix.getObject("calDynamic") as CalendarFromTo;
+ * var calDynamic = Matrix.getObject("calDynamic");
  *
  * calDynamic.OnFromValueChanged = function(sender, args) {
  *     // 시작일 기준 90일 후까지만 종료일 선택 가능
- *     let fromDate = args.Date;
+ *     var fromDate = args.Date;
  *
  *     // SetToCalendarMaxDate 사용
  *     // format: "3M" (3개월), "90D" (90일), "1Y" (1년)
@@ -135,20 +135,20 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴7: 분기/반기 빠른 선택
  * //----------------------------------------------
- * let btnQ1: Button = Matrix.getObject("btnQ1") as Button;
- * let btnQ2: Button = Matrix.getObject("btnQ2") as Button;
- * let calQuarter: CalendarFromTo = Matrix.getObject("calQuarter") as CalendarFromTo;
+ * var btnQ1 = Matrix.getObject("btnQ1");
+ * var btnQ2 = Matrix.getObject("btnQ2");
+ * var calQuarter = Matrix.getObject("calQuarter");
  *
  * // 1분기 선택 (1월~3월)
  * btnQ1.OnClick = function(sender, args) {
- *     let year = new Date().getFullYear();
+ *     var year = new Date().getFullYear();
  *     calQuarter.FromDate = new Date(year, 0, 1);   // 1월 1일
  *     calQuarter.ToDate = new Date(year, 2, 31);    // 3월 31일
  * };
  *
  * // 2분기 선택 (4월~6월)
  * btnQ2.OnClick = function(sender, args) {
- *     let year = new Date().getFullYear();
+ *     var year = new Date().getFullYear();
  *     calQuarter.FromDate = new Date(year, 3, 1);   // 4월 1일
  *     calQuarter.ToDate = new Date(year, 5, 30);    // 6월 30일
  * };
@@ -157,11 +157,11 @@ import { Control } from "../../aud/control/Control";
  * // 패턴8: 선택 가능 범위 제한
  * //----------------------------------------------
  * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     let calRestrict: CalendarFromTo = Matrix.getObject("calRestrict") as CalendarFromTo;
+ *     var calRestrict = Matrix.getObject("calRestrict");
  *
  *     // 전년도 1월 1일부터 오늘까지만 선택 가능
- *     let today = new Date();
- *     let lastYear = new Date(today.getFullYear() - 1, 0, 1);
+ *     var today = new Date();
+ *     var lastYear = new Date(today.getFullYear() - 1, 0, 1);
  *
  *     calRestrict.MinDate = formatDate(lastYear);  // "20230101"
  *     calRestrict.MaxDate = formatDate(today);     // "20240115"
@@ -173,10 +173,10 @@ import { Control } from "../../aud/control/Control";
  *     calRestrict.UseWeekNumber = true;
  * };
  *
- * function formatDate(date: Date): string {
- *     let year = date.getFullYear();
- *     let month = ("0" + (date.getMonth() + 1)).slice(-2);
- *     let day = ("0" + date.getDate()).slice(-2);
+ * function formatDate(date) {
+ *     var year = date.getFullYear();
+ *     var month = ("0" + (date.getMonth() + 1)).slice(-2);
+ *     var day = ("0" + date.getDate()).slice(-2);
  *     return year + month + day;
  * }
  * ```

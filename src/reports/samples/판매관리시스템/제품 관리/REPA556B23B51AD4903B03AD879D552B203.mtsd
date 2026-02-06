@@ -1,0 +1,3196 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPA556B23B51AD4903B03AD879D552B203",
+    "FolderCode": "FLDC7BAD63B598D40C69738638A26DE0C36",
+    "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REPA556B23B51AD4903B03AD879D552B203.mtsd",
+    "ReportName": "제품 관리",
+    "Writer": "kimje1342",
+    "WriteDate": "2026-02-03 10:36:56",
+    "Editor": "kimje1342",
+    "EditDate": "2026-02-03 10:36:56",
+    "TabPosition": 0,
+    "UseLayout": false,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS25BCC88F91D845D7AED3B11E271A4439",
+        "Name": "GRD_PRODUCT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "YFlOv2mIX7PccK3PEWKs5e9Q9M6LU8384S70biEaBdXwnImZ6YFuwyLh36AMEpWW3yX3krkko/zjy9NShyL9ROpq0nLiMIx7kpV2DzxZlqlAHVCLzoYJo93VYUyXu/gHKxCIoJUYRYHsv7xkS4RGBfw6cGt1dDc8KUBMDmpuywlUxlUiJoDMASeR2IY6Uu54obVlc/tBpVlZHpjnporPxH95SzBpIqsuHQYWHoZOrp4WD4BpgCzVwypAVv11yjL/dPtcEME/P8xm0E63S2Axec1H4nFolgLs5VBS3E4aBJB6lVHN6cIoy+wGFukZy8ip2r6oxas6EsB/d2luvQq7nwdSh3HhXaLDSTS16B/2FjYDXQJpsB9bnZ7MGz/Uf/+s2tg+2QDhdQQWh4TOOTepXqZKssxRyv3mVFY8QweZWHp6lVHN6cIoy+wGFukZy8ipvV8dHBIT6cCOB2pK8KyZbvk3aHhA8rlhNX6gSqgzxdFmEihOiWqi3Nj640fMTxArLk2fPFiN2B0Tl0Jj9pXA5V9Ys0EVt/u9uLqPMVXi8P7PWtgWDvGngW7UwBbQklBJ5zRAGhJUveA3nN4oFbzrHJUkqt8csZkDMRe3V3dHp6U6Fo4nNNHDec/cf6JMm84+4KPJQWxIFUU9bs2k8wO9dZ5kEX/At+asWN9rDj3tiI+3et0lR9fhL/BYkCI+xC1F7qCQVgucttzKjn5jATznsw==",
+        "Params": [
+          {
+            "Name": ":VS_CAT",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_KEYWORD",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": []
+      },
+      {
+        "Id": "DS4C768EFDD1754FAA82EB08115825CF8E",
+        "Name": "VS_CAT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "RqcdFwrE75IJ8ts66KIvJosubnYeN1DMgZo+ZLvOl7rTEzyegU8P2Amd4CZcsLAfUtdQmY5MRsunoY36WrvGWaVjjoFLlHEhna8xwQawBoU5yvuFIPxaryvWi8P7OOBouhQIueZlbwHXd9ZNPqUrW6ip389vm77PbWz0jDGJ1HbdaFpBrdSkbMhvWyKVI6kD",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "STATE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "STATE_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS4E9BF11BCE39431B97C2CB6507C58EDC",
+        "Name": "VS_INP_UNIT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "RqcdFwrE75IJ8ts66KIvJosubnYeN1DMgZo+ZLvOl7rTEzyegU8P2Amd4CZcsLAfUtdQmY5MRsunoY36WrvGWaVjjoFLlHEhna8xwQawBoU5yvuFIPxaryvWi8P7OOBoS6l+ID+Kmg9npiyPw3xIhdfoh43J2Y9cTnfyk5LZeVdBxZSCYJXfBvikFrsO/Wvu",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "STATE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "STATE_NAME",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "/* Init Controls */\nvar GRD_PRODUCT = Matrix.getObject(\"GRD_PRODUCT\");\nvar VS_KEYWORD = Matrix.getObject(\"VS_KEYWORD\");\nvar VS_CAT = Matrix.getObject(\"VS_CAT\");\n/* Button Controls */\nvar BTN_ADD = Matrix.getObject(\"BTN_ADD\");\nvar BTN_REF = Matrix.getObject(\"BTN_REF\");\nvar BTN_RESET = Matrix.getObject(\"BTN_RESET\");\nvar BTN_DEL = Matrix.getObject(\"BTN_DEL\");\nvar BTN_CNC = Matrix.getObject(\"BTN_CNC\");\nvar BTN_SAV = Matrix.getObject(\"BTN_SAV\");\n/* Input Controls */\nvar VS_INP_PROD = Matrix.getObject(\"VS_INP_PROD\");\nvar VS_INP_CAT = Matrix.getObject(\"VS_INP_CAT\");\nvar VS_INP_PRICE = Matrix.getObject(\"VS_INP_PRICE\");\nvar VS_INP_COST = Matrix.getObject(\"VS_INP_COST\");\nvar VS_INP_UNIT = Matrix.getObject(\"VS_INP_UNIT\");\nvar popup = null;\nMatrix.OnDocumentLoadComplete = function (s, e) {\n    VS_KEYWORD.UsePlaceholder = true;\n    VS_KEYWORD.SetPlaceholder(' 제품명, 제품코드으로 검색');\n    GRD_PRODUCT.GetField('PROD_ID').KeyType = 3; // KeyType: Primary\n};\nMatrix.OnMultiComboBoxExecuteStart = function (s, e) {\n    if (e.Id == 'VS_CAT') {\n        VS_CAT.CheckAll();\n    }\n};\nMatrix.OnDataBindEnd = function (s, e) {\n    if (e.Id == 'GRD_PRODUCT') {\n        Matrix.getObject('LBL_TTL_2').Text = '   제품 목록 (' + e.RecordCount + '종)';\n    }\n};\n/******** Button Click Event ********/\n// 등록\nBTN_ADD.OnClick = function (s, e) {\n    setInputValue(null);\n    Matrix.SetGlobalParams('PROD_ID', '');\n    BTN_SAV.Text = '추가';\n    popup = Matrix.ShowWindow(\"제품 등록\", 0, 0, 460, 345, true, false, \"제품 등록\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\n// 검색\nBTN_REF.OnClick = function (s, e) {\n    Matrix.doRefresh('GRD_PRODUCT');\n};\n// 초기화\nBTN_RESET.OnClick = function (s, e) {\n    Matrix.getObject('VS_CAT').CheckAll();\n    VS_KEYWORD.Text = '';\n};\n// 삭제\nBTN_DEL.OnClick = function (s, e) {\n    var checkCount = 0;\n    for (var i = 0; i < GRD_PRODUCT.GetRowCount(); i++) {\n        if (GRD_PRODUCT.getRowValue(i, 'CHK') == 'Y') {\n            GRD_PRODUCT.ChangeRowStateAt(i, 'D');\n            checkCount++;\n        }\n    }\n    if (!checkCount) {\n        Matrix.Information('삭제할 항목을 선택하세요', '안내');\n        return;\n    }\n    Matrix.Confirm('선택한 항목을 삭제하시겠습니까?', '안내', function (ok) {\n        if (ok) {\n            Matrix.RunScript('GRD_PRODUCT', 'GRD_DELETE', function (p) {\n                if (p.Success == false) {\n                    Matrix.Alert(p.Message);\n                    return;\n                }\n                Matrix.doRefresh('GRD_PRODUCT');\n                Matrix.Information('삭제 완료되었습니다.', '안내');\n            });\n        }\n        else {\n            GRD_PRODUCT.ClearRowState(false);\n        }\n    }, 0);\n};\n// 취소\nBTN_CNC.OnClick = function (s, e) {\n    popup.Close();\n};\n// 저장\nBTN_SAV.OnClick = function (s, e) {\n    var fields = [VS_INP_PROD.Text, VS_INP_CAT.Value, VS_INP_PRICE.Value, VS_INP_COST.Value, VS_INP_UNIT.Value];\n    var controls = [VS_INP_PROD, VS_INP_CAT, VS_INP_PRICE, VS_INP_COST, VS_INP_UNIT];\n    var invalid = isInvalidInput(fields, controls);\n    if (invalid) {\n        Matrix.Information('필수 입력 항목을 확인해주세요', '안내');\n        invalid.Focus();\n        return;\n    }\n    var scriptName = Matrix.GetGlobalParamValue('VS_PROD_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';\n    Matrix.RunScript('', scriptName, function (p) {\n        if (p.Success == false) {\n            Matrix.Alert(p.Message);\n            return;\n        }\n        Matrix.doRefresh('GRD_PRODUCT');\n        Matrix.Information(BTN_SAV.Text + ' 완료되었습니다.', '안내');\n        popup.Close();\n    });\n};\n/******** Button Click Event ********/\nVS_KEYWORD.OnTextKeydown = function (s, e) {\n    if (e.Event.isEnter()) {\n        Matrix.doRefresh('GRD_PRODUCT');\n    }\n};\nGRD_PRODUCT.OnGridMultiHeaderCheckBoxClicked = function (s, e) {\n    var checkValue = e.Checked ? 'Y' : 'N';\n    for (var i = 0; i < GRD_PRODUCT.GetRowCount(); i++) {\n        GRD_PRODUCT.setRowValue(i, 'CHK', checkValue);\n    }\n    GRD_PRODUCT.Update();\n};\nGRD_PRODUCT.OnCellDoubleClick = function (s, e) {\n    setInputValue(e.Row);\n    Matrix.SetGlobalParams('VS_PROD_ID', e.Row.GetValue('PROD_ID'));\n    BTN_SAV.Text = '저장';\n    popup = Matrix.ShowWindow(\"제품 등록\", 0, 0, 460, 345, true, false, \"제품 등록\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\nvar setInputValue = function (row) {\n    if (row) {\n        VS_INP_PROD.Text = row.GetValue('PROD_NAME');\n        VS_INP_CAT.Value = row.GetValue('CATEGORY_CODE');\n        VS_INP_PRICE.Text = row.GetValue('STD_PRICE');\n        VS_INP_COST.Text = row.GetValue('COST_PRICE');\n        VS_INP_UNIT.Value = row.GetValue('STD_UNIT');\n    }\n    else {\n        VS_INP_PROD.Text = '';\n        VS_INP_CAT.Value = '';\n        VS_INP_PRICE.Text = '';\n        VS_INP_COST.Text = '';\n        VS_INP_UNIT.Value = '';\n    }\n};\nvar isInvalidInput = function (fields, controls) {\n    var idx = fields.findIndex(function (v) {\n        return v === null || v === undefined || v === '';\n    });\n    if (idx !== -1 && controls && controls[idx]) {\n        return controls[idx];\n    }\n    return idx !== -1 ? true : null;\n};\n",
+  "ServerScriptText": [
+    {
+      "Name": "GRD_DELETE",
+      "Key": "BIZ508053F846DA410BAD57D8C45C7C6184",
+      "Encrypted": true,
+      "ScriptText": "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"
+    },
+    {
+      "Name": "GRD_INSERT",
+      "Key": "BIZ8FE5EE98E57D49AF90A4DA25B49FBA8F",
+      "Encrypted": true,
+      "ScriptText": "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"
+    },
+    {
+      "Name": "GRD_UPDATE",
+      "Key": "BIZ2C9CE4461C5047E9A0A92DDA2EEABC46",
+      "Encrypted": true,
+      "ScriptText": "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"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "FormD64B8652095A4B9798E93B38EDBCCCD4",
+      "Name": "제품 관리",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 2,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "none",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 241,
+          "ColorG": 245,
+          "ColorB": 249,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "ChildElements": [
+            {
+              "LanguageCode": "",
+              "Value": "+ 제품 등록",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "ButtonA5EAC66717A65D4CC3426D59AC4A3E92",
+              "Name": "BTN_ADD",
+              "InGroup": "GRP_HEADER",
+              "Position": {
+                "Left": 1501,
+                "Top": 10,
+                "Width": 90,
+                "Height": 35,
+                "ZIndex": 2,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,20,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 1,
+                "BoxStyle": "BX49877C338AD340E2BDFD611C0A13402A",
+                "Background": {
+                  "Color": {
+                    "R": 37,
+                    "G": 99,
+                    "B": 235,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 204,
+                    "G": 204,
+                    "B": 204,
+                    "A": 1
+                  },
+                  "LineType": "none",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "4,4,4,4"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  },
+                  "Size": 13,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            }
+          ],
+          "Type": "Group",
+          "Id": "Group2B4BD0E69A92CDBCD029B105CA49D457",
+          "Name": "GRP_HEADER",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1611,
+            "Height": 55,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "ChildElements": [
+            {
+              "LanguageCode": "",
+              "Text": "카테고리",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": true,
+              "Margin": {
+                "Left": 3,
+                "Top": 0,
+                "Right": 3,
+                "Bottom": 0,
+                "Text": "3,0,3,0"
+              },
+              "Type": "Label",
+              "Id": "LabelE2CEE2740B938A5930949E445051F235",
+              "Name": "LBL_COND_1",
+              "InGroup": "GRP_SRCH_CON",
+              "Position": {
+                "Left": 20,
+                "Top": 10,
+                "Width": 100,
+                "Height": 23,
+                "ZIndex": 5,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 85,
+                    "G": 142,
+                    "B": 213,
+                    "A": 1
+                  },
+                  "LineType": "none",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 100,
+                    "G": 116,
+                    "B": 139,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Text": "검색어",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": true,
+              "Margin": {
+                "Left": 3,
+                "Top": 0,
+                "Right": 3,
+                "Bottom": 0,
+                "Text": "3,0,3,0"
+              },
+              "Type": "Label",
+              "Id": "LabelD93A4006F6F5AA10A95B7FF2E991D294",
+              "Name": "LBL_COND_3",
+              "InGroup": "GRP_SRCH_CON",
+              "Position": {
+                "Left": 180,
+                "Top": 10,
+                "Width": 100,
+                "Height": 23,
+                "ZIndex": 8,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 85,
+                    "G": 142,
+                    "B": 213,
+                    "A": 1
+                  },
+                  "LineType": "none",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 100,
+                    "G": 116,
+                    "B": 139,
+                    "A": 1
+                  },
+                  "Size": 12,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Text": "",
+              "Value": "",
+              "IsReadOnly": false,
+              "MaxLength": 0,
+              "InputType": 0,
+              "Formula": "",
+              "MxBinding": "",
+              "Type": "TextBox",
+              "Id": "TextBoxDA3777D9E0B17780BCB31B58D859EA40",
+              "Name": "VS_KEYWORD",
+              "InGroup": "GRP_SRCH_CON",
+              "Position": {
+                "Left": 180,
+                "Top": 34,
+                "Width": 200,
+                "Height": 35,
+                "ZIndex": 7,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": true,
+                  "Margin": "0,0,0,20",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 226,
+                    "G": 232,
+                    "B": 240,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "5,5,5,5"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 30,
+                    "G": 41,
+                    "B": 59,
+                    "A": 1
+                  },
+                  "Size": 13,
+                  "Family": "inherit",
+                  "Bold": false,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "검색",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "ButtonBBC40CC53DC674351CEA2590C56133E0",
+              "Name": "BTN_REF",
+              "InGroup": "GRP_SRCH_CON",
+              "Position": {
+                "Left": 400,
+                "Top": 34,
+                "Width": 60,
+                "Height": 35,
+                "ZIndex": 18,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": true,
+                  "Margin": "0,0,0,20",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 1,
+                "BoxStyle": "BX49877C338AD340E2BDFD611C0A13402A",
+                "Background": {
+                  "Color": {
+                    "R": 37,
+                    "G": 99,
+                    "B": 235,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 204,
+                    "G": 204,
+                    "B": 204,
+                    "A": 1
+                  },
+                  "LineType": "none",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "4,4,4,4"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  },
+                  "Size": 13,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "초기화",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "ButtonF125A741B32A9371E1128A538F0BB6DA",
+              "Name": "BTN_RESET",
+              "InGroup": "GRP_SRCH_CON",
+              "Position": {
+                "Left": 465,
+                "Top": 34,
+                "Width": 70,
+                "Height": 35,
+                "ZIndex": 19,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": true,
+                  "Margin": "0,0,0,20",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 1,
+                "BoxStyle": "BX4DB6D0154B0D43B0B982A85B2825AA76",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 226,
+                    "G": 232,
+                    "B": 240,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "4,4,4,4"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 30,
+                    "G": 41,
+                    "B": 59,
+                    "A": 1
+                  },
+                  "Size": 13,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "DataSource": "DS4C768EFDD1754FAA82EB08115825CF8E",
+              "EditValue": "ELECTRONICS,NETWORK,PERIPHERAL,SERVER,SOFTWARE,SUPPLIES,DEPT001,DEPT010,DEPT011,DEPT012,DEPT013,DEPT020,DEPT021,DEPT022,DEPT030,DEPT031,DEPT032,DEPT033",
+              "CaptionText": "전체",
+              "InitType": "0",
+              "InitValue": "",
+              "RefreshType": 1,
+              "IsReadOnly": false,
+              "SortType": 0,
+              "AutoRefresh": true,
+              "AfterRefresh": "",
+              "ClearTargetData": false,
+              "IsMultiSelect": true,
+              "AutoChildSelect": false,
+              "LeafNodeOnly": false,
+              "HideCheckBox": false,
+              "AutoExpandLevel": 0,
+              "IndentSize": 15,
+              "EmptyValue": "(null)",
+              "TreeViewType": 1,
+              "DialogWidth": 400,
+              "DialogHeight": 300,
+              "UsedSelectAllQueryParamValue": true,
+              "CheckedAll": false,
+              "EditableValueText": false,
+              "CacheExpiryTime": 0,
+              "UseSelectedAllText": true,
+              "DataSourceInfo": {
+                "ParentField": "",
+                "ChildField": "",
+                "CaptionField": "STATE_NAME",
+                "ValueField": "STATE_CODE",
+                "ImageField": "",
+                "TooltipField": ""
+              },
+              "Type": "MultiComboBox",
+              "Id": "MultiComboBox17228C07AF1DFABD66A4C4BB6E9F44FD",
+              "Name": "VS_CAT",
+              "InGroup": "GRP_SRCH_CON",
+              "Position": {
+                "Left": 20,
+                "Top": 34,
+                "Width": 150,
+                "Height": 35,
+                "ZIndex": 4,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": false,
+                  "Top": false,
+                  "Bottom": true,
+                  "Margin": "0,0,0,20",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 226,
+                    "G": 232,
+                    "B": 240,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "5,5,5,5"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 30,
+                    "G": 41,
+                    "B": 59,
+                    "A": 1
+                  },
+                  "Size": 13,
+                  "Family": "inherit",
+                  "Bold": false,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            }
+          ],
+          "Type": "Group",
+          "Id": "GroupF41A9A0507713297F0FD8E0C6C45EBA3",
+          "Name": "GRP_SRCH_CON",
+          "Position": {
+            "Left": 20,
+            "Top": 75,
+            "Width": 1571,
+            "Height": 90,
+            "ZIndex": 3,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "20,0,20,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 0.3
+              },
+              "LineType": "solid",
+              "Thickness": "0,0,0,1",
+              "CornerRadius": "10,10,10,10"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "ChildElements": [
+            {
+              "LanguageCode": "",
+              "Text": "   제품 목록",
+              "Cursor": "default",
+              "Formula": "",
+              "UseTextOverflow": false,
+              "UseAutoLineBreak": false,
+              "MxBinding": "",
+              "MxBindingUseStyle": true,
+              "Margin": {
+                "Left": 3,
+                "Top": 0,
+                "Right": 3,
+                "Bottom": 0,
+                "Text": "3,0,3,0"
+              },
+              "Type": "Label",
+              "Id": "Label078658D702A78E338D38906E77ADEA3D",
+              "Name": "LBL_TTL_2",
+              "InGroup": "GRP_BODY",
+              "Position": {
+                "Left": 0,
+                "Top": 0,
+                "Width": 1571,
+                "Height": 55,
+                "ZIndex": 1,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": true,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,0,0",
+                  "HoldSize": false,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 226,
+                    "G": 232,
+                    "B": 240,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "0,0,0,1",
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 30,
+                    "G": 41,
+                    "B": 59,
+                    "A": 1
+                  },
+                  "Size": 18,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "left",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "Type": "DataGrid",
+              "Id": "DataGridF080EDCACB22D1D56A21D1B1E3AE9017",
+              "Name": "GRD_PRODUCT",
+              "Visible": true,
+              "Position": {
+                "Left": 20,
+                "Top": 75,
+                "Width": 1531,
+                "Height": 593,
+                "ZIndex": 21,
+                "TabIndex": 0,
+                "Docking": {
+                  "Margin": "20,0,20,20",
+                  "MinHeight": 0,
+                  "MinWidth": 0,
+                  "Left": true,
+                  "Right": true,
+                  "Bottom": true
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Border": {
+                  "Type": 0,
+                  "Color": {
+                    "R": 226,
+                    "G": 232,
+                    "B": 240,
+                    "A": 1
+                  },
+                  "Thickness": "0,1,0,1"
+                },
+                "VerticalBorder": {
+                  "Type": 0,
+                  "Color": {
+                    "R": 204,
+                    "G": 204,
+                    "B": 204,
+                    "A": 1
+                  },
+                  "Thickness": "0"
+                },
+                "HorizontalBorder": {
+                  "Type": 0,
+                  "Color": {
+                    "R": 226,
+                    "G": 232,
+                    "B": 240,
+                    "A": 1
+                  },
+                  "Thickness": 1
+                },
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Font": {
+                  "Bold": false,
+                  "Color": {
+                    "R": 0,
+                    "G": 0,
+                    "B": 0,
+                    "A": 1
+                  },
+                  "Family": "맑은 고딕",
+                  "HorizontalAlignment": "left",
+                  "Italic": false,
+                  "Size": 12,
+                  "UnderLine": false,
+                  "VerticalAlignment": "top"
+                }
+              },
+              "CellMargin": "5,5,5,5",
+              "DataSource": "DS25BCC88F91D845D7AED3B11E271A4439",
+              "AutoRefresh": true,
+              "ShowHeader": 2,
+              "NaNCellText": "-",
+              "ColumnHeaderHeight": 45,
+              "RowHeight": 45,
+              "UseMultiHeader": true,
+              "Editable": true,
+              "ExportCount": 1000000,
+              "FontFamily": "inherit",
+              "FontSize": 14,
+              "UsePPTExport": false,
+              "UseDesign": false,
+              "UseFormatSetting": false,
+              "UseMultiHeaderMenu": false,
+              "MouseSelectBrush": {
+                "Type": 0,
+                "Color": {
+                  "R": 220,
+                  "G": 230,
+                  "B": 240,
+                  "A": 0.2
+                }
+              },
+              "SelectRecordBrush": {
+                "Type": 0,
+                "Color": {
+                  "R": 220,
+                  "G": 230,
+                  "B": 240,
+                  "A": 0.2
+                }
+              },
+              "OddRowBackground": {
+                "Type": 0,
+                "Color": {
+                  "R": 255,
+                  "G": 255,
+                  "B": 255,
+                  "A": 0
+                }
+              },
+              "Foreground": {
+                "Type": 0,
+                "Color": {
+                  "R": 30,
+                  "G": 41,
+                  "B": 59,
+                  "A": 1
+                }
+              },
+              "FrozenLineBrush": {
+                "Type": 0,
+                "Color": {
+                  "R": 127,
+                  "G": 127,
+                  "B": 127,
+                  "A": 1
+                }
+              },
+              "Columns": [
+                {
+                  "Name": "CHK",
+                  "Caption": "",
+                  "Width": 100,
+                  "Validator": {
+                    "ValidateType": 8,
+                    "UseGuideMessage": true,
+                    "GuideLanguageCode": "",
+                    "UseErrorMessage": true,
+                    "ErrorLanguageCode": ""
+                  },
+                  "ColumnType": 2,
+                  "HeaderPosition": "center",
+                  "TextPosition": "center",
+                  "CheckedValue": "Y",
+                  "UnCheckedValue": "N",
+                  "CalcSubTotalType": "None"
+                },
+                {
+                  "Name": "PROD_ID",
+                  "Caption": "제품 ID",
+                  "Width": 70,
+                  "Validator": {
+                    "ValidateType": 8,
+                    "UseGuideMessage": true,
+                    "GuideLanguageCode": "",
+                    "UseErrorMessage": true,
+                    "ErrorLanguageCode": ""
+                  },
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "KeyType": 3,
+                  "HeaderPosition": "center",
+                  "TextPosition": "center"
+                },
+                {
+                  "Name": "PROD_NAME",
+                  "Caption": "제품명",
+                  "Width": 70,
+                  "Validator": {
+                    "ValidateType": 8,
+                    "UseGuideMessage": true,
+                    "GuideLanguageCode": "",
+                    "UseErrorMessage": true,
+                    "ErrorLanguageCode": ""
+                  },
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "HeaderPosition": "center",
+                  "TextPosition": "center"
+                },
+                {
+                  "Name": "CATEGORY",
+                  "Caption": "카테고리",
+                  "Width": 70,
+                  "Validator": {
+                    "ValidateType": 8,
+                    "UseGuideMessage": true,
+                    "GuideLanguageCode": "",
+                    "UseErrorMessage": true,
+                    "ErrorLanguageCode": ""
+                  },
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "HeaderPosition": "center",
+                  "TextPosition": "center"
+                },
+                {
+                  "Name": "STD_PRICE",
+                  "Caption": "단가",
+                  "Width": 70,
+                  "Validator": {
+                    "ValidateType": 8,
+                    "UseGuideMessage": true,
+                    "GuideLanguageCode": "",
+                    "UseErrorMessage": true,
+                    "ErrorLanguageCode": ""
+                  },
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "ColumnType": 3,
+                  "Format": "{0:#,##0}",
+                  "DataType": 0,
+                  "HeaderPosition": "center",
+                  "TextPosition": "center",
+                  "DisplaySubTotalType": "Hidden",
+                  "CalcSubTotalType": "Sum"
+                },
+                {
+                  "Name": "COST_PRICE",
+                  "Caption": "원가",
+                  "Width": 70,
+                  "Validator": {
+                    "ValidateType": 8,
+                    "UseGuideMessage": true,
+                    "GuideLanguageCode": "",
+                    "UseErrorMessage": true,
+                    "ErrorLanguageCode": ""
+                  },
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "ColumnType": 3,
+                  "Format": "{0:#,##0}",
+                  "DataType": 0,
+                  "HeaderPosition": "center",
+                  "TextPosition": "center",
+                  "DisplaySubTotalType": "Hidden",
+                  "CalcSubTotalType": "Sum"
+                },
+                {
+                  "Name": "STD_UNIT_NAME",
+                  "Caption": "단위",
+                  "Width": 70,
+                  "Validator": {
+                    "ValidateType": 8,
+                    "UseGuideMessage": true,
+                    "GuideLanguageCode": "",
+                    "UseErrorMessage": true,
+                    "ErrorLanguageCode": ""
+                  },
+                  "GridColumnWidthType": 1,
+                  "KeyType": 2,
+                  "HeaderPosition": "center",
+                  "TextPosition": "center",
+                  "CalcSubTotalType": "None"
+                },
+                {
+                  "Name": "STD_UNIT",
+                  "Caption": "단위",
+                  "Width": 70,
+                  "Validator": {
+                    "ValidateType": 8,
+                    "UseGuideMessage": true,
+                    "GuideLanguageCode": "",
+                    "UseErrorMessage": true,
+                    "ErrorLanguageCode": ""
+                  },
+                  "GridColumnWidthType": 1,
+                  "Visible": false,
+                  "Editable": false,
+                  "HeaderPosition": "center",
+                  "TextPosition": "center"
+                },
+                {
+                  "Name": "CATEGORY_CODE",
+                  "Caption": "CATEGORY_CODE",
+                  "Width": 100,
+                  "Validator": {
+                    "ValidateType": 8,
+                    "UseGuideMessage": true,
+                    "GuideLanguageCode": "",
+                    "UseErrorMessage": true,
+                    "ErrorLanguageCode": ""
+                  },
+                  "Visible": false,
+                  "KeyType": 2,
+                  "HeaderPosition": "center",
+                  "TextPosition": "center",
+                  "CalcSubTotalType": "None"
+                }
+              ],
+              "MultiHeader": {
+                "MaxRow": 1,
+                "MaxColumn": 9,
+                "Cells": [
+                  {
+                    "Value": "",
+                    "Elements": [
+                      {
+                        "LanguageCode": "",
+                        "Text": "",
+                        "TextPosition": "back",
+                        "GroupName": "",
+                        "CheckedValue": "",
+                        "UnCheckedValue": "",
+                        "Checked": false,
+                        "ViewType": 0,
+                        "Type": "CheckBox",
+                        "Id": "CheckBox88EE8AC518EE9ED74047B6F76BC22219",
+                        "Name": "CHK",
+                        "Position": {
+                          "Left": 5,
+                          "Top": 5,
+                          "Width": 90,
+                          "Height": 35,
+                          "ZIndex": 1,
+                          "TabIndex": 0,
+                          "Docking": {
+                            "Left": false,
+                            "Right": false,
+                            "Top": false,
+                            "Bottom": false,
+                            "Margin": "0,0,0,0",
+                            "HoldSize": false,
+                            "MinWidth": 0,
+                            "MinHeight": 0
+                          }
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "BoxStyle": "",
+                          "Background": {
+                            "Color": {
+                              "R": 255,
+                              "G": 255,
+                              "B": 255,
+                              "A": 1
+                            }
+                          },
+                          "Border": {
+                            "Color": {
+                              "R": 204,
+                              "G": 204,
+                              "B": 204,
+                              "A": 1
+                            },
+                            "LineType": "solid",
+                            "Thickness": "1,1,1,1",
+                            "CornerRadius": "0,0,0,0"
+                          },
+                          "Font": {
+                            "Color": {
+                              "R": 48,
+                              "G": 48,
+                              "B": 49,
+                              "A": 1
+                            },
+                            "Size": 12,
+                            "Family": "inherit",
+                            "Bold": false,
+                            "Italic": false,
+                            "UnderLine": false,
+                            "HorizontalAlignment": "center",
+                            "VerticalAlignment": "middle",
+                            "TempFontFamily": "맑은 고딕"
+                          }
+                        }
+                      }
+                    ],
+                    "HeaderPosition": "start",
+                    "Margin": "5,5,5,5",
+                    "Type": 3,
+                    "Tooltip": "",
+                    "CellStyle": {
+                      "Type": 0,
+                      "Color": {
+                        "R": 248,
+                        "G": 250,
+                        "B": 252,
+                        "A": 1
+                      }
+                    }
+                  },
+                  {
+                    "Value": "제품 ID",
+                    "Elements": [
+                      {
+                        "LanguageCode": "",
+                        "Text": "제품 ID",
+                        "Cursor": "default",
+                        "Formula": "",
+                        "UseTextOverflow": false,
+                        "UseAutoLineBreak": false,
+                        "MxBinding": "",
+                        "MxBindingUseStyle": true,
+                        "Margin": {
+                          "Left": 3,
+                          "Top": 0,
+                          "Right": 3,
+                          "Bottom": 0,
+                          "Text": "3,0,3,0"
+                        },
+                        "Type": "Label",
+                        "Id": "Label6D3FE0B3A0F4615C38F2CACD2B8B069A",
+                        "Name": "PROD_ID",
+                        "Position": {
+                          "Left": 100,
+                          "Top": 0,
+                          "Width": 238,
+                          "Height": 45,
+                          "ZIndex": 1,
+                          "TabIndex": 0,
+                          "Docking": {
+                            "Left": false,
+                            "Right": false,
+                            "Top": false,
+                            "Bottom": false,
+                            "Margin": "0,0,0,0",
+                            "HoldSize": false,
+                            "MinWidth": 0,
+                            "MinHeight": 0
+                          }
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "BoxStyle": "",
+                          "Background": {
+                            "Color": {
+                              "R": 248,
+                              "G": 250,
+                              "B": 252,
+                              "A": 1
+                            }
+                          },
+                          "Border": {
+                            "Color": {
+                              "R": 226,
+                              "G": 232,
+                              "B": 240,
+                              "A": 1
+                            },
+                            "LineType": "none",
+                            "Thickness": "0,0,0,0",
+                            "CornerRadius": "0,0,0,0"
+                          },
+                          "Font": {
+                            "Color": {
+                              "R": 100,
+                              "G": 116,
+                              "B": 139,
+                              "A": 1
+                            },
+                            "Size": 13,
+                            "Family": "inherit",
+                            "Bold": true,
+                            "Italic": false,
+                            "UnderLine": false,
+                            "HorizontalAlignment": "center",
+                            "VerticalAlignment": "middle",
+                            "TempFontFamily": "맑은 고딕"
+                          }
+                        }
+                      }
+                    ],
+                    "Col": 1,
+                    "HeaderPosition": "start",
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "제품명",
+                    "Elements": [
+                      {
+                        "LanguageCode": "",
+                        "Text": "제품명",
+                        "Cursor": "default",
+                        "Formula": "",
+                        "UseTextOverflow": false,
+                        "UseAutoLineBreak": false,
+                        "MxBinding": "",
+                        "MxBindingUseStyle": true,
+                        "Margin": {
+                          "Left": 3,
+                          "Top": 0,
+                          "Right": 3,
+                          "Bottom": 0,
+                          "Text": "3,0,3,0"
+                        },
+                        "Type": "Label",
+                        "Id": "Label0DC638F373F11A1895E56B22525567EE",
+                        "Name": "PROD_NAME",
+                        "Position": {
+                          "Left": 338,
+                          "Top": 0,
+                          "Width": 238,
+                          "Height": 45,
+                          "ZIndex": 1,
+                          "TabIndex": 0,
+                          "Docking": {
+                            "Left": false,
+                            "Right": false,
+                            "Top": false,
+                            "Bottom": false,
+                            "Margin": "0,0,0,0",
+                            "HoldSize": false,
+                            "MinWidth": 0,
+                            "MinHeight": 0
+                          }
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "BoxStyle": "",
+                          "Background": {
+                            "Color": {
+                              "R": 248,
+                              "G": 250,
+                              "B": 252,
+                              "A": 1
+                            }
+                          },
+                          "Border": {
+                            "Color": {
+                              "R": 226,
+                              "G": 232,
+                              "B": 240,
+                              "A": 1
+                            },
+                            "LineType": "none",
+                            "Thickness": "0,0,0,0",
+                            "CornerRadius": "0,0,0,0"
+                          },
+                          "Font": {
+                            "Color": {
+                              "R": 100,
+                              "G": 116,
+                              "B": 139,
+                              "A": 1
+                            },
+                            "Size": 13,
+                            "Family": "inherit",
+                            "Bold": true,
+                            "Italic": false,
+                            "UnderLine": false,
+                            "HorizontalAlignment": "center",
+                            "VerticalAlignment": "middle",
+                            "TempFontFamily": "맑은 고딕"
+                          }
+                        }
+                      }
+                    ],
+                    "Col": 2,
+                    "HeaderPosition": "start",
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "카테고리",
+                    "Elements": [
+                      {
+                        "LanguageCode": "",
+                        "Text": "카테고리",
+                        "Cursor": "default",
+                        "Formula": "",
+                        "UseTextOverflow": false,
+                        "UseAutoLineBreak": false,
+                        "MxBinding": "",
+                        "MxBindingUseStyle": true,
+                        "Margin": {
+                          "Left": 3,
+                          "Top": 0,
+                          "Right": 3,
+                          "Bottom": 0,
+                          "Text": "3,0,3,0"
+                        },
+                        "Type": "Label",
+                        "Id": "LabelEA046C21C2CC4D937EAF8D8BA8309647",
+                        "Name": "CATEGORY",
+                        "Position": {
+                          "Left": 576,
+                          "Top": 0,
+                          "Width": 238,
+                          "Height": 45,
+                          "ZIndex": 1,
+                          "TabIndex": 0,
+                          "Docking": {
+                            "Left": false,
+                            "Right": false,
+                            "Top": false,
+                            "Bottom": false,
+                            "Margin": "0,0,0,0",
+                            "HoldSize": false,
+                            "MinWidth": 0,
+                            "MinHeight": 0
+                          }
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "BoxStyle": "",
+                          "Background": {
+                            "Color": {
+                              "R": 248,
+                              "G": 250,
+                              "B": 252,
+                              "A": 1
+                            }
+                          },
+                          "Border": {
+                            "Color": {
+                              "R": 226,
+                              "G": 232,
+                              "B": 240,
+                              "A": 1
+                            },
+                            "LineType": "none",
+                            "Thickness": "0,0,0,0",
+                            "CornerRadius": "0,0,0,0"
+                          },
+                          "Font": {
+                            "Color": {
+                              "R": 100,
+                              "G": 116,
+                              "B": 139,
+                              "A": 1
+                            },
+                            "Size": 13,
+                            "Family": "inherit",
+                            "Bold": true,
+                            "Italic": false,
+                            "UnderLine": false,
+                            "HorizontalAlignment": "center",
+                            "VerticalAlignment": "middle",
+                            "TempFontFamily": "맑은 고딕"
+                          }
+                        }
+                      }
+                    ],
+                    "Col": 3,
+                    "HeaderPosition": "start",
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "단가",
+                    "Elements": [
+                      {
+                        "LanguageCode": "",
+                        "Text": "단가",
+                        "Cursor": "default",
+                        "Formula": "",
+                        "UseTextOverflow": false,
+                        "UseAutoLineBreak": false,
+                        "MxBinding": "",
+                        "MxBindingUseStyle": true,
+                        "Margin": {
+                          "Left": 3,
+                          "Top": 0,
+                          "Right": 3,
+                          "Bottom": 0,
+                          "Text": "3,0,3,0"
+                        },
+                        "Type": "Label",
+                        "Id": "Label8BC727E19EC7831BAAD3D6C8C4F381E1",
+                        "Name": "STD_PRICE",
+                        "Position": {
+                          "Left": 814,
+                          "Top": 0,
+                          "Width": 238,
+                          "Height": 45,
+                          "ZIndex": 1,
+                          "TabIndex": 0,
+                          "Docking": {
+                            "Left": false,
+                            "Right": false,
+                            "Top": false,
+                            "Bottom": false,
+                            "Margin": "0,0,0,0",
+                            "HoldSize": false,
+                            "MinWidth": 0,
+                            "MinHeight": 0
+                          }
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "BoxStyle": "",
+                          "Background": {
+                            "Color": {
+                              "R": 248,
+                              "G": 250,
+                              "B": 252,
+                              "A": 1
+                            }
+                          },
+                          "Border": {
+                            "Color": {
+                              "R": 226,
+                              "G": 232,
+                              "B": 240,
+                              "A": 1
+                            },
+                            "LineType": "none",
+                            "Thickness": "0,0,0,0",
+                            "CornerRadius": "0,0,0,0"
+                          },
+                          "Font": {
+                            "Color": {
+                              "R": 100,
+                              "G": 116,
+                              "B": 139,
+                              "A": 1
+                            },
+                            "Size": 13,
+                            "Family": "inherit",
+                            "Bold": true,
+                            "Italic": false,
+                            "UnderLine": false,
+                            "HorizontalAlignment": "center",
+                            "VerticalAlignment": "middle",
+                            "TempFontFamily": "맑은 고딕"
+                          }
+                        }
+                      }
+                    ],
+                    "Col": 4,
+                    "HeaderPosition": "start",
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "원가",
+                    "Elements": [
+                      {
+                        "LanguageCode": "",
+                        "Text": "원가",
+                        "Cursor": "default",
+                        "Formula": "",
+                        "UseTextOverflow": false,
+                        "UseAutoLineBreak": false,
+                        "MxBinding": "",
+                        "MxBindingUseStyle": true,
+                        "Margin": {
+                          "Left": 3,
+                          "Top": 0,
+                          "Right": 3,
+                          "Bottom": 0,
+                          "Text": "3,0,3,0"
+                        },
+                        "Type": "Label",
+                        "Id": "Label31AA705A021CE020C8C201E97405D5C0",
+                        "Name": "COST_PRICE",
+                        "Position": {
+                          "Left": 1052,
+                          "Top": 0,
+                          "Width": 238,
+                          "Height": 45,
+                          "ZIndex": 1,
+                          "TabIndex": 0,
+                          "Docking": {
+                            "Left": false,
+                            "Right": false,
+                            "Top": false,
+                            "Bottom": false,
+                            "Margin": "0,0,0,0",
+                            "HoldSize": false,
+                            "MinWidth": 0,
+                            "MinHeight": 0
+                          }
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "BoxStyle": "",
+                          "Background": {
+                            "Color": {
+                              "R": 248,
+                              "G": 250,
+                              "B": 252,
+                              "A": 1
+                            }
+                          },
+                          "Border": {
+                            "Color": {
+                              "R": 226,
+                              "G": 232,
+                              "B": 240,
+                              "A": 1
+                            },
+                            "LineType": "none",
+                            "Thickness": "0,0,0,0",
+                            "CornerRadius": "0,0,0,0"
+                          },
+                          "Font": {
+                            "Color": {
+                              "R": 100,
+                              "G": 116,
+                              "B": 139,
+                              "A": 1
+                            },
+                            "Size": 13,
+                            "Family": "inherit",
+                            "Bold": true,
+                            "Italic": false,
+                            "UnderLine": false,
+                            "HorizontalAlignment": "center",
+                            "VerticalAlignment": "middle",
+                            "TempFontFamily": "맑은 고딕"
+                          }
+                        }
+                      }
+                    ],
+                    "Col": 5,
+                    "HeaderPosition": "start",
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "단위",
+                    "Elements": [
+                      {
+                        "LanguageCode": "",
+                        "Text": "단위",
+                        "Cursor": "default",
+                        "Formula": "",
+                        "UseTextOverflow": false,
+                        "UseAutoLineBreak": false,
+                        "MxBinding": "",
+                        "MxBindingUseStyle": true,
+                        "Margin": {
+                          "Left": 3,
+                          "Top": 0,
+                          "Right": 3,
+                          "Bottom": 0,
+                          "Text": "3,0,3,0"
+                        },
+                        "Type": "Label",
+                        "Id": "LabelD555DFA3DC00FA352D3542CAC68E34EF",
+                        "Name": "STD_UNIT_NAME",
+                        "Position": {
+                          "Left": 1290,
+                          "Top": 0,
+                          "Width": 241,
+                          "Height": 45,
+                          "ZIndex": 1,
+                          "TabIndex": 0,
+                          "Docking": {
+                            "Left": false,
+                            "Right": false,
+                            "Top": false,
+                            "Bottom": false,
+                            "Margin": "0,0,0,0",
+                            "HoldSize": false,
+                            "MinWidth": 0,
+                            "MinHeight": 0
+                          }
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "BoxStyle": "",
+                          "Background": {
+                            "Color": {
+                              "R": 248,
+                              "G": 250,
+                              "B": 252,
+                              "A": 1
+                            }
+                          },
+                          "Border": {
+                            "Color": {
+                              "R": 85,
+                              "G": 142,
+                              "B": 213,
+                              "A": 1
+                            },
+                            "LineType": "none",
+                            "Thickness": "1,1,1,1",
+                            "CornerRadius": "0,0,0,0"
+                          },
+                          "Font": {
+                            "Color": {
+                              "R": 100,
+                              "G": 116,
+                              "B": 139,
+                              "A": 1
+                            },
+                            "Size": 13,
+                            "Family": "inherit",
+                            "Bold": true,
+                            "Italic": false,
+                            "UnderLine": false,
+                            "HorizontalAlignment": "center",
+                            "VerticalAlignment": "middle",
+                            "TempFontFamily": "맑은 고딕"
+                          }
+                        }
+                      }
+                    ],
+                    "Col": 6,
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "단위",
+                    "Elements": [
+                      {
+                        "LanguageCode": "",
+                        "Text": "단위",
+                        "Cursor": "default",
+                        "Formula": "",
+                        "UseTextOverflow": false,
+                        "UseAutoLineBreak": false,
+                        "MxBinding": "",
+                        "MxBindingUseStyle": true,
+                        "Margin": {
+                          "Left": 3,
+                          "Top": 0,
+                          "Right": 3,
+                          "Bottom": 0,
+                          "Text": "3,0,3,0"
+                        },
+                        "Type": "Label",
+                        "Id": "LabelBA22EEC255D3782F27DECB2AF46A87D4",
+                        "Name": "STD_UNIT",
+                        "Position": {
+                          "Left": 491,
+                          "Top": 0,
+                          "Width": 100,
+                          "Height": 30,
+                          "ZIndex": 1,
+                          "TabIndex": 0,
+                          "Docking": {
+                            "Left": false,
+                            "Right": false,
+                            "Top": false,
+                            "Bottom": false,
+                            "Margin": "0,0,0,0",
+                            "HoldSize": false,
+                            "MinWidth": 0,
+                            "MinHeight": 0
+                          }
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "BoxStyle": "",
+                          "Background": {
+                            "Color": {
+                              "R": 248,
+                              "G": 250,
+                              "B": 252,
+                              "A": 1
+                            }
+                          },
+                          "Border": {
+                            "Color": {
+                              "R": 226,
+                              "G": 232,
+                              "B": 240,
+                              "A": 1
+                            },
+                            "LineType": "solid",
+                            "Thickness": "0,0,0,0",
+                            "CornerRadius": "0,0,0,0"
+                          },
+                          "Font": {
+                            "Color": {
+                              "R": 100,
+                              "G": 116,
+                              "B": 139,
+                              "A": 1
+                            },
+                            "Size": 13,
+                            "Family": "inherit",
+                            "Bold": true,
+                            "Italic": false,
+                            "UnderLine": false,
+                            "HorizontalAlignment": "center",
+                            "VerticalAlignment": "middle",
+                            "TempFontFamily": "맑은 고딕"
+                          }
+                        }
+                      }
+                    ],
+                    "Col": 7,
+                    "HeaderPosition": "start",
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "CATEGORY_CODE",
+                    "Elements": [],
+                    "Col": 8,
+                    "Margin": "5,5,5,5",
+                    "Tooltip": ""
+                  }
+                ]
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "삭제",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "ButtonF935379F1A135AC9045233A4B4354BE4",
+              "Name": "BTN_DEL",
+              "InGroup": "GRP_BODY",
+              "Position": {
+                "Left": 1491,
+                "Top": 10,
+                "Width": 60,
+                "Height": 35,
+                "ZIndex": 19,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": false,
+                  "Margin": "0,0,20,0",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 1,
+                "BoxStyle": "BX478B581080C34B1EB6F2479F1D161DD2",
+                "Background": {
+                  "Color": {
+                    "R": 239,
+                    "G": 68,
+                    "B": 68,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 226,
+                    "G": 232,
+                    "B": 240,
+                    "A": 1
+                  },
+                  "LineType": "none",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "4,4,4,4"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  },
+                  "Size": 13,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            }
+          ],
+          "Type": "Group",
+          "Id": "Group650B76B70FEFE8B6E214A83389266EF0",
+          "Name": "GRP_BODY",
+          "Position": {
+            "Left": 20,
+            "Top": 165,
+            "Width": 1571,
+            "Height": 688,
+            "ZIndex": 4,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": true,
+              "Margin": "20,0,20,20",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "10,10,10,10"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "제품 관리",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "LabelBFD9328699E4DAE2DA2A0F920F0245CB",
+          "Name": "LBL_TTL_1",
+          "Position": {
+            "Left": 20,
+            "Top": 10,
+            "Width": 100,
+            "Height": 35,
+            "ZIndex": 2,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 30,
+                "G": 41,
+                "B": 59,
+                "A": 1
+              },
+              "Size": 20,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Id": "FormCDE9DF4203682EB2F906B4528AB0F64E",
+      "Name": "제품 등록",
+      "Activated": false,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "LanguageCode": "",
+          "Text": "카테고리 *",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "Label8418F1A25616143CB2B54E12211D3DD2",
+          "Name": "LBL_INPUT_2",
+          "Position": {
+            "Left": 240,
+            "Top": 10,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 6,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 100,
+                "G": 116,
+                "B": 139,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "무선 키보드마우스 세트",
+          "Value": "무선 키보드마우스 세트",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "InputType": 0,
+          "Formula": "",
+          "MxBinding": "",
+          "Type": "TextBox",
+          "Id": "TextBox878B7518CD641459CBD3162C15BD618C",
+          "Name": "VS_INP_PROD",
+          "Position": {
+            "Left": 20,
+            "Top": 34,
+            "Width": 200,
+            "Height": 35,
+            "ZIndex": 8,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "5,5,5,5"
+            },
+            "Font": {
+              "Color": {
+                "R": 30,
+                "G": 41,
+                "B": 59,
+                "A": 1
+              },
+              "Size": 13,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "제품명 *",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "LabelEE1480C27EDEC9B549E0638BB7DF0D92",
+          "Name": "LBL_INPUT_1",
+          "Position": {
+            "Left": 20,
+            "Top": 10,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 7,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 100,
+                "G": 116,
+                "B": 139,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "DataSource": "DS4C768EFDD1754FAA82EB08115825CF8E",
+          "Value": "NETWORK",
+          "Text": "",
+          "InitType": "1",
+          "RefreshType": 1,
+          "IsReadOnly": false,
+          "SortType": 0,
+          "AutoRefresh": true,
+          "AfterRefresh": "",
+          "UseAllItems": false,
+          "UseAllItemsText": "전체",
+          "DisplayType": 1,
+          "DataSourceInfo": {
+            "LabelField": "STATE_NAME",
+            "ValueField": "STATE_CODE"
+          },
+          "InitValue": "",
+          "Type": "ComboBox",
+          "Id": "ComboBox974223E5E3F8F649965F6D538A2B02D5",
+          "Name": "VS_INP_CAT",
+          "Position": {
+            "Left": 240,
+            "Top": 34,
+            "Width": 200,
+            "Height": 35,
+            "ZIndex": 5,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "5,5,5,5"
+            },
+            "Font": {
+              "Color": {
+                "R": 30,
+                "G": 41,
+                "B": 59,
+                "A": 1
+              },
+              "Size": 13,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "단가 *",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "Label0D3C1F55A15B29FDAB07ED0F90E8C6B0",
+          "Name": "LBL_INPUT_3",
+          "Position": {
+            "Left": 20,
+            "Top": 89,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 8,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 100,
+                "G": 116,
+                "B": 139,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "원가 *",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "Label620A9B151819AF6F7D8199C28381FA77",
+          "Name": "LBL_INPUT_4",
+          "Position": {
+            "Left": 240,
+            "Top": 89,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 9,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 100,
+                "G": 116,
+                "B": 139,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "단위 *",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "Label975300940F4780AA9DDBEF29B7EA4F5A",
+          "Name": "LBL_INPUT_5",
+          "Position": {
+            "Left": 20,
+            "Top": 168,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 9,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 100,
+                "G": 116,
+                "B": 139,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "ChildElements": [
+            {
+              "LanguageCode": "",
+              "Value": "저장",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "Button45BFEDC23B63AE81C616A908F1134DCE",
+              "Name": "BTN_SAV",
+              "InGroup": "GRP_FOOTER",
+              "Position": {
+                "Left": 1529,
+                "Top": 10,
+                "Width": 60,
+                "Height": 35,
+                "ZIndex": 2,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": true,
+                  "Margin": "0,0,20,9",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 1,
+                "BoxStyle": "BX49877C338AD340E2BDFD611C0A13402A",
+                "Background": {
+                  "Color": {
+                    "R": 37,
+                    "G": 99,
+                    "B": 235,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 204,
+                    "G": 204,
+                    "B": 204,
+                    "A": 1
+                  },
+                  "LineType": "none",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "4,4,4,4"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  },
+                  "Size": 13,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            },
+            {
+              "LanguageCode": "",
+              "Value": "취소",
+              "Cursor": "pointer",
+              "MouseOver": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "MouseDown": {
+                "UseYn": false,
+                "BoxStyle": ""
+              },
+              "Shadow": {
+                "UseYn": false,
+                "ColorR": 0,
+                "ColorG": 0,
+                "ColorB": 0,
+                "ColorA": 1,
+                "HLeng": 10,
+                "VLeng": 10,
+                "BlurRadius": 0,
+                "SpreadRadius": 0,
+                "Inset": false
+              },
+              "HasNewRadius": true,
+              "Type": "Button",
+              "Id": "Button0D9F75DCC7295E3F628FB202953FC9D7",
+              "Name": "BTN_CNC",
+              "InGroup": "GRP_FOOTER",
+              "Position": {
+                "Left": 1459,
+                "Top": 10,
+                "Width": 60,
+                "Height": 35,
+                "ZIndex": 3,
+                "TabIndex": 0,
+                "Docking": {
+                  "Left": false,
+                  "Right": true,
+                  "Top": false,
+                  "Bottom": true,
+                  "Margin": "0,0,90,9",
+                  "HoldSize": true,
+                  "MinWidth": 0,
+                  "MinHeight": 0
+                }
+              },
+              "Style": {
+                "Type": 1,
+                "BoxStyle": "BX4DB6D0154B0D43B0B982A85B2825AA76",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
+                    "A": 1
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "R": 226,
+                    "G": 232,
+                    "B": 240,
+                    "A": 1
+                  },
+                  "LineType": "solid",
+                  "Thickness": "1,1,1,1",
+                  "CornerRadius": "4,4,4,4"
+                },
+                "Font": {
+                  "Color": {
+                    "R": 30,
+                    "G": 41,
+                    "B": 59,
+                    "A": 1
+                  },
+                  "Size": 13,
+                  "Family": "inherit",
+                  "Bold": true,
+                  "Italic": false,
+                  "UnderLine": false,
+                  "HorizontalAlignment": "center",
+                  "VerticalAlignment": "middle",
+                  "TempFontFamily": "맑은 고딕"
+                }
+              }
+            }
+          ],
+          "Type": "Group",
+          "Id": "Group8ADF367E498BEBD7951835A01C04C600",
+          "Name": "GRP_FOOTER",
+          "Position": {
+            "Left": 0,
+            "Top": 816,
+            "Width": 1609,
+            "Height": 55,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": true,
+              "Margin": "0,0,0,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "0,1,0,0",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "Format": "#,##0",
+          "Formula": "",
+          "Value": 55000,
+          "Text": "55,000",
+          "IsReadOnly": false,
+          "Maximum": "",
+          "Minimum": "",
+          "MxBinding": "",
+          "NotNull": "true",
+          "Type": "NumberBox",
+          "Id": "NumberBox1CCEC594637133B302BDD4B6FEFEAB25",
+          "Name": "VS_INP_PRICE",
+          "Position": {
+            "Left": 20,
+            "Top": 113,
+            "Width": 200,
+            "Height": 35,
+            "ZIndex": 21,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "right",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "Format": "#,##0",
+          "Formula": "",
+          "Value": 35000,
+          "Text": "35,000",
+          "IsReadOnly": false,
+          "Maximum": "",
+          "Minimum": "",
+          "MxBinding": "",
+          "NotNull": "true",
+          "Type": "NumberBox",
+          "Id": "NumberBoxD9B8ABCD76F7D9CB9844EB688A699019",
+          "Name": "VS_INP_COST",
+          "Position": {
+            "Left": 240,
+            "Top": 113,
+            "Width": 200,
+            "Height": 35,
+            "ZIndex": 22,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "right",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "DataSource": "DS4E9BF11BCE39431B97C2CB6507C58EDC",
+          "Value": "EA",
+          "Text": "",
+          "InitType": "1",
+          "RefreshType": 1,
+          "IsReadOnly": false,
+          "SortType": 0,
+          "AutoRefresh": true,
+          "AfterRefresh": "",
+          "UseAllItems": false,
+          "UseAllItemsText": "전체",
+          "DisplayType": 1,
+          "DataSourceInfo": {
+            "LabelField": "STATE_NAME",
+            "ValueField": "STATE_CODE"
+          },
+          "InitValue": "",
+          "Type": "ComboBox",
+          "Id": "ComboBox8D23C3693515F1AC94CF92C657628BAF",
+          "Name": "VS_INP_UNIT",
+          "Position": {
+            "Left": 20,
+            "Top": 192,
+            "Width": 200,
+            "Height": 35,
+            "ZIndex": 6,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 226,
+                "G": 232,
+                "B": 240,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "5,5,5,5"
+            },
+            "Font": {
+              "Color": {
+                "R": 30,
+                "G": 41,
+                "B": 59,
+                "A": 1
+              },
+              "Size": 13,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {}
+}

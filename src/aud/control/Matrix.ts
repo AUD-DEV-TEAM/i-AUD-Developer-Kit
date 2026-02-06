@@ -1044,7 +1044,7 @@ export interface Matrix{
    * 
    *
   */
-  GetDialogRequestParams(): object | undefined;
+  GetDialogRequestParams(): any | undefined;
 
   /**
    * i-AUD 내부에서 사용하는 enum 객체를 이름으로 가져옵니다.
@@ -1954,7 +1954,7 @@ export interface Matrix{
   * @param name 파라미터 이름
   * @param value 파라미터 값
   */
-  SetGlobalParams(name: string, value: string): void;
+  SetGlobalParams(name: string, value: string|number|boolean|null): void;
 
   /** 
    * 스케줄 등록 화면에서 사용할 정보를 설정합니다.

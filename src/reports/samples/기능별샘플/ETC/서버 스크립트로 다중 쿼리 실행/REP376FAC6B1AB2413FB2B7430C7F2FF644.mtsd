@@ -1,0 +1,751 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REP376FAC6B1AB2413FB2B7430C7F2FF644",
+    "FolderCode": "FLDBEB84E3D54BA4D48A9DC4FE7C97D6A41",
+    "SavePath": "FLDBEB84E3D54BA4D48A9DC4FE7C97D6A41/REP376FAC6B1AB2413FB2B7430C7F2FF644.mtsd",
+    "ReportName": "데이터 그리드 동적 생성 및 다중 쿼리 조회",
+    "Writer": "yglee",
+    "WriteDate": "2021-02-19 18:17:46",
+    "Editor": "yglee",
+    "EditDate": "2021-02-19 18:56:08",
+    "TabPosition": 0,
+    "TabHeight": 28,
+    "UseLayout": false,
+    "DocumentVersion": "2.0.0.1",
+    "Description": ""
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS2C09BC8B7BDD4D4EB327AB408B68D49E",
+        "Name": "FOLDER",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "qB0XyFylA60SLBKZQLI50xIY0LtYg1xhhIFXwTkmgoSfLFjb/UFm4g2G09eeyR6Zb7zIzdUWbXmi5xprejBB8MKb2waRFF//G7lzD9CCLdM=",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "FOLDER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_DEPTH",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "PARENT_FOLDER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_SEQ",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "FOLDER_PATH",
+            "Type": "String"
+          },
+          {
+            "Name": "OWNER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_DESC",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_DATE",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS73B1A409FE3C462B8C7BAB9870AEF76C",
+        "Name": "REPORT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "qB0XyFylA60SLBKZQLI504Xcp21LH2TxyvS4a4gEsT2Z1rxeQct1eB1etYOFKYYgwWcqUZdTY0UTK6DdOPwPJA==",
+        "Params": [
+          {
+            "Name": ":VS_FOLDERS",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "REPORT_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_SEQ",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "REPORT_PATH",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_SIZE",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "MODULE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_DESC",
+            "Type": "String"
+          },
+          {
+            "Name": "ACCESS_CNT",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "ACCESS_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "EXPECT_TIME",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "ATTRIBUTE1",
+            "Type": "String"
+          },
+          {
+            "Name": "ATTRIBUTE2",
+            "Type": "String"
+          },
+          {
+            "Name": "OWNER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_DATE",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "var Button = null; \r\nvar DataGrid = null; \r\nvar DataGrid1 = null; \r\n\r\nvar initControlVariables = function(){\r\n\tButton = Matrix.getObject(\"Button\"); \r\n\tDataGrid = Matrix.getObject(\"DataGrid\"); \r\n\tDataGrid1 = Matrix.getObject(\"DataGrid1\"); \r\n\r\n};\r\ninitControlVariables();\r\n \r\n/*****************************************\r\n* 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n* * arguments :  \r\n*\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n*\t\t string\tText (Readonly:False) : 라벨 값 \r\n*****************************************/\r\n var OnButtonClick  = function(sender, args)\r\n {\r\n \tMatrix.RunScript(\"\" ,\"DataQuery\" ,function(p){\r\n                                \tif(p.Success == false){\r\n                               \t\tMatrix.Alert(p.Message);\r\n                               \t\treturn;\r\n                               \t}\r\n                               \tvar  ds = p.DataSet;\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\tDataGrid.SetDataSet(ds.GetTable(\"FOLDER\").ToDataSet());\r\n\t\t\t\t\t\t\t\tDataGrid1.SetDataSet(ds.GetTable(\"REPORT\").ToDataSet()); \r\n                               });\r\n };\t\r\n  ",
+  "ServerScriptText": [
+    {
+      "Name": "DataQuery",
+      "Key": "BIZ89DC6778CED1481A8A08FDF5CB947BBC",
+      "Encrypted": true,
+      "ScriptText": "DuP/yUJGaX6+fE224obzsba4TTSDK7/I9MGeoTL1Lrm2uE00gyu/yPTBnqEy9S65WMg8SRcQLHGb7ZV2Gz5Vs8siAH9KjBVyijsdwbK41oTIXuVv7kIJCxpI3Yd+lwv8trhNNIMrv8j0wZ6hMvUuuba4TTSDK7/I9MGeoTL1LrnDTk7iWvKiLGsH2y2FqXGALuY1gJJ3bu70NjR226su/LPUofMVj7WAz7VkysnTHK6BFRs2778DezFw6YtJf5lqrrzXKxKnyOBnt2vDnCODoIQcNmMduBnfgdMxYiSkOdEgpnfQWbj3/0mx+H2C8zoMeczLWwzCORf0R12jZV3IwVPhcB1xxSvY7eDamQ8qrzTQZ3hMzpOeOkbvQ/PfZvcu80RyUcfi5E5e2d4T0vp7VjCqgkxFwoOfOg0beYnf1WEpr84xluZef0tIlMpJ1IPLDB5BwG5ywan2hXZq4Wav7wL6/80VnGebIBYFr/yS2NakRhRnwyz5oUcR3D44f7auAibREhTQqaXVsoDeH1P9+ppEE8VZdtL0gZ46aHbbSN5kRaU4FXcPz/pHfS8AdT6VfQrl2PFsv7BSLuebBWemwJC53E7jk23TKIDG8QaOMsjfTrgGQnmLVHzaIC/KWzTqNr1UUL8MgrfJigiCajofGIp9KNljvJ/PAZfqORLhYOtrJidzGbVoQzKEwpEPus4bsPpGgxTFtoYohpHYtrcMIC0XTxUP6Gnhjt0t0hprJbjgCSsM4BhZRsCH6emqwZl1XtQmp4rua5whVFnrptInrrDvsIf9siFexeVdCrtcCgXuwPAbDNn4NptbEkuDQX2e7Re6fHB9v7dwsNJ+oB1c2fV74IyoT9OqgOh2WFIGZCSHtbqvJA6z/o5Db5VsSCnnsgEkJYX5KQxXT652KDijpma2xR0Rp5C/pqaW/nQ5KwAPw2Iue2vEcBxwA5ZYD5kKH+y7+Uhbz+DSz4fMAaOYVxEz4NY6+U/X3iil8+/qwihFzpYcBYiEfxlyVEfZpweLVQ+UG35vDSKeRg71VxvMQlzkPHYIC+lJqcoxP57lvhp23tBBHTovAq2gNnGAeBo6Vs0f7a1J6ocNXtj+1UJtf3aHHPBgQLeUKRckQ0DT7lIrE78DVW/NG7q9xejYaMsoZg9Z2/kFA/8N/Mc5qoPRwwljy25S+oPSyoeNZz9Vj5XUnVJe7LitRvvT5aYwQGsRpUbYx5h+75/dBT/h0Qv7MVHC3Ut5sHMEhY0x1s5yb5QRLgzlIYWMp5fN9/HVEAi2PkpLACwikMZ/ZZokgRRcJUaiOt1JYGkQufqgQEjzE7zrkQk46su6S5+3inOTotw6IH0pboAaQ/r8f/Tq/I266nzvARJUch0i/SZARpfJZ+dVtlEAkhA9Kqgj5Gz6876DTzEXuqHaC92/CZP3tcW1dfyIpH2kBp9BRGyJ0R6H0ajvokhPRudZgzwtpWd8FPFY1RHGtQydyORMiiIAKHvvRiGVCaSBat2JKFkeoW1EJg68Jneqbvv/NTlL+bUbKObv08fOOIhjPPQYgioOUyzF/Bl8AlkGG8m7f3JKOj3/zATbOpf4HUaiQCSA2uKE/0eBsr4ngbCUoDdB2HTkv/RE4i9WmaUar1feGWfXZK1R57Fy7KuX77wH7p8zuPsbGW0myJ9FXQ6KkPy/bnc/xbXeszm43DmXlo2ETaaM6/S8XrIbb2E+I6mMf3m3ygaF6VwIe0vy5KW2VBfn1vTHXqEm7w+A2IcMrRfRipdzZg1Lm2XE+N1V2awbnmRSEMPC+Mm/"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "Forma2b18ee7-3560-cd21-45a5-b3725f7249ef",
+      "Name": "Form2",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "LanguageCode": "",
+          "UseTooltip": true,
+          "Value": "button",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0",
+            "Inset": false
+          },
+          "Type": "Button",
+          "Id": "Buttona204117e-6b00-2d3c-9b12-d70c499ac3fc",
+          "Name": "Button",
+          "Position": {
+            "Left": 363,
+            "Top": 20,
+            "Width": 60,
+            "Height": 23,
+            "ZIndex": 0,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "46",
+                "G": "87",
+                "B": "160",
+                "A": "1"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "12",
+                "G": "56",
+                "B": "134",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "12,12,12,12",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "12,12,12,12"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Button"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": "12",
+              "Family": "inherit",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color",
+                "R": "255",
+                "G": "255",
+                "B": "255",
+                "A": "1"
+              },
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "mVariable": {
+                "Size": "12",
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "center",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Button"
+              }
+            }
+          }
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "GRIDe9d611f1-c544-e9eb-acba-77b8501a52be",
+          "Name": "DataGrid",
+          "Visible": true,
+          "Position": {
+            "Left": 22,
+            "Top": 46,
+            "Width": 400,
+            "Height": 300,
+            "ZIndex": 0,
+            "Docking": {
+              "Margin": "0,0,0,0",
+              "MinHeight": "0",
+              "MinWidth": "0"
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": "187",
+                "G": "199",
+                "B": "211",
+                "A": "1"
+              },
+              "CornerRadius": "0,0,0,0",
+              "LineType": "solid",
+              "Thickness": "1,1,1,1"
+            },
+            "VerticalBorder": {
+              "Color": {
+                "R": "187",
+                "G": "199",
+                "B": "211",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": 1
+            },
+            "HorizontalBorder": {
+              "Color": {
+                "R": "187",
+                "G": "199",
+                "B": "211",
+                "A": "1"
+              },
+              "Thickness": 1
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Family": "inherit",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "top"
+            }
+          },
+          "CellMargin": "5,5,5,5",
+          "DataSource": "FOLDER",
+          "ColumnHeaderHeight": 23,
+          "RowHeight": 23,
+          "FontFamily": "inherit",
+          "FontSize": 12,
+          "UsePPTExport": false,
+          "FrozenLineBrush": {
+            "Type": 0,
+            "Color": {
+              "R": 127,
+              "G": 127,
+              "B": 127,
+              "A": 1
+            }
+          },
+          "Columns": [
+            {
+              "Name": "FOLDER_CODE",
+              "Caption": "FOLDER_CODE",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "FOLDER_NAME",
+              "Caption": "FOLDER_NAME",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "FOLDER_DEPTH",
+              "Caption": "FOLDER_DEPTH",
+              "Width": 100,
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "PARENT_FOLDER_CODE",
+              "Caption": "PARENT_FOLDER_CODE",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "FOLDER_SEQ",
+              "Caption": "FOLDER_SEQ",
+              "Width": 100,
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "FOLDER_PATH",
+              "Caption": "FOLDER_PATH",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "OWNER_CODE",
+              "Caption": "OWNER_CODE",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "FOLDER_DESC",
+              "Caption": "FOLDER_DESC",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "CREATE_DATE",
+              "Caption": "CREATE_DATE",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "MODIFY_DATE",
+              "Caption": "MODIFY_DATE",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            }
+          ]
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "GRID39c96923-dacd-7e93-d195-cf565f26194c",
+          "Name": "DataGrid1",
+          "Visible": true,
+          "Position": {
+            "Left": 21,
+            "Top": 356,
+            "Width": 400,
+            "Height": 300,
+            "ZIndex": 0,
+            "Docking": {
+              "Margin": "0,0,0,0",
+              "MinHeight": "0",
+              "MinWidth": "0"
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": "187",
+                "G": "199",
+                "B": "211",
+                "A": "1"
+              },
+              "CornerRadius": "0,0,0,0",
+              "LineType": "solid",
+              "Thickness": "1,1,1,1"
+            },
+            "VerticalBorder": {
+              "Color": {
+                "R": "187",
+                "G": "199",
+                "B": "211",
+                "A": "1"
+              },
+              "LineType": "solid",
+              "Thickness": 1
+            },
+            "HorizontalBorder": {
+              "Color": {
+                "R": "187",
+                "G": "199",
+                "B": "211",
+                "A": "1"
+              },
+              "Thickness": 1
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Family": "inherit",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "top"
+            }
+          },
+          "CellMargin": "5,5,5,5",
+          "DataSource": "REPORT",
+          "ColumnHeaderHeight": 23,
+          "RowHeight": 23,
+          "FontFamily": "inherit",
+          "FontSize": 12,
+          "UsePPTExport": false,
+          "FrozenLineBrush": {
+            "Type": 0,
+            "Color": {
+              "R": 127,
+              "G": 127,
+              "B": 127,
+              "A": 1
+            }
+          },
+          "Columns": [
+            {
+              "Name": "REPORT_CODE",
+              "Caption": "REPORT_CODE",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "REPORT_NAME",
+              "Caption": "REPORT_NAME",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "FOLDER_CODE",
+              "Caption": "FOLDER_CODE",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "REPORT_SEQ",
+              "Caption": "REPORT_SEQ",
+              "Width": 100,
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "REPORT_PATH",
+              "Caption": "REPORT_PATH",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "REPORT_SIZE",
+              "Caption": "REPORT_SIZE",
+              "Width": 100,
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "MODULE_CODE",
+              "Caption": "MODULE_CODE",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "REPORT_DESC",
+              "Caption": "REPORT_DESC",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "ACCESS_CNT",
+              "Caption": "ACCESS_CNT",
+              "Width": 100,
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "ACCESS_DATE",
+              "Caption": "ACCESS_DATE",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "EXPECT_TIME",
+              "Caption": "EXPECT_TIME",
+              "Width": 100,
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "HeaderPosition": "center",
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "ATTRIBUTE1",
+              "Caption": "ATTRIBUTE1",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "ATTRIBUTE2",
+              "Caption": "ATTRIBUTE2",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "OWNER_CODE",
+              "Caption": "OWNER_CODE",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "MODIFY_CODE",
+              "Caption": "MODIFY_CODE",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "CREATE_DATE",
+              "Caption": "CREATE_DATE",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "MODIFY_DATE",
+              "Caption": "MODIFY_DATE",
+              "Width": 100,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "Text"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "{}"
+}

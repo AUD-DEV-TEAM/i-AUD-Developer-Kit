@@ -1,0 +1,952 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPF09BEF418219456D993C7B8F6362C0D0",
+    "FolderCode": "MYDOCUMENT.yglee",
+    "SavePath": "MYDOCUMENT.yglee/REPF09BEF418219456D993C7B8F6362C0D0.mtsd",
+    "ReportName": "AUD 보고서 SQL 변경하기",
+    "Writer": "yglee",
+    "WriteDate": "2026-02-04 10:17:31",
+    "Editor": "yglee",
+    "EditDate": "2026-02-04 10:17:31",
+    "TabPosition": 0,
+    "UseLayout": false,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS7600C2675C284C21B1A96244EE28D85D",
+        "Name": "FOLDER_INFO",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "Xb4TP/Gxmbw5N0VobM0JpiHHMlCmiy9W4MsFa/nFK5QjzvCUBeJo6ws5zkiEVsyy4qO9cuTyxdyeZFhMhIgCXhRKTuWx0/YaX/v32fMKVIIsuE5ftVXHyoWVlu82OihxudtsXL/M+v81LOdRuS4qhr8PNyi6kI/YGnn83gp6cIVZdde/D4ZVIDsZkqUPbujUk3hE8W1Jveu13i1wINbCIIwpgADr1r0PSDzIjsaBx6wWPUsWSFdfwcXmY6Xn4kovRhIsdGXb0IFJX8nrQDzsZQhI3ihwPStYV3juGU5VO/teSA7LpMdb5+fJHH72Btt2xuFhW+e5yaJl3kz9VdIwMg==",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "PCODE",
+            "Type": "String"
+          },
+          {
+            "Name": "IMG",
+            "Type": "String"
+          },
+          {
+            "Name": "CHILD",
+            "Type": "String"
+          },
+          {
+            "Name": "TOOLTIP",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSBEAB450DA392434D966E0F2E4409C1FC",
+        "Name": "GET_BACKUP_REPORT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "aDzDVjrAxwYxVgs6V4xU0dSHZn82aRUuxTudMJSDYPE5thO0Hhp2gIPsbJXFr0E7ZbqmvrfcJoAkOSpbhGhoJFpVJdae+bYFWn9IFNAXjEOsv8x1OWJb6/sT19qcIYWHlCjmtbkiXXQJDKyeA1X2D7CPbGEOkRSYctW5Du/W/Yy7AQf3ILFXYwjRuTEAGIRvvEr4sa3bieVO9gV0T3SqwDvMycKfbbX81yK3sCuL6xU=",
+        "Params": [],
+        "Columns": []
+      },
+      {
+        "Id": "DSA8321CB4C8854ED2B388975C7DED876A",
+        "Name": "GET_REPORT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "aDzDVjrAxwYxVgs6V4xU0dSHZn82aRUuxTudMJSDYPE5thO0Hhp2gIPsbJXFr0E7ZbqmvrfcJoAkOSpbhGhoJFpVJdae+bYFWn9IFNAXjEPeThONZenr7RrHAu6b/3CuPSKEVKnNDa7akNL7GKHhZnFsaLcTP5fNMUP2JWbdJVvt1ZMEy2hOiYAFbCQhxkA2T88IZd13U5yj7n3W9Xj7gmliffkWboNQmUZGQtdI2WCL7owE1aEgJWrMe1HhrhfOG3sBJX2fmnlxGam7MuB3H0puRpRD+Sdzr3mo24Qb7yezx4yIy3ud9r2KPOtF/leJ",
+        "Params": [
+          {
+            "Name": ":VS_FOLDER_CODE",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "REPORT_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_PATH",
+            "Type": "String"
+          },
+          {
+            "Name": "OWNER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "UPDATE_STATUS",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSF5DF9404D5394ED9AA0426B5C68EA72B",
+        "Name": "REPORT_PATH",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "J5OBaQOv+yW1zLz2GJiec5OADPSdrnwly8rUmSv/to5ZKrHdUPw6wrYyQUXTCVmDw/7kSkMpSbHktmBu5PFj0B4D/CL6Vuo/aAHHEJujP7E=",
+        "Params": [],
+        "Columns": []
+      },
+      {
+        "Id": "DS7600C2675C284C21B1A96244EE28D85D",
+        "Name": "FOLDER_INFO",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "Xb4TP/Gxmbw5N0VobM0JpiHHMlCmiy9W4MsFa/nFK5QjzvCUBeJo6ws5zkiEVsyy4qO9cuTyxdyeZFhMhIgCXhRKTuWx0/YaX/v32fMKVIIsuE5ftVXHyoWVlu82OihxudtsXL/M+v81LOdRuS4qhr8PNyi6kI/YGnn83gp6cIVZdde/D4ZVIDsZkqUPbujUk3hE8W1Jveu13i1wINbCIIwpgADr1r0PSDzIjsaBx6wWPUsWSFdfwcXmY6Xn4kovRhIsdGXb0IFJX8nrQDzsZQhI3ihwPStYV3juGU5VO/teSA7LpMdb5+fJHH72Btt2xuFhW+e5yaJl3kz9VdIwMg==",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "PCODE",
+            "Type": "String"
+          },
+          {
+            "Name": "IMG",
+            "Type": "String"
+          },
+          {
+            "Name": "CHILD",
+            "Type": "String"
+          },
+          {
+            "Name": "TOOLTIP",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSBEAB450DA392434D966E0F2E4409C1FC",
+        "Name": "GET_BACKUP_REPORT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "aDzDVjrAxwYxVgs6V4xU0dSHZn82aRUuxTudMJSDYPE5thO0Hhp2gIPsbJXFr0E7ZbqmvrfcJoAkOSpbhGhoJFpVJdae+bYFWn9IFNAXjEOsv8x1OWJb6/sT19qcIYWHlCjmtbkiXXQJDKyeA1X2D7CPbGEOkRSYctW5Du/W/Yy7AQf3ILFXYwjRuTEAGIRvvEr4sa3bieVO9gV0T3SqwDvMycKfbbX81yK3sCuL6xU=",
+        "Params": [],
+        "Columns": []
+      },
+      {
+        "Id": "DSA8321CB4C8854ED2B388975C7DED876A",
+        "Name": "GET_REPORT",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "aDzDVjrAxwYxVgs6V4xU0dSHZn82aRUuxTudMJSDYPE5thO0Hhp2gIPsbJXFr0E7ZbqmvrfcJoAkOSpbhGhoJFpVJdae+bYFWn9IFNAXjEPeThONZenr7RrHAu6b/3CuPSKEVKnNDa7akNL7GKHhZnFsaLcTP5fNMUP2JWbdJVvt1ZMEy2hOiYAFbCQhxkA2T88IZd13U5yj7n3W9Xj7gmliffkWboNQmUZGQtdI2WCL7owE1aEgJWrMe1HhrhfOG3sBJX2fmnlxGam7MuB3H0puRpRD+Sdzr3mo24Qb7yezx4yIy3ud9r2KPOtF/leJ",
+        "Params": [
+          {
+            "Name": ":VS_FOLDER_CODE",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "REPORT_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_PATH",
+            "Type": "String"
+          },
+          {
+            "Name": "OWNER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "UPDATE_STATUS",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSF5DF9404D5394ED9AA0426B5C68EA72B",
+        "Name": "REPORT_PATH",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "MTXRPTY",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "J5OBaQOv+yW1zLz2GJiec5OADPSdrnwly8rUmSv/to5ZKrHdUPw6wrYyQUXTCVmDw/7kSkMpSbHktmBu5PFj0B4D/CL6Vuo/aAHHEJujP7E=",
+        "Params": [],
+        "Columns": []
+      }
+    ]
+  },
+  "ScriptText": "/*****************************\r\n *\r\n *****************************/\r\nvar Tree = Matrix.getObject(\"Tree\");\r\nvar MAIN = Matrix.getObject(\"MAIN\");\r\nvar btnExecute = Matrix.getObject(\"btnExecute\");\r\nTree.OnNodeDbClick = function (s, e) {\r\n    var node = e.Node;\r\n    var folderCode = node.GetValue(\"CODE\");\r\n    Matrix.SetVariable(\"VS_FOLDER_CODE\", folderCode);\r\n    Matrix.doRefresh(\"MAIN\");\r\n};\r\nbtnExecute.OnClick = function (s, e) {\r\n    Matrix.RunScript(\"MAIN\", \"UPDATE_SQL\", function (p) {\r\n        if (p.Success == false) {\r\n            Matrix.Error(\"저장 오류\", p.Message);\r\n            return;\r\n        }\r\n        var ds = p.DataSet;\r\n        MAIN.SetDataSet(ds);\r\n    });\r\n};\r\nvar ShowDesigner = function (reportCode) {\r\n    var url = Matrix.GetGlobalConfig().CONTEXT_PATH + \"/AUD/designer.jsp?id=\" + reportCode;\r\n    window.open(url);\r\n};\r\nMAIN.OnCellDoubleClick = function (sender, args) {\r\n    var report_code = args.Row.GetValue(\"REPORT_CODE\");\r\n    ShowDesigner(report_code);\r\n};\r\n",
+  "ServerScriptText": [
+    {
+      "Name": "READ_SOURCE",
+      "Key": "BIZ8377B703AFC143C0BE2845862017D619",
+      "Encrypted": true,
+      "ScriptText": "wi5lPLVCtMfgAqg1MAW8gaknSOJnlmhA33py5zsabfV0Ee4XTbF3iyy/tcFAGJ9zkR6xTPRYziAp7hlsENUmke8fKw0NV0XC+Nuz/cAyN5P9kvp7iBkYGBW5ML6MZcAmAkmxsmykAJ9dDht66Llc57sP/kB3ur7FmWYs744bJxTMWAe4jsgLei7E0zR8e0yUeEmy4W2Vlctjwy5iDt/s9rA97NldYgUc/LBK/mQ8FlT5C3luLyPYAxmWQHJFapayZGf92W4UdXTfQouNASUNNGZayJVVFoibYiKn+I0wWevTi9ztXgMALQP4WRNnE3s99p/DTqXcyPCHQaPjahWqdCK5AdQu9wdqJQEMr57uQJi+j3ObhF1FDiJr/JZLeQDrAAeqqJIbrABci31+0TnsjZYFHNRDzInF5uAUv9nRi7TyXzYwajb0AtOXVhFrhqJTg8Cym4lvYP2tPTIaOyBCt+rBrr19slrxBYqShc8Nju4bNJH6HUELSdoPYuxIUpYwE8aIweGLAHuIpS6Yz6TdsMwWxl3cjKpa76nzQ1AFvQ4xsgWsgkyWI9JseqFRDhi0dUELjuXRUW2DNHDFY4p4Oh/LDM7lt7A7Xuv2/ZgLhKZFMx1DV2sXh1EGC+YdoD3x0iML2JL2cqBfSqRYd9xDnFuRpcPkD+aWQmrBX3am0ywGSM5j9GWO8T4AxXhnBj5Xh0tAFTsv6E7qG9UJ9BCsa4/RFprA62wicECGMTaCTGMKuVVR5OpiVcApjmK7z82hof8daCsxSqPoa/0sRsI0axIuKnCR25HTcZJlTxCxfVtwjR8k4WOd3+ENyK+OEPhwDJDyuI7sPuyS+rmI2U3utRxpIjAJxhC1FASZPLVHEYdbkaXD5A/mlkJqwV92ptMsBYl1n8E9L9q8fjwjRD87K/3oc7Xw1/x9LH/j/nL2ZwYuzG0ankYXv+dH1WxrC4h/9OI39qF/H8rfc/DgJld3Bf/R1iljK5n7itIq0UTUCzc+3G+krPrG6CFfc3DJ/GloPvbgO/iwHyh0BK4gMpcSs3nGj8NgwfoZnDqfUas6JfpvvH+aQTMl0DfRXWCeAot9WF1lgFbKI1GhWm2CbYspOmUbnS1ws/Fmc2pC38yh2aCENO5kyf9htrCJ6RhzxsComzKZ60Cuz/5H63gFZUoUaA=="
+    },
+    {
+      "Name": "UPDATE_SQL",
+      "Key": "BIZD62FF96C56644361939497E0673460D1",
+      "Encrypted": true,
+      "ScriptText": "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"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "Form84862855-a613-01b8-4b36-ba6fb76f2a1d",
+      "Name": "Form1",
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 2,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "none",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      },
+      "Elements": [
+        {
+          "DataSource": "DS7600C2675C284C21B1A96244EE28D85D",
+          "AutoRefresh": true,
+          "DoRefresh": true,
+          "ShowCheckBox": false,
+          "DataSourceInfo": {
+            "LabelField": "NAME",
+            "ValueField": "CODE",
+            "HasChildField": "CHILD",
+            "ImageField": "IMG",
+            "OnImageField": "IMG",
+            "KeyField": "CODE",
+            "ParentKeyField": "PCODE",
+            "ToolTipField": ""
+          },
+          "HoverBackgroundColor": {
+            "__type__": "istudio.drawing.style.Color",
+            "R": 233,
+            "G": 238,
+            "B": 255,
+            "A": 1
+          },
+          "HoverFontColor": {
+            "__type__": "istudio.drawing.style.Color",
+            "R": 51,
+            "G": 51,
+            "B": 51,
+            "A": 1
+          },
+          "Type": "Tree",
+          "Id": "Treef8395a92-e1c3-f206-9560-e2235bc3e0a3",
+          "Name": "Tree",
+          "Position": {
+            "Left": 2,
+            "Top": 53,
+            "Width": 377,
+            "Height": 930,
+            "ZIndex": 2,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "10,60,0,10",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": " AUD 보고서 SQL 내 문자열 일괄 변경하기",
+          "Cursor": "default",
+          "Formula": "",
+          "MxBinding": "",
+          "MxBindingUseStyle": false,
+          "Margin": {
+            "Left": 0,
+            "Top": 0,
+            "Right": 0,
+            "Bottom": 0,
+            "Text": "0,0,0,0"
+          },
+          "Type": "Label",
+          "Id": "Labelf31c6af7-81d7-9151-4f35-d9a957b0b3bc",
+          "Name": "LBL_TITLE",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1825,
+            "Height": 50,
+            "ZIndex": 4,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": true,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "BXDE549298837943D79F81D950BF074E02",
+            "Background": {
+              "Color": {
+                "R": 223,
+                "G": 239,
+                "B": 252,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 11,
+                "G": 33,
+                "B": 76,
+                "A": 1
+              },
+              "Size": 19,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "GRID139bc16b-fb66-1deb-9780-172e8ccb9d43",
+          "Name": "MAIN",
+          "Visible": true,
+          "Position": {
+            "Left": 379,
+            "Top": 211,
+            "Width": 1446,
+            "Height": 511,
+            "ZIndex": 69,
+            "TabIndex": 0,
+            "Docking": {
+              "Margin": "0",
+              "MinHeight": 0,
+              "MinWidth": 0,
+              "Right": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Thickness": "1,1,1,1"
+            },
+            "VerticalBorder": {
+              "Thickness": 1
+            },
+            "HorizontalBorder": {
+              "Thickness": 1
+            },
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "top"
+            }
+          },
+          "CellMargin": "5,5,5,5",
+          "DataSource": "DSA8321CB4C8854ED2B388975C7DED876A",
+          "DoRefresh": false,
+          "ColumnHeaderHeight": 28,
+          "RowHeight": 24,
+          "Editable": true,
+          "ExportCount": 0,
+          "FontFamily": "inherit",
+          "FontSize": 12,
+          "UseCSVExport": false,
+          "UseTextExport": false,
+          "UsePPTExport": false,
+          "UseFormatSetting": false,
+          "UseMultiHeaderMenu": false,
+          "FrozenLineBrush": {
+            "Type": 0,
+            "Color": {
+              "R": 127,
+              "G": 127,
+              "B": 127,
+              "A": 1
+            }
+          },
+          "Columns": [
+            {
+              "Name": "CHK_STATUS",
+              "Caption": "",
+              "Width": 50,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Filterable": false,
+              "ColumnType": 2,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "TextPosition": "center",
+              "CheckedValue": "Y",
+              "UnCheckedValue": "N",
+              "VisibleCheckAllBox": true,
+              "CalcSubTotalType": "None"
+            },
+            {
+              "Name": "REPORT_NAME",
+              "Caption": "REPORT_NAME",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "GridColumnWidthType": 1,
+              "Editable": false,
+              "KeyType": 2,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "REPORT_CODE",
+              "Caption": "REPORT_CODE",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "GridColumnWidthType": 1,
+              "Editable": false,
+              "Filterable": false,
+              "KeyType": 3,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "OWNER_CODE",
+              "Caption": "OWNER_CODE",
+              "Width": 104,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Editable": false,
+              "Filterable": false,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "TextPosition": "center",
+              "CalcSubTotalType": "None"
+            },
+            {
+              "Name": "CREATE_DATE",
+              "Caption": "CREATE_DATE",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "None"
+            },
+            {
+              "Name": "MODIFY_DATE",
+              "Caption": "MODIFY_DATE",
+              "Width": 50,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "GridColumnWidthType": 1,
+              "Editable": false,
+              "Filterable": false,
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "TextPosition": "center",
+              "CalcSubTotalType": "None"
+            },
+            {
+              "Name": "UPDATE_STATUS",
+              "Caption": "UPDATE_STATUS",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "KeyType": 2,
+              "HeaderPosition": "center",
+              "CalcSubTotalType": "None"
+            },
+            {
+              "Name": "FOLDER_CODE",
+              "Caption": "FOLDER_CODE",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Visible": false,
+              "Filterable": false,
+              "KeyType": 2,
+              "HeaderPosition": "center"
+            },
+            {
+              "Name": "REPORT_PATH",
+              "Caption": "REPORT_PATH",
+              "Width": 100,
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Filterable": false,
+              "KeyType": 2,
+              "HeaderPosition": "center"
+            }
+          ]
+        },
+        {
+          "LanguageCode": "",
+          "Value": "실행",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "Type": "Button",
+          "Id": "Button08DA28F27D1E99CF8F9A1A8941B79FA7",
+          "Name": "btnExecute",
+          "Position": {
+            "Left": 1727,
+            "Top": 17,
+            "Width": 66,
+            "Height": 26,
+            "ZIndex": 69,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,32,0",
+              "HoldSize": true,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 249,
+                "G": 249,
+                "B": 251,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 126,
+                "G": 155,
+                "B": 246,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "LanguageCode": "",
+          "Text": "<변경 내용>\nJSON 객체로 여러개 입력합니다.\n{ \n  \"변경전코드\":\"변경후 코드\"\n  ,\"T02\":\"TX002\"\n  ,\"T03\":\"TX003\"\n}\n",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          },
+          "Type": "Label",
+          "Id": "Label0E829E6A2D9CD64DC60A673D09BE7A38",
+          "Name": "Label",
+          "Position": {
+            "Left": 379,
+            "Top": 53,
+            "Width": 240,
+            "Height": 147,
+            "ZIndex": 70,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 0
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        },
+        {
+          "Formula": "",
+          "IsReadOnly": false,
+          "MaxLength": 0,
+          "MxBinding": "",
+          "Value": "{ \n  \"이영균\":\"영군아\"\n  ,\"이건\":\"이이건\"\n  ,\"T03\":\"TX003\"\n}\n",
+          "Text": "{ \n  \"이영균\":\"영군아\"\n  ,\"이건\":\"이이건\"\n  ,\"T03\":\"TX003\"\n}\n",
+          "Type": "RichTextBox",
+          "Id": "RichTextBox451276F85909A14C3F651732AC9A201A",
+          "Name": "VS_REPLACE_LIST",
+          "Position": {
+            "Left": 652,
+            "Top": 53,
+            "Width": 300,
+            "Height": 150,
+            "ZIndex": 74,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [
+    {
+      "Name": "VS_FOLDER_CODE",
+      "Value": "DEFAULT",
+      "Desc": "",
+      "Formula": ""
+    },
+    {
+      "Name": "REPORT_CODE",
+      "Value": "REP8200EABC719F438D89CCCCE739D5D3A2",
+      "Desc": "",
+      "Formula": ""
+    },
+    {
+      "Name": "VS_REPORT_CODE",
+      "Value": "REPBAD6708D35C0451488F96B11A64AF8A2",
+      "Desc": "",
+      "Formula": ""
+    },
+    {
+      "Name": "FAIL_INFO",
+      "Value": null,
+      "Desc": "",
+      "Formula": ""
+    }
+  ],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {}
+}

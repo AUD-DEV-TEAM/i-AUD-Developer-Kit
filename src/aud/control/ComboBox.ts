@@ -65,9 +65,19 @@ export interface ComboBox extends Control{
   /**
    * 항목을 추가합니다.
    *
-  * @param value 항목 값
-  * @param name 항목 표시 텍스트
-  */
+   * @example
+   * ```js
+   * // 콤보박스에 항목 동적 추가
+   * var cboStatus = Matrix.getObject("cboStatus");
+   * cboStatus.ClearValue();
+   * cboStatus.AddItem("", "전체");
+   * cboStatus.AddItem("Y", "사용");
+   * cboStatus.AddItem("N", "미사용");
+   * cboStatus.SelectedIndex = 0;
+   * ```
+   * @param value 항목 값
+   * @param name 항목 표시 텍스트
+   */
   AddItem(value: string, name: string): void;
 
   /**
@@ -91,8 +101,22 @@ export interface ComboBox extends Control{
   /**
    * 컨트롤에 데이터셋 객체를 바인딩합니다.
    *
-  * @param ds 데이터셋 객체
-  */
+   * @example
+   * ```js
+   * // 데이터셋을 콤보박스에 바인딩
+   * var ds = Matrix.CreateDataSet();
+   * var dt = ds.CreateTable("combo");
+   * dt.AddColumn("CODE");
+   * dt.AddColumn("NAME");
+   * dt.AddRow(["001", "영업팀"]);
+   * dt.AddRow(["002", "개발팀"]);
+   * dt.AddRow(["003", "기획팀"]);
+   *
+   * var cboDept = Matrix.getObject("cboDept");
+   * cboDept.SetDataSet(ds);
+   * ```
+   * @param ds 데이터셋 객체
+   */
   SetDataSet(ds: DataSet): void;
 
   /**
@@ -131,11 +155,21 @@ export interface ComboBox extends Control{
    *
    * 콤보박스의 선택 값이 변경될 때 발생합니다.
    *
+   * @example
+   * ```js
+   * // 콤보박스 값 변경 시 그리드 조회
+   * var cboDept = Matrix.getObject("cboDept");
+   * cboDept.OnValueChanged = function(sender, args) {
+   *     console.log("선택된 값: " + args.Value);
+   *     console.log("선택 인덱스: " + args.SelectedIndex);
+   *     Matrix.doRefresh("grdEmployee");
+   * };
+   * ```
    * @param sender 이벤트가 발생한 콤보박스 컨트롤
    * @param args 이벤트 인자
    *
    * Target : {@link ComboBox}
-  */
+   */
   OnValueChanged : (sender : ComboBox
   , args : {
     /**

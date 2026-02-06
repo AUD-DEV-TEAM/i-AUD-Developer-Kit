@@ -6,27 +6,27 @@ import { Control } from "../../aud/control/Control";
  * {@link OnValueChanged} 이벤트를 통해 주 변경을 처리합니다.
  *
  * @example
- * ```ts
+ * ```js
  * //----------------------------------------------
  * // 패턴1: 기본 주 선택 및 값 읽기
  * //----------------------------------------------
- * let calWeek: CalendarWeekly = Matrix.getObject("calWeek") as CalendarWeekly;
+ * var calWeek = Matrix.getObject("calWeek");
  *
  * calWeek.OnValueChanged = function(sender, args) {
- *     let weekStart = args.Text;  // ViewFormat 형식 (예: "2024-01-08")
- *     let weekDate = args.Date;
+ *     var weekStart = args.Text;  // ViewFormat 형식 (예: "2024-01-08")
+ *     var weekDate = args.Date;
  *
  *     // 해당 주의 종료일 계산 (시작일 + 6일)
- *     let weekEnd = new Date(weekDate);
+ *     var weekEnd = new Date(weekDate);
  *     weekEnd.setDate(weekEnd.getDate() + 6);
  *
  *     Matrix.Alert("선택된 주: " + weekStart + " ~ " + formatDate(weekEnd));
  * };
  *
- * function formatDate(date: Date): string {
- *     let year = date.getFullYear();
- *     let month = ("0" + (date.getMonth() + 1)).slice(-2);
- *     let day = ("0" + date.getDate()).slice(-2);
+ * function formatDate(date) {
+ *     var year = date.getFullYear();
+ *     var month = ("0" + (date.getMonth() + 1)).slice(-2);
+ *     var day = ("0" + date.getDate()).slice(-2);
  *     return year + "-" + month + "-" + day;
  * }
  *
@@ -34,16 +34,16 @@ import { Control } from "../../aud/control/Control";
  * // 패턴2: 이번 주로 초기화
  * //----------------------------------------------
  * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     let calThisWeek: CalendarWeekly = Matrix.getObject("calThisWeek") as CalendarWeekly;
+ *     var calThisWeek = Matrix.getObject("calThisWeek");
  *
  *     // 포맷 설정
  *     calThisWeek.DataFormat = "yyyyMMdd";
  *     calThisWeek.ViewFormat = "yyyy-MM-dd";
  *
  *     // 이번 주 월요일로 설정
- *     let today = new Date();
- *     let dayOfWeek = today.getDay();  // 0(일) ~ 6(토)
- *     let monday = new Date(today);
+ *     var today = new Date();
+ *     var dayOfWeek = today.getDay();  // 0(일) ~ 6(토)
+ *     var monday = new Date(today);
  *     monday.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
  *
  *     calThisWeek.Date = monday;
@@ -52,9 +52,9 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴3: 주간 보고서 조회
  * //----------------------------------------------
- * let btnWeeklyReport: Button = Matrix.getObject("btnWeeklyReport") as Button;
- * let calReportWeek: CalendarWeekly = Matrix.getObject("calReportWeek") as CalendarWeekly;
- * let grid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
+ * var btnWeeklyReport = Matrix.getObject("btnWeeklyReport");
+ * var calReportWeek = Matrix.getObject("calReportWeek");
+ * var grid = Matrix.getObject("DataGrid");
  *
  * btnWeeklyReport.OnClick = function(sender, args) {
  *     if (!calReportWeek.Value) {
@@ -64,12 +64,12 @@ import { Control } from "../../aud/control/Control";
  *     }
  *
  *     // 주의 시작일과 종료일 계산
- *     let weekStart = calReportWeek.Date;
- *     let weekEnd = new Date(weekStart);
+ *     var weekStart = calReportWeek.Date;
+ *     var weekEnd = new Date(weekStart);
  *     weekEnd.setDate(weekEnd.getDate() + 6);
  *
  *     // 서버 스크립트 호출
- *     let params = {
+ *     var params = {
  *         VS_WEEK_START: calReportWeek.Value,  // "20240108" (월요일)
  *         VS_WEEK_END: formatDateToString(weekEnd)  // "20240114" (일요일)
  *     };
@@ -82,32 +82,32 @@ import { Control } from "../../aud/control/Control";
  *     });
  * };
  *
- * function formatDateToString(date: Date): string {
- *     let year = date.getFullYear();
- *     let month = ("0" + (date.getMonth() + 1)).slice(-2);
- *     let day = ("0" + date.getDate()).slice(-2);
+ * function formatDateToString(date) {
+ *     var year = date.getFullYear();
+ *     var month = ("0" + (date.getMonth() + 1)).slice(-2);
+ *     var day = ("0" + date.getDate()).slice(-2);
  *     return year + month + day;
  * }
  *
  * //----------------------------------------------
  * // 패턴4: 이전/다음 주 버튼
  * //----------------------------------------------
- * let btnPrevWeek: Button = Matrix.getObject("btnPrevWeek") as Button;
- * let btnNextWeek: Button = Matrix.getObject("btnNextWeek") as Button;
- * let calNav: CalendarWeekly = Matrix.getObject("calNav") as CalendarWeekly;
+ * var btnPrevWeek = Matrix.getObject("btnPrevWeek");
+ * var btnNextWeek = Matrix.getObject("btnNextWeek");
+ * var calNav = Matrix.getObject("calNav");
  *
  * // 이전 주
  * btnPrevWeek.OnClick = function(sender, args) {
- *     let current = calNav.Date;
- *     let prevWeek = new Date(current);
+ *     var current = calNav.Date;
+ *     var prevWeek = new Date(current);
  *     prevWeek.setDate(current.getDate() - 7);
  *     calNav.Date = prevWeek;
  * };
  *
  * // 다음 주
  * btnNextWeek.OnClick = function(sender, args) {
- *     let current = calNav.Date;
- *     let nextWeek = new Date(current);
+ *     var current = calNav.Date;
+ *     var nextWeek = new Date(current);
  *     nextWeek.setDate(current.getDate() + 7);
  *     calNav.Date = nextWeek;
  * };
@@ -115,16 +115,16 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴5: 주차 정보 표시
  * //----------------------------------------------
- * let calWeekInfo: CalendarWeekly = Matrix.getObject("calWeekInfo") as CalendarWeekly;
- * let lblWeekInfo: Label = Matrix.getObject("lblWeekInfo") as Label;
+ * var calWeekInfo = Matrix.getObject("calWeekInfo");
+ * var lblWeekInfo = Matrix.getObject("lblWeekInfo");
  *
  * calWeekInfo.OnValueChanged = function(sender, args) {
- *     let weekDate = args.Date;
+ *     var weekDate = args.Date;
  *
  *     // 해당 년도의 몇 번째 주인지 계산
- *     let startOfYear = new Date(weekDate.getFullYear(), 0, 1);
- *     let days = Math.floor((weekDate.getTime() - startOfYear.getTime()) / (24 * 60 * 60 * 1000));
- *     let weekNumber = Math.ceil((days + startOfYear.getDay() + 1) / 7);
+ *     var startOfYear = new Date(weekDate.getFullYear(), 0, 1);
+ *     var days = Math.floor((weekDate.getTime() - startOfYear.getTime()) / (24 * 60 * 60 * 1000));
+ *     var weekNumber = Math.ceil((days + startOfYear.getDay() + 1) / 7);
  *
  *     lblWeekInfo.Text = weekDate.getFullYear() + "년 " + weekNumber + "주차";
  * };
@@ -133,30 +133,30 @@ import { Control } from "../../aud/control/Control";
  * // 패턴6: 선택 가능한 주 제한 (최근 12주)
  * //----------------------------------------------
  * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     let calRecent: CalendarWeekly = Matrix.getObject("calRecent") as CalendarWeekly;
+ *     var calRecent = Matrix.getObject("calRecent");
  *
  *     // 오늘부터 12주 전까지만 선택 가능
- *     let today = new Date();
- *     let twelveWeeksAgo = new Date(today);
+ *     var today = new Date();
+ *     var twelveWeeksAgo = new Date(today);
  *     twelveWeeksAgo.setDate(today.getDate() - (12 * 7));
  *
  *     calRecent.MinDate = formatDateToString(twelveWeeksAgo);
  *     calRecent.MaxDate = formatDateToString(today);
  * };
  *
- * function formatDateToString(date: Date): string {
- *     let year = date.getFullYear();
- *     let month = ("0" + (date.getMonth() + 1)).slice(-2);
- *     let day = ("0" + date.getDate()).slice(-2);
+ * function formatDateToString(date) {
+ *     var year = date.getFullYear();
+ *     var month = ("0" + (date.getMonth() + 1)).slice(-2);
+ *     var day = ("0" + date.getDate()).slice(-2);
  *     return year + month + day;
  * }
  *
  * //----------------------------------------------
  * // 패턴7: 주별 실적 입력
  * //----------------------------------------------
- * let calInput: CalendarWeekly = Matrix.getObject("calInput") as CalendarWeekly;
- * let txtAmount: TextBox = Matrix.getObject("txtAmount") as TextBox;
- * let btnSave: Button = Matrix.getObject("btnSave") as Button;
+ * var calInput = Matrix.getObject("calInput");
+ * var txtAmount = Matrix.getObject("txtAmount");
+ * var btnSave = Matrix.getObject("btnSave");
  *
  * btnSave.OnClick = function(sender, args) {
  *     if (!calInput.Value) {
@@ -170,7 +170,7 @@ import { Control } from "../../aud/control/Control";
  *     }
  *
  *     // 주간 실적 저장
- *     let params = {
+ *     var params = {
  *         VS_WEEK_START: calInput.Value,  // "20240108"
  *         VN_AMOUNT: txtAmount.Text
  *     };

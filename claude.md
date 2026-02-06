@@ -61,11 +61,9 @@ i-AUD-Developer-Kit/
 │   │   └── enums/             # 열거형 타입
 │   └── reports/               # 보고서 개발 폴더
 │       ├── samples/           # 샘플 보고서
-│       │   ├── DataGrid/      # DataGrid 샘플들
-│       │   ├── MXGrid/        # Excel 그리드 샘플들
-│       │   ├── OlapGrid/      # OLAP 그리드 샘플들
-│       │   └── Report/        # 기타 샘플들
-│       └── [보고서폴더]/       # 실제 개발 보고서
+│       │   ├── 기능별샘플/     # 각 컨트롤 사용방법 샘플들
+│       │   ├── 판매관리시스템/  # 영업판매관리 시스템 샘플
+│       └── [Work]/           # 실제 개발 폴더
 ├── out/                       # TypeScript 빌드 출력
 ├── package.json
 ├── tsconfig.json

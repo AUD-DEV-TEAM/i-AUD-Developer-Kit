@@ -1,8 +1,17 @@
 import { Control } from "../../aud/control/Control";
 import { Event } from "../../aud/data/Event";
 /**
-* 리치 텍스트 박스 컨트롤입니다.
-*/
+ * 리치 텍스트 박스 컨트롤입니다. 여러 줄의 텍스트 입력이 가능합니다.
+ *
+ * @example
+ * ```js
+ * // 리치텍스트박스 기본 사용
+ * var rtbMemo = Matrix.getObject("rtbMemo");
+ * rtbMemo.MaxLength = 500;
+ * rtbMemo.UsePlaceholder = true;
+ * rtbMemo.SetPlaceholder("메모를 입력하세요.\n최대 500자까지 입력 가능합니다.");
+ * ```
+ */
 export interface RichTextBox extends Control{
 
   /**
@@ -41,10 +50,18 @@ export interface RichTextBox extends Control{
   UsePlaceholder: boolean;
 
   /**
-   * 해당 컨트롤의 Placeholder 텍스트를 지정합니다. UsePlaceholder가 true일 경우만 사용 가능합니다. (개행 문자: \n)
+   * 해당 컨트롤의 Placeholder 텍스트를 지정합니다. UsePlaceholder가 true일 경우만 사용 가능합니다.
    *
-  * @param placeholdervalue 문자열 형식의 텍스트
-  */
+   * @example
+   * ```js
+   * var rtbMemo = Matrix.getObject("rtbMemo");
+   * rtbMemo.UsePlaceholder = true;
+   *
+   * // 개행 문자(\n)를 사용하여 여러 줄 표시 가능
+   * rtbMemo.SetPlaceholder("첫 번째 줄\n두 번째 줄\n세 번째 줄");
+   * ```
+   * @param placeholdervalue 문자열 형식의 텍스트 (개행 문자: \\n)
+   */
   SetPlaceholder(placeholdervalue: string): void;
 
   /**
