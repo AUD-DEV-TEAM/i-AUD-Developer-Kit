@@ -1,8 +1,6 @@
 import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { WebContainer } from "@AUD_CLIENT/control/WebContainer";
-
-declare const Matrix: Matrix;
-declare const parent: any;
+let Matrix: Matrix;
 
 const Browser: WebContainer = Matrix.getObject("Browser") as WebContainer;
 
@@ -77,7 +75,4 @@ const buildUrlParams = function(params: any[]): string {
 
 	return query;
 };
-
-export {
-	OnButtonClick
-};
+ 

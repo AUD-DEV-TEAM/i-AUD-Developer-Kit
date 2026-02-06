@@ -2,7 +2,7 @@ import { Matrix } from "@AUD_CLIENT/control/Matrix";
 import { TreeGrid } from "@AUD_CLIENT/control/TreeGrid";
 import { Tree } from "@AUD_CLIENT/control/Tree";
 
-declare const Matrix: Matrix;
+let Matrix: Matrix;
 
 const TreeGrid: TreeGrid = Matrix.getObject("TreeGrid") as TreeGrid;
 const Tree: Tree = Matrix.getObject("Tree") as Tree;
@@ -21,8 +21,4 @@ const OnTreeNodeClick = function(_sender: any, args: any): void {
 			args.Node.ExpandCollapsed();
 		}
 	}
-};
-
-export {
-	OnTreeNodeClick
 };
