@@ -6,11 +6,11 @@ import { Control } from "../../aud/control/Control";
  * {@link OnValueChanged} 이벤트를 통해 날짜 변경을 처리합니다.
  *
  * @example
- * ```ts
+ * ```js
  * //----------------------------------------------
  * // 패턴1: 기본 날짜 선택 및 값 읽기
  * //----------------------------------------------
- * let calStart: Calendar = Matrix.getObject("calStart") as Calendar;
+ * var calStart = Matrix.getObject("calStart");
  *
  * // 날짜 변경 이벤트
  * calStart.OnValueChanged = function(sender, args) {
@@ -20,14 +20,14 @@ import { Control } from "../../aud/control/Control";
  * };
  *
  * // 현재 선택된 날짜 읽기
- * let selectedDate = calStart.Value;  // DataFormat 형식 (예: "20240115")
- * let displayDate = calStart.Text;    // ViewFormat 형식 (예: "2024-01-15")
+ * var selectedDate = calStart.Value;  // DataFormat 형식 (예: "20240115")
+ * var displayDate = calStart.Text;    // ViewFormat 형식 (예: "2024-01-15")
  *
  * //----------------------------------------------
  * // 패턴2: 날짜 포맷 설정 및 초기값 지정
  * //----------------------------------------------
  * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     let calBirth: Calendar = Matrix.getObject("calBirth") as Calendar;
+ *     var calBirth = Matrix.getObject("calBirth");
  *
  *     // 데이터 저장용 포맷 (DB 저장 시 사용)
  *     calBirth.DataFormat = "yyyyMMdd";  // 20240115
@@ -36,7 +36,7 @@ import { Control } from "../../aud/control/Control";
  *     calBirth.ViewFormat = "yyyy-MM-dd";  // 2024-01-15
  *
  *     // 초기 날짜 설정 (오늘 날짜)
- *     let today = new Date();
+ *     var today = new Date();
  *     calBirth.Date = today;
  *
  *     // 또는 문자열로 설정
@@ -46,29 +46,29 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴3: 날짜 범위 제한 (최소/최대 날짜)
  * //----------------------------------------------
- * let calReserve: Calendar = Matrix.getObject("calReserve") as Calendar;
+ * var calReserve = Matrix.getObject("calReserve");
  *
  * // 오늘부터 30일 후까지만 선택 가능
- * let today = new Date();
- * let maxDate = new Date();
+ * var today = new Date();
+ * var maxDate = new Date();
  * maxDate.setDate(today.getDate() + 30);
  *
  * calReserve.MinDate = formatDate(today);        // "20240115"
  * calReserve.MaxDate = formatDate(maxDate);      // "20240214"
  *
  * // 날짜 포맷 헬퍼 함수
- * function formatDate(date: Date): string {
- *     let year = date.getFullYear();
- *     let month = ("0" + (date.getMonth() + 1)).slice(-2);
- *     let day = ("0" + date.getDate()).slice(-2);
+ * function formatDate(date) {
+ *     var year = date.getFullYear();
+ *     var month = ("0" + (date.getMonth() + 1)).slice(-2);
+ *     var day = ("0" + date.getDate()).slice(-2);
  *     return year + month + day;
  * }
  *
  * //----------------------------------------------
  * // 패턴4: 시작일/종료일 연동 처리
  * //----------------------------------------------
- * let calFrom: Calendar = Matrix.getObject("calFrom") as Calendar;
- * let calTo: Calendar = Matrix.getObject("calTo") as Calendar;
+ * var calFrom = Matrix.getObject("calFrom");
+ * var calTo = Matrix.getObject("calTo");
  *
  * // 시작일 변경 시 종료일 최소값 업데이트
  * calFrom.OnValueChanged = function(sender, args) {
@@ -88,9 +88,9 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴5: 검색 조건으로 날짜 사용
  * //----------------------------------------------
- * let btnSearch: Button = Matrix.getObject("btnSearch") as Button;
- * let calSearchDate: Calendar = Matrix.getObject("calSearchDate") as Calendar;
- * let grid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
+ * var btnSearch = Matrix.getObject("btnSearch");
+ * var calSearchDate = Matrix.getObject("calSearchDate");
+ * var grid = Matrix.getObject("DataGrid");
  *
  * btnSearch.OnClick = function(sender, args) {
  *     // 날짜가 선택되지 않은 경우 체크
@@ -101,7 +101,7 @@ import { Control } from "../../aud/control/Control";
  *     }
  *
  *     // 서버 스크립트 호출 (날짜를 DataFormat 형식으로 전달)
- *     let params = {
+ *     var params = {
  *         VS_SEARCH_DATE: calSearchDate.Value  // "20240115"
  *     };
  *
@@ -116,7 +116,7 @@ import { Control } from "../../aud/control/Control";
  * // 패턴6: 주말 강조 및 주차 표시
  * //----------------------------------------------
  * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     let calSchedule: Calendar = Matrix.getObject("calSchedule") as Calendar;
+ *     var calSchedule = Matrix.getObject("calSchedule");
  *
  *     // 토/일 강조 색상 적용
  *     calSchedule.HighlightWeekend = true;
@@ -134,13 +134,13 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴7: 날짜 계산 및 자동 설정
  * //----------------------------------------------
- * let calContract: Calendar = Matrix.getObject("calContract") as Calendar;
- * let calExpiry: Calendar = Matrix.getObject("calExpiry") as Calendar;
+ * var calContract = Matrix.getObject("calContract");
+ * var calExpiry = Matrix.getObject("calExpiry");
  *
  * // 계약일 선택 시 만료일 자동 계산 (1년 후)
  * calContract.OnValueChanged = function(sender, args) {
- *     let contractDate = args.Date;
- *     let expiryDate = new Date(contractDate);
+ *     var contractDate = args.Date;
+ *     var expiryDate = new Date(contractDate);
  *     expiryDate.setFullYear(expiryDate.getFullYear() + 1);  // 1년 추가
  *     expiryDate.setDate(expiryDate.getDate() - 1);          // 하루 전
  *
@@ -151,9 +151,9 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴8: 달력 팝업 프로그래밍 방식 제어
  * //----------------------------------------------
- * let btnShowCal: Button = Matrix.getObject("btnShowCal") as Button;
- * let btnHideCal: Button = Matrix.getObject("btnHideCal") as Button;
- * let calEvent: Calendar = Matrix.getObject("calEvent") as Calendar;
+ * var btnShowCal = Matrix.getObject("btnShowCal");
+ * var btnHideCal = Matrix.getObject("btnHideCal");
+ * var calEvent = Matrix.getObject("calEvent");
  *
  * // 팝업 표시
  * btnShowCal.OnClick = function(sender, args) {

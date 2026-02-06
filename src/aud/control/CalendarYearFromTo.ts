@@ -6,23 +6,23 @@ import { Control } from "../../aud/control/Control";
  * {@link OnValueChanged} 이벤트를 통해 연월 기간 변경을 처리합니다.
  *
  * @example
- * ```ts
+ * ```js
  * //----------------------------------------------
  * // 패턴1: 기본 연월 기간 선택 및 값 읽기
  * //----------------------------------------------
- * let calMonthRange: CalendarYearFromTo = Matrix.getObject("calMonthRange") as CalendarYearFromTo;
+ * var calMonthRange = Matrix.getObject("calMonthRange");
  *
  * calMonthRange.OnValueChanged = function(sender, args) {
- *     let fromMonth = args.Text;   // ViewFormat 형식 시작 연월 (예: "2024-01")
- *     let toMonth = args.Text2;    // ViewFormat 형식 종료 연월 (예: "2024-03")
+ *     var fromMonth = args.Text;   // ViewFormat 형식 시작 연월 (예: "2024-01")
+ *     var toMonth = args.Text2;    // ViewFormat 형식 종료 연월 (예: "2024-03")
  *
  *     // 월 수 계산
- *     let monthCount = calculateMonths(args.Date, args.Date2);
+ *     var monthCount = calculateMonths(args.Date, args.Date2);
  *     Matrix.Alert("선택된 기간: " + monthCount + "개월 (" + fromMonth + " ~ " + toMonth + ")");
  * };
  *
- * function calculateMonths(from: Date, to: Date): number {
- *     let months = (to.getFullYear() - from.getFullYear()) * 12;
+ * function calculateMonths(from, to) {
+ *     var months = (to.getFullYear() - from.getFullYear()) * 12;
  *     months += to.getMonth() - from.getMonth();
  *     return months + 1;
  * }
@@ -31,18 +31,18 @@ import { Control } from "../../aud/control/Control";
  * // 패턴2: 최근 3개월 기간으로 초기화
  * //----------------------------------------------
  * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     let calThreeMonths: CalendarYearFromTo = Matrix.getObject("calThreeMonths") as CalendarYearFromTo;
+ *     var calThreeMonths = Matrix.getObject("calThreeMonths");
  *
  *     // 포맷 설정
  *     calThreeMonths.DataFormat = "yyyyMM";
  *     calThreeMonths.ViewFormat = "yyyy-MM";
  *
  *     // 이번 달
- *     let today = new Date();
- *     let thisMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+ *     var today = new Date();
+ *     var thisMonth = new Date(today.getFullYear(), today.getMonth(), 1);
  *
  *     // 2개월 전
- *     let twoMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 2, 1);
+ *     var twoMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 2, 1);
  *
  *     calThreeMonths.FromDate = twoMonthsAgo;  // 시작 월
  *     calThreeMonths.ToDate = thisMonth;       // 종료 월 (이번 달)
@@ -51,9 +51,9 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴3: 월별 기간 조회
  * //----------------------------------------------
- * let btnMonthlySearch: Button = Matrix.getObject("btnMonthlySearch") as Button;
- * let calPeriod: CalendarYearFromTo = Matrix.getObject("calPeriod") as CalendarYearFromTo;
- * let grid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
+ * var btnMonthlySearch = Matrix.getObject("btnMonthlySearch");
+ * var calPeriod = Matrix.getObject("calPeriod");
+ * var grid = Matrix.getObject("DataGrid");
  *
  * btnMonthlySearch.OnClick = function(sender, args) {
  *     if (!calPeriod.Value || !calPeriod.Value2) {
@@ -63,14 +63,14 @@ import { Control } from "../../aud/control/Control";
  *     }
  *
  *     // 각 월의 시작일과 종료일 계산
- *     let fromDate = calPeriod.FromDate;
- *     let fromFirst = new Date(fromDate.getFullYear(), fromDate.getMonth(), 1);
+ *     var fromDate = calPeriod.FromDate;
+ *     var fromFirst = new Date(fromDate.getFullYear(), fromDate.getMonth(), 1);
  *
- *     let toDate = calPeriod.ToDate;
- *     let toLast = new Date(toDate.getFullYear(), toDate.getMonth() + 1, 0);
+ *     var toDate = calPeriod.ToDate;
+ *     var toLast = new Date(toDate.getFullYear(), toDate.getMonth() + 1, 0);
  *
  *     // 서버 스크립트 호출
- *     let params = {
+ *     var params = {
  *         VS_FROM_MONTH: calPeriod.Value,         // "202401"
  *         VS_TO_MONTH: calPeriod.Value2,          // "202403"
  *         VS_FROM_DATE: formatDateToString(fromFirst),  // "20240101"
@@ -81,21 +81,21 @@ import { Control } from "../../aud/control/Control";
  *         if (p.Success) {
  *             grid.SetDataSet(p.DataSet);
  *
- *             let monthCount = calculateMonths(calPeriod.FromDate, calPeriod.ToDate);
+ *             var monthCount = calculateMonths(calPeriod.FromDate, calPeriod.ToDate);
  *             Matrix.Alert(monthCount + "개월 데이터 조회 완료");
  *         }
  *     });
  * };
  *
- * function formatDateToString(date: Date): string {
- *     let year = date.getFullYear();
- *     let month = ("0" + (date.getMonth() + 1)).slice(-2);
- *     let day = ("0" + date.getDate()).slice(-2);
+ * function formatDateToString(date) {
+ *     var year = date.getFullYear();
+ *     var month = ("0" + (date.getMonth() + 1)).slice(-2);
+ *     var day = ("0" + date.getDate()).slice(-2);
  *     return year + month + day;
  * }
  *
- * function calculateMonths(from: Date, to: Date): number {
- *     let months = (to.getFullYear() - from.getFullYear()) * 12;
+ * function calculateMonths(from, to) {
+ *     var months = (to.getFullYear() - from.getFullYear()) * 12;
  *     months += to.getMonth() - from.getMonth();
  *     return months + 1;
  * }
@@ -103,22 +103,22 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴4: 최대 기간 제한 (최대 12개월)
  * //----------------------------------------------
- * let calLimit: CalendarYearFromTo = Matrix.getObject("calLimit") as CalendarYearFromTo;
+ * var calLimit = Matrix.getObject("calLimit");
  *
  * calLimit.OnValueChanged = function(sender, args) {
- *     let monthCount = calculateMonths(args.Date, args.Date2);
+ *     var monthCount = calculateMonths(args.Date, args.Date2);
  *
  *     if (monthCount > 12) {
  *         Matrix.Alert("최대 12개월까지만 선택할 수 있습니다.");
  *
  *         // 시작 월 기준 12개월 후로 종료 월 자동 조정
- *         let maxTo = new Date(args.Date.getFullYear(), args.Date.getMonth() + 11, 1);
+ *         var maxTo = new Date(args.Date.getFullYear(), args.Date.getMonth() + 11, 1);
  *         sender.ToDate = maxTo;
  *     }
  * };
  *
- * function calculateMonths(from: Date, to: Date): number {
- *     let months = (to.getFullYear() - from.getFullYear()) * 12;
+ * function calculateMonths(from, to) {
+ *     var months = (to.getFullYear() - from.getFullYear()) * 12;
  *     months += to.getMonth() - from.getMonth();
  *     return months + 1;
  * }
@@ -126,12 +126,12 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴5: 시작 연월 변경 시 종료 연월 자동 설정
  * //----------------------------------------------
- * let calAuto: CalendarYearFromTo = Matrix.getObject("calAuto") as CalendarYearFromTo;
+ * var calAuto = Matrix.getObject("calAuto");
  *
  * calAuto.OnFromValueChanged = function(sender, args) {
  *     // 시작 월 선택 시 자동으로 3개월 후를 종료 월로 설정
- *     let fromDate = args.Date;
- *     let toDate = new Date(fromDate.getFullYear(), fromDate.getMonth() + 2, 1);
+ *     var fromDate = args.Date;
+ *     var toDate = new Date(fromDate.getFullYear(), fromDate.getMonth() + 2, 1);
  *
  *     sender.ToDate = toDate;
  *     Matrix.Alert("3개월 기간으로 설정되었습니다.");
@@ -140,20 +140,20 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴6: 분기 빠른 선택
  * //----------------------------------------------
- * let btnQ1: Button = Matrix.getObject("btnQ1") as Button;
- * let btnQ2: Button = Matrix.getObject("btnQ2") as Button;
- * let calQuarter: CalendarYearFromTo = Matrix.getObject("calQuarter") as CalendarYearFromTo;
+ * var btnQ1 = Matrix.getObject("btnQ1");
+ * var btnQ2 = Matrix.getObject("btnQ2");
+ * var calQuarter = Matrix.getObject("calQuarter");
  *
  * // 1분기 선택 (1월~3월)
  * btnQ1.OnClick = function(sender, args) {
- *     let year = new Date().getFullYear();
+ *     var year = new Date().getFullYear();
  *     calQuarter.FromDate = new Date(year, 0, 1);   // 1월
  *     calQuarter.ToDate = new Date(year, 2, 1);     // 3월
  * };
  *
  * // 2분기 선택 (4월~6월)
  * btnQ2.OnClick = function(sender, args) {
- *     let year = new Date().getFullYear();
+ *     var year = new Date().getFullYear();
  *     calQuarter.FromDate = new Date(year, 3, 1);   // 4월
  *     calQuarter.ToDate = new Date(year, 5, 1);     // 6월
  * };
@@ -161,19 +161,19 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴7: 회계연도 기간 선택
  * //----------------------------------------------
- * let btnFiscalYear: Button = Matrix.getObject("btnFiscalYear") as Button;
- * let calFiscal: CalendarYearFromTo = Matrix.getObject("calFiscal") as CalendarYearFromTo;
+ * var btnFiscalYear = Matrix.getObject("btnFiscalYear");
+ * var calFiscal = Matrix.getObject("calFiscal");
  *
  * btnFiscalYear.OnClick = function(sender, args) {
- *     let today = new Date();
- *     let currentMonth = today.getMonth() + 1;  // 1~12
+ *     var today = new Date();
+ *     var currentMonth = today.getMonth() + 1;  // 1~12
  *
  *     // 회계연도 시작 (4월)
- *     let fiscalStartYear = currentMonth >= 4 ? today.getFullYear() : today.getFullYear() - 1;
- *     let fiscalStart = new Date(fiscalStartYear, 3, 1);  // 4월 1일
+ *     var fiscalStartYear = currentMonth >= 4 ? today.getFullYear() : today.getFullYear() - 1;
+ *     var fiscalStart = new Date(fiscalStartYear, 3, 1);  // 4월 1일
  *
  *     // 회계연도 종료 (다음 해 3월)
- *     let fiscalEnd = new Date(fiscalStartYear + 1, 2, 1);  // 3월 1일
+ *     var fiscalEnd = new Date(fiscalStartYear + 1, 2, 1);  // 3월 1일
  *
  *     calFiscal.FromDate = fiscalStart;
  *     calFiscal.ToDate = fiscalEnd;
@@ -183,8 +183,8 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴8: 월 수 계산 및 트렌드 분석
  * //----------------------------------------------
- * let calTrend: CalendarYearFromTo = Matrix.getObject("calTrend") as CalendarYearFromTo;
- * let btnAnalyzeTrend: Button = Matrix.getObject("btnAnalyzeTrend") as Button;
+ * var calTrend = Matrix.getObject("calTrend");
+ * var btnAnalyzeTrend = Matrix.getObject("btnAnalyzeTrend");
  *
  * btnAnalyzeTrend.OnClick = function(sender, args) {
  *     if (!calTrend.Value || !calTrend.Value2) {
@@ -192,10 +192,10 @@ import { Control } from "../../aud/control/Control";
  *         return;
  *     }
  *
- *     let monthCount = calculateMonths(calTrend.FromDate, calTrend.ToDate);
+ *     var monthCount = calculateMonths(calTrend.FromDate, calTrend.ToDate);
  *
  *     // 월별 데이터 조회 및 트렌드 분석
- *     let params = {
+ *     var params = {
  *         VS_FROM_MONTH: calTrend.Value,
  *         VS_TO_MONTH: calTrend.Value2,
  *         VN_MONTH_COUNT: monthCount.toString()
@@ -209,8 +209,8 @@ import { Control } from "../../aud/control/Control";
  *     });
  * };
  *
- * function calculateMonths(from: Date, to: Date): number {
- *     let months = (to.getFullYear() - from.getFullYear()) * 12;
+ * function calculateMonths(from, to) {
+ *     var months = (to.getFullYear() - from.getFullYear()) * 12;
  *     months += to.getMonth() - from.getMonth();
  *     return months + 1;
  * }

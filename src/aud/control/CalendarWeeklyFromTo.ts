@@ -6,23 +6,23 @@ import { Control } from "../../aud/control/Control";
  * {@link OnValueChanged} 이벤트를 통해 주 기간 변경을 처리합니다.
  *
  * @example
- * ```ts
+ * ```js
  * //----------------------------------------------
  * // 패턴1: 기본 주 기간 선택 및 값 읽기
  * //----------------------------------------------
- * let calWeekRange: CalendarWeeklyFromTo = Matrix.getObject("calWeekRange") as CalendarWeeklyFromTo;
+ * var calWeekRange = Matrix.getObject("calWeekRange");
  *
  * calWeekRange.OnValueChanged = function(sender, args) {
- *     let fromWeek = args.Text;   // ViewFormat 형식 시작 주 (예: "2024-01-08")
- *     let toWeek = args.Text2;    // ViewFormat 형식 종료 주 (예: "2024-01-22")
+ *     var fromWeek = args.Text;   // ViewFormat 형식 시작 주 (예: "2024-01-08")
+ *     var toWeek = args.Text2;    // ViewFormat 형식 종료 주 (예: "2024-01-22")
  *
  *     // 주 수 계산
- *     let weekCount = calculateWeeks(args.Date, args.Date2);
+ *     var weekCount = calculateWeeks(args.Date, args.Date2);
  *     Matrix.Alert("선택된 기간: " + weekCount + "주간 (" + fromWeek + " ~ " + toWeek + ")");
  * };
  *
- * function calculateWeeks(from: Date, to: Date): number {
- *     let diffDays = Math.floor((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
+ * function calculateWeeks(from, to) {
+ *     var diffDays = Math.floor((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
  *     return Math.floor(diffDays / 7) + 1;
  * }
  *
@@ -30,20 +30,20 @@ import { Control } from "../../aud/control/Control";
  * // 패턴2: 최근 4주 기간으로 초기화
  * //----------------------------------------------
  * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     let calFourWeeks: CalendarWeeklyFromTo = Matrix.getObject("calFourWeeks") as CalendarWeeklyFromTo;
+ *     var calFourWeeks = Matrix.getObject("calFourWeeks");
  *
  *     // 포맷 설정
  *     calFourWeeks.DataFormat = "yyyyMMdd";
  *     calFourWeeks.ViewFormat = "yyyy-MM-dd";
  *
  *     // 이번 주 월요일
- *     let today = new Date();
- *     let dayOfWeek = today.getDay();
- *     let thisMonday = new Date(today);
+ *     var today = new Date();
+ *     var dayOfWeek = today.getDay();
+ *     var thisMonday = new Date(today);
  *     thisMonday.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
  *
  *     // 3주 전 월요일
- *     let threeWeeksAgo = new Date(thisMonday);
+ *     var threeWeeksAgo = new Date(thisMonday);
  *     threeWeeksAgo.setDate(thisMonday.getDate() - 21);
  *
  *     calFourWeeks.FromDate = threeWeeksAgo;  // 시작 주
@@ -53,9 +53,9 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴3: 주간 보고서 범위 조회
  * //----------------------------------------------
- * let btnWeeklySearch: Button = Matrix.getObject("btnWeeklySearch") as Button;
- * let calReportRange: CalendarWeeklyFromTo = Matrix.getObject("calReportRange") as CalendarWeeklyFromTo;
- * let grid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
+ * var btnWeeklySearch = Matrix.getObject("btnWeeklySearch");
+ * var calReportRange = Matrix.getObject("calReportRange");
+ * var grid = Matrix.getObject("DataGrid");
  *
  * btnWeeklySearch.OnClick = function(sender, args) {
  *     if (!calReportRange.Value || !calReportRange.Value2) {
@@ -65,14 +65,14 @@ import { Control } from "../../aud/control/Control";
  *     }
  *
  *     // 각 주의 종료일 계산
- *     let fromEnd = new Date(calReportRange.FromDate);
+ *     var fromEnd = new Date(calReportRange.FromDate);
  *     fromEnd.setDate(fromEnd.getDate() + 6);
  *
- *     let toEnd = new Date(calReportRange.ToDate);
+ *     var toEnd = new Date(calReportRange.ToDate);
  *     toEnd.setDate(toEnd.getDate() + 6);
  *
  *     // 서버 스크립트 호출
- *     let params = {
+ *     var params = {
  *         VS_FROM_DATE: calReportRange.Value,         // 시작 주 월요일 "20240108"
  *         VS_TO_DATE: formatDateToString(toEnd)       // 종료 주 일요일 "20240128"
  *     };
@@ -81,56 +81,56 @@ import { Control } from "../../aud/control/Control";
  *         if (p.Success) {
  *             grid.SetDataSet(p.DataSet);
  *
- *             let weekCount = calculateWeeks(calReportRange.FromDate, calReportRange.ToDate);
+ *             var weekCount = calculateWeeks(calReportRange.FromDate, calReportRange.ToDate);
  *             Matrix.Alert(weekCount + "주간 데이터 조회 완료");
  *         }
  *     });
  * };
  *
- * function formatDateToString(date: Date): string {
- *     let year = date.getFullYear();
- *     let month = ("0" + (date.getMonth() + 1)).slice(-2);
- *     let day = ("0" + date.getDate()).slice(-2);
+ * function formatDateToString(date) {
+ *     var year = date.getFullYear();
+ *     var month = ("0" + (date.getMonth() + 1)).slice(-2);
+ *     var day = ("0" + date.getDate()).slice(-2);
  *     return year + month + day;
  * }
  *
- * function calculateWeeks(from: Date, to: Date): number {
- *     let diffDays = Math.floor((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
+ * function calculateWeeks(from, to) {
+ *     var diffDays = Math.floor((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
  *     return Math.floor(diffDays / 7) + 1;
  * }
  *
  * //----------------------------------------------
  * // 패턴4: 최대 12주까지만 선택 가능
  * //----------------------------------------------
- * let calLimit: CalendarWeeklyFromTo = Matrix.getObject("calLimit") as CalendarWeeklyFromTo;
+ * var calLimit = Matrix.getObject("calLimit");
  *
  * calLimit.OnValueChanged = function(sender, args) {
- *     let weekCount = calculateWeeks(args.Date, args.Date2);
+ *     var weekCount = calculateWeeks(args.Date, args.Date2);
  *
  *     if (weekCount > 12) {
  *         Matrix.Alert("최대 12주까지만 선택할 수 있습니다.");
  *
  *         // 시작 주 기준 12주 후로 종료 주 자동 조정
- *         let maxTo = new Date(args.Date);
+ *         var maxTo = new Date(args.Date);
  *         maxTo.setDate(maxTo.getDate() + (11 * 7));  // 12주 = 시작 주 + 11주
  *         sender.ToDate = maxTo;
  *     }
  * };
  *
- * function calculateWeeks(from: Date, to: Date): number {
- *     let diffDays = Math.floor((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
+ * function calculateWeeks(from, to) {
+ *     var diffDays = Math.floor((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
  *     return Math.floor(diffDays / 7) + 1;
  * }
  *
  * //----------------------------------------------
  * // 패턴5: 시작 주 변경 시 종료 주 자동 설정
  * //----------------------------------------------
- * let calAuto: CalendarWeeklyFromTo = Matrix.getObject("calAuto") as CalendarWeeklyFromTo;
+ * var calAuto = Matrix.getObject("calAuto");
  *
  * calAuto.OnFromValueChanged = function(sender, args) {
  *     // 시작 주 선택 시 자동으로 4주 후를 종료 주로 설정
- *     let fromDate = args.Date;
- *     let toDate = new Date(fromDate);
+ *     var fromDate = args.Date;
+ *     var toDate = new Date(fromDate);
  *     toDate.setDate(toDate.getDate() + (3 * 7));  // 4주간
  *
  *     sender.ToDate = toDate;
@@ -140,11 +140,11 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴6: 종료 주 최대값 동적 제어
  * //----------------------------------------------
- * let calDynamic: CalendarWeeklyFromTo = Matrix.getObject("calDynamic") as CalendarWeeklyFromTo;
+ * var calDynamic = Matrix.getObject("calDynamic");
  *
  * calDynamic.OnFromValueChanged = function(sender, args) {
  *     // 시작 주 기준 8주 후까지만 종료 주 선택 가능
- *     let fromDate = args.Date;
+ *     var fromDate = args.Date;
  *
  *     // SetToCalendarMaxDate 사용
  *     // format: "8W" (8주), "2M" (2개월)
@@ -154,24 +154,24 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴7: 월별 주차 선택 (해당 월의 모든 주)
  * //----------------------------------------------
- * let btnJan: Button = Matrix.getObject("btnJan") as Button;
- * let btnFeb: Button = Matrix.getObject("btnFeb") as Button;
- * let calMonth: CalendarWeeklyFromTo = Matrix.getObject("calMonth") as CalendarWeeklyFromTo;
+ * var btnJan = Matrix.getObject("btnJan");
+ * var btnFeb = Matrix.getObject("btnFeb");
+ * var calMonth = Matrix.getObject("calMonth");
  *
  * // 1월의 모든 주 선택
  * btnJan.OnClick = function(sender, args) {
- *     let year = new Date().getFullYear();
+ *     var year = new Date().getFullYear();
  *
  *     // 1월 1일이 속한 주의 월요일
- *     let jan1 = new Date(year, 0, 1);
- *     let dayOfWeek = jan1.getDay();
- *     let firstMonday = new Date(jan1);
+ *     var jan1 = new Date(year, 0, 1);
+ *     var dayOfWeek = jan1.getDay();
+ *     var firstMonday = new Date(jan1);
  *     firstMonday.setDate(jan1.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
  *
  *     // 1월 31일이 속한 주의 월요일
- *     let jan31 = new Date(year, 0, 31);
+ *     var jan31 = new Date(year, 0, 31);
  *     dayOfWeek = jan31.getDay();
- *     let lastMonday = new Date(jan31);
+ *     var lastMonday = new Date(jan31);
  *     lastMonday.setDate(jan31.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
  *
  *     calMonth.FromDate = firstMonday;
@@ -181,8 +181,8 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴8: 분기별 주차 분석
  * //----------------------------------------------
- * let calQuarter: CalendarWeeklyFromTo = Matrix.getObject("calQuarter") as CalendarWeeklyFromTo;
- * let btnAnalyze: Button = Matrix.getObject("btnAnalyze") as Button;
+ * var calQuarter = Matrix.getObject("calQuarter");
+ * var btnAnalyze = Matrix.getObject("btnAnalyze");
  *
  * btnAnalyze.OnClick = function(sender, args) {
  *     if (!calQuarter.Value || !calQuarter.Value2) {
@@ -190,10 +190,10 @@ import { Control } from "../../aud/control/Control";
  *         return;
  *     }
  *
- *     let weekCount = calculateWeeks(calQuarter.FromDate, calQuarter.ToDate);
+ *     var weekCount = calculateWeeks(calQuarter.FromDate, calQuarter.ToDate);
  *
  *     // 주차별 데이터 조회 및 집계
- *     let params = {
+ *     var params = {
  *         VS_FROM_DATE: calQuarter.Value,
  *         VS_TO_DATE: calQuarter.Value2,
  *         VN_WEEK_COUNT: weekCount.toString()
@@ -207,8 +207,8 @@ import { Control } from "../../aud/control/Control";
  *     });
  * };
  *
- * function calculateWeeks(from: Date, to: Date): number {
- *     let diffDays = Math.floor((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
+ * function calculateWeeks(from, to) {
+ *     var diffDays = Math.floor((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
  *     return Math.floor(diffDays / 7) + 1;
  * }
  * ```

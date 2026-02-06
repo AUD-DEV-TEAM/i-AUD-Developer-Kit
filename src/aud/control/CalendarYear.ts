@@ -6,19 +6,19 @@ import { Control } from "../../aud/control/Control";
  * {@link OnValueChanged} 이벤트를 통해 연월 변경을 처리합니다.
  *
  * @example
- * ```ts
+ * ```js
  * //----------------------------------------------
  * // 패턴1: 기본 연월 선택 및 값 읽기
  * //----------------------------------------------
- * let calMonth: CalendarYear = Matrix.getObject("calMonth") as CalendarYear;
+ * var calMonth = Matrix.getObject("calMonth");
  *
  * calMonth.OnValueChanged = function(sender, args) {
- *     let yearMonth = args.Text;  // ViewFormat 형식 (예: "2024-01")
- *     let date = args.Date;
+ *     var yearMonth = args.Text;  // ViewFormat 형식 (예: "2024-01")
+ *     var date = args.Date;
  *
  *     // 해당 월의 첫날과 마지막날 계산
- *     let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
- *     let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+ *     var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+ *     var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
  *
  *     Matrix.Alert("선택된 월: " + yearMonth + " (1일~" + lastDay.getDate() + "일)");
  * };
@@ -27,23 +27,23 @@ import { Control } from "../../aud/control/Control";
  * // 패턴2: 당월로 초기화
  * //----------------------------------------------
  * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     let calCurrent: CalendarYear = Matrix.getObject("calCurrent") as CalendarYear;
+ *     var calCurrent = Matrix.getObject("calCurrent");
  *
  *     // 포맷 설정
  *     calCurrent.DataFormat = "yyyyMM";
  *     calCurrent.ViewFormat = "yyyy-MM";
  *
  *     // 이번 달로 설정
- *     let today = new Date();
+ *     var today = new Date();
  *     calCurrent.Date = today;
  * };
  *
  * //----------------------------------------------
  * // 패턴3: 월별 보고서 조회
  * //----------------------------------------------
- * let btnMonthlyReport: Button = Matrix.getObject("btnMonthlyReport") as Button;
- * let calReportMonth: CalendarYear = Matrix.getObject("calReportMonth") as CalendarYear;
- * let grid: DataGrid = Matrix.getObject("DataGrid") as DataGrid;
+ * var btnMonthlyReport = Matrix.getObject("btnMonthlyReport");
+ * var calReportMonth = Matrix.getObject("calReportMonth");
+ * var grid = Matrix.getObject("DataGrid");
  *
  * btnMonthlyReport.OnClick = function(sender, args) {
  *     if (!calReportMonth.Value) {
@@ -53,12 +53,12 @@ import { Control } from "../../aud/control/Control";
  *     }
  *
  *     // 해당 월의 시작일과 종료일 계산
- *     let date = calReportMonth.Date;
- *     let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
- *     let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+ *     var date = calReportMonth.Date;
+ *     var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+ *     var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
  *
  *     // 서버 스크립트 호출
- *     let params = {
+ *     var params = {
  *         VS_YEAR_MONTH: calReportMonth.Value,  // "202401"
  *         VS_FROM_DATE: formatDateToString(firstDay),  // "20240101"
  *         VS_TO_DATE: formatDateToString(lastDay)      // "20240131"
@@ -72,26 +72,26 @@ import { Control } from "../../aud/control/Control";
  *     });
  * };
  *
- * function formatDateToString(date: Date): string {
- *     let year = date.getFullYear();
- *     let month = ("0" + (date.getMonth() + 1)).slice(-2);
- *     let day = ("0" + date.getDate()).slice(-2);
+ * function formatDateToString(date) {
+ *     var year = date.getFullYear();
+ *     var month = ("0" + (date.getMonth() + 1)).slice(-2);
+ *     var day = ("0" + date.getDate()).slice(-2);
  *     return year + month + day;
  * }
  *
  * //----------------------------------------------
  * // 패턴4: 회계연도(Fiscal Year) 처리
  * //----------------------------------------------
- * let calFiscal: CalendarYear = Matrix.getObject("calFiscal") as CalendarYear;
- * let lblFiscalYear: Label = Matrix.getObject("lblFiscalYear") as Label;
+ * var calFiscal = Matrix.getObject("calFiscal");
+ * var lblFiscalYear = Matrix.getObject("lblFiscalYear");
  *
  * calFiscal.OnValueChanged = function(sender, args) {
- *     let date = args.Date;
- *     let year = date.getFullYear();
- *     let month = date.getMonth() + 1;  // 1~12
+ *     var date = args.Date;
+ *     var year = date.getFullYear();
+ *     var month = date.getMonth() + 1;  // 1~12
  *
  *     // 회계연도 계산 (4월 시작 기준)
- *     let fiscalYear = month >= 4 ? year : year - 1;
+ *     var fiscalYear = month >= 4 ? year : year - 1;
  *
  *     lblFiscalYear.Text = "회계연도: " + fiscalYear + "년 (FY" + fiscalYear + ")";
  * };
@@ -99,21 +99,21 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴5: 이전/다음 월 버튼
  * //----------------------------------------------
- * let btnPrevMonth: Button = Matrix.getObject("btnPrevMonth") as Button;
- * let btnNextMonth: Button = Matrix.getObject("btnNextMonth") as Button;
- * let calNav: CalendarYear = Matrix.getObject("calNav") as CalendarYear;
+ * var btnPrevMonth = Matrix.getObject("btnPrevMonth");
+ * var btnNextMonth = Matrix.getObject("btnNextMonth");
+ * var calNav = Matrix.getObject("calNav");
  *
  * // 이전 월
  * btnPrevMonth.OnClick = function(sender, args) {
- *     let current = calNav.Date;
- *     let prevMonth = new Date(current.getFullYear(), current.getMonth() - 1, 1);
+ *     var current = calNav.Date;
+ *     var prevMonth = new Date(current.getFullYear(), current.getMonth() - 1, 1);
  *     calNav.Date = prevMonth;
  * };
  *
  * // 다음 월
  * btnNextMonth.OnClick = function(sender, args) {
- *     let current = calNav.Date;
- *     let nextMonth = new Date(current.getFullYear(), current.getMonth() + 1, 1);
+ *     var current = calNav.Date;
+ *     var nextMonth = new Date(current.getFullYear(), current.getMonth() + 1, 1);
  *     calNav.Date = nextMonth;
  * };
  *
@@ -121,28 +121,28 @@ import { Control } from "../../aud/control/Control";
  * // 패턴6: 선택 가능 범위 제한 (최근 12개월)
  * //----------------------------------------------
  * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     let calRecent: CalendarYear = Matrix.getObject("calRecent") as CalendarYear;
+ *     var calRecent = Matrix.getObject("calRecent");
  *
  *     // 이번 달부터 12개월 전까지만 선택 가능
- *     let today = new Date();
- *     let twelveMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 12, 1);
+ *     var today = new Date();
+ *     var twelveMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 12, 1);
  *
  *     calRecent.MinDate = formatYearMonth(twelveMonthsAgo);  // "202301"
  *     calRecent.MaxDate = formatYearMonth(today);            // "202412"
  * };
  *
- * function formatYearMonth(date: Date): string {
- *     let year = date.getFullYear();
- *     let month = ("0" + (date.getMonth() + 1)).slice(-2);
+ * function formatYearMonth(date) {
+ *     var year = date.getFullYear();
+ *     var month = ("0" + (date.getMonth() + 1)).slice(-2);
  *     return year + month;
  * }
  *
  * //----------------------------------------------
  * // 패턴7: 월별 데이터 입력
  * //----------------------------------------------
- * let calInput: CalendarYear = Matrix.getObject("calInput") as CalendarYear;
- * let txtSales: TextBox = Matrix.getObject("txtSales") as TextBox;
- * let btnSaveMonthly: Button = Matrix.getObject("btnSaveMonthly") as Button;
+ * var calInput = Matrix.getObject("calInput");
+ * var txtSales = Matrix.getObject("txtSales");
+ * var btnSaveMonthly = Matrix.getObject("btnSaveMonthly");
  *
  * btnSaveMonthly.OnClick = function(sender, args) {
  *     if (!calInput.Value) {
@@ -156,7 +156,7 @@ import { Control } from "../../aud/control/Control";
  *     }
  *
  *     // 월별 실적 저장
- *     let params = {
+ *     var params = {
  *         VS_YEAR_MONTH: calInput.Value,  // "202401"
  *         VN_SALES: txtSales.Text
  *     };
@@ -172,29 +172,29 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴8: 분기별 데이터 처리
  * //----------------------------------------------
- * let btnQ1: Button = Matrix.getObject("btnQ1") as Button;
- * let btnQ2: Button = Matrix.getObject("btnQ2") as Button;
- * let calQuarter: CalendarYear = Matrix.getObject("calQuarter") as CalendarYear;
+ * var btnQ1 = Matrix.getObject("btnQ1");
+ * var btnQ2 = Matrix.getObject("btnQ2");
+ * var calQuarter = Matrix.getObject("calQuarter");
  *
  * // 1분기 첫 달 선택 (1월)
  * btnQ1.OnClick = function(sender, args) {
- *     let year = new Date().getFullYear();
+ *     var year = new Date().getFullYear();
  *     calQuarter.Date = new Date(year, 0, 1);  // 1월
  *     Matrix.Alert("1분기 시작 월(1월)이 선택되었습니다.");
  * };
  *
  * // 2분기 첫 달 선택 (4월)
  * btnQ2.OnClick = function(sender, args) {
- *     let year = new Date().getFullYear();
+ *     var year = new Date().getFullYear();
  *     calQuarter.Date = new Date(year, 3, 1);  // 4월
  *     Matrix.Alert("2분기 시작 월(4월)이 선택되었습니다.");
  * };
  *
  * // 분기 계산 함수
  * calQuarter.OnValueChanged = function(sender, args) {
- *     let date = args.Date;
- *     let month = date.getMonth() + 1;
- *     let quarter = Math.ceil(month / 3);
+ *     var date = args.Date;
+ *     var month = date.getMonth() + 1;
+ *     var quarter = Math.ceil(month / 3);
  *
  *     Matrix.Alert("선택된 월은 " + quarter + "분기입니다.");
  * };
