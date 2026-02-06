@@ -15,25 +15,22 @@ try {
 
     // 데이터를 DataTable로 변환
     const dataTable = res.CreateTable("SalesData");
-    dataTable.addColumn("MONTH", "string");
-    dataTable.addColumn("SALES", "number");
-    dataTable.addColumn("PROFIT", "number");
-    dataTable.addColumn("COST", "number");
-    dataTable.addColumn("GROWTH_RATE", "number");
+    dataTable.AddColumn("MONTH", false);
+    dataTable.AddColumn("SALES", true);
+    dataTable.AddColumn("PROFIT", true);
+    dataTable.AddColumn("COST", true);
+    dataTable.AddColumn("GROWTH_RATE", true);
 
     for (let i = 0; i < sampleData.length; i++) {
         const item = sampleData[i];
-        const row = dataTable.NewRow();
-        row.SetValue("MONTH", item.month);
-        row.SetValue("SALES", item.sales);
-        row.SetValue("PROFIT", item.profit);
-        row.SetValue("COST", item.cost);
-        row.SetValue("GROWTH_RATE", item.growthRate);
-        dataTable.AddRow(row);
-    }
-
-    // 응답 반환
-    res.sendSuccessMessage("샘플 데이터 조회 완료");
+        const row = dataTable.AppendRow();
+        row.setData("MONTH", item.month);
+        row.setData("SALES", item.sales);
+        row.setData("PROFIT", item.profit);
+        row.setData("COST", item.cost);
+        row.setData("GROWTH_RATE", item.growthRate);
+        
+    } 
 
 } catch(e) {
     Matrix.ThrowException(e.message);
@@ -54,7 +51,7 @@ function generateSampleData(count: number) {
 
         // 월 형식으로 변환
         const year = currentDate.getFullYear();
-        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        const month = String(currentDate.getMonth() + 1);
         const monthStr = year + "-" + month;
 
         // 매출: 이전 달 대비 -10% ~ +20% 범위의 랜덤 증감
