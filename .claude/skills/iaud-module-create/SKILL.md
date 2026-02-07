@@ -348,7 +348,45 @@ SCRIPT_TEXT는 JSON 문자열이므로 다음을 이스케이프해야 합니다
 
 ---
 
-## 8. 체크리스트
+## 8. MCP 검증 도구 (validate_module)
+
+모듈 JSON 파일을 작성한 후, MCP `validate_module` 도구를 호출하여 스키마 검증을 수행합니다.
+
+### 사용 방법
+
+```
+MCP 도구: validate_module
+파라미터:
+  - path: 모듈 JSON 파일의 전체 경로
+  또는
+  - document: 모듈 JSON 문자열/객체
+```
+
+### 검증 항목
+
+**스키마 검증 (에러)**:
+- `TYPE`이 `"Single"`인지
+- 필수 필드 존재 여부 (`MODULE_SUBJECT`, `SCRIPT_TEXT`, `USE_AUTHORITY`, `EDIT_AUTHORITY`, `MODULE_DESCRIPTION`, `MODULE_SEQ`, `EVENT_YN`)
+- `MODULE_SUBJECT`, `SCRIPT_TEXT`가 빈 문자열이 아닌지
+- `EVENT_YN`이 `"Y"` 또는 `"N"`인지
+- `WF_YN`이 `"Y"`, `"N"`, 또는 빈 문자열인지
+- `PARAM_TYPE`이 유효한 코드(INP001~INP999)인지
+- `NULLABLE`이 `"Y"` 또는 `"N"`인지
+- 알 수 없는 속성이 포함되지 않았는지
+
+**비즈니스 로직 검증 (경고)**:
+- `ATTR3="MTX"`인 경우 MATRIX 내장 모듈로 서버에서 가져오기 거부 경고
+- `PARAM_TYPE="INP999"`인데 `ATTR1`(선택 목록)이 비어있는 경우 경고
+- `PARAM_SEQ` 순번이 배열 순서와 일치하지 않는 경우 경고
+
+### 모듈 생성 절차에 통합
+
+Step 4(.module.json 파일 출력) 이후 반드시 `validate_module` 도구를 호출하여 검증합니다.
+오류가 발견되면 수정 후 재검증합니다.
+
+---
+
+## 9. 체크리스트
 
 모듈 생성 시 아래 항목을 확인합니다:
 
@@ -361,3 +399,4 @@ SCRIPT_TEXT는 JSON 문자열이므로 다음을 이스케이프해야 합니다
 - [ ] `EVENT_YN`이 올바르게 설정되었는가?
 - [ ] SCRIPT_TEXT가 순수 JavaScript인가? (var 사용, 타입 어노테이션 없음)
 - [ ] SCRIPT_TEXT 내의 따옴표, 줄바꿈이 올바르게 이스케이프되었는가?
+- [ ] MCP `validate_module` 도구로 검증을 통과했는가?
