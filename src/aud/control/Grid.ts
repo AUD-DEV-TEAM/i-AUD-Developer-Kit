@@ -379,7 +379,7 @@ export interface Grid extends Control{
    *
   * @param isClearFields 필드 목록도 삭제할지 여부. `true`이면 필드 목록도 삭제합니다.
   */
-  ClearDataSet(isClearFields: boolean): void;
+  ClearDataSet(isClearFields?: boolean): void;
 
   /** 
    * 필드를 초기화합니다.

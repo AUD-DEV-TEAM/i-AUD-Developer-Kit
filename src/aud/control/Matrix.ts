@@ -209,11 +209,11 @@ export interface Matrix{
    * 외부에 정의된 메서드를 호출합니다.
    * 
    *
-  * @param name 호출할 메서드 이름
-  * @param valuelist 파라미터 배열 (예: `[{KEY:"이름", VALUE:"값"}]`)
+  * @param methodName 호출할 메서드 이름
+  * @param paramValue 메서드에 전달할 파라미터
   * @hidden
   */
-  CallExtentionFunc(name: string, valuelist: Array<{KEY: string, VALUE: string}>): void;
+  CallExtentionFunc(methodName: string, paramValue: any): void;
 
   /** 
    * RestAPI를 호출합니다.
@@ -312,7 +312,7 @@ export interface Matrix{
   * @param callback 확인/취소 버튼 클릭 후 호출되는 콜백 함수. `ok`가 `true`이면 확인/예 클릭
   * @param buttonType 버튼 유형 (0: 예/아니오, 1: 확인/취소). 생략 시 기본값 적용
   */
-  Confirm(msg: string, title: string, callback: (ok: boolean) => void, buttonType: number): void;
+  Confirm(msg: string, title: string, callback: (ok: boolean) => void, buttonType?: number): void;
 
   /** 
    * 사용자에게 확인 대화 상자를 보여줍니다.
@@ -632,7 +632,7 @@ export interface Matrix{
   * @param detail 오류 상세 메시지
   * 
   */
-  Error(msg: string, detail: string): void;
+  Error(msg: string, detail?: string): void;
 
   /** 
    * 데이터 엑셀 내보내기 서비스를 호출합니다.(처리 완료 후 OnServiceCallBack 이벤트가 발생합니다.)
@@ -2289,7 +2289,7 @@ export interface Matrix{
   * @param buttonType 버튼 유형 (0: 예/아니오, 1: 확인/취소). 생략 시 기본값 적용
   * 
   */
-  WarningConfirm(msg: string, title: string, callback: (ok: boolean) => void, buttonType: number): void;
+  WarningConfirm(msg: string, title: string, callback: (ok: boolean) => void, buttonType?: number): void;
 
   /** 
    * 사용자에게 확인 버튼이 있는 경고 대화 상자를 표시합니다.
