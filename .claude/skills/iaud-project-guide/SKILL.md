@@ -145,6 +145,6 @@ tsc --w
 
 ## 7. API 참조 위치
 
-- **클라이언트 API**: `src/aud/` 폴더의 TypeScript 인터페이스 참조
-- **서버 API**: `src/com/` 폴더의 TypeScript 인터페이스 참조
+- **클라이언트 API**: `types/aud/` 폴더의 TypeScript 인터페이스 참조
+- **서버 API**: `types/com/` 폴더의 TypeScript 인터페이스 참조
 - **샘플 코드**: `src/reports/samples/` 폴더의 예제 참조

@@ -2537,7 +2537,7 @@ export interface Matrix{
   * @param name 컨트롤 이름
   * 
   */
-  getObject(name: string): Control;
+  getObject<T = any>(name: string): T;
 
   /** 
    * 보고서 내 파라미터 목록을 반환합니다. 이름을 전달하면 해당 파라미터의 값을 반환합니다.

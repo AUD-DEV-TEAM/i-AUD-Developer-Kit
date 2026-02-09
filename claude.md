@@ -48,17 +48,19 @@ i-AUD-Developer-Kit/
 │       ├── iaud-sql-guide/            # DataSource SQL 작성 가이드
 │       ├── iaud-olap-formula/         # OLAP 수식 작성 가이드
 │       └── iaud-formula/              # 계산수식(Formula) 작성 가이드
-├── src/
-│   ├── com/                   # 서버 스크립트 API (Rhino)
-│   │   └── matrix/
-│   │       ├── script/        # Matrix, Connection, RecordSet 등
-│   │       ├── olap/          # OLAP API
-│   │       └── excel/         # Excel 처리 API
+├── types/                     # API 타입 정의
 │   ├── aud/                   # 클라이언트 스크립트 API
 │   │   ├── control/           # UI 컨트롤 (Button, Grid, Chart 등)
 │   │   ├── common/            # 공통 유틸리티
 │   │   ├── data/              # DataSet, DataTable 등
 │   │   └── enums/             # 열거형 타입
+│   ├── com/                   # 서버 스크립트 API (Rhino)
+│   │   └── matrix/
+│   │       ├── script/        # Matrix, Connection, RecordSet 등
+│   │       ├── olap/          # OLAP API
+│   │       └── excel/         # Excel 처리 API
+│   └── cfx/                   # Custom Extension Framework
+├── src/
 │   └── reports/               # 보고서 개발 폴더
 │       ├── samples/           # 샘플 보고서
 │       │   ├── 기능별샘플/     # 각 컨트롤 사용방법 샘플들
@@ -269,34 +271,34 @@ WHERE 1=1
 
 ### 클라이언트 API
 
-TypeScript 인터페이스 정의: `src/aud/`
+TypeScript 인터페이스 정의: `types/aud/`
 
-- **컨트롤**: [src/aud/control/](src/aud/control/)
-  - [Matrix.ts](src/aud/control/Matrix.ts) - 핵심 Matrix API
-  - [Button.ts](src/aud/control/Button.ts)
-  - [DataGrid.ts](src/aud/control/DataGrid.ts)
-  - [iGrid.ts](src/aud/control/iGrid.ts)
-  - [OlapGrid.ts](src/aud/control/OlapGrid.ts)
-  - [Chart.ts](src/aud/control/Chart.ts)
-- **데이터**: [src/aud/data/](src/aud/data/)
-  - [DataSet.ts](src/aud/data/DataSet.ts)
-  - [DataTable.ts](src/aud/data/DataTable.ts)
-- **공통**: [src/aud/common/](src/aud/common/)
-- **열거형**: [src/aud/enums/](src/aud/enums/)
+- **컨트롤**: [types/aud/control/](types/aud/control/)
+  - [Matrix.ts](types/aud/control/Matrix.ts) - 핵심 Matrix API
+  - [Button.ts](types/aud/control/Button.ts)
+  - [DataGrid.ts](types/aud/control/DataGrid.ts)
+  - [iGrid.ts](types/aud/control/iGrid.ts)
+  - [OlapGrid.ts](types/aud/control/OlapGrid.ts)
+  - [Chart.ts](types/aud/control/Chart.ts)
+- **데이터**: [types/aud/data/](types/aud/data/)
+  - [DataSet.ts](types/aud/data/DataSet.ts)
+  - [DataTable.ts](types/aud/data/DataTable.ts)
+- **공통**: [types/aud/common/](types/aud/common/)
+- **열거형**: [types/aud/enums/](types/aud/enums/)
 
 ### 서버 API
 
-TypeScript 인터페이스 정의: `src/com/`
+TypeScript 인터페이스 정의: `types/com/`
 
-- **핵심 스크립트**: [src/com/matrix/script/](src/com/matrix/script/)
-  - [Matrix.ts](src/com/matrix/script/Matrix.ts) - 메인 Matrix API
-  - [ScriptConnection.ts](src/com/matrix/script/ScriptConnection.ts) - DB 연결
-  - [ScriptRecordSet.ts](src/com/matrix/script/ScriptRecordSet.ts) - 결과셋
-  - [ScriptRequestPacket.ts](src/com/matrix/script/ScriptRequestPacket.ts) - 요청
-  - [ScriptResponsePacket.ts](src/com/matrix/script/ScriptResponsePacket.ts) - 응답
-- **파일 I/O**: [src/com/matrix/script/io/](src/com/matrix/script/io/)
-- **Excel**: [src/com/matrix/script/excel/](src/com/matrix/script/excel/)
-- **OLAP**: [src/com/matrix/olap/](src/com/matrix/olap/)
+- **핵심 스크립트**: [types/com/matrix/script/](types/com/matrix/script/)
+  - [Matrix.ts](types/com/matrix/script/Matrix.ts) - 메인 Matrix API
+  - [ScriptConnection.ts](types/com/matrix/script/ScriptConnection.ts) - DB 연결
+  - [ScriptRecordSet.ts](types/com/matrix/script/ScriptRecordSet.ts) - 결과셋
+  - [ScriptRequestPacket.ts](types/com/matrix/script/ScriptRequestPacket.ts) - 요청
+  - [ScriptResponsePacket.ts](types/com/matrix/script/ScriptResponsePacket.ts) - 응답
+- **파일 I/O**: [types/com/matrix/script/io/](types/com/matrix/script/io/)
+- **Excel**: [types/com/matrix/script/excel/](types/com/matrix/script/excel/)
+- **OLAP**: [types/com/matrix/olap/](types/com/matrix/olap/)
 
 ---
 
@@ -322,14 +324,14 @@ TypeScript 인터페이스 정의: `src/com/`
 
 ### 1. 코드 작성 시
 
-- **API 인터페이스 참조**: `src/aud/`, `src/com/` 폴더의 TypeScript 인터페이스를 참조
+- **API 인터페이스 참조**: `types/aud/`, `types/com/` 폴더의 TypeScript 인터페이스를 참조
 - **샘플 코드 참조**: `src/reports/samples/` 폴더의 실제 예제 참조
 - **Skills 활용**: 각 영역별 전문 가이드(/iaud-client-script, /iaud-server-script 등) 참조
 
 ### 2. 파일 탐색 시
 
-- **클라이언트 API**: `src/aud/control/`, `src/aud/data/`에서 컨트롤 및 데이터 API 확인
-- **서버 API**: `src/com/matrix/script/`에서 서버 스크립트 API 확인
+- **클라이언트 API**: `types/aud/control/`, `types/aud/data/`에서 컨트롤 및 데이터 API 확인
+- **서버 API**: `types/com/matrix/script/`에서 서버 스크립트 API 확인
 - **샘플**: `src/reports/samples/`에서 유사한 예제 검색
 
 ### 3. 질문 답변 시

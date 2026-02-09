@@ -120,4 +120,4 @@ const chartConfig = {
 ## 참고
 
 - Highchart 공식 문서: https://www.highcharts.com/
-- i-AUD HighChart_C API: `src/aud/control/HighChart_C.ts`
+- i-AUD HighChart_C API: `types/aud/control/HighChart_C.ts`

@@ -26,6 +26,11 @@ export interface Label extends Control{
   Margin: Margin;
 
   /**
+   * 텍스트의 왼쪽 내부 여백(padding-left)을 가져오거나 설정합니다.
+  */
+  PaddingLeft: number;
+
+  /**
    * 표시 텍스트를 가져오거나 설정합니다.
   */
   Text: string;

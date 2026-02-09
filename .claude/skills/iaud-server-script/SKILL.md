@@ -406,17 +406,17 @@ res.ExecuteAsyncTables();  // 병렬 실행
 
 ## 13. API 인터페이스 위치
 
-상세 API 정의는 `src/com/` 폴더를 참조하세요:
+상세 API 정의는 `types/com/` 폴더를 참조하세요:
 
-- `src/com/matrix/script/` - 핵심 스크립트 API
+- `types/com/matrix/script/` - 핵심 스크립트 API
   - `Matrix.ts` - 메인 Matrix API
   - `ScriptConnection.ts` - DB 연결
   - `ScriptRecordSet.ts` - 결과셋
   - `ScriptRequestPacket.ts` - 요청
   - `ScriptResponsePacket.ts` - 응답
-- `src/com/matrix/script/io/` - 파일 I/O
-- `src/com/matrix/script/excel/` - Excel 처리
-- `src/com/matrix/olap/` - OLAP 관련
+- `types/com/matrix/script/io/` - 파일 I/O
+- `types/com/matrix/script/excel/` - Excel 처리
+- `types/com/matrix/olap/` - OLAP 관련
 
 ---
 

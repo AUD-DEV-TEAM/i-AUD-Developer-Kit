@@ -186,7 +186,7 @@ if (grid) {
 - DataTable: `GetRowCount()`, `getData(rowIdx, fieldName)`, `setData(rowIdx, fieldName, value)`, `AppendRow()`, `AddColumn(name, isNumber)`
 - Chart: `SetDataSet(ds)`, `Draw()`
 
-> 자세한 API는 `/iaud-client-script` 스킬 또는 `src/aud/` 폴더의 TypeScript 인터페이스를 참조하세요.
+> 자세한 API는 `/iaud-client-script` 스킬 또는 `types/aud/` 폴더의 TypeScript 인터페이스를 참조하세요.
 
 ---
 
