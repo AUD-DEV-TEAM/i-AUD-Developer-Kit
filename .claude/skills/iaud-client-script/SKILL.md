@@ -399,9 +399,9 @@ grid.OnEndEdit = function(sender, args) {
 
 ## 10. API 인터페이스 위치
 
-상세 API 정의는 `src/aud/` 폴더를 참조하세요:
+상세 API 정의는 `types/aud/` 폴더를 참조하세요:
 
-- `src/aud/control/` - UI 컨트롤 인터페이스
-- `src/aud/data/` - 데이터 관련 인터페이스
-- `src/aud/common/` - 공통 유틸리티
-- `src/aud/enums/` - 열거형 타입
+- `types/aud/control/` - UI 컨트롤 인터페이스
+- `types/aud/data/` - 데이터 관련 인터페이스
+- `types/aud/common/` - 공통 유틸리티
+- `types/aud/enums/` - 열거형 타입
