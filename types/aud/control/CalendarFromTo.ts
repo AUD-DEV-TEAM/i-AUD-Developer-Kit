@@ -346,5 +346,6 @@ export interface CalendarFromTo extends Control{
   }
   ) => void;
 
-
+  /** 시작/종료 날짜 값을 배열로 반환합니다. */
+  GetValue(): string[];
 }

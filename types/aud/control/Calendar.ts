@@ -267,5 +267,6 @@ export interface Calendar extends Control{
   }
   ) => void;
 
-
+  /** 캘린더의 선택된 날짜 값을 배열로 반환합니다. */
+  GetValue(): string[];
 }

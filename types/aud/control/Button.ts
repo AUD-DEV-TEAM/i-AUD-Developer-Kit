@@ -257,4 +257,6 @@ export interface Button extends Control{
   }
   ) => void;
 
+  /** 버튼의 값 배열을 반환합니다. */
+  GetValue(): string[];
 }

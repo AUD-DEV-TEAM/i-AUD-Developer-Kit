@@ -187,5 +187,6 @@ export interface ComboBox extends Control{
   }
   ) => void;
 
-
+  /** 콤보박스의 선택된 값 배열을 반환합니다. */
+  GetValue(): string[];
 }

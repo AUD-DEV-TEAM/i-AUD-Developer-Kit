@@ -46,5 +46,6 @@ export interface PickList extends Control{
   }
   ) => void;
 
-
+  /** 픽리스트의 선택된 값 배열을 반환합니다. */
+  GetValue(): string[];
 }

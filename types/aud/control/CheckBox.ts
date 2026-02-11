@@ -86,5 +86,6 @@ export interface CheckBox extends Control{
   }
   ) => void;
 
-
+  /** 체크박스의 값 배열을 반환합니다. */
+  GetValue(): string[];
 }

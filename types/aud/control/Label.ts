@@ -128,5 +128,6 @@ export interface Label extends Control{
   }
   ) => void;
 
-
+  /** 라벨의 값을 배열로 반환합니다. */
+  GetValue(): string[];
 }
