@@ -1,4 +1,4 @@
-import { Control } from "../../aud/control/Control";
+import { Control } from "@AUD_CLIENT/control/Control";
 import { ListView } from "@AUD_CLIENT/ext/listview/ListView";
 import { GeoMap } from "@AUD_CLIENT/ext/geomap/GeoMap";
 import { ScheduleGrid } from "@AUD_CLIENT/ext/schedule/ScheduleGrid";
@@ -6,6 +6,7 @@ import { BoxStyle } from "@AUD_CLIENT/drawing/BoxStyle";
 import { Property } from "@AUD_CLIENT/ext/Property";
 import { SmartEditor } from "@AUD_CLIENT/ext/SmartEditor";
 import { WebEditor } from "@AUD_CLIENT/ext/WebEditor";
+import { BaseControl } from "@AUD_CLIENT/ext/BaseControl";
 /**
  * 외부 컴포넌트 라이브러리를 로드하여 표시하는 컨트롤입니다.
  *
@@ -23,7 +24,7 @@ export interface AddIn extends Control{
    *
   * @param clsName 컴포넌트 클래스 이름
   */
-  getScriptClass(clsName: string): ListView|GeoMap|ScheduleGrid|BoxStyle|Property|SmartEditor|WebEditor | null;
+  getScriptClass(clsName: string): ListView|GeoMap|ScheduleGrid|BoxStyle|Property|SmartEditor|WebEditor |BaseControl | null;
 
   /**
    * @event
