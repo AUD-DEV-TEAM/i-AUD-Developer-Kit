@@ -173,6 +173,15 @@ i-AUD-Developer-Kit/
 
 ## 주요 규칙 및 컨벤션
 
+### MTSD Docking 주의사항
+
+> MTSD 생성/수정 시 반드시 확인할 것. 상세 가이드는 `/iaud-mtsd-create` Skill 참조.
+
+1. **Left/Right/Top/Bottom:true는 부모의 해당 가장자리(0)에 맞추는 것** — 컨트롤의 현재 위치를 유지하는 것이 아님
+2. **좌우 분할 레이아웃**: 우측 패널에 `Left+Right` 도킹 시 반드시 `Margin: "{좌측패널Width},0,0,0"` 설정. 그렇지 않으면 좌측 패널을 덮음
+3. **fill(모두 true)은 부모 전체를 덮음**: 위에 다른 요소(헤더 등)가 있으면 `Top:false`로 설정하여 상단 위치 유지
+4. **Margin 형식**: `"Left,Top,Right,Bottom"` (픽셀 단위, 쉼표 구분 문자열). 도킹이 활성화된 방향에 대해 부모 가장자리와의 여백을 설정
+
 ### 파일 규칙
 
 1. **클라이언트 스크립트 우선순위**: `.ts` 파일이 `.js` 파일보다 우선 탐색됨
@@ -454,6 +463,7 @@ npx @bimatrix-aud-platform/aud_mcp_server@latest
 
 | 도구 | 설명 | 주요 파라미터 |
 |------|------|--------------|
+| `get_dbms_list` | 현재 사용자에게 권한이 있는 DB 연결(DBMS) 목록 조회 | 없음 (로그인 사용자 기준 자동 조회) |
 | `execute_query` | SQL 쿼리 실행 및 결과 반환 | `connectionCode`, `sql`, `limitRows`(기본100, 최대1000) |
 | `get_table_list` | 메타 테이블에서 테이블/뷰 목록 조회 | `connectionCode`, `filter`(선택), `limitRows`(기본500) |
 | `get_table_columns` | 특정 테이블의 컬럼 상세 정보 조회 | `connectionCode`, `tableId`(get_table_list의 TABLE_ID) |
@@ -461,10 +471,14 @@ npx @bimatrix-aud-platform/aud_mcp_server@latest
 ### 쿼리 도구 사용 흐름
 
 ```
-1. get_table_list로 테이블 검색 → TABLE_ID 획득
-2. get_table_columns로 컬럼 구조 확인
-3. execute_query로 SQL 실행
+1. get_dbms_list로 사용 가능한 DB 연결 목록 확인 → connectionCode 획득
+2. get_table_list로 테이블 검색 → TABLE_ID 획득
+3. get_table_columns로 컬럼 구조 확인
+4. execute_query로 SQL 실행
 ```
+
+> **connectionCode 찾는 방법**: `get_dbms_list` 외에도 프로젝트의 `.mtsd` 파일에서
+> `DataSources.Datas.ConnectionCode` 값을 참조하면 해당 보고서가 사용하는 DB 연결코드를 확인할 수 있습니다.
 
 ### Claude Code MCP 설정 예시
 
