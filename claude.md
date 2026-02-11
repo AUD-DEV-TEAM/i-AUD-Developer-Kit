@@ -399,6 +399,92 @@ tsc --w
 
 ---
 
+## MCP Server (aud_mcp_server)
+
+`@bimatrix-aud-platform/aud_mcp_server`는 Claude Code 및 MCP 호환 클라이언트에서 i-AUD 보고서 개발을 지원하는 MCP 서버입니다.
+
+### 설치 및 실행
+
+```bash
+# npx로 바로 실행 (최신 버전)
+npx @bimatrix-aud-platform/aud_mcp_server@latest
+```
+
+### 설정 (자동 탐색)
+
+별도 설정 없이 `.vscode/settings.json`의 `aud.config`를 자동으로 찾아 읽습니다.
+
+**탐색 우선순위:**
+1. MCP 클라이언트의 `roots/list` (워크스페이스 경로 자동 수신)
+2. 환경변수 (`AUD_SERVICE_URL`, `AUD_API_KEY`, `AUD_USER_NAME`)
+3. CWD → 상위 디렉토리 순회
+4. 스크립트 경로 → 상위 디렉토리 순회
+
+`.vscode/settings.json`에 아래 설정이 있으면 추가 설정 불필요:
+
+```json
+{
+  "aud.config": {
+    "ServiceURL": "http://localhost:8080",
+    "UserName": "admin",
+    "ApiKey": "your-api-key"
+  }
+}
+```
+
+### MCP 도구 목록
+
+#### MTSD 문서 도구 (보고서 생성/검증)
+
+| 도구 | 설명 |
+|------|------|
+| `validate_mtsd` | MTSD 문서 전체 스키마 검증 |
+| `validate_part` | MTSD 문서의 특정 부분만 검증 (Form, Element, DataSource 등) |
+| `validate_module` | 모듈 JSON (.module.json) 스키마 검증 |
+| `get_schema_info` | 특정 타입의 스키마 정보 조회 (필수/선택 속성, 설명) |
+| `get_element_types` | 사용 가능한 Element 타입 목록 |
+| `get_root_structure` | MTSD 루트 구조 조회 |
+| `generate_element` | 간소화 입력으로 Element JSON 생성 |
+| `generate_grid_column` | 간소화 입력으로 GridColumn 배열 생성 |
+| `generate_datasource` | 간소화 입력으로 DataSource JSON 생성 (SQL에서 파라미터 자동 추출) |
+| `fix_mtsd` | MTSD 파일 자동 보정 (Name→Id 참조, Params, Columns 등) |
+| `get_control_info` | MTSD 파일에서 컨트롤 Name↔Type 매핑 추출 |
+
+#### 데이터베이스 쿼리 도구 (i-AUD 서버 프록시)
+
+| 도구 | 설명 | 주요 파라미터 |
+|------|------|--------------|
+| `execute_query` | SQL 쿼리 실행 및 결과 반환 | `connectionCode`, `sql`, `limitRows`(기본100, 최대1000) |
+| `get_table_list` | 메타 테이블에서 테이블/뷰 목록 조회 | `connectionCode`, `filter`(선택), `limitRows`(기본500) |
+| `get_table_columns` | 특정 테이블의 컬럼 상세 정보 조회 | `connectionCode`, `tableId`(get_table_list의 TABLE_ID) |
+
+### 쿼리 도구 사용 흐름
+
+```
+1. get_table_list로 테이블 검색 → TABLE_ID 획득
+2. get_table_columns로 컬럼 구조 확인
+3. execute_query로 SQL 실행
+```
+
+### Claude Code MCP 설정 예시
+
+`.mcp.json` (프로젝트 루트):
+
+```json
+{
+  "mcpServers": {
+    "aud_mcp_server": {
+      "command": "npx",
+      "args": ["-y", "@bimatrix-aud-platform/aud_mcp_server@latest"]
+    }
+  }
+}
+```
+
+> `.vscode/settings.json`에 `aud.config`가 있으면 `env` 설정 없이 자동으로 동작합니다.
+
+---
+
 ## 추가 리소스
 
 - **GitHub**: https://github.com/AUD-DEV-TEAM/i-AUD-Developer-Kit

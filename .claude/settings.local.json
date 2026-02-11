@@ -1,9 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx tsc:*)",
-      "Bash(tree:*)",
-      "Bash(node:*)",
       "mcp__aud_mcp_server__get_schema_info",
       "mcp__aud_mcp_server__get_root_structure",
       "mcp__aud_mcp_server__validate_mtsd",
@@ -13,11 +10,11 @@
       "mcp__aud_mcp_server__generate_grid_column",
       "mcp__aud_mcp_server__generate_datasource",
       "mcp__aud_mcp_server__fix_mtsd",
-      "Bash(findstr:*)",
-      "Bash(ls:*)",
-      "Bash(powershell -File -:*)",
-      "Bash(powershell -Command:*)",
-      "Bash(dir:*)"
+      "mcp__aud_mcp_server__get_table_list"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "aud_mcp_server"
+  ]
 }
