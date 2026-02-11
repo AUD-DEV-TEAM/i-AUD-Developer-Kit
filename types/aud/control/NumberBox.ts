@@ -207,5 +207,6 @@ export interface NumberBox extends Control{
   }
   ) => void;
 
-
+  /** 숫자 박스의 값을 배열로 반환합니다. */
+  GetValue(): string[];
 }

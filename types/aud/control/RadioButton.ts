@@ -110,5 +110,6 @@ export interface RadioButton extends Control{
   }
   ) => void;
 
-
+  /** 라디오 버튼의 선택된 값을 문자열 배열로 반환합니다. */
+  GetValue(): string[];
 }

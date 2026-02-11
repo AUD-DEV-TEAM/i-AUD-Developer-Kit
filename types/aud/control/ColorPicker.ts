@@ -38,5 +38,6 @@ export interface ColorPicker extends Control{
   }
   ) => void;
 
-
+  /** 선택된 색상 값을 배열로 반환합니다. */
+  GetValue(): string[];
 }

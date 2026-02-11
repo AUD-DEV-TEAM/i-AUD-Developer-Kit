@@ -175,5 +175,6 @@ export interface RichTextBox extends Control{
   }
   ) => void;
 
-
+  /** 리치 텍스트 박스의 값을 배열로 반환합니다. */
+  GetValue(): string[];
 }
