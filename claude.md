@@ -47,7 +47,8 @@ i-AUD-Developer-Kit/
 │       ├── iaud-module-create/        # 모듈 생성 가이드
 │       ├── iaud-sql-guide/            # DataSource SQL 작성 가이드
 │       ├── iaud-olap-formula/         # OLAP 수식 작성 가이드
-│       └── iaud-formula/              # 계산수식(Formula) 작성 가이드
+│       ├── iaud-formula/              # 계산수식(Formula) 작성 가이드
+│       └── iaud-mxgrid-guide/         # MX-GRID 개발 가이드
 ├── types/                     # API 타입 정의
 │   ├── aud/                   # 클라이언트 스크립트 API
 │   │   ├── control/           # UI 컨트롤 (Button, Grid, Chart 등)
@@ -90,6 +91,29 @@ i-AUD-Developer-Kit/
     └── *.sql                   # SQL 서비스
 ```
 
+### MX-GRID 보고서 폴더 구조
+
+MX-GRID(엑셀 기반 그리드) 보고서는 `MX_GRID/` 하위 폴더에 3파일 셋트를 포함합니다:
+
+```
+[보고서명]/
+├── .aud.json                   # 프로그램 메타 정보
+├── [ReportCode].mtsd           # 화면 UI 정의 (iGrid 컨트롤 포함)
+├── [보고서명].script.ts         # 클라이언트 스크립트
+├── MX_GRID/                    # ★ MX-GRID 전용 폴더
+│   ├── {코드}.xlsx             # 원본 엑셀 파일 (디자이너에서 편집용)
+│   ├── {코드}.json2            # 엑셀 템플릿 모델 (JSON)
+│   └── {코드}.ds               # 데이터셋 바인딩 정보 (JSON)
+├── DataSource/
+│   └── *.sql
+└── ServerScript/
+    └── *.ts
+```
+
+- `.xlsx`: 원본 엑셀 파일. i-AUD Designer 또는 Excel에서 직접 편집
+- `.json2`: 엑셀 구조(스타일, 셀값, 수식, 병합, 차트 등)를 JSON으로 표현한 템플릿
+- `.ds`: 데이터바인딩 정보(SQL, 출력 셀 범위, 연결 코드 등)를 JSON으로 정의
+
 ---
 
 ## Skills 가이드
@@ -108,6 +132,7 @@ i-AUD-Developer-Kit/
 | `/iaud-sql-guide` | DataSource SQL 작성 가이드 | SQL 파라미터 바인딩, 변수 치환, Dynamic SQL 작성이 필요할 때 |
 | `/iaud-olap-formula` | OLAP 수식 작성 가이드 | OlapGrid 계산 필드, ForAll/ForEach, 조건부 서식 수식 작성이 필요할 때 |
 | `/iaud-formula` | 계산수식(Formula) 작성 가이드 | 컨트롤 수식, SUMIF, 그리드 컬럼 수식, 컨트롤 참조 연산이 필요할 때 |
+| `/iaud-mxgrid-guide` | MX-GRID 개발 가이드 (엑셀 그리드) | MX-GRID 서버/클라이언트 스크립트, 예약어, AUD_xxx 함수, .ds 파일 수정이 필요할 때 |
 
 ### Skill 사용 예시
 
@@ -132,6 +157,9 @@ i-AUD-Developer-Kit/
 
 질문: "데이터그리드 컬럼에 수식을 넣고 싶어요" / "라벨에 그리드 합계를 표시하려면?"
 → /iaud-formula 스킬 참조
+
+질문: "MX-GRID 서버 스크립트에서 셀 값을 어떻게 변경하나요?" / "MX-GRID 예약어 사용법 알려줘"
+→ /iaud-mxgrid-guide 스킬 참조
 ```
 
 ---
@@ -335,13 +363,14 @@ TypeScript 인터페이스 정의: `types/com/`
 
 - **API 인터페이스 참조**: `types/aud/`, `types/com/` 폴더의 TypeScript 인터페이스를 참조
 - **샘플 코드 참조**: `src/reports/samples/` 폴더의 실제 예제 참조
-- **Skills 활용**: 각 영역별 전문 가이드(/iaud-client-script, /iaud-server-script 등) 참조
+- **Skills 활용**: 각 영역별 전문 가이드(/iaud-client-script, /iaud-server-script, /iaud-mxgrid-guide 등) 참조
 
 ### 2. 파일 탐색 시
 
 - **클라이언트 API**: `types/aud/control/`, `types/aud/data/`에서 컨트롤 및 데이터 API 확인
 - **서버 API**: `types/com/matrix/script/`에서 서버 스크립트 API 확인
 - **샘플**: `src/reports/samples/`에서 유사한 예제 검색
+- **MX-GRID API**: `types/com/matrix/script/excel/`(서버), `types/aud/control/iGrid.ts`(클라이언트)
 
 ### 3. 질문 답변 시
 
@@ -352,6 +381,7 @@ TypeScript 인터페이스 정의: `types/com/`
 - SQL 작성 질문 → `/iaud-sql-guide` 참조
 - OLAP 수식 질문 → `/iaud-olap-formula` 참조
 - 컨트롤 계산수식 질문 → `/iaud-formula` 참조
+- MX-GRID 개발 질문 → `/iaud-mxgrid-guide` 참조
 
 ### 4. 일반적인 작업 패턴
 
@@ -386,6 +416,52 @@ while (rs.next()) {
 }
 con.DisConnect();
 ```
+
+---
+
+## MX-GRID (엑셀 기반 그리드)
+
+MX-GRID는 엑셀을 웹에서 표현하는 스프레드시트 컨트롤입니다.
+
+### 아키텍처
+
+```
+[엑셀 파일(.xlsx)]
+     │  (서버 변환)
+[템플릿 모델(.json2)] ── 스타일, 셀, 수식, 차트, 이미지, 조건부서식
+     │
+[서버 WorkBook 객체] ◄── [데이터셋(.ds)] ── SQL 실행 → 셀 영역에 바인딩
+     │  (수식 계산 후 직렬화)
+[클라이언트 iGrid] → 브라우저에서 MX-GRID 렌더링
+```
+
+### AI가 수정 가능한 영역
+
+| 영역 | 효과 | 설명 |
+|------|------|------|
+| **서버 스크립트** | 높음 | WorkBook API로 셀 값 조작, 데이터 바인딩, CRUD 처리 |
+| **클라이언트 스크립트** | 높음 | iGrid 이벤트 처리, 내보내기, 서버 호출 |
+| **DataSource SQL** | 높음 | MX-GRID에 바인딩할 SQL 쿼리 작성/수정 |
+| **.ds 파일 수정** | 중간 | 데이터바인딩 정보(SQL, 출력 범위) 변경 |
+| **.json2 부분 수정** | 중간 | 셀 값, 스타일, 조건부서식, Named Range 수정 |
+| **.xlsx 생성/편집** | 불가 | i-AUD Designer 또는 Excel에서 직접 수행 |
+| **.json2 전체 생성** | 불가 | 엑셀 → 서버 변환 파이프라인을 통해 생성 |
+
+### 주요 API
+
+- **서버**: `Matrix.getWorkBook()` → [ScriptWorkBook.ts](types/com/matrix/script/excel/ScriptWorkBook.ts), [ScriptWorkSheet.ts](types/com/matrix/script/excel/ScriptWorkSheet.ts)
+- **클라이언트**: `Matrix.getObject("MXGrid") as iGrid` → [iGrid.ts](types/aud/control/iGrid.ts)
+- **상세 가이드**: `/iaud-mxgrid-guide` 스킬 참조
+
+
+주요 카테고리:
+- **기본 조회**: (MX-GRID) Play ground
+- **CRUD**: MX-GRID_CRUD 샘플, MX-GRID CRUD 실행계획
+- **차트**: MX-GRID 차트 생성
+- **대시보드**: (MX-GRID) Dash Board, MX-GRID_SIMPLE_DASHBOARD
+- **이미지**: MX-GRID 이미지 로드 함수(AUD_IMAGE)
+- **행열 숨김**: MX-GRID 행열 숨김 함수(AUD_HIDE_COLUMNS, AUD_HIDE_ROWS)
+- **드릴다운/필터링**: MX-GRID&데이터 그리드 필터링
 
 ---
 
@@ -458,6 +534,12 @@ npx @bimatrix-aud-platform/aud_mcp_server@latest
 | `generate_datasource` | 간소화 입력으로 DataSource JSON 생성 (SQL에서 파라미터 자동 추출) |
 | `fix_mtsd` | MTSD 파일 자동 보정 (Name→Id 참조, Params, Columns 등) |
 | `get_control_info` | MTSD 파일에서 컨트롤 Name↔Type 매핑 추출 |
+
+#### MX-GRID 검증 도구
+
+| 도구 | 설명 |
+|------|------|
+| `validate_mxgrid` | MX-GRID 템플릿(.json2) 및 데이터셋(.ds) 파일 스키마 검증. 파일 경로 또는 JSON 문서를 입력하면 확장자로 자동 감지하여 검증. 비즈니스 로직 경고(미정의 스타일 참조, 중복 ID, 빈 SQL 등) 포함 |
 
 #### 데이터베이스 쿼리 도구 (i-AUD 서버 프록시)
 
