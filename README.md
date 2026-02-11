@@ -24,6 +24,7 @@ Java, Python, .NET, Perl 등의 별도 언어 학습 없이도 손쉽게 접근�
 - 자동 빌드 및 배포
 - 명령어 기반 보고서 실행 및 테스트
 - 보고서 컨트롤에 대한 코드 자동 생성
+- AI 바이브 코딩을 위한 MCP 서버 및 Claude Skills 제공
 
 > 💡 또한, GitHub Copilot 기반의 AI 코딩 에디터인 **[Cursor](https://www.cursor.so/)**에서도 완벽하게 호환됩니다.
 
@@ -37,6 +38,8 @@ Java, Python, .NET, Perl 등의 별도 언어 학습 없이도 손쉽게 접근�
 | **TypeScript 지원** | `.ts` 확장자로 스크립트를 개발 및 자동 빌드 지원 |
 | **SQL 실행 도우미** | SQL을 선택 후 실행하여 결과를 콘솔에 출력 |
 | **JavaScript ↔ Text 변환** | JS 배열 문자열 ↔ 일반 텍스트 변환 도구 제공 |
+| **인증 갱신** | 서버 세션 만료 시 인증 정보 갱신 |
+| **AI 바이브 코딩** | Claude Code + MCP 서버를 활용한 AI 보고서 개발 |
  
 
 ## 2. i-AUD 개발 환경 설정
@@ -71,7 +74,9 @@ npm -install
         "MX_GRID_BACKUP": true, //MX-GRID 디자인 정보를 다운로드 할지 여부를 설정합니다.
         "MX_GRID_JSON_PRETTY": true,  //i-AUD 보고서 파일 (json 구조)을 자동 formatting할 지 여부를 설정합니다.        
         "QueryResultLimit":100,    //쿼리 출력 최대 건수 입니다.
-        "QueryResultFileName" : "QueryResult.txt" //쿼리 출력 파일명 , 값이 없으면 console에 출력 됩니다.
+        "QueryResultFileName" : "QueryResult.txt", //쿼리 출력 파일명 , 값이 없으면 console에 출력 됩니다.
+        "MakeBuildSource" : false // __build 소스 생성여부
+
     }
 }
 ```
@@ -167,4 +172,95 @@ tsc --w
 
 - **AUD: Convert to Text**
   - 선택한 JavaScript 배열 문자열 내용을 일반 텍스트로 다시 변환합니다.
-        
+
+- **AUD: Update Credentials**
+  - 서버의 인증 정보(세션)를 갱신합니다.
+  - API Key 기반 인증의 동시 접속 세션이 만료되었을 때 사용합니다.
+  - 세션 만료로 인해 Save Script, Import Report 등의 명령이 실패할 경우 이 명령을 먼저 실행해 주세요.
+
+## 5. Claude Code를 활용한 AI 바이브 코딩
+
+### 5.1. 개요
+
+i-AUD Developer Kit은 **Claude Code**와 함께 사용하면 AI를 활용한 **바이브 코딩(Vibe Coding)**이 가능합니다.
+자연어로 요구사항을 설명하면, AI가 보고서 UI(MTSD), 클라이언트 스크립트, 서버 스크립트, SQL 데이터소스를 자동으로 생성하고 수정합니다.
+
+이를 위해 보고서 개발 프로젝트에는 다음 3가지가 미리 구성되어 있습니다:
+
+| 구성 요소 | 파일/폴더 | 역할 |
+|-----------|----------|------|
+| **CLAUDE.md** | 프로젝트 루트 | Claude Code가 프로젝트 구조, API, 규칙을 이해하기 위한 가이드 |
+| **MCP 서버** | `.mcp.json` | MTSD 검증, Element 생성, DB 스키마 조회 등 개발 도구 제공 |
+| **Skills** | `.claude/skills/` | 영역별 전문 가이드 (클라이언트/서버 스크립트, SQL, OLAP 수식 등) |
+
+### 5.2. 설정 방법
+
+#### 1단계: Claude Code 설치
+
+[Claude Code 공식 문서](https://docs.anthropic.com/en/docs/claude-code)를 참고하여 Claude Code를 설치합니다.
+
+#### 2단계: 보고서 개발 폴더에서 Claude Code 실행
+
+i-AUD Developer Kit의 보고서 개발 폴더를 VS Code에서 열고 Claude Code를 실행합니다.
+프로젝트에 이미 포함된 `CLAUDE.md`, `.mcp.json`, `.claude/skills/`가 자동으로 인식됩니다.
+
+```
+보고서 개발 프로젝트/
+├── CLAUDE.md                    # Claude Code 프로젝트 가이드
+├── .mcp.json                    # MCP 서버 설정 (자동 실행)
+├── .claude/
+│   └── skills/                  # 영역별 전문 가이드
+│       ├── iaud-client-script/  # 클라이언트 스크립트 가이드
+│       ├── iaud-server-script/  # 서버 스크립트 가이드
+│       ├── iaud-mtsd-create/    # MTSD 보고서 생성 가이드
+│       ├── iaud-sql-guide/      # SQL 작성 가이드
+│       └── ...
+├── .vscode/
+│   └── settings.json            # AUD 서버 연결 설정 (MCP 서버가 자동 탐색)
+├── src/
+│   └── reports/                 # 보고서 소스
+└── types/                       # API 타입 정의 (자동완성 지원)
+```
+
+#### 3단계: AI와 대화하며 개발
+
+```
+예시 질문:
+  "매출 현황을 조회하는 화면을 만들어줘. 조건에 기간, 부서를 넣고 그리드로 결과를 보여줘"
+  "이 보고서에 차트를 추가해서 월별 추이를 보여줘"
+  "서버 스크립트에서 DB 조회 후 엑셀 파일로 내보내는 기능을 만들어줘"
+  "이 SQL의 성능을 개선해줘 - 테이블 구조를 확인해서"
+```
+
+### 5.3. MCP 서버가 제공하는 AI 개발 도구
+
+`.mcp.json`에 설정된 `aud_mcp_server`가 Claude Code에 다음 도구들을 제공합니다:
+
+| 도구 | 설명 |
+|------|------|
+| `validate_mtsd` / `validate_part` | MTSD 문서 및 Element 스키마 검증 |
+| `generate_element` | 자연어 → Element JSON 자동 생성 |
+| `generate_grid_column` | 그리드 컬럼 구조 자동 생성 |
+| `generate_datasource` | DataSource JSON 생성 (SQL에서 파라미터 자동 추출) |
+| `get_element_types` / `get_schema_info` | Element 타입 목록 및 속성 스키마 조회 |
+| `fix_mtsd` | MTSD 파일 자동 보정 |
+| `get_dbms_list` | 사용 가능한 DB 연결 목록 조회 |
+| `execute_query` | SQL 실행 및 결과 반환 |
+| `get_table_list` / `get_table_columns` | DB 테이블/컬럼 구조 조회 |
+
+### 5.4. Skills 활용
+
+Claude Code에서 `/` 명령어로 각 영역별 전문 가이드를 호출할 수 있습니다:
+
+| Skill | 사용 시기 |
+|-------|----------|
+| `/iaud-client-script` | 버튼 이벤트, 그리드 조작, UI 제어 등 |
+| `/iaud-server-script` | DB 조회, 파일 처리, 서비스 개발 등 |
+| `/iaud-mtsd-create` | MTSD 보고서 화면 생성 |
+| `/iaud-sql-guide` | SQL 파라미터 바인딩, Dynamic SQL 등 |
+| `/iaud-report-structure` | 보고서 폴더 구조, .aud.json, .mtsd 등 |
+| `/iaud-module-create` | 프로세스 봇 모듈 생성 |
+| `/iaud-olap-formula` | OLAP 수식 작성 |
+| `/iaud-formula` | 컨트롤 계산수식 작성 |
+| `/iaud-ts-conversion` | JavaScript → TypeScript 전환 |
+
