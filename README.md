@@ -126,7 +126,7 @@ tsc --w
 ```
 
 ### 3.5. 소스 수정 반영 테스트
-- command palette(`Ctrl + Shift + P`로 실행)에서 `AUD: Save Script`를 실행하여 현재 변경된 내용을 저장 합니다.
+- command palette(`Ctrl + Shift + P`로 실행)에서 `AUD: Publish Script`를 실행하여 현재 변경된 내용을 저장 합니다.
 - `AUD: Run Designer`를 실행하여 chrome를 통해 실행된 프로그램을 테스트 합니다.
 
 ## 4. i-AUD Developer Kit - Command Palette
@@ -138,11 +138,11 @@ tsc --w
 - **AUD: Download Folder**
   - 서버에서 특정 폴더(폴더 코드 기중) 하위의 모든 보고서를 압축해서 다운로드 합니다.
 
-- **AUD: Import Report**
+- **AUD: Pull Report**
   - 현재 편집기에서 활성화된 프로그램을 서버의 최신 정보를 기준으로 업데이트 합니다.
   - 주로 i-AUD 디자이너로 저장한 보고서의 정보를 갱신하기 위해 사용합니다.
 
-- **AUD: Save Script**
+- **AUD: Publish Script**
   - 현재 작성한 프로그램을 서버에 배포합니다.
   - 배포 대상은 Client Script, Server Script, DataSource 이며, 서버의 프로그램을 배포 후 i-AUD 디자이너에서 수정된 내용은 자동으로 동기화 됩니다.
   - 단축키 : `ctrl+alt+S`
@@ -151,7 +151,7 @@ tsc --w
   - 현재 편집기에서 활성화된 프로그램을 브라우저로 실행합니다.
   - 단축키 : `ctrl+alt+D`
 
-- **AUD: Upload Report**
+- **AUD: Deploy Report**
   - 현재 편집기에서 활성화된 프로그램을 서버에 배포합니다. (디자인 정보를 포함한 서버의 프로그램 자체를 변경합니다.)
   - GIT을 통해 버전 관리를 하는 경우 버전 별로 배포해서 테스트가 가능합니다.  
 
@@ -176,7 +176,7 @@ tsc --w
 - **AUD: Update Credentials**
   - 서버의 인증 정보(세션)를 갱신합니다.
   - API Key 기반 인증의 동시 접속 세션이 만료되었을 때 사용합니다.
-  - 세션 만료로 인해 Save Script, Import Report 등의 명령이 실패할 경우 이 명령을 먼저 실행해 주세요.
+  - 세션 만료로 인해 Publish Script, Pull Report 등의 명령이 실패할 경우 이 명령을 먼저 실행해 주세요.
 
 ## 5. Claude Code를 활용한 AI 바이브 코딩
 
