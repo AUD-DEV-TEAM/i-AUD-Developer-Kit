@@ -174,14 +174,14 @@ MX-GRID(엑셀 기반 그리드) 보고서는 `MX_GRID/` 하위 폴더에 3파�
 4. `AUD: Generate Starter Code`로 기본 구조 생성
 5. 터미널에서 `tsc --w` 실행 (자동 빌드)
 6. 스크립트 개발
-7. `AUD: Save Script` (Ctrl+Alt+S)로 배포
+7. `AUD: Publish Script` (Ctrl+Alt+S)로 배포
 8. `AUD: Run Designer` (Ctrl+Alt+D)로 테스트
 
 ### 2. 기존 보고서 수정
 
-1. VS Code에서 `AUD: Import Report` 명령으로 최신 정보 동기화
+1. VS Code에서 `AUD: Pull Report` 명령으로 최신 정보 동기화
 2. 스크립트 수정
-3. `AUD: Save Script`로 배포
+3. `AUD: Publish Script`로 배포
 4. `AUD: Run Designer`로 테스트
 
 ### 3. 주요 VS Code 명령어
@@ -189,9 +189,9 @@ MX-GRID(엑셀 기반 그리드) 보고서는 `MX_GRID/` 하위 폴더에 3파�
 | 명령어 | 단축키 | 설명 |
 |--------|--------|------|
 | `AUD: Download Report` | - | 서버에서 보고서 다운로드 |
-| `AUD: Import Report` | - | 서버 최신 정보로 업데이트 |
-| `AUD: Save Script` | `Ctrl+Alt+S` | 스크립트만 서버에 배포 |
-| `AUD: Upload Report` | - | 디자인 포함 전체 배포 |
+| `AUD: Pull Report` | - | 서버 최신 정보로 업데이트 |
+| `AUD: Publish Script` | `Ctrl+Alt+S` | 스크립트만 서버에 배포 |
+| `AUD: Deploy Report` | - | 디자인 포함 전체 배포 |
 | `AUD: Run Designer` | `Ctrl+Alt+D` | 브라우저로 실행 |
 | `AUD: Generate Starter Code` | - | TypeScript 기본 구조 생성 |
 | `AUD: Execute Query` | `Ctrl+F5` | 선택한 SQL 실행 |
@@ -479,8 +479,8 @@ tsc --w
 
 ### 서버 배포
 
-- **스크립트만 배포**: `AUD: Save Script` (Ctrl+Alt+S)
-- **전체 배포 (디자인 포함)**: `AUD: Upload Report`
+- **스크립트만 배포**: `AUD: Publish Script` (Ctrl+Alt+S)
+- **전체 배포 (디자인 포함)**: `AUD: Deploy Report`
 
 ---
 

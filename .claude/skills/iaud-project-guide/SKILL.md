@@ -121,10 +121,10 @@ tsc --w
 |--------|--------|------|
 | `AUD: Download Report` | - | 서버에서 프로그램 다운로드 |
 | `AUD: Download Folder` | - | 특정 폴더 하위 모든 보고서 다운로드 |
-| `AUD: Import Report` | - | 서버 최신 정보로 업데이트 |
-| `AUD: Save Script` | `Ctrl+Alt+S` | 스크립트를 서버에 배포 |
+| `AUD: Pull Report` | - | 서버 최신 정보로 업데이트 |
+| `AUD: Publish Script` | `Ctrl+Alt+S` | 스크립트를 서버에 배포 |
 | `AUD: Run Designer` | `Ctrl+Alt+D` | 브라우저로 프로그램 실행 |
-| `AUD: Upload Report` | - | 디자인 정보 포함 전체 배포 |
+| `AUD: Deploy Report` | - | 디자인 정보 포함 전체 배포 |
 | `AUD: Generate Starter Code` | - | TypeScript 기본 구조 생성 |
 | `AUD: Execute Query` | `Ctrl+F5` | 선택한 SQL 실행 |
 | `AUD: Generate Control Variables` | - | 보고서 내 컨트롤 변수 선언 생성 |
@@ -138,7 +138,7 @@ tsc --w
 3. `.script.js` → `.script.ts`로 확장자 변경
 4. `AUD: Generate Starter Code`로 기본 구조 생성
 5. `tsc --w`로 TypeScript watch 모드 실행
-6. 스크립트 개발 후 `AUD: Save Script` (Ctrl+Alt+S)로 배포
+6. 스크립트 개발 후 `AUD: Publish Script` (Ctrl+Alt+S)로 배포
 7. `AUD: Run Designer` (Ctrl+Alt+D)로 테스트
 
 ---
