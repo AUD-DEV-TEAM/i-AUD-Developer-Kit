@@ -44,28 +44,48 @@ i-AUD-Developer-Kit/
 │       ├── iaud-client-script/        # 클라이언트 스크립트 가이드
 │       ├── iaud-server-script/        # 서버 스크립트 가이드
 │       ├── iaud-report-structure/     # 보고서 구조 가이드
+│       ├── iaud-mtsd-create/          # MTSD 보고서 화면 생성 가이드
 │       ├── iaud-module-create/        # 모듈 생성 가이드
 │       ├── iaud-sql-guide/            # DataSource SQL 작성 가이드
 │       ├── iaud-olap-formula/         # OLAP 수식 작성 가이드
 │       ├── iaud-formula/              # 계산수식(Formula) 작성 가이드
-│       └── iaud-mxgrid-guide/         # MX-GRID 개발 가이드
+│       ├── iaud-mxgrid-guide/         # MX-GRID 개발 가이드
+│       └── iaud-ts-conversion/        # TypeScript 전환 가이드
 ├── types/                     # API 타입 정의
 │   ├── aud/                   # 클라이언트 스크립트 API
-│   │   ├── control/           # UI 컨트롤 (Button, Grid, Chart 등)
+│   │   ├── control/           # UI 컨트롤 (51개 파일 + 20개 하위 폴더)
+│   │   │   ├── charts/        # 차트 타입 정의
+│   │   │   ├── grids/         # DataGrid 셀/컬럼/행 컴포넌트
+│   │   │   ├── igrids/        # iGrid(MX-GRID) 컴포넌트
+│   │   │   ├── olap/          # OlapGrid 컴포넌트
+│   │   │   ├── diagram/       # 다이어그램 컨트롤
+│   │   │   ├── tabcontrol/    # 탭 컨트롤
+│   │   │   ├── table/         # 테이블 레이아웃
+│   │   │   └── treeview/      # 트리뷰 컴포넌트
 │   │   ├── common/            # 공통 유틸리티
 │   │   ├── data/              # DataSet, DataTable 등
-│   │   └── enums/             # 열거형 타입
+│   │   ├── enums/             # 열거형 타입 (chart, grid, olap 등 12개 카테고리)
+│   │   ├── ext/               # 확장 컨트롤 (GeoMap, ListView, Schedule 등)
+│   │   ├── drawing/           # 드로잉 API
+│   │   └── html/              # HTML 캔버스 지원
 │   ├── com/                   # 서버 스크립트 API (Rhino)
 │   │   └── matrix/
-│   │       ├── script/        # Matrix, Connection, RecordSet 등
+│   │       ├── script/        # 핵심 API (19개 파일: Matrix, Connection, RecordSet 등)
+│   │       │   ├── io/        # 파일 I/O API
+│   │       │   └── excel/     # Excel 처리 API (31개 파일)
 │   │       ├── olap/          # OLAP API
-│   │       └── excel/         # Excel 처리 API
-│   └── cfx/                   # Custom Extension Framework
+│   │       ├── canvas/        # i-AUD 보고서 모델 접근 api
+│   │       └── data/          # 데이터 처리 클래스
+│   └── cfx/                   # Custom Extension Framework (Conflux)
+│       ├── control/           # Conflux 환경 API
+│       ├── data/              # Conflux 데이터 테이블
+│       ├── enums/             # 데이터 타입 열거형
+│       └── rpt/               # Conflux 노드/보고서
 ├── src/
 │   └── reports/               # 보고서 개발 폴더
 │       ├── samples/           # 샘플 보고서
-│       │   ├── 기능별샘플/     # 각 컨트롤 사용방법 샘플들
-│       │   ├── 판매관리시스템/  # 영업판매관리 시스템 샘플
+│       │   ├── 기능별 샘플/    # 컨트롤별 샘플 (8개 카테고리)
+│       │   └── 판매관리 시스템/ # 영업판매관리 E2E 데모 (14개 업무 모듈)
 │       └── [Work]/           # 실제 개발 폴더
 ├── out/                       # TypeScript 빌드 출력
 ├── package.json
@@ -133,6 +153,22 @@ MX-GRID(엑셀 기반 그리드) 보고서는 `MX_GRID/` 하위 폴더에 3파�
 | `/iaud-olap-formula` | OLAP 수식 작성 가이드 | OlapGrid 계산 필드, ForAll/ForEach, 조건부 서식 수식 작성이 필요할 때 |
 | `/iaud-formula` | 계산수식(Formula) 작성 가이드 | 컨트롤 수식, SUMIF, 그리드 컬럼 수식, 컨트롤 참조 연산이 필요할 때 |
 | `/iaud-mxgrid-guide` | MX-GRID 개발 가이드 (엑셀 그리드) | MX-GRID 서버/클라이언트 스크립트, 예약어, AUD_xxx 함수, .ds 파일 수정이 필요할 때 |
+| `/iaud-mtsd-create` | MTSD 보고서 화면 생성 (MCP 도구 활용) | 보고서 UI를 처음부터 만들거나, Element/DataSource 추가가 필요할 때 |
+| `/iaud-ts-conversion` | TypeScript 전환 가이드 (var→let/const, 타입) | 기존 .script.js를 .script.ts로 마이그레이션할 때 |
+
+### 수식 Skill 구분 가이드
+
+`/iaud-formula`와 `/iaud-olap-formula`는 **기본 함수(조건, 타입변환, 문자열, 수학, 날짜)가 공통**이지만 사용 컨텍스트가 다릅니다:
+
+| 구분 | `/iaud-formula` (컨트롤 계산수식) | `/iaud-olap-formula` (OLAP 수식) |
+|------|----------------------------------|----------------------------------|
+| **적용 대상** | Label, TextBox, NumberBox, DataGrid 컬럼 | OlapGrid 계산 필드, 사용자 정의 항목, 조건부 서식 |
+| **컨트롤 참조** | `:컨트롤명` (다른 UI 컨트롤 값) | `:변수명` (바인딩 변수) |
+| **고유 함수** | SUMIF, AVERAGEIF, COUNTIF, MAXIF, MINIF, GETPIVOTDATA, SELECTEDFIELDVALUE, SUMCELLS, COUNTCELLS, AVGCELLS | ForAll, ForEach, Rank, RankIn, GetMembers, InList, Match, CellValueByOffset, IMG, DrawChart |
+| **선언 문법** | JavaScript 모드 (`var`, `return`, `{}`) | `define` (동적 필드), `const` (상수) |
+| **그리드 키워드** | IS_GRAND_TOTAL, IS_SUB_TOTAL | IsRowGrandTotal, IsColGrandTotal, IsRowTotal, IsColTotal, IsTotalOrGrandTotal |
+
+> 기본 함수(IF, CASE, AND, OR, ToString, ToNumber 등)는 양쪽 동일하므로, **어디에 수식을 적용할지**에 따라 적절한 스킬을 참조하세요.
 
 ### Skill 사용 예시
 
@@ -160,6 +196,12 @@ MX-GRID(엑셀 기반 그리드) 보고서는 `MX_GRID/` 하위 폴더에 3파�
 
 질문: "MX-GRID 서버 스크립트에서 셀 값을 어떻게 변경하나요?" / "MX-GRID 예약어 사용법 알려줘"
 → /iaud-mxgrid-guide 스킬 참조
+
+질문: "보고서 화면을 처음부터 만들고 싶어요" / "MTSD에 Element 추가하려면?"
+→ /iaud-mtsd-create 스킬 참조
+
+질문: "기존 JavaScript 스크립트를 TypeScript로 변환하려면?" / "var를 let/const로 바꾸려면?"
+→ /iaud-ts-conversion 스킬 참조
 ```
 
 ---
@@ -310,32 +352,46 @@ WHERE 1=1
 
 TypeScript 인터페이스 정의: `types/aud/`
 
-- **컨트롤**: [types/aud/control/](types/aud/control/)
+- **컨트롤**: [types/aud/control/](types/aud/control/) (51개 파일 + 20개 하위 폴더)
   - [Matrix.ts](types/aud/control/Matrix.ts) - 핵심 Matrix API
-  - [Button.ts](types/aud/control/Button.ts)
-  - [DataGrid.ts](types/aud/control/DataGrid.ts)
-  - [iGrid.ts](types/aud/control/iGrid.ts)
-  - [OlapGrid.ts](types/aud/control/OlapGrid.ts)
-  - [Chart.ts](types/aud/control/Chart.ts)
+  - [Button.ts](types/aud/control/Button.ts), [TextBox.ts](types/aud/control/TextBox.ts), [NumberBox.ts](types/aud/control/NumberBox.ts)
+  - [ComboBox.ts](types/aud/control/ComboBox.ts), [CheckBox.ts](types/aud/control/CheckBox.ts), [RadioButton.ts](types/aud/control/RadioButton.ts)
+  - [DataGrid.ts](types/aud/control/DataGrid.ts), [TreeGrid.ts](types/aud/control/TreeGrid.ts)
+  - [iGrid.ts](types/aud/control/iGrid.ts) - MX-GRID 클라이언트
+  - [OlapGrid.ts](types/aud/control/OlapGrid.ts) - OLAP 그리드
+  - [Chart.ts](types/aud/control/Chart.ts), [PieChart.ts](types/aud/control/PieChart.ts), [ScatterChart.ts](types/aud/control/ScatterChart.ts)
+  - [Calendar.ts](types/aud/control/Calendar.ts), [FileUploadButton.ts](types/aud/control/FileUploadButton.ts)
+  - [Group.ts](types/aud/control/Group.ts), [Tab.ts](types/aud/control/Tab.ts), [TableLayout.ts](types/aud/control/TableLayout.ts)
+  - 하위 폴더: `grids/` (DataGrid 컴포넌트), `igrids/` (iGrid 컴포넌트), `olap/` (OlapGrid 컴포넌트), `charts/`, `diagram/` 등
 - **데이터**: [types/aud/data/](types/aud/data/)
-  - [DataSet.ts](types/aud/data/DataSet.ts)
-  - [DataTable.ts](types/aud/data/DataTable.ts)
+  - [DataSet.ts](types/aud/data/DataSet.ts), [DataTable.ts](types/aud/data/DataTable.ts)
 - **공통**: [types/aud/common/](types/aud/common/)
-- **열거형**: [types/aud/enums/](types/aud/enums/)
+- **열거형**: [types/aud/enums/](types/aud/enums/) - 12개 카테고리 (`chart/`, `grid/`, `olap/`, `comm/`, `diagram/`, `label/`, `meta/`, `properties/`, `schedule/`, `slicer/`, `tab/`, `treeview/`)
+- **확장 컨트롤**: [types/aud/ext/](types/aud/ext/) - GeoMap, ListView, Schedule, SmartEditor 등
 
 ### 서버 API
 
 TypeScript 인터페이스 정의: `types/com/`
 
-- **핵심 스크립트**: [types/com/matrix/script/](types/com/matrix/script/)
+- **핵심 스크립트**: [types/com/matrix/script/](types/com/matrix/script/) (19개 파일)
   - [Matrix.ts](types/com/matrix/script/Matrix.ts) - 메인 Matrix API
   - [ScriptConnection.ts](types/com/matrix/script/ScriptConnection.ts) - DB 연결
   - [ScriptRecordSet.ts](types/com/matrix/script/ScriptRecordSet.ts) - 결과셋
   - [ScriptRequestPacket.ts](types/com/matrix/script/ScriptRequestPacket.ts) - 요청
   - [ScriptResponsePacket.ts](types/com/matrix/script/ScriptResponsePacket.ts) - 응답
+  - [ScriptDataSet.ts](types/com/matrix/script/ScriptDataSet.ts) - 데이터셋
+  - [ScriptDataTable.ts](types/com/matrix/script/ScriptDataTable.ts) - 데이터테이블
+  - [ScriptHttpClient.ts](types/com/matrix/script/ScriptHttpClient.ts) - HTTP 요청
+  - [ScriptFTP.ts](types/com/matrix/script/ScriptFTP.ts) - FTP/SFTP 파일 전송
+  - [ScriptFileSystemObject.ts](types/com/matrix/script/ScriptFileSystemObject.ts) - 파일 시스템
+  - [ScriptSession.ts](types/com/matrix/script/ScriptSession.ts) - 세션 관리
+  - [ScriptPreparedStatement.ts](types/com/matrix/script/ScriptPreparedStatement.ts) - PreparedStatement
+  - [ScriptUtility.ts](types/com/matrix/script/ScriptUtility.ts) - 유틸리티 함수
+  - [ScriptQueryGenerator.ts](types/com/matrix/script/ScriptQueryGenerator.ts) - 쿼리 생성기
 - **파일 I/O**: [types/com/matrix/script/io/](types/com/matrix/script/io/)
-- **Excel**: [types/com/matrix/script/excel/](types/com/matrix/script/excel/)
+- **Excel**: [types/com/matrix/script/excel/](types/com/matrix/script/excel/) (31개 파일 - WorkBook, WorkSheet, Cell, Style, Chart, Drawing 등)
 - **OLAP**: [types/com/matrix/olap/](types/com/matrix/olap/)
+- **CFX (Conflux)**: [types/cfx/](types/cfx/) - 외부 연동 프레임워크 (control/, data/, enums/, rpt/)
 
 ---
 
@@ -343,17 +399,23 @@ TypeScript 인터페이스 정의: `types/com/`
 
 실제 구현 예제: [src/reports/samples/](src/reports/samples/)
 
-### DataGrid 샘플
-- [src/reports/samples/DataGrid/](src/reports/samples/DataGrid/)
+### 기능별 샘플 (카테고리)
 
-### MXGrid (Excel 그리드) 샘플
-- [src/reports/samples/MXGrid/](src/reports/samples/MXGrid/)
+| 카테고리 | 경로 | 설명 |
+|---------|------|------|
+| **AddIn** | [samples/기능별 샘플/AddIn/](src/reports/samples/기능별%20샘플/AddIn/) | 사용자 추가 기능 (UserComponent, WebContainer 등) |
+| **Chart** | [samples/기능별 샘플/Chart/](src/reports/samples/기능별%20샘플/Chart/) | 차트 컨트롤 (Bar, Line, Pie, Scatter 등) |
+| **DataGrid** | [samples/기능별 샘플/DataGrid/](src/reports/samples/기능별%20샘플/DataGrid/) | 데이터그리드 (CRUD, 필터링, 서식, 이벤트 등) |
+| **ETC** | [samples/기능별 샘플/ETC/](src/reports/samples/기능별%20샘플/ETC/) | 기타 컨트롤 (Calendar, ComboBox, Tab, Group 등) |
+| **MX_GRID** | [samples/기능별 샘플/MX_GRID/](src/reports/samples/기능별%20샘플/MX_GRID/) | MX-GRID 엑셀 그리드 (17개+ 샘플: CRUD, 차트, 대시보드 등) |
+| **OlapGrid** | [samples/기능별 샘플/OlapGrid/](src/reports/samples/기능별%20샘플/OlapGrid/) | OLAP 분석 그리드 (33개+ 샘플: 피벗, 수식, Write-Back 등) |
+| **Report** | [samples/기능별 샘플/Report/](src/reports/samples/기능별%20샘플/Report/) | 일반 보고서 (레이아웃, 서비스 호출, 파일 처리 등) |
+| **TreeGrid** | [samples/기능별 샘플/TreeGrid/](src/reports/samples/기능별%20샘플/TreeGrid/) | 트리 그리드 (계층 데이터 표현) |
 
-### OlapGrid (OLAP 그리드) 샘플
-- [src/reports/samples/OlapGrid/](src/reports/samples/OlapGrid/)
+### 판매관리 시스템 (E2E 업무 데모)
 
-### 기타 샘플
-- [src/reports/samples/Report/](src/reports/samples/Report/)
+[src/reports/samples/판매관리 시스템/](src/reports/samples/판매관리%20시스템/) - 14개 업무 모듈로 구성된 종합 데모:
+고객 관리, 공통 코드 관리, 대시보드, 매출 분석, 실적 분석, 영업 계획/관리/실적, 재고 관리, 제품 관리, 직원 관리 등
 
 ---
 
@@ -382,6 +444,8 @@ TypeScript 인터페이스 정의: `types/com/`
 - OLAP 수식 질문 → `/iaud-olap-formula` 참조
 - 컨트롤 계산수식 질문 → `/iaud-formula` 참조
 - MX-GRID 개발 질문 → `/iaud-mxgrid-guide` 참조
+- MTSD 화면 생성 질문 → `/iaud-mtsd-create` 참조
+- TypeScript 전환 질문 → `/iaud-ts-conversion` 참조
 
 ### 4. 일반적인 작업 패턴
 
@@ -534,6 +598,12 @@ npx @bimatrix-aud-platform/aud_mcp_server@latest
 | `generate_datasource` | 간소화 입력으로 DataSource JSON 생성 (SQL에서 파라미터 자동 추출) |
 | `fix_mtsd` | MTSD 파일 자동 보정 (Name→Id 참조, Params, Columns 등) |
 | `get_control_info` | MTSD 파일에서 컨트롤 Name↔Type 매핑 추출 |
+
+#### OLAP 도구
+
+| 도구 | 설명 |
+|------|------|
+| `generate_olap_fields` | OlapGrid의 iOLAPView.Fields 배열 생성. 컬럼 정의를 입력하면 Dimension/Measure 자동 분류, Area 자동 배치, SummaryType 설정 완료된 OlapField 배열 반환 |
 
 #### MX-GRID 검증 도구
 
