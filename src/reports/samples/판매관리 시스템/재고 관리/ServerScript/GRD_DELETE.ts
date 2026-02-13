@@ -7,13 +7,9 @@ import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPrepare
 let CALL_BACK : Function;
 let Matrix : Matrix;
 
-/*************************************************************
- * SAMPLE #1 single table insert
- *************************************************************/
-
-const req = Matrix.getRequest(); // request
+const req = Matrix.getRequest();  /* Request */
+let   con = Matrix.getConnection(); /* DataBase Connection */
 const table = req.getTable("GRD_STOCK"); //get grid's work data
-let con = Matrix.getConnection(); // dbms connection
 const gen = Matrix.getQueryGenerator(); // query generator
 
 let stmt : ScriptPreparedStatement = null;
@@ -23,35 +19,28 @@ let row : ScriptDataRow = null;
 
 try{
 	//connection
-	con.Connect("AUD_SAMPLE_DB");// set target dbms connection code
-	con.BeginTransaction();  // begin transaction	 
+	con.Connect("AUD_SAMPLE_DB");
+	con.BeginTransaction(); 
 	 
-	//------------------------------------------------------
-	// save table data
-	//------------------------------------------------------
+	sql = 'DELETE FROM SM_INVENTORY WHERE INV_ID = ?;';
+	stmt = con.PreparedStatement(sql);
+
 	for(let r=0;r<table.getRowCount();r++){
 		row = table.getRow(r);
-		status = row.getRowStatus(); 
-		
-		// auto generation dml sql
-		/*if(status == "N"){ // create
-			sql = gen.getDMLCommand(table ,row ,"TABLE_NAME", con.getDbType());			
-		}else if(status == "U"){ // update		
-			sql = gen.getDMLCommand(table ,row ,"TABLE_NAME", con.getDbType());		
-		}else */if(status == "D"){// delete		
-			sql = gen.getDMLCommand(table ,row ,"SM_INVENTORY", con.getDbType());
-			stmt = con.PreparedStatement(sql);
+		status = row.getRowStatus();
+
+		if(status == "D"){
+			stmt.setString(1,row.getData('INV_ID'));
 			stmt.addBatch();
-		}	
-	}  
-		
+			stmt.clearParameters();
+		}
+	}
 	Matrix.WriteLog(sql);
-	stmt.executeBatch();
 	
-	// COMMIT
+	stmt.executeBatch();
+	stmt.clearBatch();
+	
 	con.CommitTransaction();
-	con.DisConnect();
-	con = null;	
 	
 } catch(e) {
 	Matrix.WriteLog("ERROR" + e.message);

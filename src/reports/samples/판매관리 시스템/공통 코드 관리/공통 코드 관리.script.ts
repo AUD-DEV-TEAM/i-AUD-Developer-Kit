@@ -115,7 +115,8 @@ BTN_MST_DEL.OnClick = function(s, e) {
 					Matrix.Alert(p.Message);
 					return;
 				}
-				Matrix.doRefresh('GRD_MASTER');
+				setInit();
+				Matrix.doRefresh('GRD_MASTER,GRD_DETAIL');
 				Matrix.Information('삭제 완료되었습니다.', '안내');
 				setInit();
 			});
@@ -133,6 +134,7 @@ BTN_DTL_DEL.OnClick = function(s, e) {
 			GRD_DETAIL.ChangeRowStateAt(i, 'D');
 			checkCount++;
 		}
+		GRD_DETAIL.Update();
 	}
 
 	if (!checkCount) {
@@ -177,7 +179,8 @@ BTN_GRP_SAV.OnClick = function(s, e) {
 			Matrix.Alert(p.Message);
 			return;
 		}
-		Matrix.doRefresh('GRD_MASTER');
+		setInit();
+		Matrix.doRefresh('GRD_MASTER,GRD_DETAIL');
 		Matrix.Information('추가 완료되었습니다.', '안내');
 		setInit();
 		popup.Close();

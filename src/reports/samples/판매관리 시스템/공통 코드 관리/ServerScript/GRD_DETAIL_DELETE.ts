@@ -21,21 +21,27 @@ try {
 	con.Connect("AUD_SAMPLE_DB");
 	con.BeginTransaction();
 
+	sql = 'DELETE FROM SM_COMMON_CODE WHERE GROUP_CD = ? AND CODE = ?;';
+	stmt = con.PreparedStatement(sql);
+	
 	for (let r = 0; r < table.getRowCount(); r++) {
 		row = table.getRow(r);
 		status = row.getRowStatus();
 
 		if (status == "D") {
-			sql = gen.getDMLCommand(table, row, "SM_COMMON_CODE", con.getDbType());
-			stmt = con.PreparedStatement(sql);
-			stmt.addBatch();
-		}
-	}
+			stmt.setString(1,req.getParam('VS_GROUP_CODE'));
+			stmt.setString(2,row.getData('CODE'));
+			
+            stmt.addBatch();
+			stmt.clearParameters();
+        }
+    }
+    Matrix.WriteLog(sql);
 	
-	Matrix.WriteLog(sql);
-	stmt.executeBatch();
-
-	con.CommitTransaction();
+    stmt.executeBatch();
+	stmt.clearBatch();
+	
+    con.CommitTransaction();
 
 } catch(e) {
 	Matrix.WriteLog("ERROR" + e.message);

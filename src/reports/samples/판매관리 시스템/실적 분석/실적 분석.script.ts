@@ -91,3 +91,13 @@ Matrix.OnCellLoaded = function(s, e) {
 		else e.FontColor = "#1e293b"; 							// 검정
 	}
 };
+
+Matrix.OnViewerSizeChanged = function(s, e) {
+	let setTotalWidth = (e.Width - 100) / 4;
+
+	/*  ICON  */
+	["1", "2", "3", "4"].forEach(function(i, idx) {
+		let icon = Matrix.getObject("LBL_ICON_" + i) as Label;
+		icon.Left = (setTotalWidth - 50) / 2;
+	});
+};

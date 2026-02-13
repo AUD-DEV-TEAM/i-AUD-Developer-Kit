@@ -19,32 +19,27 @@ let row : ScriptDataRow = null;
 
 try{
 	//connection
-	con.Connect("AUD_SAMPLE_DB");// set target dbms connection code
-	con.BeginTransaction();  // begin transaction
+	con.Connect("AUD_SAMPLE_DB");
+	con.BeginTransaction();
 
-	//------------------------------------------------------
-	// save table data
-	//------------------------------------------------------
+	sql = 'DELETE FROM SM_CUSTOMER WHERE CUST_ID = ?;';
+	stmt = con.PreparedStatement(sql);
+
 	for(let r=0;r<table.getRowCount();r++){
 		row = table.getRow(r);
 		status = row.getRowStatus();
 
-		// auto generation dml sql
-		/*if(status == "N"){ // create
-			sql = gen.getDMLCommand(table ,row ,"TABLE_NAME", con.getDbType());
-		}else if(status == "U"){ // update
-			sql = gen.getDMLCommand(table ,row ,"TABLE_NAME", con.getDbType());
-		}else */if(status == "D"){// delete
-			sql = gen.getDMLCommand(table ,row ,"SM_CUSTOMER", con.getDbType());
-			stmt = con.PreparedStatement(sql);
-			stmt.addBatch();
+		if(status == "D"){
+			stmt.setString(1,row.getData('CUST_ID'));
+            stmt.addBatch();
+			stmt.clearParameters();
 		}
 	}
-	
 	Matrix.WriteLog(sql);
+	
 	stmt.executeBatch();
-
-	// COMMIT
+	stmt.clearBatch();
+	
 	con.CommitTransaction();
 
 }catch(e){

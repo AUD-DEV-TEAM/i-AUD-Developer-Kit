@@ -5,13 +5,14 @@
     "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REPA556B23B51AD4903B03AD879D552B203.mtsd",
     "ReportName": "제품 관리",
     "Writer": "kimje1342",
-    "WriteDate": "2026-02-03 10:36:56",
+    "WriteDate": "2026-02-13 10:13:00",
     "Editor": "kimje1342",
-    "EditDate": "2026-02-03 10:36:56",
+    "EditDate": "2026-02-13 10:13:00",
     "TabPosition": 0,
     "UseLayout": false,
     "DocumentVersion": "3.0.0.0",
     "RefreshType": 0,
+    "TabFocusMode": 1,
     "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
@@ -19,10 +20,10 @@
       {
         "Id": "DS25BCC88F91D845D7AED3B11E271A4439",
         "Name": "GRD_PRODUCT",
-        "UseMeta": "False",
-        "UseCache": "False",
+        "UseMeta": false,
+        "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": "True",
+        "Encrypted": true,
         "DSType": 2,
         "SQL": "YFlOv2mIX7PccK3PEWKs5e9Q9M6LU8384S70biEaBdXwnImZ6YFuwyLh36AMEpWW3yX3krkko/zjy9NShyL9ROpq0nLiMIx7kpV2DzxZlqlAHVCLzoYJo93VYUyXu/gHKxCIoJUYRYHsv7xkS4RGBfw6cGt1dDc8KUBMDmpuywlUxlUiJoDMASeR2IY6Uu54obVlc/tBpVlZHpjnporPxH95SzBpIqsuHQYWHoZOrp4WD4BpgCzVwypAVv11yjL/dPtcEME/P8xm0E63S2Axec1H4nFolgLs5VBS3E4aBJB6lVHN6cIoy+wGFukZy8ip2r6oxas6EsB/d2luvQq7nwdSh3HhXaLDSTS16B/2FjYDXQJpsB9bnZ7MGz/Uf/+s2tg+2QDhdQQWh4TOOTepXqZKssxRyv3mVFY8QweZWHp6lVHN6cIoy+wGFukZy8ipvV8dHBIT6cCOB2pK8KyZbvk3aHhA8rlhNX6gSqgzxdFmEihOiWqi3Nj640fMTxArLk2fPFiN2B0Tl0Jj9pXA5V9Ys0EVt/u9uLqPMVXi8P7PWtgWDvGngW7UwBbQklBJ5zRAGhJUveA3nN4oFbzrHJUkqt8csZkDMRe3V3dHp6U6Fo4nNNHDec/cf6JMm84+4KPJQWxIFUU9bs2k8wO9dZ5kEX/At+asWN9rDj3tiI+3et0lR9fhL/BYkCI+xC1F7qCQVgucttzKjn5jATznsw==",
         "Params": [
@@ -40,10 +41,10 @@
       {
         "Id": "DS4C768EFDD1754FAA82EB08115825CF8E",
         "Name": "VS_CAT",
-        "UseMeta": "False",
-        "UseCache": "False",
+        "UseMeta": false,
+        "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": "True",
+        "Encrypted": true,
         "DSType": 2,
         "SQL": "RqcdFwrE75IJ8ts66KIvJosubnYeN1DMgZo+ZLvOl7rTEzyegU8P2Amd4CZcsLAfUtdQmY5MRsunoY36WrvGWaVjjoFLlHEhna8xwQawBoU5yvuFIPxaryvWi8P7OOBouhQIueZlbwHXd9ZNPqUrW6ip389vm77PbWz0jDGJ1HbdaFpBrdSkbMhvWyKVI6kD",
         "Params": [],
@@ -61,10 +62,10 @@
       {
         "Id": "DS4E9BF11BCE39431B97C2CB6507C58EDC",
         "Name": "VS_INP_UNIT",
-        "UseMeta": "False",
-        "UseCache": "False",
+        "UseMeta": false,
+        "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": "True",
+        "Encrypted": true,
         "DSType": 2,
         "SQL": "RqcdFwrE75IJ8ts66KIvJosubnYeN1DMgZo+ZLvOl7rTEzyegU8P2Amd4CZcsLAfUtdQmY5MRsunoY36WrvGWaVjjoFLlHEhna8xwQawBoU5yvuFIPxaryvWi8P7OOBoS6l+ID+Kmg9npiyPw3xIhdfoh43J2Y9cTnfyk5LZeVdBxZSCYJXfBvikFrsO/Wvu",
         "Params": [],
@@ -81,23 +82,23 @@
       }
     ]
   },
-  "ScriptText": "/* Init Controls */\nvar GRD_PRODUCT = Matrix.getObject(\"GRD_PRODUCT\");\nvar VS_KEYWORD = Matrix.getObject(\"VS_KEYWORD\");\nvar VS_CAT = Matrix.getObject(\"VS_CAT\");\n/* Button Controls */\nvar BTN_ADD = Matrix.getObject(\"BTN_ADD\");\nvar BTN_REF = Matrix.getObject(\"BTN_REF\");\nvar BTN_RESET = Matrix.getObject(\"BTN_RESET\");\nvar BTN_DEL = Matrix.getObject(\"BTN_DEL\");\nvar BTN_CNC = Matrix.getObject(\"BTN_CNC\");\nvar BTN_SAV = Matrix.getObject(\"BTN_SAV\");\n/* Input Controls */\nvar VS_INP_PROD = Matrix.getObject(\"VS_INP_PROD\");\nvar VS_INP_CAT = Matrix.getObject(\"VS_INP_CAT\");\nvar VS_INP_PRICE = Matrix.getObject(\"VS_INP_PRICE\");\nvar VS_INP_COST = Matrix.getObject(\"VS_INP_COST\");\nvar VS_INP_UNIT = Matrix.getObject(\"VS_INP_UNIT\");\nvar popup = null;\nMatrix.OnDocumentLoadComplete = function (s, e) {\n    VS_KEYWORD.UsePlaceholder = true;\n    VS_KEYWORD.SetPlaceholder(' 제품명, 제품코드으로 검색');\n    GRD_PRODUCT.GetField('PROD_ID').KeyType = 3; // KeyType: Primary\n};\nMatrix.OnMultiComboBoxExecuteStart = function (s, e) {\n    if (e.Id == 'VS_CAT') {\n        VS_CAT.CheckAll();\n    }\n};\nMatrix.OnDataBindEnd = function (s, e) {\n    if (e.Id == 'GRD_PRODUCT') {\n        Matrix.getObject('LBL_TTL_2').Text = '   제품 목록 (' + e.RecordCount + '종)';\n    }\n};\n/******** Button Click Event ********/\n// 등록\nBTN_ADD.OnClick = function (s, e) {\n    setInputValue(null);\n    Matrix.SetGlobalParams('PROD_ID', '');\n    BTN_SAV.Text = '추가';\n    popup = Matrix.ShowWindow(\"제품 등록\", 0, 0, 460, 345, true, false, \"제품 등록\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\n// 검색\nBTN_REF.OnClick = function (s, e) {\n    Matrix.doRefresh('GRD_PRODUCT');\n};\n// 초기화\nBTN_RESET.OnClick = function (s, e) {\n    Matrix.getObject('VS_CAT').CheckAll();\n    VS_KEYWORD.Text = '';\n};\n// 삭제\nBTN_DEL.OnClick = function (s, e) {\n    var checkCount = 0;\n    for (var i = 0; i < GRD_PRODUCT.GetRowCount(); i++) {\n        if (GRD_PRODUCT.getRowValue(i, 'CHK') == 'Y') {\n            GRD_PRODUCT.ChangeRowStateAt(i, 'D');\n            checkCount++;\n        }\n    }\n    if (!checkCount) {\n        Matrix.Information('삭제할 항목을 선택하세요', '안내');\n        return;\n    }\n    Matrix.Confirm('선택한 항목을 삭제하시겠습니까?', '안내', function (ok) {\n        if (ok) {\n            Matrix.RunScript('GRD_PRODUCT', 'GRD_DELETE', function (p) {\n                if (p.Success == false) {\n                    Matrix.Alert(p.Message);\n                    return;\n                }\n                Matrix.doRefresh('GRD_PRODUCT');\n                Matrix.Information('삭제 완료되었습니다.', '안내');\n            });\n        }\n        else {\n            GRD_PRODUCT.ClearRowState(false);\n        }\n    }, 0);\n};\n// 취소\nBTN_CNC.OnClick = function (s, e) {\n    popup.Close();\n};\n// 저장\nBTN_SAV.OnClick = function (s, e) {\n    var fields = [VS_INP_PROD.Text, VS_INP_CAT.Value, VS_INP_PRICE.Value, VS_INP_COST.Value, VS_INP_UNIT.Value];\n    var controls = [VS_INP_PROD, VS_INP_CAT, VS_INP_PRICE, VS_INP_COST, VS_INP_UNIT];\n    var invalid = isInvalidInput(fields, controls);\n    if (invalid) {\n        Matrix.Information('필수 입력 항목을 확인해주세요', '안내');\n        invalid.Focus();\n        return;\n    }\n    var scriptName = Matrix.GetGlobalParamValue('VS_PROD_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';\n    Matrix.RunScript('', scriptName, function (p) {\n        if (p.Success == false) {\n            Matrix.Alert(p.Message);\n            return;\n        }\n        Matrix.doRefresh('GRD_PRODUCT');\n        Matrix.Information(BTN_SAV.Text + ' 완료되었습니다.', '안내');\n        popup.Close();\n    });\n};\n/******** Button Click Event ********/\nVS_KEYWORD.OnTextKeydown = function (s, e) {\n    if (e.Event.isEnter()) {\n        Matrix.doRefresh('GRD_PRODUCT');\n    }\n};\nGRD_PRODUCT.OnGridMultiHeaderCheckBoxClicked = function (s, e) {\n    var checkValue = e.Checked ? 'Y' : 'N';\n    for (var i = 0; i < GRD_PRODUCT.GetRowCount(); i++) {\n        GRD_PRODUCT.setRowValue(i, 'CHK', checkValue);\n    }\n    GRD_PRODUCT.Update();\n};\nGRD_PRODUCT.OnCellDoubleClick = function (s, e) {\n    setInputValue(e.Row);\n    Matrix.SetGlobalParams('VS_PROD_ID', e.Row.GetValue('PROD_ID'));\n    BTN_SAV.Text = '저장';\n    popup = Matrix.ShowWindow(\"제품 등록\", 0, 0, 460, 345, true, false, \"제품 등록\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\nvar setInputValue = function (row) {\n    if (row) {\n        VS_INP_PROD.Text = row.GetValue('PROD_NAME');\n        VS_INP_CAT.Value = row.GetValue('CATEGORY_CODE');\n        VS_INP_PRICE.Text = row.GetValue('STD_PRICE');\n        VS_INP_COST.Text = row.GetValue('COST_PRICE');\n        VS_INP_UNIT.Value = row.GetValue('STD_UNIT');\n    }\n    else {\n        VS_INP_PROD.Text = '';\n        VS_INP_CAT.Value = '';\n        VS_INP_PRICE.Text = '';\n        VS_INP_COST.Text = '';\n        VS_INP_UNIT.Value = '';\n    }\n};\nvar isInvalidInput = function (fields, controls) {\n    var idx = fields.findIndex(function (v) {\n        return v === null || v === undefined || v === '';\n    });\n    if (idx !== -1 && controls && controls[idx]) {\n        return controls[idx];\n    }\n    return idx !== -1 ? true : null;\n};\n",
+  "ScriptText": "/* Init Controls */\nvar GRD_PRODUCT = Matrix.getObject(\"GRD_PRODUCT\");\nvar VS_KEYWORD = Matrix.getObject(\"VS_KEYWORD\");\nvar VS_CAT = Matrix.getObject(\"VS_CAT\");\n/* Button Controls */\nvar BTN_ADD = Matrix.getObject(\"BTN_ADD\");\nvar BTN_REF = Matrix.getObject(\"BTN_REF\");\nvar BTN_RESET = Matrix.getObject(\"BTN_RESET\");\nvar BTN_DEL = Matrix.getObject(\"BTN_DEL\");\nvar BTN_CNC = Matrix.getObject(\"BTN_CNC\");\nvar BTN_SAV = Matrix.getObject(\"BTN_SAV\");\n/* Input Controls */\nvar VS_INP_PROD = Matrix.getObject(\"VS_INP_PROD\");\nvar VS_INP_CAT = Matrix.getObject(\"VS_INP_CAT\");\nvar VS_INP_PRICE = Matrix.getObject(\"VS_INP_PRICE\");\nvar VS_INP_COST = Matrix.getObject(\"VS_INP_COST\");\nvar VS_INP_UNIT = Matrix.getObject(\"VS_INP_UNIT\");\nvar popup = null;\nMatrix.OnDocumentLoadComplete = function (s, e) {\n    VS_KEYWORD.UsePlaceholder = true;\n    VS_KEYWORD.SetPlaceholder(' 제품명, 제품코드으로 검색');\n    GRD_PRODUCT.GetField('PROD_ID').KeyType = 3; // KeyType: Primary\n};\nMatrix.OnMultiComboBoxExecuteStart = function (s, e) {\n    if (e.Id == 'VS_CAT') {\n        VS_CAT.CheckAll();\n    }\n};\nMatrix.OnDataBindEnd = function (s, e) {\n    if (e.Id == 'GRD_PRODUCT') {\n        Matrix.getObject('LBL_TTL_2').Text = '   제품 목록 (' + e.RecordCount + '종)';\n    }\n};\n/******** Button Click Event ********/\n// 등록\nBTN_ADD.OnClick = function (s, e) {\n    setInputValue(null);\n    Matrix.SetGlobalParams('PROD_ID', '');\n    BTN_SAV.Text = '추가';\n    popup = Matrix.ShowWindow(\"제품 등록\", 0, 0, 460, 345, true, false, \"제품 등록\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\n// 검색\nBTN_REF.OnClick = function (s, e) {\n    Matrix.doRefresh('GRD_PRODUCT');\n};\n// 초기화\nBTN_RESET.OnClick = function (s, e) {\n    Matrix.getObject('VS_CAT').CheckAll();\n    VS_KEYWORD.Text = '';\n};\n// 삭제\nBTN_DEL.OnClick = function (s, e) {\n    var checkCount = 0;\n    for (var i = 0; i < GRD_PRODUCT.GetRowCount(); i++) {\n        if (GRD_PRODUCT.getRowValue(i, 'CHK') == 'Y') {\n            GRD_PRODUCT.ChangeRowStateAt(i, 'D');\n            checkCount++;\n        }\n    }\n    if (!checkCount) {\n        Matrix.Information('삭제할 항목을 선택하세요', '안내');\n        return;\n    }\n    Matrix.Confirm('선택한 항목을 삭제하시겠습니까?', '안내', function (ok) {\n        if (ok) {\n            Matrix.RunScript('GRD_PRODUCT', 'GRD_DELETE', function (p) {\n                if (p.Success == false) {\n                    Matrix.Alert(p.Message);\n                    return;\n                }\n                Matrix.doRefresh('GRD_PRODUCT');\n                Matrix.Information('삭제 완료되었습니다.', '안내');\n            });\n        }\n        else {\n            GRD_PRODUCT.ClearRowState(false);\n        }\n    }, 0);\n};\n// 취소\nBTN_CNC.OnClick = function (s, e) {\n    popup.Close();\n};\n// 저장\nBTN_SAV.OnClick = function (s, e) {\n    var fields = [VS_INP_PROD.Text, VS_INP_CAT.Value, VS_INP_PRICE.Value, VS_INP_COST.Value, VS_INP_UNIT.Value];\n    var controls = [VS_INP_PROD, VS_INP_CAT, VS_INP_PRICE, VS_INP_COST, VS_INP_UNIT];\n    var invalid = isInvalidInput(fields, controls);\n    if (invalid) {\n        Matrix.Information('필수 입력 항목을 확인해주세요', '안내');\n        invalid.Focus();\n        return;\n    }\n    var scriptName = Matrix.GetGlobalParamValue('VS_PROD_ID') ? 'GRD_UPDATE' : 'GRD_INSERT';\n    Matrix.RunScript('', scriptName, function (p) {\n        if (p.Success == false) {\n            Matrix.Alert(p.Message);\n            return;\n        }\n        Matrix.doRefresh('GRD_PRODUCT');\n        Matrix.Information(BTN_SAV.Text + ' 완료되었습니다.', '안내');\n        popup.Close();\n    });\n};\n/******** Button Click Event ********/\nVS_KEYWORD.OnTextKeydown = function (s, e) {\n    if (e.Event.isEnter()) {\n        Matrix.doRefresh('GRD_PRODUCT');\n    }\n};\nGRD_PRODUCT.OnGridMultiHeaderCheckBoxClicked = function (s, e) {\n    var checkValue = e.Checked ? 'Y' : 'N';\n    for (var i = 0; i < GRD_PRODUCT.GetRowCount(); i++) {\n        GRD_PRODUCT.setRowValue(i, 'CHK', checkValue);\n    }\n    GRD_PRODUCT.Update();\n};\nGRD_PRODUCT.OnCellClick = function (s, e) {\n    if (e.Field.Name == 'CHK')\n        return;\n    setInputValue(e.Row);\n    Matrix.SetGlobalParams('VS_PROD_ID', e.Row.GetValue('PROD_ID'));\n    BTN_SAV.Text = '저장';\n    popup = Matrix.ShowWindow(\"제품 등록\", 0, 0, 460, 345, true, false, \"제품 등록\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\nvar setInputValue = function (row) {\n    if (row) {\n        VS_INP_PROD.Text = row.GetValue('PROD_NAME');\n        VS_INP_CAT.Value = row.GetValue('CATEGORY_CODE');\n        VS_INP_PRICE.Text = row.GetValue('STD_PRICE');\n        VS_INP_COST.Text = row.GetValue('COST_PRICE');\n        VS_INP_UNIT.Value = row.GetValue('STD_UNIT');\n    }\n    else {\n        VS_INP_PROD.Text = '';\n        VS_INP_CAT.Value = '';\n        VS_INP_PRICE.Text = '';\n        VS_INP_COST.Text = '';\n        VS_INP_UNIT.Value = '';\n    }\n};\nvar isInvalidInput = function (fields, controls) {\n    var idx = fields.findIndex(function (v) {\n        return v === null || v === undefined || v === '';\n    });\n    if (idx !== -1 && controls && controls[idx]) {\n        return controls[idx];\n    }\n    return idx !== -1 ? true : null;\n};\n",
   "ServerScriptText": [
     {
       "Name": "GRD_DELETE",
-      "Key": "BIZF9BCC9F141E14789872C59911C5FE1F9",
+      "Key": "BIZDB4FC6D4DBB2445C9908279C01353A9B",
       "Encrypted": true,
-      "ScriptText": "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"
+      "ScriptText": "SnGZTXoWgLwnWaQFwynZkMloOIQcnzfw03AihKOUcMghluSJqfuFzWYi6BHo9NxrzvuO7dhUG1p7r0hAhJJLLAeqACZhHRCcelqh/bXZB5a3HBv9p35aNSWaCD9hOPC6pGfKjANsEhftEfPprCCSXcnfSFub2jUjkWTDQsHCSuM2XEy4JapNsTDL328k10BlmJwMckIXkAzI/bcys8STbWtiwZWc+NgpP8pREC4/Z/oK0Oeu4e5aecB7TSh0xyiHCG4GWEI7TgnLRKHIvv4R0+opUqu9/T6C2Imjm+oIGJO6LcPkckGfPtG6ohlgtKyN10Vbhxq2cpStai/BofS04vOYpdCPtnEM0IxWb/N29JEVtBn4jw4EihG3RfSIYjdiMSDpGoomgPXSy2RqZF5BTpwAOPq6+Pq3FNvIQg26wy/XBG5OcEZopPHkF1gTCTt8GzmkztOnjjXgYHYdnA9AOl0WyKYsI6mH3Ow77eTNj9Zr823p077OmrcrvU3DC3PjaBh0kLRvkc+LKFW5gxqh0Aw51F2vZhv8xfIkoiYL/rjs3HFgUeHDcdN7kvCd5qv+Holwr3FxtPVV+a0H1z5ns3CxbhnMnV1th87IP8EjQgP89iutF22HEHiD2W7oXeMzGYLZ7sfkddWr0jo5OoXntj4Xd29N//GGixVDvMGSOPCy675k0iMw1+YfoYz2ptck9KD42sk30SgZt64WWz9iDHB6nOxbJaW25fUfsigt8VxGd8/6HGf3MP8RownHFhXHnPCkHj5wUnaSFzWeTZx6vWjipIj9NZ2N7c86Ars4K6iTgI+TzLF7c4R/rAOU4vnTqxTQaoWRwuzSAIPdIeFNrXvoU3CXQh+nVSgzh9b4Cb7mp83eVHbZmXMGxIB6LYLNvjs7KVgMx0SX3PGhk8+wcHrmTEsNIkpzEpzUn1nPzeCkURLu14jW6Xw2toxifPMQM0NDaFOMD4XTVIopIlt0dZAO4P8P7EpETdEOMONVuwJ9fZ4tcXQ1RmFn7NJaIAqpZBp9xIOcflahoVOthXKZwywMoQVyTlX5bI1wli8ByihFuPtDK/2Z4a96VKv/IrbksRsJJlN/xyLQdmIxJZvRY7o7FI5JalWsi9J4JkFZQCW+2ZDGiyBRG9m1JF1z7Os/0284inW9kfEN/KQ0TNY+tUikdvB0ktRZyHKKnnR5WIQ10enlReDHeqiDH1UT67+STMCXA8R4OuCSTG4ab5L2M4eIZxG7sFHeuZHr3vYCmJH74JaRpVZS/VaAEA0OM09Ium9LheITYNdsaez4flK03r3SQQDAJoQAXossNEqDdJeG4oayJglUMv3XfG6V00IViIU/1zfKHe+hPtP7RISeOOvjTTwl0m8ZJjqBpY5VbY+NUqjPmQJxxi2qR8YxWNnRgoHS8ATBVKSl3260EHRvhhtJo4yWcLmW9xA+yQXMs3UrYU8JGrM7WQ7+GHFhoqZR9rNwbjvJC+5tLBPT+ELx8VyvNpAMbepHekckovnSNAAALRNgDhIompPAY90mHHNCzw3InOgUF86KbhSqXnOWmo9v0AJ70VJUdxWG6wKnuUuFcaK0s74cT44ZT24tyYUt7ne0H/hZu2ActNgtTrkKWbImKzeJLIwhf6gU+MnKZbOTEoylav629ox5vTBIOSpatr73sFuQMQaxwDXMocWBZnQ6HP8aytxB9W4zlWq2nfRl/tgHtqa8R35hXYLDCENe"
     },
     {
       "Name": "GRD_INSERT",
-      "Key": "BIZF1BE8EA7DE8E417CADE3CDDF525EDFBB",
+      "Key": "BIZ897CFAE545DC4C18BDC661BE8E86D054",
       "Encrypted": true,
       "ScriptText": "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"
     },
     {
       "Name": "GRD_UPDATE",
-      "Key": "BIZ594E57AE76EB4608B726F75006EBCB40",
+      "Key": "BIZ42FFD694277B433DB44C57E0FCFCB0CD",
       "Encrypted": true,
       "ScriptText": "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"
     }
@@ -182,7 +183,9 @@
                 "Type": 1,
                 "BoxStyle": "BX49877C338AD340E2BDFD611C0A13402A",
                 "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 37,
                     "G": 99,
                     "B": 235,
@@ -190,7 +193,9 @@
                   }
                 },
                 "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 204,
                     "G": 204,
                     "B": 204,
@@ -198,10 +203,17 @@
                   },
                   "LineType": "none",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "4,4,4,4"
+                  "CornerRadius": "4,4,4,4",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
                 },
                 "Font": {
+                  "Type": "FontInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -214,6 +226,11 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "center",
                   "VerticalAlignment": "middle",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -289,6 +306,8 @@
               "Formula": "",
               "UseTextOverflow": false,
               "UseAutoLineBreak": false,
+              "LineSpacing": 1.2,
+              "HasLineSpacing": false,
               "MxBinding": "",
               "MxBindingUseStyle": true,
               "Margin": {
@@ -324,7 +343,9 @@
                 "Type": 2,
                 "BoxStyle": "",
                 "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -332,7 +353,9 @@
                   }
                 },
                 "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 85,
                     "G": 142,
                     "B": 213,
@@ -340,10 +363,17 @@
                   },
                   "LineType": "none",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0"
+                  "CornerRadius": "0,0,0,0",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
                 },
                 "Font": {
+                  "Type": "FontInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 100,
                     "G": 116,
                     "B": 139,
@@ -356,6 +386,11 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "left",
                   "VerticalAlignment": "middle",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -367,6 +402,8 @@
               "Formula": "",
               "UseTextOverflow": false,
               "UseAutoLineBreak": false,
+              "LineSpacing": 1.2,
+              "HasLineSpacing": false,
               "MxBinding": "",
               "MxBindingUseStyle": true,
               "Margin": {
@@ -402,7 +439,9 @@
                 "Type": 2,
                 "BoxStyle": "",
                 "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -410,7 +449,9 @@
                   }
                 },
                 "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 85,
                     "G": 142,
                     "B": 213,
@@ -418,10 +459,17 @@
                   },
                   "LineType": "none",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0"
+                  "CornerRadius": "0,0,0,0",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
                 },
                 "Font": {
+                  "Type": "FontInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 100,
                     "G": 116,
                     "B": 139,
@@ -434,6 +482,11 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "left",
                   "VerticalAlignment": "middle",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -473,7 +526,9 @@
                 "Type": 2,
                 "BoxStyle": "",
                 "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -481,7 +536,9 @@
                   }
                 },
                 "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 226,
                     "G": 232,
                     "B": 240,
@@ -489,10 +546,19 @@
                   },
                   "LineType": "solid",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "5,5,5,5"
+                  "CornerRadius": "5,5,5,5",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "TextBox"
+                  }
                 },
                 "Font": {
+                  "Type": "FontInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 30,
                     "G": 41,
                     "B": 59,
@@ -505,6 +571,13 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "left",
                   "VerticalAlignment": "middle",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "TextBox"
+                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -560,7 +633,9 @@
                 "Type": 1,
                 "BoxStyle": "BX49877C338AD340E2BDFD611C0A13402A",
                 "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 37,
                     "G": 99,
                     "B": 235,
@@ -568,7 +643,9 @@
                   }
                 },
                 "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 204,
                     "G": 204,
                     "B": 204,
@@ -576,10 +653,17 @@
                   },
                   "LineType": "none",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "4,4,4,4"
+                  "CornerRadius": "4,4,4,4",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
                 },
                 "Font": {
+                  "Type": "FontInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -592,6 +676,11 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "center",
                   "VerticalAlignment": "middle",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -647,7 +736,9 @@
                 "Type": 1,
                 "BoxStyle": "BX4DB6D0154B0D43B0B982A85B2825AA76",
                 "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -655,7 +746,9 @@
                   }
                 },
                 "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 226,
                     "G": 232,
                     "B": 240,
@@ -663,10 +756,17 @@
                   },
                   "LineType": "solid",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "4,4,4,4"
+                  "CornerRadius": "4,4,4,4",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
                 },
                 "Font": {
+                  "Type": "FontInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 30,
                     "G": 41,
                     "B": 59,
@@ -679,6 +779,11 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "center",
                   "VerticalAlignment": "middle",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -744,7 +849,9 @@
                 "Type": 2,
                 "BoxStyle": "",
                 "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -752,7 +859,9 @@
                   }
                 },
                 "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 226,
                     "G": 232,
                     "B": 240,
@@ -760,10 +869,17 @@
                   },
                   "LineType": "solid",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "5,5,5,5"
+                  "CornerRadius": "5,5,5,5",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "MultiComboBox"
+                  }
                 },
                 "Font": {
+                  "Type": "FontInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 30,
                     "G": 41,
                     "B": 59,
@@ -776,6 +892,11 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "left",
                   "VerticalAlignment": "middle",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "MultiComboBox"
+                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -851,6 +972,8 @@
               "Formula": "",
               "UseTextOverflow": false,
               "UseAutoLineBreak": false,
+              "LineSpacing": 1.2,
+              "HasLineSpacing": false,
               "MxBinding": "",
               "MxBindingUseStyle": true,
               "Margin": {
@@ -886,7 +1009,9 @@
                 "Type": 2,
                 "BoxStyle": "",
                 "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -894,7 +1019,9 @@
                   }
                 },
                 "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 226,
                     "G": 232,
                     "B": 240,
@@ -902,10 +1029,17 @@
                   },
                   "LineType": "solid",
                   "Thickness": "0,0,0,1",
-                  "CornerRadius": "0,0,0,0"
+                  "CornerRadius": "0,0,0,0",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
                 },
                 "Font": {
+                  "Type": "FontInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 30,
                     "G": 41,
                     "B": 59,
@@ -918,6 +1052,11 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "left",
                   "VerticalAlignment": "middle",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -1182,6 +1321,7 @@
                     "ErrorLanguageCode": ""
                   },
                   "GridColumnWidthType": 1,
+                  "Editable": false,
                   "KeyType": 2,
                   "HeaderPosition": "center",
                   "TextPosition": "center",
@@ -1263,7 +1403,9 @@
                           "Type": 2,
                           "BoxStyle": "",
                           "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 255,
                               "G": 255,
                               "B": 255,
@@ -1271,7 +1413,9 @@
                             }
                           },
                           "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 204,
                               "G": 204,
                               "B": 204,
@@ -1279,10 +1423,20 @@
                             },
                             "LineType": "solid",
                             "Thickness": "1,1,1,1",
-                            "CornerRadius": "0,0,0,0"
+                            "CornerRadius": "0,0,0,0",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [
+                                "Background",
+                                "Border"
+                              ],
+                              "DefaultStyle": "CheckBox"
+                            }
                           },
                           "Font": {
+                            "Type": "FontInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 48,
                               "G": 48,
                               "B": 49,
@@ -1295,6 +1449,14 @@
                             "UnderLine": false,
                             "HorizontalAlignment": "center",
                             "VerticalAlignment": "middle",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [
+                                "Background",
+                                "Border"
+                              ],
+                              "DefaultStyle": "CheckBox"
+                            },
                             "TempFontFamily": "맑은 고딕"
                           }
                         }
@@ -1324,6 +1486,8 @@
                         "Formula": "",
                         "UseTextOverflow": false,
                         "UseAutoLineBreak": false,
+                        "LineSpacing": 1.2,
+                        "HasLineSpacing": false,
                         "MxBinding": "",
                         "MxBindingUseStyle": true,
                         "Margin": {
@@ -1358,7 +1522,9 @@
                           "Type": 2,
                           "BoxStyle": "",
                           "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 248,
                               "G": 250,
                               "B": 252,
@@ -1366,7 +1532,9 @@
                             }
                           },
                           "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 226,
                               "G": 232,
                               "B": 240,
@@ -1374,10 +1542,17 @@
                             },
                             "LineType": "none",
                             "Thickness": "0,0,0,0",
-                            "CornerRadius": "0,0,0,0"
+                            "CornerRadius": "0,0,0,0",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
                           },
                           "Font": {
+                            "Type": "FontInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 100,
                               "G": 116,
                               "B": 139,
@@ -1390,6 +1565,11 @@
                             "UnderLine": false,
                             "HorizontalAlignment": "center",
                             "VerticalAlignment": "middle",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            },
                             "TempFontFamily": "맑은 고딕"
                           }
                         }
@@ -1411,6 +1591,8 @@
                         "Formula": "",
                         "UseTextOverflow": false,
                         "UseAutoLineBreak": false,
+                        "LineSpacing": 1.2,
+                        "HasLineSpacing": false,
                         "MxBinding": "",
                         "MxBindingUseStyle": true,
                         "Margin": {
@@ -1445,7 +1627,9 @@
                           "Type": 2,
                           "BoxStyle": "",
                           "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 248,
                               "G": 250,
                               "B": 252,
@@ -1453,7 +1637,9 @@
                             }
                           },
                           "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 226,
                               "G": 232,
                               "B": 240,
@@ -1461,10 +1647,17 @@
                             },
                             "LineType": "none",
                             "Thickness": "0,0,0,0",
-                            "CornerRadius": "0,0,0,0"
+                            "CornerRadius": "0,0,0,0",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
                           },
                           "Font": {
+                            "Type": "FontInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 100,
                               "G": 116,
                               "B": 139,
@@ -1477,6 +1670,11 @@
                             "UnderLine": false,
                             "HorizontalAlignment": "center",
                             "VerticalAlignment": "middle",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            },
                             "TempFontFamily": "맑은 고딕"
                           }
                         }
@@ -1498,6 +1696,8 @@
                         "Formula": "",
                         "UseTextOverflow": false,
                         "UseAutoLineBreak": false,
+                        "LineSpacing": 1.2,
+                        "HasLineSpacing": false,
                         "MxBinding": "",
                         "MxBindingUseStyle": true,
                         "Margin": {
@@ -1532,7 +1732,9 @@
                           "Type": 2,
                           "BoxStyle": "",
                           "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 248,
                               "G": 250,
                               "B": 252,
@@ -1540,7 +1742,9 @@
                             }
                           },
                           "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 226,
                               "G": 232,
                               "B": 240,
@@ -1548,10 +1752,17 @@
                             },
                             "LineType": "none",
                             "Thickness": "0,0,0,0",
-                            "CornerRadius": "0,0,0,0"
+                            "CornerRadius": "0,0,0,0",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
                           },
                           "Font": {
+                            "Type": "FontInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 100,
                               "G": 116,
                               "B": 139,
@@ -1564,6 +1775,11 @@
                             "UnderLine": false,
                             "HorizontalAlignment": "center",
                             "VerticalAlignment": "middle",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            },
                             "TempFontFamily": "맑은 고딕"
                           }
                         }
@@ -1585,6 +1801,8 @@
                         "Formula": "",
                         "UseTextOverflow": false,
                         "UseAutoLineBreak": false,
+                        "LineSpacing": 1.2,
+                        "HasLineSpacing": false,
                         "MxBinding": "",
                         "MxBindingUseStyle": true,
                         "Margin": {
@@ -1619,7 +1837,9 @@
                           "Type": 2,
                           "BoxStyle": "",
                           "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 248,
                               "G": 250,
                               "B": 252,
@@ -1627,7 +1847,9 @@
                             }
                           },
                           "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 226,
                               "G": 232,
                               "B": 240,
@@ -1635,10 +1857,17 @@
                             },
                             "LineType": "none",
                             "Thickness": "0,0,0,0",
-                            "CornerRadius": "0,0,0,0"
+                            "CornerRadius": "0,0,0,0",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
                           },
                           "Font": {
+                            "Type": "FontInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 100,
                               "G": 116,
                               "B": 139,
@@ -1651,6 +1880,11 @@
                             "UnderLine": false,
                             "HorizontalAlignment": "center",
                             "VerticalAlignment": "middle",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            },
                             "TempFontFamily": "맑은 고딕"
                           }
                         }
@@ -1672,6 +1906,8 @@
                         "Formula": "",
                         "UseTextOverflow": false,
                         "UseAutoLineBreak": false,
+                        "LineSpacing": 1.2,
+                        "HasLineSpacing": false,
                         "MxBinding": "",
                         "MxBindingUseStyle": true,
                         "Margin": {
@@ -1706,7 +1942,9 @@
                           "Type": 2,
                           "BoxStyle": "",
                           "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 248,
                               "G": 250,
                               "B": 252,
@@ -1714,7 +1952,9 @@
                             }
                           },
                           "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 226,
                               "G": 232,
                               "B": 240,
@@ -1722,10 +1962,17 @@
                             },
                             "LineType": "none",
                             "Thickness": "0,0,0,0",
-                            "CornerRadius": "0,0,0,0"
+                            "CornerRadius": "0,0,0,0",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
                           },
                           "Font": {
+                            "Type": "FontInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 100,
                               "G": 116,
                               "B": 139,
@@ -1738,6 +1985,11 @@
                             "UnderLine": false,
                             "HorizontalAlignment": "center",
                             "VerticalAlignment": "middle",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            },
                             "TempFontFamily": "맑은 고딕"
                           }
                         }
@@ -1759,6 +2011,8 @@
                         "Formula": "",
                         "UseTextOverflow": false,
                         "UseAutoLineBreak": false,
+                        "LineSpacing": 1.2,
+                        "HasLineSpacing": false,
                         "MxBinding": "",
                         "MxBindingUseStyle": true,
                         "Margin": {
@@ -1793,7 +2047,9 @@
                           "Type": 2,
                           "BoxStyle": "",
                           "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 248,
                               "G": 250,
                               "B": 252,
@@ -1801,7 +2057,9 @@
                             }
                           },
                           "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 85,
                               "G": 142,
                               "B": 213,
@@ -1809,10 +2067,17 @@
                             },
                             "LineType": "none",
                             "Thickness": "1,1,1,1",
-                            "CornerRadius": "0,0,0,0"
+                            "CornerRadius": "0,0,0,0",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
                           },
                           "Font": {
+                            "Type": "FontInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 100,
                               "G": 116,
                               "B": 139,
@@ -1825,6 +2090,11 @@
                             "UnderLine": false,
                             "HorizontalAlignment": "center",
                             "VerticalAlignment": "middle",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            },
                             "TempFontFamily": "맑은 고딕"
                           }
                         }
@@ -1845,6 +2115,8 @@
                         "Formula": "",
                         "UseTextOverflow": false,
                         "UseAutoLineBreak": false,
+                        "LineSpacing": 1.2,
+                        "HasLineSpacing": false,
                         "MxBinding": "",
                         "MxBindingUseStyle": true,
                         "Margin": {
@@ -1879,7 +2151,9 @@
                           "Type": 2,
                           "BoxStyle": "",
                           "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 248,
                               "G": 250,
                               "B": 252,
@@ -1887,7 +2161,9 @@
                             }
                           },
                           "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 226,
                               "G": 232,
                               "B": 240,
@@ -1895,10 +2171,17 @@
                             },
                             "LineType": "solid",
                             "Thickness": "0,0,0,0",
-                            "CornerRadius": "0,0,0,0"
+                            "CornerRadius": "0,0,0,0",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
                           },
                           "Font": {
+                            "Type": "FontInfo",
                             "Color": {
+                              "__type__": "istudio.drawing.style.Color",
                               "R": 100,
                               "G": 116,
                               "B": 139,
@@ -1911,6 +2194,11 @@
                             "UnderLine": false,
                             "HorizontalAlignment": "center",
                             "VerticalAlignment": "middle",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            },
                             "TempFontFamily": "맑은 고딕"
                           }
                         }
@@ -1983,7 +2271,9 @@
                 "Type": 1,
                 "BoxStyle": "BX478B581080C34B1EB6F2479F1D161DD2",
                 "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 239,
                     "G": 68,
                     "B": 68,
@@ -1991,7 +2281,9 @@
                   }
                 },
                 "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 226,
                     "G": 232,
                     "B": 240,
@@ -1999,10 +2291,17 @@
                   },
                   "LineType": "none",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "4,4,4,4"
+                  "CornerRadius": "4,4,4,4",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
                 },
                 "Font": {
+                  "Type": "FontInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -2015,6 +2314,11 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "center",
                   "VerticalAlignment": "middle",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -2088,6 +2392,8 @@
           "Formula": "",
           "UseTextOverflow": false,
           "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": false,
           "MxBinding": "",
           "MxBindingUseStyle": true,
           "Margin": {
@@ -2193,6 +2499,8 @@
           "Formula": "",
           "UseTextOverflow": false,
           "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": false,
           "MxBinding": "",
           "MxBindingUseStyle": true,
           "Margin": {
@@ -2265,8 +2573,8 @@
         },
         {
           "LanguageCode": "",
-          "Text": "무선 키보드마우스 세트",
-          "Value": "무선 키보드마우스 세트",
+          "Text": "",
+          "Value": "",
           "IsReadOnly": false,
           "MaxLength": 0,
           "InputType": 0,
@@ -2340,6 +2648,8 @@
           "Formula": "",
           "UseTextOverflow": false,
           "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": false,
           "MxBinding": "",
           "MxBindingUseStyle": true,
           "Margin": {
@@ -2412,7 +2722,7 @@
         },
         {
           "DataSource": "DS4C768EFDD1754FAA82EB08115825CF8E",
-          "Value": "NETWORK",
+          "Value": "ELECTRONICS",
           "Text": "",
           "InitType": "1",
           "RefreshType": 1,
@@ -2496,6 +2806,8 @@
           "Formula": "",
           "UseTextOverflow": false,
           "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": false,
           "MxBinding": "",
           "MxBindingUseStyle": true,
           "Margin": {
@@ -2573,6 +2885,8 @@
           "Formula": "",
           "UseTextOverflow": false,
           "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": false,
           "MxBinding": "",
           "MxBindingUseStyle": true,
           "Margin": {
@@ -2650,6 +2964,8 @@
           "Formula": "",
           "UseTextOverflow": false,
           "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": false,
           "MxBinding": "",
           "MxBindingUseStyle": true,
           "Margin": {
@@ -2773,7 +3089,9 @@
                 "Type": 1,
                 "BoxStyle": "BX49877C338AD340E2BDFD611C0A13402A",
                 "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 37,
                     "G": 99,
                     "B": 235,
@@ -2781,7 +3099,9 @@
                   }
                 },
                 "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 204,
                     "G": 204,
                     "B": 204,
@@ -2789,10 +3109,17 @@
                   },
                   "LineType": "none",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "4,4,4,4"
+                  "CornerRadius": "4,4,4,4",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
                 },
                 "Font": {
+                  "Type": "FontInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -2805,6 +3132,11 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "center",
                   "VerticalAlignment": "middle",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -2860,7 +3192,9 @@
                 "Type": 1,
                 "BoxStyle": "BX4DB6D0154B0D43B0B982A85B2825AA76",
                 "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -2868,7 +3202,9 @@
                   }
                 },
                 "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 226,
                     "G": 232,
                     "B": 240,
@@ -2876,10 +3212,17 @@
                   },
                   "LineType": "solid",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "4,4,4,4"
+                  "CornerRadius": "4,4,4,4",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
                 },
                 "Font": {
+                  "Type": "FontInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 30,
                     "G": 41,
                     "B": 59,
@@ -2892,6 +3235,11 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "center",
                   "VerticalAlignment": "middle",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -2961,8 +3309,8 @@
         {
           "Format": "#,##0",
           "Formula": "",
-          "Value": 55000,
-          "Text": "55,000",
+          "Value": 0,
+          "Text": 0,
           "IsReadOnly": false,
           "Maximum": "",
           "Minimum": "",
@@ -3032,8 +3380,8 @@
         {
           "Format": "#,##0",
           "Formula": "",
-          "Value": 35000,
-          "Text": "35,000",
+          "Value": 0,
+          "Text": 0,
           "IsReadOnly": false,
           "Maximum": "",
           "Minimum": "",

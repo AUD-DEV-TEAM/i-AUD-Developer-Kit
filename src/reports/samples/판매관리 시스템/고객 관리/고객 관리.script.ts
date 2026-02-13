@@ -13,6 +13,7 @@ let Matrix : Matrix;
 const GRP_BODY: Group = Matrix.getObject("GRP_BODY") as Group;
 const GRD_CUSTOMER: DataGrid = Matrix.getObject("GRD_CUSTOMER") as DataGrid;
 const VS_KEYWORD: TextBox = Matrix.getObject("VS_KEYWORD") as TextBox;
+const LBL_TTL_3: TextBox = Matrix.getObject("LBL_TTL_3") as TextBox;
 
 /* Button Controls */
 const BTN_REF: Button = Matrix.getObject('BTN_REF') as Button;
@@ -39,7 +40,7 @@ Matrix.OnDocumentLoadComplete = function(s, e) {
 
 Matrix.OnLoadComplete = function(s, e) {
 	if (e.Message) {
-		setInputValue(null);
+		initInputValue();
 	}
 };
 
@@ -94,17 +95,11 @@ BTN_DEL.OnClick = function(s, e) {
 
 // 초기화
 BTN_RESET.OnClick = function(s, e) {
-	Matrix.SetGlobalParams('VS_CUST_ID', '');
-	setInputValue(null);
+	initInputValue();
 };
 
 // 저장
 BTN_SAV.OnClick = function(s, e) {
-	if (!Matrix.GetGlobalParamValue('VS_CUST_ID')) {
-		Matrix.Information('고객 선택 후 다시 시도하세요', '안내');
-		return;
-	}
-
 	const savFields = [VS_INP_NAME.Text, VS_INP_TYPE.Value, VS_INP_GRADE.Value];
 	const savControls = [VS_INP_NAME, VS_INP_TYPE, VS_INP_GRADE];
 	const savInvalid = isInvalidInput(savFields, savControls);
@@ -114,40 +109,34 @@ BTN_SAV.OnClick = function(s, e) {
 		return;
 	}
 
-	Matrix.RunScript('', 'GRD_UPDATE', function(p) {
-		if (p.Success == false) {
-			Matrix.Alert(p.Message);
-			return;
-		}
-		Matrix.doRefresh('GRD_CUSTOMER');
-		Matrix.Information('수정 완료되었습니다.', '안내');
-	});
+	if(LBL_TTL_3.Text.includes('등록')){
+		Matrix.RunScript('', 'GRD_INSERT', function(p) {
+			if (p.Success == false) {
+				Matrix.Alert(p.Message);
+				return;
+			}
+			Matrix.doRefresh('GRD_CUSTOMER');
+			Matrix.Information('추가 완료되었습니다.', '안내');
+		});
+
+	}else if(LBL_TTL_3.Text.includes('수정')){
+		Matrix.RunScript('', 'GRD_UPDATE', function(p) {
+			if (p.Success == false) {
+				Matrix.Alert(p.Message);
+				return;
+			}
+			Matrix.doRefresh('GRD_CUSTOMER');
+			Matrix.Information('수정 완료되었습니다.', '안내');
+		});
+	}
 };
 
 // 추가
 BTN_ADD.OnClick = function(s, e) {
-	if (Matrix.GetGlobalParamValue('VS_CUST_ID')) {
-		Matrix.Information('고객이 선택되어 있습니다.\n초기화 버튼 클릭 후 다시 시도하세요', '안내');
-		return;
-	}
+	Matrix.SetGlobalParams('VS_CUST_ID', '');
+	initInputValue();
 
-	const addFields = [VS_INP_NAME.Text, VS_INP_TYPE.Value, VS_INP_GRADE.Value];
-	const addControls = [VS_INP_NAME, VS_INP_TYPE, VS_INP_GRADE];
-	const addInvalid = isInvalidInput(addFields, addControls);
-	if (addInvalid) {
-		Matrix.Information('필수 입력 항목을 확인해주세요', '안내');
-		addInvalid.Focus();
-		return;
-	}
-
-	Matrix.RunScript('', 'GRD_INSERT', function(p) {
-		if (p.Success == false) {
-			Matrix.Alert(p.Message);
-			return;
-		}
-		Matrix.doRefresh('GRD_CUSTOMER');
-		Matrix.Information('추가 완료되었습니다.', '안내');
-	});
+	LBL_TTL_3.Text = '   고객 신규 등록';
 };
 /******** Button Click Event ********/
 
@@ -156,6 +145,13 @@ VS_KEYWORD.OnTextKeydown = function(s, e) {
 		Matrix.doRefresh('GRD_CUSTOMER');
 	}
 };
+
+GRD_CUSTOMER.OnDataBindEnd = function(s, e) {
+	Matrix.SetGlobalParams('VS_CUST_ID', '');
+	initInputValue();
+
+	LBL_TTL_3.Text = '   고객 신규 등록';
+}
 
 GRD_CUSTOMER.OnGridMultiHeaderCheckBoxClicked = function(s, e) {
 	const checkValue = e.Checked ? 'Y' : 'N';
@@ -169,31 +165,21 @@ Matrix.OnViewerSizeChanged = function(s, e) {
 	GRP_BODY.Width = e.Width - 520;
 };
 
-GRD_CUSTOMER.OnCellDoubleClick = function(s, e) {
+GRD_CUSTOMER.OnCellClick = function(s, e) {
 	Matrix.SetGlobalParams('VS_CUST_ID', e.Row.GetValue('CUST_ID'));
-	setInputValue(e.Row);
+	LBL_TTL_3.Text = '   고객 정보 수정';
 };
 
-const setInputValue = function(row) {
-	if (row) {
-		VS_INP_NAME.Text = row.GetValue('CUST_NAME');
-		VS_INP_TYPE.Value = row.GetValue('TYPE_CODE');
-		VS_INP_GRADE.Value = row.GetValue('GRADE_CODE');
-		VN_INP_LIMIT.Value = row.GetValue('CREDIT_LIMIT');
-		VS_INP_REG_NO.Text = row.GetValue('REG_NO');
-		VS_INP_PHONE.Text = row.GetValue('PHONE');
-		VS_INP_EMAIL.Text = row.GetValue('EMAIL');
-		VS_INP_MAIN.Text = row.GetValue('MAIN');
-	} else {
-		VS_INP_NAME.Text = '';
-		VS_INP_TYPE.Value = '';
-		VS_INP_GRADE.Value = '';
-		VN_INP_LIMIT.Value = 0;
-		VS_INP_REG_NO.Text = '';
-		VS_INP_PHONE.Text = '';
-		VS_INP_EMAIL.Text = '';
-		VS_INP_MAIN.Text = '';
-	}
+
+const initInputValue = function() {
+	VS_INP_NAME.Text = '';
+	VS_INP_TYPE.Value = '';
+	VS_INP_GRADE.Value = '';
+	VN_INP_LIMIT.Value = 0;
+	VS_INP_REG_NO.Text = '';
+	VS_INP_PHONE.Text = '';
+	VS_INP_EMAIL.Text = '';
+	VS_INP_MAIN.Text = '';
 };
 
 const isInvalidInput = function(fields, controls?): any {

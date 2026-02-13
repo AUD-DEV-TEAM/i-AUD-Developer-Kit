@@ -1,4 +1,5 @@
 import { Matrix } from "@AUD_SERVER/matrix/script/Matrix";
+import { ScriptDataRow } from "@AUD_SERVER/matrix/script/ScriptDataRow";
 import { ScriptPreparedStatement } from "@AUD_SERVER/matrix/script/ScriptPreparedStatement";
 
 
@@ -11,35 +12,34 @@ let   con = Matrix.getConnection(); /* DataBase Connection */
 const table = req.getTable("GRD_PLAN"); //get grid's work data
 const gen = Matrix.getQueryGenerator(); // query generator
 
+let stmt : ScriptPreparedStatement = null;
 let sql = "";
 let status = "";
-let row = null;
-let stmt : ScriptPreparedStatement = null;
+let row : ScriptDataRow = null;
 
 try{
 	//connection
-	con.Connect("AUD_SAMPLE_DB");// set target dbms connection code
-	con.BeginTransaction();  // begin transaction
+	con.Connect("AUD_SAMPLE_DB");
+	con.BeginTransaction();
 
-	//------------------------------------------------------
-	// save table data
-	//------------------------------------------------------
+	sql = 'DELETE FROM SM_SALES_PLAN WHERE PLAN_ID = ?;';
+	stmt = con.PreparedStatement(sql);
+
 	for(let r=0;r<table.getRowCount();r++){
 		row = table.getRow(r);
 		status = row.getRowStatus();
 
-		// auto generation dml sql
-		if(status == "D"){// delete
-			sql = gen.getDMLCommand(table ,row ,"SM_SALES_PLAN", con.getDbType());
-			stmt = con.PreparedStatement(sql);
+		if(status == "D"){
+			stmt.setString(1,row.getData('PLAN_ID'));
 			stmt.addBatch();
+			stmt.clearParameters();
 		}
 	}
-		
 	Matrix.WriteLog(sql);
+	
 	stmt.executeBatch();
-
-	// COMMIT
+	stmt.clearBatch();
+	
 	con.CommitTransaction();
 
 }catch(e){

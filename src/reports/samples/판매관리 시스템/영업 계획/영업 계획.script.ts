@@ -148,7 +148,9 @@ GRD_PLAN.OnGridMultiHeaderCheckBoxClicked = function(s, e) {
 	GRD_PLAN.Update();
 };
 
-GRD_PLAN.OnCellDoubleClick = function(s, e) {
+GRD_PLAN.OnCellClick = function(s, e) {
+	if(e.Field.Name == 'CHK') return;
+	
 	setInputValue(e.Row);
 	Matrix.SetGlobalParams('VS_PLAN_ID', e.Row.GetValue('PLAN_ID'));
 	BTN_SAV.Text = '저장';
