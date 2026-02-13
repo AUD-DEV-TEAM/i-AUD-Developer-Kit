@@ -6,6 +6,7 @@ import { enDateInterval } from "../../../com/matrix/data/enDateInterval";
 import { ScriptDataTable } from "../../../com/matrix/script/ScriptDataTable";
 import { ScriptDataSet } from "../../../com/matrix/script/ScriptDataSet";
 import { Size } from "../../../com/matrix/Excel/Drawing/Size";
+import { ScriptInvokeResult } from "../../../com/matrix/script/ScriptInvokeResult";
 import { ScriptDataRow } from "../../../com/matrix/script/ScriptDataRow";
 /**
 * 공통 유틸리티 객체로 문자열 제어, 날짜제어, 메일 발송 등 다양한 기능을 제공합니다.
@@ -33,6 +34,45 @@ export interface ScriptUtility{
   * @param className Class Name
   */
   CreateInstance(className: string): any;
+
+  /**
+   * 지정된 클래스의 인스턴스를 생성하고, 해당 인스턴스의 메서드를 호출하여 결과를 반환합니다.
+   *
+   * @example
+   * ```js
+   * var util = Matrix.getUtility();
+   * var result = util.InvokeMethod("com.example.MyClass", "myMethod", ["param1", 123]);
+   * if (!result.HasError()) {
+   *     var value = result.getValue();
+   * } else {
+   *     Matrix.ThrowException(result.getError());
+   * }
+   * ```
+  * @param className 호출할 클래스의 전체 이름 (패키지 포함)
+  * @param methodName 호출할 메서드 이름
+  * @param params 메서드에 전달할 파라미터 배열
+  */
+  InvokeMethod(className: string, methodName: string, params: any[]): ScriptInvokeResult;
+
+  /**
+   * 지정된 클래스의 정적(static) 메서드를 호출하여 결과를 반환합니다.
+   * 인스턴스를 생성하지 않고 클래스의 static 메서드를 직접 호출합니다.
+   *
+   * @example
+   * ```js
+   * var util = Matrix.getUtility();
+   * var result = util.InvokeStaticMethod("com.example.MyUtils", "calculate", [100, 200]);
+   * if (!result.HasError()) {
+   *     var value = result.getValue();
+   * } else {
+   *     Matrix.ThrowException(result.getError());
+   * }
+   * ```
+  * @param className 호출할 클래스의 전체 이름 (패키지 포함)
+  * @param methodName 호출할 정적 메서드 이름
+  * @param params 메서드에 전달할 파라미터 배열
+  */
+  InvokeStaticMethod(className: string, methodName: string, params: any[]): ScriptInvokeResult;
 
   /**
    * PDF 파일 작성을 위한 {@link ScriptPdfDocument} 객체를 반환합니다.
