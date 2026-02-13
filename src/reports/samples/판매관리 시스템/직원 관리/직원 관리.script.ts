@@ -149,7 +149,9 @@ GRD_EMPLOYEE.OnGridMultiHeaderCheckBoxClicked = function(s, e) {
 	GRD_EMPLOYEE.Update();
 };
 
-GRD_EMPLOYEE.OnCellDoubleClick = function(s, e) {
+GRD_EMPLOYEE.OnCellClick = function(s, e) {
+	if(e.Field.Name == 'CHK') return;
+	
 	setInputValue(e.Row);
 	Matrix.SetGlobalParams('VS_EMP_ID', e.Row.GetValue('EMP_ID'));
 	BTN_SAV.Text = '저장';

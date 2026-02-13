@@ -18,25 +18,29 @@ let status = "";
 let row : ScriptDataRow = null;
 
 try {
+	//connection
 	con.Connect("AUD_SAMPLE_DB");
 	con.BeginTransaction();
+
+	sql = 'DELETE FROM SM_SALES_PERFORMANCE WHERE SALES_ID = ?;';
+	stmt = con.PreparedStatement(sql);
 
 	for (let r = 0; r < table.getRowCount(); r++) {
 		row = table.getRow(r);
 		status = row.getRowStatus();
 
 		if (status == "D") {
-			sql = gen.getDMLCommand(table, row, "SM_SALES_PERFORMANCE", con.getDbType());
-			stmt = con.PreparedStatement(sql);
-			stmt.addBatch();
+			stmt.setString(1,row.getData('SALES_ID'));
+            stmt.addBatch();
+			stmt.clearParameters();
 		}
 	}
-		
 	Matrix.WriteLog(sql);
+	
 	stmt.executeBatch();
-
-	con.CommitTransaction();
-	con.DisConnect();
+	stmt.clearBatch();
+	
+	con.CommitTransaction();;
 	con = null;
 
 } catch(e) {

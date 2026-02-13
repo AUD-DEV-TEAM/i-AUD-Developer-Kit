@@ -18,23 +18,28 @@ let status = "";
 let row : ScriptDataRow = null;
 
 try {
+	//connection
 	con.Connect("AUD_SAMPLE_DB");
 	con.BeginTransaction();
+
+	sql = 'DELETE FROM SM_EMPLOYEE WHERE EMP_ID = ?;';
+	stmt = con.PreparedStatement(sql);
 
 	for (let r = 0; r < table.getRowCount(); r++) {
 		row = table.getRow(r);
 		status = row.getRowStatus();
 
-		if (status == "D") {
-			sql = gen.getDMLCommand(table, row, "SM_EMPLOYEE", con.getDbType());
-			stmt = con.PreparedStatement(sql);
+		if(status == "D"){
+			stmt.setString(1,row.getData('EMP_ID'));
 			stmt.addBatch();
+			stmt.clearParameters();
 		}
 	}
-
 	Matrix.WriteLog(sql);
+	
 	stmt.executeBatch();
-
+	stmt.clearBatch();
+	
 	con.CommitTransaction();
 
 } catch(e) {

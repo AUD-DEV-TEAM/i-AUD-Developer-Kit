@@ -160,7 +160,9 @@ GRD_STOCK.OnGridMultiHeaderCheckBoxClicked = function(s, e) {
 	GRD_STOCK.Update();
 };
 
-GRD_STOCK.OnCellDoubleClick = function(s, e) {
+GRD_STOCK.OnCellClick = function(s, e) {
+	if(e.Field.Name == 'CHK') return;
+	
 	setInputValue(e.Row);
 	Matrix.SetGlobalParams('VS_INV_ID', e.Row.GetValue('INV_ID'));
 	BTN_SAV.Text = '저장';
