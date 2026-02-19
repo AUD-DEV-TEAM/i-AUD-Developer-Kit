@@ -28,7 +28,6 @@ const VN_INP_CURR: NumberBox = Matrix.getObject("VN_INP_CURR") as NumberBox;
 const VN_INP_SAFE: NumberBox = Matrix.getObject("VN_INP_SAFE") as NumberBox;
 
 let popup: any = null;
-let isAdd = false;
 
 Matrix.OnDocumentLoadComplete = function(s, e) {
 	VS_KEYWORD.UsePlaceholder = true;
@@ -60,9 +59,6 @@ Matrix.OnDataBindEnd = function(s, e) {
 		(Matrix.getObject('LBL_TOTAL_VAL_3') as Label).Style.Font.Color.SetColor(setColor);
 		(Matrix.getObject('LBL_TOTAL_VAL_3') as Label).Update();
 	
-	} else if(e.Id == 'VS_INP_PRODUCT' && isAdd){
-		VS_INP_PRODUCT.Value = '';
-		isAdd = !isAdd;
 	}
 };
 
@@ -70,7 +66,6 @@ Matrix.OnDataBindEnd = function(s, e) {
 // 등록
 BTN_ADD.OnClick = function(s, e) {
 	Matrix.doRefresh('VS_INP_PRODUCT');
-	isAdd = true;
 
 	setInputValue(null);
 	Matrix.SetGlobalParams('INV_ID', '');
