@@ -25,7 +25,7 @@ export interface Tab extends Control {
   /**
    * 탭 아이템 목록을 가져옵니다.
    */
-  readonly TabItems: NamedDictionary;
+  readonly TabItems: NamedDictionary<TabItem>;
 
   /**
    * 탭 아이템을 추가합니다. 기존에 존재하는 탭 아이템 이름의 경우 추가하지 않고 기존 탭 아이템을 반환합니다.

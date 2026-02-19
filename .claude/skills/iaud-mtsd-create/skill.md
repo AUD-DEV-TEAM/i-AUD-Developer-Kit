@@ -396,7 +396,7 @@ HoldSize: true — 위치만 이동
 
 ## 6. 전체 생성 워크플로우
 
-> **필수 규칙**: MTSD 파일을 생성하거나 수정할 때마다 반드시 `validate_mtsd`로 전체 검증을 수행합니다. 속성 타입 오류(예: array를 string으로 기입)나 필수 속성 누락은 MCP 검증으로만 확인할 수 있습니다.
+> **필수 규칙**: `.mtsd` 또는 `.sc` 파일을 생성하거나 수정할 때마다 반드시 **`fix_mtsd` → `validate_part`(또는 `validate_mtsd`)** 순서로 실행합니다. 속성 타입 오류(예: array를 string으로 기입)나 필수 속성 누락은 MCP 검증으로만 확인할 수 있습니다.
 
 ### Step 1: MTSD 루트 구조 생성
 위 섹션 2의 템플릿을 복사하고 ReportInfo를 채웁니다.
@@ -446,10 +446,12 @@ fix_mtsd({ path: "D:/reports/sample/REPXXXXXXXX.mtsd" })
 
 > **중요**: `fix_mtsd`는 파일을 직접 수정하므로 반드시 Write/Edit 이후에 실행하세요. 새 MTSD 생성 시, 수정 시 모두 사용합니다.
 
-### Step 7: 수정 시 재검증 + 재보정
-MTSD 파일을 수정(Edit/Write)할 때마다 아래 순서를 따릅니다:
-1. `validate_mtsd`로 오류 확인 → 오류 발견 시 수정
-2. `fix_mtsd`로 자동 보정 실행 → 보정 결과 확인
+### Step 7: 수정 시 재보정 + 재검증 (필수)
+`.mtsd` 또는 `.sc` 파일을 수정(Edit/Write)할 때마다 **반드시** 아래 순서를 따릅니다:
+1. `fix_mtsd`로 자동 보정 실행 → 보정 결과 확인
+2. `validate_part`로 파트별 검증 (Forms, DataSources 등) → 오류 발견 시 수정
+
+> **주의**: `validate_mtsd`(전체 검증)는 대용량 문서에서 AJV 성능 이슈로 타임아웃될 수 있습니다. 이 경우 `validate_part`로 파트별 검증을 권장합니다.
 
 ---
 

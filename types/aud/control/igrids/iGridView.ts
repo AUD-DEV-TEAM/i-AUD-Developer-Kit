@@ -17,17 +17,24 @@ export interface iGridView{
   Context2: CanvasRenderingContext2D;
 
   /**
-   * 문서 편집 모드 여부
+   * 문서 편집 모드 여부를 가져오거나 설정합니다.
   */
   IsDesignMode: boolean;
 
   /**
-   * 날짜 입력기 사용 여부
+   * 날짜 입력기 사용 여부를 가져오거나 설정합니다.
   */
   UseDatePicker: boolean;
 
   /**
-   * 시트의 그리드 라인 표시 여부
+   * 클립보드 비활성화 여부를 가져오거나 설정합니다.
+  */
+  DisableClipBoard: boolean;
+
+  
+
+  /**
+   * 시트의 그리드 라인 표시 여부를 가져오거나 설정합니다.
   */
   UseGridlines: boolean;
 

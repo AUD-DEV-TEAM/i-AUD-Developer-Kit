@@ -13,7 +13,7 @@ export interface DataTable{
    * Columns 정보
    * @hidden
   */
-  Columns: NamedDictionary;
+  Columns: NamedDictionary<DataColumn>;
 
   /**
    * 테이블 이름
