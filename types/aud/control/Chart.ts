@@ -2,12 +2,12 @@ import { Control } from "../../aud/control/Control";
 import { ChartOptions } from "../../aud/control/charts/ChartOptions";
 import { Legend } from "../../aud/control/charts/Legend";
 import { PlotOptions } from "../../aud/control/charts/PlotOptions";
-import { SeriesInfoCollection } from "../../aud/control/charts/SeriesInfoCollection";
 import { Title } from "../../aud/control/charts/Title";
 import { XAxis } from "../../aud/control/charts/XAxis";
 import { YAxis } from "../../aud/control/charts/YAxis";
 import { Series } from "../../aud/control/charts/Series";
 import { DataSet } from "../../aud/data/DataSet";
+import { NamedDictionary } from "@AUD_CLIENT/data/NamedDictionary";
 /**
  * 다양한 종류의 차트를 표현할 수 있는 차트 컨트롤입니다.
  */
@@ -46,7 +46,7 @@ export interface Chart extends Control{
   /**
    * 차트에 바인딩된 계열 정보 컬렉션을 가져옵니다.
   */
-  SeriesInfo: SeriesInfoCollection;
+  SeriesInfo: NamedDictionary<Series>;
 
   /**
    * 차트의 제목 옵션 정보를 가져옵니다.

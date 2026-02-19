@@ -77,7 +77,7 @@ export interface MultiComboBox extends Control{
   IndentSize: number;
 
   /**
-   * 초기화 값 지정 방식을 가져오거나 설정합니다.
+   * 데이터 조회 후 초기값 설정 방식을 가져오거나 설정합니다.
   */
   InitType: enInitType;
 
@@ -120,10 +120,10 @@ export interface MultiComboBox extends Control{
    * 팝업 컨테이너 객체를 가져오거나 설정합니다.
    * @hidden
   */
-  PopUpCtl: string;
+  PopUpCtl: any;
 
   /**
-   * 데이터 조회 방식을 가져오거나 설정합니다.
+   * 버튼 클릭 시 데이터 조회 방식을 가져오거나 설정합니다.
   */
   RefreshType: enRefreshType;
 

@@ -18,6 +18,7 @@ MTSD (.mtsd) 파일은 i-AUD 보고서의 화면 UI 배치, 데이터소스, 서
 | `generate_element` | Element 1개 생성 (Label, Button, DataGrid, Group 등) |
 | `generate_grid_column` | DataGrid의 GridColumn 배열 생성 |
 | `generate_datasource` | DataSource 1개 생성 (SQL 파라미터 자동 추출) |
+| `generate_uuid` | i-AUD 보고서용 UUID 생성 (prefix + 32자리 HEX). 단일/다수/일괄 생성 지원 |
 | `validate_mtsd` | 완성된 MTSD 문서 전체 검증 |
 | `validate_part` | 부분 검증 (Element, DataSource 등 개별 검증) |
 | `fix_mtsd` | MTSD 파일 자동 보정 (파일 경로 입력 → 읽고 수정 후 덮어쓰기) |
@@ -44,7 +45,29 @@ MTSD 문서에서 사용하는 모든 **Id** 값은 **접두사 + 32자리 대�
 
 > **중요**: `REPSALESPERF0001...`, `REPMYREPORT...` 같은 의미 있는 문자열을 Id에 사용하지 마세요. 반드시 랜덤 UUID를 생성합니다.
 
-**UUID HEX 생성 방법** (32자리 랜덤 대문자 HEX):
+**UUID HEX 생성 방법** — `generate_uuid` MCP 도구 사용 (권장):
+```
+# 단일 생성
+generate_uuid { prefix: "Label" }
+→ "LabelA6A9E2BF710D371D8220ACE36504B240"
+
+# 같은 prefix로 여러 개 생성
+generate_uuid { prefix: "DS", count: 3 }
+→ ["DS...", "DS...", "DS..."]
+
+# 여러 prefix 일괄 생성 (보고서 생성 시 유용)
+generate_uuid { items: [
+  { prefix: "REP", count: 1 },
+  { prefix: "Form", count: 1 },
+  { prefix: "DS", count: 2 },
+  { prefix: "Group", count: 1 },
+  { prefix: "Label", count: 3 },
+  { prefix: "Button", count: 2 },
+  { prefix: "DataGrid", count: 1 }
+]}
+```
+
+JavaScript 방식 (대안):
 ```javascript
 crypto.randomUUID().replace(/-/g, '').toUpperCase()
 // 결과: "2EDC58234142492D8829411E8C0FD90B"
