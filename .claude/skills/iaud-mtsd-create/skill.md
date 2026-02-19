@@ -19,6 +19,7 @@ MTSD (.mtsd) 파일은 i-AUD 보고서의 화면 UI 배치, 데이터소스, 서
 | `generate_grid_column` | DataGrid의 GridColumn 배열 생성 |
 | `generate_datasource` | DataSource 1개 생성 (SQL 파라미터 자동 추출) |
 | `generate_uuid` | i-AUD 보고서용 UUID 생성 (prefix + 32자리 HEX). 단일/다수/일괄 생성 지원 |
+| `get_boxstyle_list` | BoxStyle 목록 조회 (Style.Type=1 사용 시 Name 키 확인) |
 | `validate_mtsd` | 완성된 MTSD 문서 전체 검증 |
 | `validate_part` | 부분 검증 (Element, DataSource 등 개별 검증) |
 | `fix_mtsd` | MTSD 파일 자동 보정 (파일 경로 입력 → 읽고 수정 후 덮어쓰기) |
@@ -503,7 +504,90 @@ WHERE STATUS = :VS_STATUS              -- 문자열 바인딩 (자동 따옴표 
 
 ---
 
-## 8. 주의사항
+## 8. Style.Type과 커스텀 색상 규칙
+
+### Style.Type 값과 동작
+
+| Type | 이름 | 동작 |
+|------|------|------|
+| `0` | **Skin** | 스킨/테마 스타일 적용. **Background/Border/Font의 커스텀 색상이 무시됨** |
+| `1` | **BoxStyle** | `Style.BoxStyle`에 지정한 박스스타일 적용 |
+| `2` | **Custom** | Background/Border/Font의 **개별 색상값이 화면에 적용됨** |
+
+### 핵심 규칙
+
+> **배경색, 테두리, 폰트 색상을 커스텀할 때 반드시 `Style.Type`을 `2`(Custom)으로 설정해야 합니다.**
+> Type이 `0`(Skin)이면 Background/Border/Font에 어떤 값을 설정해도 화면에 반영되지 않습니다.
+
+### 올바른 예시 — 배경색을 파란색으로 변경
+
+```json
+"Style": {
+  "Type": 2,
+  "BoxStyle": "",
+  "Background": { "Color": { "R": 0, "G": 100, "B": 200, "A": 255 } },
+  "Border": { "CornerRadius": "0,0,0,0", "LineType": "none", "Thickness": "0,0,0,0" },
+  "Font": {
+    "Color": { "R": 255, "G": 255, "B": 255, "A": 255 },
+    "Size": 12, "Family": "맑은 고딕", "Bold": false, "Italic": false,
+    "UnderLine": false, "HorizontalAlignment": "center", "VerticalAlignment": "middle"
+  }
+}
+```
+
+### 잘못된 예시 — Type이 0이면 색상 무시됨
+
+```json
+"Style": {
+  "Type": 0,
+  "Background": { "Color": { "R": 0, "G": 100, "B": 200, "A": 255 } }
+}
+```
+이 경우 배경색이 파란색으로 설정되어 있지만, Type이 `0`(Skin)이므로 실제 화면에는 스킨 기본 색상이 표시됩니다.
+
+> **자동 보정**: `fix_mtsd`는 Background/Border/Font에 커스텀 색상이 설정되어 있는데 Type이 `0`(Skin)이면 자동으로 `2`(Custom)으로 보정합니다.
+
+### BoxStyle (Type=1) 사용법
+
+**BoxStyle**은 CSS 파일처럼 **서버에서 공통으로 관리되는 스타일 세트**입니다.
+배경색, 테두리(색상/두께/라운드), 폰트(크기/굵기/색상/정렬)를 하나의 키(Name)로 묶어 관리하며, 여러 보고서에서 동일한 디자인을 일관되게 적용할 수 있습니다.
+사용자가 서버 관리 화면에서 기존 BoxStyle을 수정하거나 새로운 BoxStyle을 추가할 수 있으므로, **반드시 `get_boxstyle_list` MCP 도구로 현재 서버의 BoxStyle 목록을 조회**하여 Name 키를 확인한 뒤 사용하세요.
+
+**기본 BoxStyle 목록과 시각적 속성**:
+
+| StyleName | 용도 | 배경 | 테두리 | 폰트 |
+|-----------|------|------|--------|------|
+| **Button Default** | 버튼 기본 | 밝은 회색(249,249,251) | 회색 solid 1px, 둥근모서리 4px | Bold 12px, 검정(48,48,49), 중앙정렬 |
+| **Button Hover** | 버튼 마우스오버 | 연보라(238,238,243) | 회색 solid 1px, 둥근모서리 4px | Bold 12px, 검정, 중앙정렬 |
+| **Button Disabled** | 버튼 비활성 | 진회색(218,218,222) | 회색 solid 1px, 둥근모서리 4px | Bold 13px, 연회색(170,170,172), 중앙정렬 |
+| **Tab Default** | 탭 기본 | 투명 | 투명, 하단 3px | 13px, 회색(115,115,119), 중앙정렬 |
+| **Tab Hover** | 탭 마우스오버 | 투명 | 파란색(66,97,242) 하단 1px | 13px, 회색, 중앙정렬 |
+| **Tab Active** | 탭 활성 | 투명 | 파란색(66,97,242) 하단 3px | Bold 13px, 검정, 중앙정렬 |
+| **Label Default** | 레이블 기본 | 투명 | 없음 | 12px, 검정(48,48,49), 중앙정렬 |
+| **Textbox Default** | 텍스트박스 기본 | 흰색 | 회색 solid 1px, 둥근모서리 2px | 12px, 검정, 좌측정렬 |
+| **Textbox Disabled** | 텍스트박스 비활성 | 연회색(230,230,234) | 회색 solid 1px, 둥근모서리 2px | 12px, 연회색(170,170,172), 좌측정렬 |
+| **Infomation** | 정보 표시 영역 | 흰색 | 파란색(126,155,246) solid 1px | 12px, 회색(115,115,119), 중앙정렬 |
+| **Header Title Active** | 헤더 타이틀 | 밝은 회색(249,249,251) | 회색 하단 1px | Bold 14px, 검정, 좌측정렬 |
+| **Dialog Header** | 다이얼로그 헤더 | 어두운 회색(96,96,98) | 없음, 상단 둥근모서리 4px | Bold 14px, 흰색, 좌측정렬 |
+
+> **주의**: 위 목록은 기본 제공되는 BoxStyle이며, Name(키) 값은 서버 환경마다 다를 수 있습니다. 사용자가 추가한 커스텀 BoxStyle도 있을 수 있으므로, 반드시 `get_boxstyle_list`로 조회한 Name을 사용하세요.
+
+**BoxStyle 적용 예시**:
+
+```json
+"Style": {
+  "Type": 1,
+  "BoxStyle": "BXD42C71B0275149C4BB6B74FD68B7C8E4"
+}
+```
+
+**사용 시점 판단**:
+- 기본 컨트롤 스타일(버튼, 탭, 텍스트박스 등) → **Type=1 (BoxStyle)** 권장 (서버 공통 디자인 일관성)
+- 사용자가 특정 색상을 직접 지정 → **Type=2 (Custom)** 사용
+
+---
+
+## 9. 주의사항
 
 1. **ID/Name 규칙**: Id는 `{타입접두사}` + 32자리 UUID HEX (예: `LabelA9693D8ACAE63C7AEDBE7AA0D37A9CEB`). Name은 `{타입약어}_{용도}` 형식의 의미 있는 이름 (예: `LBL_TTL`, `BTN_SEARCH`, `GRD_MAIN`). ReportCode는 `REP` + UUID, DataSource Id는 `DS` + UUID, Form Id는 `Form` + UUID. 상세 규칙은 섹션 1의 "ID 생성 규칙" 참조
 2. **Group 내 Element**: Group의 `ChildElements[]`에 넣고, 자식 Element에 `"InGroup": "그룹ID"` 설정
@@ -512,3 +596,4 @@ WHERE STATUS = :VS_STATUS              -- 문자열 바인딩 (자동 따옴표 
 5. **속성 타입 확인**: 속성 타입이 불확실할 때는 `get_schema_info`로 정확한 타입을 확인한 후 값을 설정합니다. (예: `MetaDataSources.MetaDataSources`는 `array` 타입이므로 `""` 가 아닌 `[]`로 설정)
 6. **generate_element 미지원 타입**: 기본 Element 속성만 생성되므로, 반환된 warnings를 확인하고 타입별 필수 속성을 수동 추가
 7. **WriteDate/EditDate 패턴**: `YYYY-MM-DD HH:MM:SS` 형식이어야 하며, 빈 문자열은 허용되지 않음
+8. **Style.Type 필수 확인**: Background/Border/Font 색상을 변경할 때 반드시 `Style.Type`을 `2`(Custom)으로 설정 (섹션 8 참조)
