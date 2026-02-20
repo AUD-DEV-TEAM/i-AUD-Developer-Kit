@@ -151,12 +151,30 @@ export interface ScriptFileSystemObject{
   */
   UnZipFolder(zipPath: string, folderPath: string): boolean;
 
-  /** 
-   * 텍스트 파일을 작성합니다.
-   *
-  * @param path 텍스트 파일 경로
-  * @param text 텍스트
-  */
+  /**
+	 * 지정한 경로의 텍스트 파일에 문자열을 기록한다.
+	 *
+	 * <p>
+	 * - 파일이 이미 존재하는 경우: 기존 파일의 끝에 내용을 추가(append)한다. <br>
+	 * - 파일이 존재하지 않는 경우: 새 파일을 생성한 후 내용을 기록한다. <br>
+	 * - 상위 폴더가 존재하지 않는 경우: 자동으로 생성한다. <br>
+	 * - 파일 인코딩은 UTF-8을 사용한다. <br>
+	 * </p>
+	 *
+	 * <p>
+	 * 본 메서드는 append 모드로 동작하므로 기존 파일 내용은 덮어쓰지 않는다.
+	 * 전달된 text에는 자동 줄바꿈이 포함되지 않으므로, 필요 시 호출 측에서 개행 문자(\n)를 포함해야 한다.
+	 * </p>
+	 *
+	 * <p>
+	 * 동기화(synchronized)는 동일 인스턴스 내에서의 동시 호출을 제어하기 위한 것으로,
+	 * 다른 인스턴스에서 동시에 접근하는 경우까지 보장하지는 않는다.
+	 * </p>
+	 *
+	 * @param path 기록할 파일의 전체 경로 (null 또는 빈 값 불가)
+	 * @param text 파일에 추가로 기록할 문자열
+	 * @return 정상적으로 기록되면 true, 예외 발생 시 false 
+	 */
   WriteTextFile(path: string, text: string): boolean;
 
   /** 

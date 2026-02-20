@@ -277,6 +277,29 @@ npx tsc --noEmit
 - 타입 오류, import 경로 오류, 미사용 변수 등을 확인합니다.
 - `tsc --w` (Watch 모드)가 실행 중이면 저장 시 자동으로 오류를 확인할 수 있습니다.
 
+### 서버 스크립트 Rhino 제약사항
+
+> 서버 스크립트(`ServerScript/*.ts`)는 **Rhino JavaScript 엔진**(Java 기반)에서 실행됩니다. TypeScript(`tsc`)는 이 제약을 감지하지 못하므로 개발자가 주의해야 합니다.
+
+**Java 배열 ≠ JavaScript 배열**: `fso.getFiles()`, `fso.getFolders()` 등 i-AUD 서버 API가 반환하는 배열은 **Java String 배열**입니다. TypeScript 타입은 `string[]`이지만, 런타임에서 `.slice()`, `.sort()`, `.map()`, `.filter()` 등 JS Array 메서드를 사용할 수 없습니다.
+
+```typescript
+// ✗ 잘못된 코드 (런타임 오류 - Java 배열에 slice/sort 없음)
+let files = fso.getFiles(folder);
+let sorted = files.slice().sort();
+
+// ✓ 올바른 코드 (Java 배열 → JS 배열 변환 후 사용)
+let javaFiles = fso.getFiles(folder);
+let files: string[] = [];
+for(let i = 0; i < javaFiles.length; i++){ files.push(javaFiles[i]); }
+files.sort();
+```
+
+**사용 불가한 ES2015+ 문법**: Rhino는 ES5 수준이므로 아래 문법은 서버 스크립트에서 사용하면 안 됩니다 (tsc가 ES5로 변환해주는 것만 안전):
+- `Array.from()`, `Array.of()`, `Object.assign()`, `Object.entries()`
+- `Map`, `Set`, `WeakMap`, `WeakSet`, `Symbol`, `Promise`
+- Template literal (tsc가 변환), Arrow function (tsc가 변환) → 이 두 가지는 tsc 변환으로 안전
+
 ### MTSD Docking 주의사항
 
 > MTSD 생성/수정 시 반드시 확인할 것. 상세 가이드는 `/iaud-mtsd-create` Skill 참조.
