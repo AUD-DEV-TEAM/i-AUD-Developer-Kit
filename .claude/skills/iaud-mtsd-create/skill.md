@@ -20,6 +20,7 @@ MTSD (.mtsd) 파일은 i-AUD 보고서의 화면 UI 배치, 데이터소스, 서
 | `generate_datasource` | DataSource 1개 생성 (SQL 파라미터 자동 추출) |
 | `generate_uuid` | i-AUD 보고서용 UUID 생성 (prefix + 32자리 HEX). 단일/다수/일괄 생성 지원 |
 | `get_boxstyle_list` | BoxStyle 목록 조회 (Style.Type=1 사용 시 Name 키 확인) |
+| `save_boxstyle` | BoxStyle 저장/수정 (새 스타일 생성 또는 기존 스타일 변경) |
 | `validate_mtsd` | 완성된 MTSD 문서 전체 검증 |
 | `validate_part` | 부분 검증 (Element, DataSource 등 개별 검증) |
 | `fix_mtsd` | MTSD 파일 자동 보정 (파일 경로 입력 → 읽고 수정 후 덮어쓰기) |
@@ -581,9 +582,43 @@ WHERE STATUS = :VS_STATUS              -- 문자열 바인딩 (자동 따옴표 
 }
 ```
 
+**새 BoxStyle 생성 (save_boxstyle)**:
+
+기존 BoxStyle에 원하는 스타일이 없으면 `save_boxstyle`로 새로 만들 수 있습니다. Name은 `generate_uuid { prefix: "BX" }`로 생성합니다.
+
+```
+# 1. UUID 생성
+generate_uuid { prefix: "BX" }
+→ "BX3A7F2E1B8C4D509EA6B1C2D3E4F56789"
+
+# 2. BoxStyle 저장
+save_boxstyle {
+  boxStyle: {
+    "Name": "BX3A7F2E1B8C4D509EA6B1C2D3E4F56789",
+    "StyleName": "Card Header Blue",
+    "Background": { "ColorR": 66, "ColorG": 97, "ColorB": 242, "ColorA": 1 },
+    "Border": {
+      "ColorR": 50, "ColorG": 80, "ColorB": 220, "ColorA": 1,
+      "CornerRadius": "4,4,0,0", "LineType": "solid", "Thickness": "0,0,0,0"
+    },
+    "Font": {
+      "Bold": true, "ColorR": 255, "ColorG": 255, "ColorB": 255, "ColorA": 1,
+      "Family": "inherit", "HorizontalAlignment": "left",
+      "Italic": false, "Size": 14, "UnderLine": false, "VerticalAlignment": "middle"
+    }
+  }
+}
+
+# 3. Element에 적용
+"Style": { "Type": 1, "BoxStyle": "BX3A7F2E1B8C4D509EA6B1C2D3E4F56789" }
+```
+
+> 기존 BoxStyle을 수정하려면 `get_boxstyle_list`로 조회한 Name을 그대로 사용하여 `save_boxstyle`을 호출하면 됩니다.
+
 **사용 시점 판단**:
 - 기본 컨트롤 스타일(버튼, 탭, 텍스트박스 등) → **Type=1 (BoxStyle)** 권장 (서버 공통 디자인 일관성)
 - 사용자가 특정 색상을 직접 지정 → **Type=2 (Custom)** 사용
+- 여러 보고서에서 재사용할 커스텀 스타일 → `save_boxstyle`로 새 BoxStyle 생성 후 **Type=1** 적용
 
 ---
 

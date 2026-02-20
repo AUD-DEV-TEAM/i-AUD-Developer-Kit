@@ -50,6 +50,7 @@ i-AUD-Developer-Kit/
 │       ├── iaud-olap-formula/         # OLAP 수식 작성 가이드
 │       ├── iaud-formula/              # 계산수식(Formula) 작성 가이드
 │       ├── iaud-mxgrid-guide/         # MX-GRID 개발 가이드
+│       ├── iaud-boxstyle-guide/       # BoxStyle 공통 스타일 활용 가이드
 │       └── iaud-ts-conversion/        # TypeScript 전환 가이드
 ├── types/                     # API 타입 정의
 │   ├── aud/                   # 클라이언트 스크립트 API
@@ -154,6 +155,7 @@ MX-GRID(엑셀 기반 그리드) 보고서는 `MX_GRID/` 하위 폴더에 3파�
 | `/iaud-formula` | 계산수식(Formula) 작성 가이드 | 컨트롤 수식, SUMIF, 그리드 컬럼 수식, 컨트롤 참조 연산이 필요할 때 |
 | `/iaud-mxgrid-guide` | MX-GRID 개발 가이드 (엑셀 그리드) | MX-GRID 서버/클라이언트 스크립트, 예약어, AUD_xxx 함수, .ds 파일 수정이 필요할 때 |
 | `/iaud-mtsd-create` | MTSD 보고서 화면 생성 (MCP 도구 활용) | 보고서 UI를 처음부터 만들거나, Element/DataSource 추가가 필요할 때 |
+| `/iaud-boxstyle-guide` | BoxStyle 공통 스타일 활용 가이드 | BoxStyle 적용, 스타일 일괄 변경, Style.Type 설정, 컨트롤별 스타일 API가 필요할 때 |
 | `/iaud-ts-conversion` | TypeScript 전환 가이드 (var→let/const, 타입) | 기존 .script.js를 .script.ts로 마이그레이션할 때 |
 
 ### 수식 Skill 구분 가이드
@@ -202,6 +204,9 @@ MX-GRID(엑셀 기반 그리드) 보고서는 `MX_GRID/` 하위 폴더에 3파�
 
 질문: "기존 JavaScript 스크립트를 TypeScript로 변환하려면?" / "var를 let/const로 바꾸려면?"
 → /iaud-ts-conversion 스킬 참조
+
+질문: "버튼에 BoxStyle을 적용하려면?" / "그리드 헤더 스타일을 일괄 변경하고 싶어요" / "Style.Type이 뭔가요?"
+→ /iaud-boxstyle-guide 스킬 참조
 ```
 
 ---
@@ -474,6 +479,7 @@ TypeScript 인터페이스 정의: `types/com/`
 - 컨트롤 계산수식 질문 → `/iaud-formula` 참조
 - MX-GRID 개발 질문 → `/iaud-mxgrid-guide` 참조
 - MTSD 화면 생성 질문 → `/iaud-mtsd-create` 참조
+- BoxStyle/공통 스타일 질문 → `/iaud-boxstyle-guide` 참조
 - TypeScript 전환 질문 → `/iaud-ts-conversion` 참조
 
 ### 4. 일반적인 작업 패턴
@@ -640,6 +646,23 @@ npx @bimatrix-aud-platform/aud_mcp_server@latest
 | 도구 | 설명 |
 |------|------|
 | `validate_mxgrid` | MX-GRID 템플릿(.json2) 및 데이터셋(.ds) 파일 스키마 검증. 파일 경로 또는 JSON 문서를 입력하면 확장자로 자동 감지하여 검증. 비즈니스 로직 경고(미정의 스타일 참조, 중복 ID, 빈 SQL 등) 포함 |
+
+#### BoxStyle 도구 (공통 스타일 관리)
+
+BoxStyle은 CSS처럼 서버에서 공통으로 관리되는 스타일 세트입니다. 배경색, 테두리, 폰트를 하나의 키(Name)로 묶어 여러 보고서에서 공유합니다.
+
+| 도구 | 설명 |
+|------|------|
+| `get_boxstyle_list` | 서버에 등록된 BoxStyle 목록 조회. Name(키), StyleName(표시명), Background, Border, Font 정보 반환 |
+| `save_boxstyle` | BoxStyle 저장(생성/수정). BoxStyle 객체(Name, StyleName, Background, Border, Font)를 전달하면 서버에 저장. Name이 기존에 존재하면 수정, 없으면 새로 생성 |
+
+```
+# BoxStyle 사용 흐름
+1. get_boxstyle_list로 기존 BoxStyle 목록 확인
+2. 원하는 BoxStyle이 없으면 save_boxstyle로 새로 생성
+   - Name은 generate_uuid { prefix: "BX" }로 생성
+3. MTSD Element에서 Style.Type=1, Style.BoxStyle="{Name}" 으로 적용
+```
 
 #### 데이터베이스 쿼리 도구 (i-AUD 서버 프록시)
 
