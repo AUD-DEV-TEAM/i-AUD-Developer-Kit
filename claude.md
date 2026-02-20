@@ -677,13 +677,13 @@ BoxStyle은 CSS처럼 서버에서 공통으로 관리되는 스타일 세트입
 | 도구 | 설명 |
 |------|------|
 | `get_boxstyle_list` | 서버에 등록된 BoxStyle 목록 조회. Name(키), StyleName(표시명), Background, Border, Font 정보 반환 |
-| `save_boxstyle` | BoxStyle 저장(생성/수정). BoxStyle 객체(Name, StyleName, Background, Border, Font)를 전달하면 서버에 저장. Name이 기존에 존재하면 수정, 없으면 새로 생성 |
+| `save_boxstyle` | BoxStyle 저장(생성/수정). BoxStyle 객체 또는 배열을 전달하면 서버에 저장. Name이 기존에 존재하면 수정, 없으면 새로 생성. 여러 개를 한 번에 저장하려면 배열로 전달 |
 
 ```
 # BoxStyle 사용 흐름
 1. get_boxstyle_list로 기존 BoxStyle 목록 확인
-2. 원하는 BoxStyle이 없으면 save_boxstyle로 새로 생성
-   - Name은 generate_uuid { prefix: "BX" }로 생성
+2. 원하는 BoxStyle이 없으면 save_boxstyle로 새로 생성 (단일 객체 또는 배열)
+   - Name은 StyleName 기반의 식별자 (영문, 숫자, _ 조합, 예: BTN_DEFAULT, HEADER_BLUE)
 3. MTSD Element에서 Style.Type=1, Style.BoxStyle="{Name}" 으로 적용
 ```
 

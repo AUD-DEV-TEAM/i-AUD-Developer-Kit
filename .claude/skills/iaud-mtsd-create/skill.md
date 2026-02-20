@@ -20,7 +20,7 @@ MTSD (.mtsd) 파일은 i-AUD 보고서의 화면 UI 배치, 데이터소스, 서
 | `generate_datasource` | DataSource 1개 생성 (SQL 파라미터 자동 추출) |
 | `generate_uuid` | i-AUD 보고서용 UUID 생성 (prefix + 32자리 HEX). 단일/다수/일괄 생성 지원 |
 | `get_boxstyle_list` | BoxStyle 목록 조회 (Style.Type=1 사용 시 Name 키 확인) |
-| `save_boxstyle` | BoxStyle 저장/수정 (새 스타일 생성 또는 기존 스타일 변경) |
+| `save_boxstyle` | BoxStyle 저장/수정 (단일 객체 또는 배열로 여러 개 한 번에 저장 가능) |
 | `validate_mtsd` | 완성된 MTSD 문서 전체 검증 |
 | `validate_part` | 부분 검증 (Element, DataSource 등 개별 검증) |
 | `fix_mtsd` | MTSD 파일 자동 보정 (파일 경로 입력 → 읽고 수정 후 덮어쓰기) |
@@ -578,23 +578,22 @@ WHERE STATUS = :VS_STATUS              -- 문자열 바인딩 (자동 따옴표 
 ```json
 "Style": {
   "Type": 1,
-  "BoxStyle": "BXD42C71B0275149C4BB6B74FD68B7C8E4"
+  "BoxStyle": "BTN_DEFAULT"
 }
 ```
 
 **새 BoxStyle 생성 (save_boxstyle)**:
 
-기존 BoxStyle에 원하는 스타일이 없으면 `save_boxstyle`로 새로 만들 수 있습니다. Name은 `generate_uuid { prefix: "BX" }`로 생성합니다.
+기존 BoxStyle에 원하는 스타일이 없으면 `save_boxstyle`로 새로 만들 수 있습니다. 단일 객체 또는 배열로 여러 개를 한 번에 저장할 수 있습니다. Name은 StyleName 기반의 식별자(영문, 숫자, `_` 조합)로 지정합니다.
 
 ```
-# 1. UUID 생성
-generate_uuid { prefix: "BX" }
-→ "BX3A7F2E1B8C4D509EA6B1C2D3E4F56789"
+# 1. Name 결정 (StyleName 기반, UNIQUE)
+StyleName "Card Header Blue" → Name: "CARD_HEADER_BLUE"
 
 # 2. BoxStyle 저장
 save_boxstyle {
   boxStyle: {
-    "Name": "BX3A7F2E1B8C4D509EA6B1C2D3E4F56789",
+    "Name": "CARD_HEADER_BLUE",
     "StyleName": "Card Header Blue",
     "Background": { "ColorR": 66, "ColorG": 97, "ColorB": 242, "ColorA": 1 },
     "Border": {
@@ -610,7 +609,7 @@ save_boxstyle {
 }
 
 # 3. Element에 적용
-"Style": { "Type": 1, "BoxStyle": "BX3A7F2E1B8C4D509EA6B1C2D3E4F56789" }
+"Style": { "Type": 1, "BoxStyle": "CARD_HEADER_BLUE" }
 ```
 
 > 기존 BoxStyle을 수정하려면 `get_boxstyle_list`로 조회한 Name을 그대로 사용하여 `save_boxstyle`을 호출하면 됩니다.

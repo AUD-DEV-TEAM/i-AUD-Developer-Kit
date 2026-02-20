@@ -14,8 +14,8 @@ HTML/CSS에서 `.css` 파일로 스타일을 분리 관리하듯, BoxStyle은 �
 
 | 개념 | 설명 |
 |------|------|
-| **BoxStyle Name (Key)** | `BX` + 32자리 HEX UUID (예: `BXD42C71B0275149C4BB6B74FD68B7C8E4`) |
-| **StyleName** | 사람이 읽을 수 있는 스타일 이름 (예: `Button Default`) |
+| **BoxStyle Name (Key)** | 전체에서 UNIQUE한 식별자. 영문, 숫자, `_`로 구성 (예: `BTN_DEFAULT`, `HEADER_BLUE`). StyleName 기반으로 작명 권장 |
+| **StyleName** | 사람이 읽을 수 있는 스타일 표시명 (예: `Button Default`) |
 | **Style.Type** | 스타일 적용 모드: `0`=Skin(테마), `1`=BoxStyle, `2`=Custom(직접 지정) |
 | **저장 위치** | 서버의 `STUDIO_BOXSTYLE.xml` 파일 (JSON 형식) |
 
@@ -33,7 +33,7 @@ HTML/CSS에서 `.css` 파일로 스타일을 분리 관리하듯, BoxStyle은 �
 
 ```json
 {
-    "Name": "BXD42C71B0275149C4BB6B74FD68B7C8E4",
+    "Name": "BTN_DEFAULT",
     "StyleName": "Button Default",
     "Limit": false,
     "CreateUser": "admin",
@@ -120,7 +120,7 @@ ctrl.Style.SetBoxStyleName("Button Default");
 ctrl.Update();
 
 // 방법 2: BoxStyle 키로 적용
-ctrl.Style.SetBoxStyleKey("BXD42C71B0275149C4BB6B74FD68B7C8E4");
+ctrl.Style.SetBoxStyleKey("BTN_DEFAULT");
 ctrl.Update();
 ```
 
@@ -341,7 +341,7 @@ bsCtrl.OnBoxStyleCheckValueChange = function(sender, args) {
 var bsList = Matrix.GetBoxStyleList();
 
 // 키로 BoxStyle 가져오기
-var bs = bsList.Get("BXD42C71B0275149C4BB6B74FD68B7C8E4");
+var bs = bsList.Get("BTN_DEFAULT");
 
 // 이름으로 BoxStyle 가져오기
 var bs = bsList.GetItemByStyleName("Button Default");
@@ -350,7 +350,7 @@ var bs = bsList.GetItemByStyleName("Button Default");
 var newBs = bsList.New();
 
 // BoxStyle 삭제
-bsList.Remove("BXD42C71B0275149C4BB6B74FD68B7C8E4");
+bsList.Remove("BTN_DEFAULT");
 ```
 
 ### 4.2 BoxStyle 단건 조회
@@ -385,7 +385,7 @@ MTSD 파일에서 컨트롤의 `Style` 속성에 `Type: 1`과 `BoxStyle` 키를 
     "Name": "lblTitle",
     "Style": {
         "Type": 1,
-        "BoxStyle": "BXD42C71B0275149C4BB6B74FD68B7C8E4"
+        "BoxStyle": "BTN_DEFAULT"
     },
     "Text": "제목"
 }
@@ -404,7 +404,7 @@ MTSD 파일에서 컨트롤의 `Style` 속성에 `Type: 1`과 `BoxStyle` 키를 
 ```json
 "Style": {
     "Type": 1,
-    "BoxStyle": "BXD42C71B0275149C4BB6B74FD68B7C8E4"
+    "BoxStyle": "BTN_DEFAULT"
 }
 ```
 
@@ -439,19 +439,18 @@ MTSD 파일에서 컨트롤의 `Style` 속성에 `Type: 1`과 `BoxStyle` 키를 
 | 도구 | 설명 |
 |------|------|
 | `get_boxstyle_list` | 서버에 등록된 전체 BoxStyle 목록 조회 |
-| `save_boxstyle` | 새 BoxStyle 저장 또는 기존 BoxStyle 수정 |
-| `generate_uuid` | BoxStyle Name용 UUID 생성 (`BX` 접두사) |
+| `save_boxstyle` | 새 BoxStyle 저장 또는 기존 BoxStyle 수정 (단일 객체 또는 배열 지원) |
+| `generate_uuid` | 기타 ID 생성용 UUID 도구 (BoxStyle Name에는 불필요) |
 
 ### 6.2 새 BoxStyle 생성 워크플로우
 
 ```
-1단계: UUID 생성
-   → generate_uuid { prefix: "BX" }
-   → 결과: "BX7A3F1E2B904D5C6A8B1E3F7D9A2C4B5E"
+1단계: Name 결정 (StyleName 기반, 영문/숫자/_ 조합, UNIQUE)
+   → StyleName "Primary Button" → Name: "PRIMARY_BUTTON"
 
 2단계: BoxStyle 저장
    → save_boxstyle {
-       Name: "BX7A3F1E2B904D5C6A8B1E3F7D9A2C4B5E",
+       Name: "PRIMARY_BUTTON",
        StyleName: "Primary Button",
        Background: { ColorR: 59, ColorG: 130, ColorB: 246, ColorA: 1 },
        Border: { ColorR: 59, ColorG: 130, ColorB: 246, ColorA: 1,
@@ -462,11 +461,22 @@ MTSD 파일에서 컨트롤의 `Style` 속성에 `Type: 1`과 `BoxStyle` 키를 
      }
 
 3단계: 컨트롤에 적용 (MTSD)
-   → "Style": { "Type": 1, "BoxStyle": "BX7A3F1E2B904D5C6A8B1E3F7D9A2C4B5E" }
+   → "Style": { "Type": 1, "BoxStyle": "PRIMARY_BUTTON" }
 
 3단계 (대안): 클라이언트 스크립트로 적용
    → ctrl.Style.SetBoxStyleName("Primary Button");
    → ctrl.Update();
+```
+
+#### 여러 BoxStyle 한 번에 저장 (배열)
+
+```
+save_boxstyle {
+  boxStyle: [
+    { Name: "STYLE_A", StyleName: "Style A", Background: {...}, Border: {...}, Font: {...} },
+    { Name: "STYLE_B", StyleName: "Style B", Background: {...}, Border: {...}, Font: {...} }
+  ]
+}
 ```
 
 ### 6.3 기존 BoxStyle 조회 후 활용
