@@ -1,3 +1,4 @@
+import { Control } from "../../aud/control/Control";
 import { NamedDictionary } from "../../aud/data/NamedDictionary";
 /**
  * i-AUD의 폼 모델입니다.
@@ -7,7 +8,7 @@ export interface Form{
   /**
    * 컨트롤 목록을 가져옵니다.
   */
-  Controls: NamedDictionary;
+  Controls: NamedDictionary<Control>;
 
   /**
    * 폼의 ID를 가져옵니다.

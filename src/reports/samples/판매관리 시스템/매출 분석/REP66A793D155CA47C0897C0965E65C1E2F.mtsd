@@ -4,10 +4,10 @@
     "FolderCode": "FLDC7BAD63B598D40C69738638A26DE0C36",
     "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REP66A793D155CA47C0897C0965E65C1E2F.mtsd",
     "ReportName": "매출 분석",
-    "Writer": "kimje1342",
-    "WriteDate": "2026-02-12 18:17:55",
-    "Editor": "kimje1342",
-    "EditDate": "2026-02-12 18:17:55",
+    "Writer": "sblim1417",
+    "WriteDate": "2026-02-13 14:09:25",
+    "Editor": "sblim1417",
+    "EditDate": "2026-02-13 14:09:25",
     "TabPosition": 0,
     "UseLayout": false,
     "DocumentVersion": "3.0.0.0",
@@ -23,9 +23,9 @@
         "UseMeta": false,
         "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": false,
+        "Encrypted": true,
         "DSType": 2,
-        "SQL": "WITH BASE AS (\r\n    SELECT CASE\r\n             WHEN C.ADDR_MAIN LIKE '서울%' \r\n               OR C.ADDR_MAIN LIKE '경기%' \r\n               OR C.ADDR_MAIN LIKE '인천%' THEN '서울/경기'\r\n\r\n             WHEN C.ADDR_MAIN LIKE '부산%' \r\n               OR C.ADDR_MAIN LIKE '경남%' THEN '부산/경남'\r\n\r\n             WHEN C.ADDR_MAIN LIKE '대구%' \r\n               OR C.ADDR_MAIN LIKE '경북%' THEN '대구/경북'\r\n\r\n             WHEN C.ADDR_MAIN LIKE '대전%' \r\n               OR C.ADDR_MAIN LIKE '충북%' \r\n               OR C.ADDR_MAIN LIKE '충남%' \r\n               OR C.ADDR_MAIN LIKE '세종%' THEN '대전/충청'\r\n\r\n             ELSE '기타'\r\n           END AS REGION\r\n         , S.NET_AMOUNT\r\n    FROM SM_SALES_PERFORMANCE S\r\n    LEFT JOIN SM_CUSTOMER C\r\n      ON S.CUST_ID = C.CUST_ID\r\n   WHERE TO_CHAR(S.SALES_DATE,'YYYY') = :VS_YEAR\r\n),\r\nREGION_SALES AS (\r\n    SELECT REGION\r\n         , SUM(NET_AMOUNT) AS SALES_AMOUNT\r\n      FROM BASE\r\n     GROUP BY REGION\r\n),\r\nREGION_FIX AS (\r\n    SELECT '서울/경기' AS REGION, 1 AS ORD UNION ALL\r\n    SELECT '부산/경남', 2 UNION ALL\r\n    SELECT '대구/경북', 3 UNION ALL\r\n    SELECT '대전/충청', 4 UNION ALL\r\n    SELECT '기타', 5\r\n)\r\nSELECT F.REGION\r\n     , R.SALES_AMOUNT / NULLIF(SUM(R.SALES_AMOUNT) OVER (), 0) AS SALES_RATIO\r\n  FROM REGION_FIX F\r\n  LEFT JOIN REGION_SALES R\r\n  \tON F.REGION = R.REGION\r\n ORDER BY F.ORD",
+        "SQL": "wBrLQL3fvRq0xNYRy6eqfF/rCnLyXfbWi5gc484orJHMaQ4oa9QDH5vM4/yYyy85cwK4GRt8h6eYJlZaZEbjDu/CrHR3vDXZNWQaVyVsnu+zfjNdWi+53Jw49CQC/o64wCwNvzrOd57lAHWUv9d3e8jfaAfQ18PnjLWYJWI/z/3+JlEbT+eD6BsEm7MSbhVGeX4/GEOfxfkBzfTI83DZ82sokoi6WW1wmRsI8B1vtc+1+pFS7RyNDv1y2BPl3z4JWt/QWwA0jlAvM/2lzHEsPAnh0MDhAiILIj1RPR52BHTxwZm1vaaTB8d36Rmg2nply6NGTqVr7zD9HFoWcz/G9RLab+hql7nznOwG+QdploZ7+GUNU7MyfXYm0czy/Fzjj4rOzz0B2kdW5HPVIgYCJGAYYOTjA7yZ6WaxOgNLMBKzC0xc5kFM+Z1OK7zGkBa2C4+i5RsOavySXYSzQQuK8jifCukya00UjKsNlwzSWvDJjqnws0OpCTj9+0FInm2Mghru0tK2SMvEYxIuGGOh79UzGJX41tIqZUS1tdihuqq/NnCnw+qQKIDpmiZ2r2jgIRdSU5d3p19ndM9IR8SoTzp16s64jsCGRE7qu/yzc7IStMCqbCMgm6Bgktzg27II6HDFw9BaF1futORDwXkFtt1U/zD9vbshEHpLWMDiMoyc81xyiweInjRTng/hwrsgTKuJikoIhJFLwZztImi2okU9TUvFGYOTTT6cwfe1TzHLek3xd+wwxcXaEgvt3aoEwj1Y9tehFtUL5nQkYIQ1OZPY1oBugsOsWkS42cdH6Q6+kAdhYbL+svIe/1JdJ1ArjaAsSZwO0GUUZYhMEWdw8gT/6qH8VsIQqUhu0c3rDEd1RVJ6SsifrmiIUeNrwqAcyVa3XyqToRjsaG0oa3u8EgNpILhQHCNI4aXh/HqMHAz8NMfh1hfjF1WECXD9Jw8gsOLmH7b7b0sA7PfHgN7uH8dmDdaSCamSC1F7vQbfUoHCpbwZ1cN1czRl2H2BdVywHxo+87lWtYd1eaORyY+d7sAJ6FAgfxnauvSaQS9l2pG3hs9OJpw78+fvc67YepmS1R2Mww3QjiToeJDEU4NLNAZXk9ENR5uLM1GsVNGFkPUr4mZCh524/6Z9/w7X/efsFu4MJFv3DAJKukOxsuAt+5CTHfJUcd4HXrMAJZaupEMshGbP4/tAluNjCflEEGtMSLNPF9xTaIbak8MaMOAWxRIU0x3zFcKagnjPuEVjzhtgKHb2yMlfmGsyxohPm2mtlkzGnc9fFvo7F9bk8GUFf4YvxJy6HPlzZwUnTsJWLLCyfJddGjUxv9CfXi96UmFwljIj42Ak/TD2zcswGVfPt79sx2FMvZq1saVuzQwXjmeVXIvztxkXVDLPuUDbMb5EWnSl9+c2+CpmjEIRSHgkEaQJNbZ5KoVbivY54Ozmsu6kBrfceQnkppnTJXmd+A1Pn1BH01hQDK8lRxlPmDETFiNgeT5qI4KmT4c4Kz5C8Nq/ZxF8n+zRnfT4REs322HCzFIQuiNxnM5DO9a1LfNJdfmzMC12sUdC8qCI5q8IPddkYv6jh2IpyngEWn7RXLjfbpY3woZ9rVlaNOcTPlTVCM/X3q5nGqTqoNE5LLPOZ1t+TV3jE2u1jGLI71rujStZg16RDIpiGi2VOYOwk9pMSRrFX1R+y6i9kfqZfcGJvZJOlIkIsqhdzCGnpQ7/Evw/DFCsPLkh6Ue3nAsiqvUKO5tob8xJ5DPtONh3ep9R8+pTxE16DFCzXRfkgjstE6p9NoLem0BMiVl8hY0ijdHn71ip22HntrkiMsMaXVNXXo7XaYfK70IBjte+7fbUJildD7fNK5palFuQx70Cl945GQ==",
         "Params": [
           {
             "Name": ":VS_YEAR",
@@ -49,9 +49,9 @@
         "UseMeta": false,
         "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": false,
+        "Encrypted": true,
         "DSType": 2,
-        "SQL": "SELECT 'Q'||Q.QUARTER AS QUARTER\r\n     , Q.ACTUAL_AMOUNT / NULLIF(Q.TARGET_AMOUNT, 0) AS ACHIEVEMENT_RATE\r\n  FROM (\r\n\t\t\tSELECT EXTRACT(QUARTER FROM S.SALES_DATE) AS QUARTER\r\n\t\t\t\t , SUM(P.TARGET_QTY * P.TARGET_AMT) AS TARGET_AMOUNT\r\n\t\t\t\t , SUM(S.NET_AMOUNT) AS ACTUAL_AMOUNT\r\n\t\t\t  FROM SM_SALES_PERFORMANCE S\r\n\t\t\t  LEFT JOIN SM_SALES_PLAN P\r\n\t\t\t\tON S.PROD_ID = P.PROD_ID\r\n\t\t\t WHERE EXTRACT(YEAR FROM S.SALES_DATE) = :VS_YEAR\r\n\t\t\t GROUP BY EXTRACT(QUARTER FROM S.SALES_DATE)\r\n\t\t) Q\r\n ORDER BY QUARTER",
+        "SQL": "u7pjDR6jOboyavH/ovgem+Y4z9TQJdoXQ4MCSRoNA983cTaddK+xOYdJQD0o09oNQRYm6AnO25IMESWeJvNty/OPOQv5Or8HAgqujboG++gsqnU4cZQkLpZmjux7zPb2xqNV8oEkKu65X4zZsaktu/UiiljTZCZw529Lm43wW4Vtvy7kJ7hxH4hBUiG9Uc6/4EWnkDxSrjBxTbRCAMjGzs60Jgn07XKUQk6GbHMU7MYy5R72yjAke5jKrsQynTwUR4FCt2fuH8K8c5efEVXf88ohq/CpsC69WKwtGqpiFD9UnKKNZ3aqxdjHBKx0kvnqz4S5uB2tKFM3/R8s2T9DLMLMh/nUlTo3uKmAmToYpNpjVXUihROiipyQ1rzFlTVORVWntcHTH4gIfxsnpz59TpO3f1+SrwUvfey8Hor0Exh5XdTe6NvFTv/Eqb3VOKfPv0b3xdXDbKvOqnat/YbHGvqYMj7KeaRebHIE1ia6RnOAxLt5tTSAt6j7hXudsFtTmsyjFr0U8bfJ3tdVd3VfpnNbULNf0zKFrmPB0ytB9PGBy7/GwJvISd+4iMhYDHlHNnjl6oxhJNjJe+qM0lI1MGWwyhOnEVUEN+XAEEC2zrntW5b7E9IoFP1Wv0jPTdoWBZ/taez5+mtiNS2ox9Cb0ckUGrMmwjLOBu69AxUi5Z0=",
         "Params": [
           {
             "Name": ":VS_YEAR",
@@ -75,16 +75,37 @@
         "UseMeta": false,
         "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": false,
+        "Encrypted": true,
         "DSType": 2,
-        "SQL": "SELECT DATE\r\n     , ACTUAL\r\n     , TARGET\r\n     , ACTUAL/NULLIF(TARGET, 0) AS RATE\r\n     , CASE\r\n         WHEN ACTUAL > PREV_ACTUAL THEN '📈'\r\n         WHEN ACTUAL < PREV_ACTUAL THEN '📉'\r\n         ELSE ''\r\n       END AS TREND\r\nFROM (\r\n    SELECT TO_CHAR(PFM.SALES_DATE,'YYYYMM') AS DATE\r\n         , SUM(PFM.NET_AMOUNT) AS ACTUAL\r\n         , SUM(PLN.TARGET_AMT) AS TARGET\r\n         , LAG(SUM(PFM.NET_AMOUNT)) OVER (ORDER BY TO_CHAR(PFM.SALES_DATE,'YYYYMM')) AS PREV_ACTUAL\r\n      FROM SM_SALES_PERFORMANCE PFM\r\n      LEFT JOIN SM_SALES_PLAN PLN\r\n        ON PFM.PROD_ID = PLN.PROD_ID\r\n     WHERE TO_CHAR(PFM.SALES_DATE,'YYYY') = :VS_YEAR\r\n     GROUP BY TO_CHAR(PFM.SALES_DATE,'YYYYMM')\r\n) T\r\nORDER BY DATE",
+        "SQL": "g5N1Y2cZlcws1zmyMChyHku55L/eqWTuS4jtqpwJLOKFfsSSu0x1wpDNdDmJuOom2AZ/3dvt7GFTOZ0trUQNhU5BxAjxmoeJ0a8hvq4edzuchK9JdroG2CIkXsHdUnjGz6keMOF1aoOfVWykhBwn+Cq5J4I9JpykgooAKXpy9RJoczfSgyymPDVSU/HtRGM2z6keMOF1aoOfVWykhBwn+JhJDYnO5K50q51CPCgA+u8+QgJZE0qZGEollUZ+/UCIGHlnNEWaqQgi+kt/u9uqdYUffmiW67/zmtFKcCaBr1yMA00LW51qanK9Lhp9JDTbXlUq4lYp2x/L75ufDtopbpLzZXOFEvRL+zxnDVM/B+8V4TEUIMg2FcPDN5ds1fdWZxutV0kTg8CrDFzG02urdJXdmCkWnc9kbHkt3mEJV5L1R1GRtrGdg6SPng2SjSgfOLQkNH8ok5Inc8q+LkcT7k9SPr4npMo2X23fuQbpKhlnXlM79+kiGLCT/0Rbtd+RY5hry/E9suuJsWrKMeINlO39/X4DfnUNiGFynqOpbNq81bjdZCzTJtHjivY6aOMO8OkEQemWDj2STYFn/NZvz+QnTZ+gcpVwkA2TSzdTRud18IGvQo/4cRXcZCIKFndbJ4NgestKNmFn5KIxqKAjG7ZFJrkilPTLFFRn23cET8K4t/L20mlOCitUB4yC/s9lM00m0N1FfuyWSjH5pjvCIyuyzDv2qfDNyQ+rrA3IDAzJPcEqpynn8yWRaXvqs1PY5oA4Yq3QYzRZnliHPY1fxkgvhpPJKUYUinJyjG2CdHSQjt4px6oKq7n/CcoIDTv7+KGH4bIxEJz+6Y/gkZviKcMjwRs/pthXzPLEUC0AERYIzejqE8CtKOPBLyXLMPZG3zj1Pi14opCNYe/6BzHfpDAuL93HO7WxS96pRfXx4oYP8bGj2Wjn16QCgijL3hD6zCB5PFaKGQi1bRlQvBn4PGYhck+sHAJu+RAPeoTgfBzgWTCj1XqZyScYVa7fXfgX9Y0Pv69athTk6m0RuK9TLflZI7yPTqYOWDmY9FZETspSQmbQEF/wmwid/vUqTKWjxe1Ittz6lLLw5ffICq8ivg==",
         "Params": [
           {
             "Name": ":VS_YEAR",
             "ParamType": "String"
           }
         ],
-        "Columns": []
+        "Columns": [
+          {
+            "Name": "DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "ACTUAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "TARGET",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "RATE",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "TREND",
+            "Type": "String"
+          }
+        ]
       },
       {
         "Id": "DS52743B86F41B44DB9756D64FAE1976F7",
@@ -92,9 +113,9 @@
         "UseMeta": false,
         "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": false,
+        "Encrypted": true,
         "DSType": 2,
-        "SQL": "SELECT DATE\r\n     , ACTUAL\r\n     , CASE\r\n         WHEN ACTUAL > PREV_ACTUAL THEN '📈'\r\n         WHEN ACTUAL < PREV_ACTUAL THEN '📉'\r\n         ELSE ''\r\n       END AS TREND\r\nFROM (\r\n    SELECT TO_CHAR(PFM.SALES_DATE,'YYYYMM') AS DATE\r\n         , COUNT(PFM.SALES_ID) AS ACTUAL\r\n         , LAG(COUNT(PFM.SALES_ID)) OVER (ORDER BY TO_CHAR(PFM.SALES_DATE,'YYYYMM')) AS PREV_ACTUAL\r\n      FROM SM_SALES_PERFORMANCE PFM\r\n     WHERE TO_CHAR(PFM.SALES_DATE,'YYYY') = :VS_YEAR\r\n     GROUP BY TO_CHAR(PFM.SALES_DATE,'YYYYMM')\r\n) T\r\nORDER BY DATE",
+        "SQL": "g5N1Y2cZlcws1zmyMChyHku55L/eqWTuS4jtqpwJLOJUagl/D5Q9UukdLNFyRfZ2reYmBQ/Qfz91MRdCjc9yaceU+fIlKA2nuYHeYollMoYNcoAxrjKoOj+nhAoeWHvzaBba0qFWx/ALpkTsGwswSMeU+fIlKA2nuYHeYollMoYbJZpbN1y8wNJGGXEnMsP8m9C6KMyWcZsj6QWJ8S10QC+i6s9RG3Hy4Y2O4quCdam0fYEw22hNGD8xhKYoZMg9FPnv8lGEwJaPBc37hMOpjE7BDk0f4RfnZ/HTp/lXe4IBgqWk8u0i/3DGRjfZSfHjxv2grtZkN3TtK0aAK3AnBw4X7HGfYw9FHVrjiqTtEbMsYFA0wBG/AdtbBQEOtTMcFl4+WgxgxPwxiE0DcwWsrnvyM2n340q4RZLWfhtIOnAIzHme5gPp+g52Tm035LQh7dhjc3fuxQKdIXiCMk1QnhwsqxeXrSM5H/ftHIq4y9kcwf9P7FFjHSf41/NzlrBgOIIkX58GIAcwKlZAXpwMfM6JVyh41yCghaGDDCCi4bYb17UrwS7HQYBeE+k1LAgI8OkEQemWDj2STYFn/NZvzzMbWgP0UKpM7fpaQPkisbesoTZKXWrrZ0brwPZ/t9WrwZh7IfkLwDBYB179az8rspZW1gVa2wJRo8uBl90d1bPM/5TYlEYRksUBYZ03GNFPQHWg2/JHQbvofJoTjB85Vw==",
         "Params": [
           {
             "Name": ":VS_YEAR",
@@ -109,16 +130,37 @@
         "UseMeta": false,
         "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": false,
+        "Encrypted": true,
         "DSType": 2,
-        "SQL": "SELECT DATE\r\n     , ACTUAL\r\n     , TARGET\r\n     , ACTUAL*1.0/NULLIF(TARGET, 0) AS RATE\r\n     , CASE\r\n         WHEN ACTUAL > PREV_ACTUAL THEN '📈'\r\n         WHEN ACTUAL < PREV_ACTUAL THEN '📉'\r\n         ELSE ''\r\n       END AS TREND\r\nFROM (\r\n    SELECT TO_CHAR(PFM.SALES_DATE,'YYYYMM') AS DATE\r\n         , SUM(PFM.QTY) AS ACTUAL\r\n         , SUM(PLN.TARGET_QTY) AS TARGET\r\n         , LAG(SUM(PFM.QTY)) OVER (ORDER BY TO_CHAR(PFM.SALES_DATE,'YYYYMM')) AS PREV_ACTUAL\r\n      FROM SM_SALES_PERFORMANCE PFM\r\n      LEFT JOIN SM_SALES_PLAN PLN\r\n        ON PFM.PROD_ID = PLN.PROD_ID\r\n     WHERE TO_CHAR(PFM.SALES_DATE,'YYYY') = :VS_YEAR\r\n     GROUP BY TO_CHAR(PFM.SALES_DATE,'YYYYMM')\r\n) T\r\nORDER BY DATE",
+        "SQL": "g5N1Y2cZlcws1zmyMChyHku55L/eqWTuS4jtqpwJLOKFfsSSu0x1wpDNdDmJuOomu3SDJ0pQIUE+R1vYq8DTwFjqiCHwu8xQWX+O/ppe04QM9H1HnB/DhwbxWB5En3j3O4Htt+nudtpcWNkmxTW6c6x/fMid/Yri+1BoK7iE1f+uqD/tF1vSvNHQqVPChoD0OBSfx5nXs1ritq5GhCZN9uS3udosKdgh1w6S3IiCYQSuqD/tF1vSvNHQqVPChoD0+IrG21LBHB05STiwe7SnifBIiMv4n43etVKl3wrO+r6lnbUiBJPe3/d0EGJrzBkBzrE90U2EZ2pF04491bE3pW4GriRA8NRqEQnuQ/7LSQnpBdY7hsL+7g4nl3P+rOQuaMVw21kjgsr60tGGiSmwwv88s2BfQyRA++8OA9G2TrXvYyogCxcG2f3WdtjQgf2LjhMbawmN5O+AbBmEdHOiiKCkfJhllWAyZ9Obv6ge1WCY6q+4nLVT4knQy3sT09V9Ja+GA27xKb05omd91xD0C6ZhaHN3CXDo0bLxOcs+VIEkUjtLNwJ1qg0aRqdq4uR3hkWoPRoX+M+CvCd/H9z+RzV4iHBIPOqUwpT1r1GdFT6eiBbpGH9/GZQqJ5fbJFLVdQBU5CdsjgnKj21+nm9W9co1ViqpNizLSLH7nFSDOOHNce5ks2zTAMhdGXbB4cfT6zNAbWg0DW4x5jOjyqbE0+MXU/FB/UVte2XZhhhab2c0kegqiihk7YHSGMMnO4JZgAutS7Njr1dgdSasHGeZOAjN6OoTwK0o48EvJcsw9kaGwnzt/+agLus3wzlRXQBe71vsYm0F5UgwMYrNEF3jeBH4iZUNG5tGnndBGrfSTHMbajWPSnXFhQyOdpbwcYczDYlTtM1S8bPsTWiQqP3W0eZ4KoUfy65qGk3JSIrTt2M=",
         "Params": [
           {
             "Name": ":VS_YEAR",
             "ParamType": "String"
           }
         ],
-        "Columns": []
+        "Columns": [
+          {
+            "Name": "DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "ACTUAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "TARGET",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "RATE",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "TREND",
+            "Type": "String"
+          }
+        ]
       },
       {
         "Id": "DSD17C47B8A0A64EA185EF9335C19AE9E5",
@@ -126,9 +168,9 @@
         "UseMeta": false,
         "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": false,
+        "Encrypted": true,
         "DSType": 2,
-        "SQL": "SELECT P.CATEGORY AS CATEGORY\r\n     , SUM(S.NET_AMOUNT) AS SALES_AMOUNT\r\n     , SUM(S.NET_AMOUNT) / NULLIF(SUM(SUM(S.NET_AMOUNT)) OVER(),0) AS SALES_RATIO\r\nFROM SM_SALES_PERFORMANCE S\r\nJOIN SM_PRODUCT P\r\n  ON S.PROD_ID = P.PROD_ID\r\nWHERE TO_CHAR(S.SALES_DATE,'YYYY') = :VS_YEAR\r\nGROUP BY P.CATEGORY\r\nORDER BY SALES_AMOUNT DESC\r\nFETCH FIRST 5 ROWS ONLY",
+        "SQL": "0NWc1afmbhsh4t+4PmPWdvBjeY2PJ7SmmJeqFDyG/vbT9KLeJtLOpJGFv/oas2TnHKf4nUEafBd/3I6M0H22eotw7rbFt1aW8YxFN7DEUJzv2bbitUBWF9CoMPMB7fHWWIZa7MQA4rhreUB53moX9M+EubgdrShTN/0fLNk/QyzgrsgY4BKTM6ae9PSxuj08uVgKrIXIFMOnpmmHBAaYMhhxkmPJn46fSJ9tlmKCz9cw8+CvPmp/sKRQsru0OUy23dCXTWOKYm9FVVCNa5eIk9ViniJiHbibk1wz+qdnTTupn7G0SoSxDXJI+LyZnPoVhoICa1sxQcIOklVl5k+DujMbWgP0UKpM7fpaQPkisbdkxsmXqw5/31uSStBb9LEV3eD7Uaq1l61elCvB7To3oDEMocRShO60HpOCI3L2V6E9lT8OZVjRnnDdC1rwTaWZH8NFbSYMfarAP3iDUSowBg==",
         "Params": [
           {
             "Name": ":VS_YEAR",
@@ -156,9 +198,9 @@
         "UseMeta": false,
         "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": false,
+        "Encrypted": true,
         "DSType": 2,
-        "SQL": "SELECT RN\r\n     , CUST_NAME\r\n     , CUST_TYPE\r\n     , SALES_AMOUNT\r\n     , SALES_AMOUNT / NULLIF(TOTAL_SALES,0) AS SALES_RATIO\r\n  FROM (\r\n\t\tSELECT ROW_NUMBER() OVER (ORDER BY SUM(S.NET_AMOUNT) DESC) AS RN\r\n\t\t\t , C.CUST_NAME\r\n\t\t\t , CM.CODE_NAME AS CUST_TYPE\r\n\t\t\t , SUM(S.NET_AMOUNT) AS SALES_AMOUNT\r\n\t\t\t , SUM(SUM(S.NET_AMOUNT)) OVER () AS TOTAL_SALES\r\n\t\t  FROM SM_SALES_PERFORMANCE S\r\n\t\t  LEFT JOIN SM_CUSTOMER C\r\n\t\t\tON S.CUST_ID = C.CUST_ID\r\n\t\t  LEFT JOIN SM_COMMON_CODE CM\r\n\t\t\tON CM.GROUP_CD = 'CUST_TYPE'\r\n\t\t   AND C.CUST_TYPE = CM.CODE\r\n\t\t WHERE TO_CHAR(S.SALES_DATE,'YYYY') = :VS_YEAR\r\n\t\t GROUP BY C.CUST_NAME, CM.CODE_NAME\r\n\t\t) T\r\n  WHERE RN <= :VN_RANK_CST\r\n  ORDER BY RN",
+        "SQL": "GomJXRDFngUaXxc7NLBnv4u6LnttMMrFE9DW7RhWTpVl+voX6iJuUxBWVDktUpK3+qzS9333BJMjRLbaH3c2ZAeF/UTJX3GFAAegk26CvSSMnuWepo+g+6KQMC6SpidXil3ZAOryzsbl2l+Li40wNGQPD0Hl/fEMJEk/BeZP2jmjBieU5Sz3/7q+W/1CzLhKzyIpYx8/30mkkMuyL4tIdBG9+Zc4r3GeRd/HVUczZDvPhLm4Ha0oUzf9HyzZP0MsDOP1Tx8hkJgesmhXo50DvlPpP4FL/Wvzt6jh8KFaOXyHDC/yftb0DLpcLU40KOhgfX6Hq7guGk4RAsbCPP9kYsaUx0P7Oa3A/qu5gs7XC+NfUvRK5ya0B/3R02H8WUlb49F4Xc3ZuYk/Csr8DZSjZ3j4pBDV70ZqPRfU15nsnKuLaRi8Lv6BxkMgl0A8Zy92v887jv+cSb53lZwzyNkIoLcFBU41VCUudYmCjBMET/4gBX4ePXI5UAQaHtg5o3d4txR+ZMCmebyEdWEuxtGiulvQWK/5TljumWQfYsoujU3T/ane8MWletFNlFq5jEjTUzFwF9kZIq1e68TRxwagIVjLu2Tll1F1SJdbf4g5YP8POGN0k6ecfjgOvcoHyswtbIyJe0xY8trI2Hm1qPDC3PEZ3AZZBoGhLuefc7vf0fL8QsMtMB/eK76Pc1JAb+awNteKbcA/1KcI5GzDACKXTWlczwXcefunbejXz2KJqd80o29G+gJW49XKFf8F3PzB/k3itae7VK7E67kM+6m7btmogcBuMLTlW6x1RNPFGj6Ht4gLYWTnvfal1I1FaUJhiYmrXtZFQkl5wskCCTjYhye1xU+EhRmoDbrhp+ObO2TDw8z7smt3RK1sHfSnLtuQvn0Gn45ATIX0fgvrFr/bfg==",
         "Params": [
           {
             "Name": ":VS_YEAR",
@@ -177,9 +219,9 @@
         "UseMeta": false,
         "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": false,
+        "Encrypted": true,
         "DSType": 2,
-        "SQL": "SELECT RN\r\n     , PROD_NAME\r\n     , CATEGORY\r\n     , SALES_QTY\r\n     , SALES_AMOUNT\r\n  FROM (\r\n\t\tSELECT ROW_NUMBER() OVER (ORDER BY SUM(S.NET_AMOUNT) DESC) AS RN\r\n\t\t\t , P.PROD_NAME\r\n\t\t\t , CM.CODE_NAME\t\t AS CATEGORY\r\n\t\t\t , SUM(S.QTY)        AS SALES_QTY\r\n\t\t\t , SUM(S.NET_AMOUNT) AS SALES_AMOUNT\r\n\t\t  FROM SM_SALES_PERFORMANCE S\r\n\t\t  LEFT JOIN SM_PRODUCT P\r\n\t\t    ON S.PROD_ID = P.PROD_ID\r\n\t\t  LEFT JOIN SM_COMMON_CODE CM\r\n\t\t\tON CM.GROUP_CD = 'PROD_CATEGORY'\r\n\t\t   AND P.CATEGORY = CM.CODE\r\n\t\t WHERE TO_CHAR(S.SALES_DATE,'YYYY') = :VS_YEAR\r\n\t\t GROUP BY P.PROD_NAME, CM.CODE_NAME\r\n\t\t) T\r\n  WHERE RN <= :VN_RANK_PRD\r\n  ORDER BY RN",
+        "SQL": "GomJXRDFngUaXxc7NLBnv4Nyz63Jc6BFlQ5Vyok1fziGQd4ErqihqJG0qu4nu3nwluQh7xpXzVNMISFhZ5JETTnHw3uGC/DWGdzK6+JcumlZeWOQOJOGpRlCS8AGT6V4SqWxwA8eYonzbIvgt+u0nuwgBMyzI7adBurC67ocAbgHZRoHj5y3msw+WWWJP15hkL/cCgGp8fKqc5JCI6UsRsCVnZWbDJsyK1KKotSUE32RyoGI/akuQPf8QR629Rf2yMcC5+wEqDCcmsgtmGGHMEbKUSi8iPUTC+3JrF0AYKvMIQeoonwOB3ef445dOVACBvPCq2BP3xARmWhmbTXT3UHShzdhR7KJsnUrs17cOEqKRpgxFfc0OLh0ZfUQIpeQej98SiAErvRcs1hGz80XAVAYxn8ExZsn1F0dgaFPWUgC3jZkNJ+AQK+9bgDcU0u53jxE1YWk5mGVqZ23+SMGpjvThBY6RZc5oqWvsuMRjxYdncgXgpL+2YJsCS3ijkZoktZzjpmf3lZjvar+QI0LAE1u1TORHkQ4VJYv3WcDzRK+tzquDzOU49ZAPe8W3/z8B1KHceFdosNJNLXoH/YWNh+QRDF+HzRF23xbjoJ/kQpJ3ZzWQCHF9436A9f0iLIQht3OJUo0JO59FLGcHQJg7WrhMybCv7vp0j/+FiiS4mvGqCNT/pVGE/Cdno+3J0RX/2YDnjH84Vl4xkpCdX6IyPpC2t5Ahu8RQLXHJelV55fkH91eDaNcge8c6kzIL58KMB82Ha/4TohQLgv7bQpnh81OWzzpQeSrnQ4YW6y4DqL9ZABtBSve4pfqTvcq/zQnKJKAOQQ3h/0EkJl7Di9lDA==",
         "Params": [
           {
             "Name": ":VS_YEAR",
@@ -198,9 +240,9 @@
         "UseMeta": false,
         "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": false,
+        "Encrypted": true,
         "DSType": 2,
-        "SQL": "WITH BASE AS (\r\n    SELECT CASE\r\n             WHEN C.ADDR_MAIN LIKE '서울%' \r\n               OR C.ADDR_MAIN LIKE '경기%' \r\n               OR C.ADDR_MAIN LIKE '인천%' THEN '서울/경기'\r\n\r\n             WHEN C.ADDR_MAIN LIKE '부산%' \r\n               OR C.ADDR_MAIN LIKE '경남%' THEN '부산/경남'\r\n\r\n             WHEN C.ADDR_MAIN LIKE '대구%' \r\n               OR C.ADDR_MAIN LIKE '경북%' THEN '대구/경북'\r\n\r\n             WHEN C.ADDR_MAIN LIKE '대전%' \r\n               OR C.ADDR_MAIN LIKE '충북%' \r\n               OR C.ADDR_MAIN LIKE '충남%' \r\n               OR C.ADDR_MAIN LIKE '세종%' THEN '대전/충청'\r\n\r\n             ELSE '기타'\r\n           END AS REGION\r\n         , S.NET_AMOUNT\r\n    FROM SM_SALES_PERFORMANCE S\r\n    LEFT JOIN SM_CUSTOMER C\r\n      ON S.CUST_ID = C.CUST_ID\r\n   WHERE TO_CHAR(S.SALES_DATE,'YYYY') = :VS_YEAR\r\n),\r\nREGION_SALES AS (\r\n    SELECT REGION\r\n         , SUM(NET_AMOUNT) AS SALES_AMOUNT\r\n      FROM BASE\r\n     GROUP BY REGION\r\n),\r\nREGION_FIX AS (\r\n    SELECT '서울/경기' AS REGION, 1 AS ORD UNION ALL\r\n    SELECT '부산/경남', 2 UNION ALL\r\n    SELECT '대구/경북', 3 UNION ALL\r\n    SELECT '대전/충청', 4 UNION ALL\r\n    SELECT '기타', 5\r\n)\r\nSELECT F.REGION\r\n     , R.SALES_AMOUNT\r\n     , R.SALES_AMOUNT / NULLIF(SUM(R.SALES_AMOUNT) OVER (), 0) AS SALES_RATIO\r\n  FROM REGION_FIX F\r\n  LEFT JOIN REGION_SALES R\r\n  \tON F.REGION = R.REGION\r\n ORDER BY F.ORD",
+        "SQL": "wBrLQL3fvRq0xNYRy6eqfF/rCnLyXfbWi5gc484orJHMaQ4oa9QDH5vM4/yYyy85cwK4GRt8h6eYJlZaZEbjDu/CrHR3vDXZNWQaVyVsnu+zfjNdWi+53Jw49CQC/o64wCwNvzrOd57lAHWUv9d3e8jfaAfQ18PnjLWYJWI/z/3+JlEbT+eD6BsEm7MSbhVGeX4/GEOfxfkBzfTI83DZ82sokoi6WW1wmRsI8B1vtc+1+pFS7RyNDv1y2BPl3z4JWt/QWwA0jlAvM/2lzHEsPAnh0MDhAiILIj1RPR52BHTxwZm1vaaTB8d36Rmg2nply6NGTqVr7zD9HFoWcz/G9RLab+hql7nznOwG+QdploZ7+GUNU7MyfXYm0czy/Fzjj4rOzz0B2kdW5HPVIgYCJGAYYOTjA7yZ6WaxOgNLMBKzC0xc5kFM+Z1OK7zGkBa2C4+i5RsOavySXYSzQQuK8jifCukya00UjKsNlwzSWvDJjqnws0OpCTj9+0FInm2Mghru0tK2SMvEYxIuGGOh79UzGJX41tIqZUS1tdihuqq/NnCnw+qQKIDpmiZ2r2jgIRdSU5d3p19ndM9IR8SoTzp16s64jsCGRE7qu/yzc7IStMCqbCMgm6Bgktzg27II6HDFw9BaF1futORDwXkFtt1U/zD9vbshEHpLWMDiMoyc81xyiweInjRTng/hwrsgTKuJikoIhJFLwZztImi2okU9TUvFGYOTTT6cwfe1TzHLek3xd+wwxcXaEgvt3aoEwj1Y9tehFtUL5nQkYIQ1OZPY1oBugsOsWkS42cdH6Q6+kAdhYbL+svIe/1JdJ1ArjaAsSZwO0GUUZYhMEWdw8gT/6qH8VsIQqUhu0c3rDEd1RVJ6SsifrmiIUeNrwqAcyVa3XyqToRjsaG0oa3u8EgNpILhQHCNI4aXh/HqMHAz8NMfh1hfjF1WECXD9Jw8gsOLmH7b7b0sA7PfHgN7uH8dmDdaSCamSC1F7vQbfUoHCpbwZ1cN1czRl2H2BdVywHxo+87lWtYd1eaORyY+d7sAJ6FAgfxnauvSaQS9l2pG3hs9OJpw78+fvc67YepmS1R2Mww3QjiToeJDEU4NLNAZXk9ENR5uLM1GsVNGFkPUr4mZCh524/6Z9/w7X/efsFu4MJFv3DAJKukOxsuAt+5CTHfJUcd4HXrMAJZaupEMshGbP4/tAluNjCflEEGtMSLNPF9xTaIbak8MaMOAWxRIU0x3zFcKagnjPuEVjzhtgKHb2yMlfmGsyxohPm2mtlkzGnc9fFvo7F9bk8GUFf4YvxJy6HPlzZwUnTsJWLLCyfJddGjUxv9CfXi96UmFwljIj42Ak/TD2zcswGVfPt79sx2FMvZq1saVuzQwXjmeVXIvztxkXVDLPuUDbMb5EWnSl9+c2+CpmjEIRSHgkEaQJNbZ5KoVbivY54Ozmsu6kBrfceQnkppnTJXmd+A1Pn1BH01hQDK8lRxlPmDETFiNgeT5qI4KmT4c4Kz5C8Nq/ZxF8n+zRnfT4REs322HCzFIQuiNxnM5DO9a1LfNJdfmzMC12sUdC8qCI5q8IPddkYv6jh2IpyngEWn7RXLjfbpY3woZ9rVlaNOcTPlTVCM/X3q5nGqTqoNE5LLPOZ1t+TV3jE2u1jGLI71rujStZecFFcjL1DGKlSWXMCd7yIAJgDLuyL/5x47ZE74uRfZo1gaZ7Uqkyc7fjw5VP8f2dDgyl1nZg5fpaIlgKAcoSxK8lXeTckzpQ/ibpoF09XRbV3A09UNOd8wo3/+f8rdmtMHI9dwrkYvhBXQ7wvqlz+BrJbbR1q8xtKklHJLqoJ8LeLidlnspMOJH3XcVed+o1sAtLuMc3LNPCIDLT4j5UcZ0lVRTjQKISV6hkr+n7ZcM2MfxAiO19nNlAnwinxImN",
         "Params": [
           {
             "Name": ":VS_YEAR",
@@ -215,9 +257,9 @@
         "UseMeta": false,
         "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": false,
+        "Encrypted": true,
         "DSType": 2,
-        "SQL": "WITH BASE AS (\r\n    SELECT CASE EXTRACT(DOW FROM S.SALES_DATE)\r\n             WHEN 1 THEN '월'\r\n             WHEN 2 THEN '화'\r\n             WHEN 3 THEN '수'\r\n             WHEN 4 THEN '목'\r\n             WHEN 5 THEN '금'\r\n           END AS WEEKDAY\r\n         , S.SALES_ID\r\n         , S.NET_AMOUNT\r\n    FROM SM_SALES_PERFORMANCE S\r\n    WHERE TO_CHAR(S.SALES_DATE,'YYYY') = :VS_YEAR\r\n      AND S.SALES_STATUS = 'COMPLETED'\r\n      AND EXTRACT(DOW FROM S.SALES_DATE) BETWEEN 1 AND 5\r\n),\r\nWEEKDAY_SALES AS (\r\n    SELECT WEEKDAY\r\n         , COUNT(DISTINCT SALES_ID) AS ORDER_CNT\r\n         , SUM(NET_AMOUNT)          AS SALES_AMOUNT\r\n    FROM BASE\r\n    GROUP BY WEEKDAY\r\n),\r\nWEEKDAY_FIX AS (\r\n    SELECT '월' AS WEEKDAY, 1 AS ORD UNION ALL\r\n    SELECT '화', 2 UNION ALL\r\n    SELECT '수', 3 UNION ALL\r\n    SELECT '목', 4 UNION ALL\r\n    SELECT '금', 5\r\n)\r\nSELECT F.WEEKDAY\r\n     , W.ORDER_CNT\r\n     , W.SALES_AMOUNT\r\nFROM WEEKDAY_FIX F\r\nLEFT JOIN WEEKDAY_SALES W\r\n  ON F.WEEKDAY = W.WEEKDAY\r\nORDER BY F.ORD",
+        "SQL": "wBrLQL3fvRq0xNYRy6eqfFNKYNrrMKnSXJQErea7yMXybMyCRDXMcAYuyzOpkbfepmdkGdSONU+aGDNZ7uAsETl5SymfNKLz4heW6uRTqqJuP/cIPXSjQyjuNPEefKwEOXlLKZ80ovPiF5bq5FOqoiXC//mGM6Gv7fuxTC1oI9c5eUspnzSi8+IXlurkU6qicbeD1xJj5tiVzbk2/C7Yhzl5SymfNKLz4heW6uRTqqKfiIlJV2rOTA+Op3mCvYvGOXlLKZ80ovPiF5bq5FOqorrh5MR1tyoPB1BAONb1m11/DhmoQYx7v1ohdgod+0erpp/60/RujikzY6lGfmRaRjKK0PzR7F4ZRr4OlhIQ4r2wHpD8s2ndCpdgqnrhSzGwi3kCSEXrjZd2OdmzSk9JQ8r0/lA7I+qlfB6+KwbK3ag6LQYiAy7YLJd7+YVKMcz+aVzPBdx5+6dt6NfPYomp3zSjb0b6Albj1coV/wXc/MEpOFMwSzIinS4EZLR2NmQNVgjKTV3zdw6zYmxfasufp0a7H5jmtm0mnuk2AADvNRSUGDJ8q0xu3Nbxe7vf6Ct5UCknQfW/eWBWfO3OSm4sZMSHZlv5Xc0iuNJSKAIpbf3IboERR1VD+enSexYEU6DMtBKHOJTh4AM/DcNCC6HgNy9bUw5tItbCzFdQZiYxRA941rmh9XlUSdcWrdUgih2SZrjGLWFw0ZAP5gkyRLGT56xHpiQO5/ZS0cH9f/drni2lPyo3yGiFfJgbPlZFK8ZF3YDlI0gJgyO4n+nZSw1OMue+jz1r5S1uqEvnuwWuom3LTkbcR0u6cKao496zgxYusm4ozf9touZEFTmdyGNPd/YN7/YnbYi0Jdxh3nwfx7lRm49manlMpkSECxKbrM69+X1+xVP560XeKVMaFQTHkZl+tUNyNDfubpvuQ0AbUDpNYQKMZTO88UB1BPtQJkXUxqPb8GUHb8GI8vLyrdfxRTlKQ9vVERq6uOrALMJHaZhHLIgHKxdk8fcdg9mgDTBbYaxXSY4TkiuXC9lyjrPdMbyI7FGaDUuHIvSgApCcqqAgdnzXrc1BrTHQ/fZwAbe3yPo5Eg1qTa9lJTkF9CD1FJ2EpsnF5WAu6T3xO2RX4HyOLAnHNVlEbYUGmlSAyrh41mYhfIjWnyyusyGCSSFWWxt5HYMMS7OktrrhmMZad0k59PBvuazBiaJuJDG7K/Z9l63FR/Hy0VV7wWSoSNDtU3ANmIljuiD7EMi3Z/vVINhvuaRYLG91cJDZsojEweaMf9vLA+PmmCWT67WAFuZcOPMy6hdJrjwuDXZlXrZzRWJNzzCYELRgAFZjlzebcO61",
         "Params": [
           {
             "Name": ":VS_YEAR",
@@ -232,9 +274,9 @@
         "UseMeta": false,
         "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": false,
+        "Encrypted": true,
         "DSType": 2,
-        "SQL": "SELECT 'Q'||Q.QUARTER AS QUARTER\r\n\t , Q.TARGET_AMOUNT AS TARGET\r\n     , Q.ACTUAL_AMOUNT AS ACTUAL\r\n     , Q.ACTUAL_AMOUNT / NULLIF(Q.TARGET_AMOUNT, 0) AS ACHIEVEMENT_RATE\r\n  FROM (\r\n\t\t\tSELECT EXTRACT(QUARTER FROM S.SALES_DATE) AS QUARTER\r\n\t\t\t\t , SUM(P.TARGET_QTY * P.TARGET_AMT) AS TARGET_AMOUNT\r\n\t\t\t\t , SUM(S.NET_AMOUNT) AS ACTUAL_AMOUNT\r\n\t\t\t  FROM SM_SALES_PERFORMANCE S\r\n\t\t\t  LEFT JOIN SM_SALES_PLAN P\r\n\t\t\t\tON S.PROD_ID = P.PROD_ID\r\n\t\t\t WHERE EXTRACT(YEAR FROM S.SALES_DATE) = :VS_YEAR\r\n\t\t\t GROUP BY EXTRACT(QUARTER FROM S.SALES_DATE)\r\n\t\t) Q\r\n ORDER BY QUARTER",
+        "SQL": "u7pjDR6jOboyavH/ovgem+Y4z9TQJdoXQ4MCSRoNA9+LbGkAEiza0lGduIvr7ff6SrwMDTmN2TrdKIm4X21SqhI5Y8QH77UFljzFW/WpmaIwt6nxd/FS+6hsH5DBSBej2Lb35dQwYq44lzANkHHnBwg02NNSVS8X3d8LKXQLwHa4LAAERgrqm/0HCB1cxnQFhU6p+RtUmCZ5mGj6gjiGtoRBPCYwwOPO+uEYBEN6zjBDgGtCkKceLS575rEo+agQMrusE7ooKJnbNWhhlGnu7f7wUmxxjKq3t5zAMu2IceUaZQ9ZN287AIga+jmAcrnCImoibHIqh2ppFJsAjOnZ+Ob/DNXoKPQ7VSObTqyvOyeoCSfVZOtzAypZFtEbtUYBDGK27hFirimIJeygWDIRou/ZtuK1QFYX0Kgw8wHt8dbH/p0Th36AIaC6JZ/f4EwR8BwJ3BSRYKoKyOuCj5mYP9okGxbA22PNBwI24ErogAqr1Y8HEznKoDSK51rrhqT5oBBzbnI1Hw6ZTFHtHdRgeVDJ+5veHnw2WexTiEfRNyAdncgXgpL+2YJsCS3ijkZoKn/kOKMyRyvGjjV1eCAqjxf+4DPDFeFP6KfDxkpkF8zE3feAIbRLQrzbmDCC3/j9r7srn1+cikAqd2z+hmFd7jiy4DaEuEz9kwuSzeL+67KFiK9Q2uObYVr5PPPgLHULVqTe3QCjCZSCXCHRGzGltMZWDPc/PsfxjNaVaTYStXpvieoOCv4NsMQw9exefl+o",
         "Params": [
           {
             "Name": ":VS_YEAR",
@@ -249,9 +291,294 @@
         "UseMeta": false,
         "UseCache": false,
         "ConnectionCode": "AUD_SAMPLE_DB",
-        "Encrypted": false,
+        "Encrypted": true,
         "DSType": 2,
-        "SQL": "WITH BASE AS (\r\n    SELECT EXTRACT(YEAR FROM S.SALES_DATE) AS SALES_YEAR\r\n         , SUM(S.NET_AMOUNT) AS TOTAL_SALES\r\n         , SUM(S.QTY) AS TOTAL_QTY\r\n         , COUNT(DISTINCT S.SALES_ID) AS ORDER_CNT\r\n         , SUM(P.TARGET_QTY * P.TARGET_AMT) AS TARGET_SALES\r\n      FROM SM_SALES_PERFORMANCE S\r\n      LEFT JOIN SM_SALES_PLAN P\r\n        ON S.PROD_ID = P.PROD_ID\r\n     WHERE EXTRACT(YEAR FROM S.SALES_DATE) IN (:VS_YEAR, :VS_YEAR - 1)\r\n     GROUP BY EXTRACT(YEAR FROM S.SALES_DATE)\r\n),\r\nCALC AS (\r\n    SELECT SALES_YEAR\r\n         , TOTAL_SALES\r\n         , TOTAL_QTY\r\n         , TOTAL_SALES / NULLIF(ORDER_CNT, 0) AS AVG_ORDER_AMOUNT\r\n         , TOTAL_SALES / NULLIF(TARGET_SALES, 0) AS ACHIEVEMENT_RATE\r\n      FROM BASE\r\n)\r\nSELECT CURR.TOTAL_SALES AS TOTAL_SALES\r\n     , (CURR.TOTAL_SALES - PREV.TOTAL_SALES) / NULLIF(PREV.TOTAL_SALES, 0) AS TOTAL_SALES_YOY\r\n     , CURR.TOTAL_QTY AS TOTAL_QTY\r\n     , (CURR.TOTAL_QTY - PREV.TOTAL_QTY) * 1.0 / NULLIF(PREV.TOTAL_QTY, 0) AS TOTAL_QTY_YOY\r\n     , CURR.AVG_ORDER_AMOUNT AS AVG_ORDER_AMOUNT\r\n     , (CURR.AVG_ORDER_AMOUNT - PREV.AVG_ORDER_AMOUNT) / NULLIF(PREV.AVG_ORDER_AMOUNT, 0) AS AVG_ORDER_AMOUNT_YOY\r\n     , CURR.ACHIEVEMENT_RATE AS ACHIEVEMENT_RATE\r\n     , (CURR.ACHIEVEMENT_RATE - PREV.ACHIEVEMENT_RATE) / NULLIF(PREV.ACHIEVEMENT_RATE, 0) AS ACHIEVEMENT_RATE_YOY\r\n  FROM CALC CURR\r\n  JOIN CALC PREV\r\n    ON PREV.SALES_YEAR = CURR.SALES_YEAR - 1\r\n WHERE CURR.SALES_YEAR = :VS_YEAR;",
+        "SQL": "wBrLQL3fvRq0xNYRy6eqfOl7L1wrdQwWShVqQY55n80BsZBSqCo+rA5GU9nUO5r3fcgix6l5YEel7rQ5XtEjjr9kcDnH9HHWQS0W0mRzKuPBL19llozQQlcqihIXyUjm4C2gbSw9IbVO0rs1iIec2bRtgvzEnmqFnAsxM6292qUZFRr05FerGhlYygNNzYi4R4agkeB3Il5bqcF0euC6hZrFeYn3auQtYxqt4JW85SLipBi8v7Dtxgk2lHuLxgkQpT8qN8hohXyYGz5WRSvGRWw74nKJ0koIy887I+zJlyXjJexk1zho3Xn+rO+zpQY2KIyt9+MGRMKVio4SEjiYYruvTaHVh0AXUoBqBoboKUI4giRfnwYgBzAqVkBenAx8CtI9dN6F/HIcs7V8OFuvjGIXD83KD6E/cD9V+SsgzJG61rmM67b/pV4//K4+ZQzgSVl+YKAN660gfknSWUK6vDyOYt8s+716V7PrFxTr+2XaVk3yLXgUpfj64bO66N/vmsyjFr0U8bfJ3tdVd3VfphkeyiST/bC4I/9Kgd1VgR8S2grhERsEF8y5Fhrk0ZLuaL9QdZH1dT1ljzlYV3+MXeF4FTf9dQsLepQdZFlLXfLVziZtEZ5yBfedaQ0DpGHDAB7h3iewbSThzsWWdr2x2BHwF/1EF/VBSByBhD08z+J8OWch5jf1uh1cflhrF/duINvkbpTG62wY5WJfcB5e6LRtgvzEnmqFnAsxM6292qWin6DenTPF6dzbVgNPqRAHbeaIBz0iuPxt/1ZAYyY/Ii8p2A6Dpvgay2vP0DsHKRPIPb24s4z8TwpUFhJOAgzGYgMTeS0gV5UM8ylXihyvMtUe9j2eWWXbIpFRCaQFymE32agzlcWQOoJLgHTUSdDNlBmEwfAhNbFIow6CL+s2wtLFkGzCnQTYGFgU1iXcY6361lwgt9/ZmrmNF1MEHzk9Tk9VxK0ld9Z37tCnqhChDm0zYt8111yuGvG0IqLLZ8QT9O0VPLQRhrVSBY/6p3npBrlACtCbHKSKwp/8EtzCf7L6HiKRA3GsfOAdNIx/NUIP9rpOCny7+syUAXOqiFiTuxkw1ewr5EHIiR2xbBKun6IWLYaHX5ZhNfDLygz47AXuBjWns6YX2Gl4Q3FDNdYdtUFo4y/qDbbyJ0TsFaBsQ8JQmzrRmJatHhYFtoVVep2QwsBzDhvuTzTYQaZAv1nE0MzMrbCY6qNbvqjweOBbWbR8jVqUmcj9RixAeEyDsWKqNrgFO2yr3jI8uj7M/GNoh0WERuieIa/+gFSCeFbQQE7jx+tGdPlR+JZcSmu+BcwcfrwDT4efQnqinfeaBgdzZ2091cKp9zV97emfUvTWVEIH3jjJtcvaFZ0RaNmThKo1WkPvkSqVEimx3BjPr3zd/M5FXDei6lKNJdfezip+B7OOHF+LKVbP76eukNT0/a6yFchOHyZM2v65kY/vAci0LyuQ9bUrluEWCtnG0w5wDtFfOViHs3z7Lqr8ofziGRvjwIhRVesHAluZ5pR8uErZnT/OIIs1xBIcCAfQtzG1GemhDBY9maoewk7VGcDXC440eLbvYr4i1VaKvUNAPPeGYPuVH5UIXXhlx55077UxWoNT0IZPcpERchGlsxvPABkpU4n6WJr+M50WU77qiJzNhULbGaEFy+MRNGjnznvbl9JHUi/eVT1XqIFkeH583AdCqWJqZCBpXuDvyrtY3e+vCSZSCyWaUaV8h2QkOftXdjhZ8V9K24Mya6jXgliHr4j7xs1ZO4KxTjoXKKbdehkFfLD8NbTfiDmqkH6za6X2bYbtX9QEJVJOnZykHPkXOlY95fZfeAKDOLO9MtxUrVqY5kkZ/UaseiRigI/fpaB9lAU8MDsOYb3InbLIdYhoFgLsNxJtWJLbYQYkB+aR0PfU",
+        "Params": [
+          {
+            "Name": ":VS_YEAR",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": []
+      },
+      {
+        "Id": "DSB9E12925059D4547B8794BE6DE5A1F54",
+        "Name": "CHT_3",
+        "UseMeta": false,
+        "UseCache": false,
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": true,
+        "DSType": 2,
+        "SQL": "wBrLQL3fvRq0xNYRy6eqfF/rCnLyXfbWi5gc484orJHMaQ4oa9QDH5vM4/yYyy85cwK4GRt8h6eYJlZaZEbjDu/CrHR3vDXZNWQaVyVsnu+zfjNdWi+53Jw49CQC/o64wCwNvzrOd57lAHWUv9d3e8jfaAfQ18PnjLWYJWI/z/3+JlEbT+eD6BsEm7MSbhVGeX4/GEOfxfkBzfTI83DZ82sokoi6WW1wmRsI8B1vtc+1+pFS7RyNDv1y2BPl3z4JWt/QWwA0jlAvM/2lzHEsPAnh0MDhAiILIj1RPR52BHTxwZm1vaaTB8d36Rmg2nply6NGTqVr7zD9HFoWcz/G9RLab+hql7nznOwG+QdploZ7+GUNU7MyfXYm0czy/Fzjj4rOzz0B2kdW5HPVIgYCJGAYYOTjA7yZ6WaxOgNLMBKzC0xc5kFM+Z1OK7zGkBa2C4+i5RsOavySXYSzQQuK8jifCukya00UjKsNlwzSWvDJjqnws0OpCTj9+0FInm2Mghru0tK2SMvEYxIuGGOh79UzGJX41tIqZUS1tdihuqq/NnCnw+qQKIDpmiZ2r2jgIRdSU5d3p19ndM9IR8SoTzp16s64jsCGRE7qu/yzc7IStMCqbCMgm6Bgktzg27II6HDFw9BaF1futORDwXkFtt1U/zD9vbshEHpLWMDiMoyc81xyiweInjRTng/hwrsgTKuJikoIhJFLwZztImi2okU9TUvFGYOTTT6cwfe1TzHLek3xd+wwxcXaEgvt3aoEwj1Y9tehFtUL5nQkYIQ1OZPY1oBugsOsWkS42cdH6Q6+kAdhYbL+svIe/1JdJ1ArjaAsSZwO0GUUZYhMEWdw8gT/6qH8VsIQqUhu0c3rDEd1RVJ6SsifrmiIUeNrwqAcyVa3XyqToRjsaG0oa3u8EgNpILhQHCNI4aXh/HqMHAz8NMfh1hfjF1WECXD9Jw8gsOLmH7b7b0sA7PfHgN7uH8dmDdaSCamSC1F7vQbfUoHCpbwZ1cN1czRl2H2BdVywHxo+87lWtYd1eaORyY+d7sAJ6FAgfxnauvSaQS9l2pG3hs9OJpw78+fvc67YepmS1R2Mww3QjiToeJDEU4NLNAZXk9ENR5uLM1GsVNGFkPUr4mZCh524/6Z9/w7X/efsFu4MJFv3DAJKukOxsuAt+5CTHfJUcd4HXrMAJZaupEMshGbP4/tAluNjCflEEGtMSLNPF9xTaIbak8MaMOAWxRIU0x3zFcKagnjPuEVjzhtgKHb2yMlfmGsyxohPm2mtlkzGnc9fFvo7F9bk8GUFf4YvxJy6HPlzZwUnTsJWLLCyfJddGjUxv9CfXi96UmFwljIj42Ak/TD2zcswGVfPt79sx2FMvZq1saVuzQwXjmeVXIvztxkXVDLPuUDbMb5EWnSl9+c2+CpmjEIRSHgkEaQJNbZ5KoVbivY54Ozmsu6kBrfceQnkppnTJXmd+A1Pn1BH01hQDK8lRxlPmDETFiNgeT5qI4KmT4c4Kz5C8Nq/ZxF8n+zRnfT4REs322HCzFIQuiNxnM5DO9a1LfNJdfmzMC12sUdC8qCI5q8IPddkYv6jh2IpyngEWn7RXLjfbpY3woZ9rVlaNOcTPlTVCM/X3q5nGqTqoNE5LLPOZ1t+TV3jE2u1jGLI71rujStZg16RDIpiGi2VOYOwk9pMSRrFX1R+y6i9kfqZfcGJvZJOlIkIsqhdzCGnpQ7/Evw/DFCsPLkh6Ue3nAsiqvUKO5tob8xJ5DPtONh3ep9R8+pTxE16DFCzXRfkgjstE6p9NoLem0BMiVl8hY0ijdHn71ip22HntrkiMsMaXVNXXo7XaYfK70IBjte+7fbUJildD7fNK5palFuQx70Cl945GQ==",
+        "Params": [
+          {
+            "Name": ":VS_YEAR",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "REGION",
+            "Type": "String"
+          },
+          {
+            "Name": "SALES_RATIO",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DSF6C4572059304BE1AB92EF4308D81DB0",
+        "Name": "CHT_5",
+        "UseMeta": false,
+        "UseCache": false,
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": true,
+        "DSType": 2,
+        "SQL": "u7pjDR6jOboyavH/ovgem+Y4z9TQJdoXQ4MCSRoNA983cTaddK+xOYdJQD0o09oNQRYm6AnO25IMESWeJvNty/OPOQv5Or8HAgqujboG++gsqnU4cZQkLpZmjux7zPb2xqNV8oEkKu65X4zZsaktu/UiiljTZCZw529Lm43wW4Vtvy7kJ7hxH4hBUiG9Uc6/4EWnkDxSrjBxTbRCAMjGzs60Jgn07XKUQk6GbHMU7MYy5R72yjAke5jKrsQynTwUR4FCt2fuH8K8c5efEVXf88ohq/CpsC69WKwtGqpiFD9UnKKNZ3aqxdjHBKx0kvnqz4S5uB2tKFM3/R8s2T9DLMLMh/nUlTo3uKmAmToYpNpjVXUihROiipyQ1rzFlTVORVWntcHTH4gIfxsnpz59TpO3f1+SrwUvfey8Hor0Exh5XdTe6NvFTv/Eqb3VOKfPv0b3xdXDbKvOqnat/YbHGvqYMj7KeaRebHIE1ia6RnOAxLt5tTSAt6j7hXudsFtTmsyjFr0U8bfJ3tdVd3VfpnNbULNf0zKFrmPB0ytB9PGBy7/GwJvISd+4iMhYDHlHNnjl6oxhJNjJe+qM0lI1MGWwyhOnEVUEN+XAEEC2zrntW5b7E9IoFP1Wv0jPTdoWBZ/taez5+mtiNS2ox9Cb0ckUGrMmwjLOBu69AxUi5Z0=",
+        "Params": [
+          {
+            "Name": ":VS_YEAR",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "QUARTER",
+            "Type": "String"
+          },
+          {
+            "Name": "ACHIEVEMENT_RATE",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DS5F7B6A70759A492FBAF132E150A52127",
+        "Name": "GRD_1_AMT",
+        "UseMeta": false,
+        "UseCache": false,
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": true,
+        "DSType": 2,
+        "SQL": "g5N1Y2cZlcws1zmyMChyHku55L/eqWTuS4jtqpwJLOKFfsSSu0x1wpDNdDmJuOom2AZ/3dvt7GFTOZ0trUQNhU5BxAjxmoeJ0a8hvq4edzuchK9JdroG2CIkXsHdUnjGz6keMOF1aoOfVWykhBwn+Cq5J4I9JpykgooAKXpy9RJoczfSgyymPDVSU/HtRGM2z6keMOF1aoOfVWykhBwn+JhJDYnO5K50q51CPCgA+u8+QgJZE0qZGEollUZ+/UCIGHlnNEWaqQgi+kt/u9uqdYUffmiW67/zmtFKcCaBr1yMA00LW51qanK9Lhp9JDTbXlUq4lYp2x/L75ufDtopbpLzZXOFEvRL+zxnDVM/B+8V4TEUIMg2FcPDN5ds1fdWZxutV0kTg8CrDFzG02urdJXdmCkWnc9kbHkt3mEJV5L1R1GRtrGdg6SPng2SjSgfOLQkNH8ok5Inc8q+LkcT7k9SPr4npMo2X23fuQbpKhlnXlM79+kiGLCT/0Rbtd+RY5hry/E9suuJsWrKMeINlO39/X4DfnUNiGFynqOpbNq81bjdZCzTJtHjivY6aOMO8OkEQemWDj2STYFn/NZvz+QnTZ+gcpVwkA2TSzdTRud18IGvQo/4cRXcZCIKFndbJ4NgestKNmFn5KIxqKAjG7ZFJrkilPTLFFRn23cET8K4t/L20mlOCitUB4yC/s9lM00m0N1FfuyWSjH5pjvCIyuyzDv2qfDNyQ+rrA3IDAzJPcEqpynn8yWRaXvqs1PY5oA4Yq3QYzRZnliHPY1fxiqR0//Sbh4sQCiR9oiPycSxsiAsHfGn7ntclbFmuWICh3hXDQHwODlY87jtPJXtQv9+5/Y0Qs5vBaqK20NTTeDw6QRB6ZYOPZJNgWf81m/Px4imC5BiuOywPp5kfLMs984N0HDJ1SZAv9r5K/oFo3blHmGh95hmml8gWFOXxdn7NDcOy5DzawMQvHBlO+MSOq96YUAWHKNoXyycoOTdPdnWizkCoa4tj88kwmHuvtRgOHrZi2/jPF6w2f3el6Os4jSjb0b6Albj1coV/wXc/MGS4/CTbwxHqVNmptpS7E4xkmjy2b4x9W27+ke9lhfdSQ==",
+        "Params": [
+          {
+            "Name": ":VS_YEAR",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "ACTUAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "TARGET",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "RATE",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "TREND",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS52743B86F41B44DB9756D64FAE1976F7",
+        "Name": "GRD_1_CNT",
+        "UseMeta": false,
+        "UseCache": false,
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": true,
+        "DSType": 2,
+        "SQL": "g5N1Y2cZlcws1zmyMChyHku55L/eqWTuS4jtqpwJLOJUagl/D5Q9UukdLNFyRfZ2reYmBQ/Qfz91MRdCjc9yaceU+fIlKA2nuYHeYollMoYNcoAxrjKoOj+nhAoeWHvzaBba0qFWx/ALpkTsGwswSMeU+fIlKA2nuYHeYollMoYbJZpbN1y8wNJGGXEnMsP8m9C6KMyWcZsj6QWJ8S10QC+i6s9RG3Hy4Y2O4quCdam0fYEw22hNGD8xhKYoZMg9FPnv8lGEwJaPBc37hMOpjE7BDk0f4RfnZ/HTp/lXe4IBgqWk8u0i/3DGRjfZSfHjxv2grtZkN3TtK0aAK3AnBw4X7HGfYw9FHVrjiqTtEbMsYFA0wBG/AdtbBQEOtTMcFl4+WgxgxPwxiE0DcwWsrnvyM2n340q4RZLWfhtIOnAIzHme5gPp+g52Tm035LQh7dhjc3fuxQKdIXiCMk1QnhwsqxeXrSM5H/ftHIq4y9kcwf9P7FFjHSf41/NzlrBgOIIkX58GIAcwKlZAXpwMfM6JVyh41yCghaGDDCCi4bYb17UrwS7HQYBeE+k1LAgI8OkEQemWDj2STYFn/NZvzzMbWgP0UKpM7fpaQPkisbesoTZKXWrrZ0brwPZ/t9WrwZh7IfkLwDBYB179az8rspZW1gVa2wJRo8uBl90d1bPM/5TYlEYRksUBYZ03GNFPQHWg2/JHQbvofJoTjB85Vw==",
+        "Params": [
+          {
+            "Name": ":VS_YEAR",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": []
+      },
+      {
+        "Id": "DS0CBFABFAD4934F72ACC94D8DFB7A0808",
+        "Name": "GRD_1_QTY",
+        "UseMeta": false,
+        "UseCache": false,
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": true,
+        "DSType": 2,
+        "SQL": "g5N1Y2cZlcws1zmyMChyHku55L/eqWTuS4jtqpwJLOKFfsSSu0x1wpDNdDmJuOomu3SDJ0pQIUE+R1vYq8DTwFjqiCHwu8xQWX+O/ppe04QM9H1HnB/DhwbxWB5En3j3O4Htt+nudtpcWNkmxTW6c6x/fMid/Yri+1BoK7iE1f+uqD/tF1vSvNHQqVPChoD0OBSfx5nXs1ritq5GhCZN9uS3udosKdgh1w6S3IiCYQSuqD/tF1vSvNHQqVPChoD0+IrG21LBHB05STiwe7SnifBIiMv4n43etVKl3wrO+r6lnbUiBJPe3/d0EGJrzBkBzrE90U2EZ2pF04491bE3pW4GriRA8NRqEQnuQ/7LSQnpBdY7hsL+7g4nl3P+rOQuaMVw21kjgsr60tGGiSmwwv88s2BfQyRA++8OA9G2TrXvYyogCxcG2f3WdtjQgf2LjhMbawmN5O+AbBmEdHOiiKCkfJhllWAyZ9Obv6ge1WCY6q+4nLVT4knQy3sT09V9Ja+GA27xKb05omd91xD0C6ZhaHN3CXDo0bLxOcs+VIEkUjtLNwJ1qg0aRqdq4uR3hkWoPRoX+M+CvCd/H9z+RzV4iHBIPOqUwpT1r1GdFT6eiBbpGH9/GZQqJ5fbJFLVdQBU5CdsjgnKj21+nm9W9co1ViqpNizLSLH7nFSDOOHNce5ks2zTAMhdGXbB4cfT6zNAbWg0DW4x5jOjyqbE0+MXU/FB/UVte2XZhhhab2c0kegqiihk7YHSGMMnO4JZgAutS7Njr1dgdSasHGeZOAjN6OoTwK0o48EvJcsw9kaGwnzt/+agLus3wzlRXQBe71vsYm0F5UgwMYrNEF3jeBH4iZUNG5tGnndBGrfSTHMbajWPSnXFhQyOdpbwcYczDYlTtM1S8bPsTWiQqP3W0eZ4KoUfy65qGk3JSIrTt2M=",
+        "Params": [
+          {
+            "Name": ":VS_YEAR",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "ACTUAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "TARGET",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "RATE",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "TREND",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSD17C47B8A0A64EA185EF9335C19AE9E5",
+        "Name": "GRD_2",
+        "UseMeta": false,
+        "UseCache": false,
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": true,
+        "DSType": 2,
+        "SQL": "0NWc1afmbhsh4t+4PmPWdvBjeY2PJ7SmmJeqFDyG/vbT9KLeJtLOpJGFv/oas2TnHKf4nUEafBd/3I6M0H22eotw7rbFt1aW8YxFN7DEUJzv2bbitUBWF9CoMPMB7fHWWIZa7MQA4rhreUB53moX9M+EubgdrShTN/0fLNk/QyzgrsgY4BKTM6ae9PSxuj08uVgKrIXIFMOnpmmHBAaYMhhxkmPJn46fSJ9tlmKCz9cw8+CvPmp/sKRQsru0OUy23dCXTWOKYm9FVVCNa5eIk9ViniJiHbibk1wz+qdnTTupn7G0SoSxDXJI+LyZnPoVhoICa1sxQcIOklVl5k+DujMbWgP0UKpM7fpaQPkisbdkxsmXqw5/31uSStBb9LEV3eD7Uaq1l61elCvB7To3oDEMocRShO60HpOCI3L2V6E9lT8OZVjRnnDdC1rwTaWZH8NFbSYMfarAP3iDUSowBg==",
+        "Params": [
+          {
+            "Name": ":VS_YEAR",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "CATEGORY",
+            "Type": "String"
+          },
+          {
+            "Name": "SALES_AMOUNT",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "SALES_RATIO",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DSD1FDAE940F2E4B7A935F40682E093510",
+        "Name": "GRD_3",
+        "UseMeta": false,
+        "UseCache": false,
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": true,
+        "DSType": 2,
+        "SQL": "GomJXRDFngUaXxc7NLBnv4u6LnttMMrFE9DW7RhWTpVl+voX6iJuUxBWVDktUpK3+qzS9333BJMjRLbaH3c2ZAeF/UTJX3GFAAegk26CvSSMnuWepo+g+6KQMC6SpidXil3ZAOryzsbl2l+Li40wNGQPD0Hl/fEMJEk/BeZP2jmjBieU5Sz3/7q+W/1CzLhKzyIpYx8/30mkkMuyL4tIdBG9+Zc4r3GeRd/HVUczZDvPhLm4Ha0oUzf9HyzZP0MsDOP1Tx8hkJgesmhXo50DvlPpP4FL/Wvzt6jh8KFaOXyHDC/yftb0DLpcLU40KOhgfX6Hq7guGk4RAsbCPP9kYsaUx0P7Oa3A/qu5gs7XC+NfUvRK5ya0B/3R02H8WUlb49F4Xc3ZuYk/Csr8DZSjZ3j4pBDV70ZqPRfU15nsnKuLaRi8Lv6BxkMgl0A8Zy92v887jv+cSb53lZwzyNkIoLcFBU41VCUudYmCjBMET/4gBX4ePXI5UAQaHtg5o3d4txR+ZMCmebyEdWEuxtGiulvQWK/5TljumWQfYsoujU3T/ane8MWletFNlFq5jEjTUzFwF9kZIq1e68TRxwagIVjLu2Tll1F1SJdbf4g5YP8POGN0k6ecfjgOvcoHyswtbIyJe0xY8trI2Hm1qPDC3PEZ3AZZBoGhLuefc7vf0fL8QsMtMB/eK76Pc1JAb+awNteKbcA/1KcI5GzDACKXTWlczwXcefunbejXz2KJqd80o29G+gJW49XKFf8F3PzB/k3itae7VK7E67kM+6m7btmogcBuMLTlW6x1RNPFGj6Ht4gLYWTnvfal1I1FaUJhiYmrXtZFQkl5wskCCTjYhye1xU+EhRmoDbrhp+ObO2TDw8z7smt3RK1sHfSnLtuQvn0Gn45ATIX0fgvrFr/bfg==",
+        "Params": [
+          {
+            "Name": ":VS_YEAR",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VN_RANK_CST",
+            "ParamType": "Numeric"
+          }
+        ],
+        "Columns": []
+      },
+      {
+        "Id": "DSF6DD09AC77884846951744D214ED140B",
+        "Name": "GRD_4",
+        "UseMeta": false,
+        "UseCache": false,
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": true,
+        "DSType": 2,
+        "SQL": "GomJXRDFngUaXxc7NLBnv4Nyz63Jc6BFlQ5Vyok1fziGQd4ErqihqJG0qu4nu3nwluQh7xpXzVNMISFhZ5JETTnHw3uGC/DWGdzK6+JcumlZeWOQOJOGpRlCS8AGT6V4SqWxwA8eYonzbIvgt+u0nuwgBMyzI7adBurC67ocAbgHZRoHj5y3msw+WWWJP15hkL/cCgGp8fKqc5JCI6UsRsCVnZWbDJsyK1KKotSUE32RyoGI/akuQPf8QR629Rf2yMcC5+wEqDCcmsgtmGGHMEbKUSi8iPUTC+3JrF0AYKvMIQeoonwOB3ef445dOVACBvPCq2BP3xARmWhmbTXT3UHShzdhR7KJsnUrs17cOEqKRpgxFfc0OLh0ZfUQIpeQej98SiAErvRcs1hGz80XAVAYxn8ExZsn1F0dgaFPWUgC3jZkNJ+AQK+9bgDcU0u53jxE1YWk5mGVqZ23+SMGpjvThBY6RZc5oqWvsuMRjxYdncgXgpL+2YJsCS3ijkZoktZzjpmf3lZjvar+QI0LAE1u1TORHkQ4VJYv3WcDzRK+tzquDzOU49ZAPe8W3/z8B1KHceFdosNJNLXoH/YWNh+QRDF+HzRF23xbjoJ/kQpJ3ZzWQCHF9436A9f0iLIQht3OJUo0JO59FLGcHQJg7WrhMybCv7vp0j/+FiiS4mvGqCNT/pVGE/Cdno+3J0RX/2YDnjH84Vl4xkpCdX6IyPpC2t5Ahu8RQLXHJelV55fkH91eDaNcge8c6kzIL58KMB82Ha/4TohQLgv7bQpnh81OWzzpQeSrnQ4YW6y4DqL9ZABtBSve4pfqTvcq/zQnKJKAOQQ3h/0EkJl7Di9lDA==",
+        "Params": [
+          {
+            "Name": ":VS_YEAR",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VN_RANK_PRD",
+            "ParamType": "Numeric"
+          }
+        ],
+        "Columns": []
+      },
+      {
+        "Id": "DSB1226462A8654BA7B496088E330AAA79",
+        "Name": "GRD_5",
+        "UseMeta": false,
+        "UseCache": false,
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": true,
+        "DSType": 2,
+        "SQL": "wBrLQL3fvRq0xNYRy6eqfF/rCnLyXfbWi5gc484orJHMaQ4oa9QDH5vM4/yYyy85cwK4GRt8h6eYJlZaZEbjDu/CrHR3vDXZNWQaVyVsnu+zfjNdWi+53Jw49CQC/o64wCwNvzrOd57lAHWUv9d3e8jfaAfQ18PnjLWYJWI/z/3+JlEbT+eD6BsEm7MSbhVGeX4/GEOfxfkBzfTI83DZ82sokoi6WW1wmRsI8B1vtc+1+pFS7RyNDv1y2BPl3z4JWt/QWwA0jlAvM/2lzHEsPAnh0MDhAiILIj1RPR52BHTxwZm1vaaTB8d36Rmg2nply6NGTqVr7zD9HFoWcz/G9RLab+hql7nznOwG+QdploZ7+GUNU7MyfXYm0czy/Fzjj4rOzz0B2kdW5HPVIgYCJGAYYOTjA7yZ6WaxOgNLMBKzC0xc5kFM+Z1OK7zGkBa2C4+i5RsOavySXYSzQQuK8jifCukya00UjKsNlwzSWvDJjqnws0OpCTj9+0FInm2Mghru0tK2SMvEYxIuGGOh79UzGJX41tIqZUS1tdihuqq/NnCnw+qQKIDpmiZ2r2jgIRdSU5d3p19ndM9IR8SoTzp16s64jsCGRE7qu/yzc7IStMCqbCMgm6Bgktzg27II6HDFw9BaF1futORDwXkFtt1U/zD9vbshEHpLWMDiMoyc81xyiweInjRTng/hwrsgTKuJikoIhJFLwZztImi2okU9TUvFGYOTTT6cwfe1TzHLek3xd+wwxcXaEgvt3aoEwj1Y9tehFtUL5nQkYIQ1OZPY1oBugsOsWkS42cdH6Q6+kAdhYbL+svIe/1JdJ1ArjaAsSZwO0GUUZYhMEWdw8gT/6qH8VsIQqUhu0c3rDEd1RVJ6SsifrmiIUeNrwqAcyVa3XyqToRjsaG0oa3u8EgNpILhQHCNI4aXh/HqMHAz8NMfh1hfjF1WECXD9Jw8gsOLmH7b7b0sA7PfHgN7uH8dmDdaSCamSC1F7vQbfUoHCpbwZ1cN1czRl2H2BdVywHxo+87lWtYd1eaORyY+d7sAJ6FAgfxnauvSaQS9l2pG3hs9OJpw78+fvc67YepmS1R2Mww3QjiToeJDEU4NLNAZXk9ENR5uLM1GsVNGFkPUr4mZCh524/6Z9/w7X/efsFu4MJFv3DAJKukOxsuAt+5CTHfJUcd4HXrMAJZaupEMshGbP4/tAluNjCflEEGtMSLNPF9xTaIbak8MaMOAWxRIU0x3zFcKagnjPuEVjzhtgKHb2yMlfmGsyxohPm2mtlkzGnc9fFvo7F9bk8GUFf4YvxJy6HPlzZwUnTsJWLLCyfJddGjUxv9CfXi96UmFwljIj42Ak/TD2zcswGVfPt79sx2FMvZq1saVuzQwXjmeVXIvztxkXVDLPuUDbMb5EWnSl9+c2+CpmjEIRSHgkEaQJNbZ5KoVbivY54Ozmsu6kBrfceQnkppnTJXmd+A1Pn1BH01hQDK8lRxlPmDETFiNgeT5qI4KmT4c4Kz5C8Nq/ZxF8n+zRnfT4REs322HCzFIQuiNxnM5DO9a1LfNJdfmzMC12sUdC8qCI5q8IPddkYv6jh2IpyngEWn7RXLjfbpY3woZ9rVlaNOcTPlTVCM/X3q5nGqTqoNE5LLPOZ1t+TV3jE2u1jGLI71rujStZecFFcjL1DGKlSWXMCd7yIAJgDLuyL/5x47ZE74uRfZo1gaZ7Uqkyc7fjw5VP8f2dDgyl1nZg5fpaIlgKAcoSxK8lXeTckzpQ/ibpoF09XRbV3A09UNOd8wo3/+f8rdmtMHI9dwrkYvhBXQ7wvqlz+BrJbbR1q8xtKklHJLqoJ8LeLidlnspMOJH3XcVed+o1sAtLuMc3LNPCIDLT4j5UcZ0lVRTjQKISV6hkr+n7ZcM2MfxAiO19nNlAnwinxImN",
+        "Params": [
+          {
+            "Name": ":VS_YEAR",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": []
+      },
+      {
+        "Id": "DS02ECE206E9C84A5CA11F40E1333C19CE",
+        "Name": "GRD_6",
+        "UseMeta": false,
+        "UseCache": false,
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": true,
+        "DSType": 2,
+        "SQL": "wBrLQL3fvRq0xNYRy6eqfFNKYNrrMKnSXJQErea7yMXybMyCRDXMcAYuyzOpkbfepmdkGdSONU+aGDNZ7uAsETl5SymfNKLz4heW6uRTqqJuP/cIPXSjQyjuNPEefKwEOXlLKZ80ovPiF5bq5FOqoiXC//mGM6Gv7fuxTC1oI9c5eUspnzSi8+IXlurkU6qicbeD1xJj5tiVzbk2/C7Yhzl5SymfNKLz4heW6uRTqqKfiIlJV2rOTA+Op3mCvYvGOXlLKZ80ovPiF5bq5FOqorrh5MR1tyoPB1BAONb1m11/DhmoQYx7v1ohdgod+0erpp/60/RujikzY6lGfmRaRjKK0PzR7F4ZRr4OlhIQ4r2wHpD8s2ndCpdgqnrhSzGwi3kCSEXrjZd2OdmzSk9JQ8r0/lA7I+qlfB6+KwbK3ag6LQYiAy7YLJd7+YVKMcz+aVzPBdx5+6dt6NfPYomp3zSjb0b6Albj1coV/wXc/MEpOFMwSzIinS4EZLR2NmQNVgjKTV3zdw6zYmxfasufp0a7H5jmtm0mnuk2AADvNRSUGDJ8q0xu3Nbxe7vf6Ct5UCknQfW/eWBWfO3OSm4sZMSHZlv5Xc0iuNJSKAIpbf3IboERR1VD+enSexYEU6DMtBKHOJTh4AM/DcNCC6HgNy9bUw5tItbCzFdQZiYxRA941rmh9XlUSdcWrdUgih2SZrjGLWFw0ZAP5gkyRLGT56xHpiQO5/ZS0cH9f/drni2lPyo3yGiFfJgbPlZFK8ZF3YDlI0gJgyO4n+nZSw1OMue+jz1r5S1uqEvnuwWuom3LTkbcR0u6cKao496zgxYusm4ozf9touZEFTmdyGNPd/YN7/YnbYi0Jdxh3nwfx7lRm49manlMpkSECxKbrM69+X1+xVP560XeKVMaFQTHkZl+tUNyNDfubpvuQ0AbUDpNYQKMZTO88UB1BPtQJkXUxqPb8GUHb8GI8vLyrdfxRTlKQ9vVERq6uOrALMJHaZhHLIgHKxdk8fcdg9mgDTBbYaxXSY4TkiuXC9lyjrPdMbyI7FGaDUuHIvSgApCcqqAgdnzXrc1BrTHQ/fZwAbe3yPo5Eg1qTa9lJTkF9CD1FJ2EpsnF5WAu6T3xO2RX4HyOLAnHNVlEbYUGmlSAyrh41mYhfIjWnyyusyGCSSFWWxt5HYMMS7OktrrhmMZad0k59PBvuazBiaJuJDG7K/Z9l63FR/Hy0VV7wWSoSNDtU3ANmIljuiD7EMi3Z/vVINhvuaRYLG91cJDZsojEweaMf9vLA+PmmCWT67WAFuZcOPMy6hdJrjwuDXZlXrZzRWJNzzCYELRgAFZjlzebcO61",
+        "Params": [
+          {
+            "Name": ":VS_YEAR",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": []
+      },
+      {
+        "Id": "DSB7989930480F4324ACF11DEB10087297",
+        "Name": "GRD_7",
+        "UseMeta": false,
+        "UseCache": false,
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": true,
+        "DSType": 2,
+        "SQL": "u7pjDR6jOboyavH/ovgem+Y4z9TQJdoXQ4MCSRoNA9+LbGkAEiza0lGduIvr7ff6SrwMDTmN2TrdKIm4X21SqhI5Y8QH77UFljzFW/WpmaIwt6nxd/FS+6hsH5DBSBej2Lb35dQwYq44lzANkHHnBwg02NNSVS8X3d8LKXQLwHa4LAAERgrqm/0HCB1cxnQFhU6p+RtUmCZ5mGj6gjiGtoRBPCYwwOPO+uEYBEN6zjBDgGtCkKceLS575rEo+agQMrusE7ooKJnbNWhhlGnu7f7wUmxxjKq3t5zAMu2IceUaZQ9ZN287AIga+jmAcrnCImoibHIqh2ppFJsAjOnZ+Ob/DNXoKPQ7VSObTqyvOyeoCSfVZOtzAypZFtEbtUYBDGK27hFirimIJeygWDIRou/ZtuK1QFYX0Kgw8wHt8dbH/p0Th36AIaC6JZ/f4EwR8BwJ3BSRYKoKyOuCj5mYP9okGxbA22PNBwI24ErogAqr1Y8HEznKoDSK51rrhqT5oBBzbnI1Hw6ZTFHtHdRgeVDJ+5veHnw2WexTiEfRNyAdncgXgpL+2YJsCS3ijkZoKn/kOKMyRyvGjjV1eCAqjxf+4DPDFeFP6KfDxkpkF8zE3feAIbRLQrzbmDCC3/j9r7srn1+cikAqd2z+hmFd7jiy4DaEuEz9kwuSzeL+67KFiK9Q2uObYVr5PPPgLHULVqTe3QCjCZSCXCHRGzGltMZWDPc/PsfxjNaVaTYStXpvieoOCv4NsMQw9exefl+o",
+        "Params": [
+          {
+            "Name": ":VS_YEAR",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": []
+      },
+      {
+        "Id": "DS798075E4BC3D4F988F09AE20E65FEBD4",
+        "Name": "GRD_TOTAL",
+        "UseMeta": false,
+        "UseCache": false,
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": true,
+        "DSType": 2,
+        "SQL": "wBrLQL3fvRq0xNYRy6eqfOl7L1wrdQwWShVqQY55n80BsZBSqCo+rA5GU9nUO5r3fcgix6l5YEel7rQ5XtEjjr9kcDnH9HHWQS0W0mRzKuPBL19llozQQlcqihIXyUjm4C2gbSw9IbVO0rs1iIec2bRtgvzEnmqFnAsxM6292qUZFRr05FerGhlYygNNzYi4R4agkeB3Il5bqcF0euC6hZrFeYn3auQtYxqt4JW85SLipBi8v7Dtxgk2lHuLxgkQpT8qN8hohXyYGz5WRSvGRWw74nKJ0koIy887I+zJlyXjJexk1zho3Xn+rO+zpQY2KIyt9+MGRMKVio4SEjiYYruvTaHVh0AXUoBqBoboKUI4giRfnwYgBzAqVkBenAx8CtI9dN6F/HIcs7V8OFuvjGIXD83KD6E/cD9V+SsgzJG61rmM67b/pV4//K4+ZQzgSVl+YKAN660gfknSWUK6vDyOYt8s+716V7PrFxTr+2XaVk3yLXgUpfj64bO66N/vmsyjFr0U8bfJ3tdVd3VfphkeyiST/bC4I/9Kgd1VgR8S2grhERsEF8y5Fhrk0ZLuaL9QdZH1dT1ljzlYV3+MXeF4FTf9dQsLepQdZFlLXfLVziZtEZ5yBfedaQ0DpGHDAB7h3iewbSThzsWWdr2x2BHwF/1EF/VBSByBhD08z+J8OWch5jf1uh1cflhrF/duINvkbpTG62wY5WJfcB5e6LRtgvzEnmqFnAsxM6292qWin6DenTPF6dzbVgNPqRAHbeaIBz0iuPxt/1ZAYyY/Ii8p2A6Dpvgay2vP0DsHKRPIPb24s4z8TwpUFhJOAgzGYgMTeS0gV5UM8ylXihyvMtUe9j2eWWXbIpFRCaQFymE32agzlcWQOoJLgHTUSdDNlBmEwfAhNbFIow6CL+s2wtLFkGzCnQTYGFgU1iXcY6361lwgt9/ZmrmNF1MEHzk9Tk9VxK0ld9Z37tCnqhChDm0zYt8111yuGvG0IqLLZ8QT9O0VPLQRhrVSBY/6p3npBrlACtCbHKSKwp/8EtzCf7L6HiKRA3GsfOAdNIx/NUIP9rpOCny7+syUAXOqiFiTuxkw1ewr5EHIiR2xbBKun6IWLYaHX5ZhNfDLygz47AXuBjWns6YX2Gl4Q3FDNdYdtUFo4y/qDbbyJ0TsFaBsQ8JQmzrRmJatHhYFtoVVep2QwsBzDhvuTzTYQaZAv1nE0MzMrbCY6qNbvqjweOBbWbR8jVqUmcj9RixAeEyDsWKqNrgFO2yr3jI8uj7M/GNoh0WERuieIa/+gFSCeFbQQE7jx+tGdPlR+JZcSmu+BcwcfrwDT4efQnqinfeaBgdzZ2091cKp9zV97emfUvTWVEIH3jjJtcvaFZ0RaNmThKo1WkPvkSqVEimx3BjPr3zd/M5FXDei6lKNJdfezip+B7OOHF+LKVbP76eukNT0/a6yFchOHyZM2v65kY/vAci0LyuQ9bUrluEWCtnG0w5wDtFfOViHs3z7Lqr8ofziGRvjwIhRVesHAluZ5pR8uErZnT/OIIs1xBIcCAfQtzG1GemhDBY9maoewk7VGcDXC440eLbvYr4i1VaKvUNAPPeGYPuVH5UIXXhlx55077UxWoNT0IZPcpERchGlsxvPABkpU4n6WJr+M50WU77qiJzNhULbGaEFy+MRNGjnznvbl9JHUi/eVT1XqIFkeH583AdCqWJqZCBpXuDvyrtY3e+vCSZSCyWaUaV8h2QkOftXdjhZ8V9K24Mya6jXgliHr4j7xs1ZO4KxTjoXKKbdehkFfLD8NbTfiDmqkH6za6X2bYbtX9QEJVJOnZykHPkXOlY95fZfeAKDOLO9MtxUrVqY5kkZ/UaseiRigI/fpaB9lAU8MDsOYb3InbLIdYhoFgLsNxJtWJLbYQYkB+aR0PfU",
         "Params": [
           {
             "Name": ":VS_YEAR",
@@ -262,7 +589,7 @@
       }
     ]
   },
-  "ScriptText": "/* Button Controls */\nvar BTN_REF = Matrix.getObject(\"BTN_REF\");\nvar BTN_DETAIL_CST = Matrix.getObject(\"BTN_DETAIL_CST\");\nvar BTN_DETAIL_PRD = Matrix.getObject(\"BTN_DETAIL_PRD\");\n/* Tab Controls */\nvar LBL_TAB_AMT = Matrix.getObject(\"LBL_TAB_AMT\");\nvar LBL_TAB_QTY = Matrix.getObject(\"LBL_TAB_QTY\");\nvar LBL_TAB_CNT = Matrix.getObject(\"LBL_TAB_CNT\");\nvar popup = null;\nMatrix.OnDocumentLoadComplete = function (s, e) {\n    Matrix.SetVariable('VN_RANK_CST', '1');\n    Matrix.SetVariable('VN_RANK_PRD', '1');\n};\nMatrix.OnDataBindEnd = function (s, e) {\n    if (['CHT_2', 'CHT_3', 'CHT_5'].includes(e.Id)) {\n        Matrix.getObject(e.Id).PlotOptions.DataLabelsDistance = 0;\n    }\n    else if (e.Id == 'GRD_TOTAL') {\n        if (!e.RecordCount) {\n            ['1', '2', '3', '4'].forEach(function (i) {\n                Matrix.getObject('LBL_TOTAL_VAL_' + i).Text = '';\n            });\n        }\n        ['1', '2', '3', '4'].forEach(function (i) {\n            var lbl = Matrix.getObject('LBL_RATE_' + i);\n            var val = Number(lbl.Value);\n            var displayVal = Math.abs(val).toFixed(1);\n            if (isNaN(val)) {\n                lbl.Text = '';\n                lbl.Update();\n                return;\n            }\n            if (val > 0) {\n                lbl.Text = '▲ ' + displayVal + '% 전년 대비';\n                lbl.Style.Font.Color.SetColor('#10b981'); // 초록\n            }\n            else if (val < 0) {\n                lbl.Text = '▼ ' + displayVal + '% 전년 대비';\n                lbl.Style.Font.Color.SetColor('#ef4444'); // 빨강\n            }\n            else {\n                lbl.Text = '– 전년 대비'; // 0일 때\n                lbl.Style.Font.Color.SetColor('#64748b'); // 회색\n            }\n            lbl.Update();\n        });\n    }\n};\n/******** Button Click Event ********/\n// 조회\nBTN_REF.OnClick = function (s, e) {\n    Matrix.doRefresh('');\n};\n// 고객별 매출 상세\nBTN_DETAIL_CST.OnClick = function (s, e) {\n    Matrix.SetVariable('VN_RANK_CST', '50');\n    Matrix.doRefresh('OLAP_1');\n    Matrix.SetVariable('VN_RANK_CST', '1');\n    popup = Matrix.ShowWindow(\"고객별 매출 상세\", 0, 0, 900, 573, true, false, \"고객별 매출 TOP 10\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\n// 제품별 매출 상세\nBTN_DETAIL_PRD.OnClick = function (s, e) {\n    Matrix.SetVariable('VN_RANK_PRD', '50');\n    Matrix.doRefresh('OLAP_2');\n    Matrix.SetVariable('VN_RANK_PRD', '1');\n    popup = Matrix.ShowWindow(\"제품별 매출 상세\", 0, 0, 900, 573, true, false, \"제품별 매출 TOP 10\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\n/******** Button Click Event ********/\nvar setActiveTab = function (activeTab) {\n    var tabs = [\n        { tab: LBL_TAB_AMT, suffix: 'AMT' },\n        { tab: LBL_TAB_QTY, suffix: 'QTY' },\n        { tab: LBL_TAB_CNT, suffix: 'CNT' }\n    ];\n    tabs.forEach(function (item) {\n        var isActive = item.tab === activeTab;\n        Matrix.getObject('GRD_1_' + item.suffix).Visible = isActive;\n        Matrix.getObject('CHT_1_' + item.suffix).Visible = isActive;\n        item.tab.Style.Background.Color.SetColor(isActive ? '#ffffff' : '#f1f5f9');\n        item.tab.Update();\n    });\n};\n// 매출액\nLBL_TAB_AMT.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_AMT);\n};\n// 수량\nLBL_TAB_QTY.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_QTY);\n};\n// 건수\nLBL_TAB_CNT.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_CNT);\n};\nMatrix.OnViewerSizeChanged = function (s, e) {\n    var setTotalWidth = (e.Width - 100) / 4;\n    ['1', '2', '3', '4'].forEach(function (i) {\n        var icon = Matrix.getObject('LBL_ICON_' + i);\n        icon.Left = (setTotalWidth - 50) / 2;\n    });\n};\nMatrix.OnViewerSizeChanged = function (s, e) {\n    var setTotalWidth = (e.Width - 100) / 4;\n    /*  ICON  */\n    ['1', '2', '3', '4'].forEach(function (i, idx) {\n        var icon = Matrix.getObject('LBL_ICON_' + i);\n        icon.Left = (setTotalWidth - 50) / 2;\n    });\n};\n",
+  "ScriptText": "/* Button Controls */\nvar BTN_REF = Matrix.getObject(\"BTN_REF\");\nvar BTN_DETAIL_CST = Matrix.getObject(\"BTN_DETAIL_CST\");\nvar BTN_DETAIL_PRD = Matrix.getObject(\"BTN_DETAIL_PRD\");\n/* Tab Controls */\nvar LBL_TAB_AMT = Matrix.getObject(\"LBL_TAB_AMT\");\nvar LBL_TAB_QTY = Matrix.getObject(\"LBL_TAB_QTY\");\nvar LBL_TAB_CNT = Matrix.getObject(\"LBL_TAB_CNT\");\nvar popup = null;\nMatrix.OnDocumentLoadComplete = function (s, e) {\n    Matrix.SetVariable('VN_RANK_CST', '1');\n    Matrix.SetVariable('VN_RANK_PRD', '1');\n};\nMatrix.OnDataBindEnd = function (s, e) {\n    if (['CHT_2', 'CHT_3', 'CHT_5'].includes(e.Id)) {\n        Matrix.getObject(e.Id).PlotOptions.DataLabelsDistance = 0;\n    }\n    else if (e.Id == 'GRD_TOTAL') {\n        if (!e.RecordCount) {\n            ['1', '2', '3', '4'].forEach(function (i) {\n                Matrix.getObject('LBL_TOTAL_VAL_' + i).Text = '';\n            });\n        }\n        ['1', '2', '3', '4'].forEach(function (i) {\n            var lbl = Matrix.getObject('LBL_RATE_' + i);\n            var val = Number(lbl.Value);\n            var displayVal = Math.abs(val).toFixed(1);\n            if (isNaN(val)) {\n                lbl.Text = '';\n                lbl.Update();\n                return;\n            }\n            if (val > 0) {\n                lbl.Text = '▲ ' + displayVal + '% 전년 대비';\n                lbl.Style.Font.Color.SetColor('#10b981'); // 초록\n            }\n            else if (val < 0) {\n                lbl.Text = '▼ ' + displayVal + '% 전년 대비';\n                lbl.Style.Font.Color.SetColor('#ef4444'); // 빨강\n            }\n            else {\n                lbl.Text = '– 전년 대비'; // 0일 때\n                lbl.Style.Font.Color.SetColor('#64748b'); // 회색\n            }\n            lbl.Update();\n        });\n    }\n};\n/******** Button Click Event ********/\n// 조회\nBTN_REF.OnClick = function (s, e) {\n    Matrix.doRefresh('');\n};\n// 고객별 매출 상세\nBTN_DETAIL_CST.OnClick = function (s, e) {\n    Matrix.SetVariable('VN_RANK_CST', '10');\n    Matrix.doRefresh('GRD_3_DTL');\n    popup = Matrix.ShowWindow(\"고객별 매출 상세\", 0, 0, 590, 573, true, false, \"고객별 매출 TOP 10\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\n// 제품별 매출 상세\nBTN_DETAIL_PRD.OnClick = function (s, e) {\n    Matrix.SetVariable('VN_RANK_PRD', '10');\n    Matrix.doRefresh('GRD_4_DTL');\n    popup = Matrix.ShowWindow(\"제품별 매출 상세\", 0, 0, 680, 573, true, false, \"제품별 매출 TOP 10\", true, '#ffffff', 0, false, false);\n    popup.MoveToCenter();\n};\n/******** Button Click Event ********/\nvar setActiveTab = function (activeTab) {\n    var tabs = [\n        { tab: LBL_TAB_AMT, suffix: 'AMT' },\n        { tab: LBL_TAB_QTY, suffix: 'QTY' },\n        { tab: LBL_TAB_CNT, suffix: 'CNT' }\n    ];\n    tabs.forEach(function (item) {\n        var isActive = item.tab === activeTab;\n        Matrix.getObject('GRD_1_' + item.suffix).Visible = isActive;\n        Matrix.getObject('CHT_1_' + item.suffix).Visible = isActive;\n        item.tab.Style.Background.Color.SetColor(isActive ? '#ffffff' : '#f1f5f9');\n        item.tab.Update();\n    });\n};\n// 매출액\nLBL_TAB_AMT.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_AMT);\n};\n// 수량\nLBL_TAB_QTY.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_QTY);\n};\n// 건수\nLBL_TAB_CNT.OnClick = function (s, e) {\n    setActiveTab(LBL_TAB_CNT);\n};\n",
   "ServerScriptText": [],
   "Forms": [
     {
@@ -505,7 +832,7 @@
               "HighlightWeekendDefined": false,
               "DisplayStartDayOfWeekDefined": false,
               "ViewFormat": "yyyy",
-              "Date": 1770822000000,
+              "Date": 1770908400000,
               "Type": "CalendarYear",
               "Id": "CalendarYear1CC53136EEBE1B635CA69261BC336F42",
               "Name": "VS_YEAR",
@@ -891,9 +1218,9 @@
                   "__type__": "istudio.drawing.style.Brush",
                   "Color": {
                     "__type__": "istudio.drawing.style.Color",
-                    "R": 255,
-                    "G": 255,
-                    "B": 255,
+                    "R": 241,
+                    "G": 245,
+                    "B": 249,
                     "A": 1
                   }
                 },
@@ -987,9 +1314,9 @@
                   "__type__": "istudio.drawing.style.Brush",
                   "Color": {
                     "__type__": "istudio.drawing.style.Color",
-                    "R": 241,
-                    "G": 245,
-                    "B": 249,
+                    "R": 255,
+                    "G": 255,
+                    "B": 255,
                     "A": 1
                   }
                 },
@@ -1136,7 +1463,7 @@
               "Type": "DataGrid",
               "Id": "DataGridF080EDCACB22D1D56A21D1B1E3AE9017",
               "Name": "GRD_1_AMT",
-              "Visible": true,
+              "Visible": false,
               "Position": {
                 "Left": 20,
                 "Top": 323,
@@ -1400,7 +1727,7 @@
                         "Position": {
                           "Left": 0,
                           "Top": 0,
-                          "Width": 172,
+                          "Width": 170,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1502,9 +1829,9 @@
                         "Id": "Label4CB9AC939DA5DFAEC4D4CC06D7A7D124",
                         "Name": "ACTUAL",
                         "Position": {
-                          "Left": 172,
+                          "Left": 170,
                           "Top": 0,
-                          "Width": 344,
+                          "Width": 340,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1607,9 +1934,9 @@
                         "Id": "LabelE20ECE43528B90E3526A2E786228BDF7",
                         "Name": "TARGET",
                         "Position": {
-                          "Left": 516,
+                          "Left": 510,
                           "Top": 0,
-                          "Width": 344,
+                          "Width": 340,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1712,9 +2039,9 @@
                         "Id": "LabelA5A8CEE2CBAD0706886C5BD97F0EE910",
                         "Name": "RATE",
                         "Position": {
-                          "Left": 860,
+                          "Left": 850,
                           "Top": 0,
-                          "Width": 275,
+                          "Width": 272,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -1817,9 +2144,9 @@
                         "Id": "LabelF356B80302E285DE410CE1399A016724",
                         "Name": "TREND",
                         "Position": {
-                          "Left": 1135,
+                          "Left": 1122,
                           "Top": 0,
-                          "Width": 139,
+                          "Width": 138,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2240,7 +2567,7 @@
                         "Position": {
                           "Left": 20,
                           "Top": 0,
-                          "Width": 277,
+                          "Width": 330,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2343,9 +2670,9 @@
                         "Id": "Label6D49CFD0C7672734B04426AC4EA1C995",
                         "Name": "ACTUAL",
                         "Position": {
-                          "Left": 297,
+                          "Left": 350,
                           "Top": 0,
-                          "Width": 554,
+                          "Width": 660,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2448,9 +2775,9 @@
                         "Id": "Label50C89898450A7DEB4DA5E0A615098CCB",
                         "Name": "TREND",
                         "Position": {
-                          "Left": 851,
+                          "Left": 1010,
                           "Top": 0,
-                          "Width": 223,
+                          "Width": 264,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -2535,7 +2862,7 @@
               "Type": "DataGrid",
               "Id": "DataGridB28B34503AE5461621F1161155E652F1",
               "Name": "GRD_1_QTY",
-              "Visible": false,
+              "Visible": true,
               "Position": {
                 "Left": 20,
                 "Top": 323,
@@ -2912,7 +3239,7 @@
                         "Position": {
                           "Left": 20,
                           "Top": 0,
-                          "Width": 142,
+                          "Width": 169,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -3015,9 +3342,9 @@
                         "Id": "Label9A45671BB83283B12EB6E1EE44674BB9",
                         "Name": "ACTUAL",
                         "Position": {
-                          "Left": 162,
+                          "Left": 189,
                           "Top": 0,
-                          "Width": 284,
+                          "Width": 338,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -3120,9 +3447,9 @@
                         "Id": "Label39A1D64F863448C6339DFFC6D3336A9B",
                         "Name": "TARGET",
                         "Position": {
-                          "Left": 446,
+                          "Left": 527,
                           "Top": 0,
-                          "Width": 284,
+                          "Width": 338,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -3225,9 +3552,9 @@
                         "Id": "LabelDCEA8138EBE005C9D16A9BCC1E4BD587",
                         "Name": "RATE",
                         "Position": {
-                          "Left": 730,
+                          "Left": 865,
                           "Top": 0,
-                          "Width": 227,
+                          "Width": 271,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -3330,9 +3657,9 @@
                         "Id": "Label4645CD2643ABAED90470A7161E9BDEF3",
                         "Name": "TREND",
                         "Position": {
-                          "Left": 957,
+                          "Left": 1136,
                           "Top": 0,
-                          "Width": 117,
+                          "Width": 138,
                           "Height": 45,
                           "ZIndex": 1,
                           "TabIndex": 0,
@@ -3466,7 +3793,20 @@
                   "MinorGridLineColor": "#E0E0E0",
                   "MinorGridLineWidth": 1,
                   "MinorGridLineStyle": 0,
-                  "Categories": [],
+                  "Categories": [
+                    "202601",
+                    "202602",
+                    "202603",
+                    "202604",
+                    "202605",
+                    "202606",
+                    "202607",
+                    "202608",
+                    "202609",
+                    "202610",
+                    "202611",
+                    "202612"
+                  ],
                   "AnnoFormat": "{0:N0}",
                   "Label": {
                     "FontSize": 12,
@@ -3692,6 +4032,7 @@
               "Id": "Chart5E48DC5E5B9891E965BC913AA9D86CE7",
               "Name": "CHT_1_AMT",
               "InGroup": "GRP_BODY_1",
+              "Visible": false,
               "Position": {
                 "Left": 20,
                 "Top": 65,
@@ -3833,7 +4174,20 @@
                   "MinorGridLineColor": "#E0E0E0",
                   "MinorGridLineWidth": 1,
                   "MinorGridLineStyle": 0,
-                  "Categories": [],
+                  "Categories": [
+                    "202601",
+                    "202602",
+                    "202603",
+                    "202604",
+                    "202605",
+                    "202606",
+                    "202607",
+                    "202608",
+                    "202609",
+                    "202610",
+                    "202611",
+                    "202612"
+                  ],
                   "AnnoFormat": "{0:N0}",
                   "Label": {
                     "FontSize": 12,
@@ -4059,7 +4413,6 @@
               "Id": "ChartCA0BC711C24BDAC8AEEC9619B5AA4047",
               "Name": "CHT_1_QTY",
               "InGroup": "GRP_BODY_1",
-              "Visible": false,
               "Position": {
                 "Left": 20,
                 "Top": 65,
@@ -4201,7 +4554,20 @@
                   "MinorGridLineColor": "#E0E0E0",
                   "MinorGridLineWidth": 1,
                   "MinorGridLineStyle": 0,
-                  "Categories": [],
+                  "Categories": [
+                    "202601",
+                    "202602",
+                    "202603",
+                    "202604",
+                    "202605",
+                    "202606",
+                    "202607",
+                    "202608",
+                    "202609",
+                    "202610",
+                    "202611",
+                    "202612"
+                  ],
                   "AnnoFormat": "{0:N0}",
                   "Label": {
                     "FontSize": 12,
@@ -4614,7 +4980,7 @@
           "ChildElements": [
             {
               "LanguageCode": "",
-              "Text": "",
+              "Text": "₩1,865,382,991",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -4813,7 +5179,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "– 전년 대비",
+              "Text": "▲ 1.7% 전년 대비",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -4893,9 +5259,9 @@
                   "Type": "FontInfo",
                   "Color": {
                     "__type__": "istudio.drawing.style.Color",
-                    "R": 100,
-                    "G": 116,
-                    "B": 139,
+                    "R": 16,
+                    "G": 185,
+                    "B": 129,
                     "A": 1
                   },
                   "Size": 14,
@@ -5077,7 +5443,7 @@
           "ChildElements": [
             {
               "LanguageCode": "",
-              "Text": "",
+              "Text": "38,144개",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -5276,7 +5642,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "– 전년 대비",
+              "Text": "▲ 14.9% 전년 대비",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -5356,9 +5722,9 @@
                   "Type": "FontInfo",
                   "Color": {
                     "__type__": "istudio.drawing.style.Color",
-                    "R": 100,
-                    "G": 116,
-                    "B": 139,
+                    "R": 16,
+                    "G": 185,
+                    "B": 129,
                     "A": 1
                   },
                   "Size": 14,
@@ -5540,7 +5906,7 @@
           "ChildElements": [
             {
               "LanguageCode": "",
-              "Text": "",
+              "Text": "₩37,307,660",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -5739,7 +6105,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "– 전년 대비",
+              "Text": "▼ 0.5% 전년 대비",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -5819,9 +6185,9 @@
                   "Type": "FontInfo",
                   "Color": {
                     "__type__": "istudio.drawing.style.Color",
-                    "R": 100,
-                    "G": 116,
-                    "B": 139,
+                    "R": 239,
+                    "G": 68,
+                    "B": 68,
                     "A": 1
                   },
                   "Size": 14,
@@ -6003,7 +6369,7 @@
           "ChildElements": [
             {
               "LanguageCode": "",
-              "Text": "",
+              "Text": "0.1%",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -6202,7 +6568,7 @@
             },
             {
               "LanguageCode": "",
-              "Text": "– 전년 대비",
+              "Text": "▼ 0.7% 전년 대비",
               "Cursor": "default",
               "Formula": "",
               "UseTextOverflow": false,
@@ -6282,9 +6648,9 @@
                   "Type": "FontInfo",
                   "Color": {
                     "__type__": "istudio.drawing.style.Color",
-                    "R": 100,
-                    "G": 116,
-                    "B": 139,
+                    "R": 239,
+                    "G": 68,
+                    "B": 68,
                     "A": 1
                   },
                   "Size": 14,

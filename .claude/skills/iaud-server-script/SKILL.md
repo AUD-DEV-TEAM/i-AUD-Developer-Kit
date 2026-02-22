@@ -347,6 +347,71 @@ let sql = QueryRepository.getSalesList("검색어");
 
 ---
 
+## 10-1. 다른 서버 스크립트 Include
+
+동일 보고서 또는 다른 보고서의 서버 스크립트를 런타임에 소스로 치환하여 포함시킬 수 있습니다.
+JSP의 `<%@include%>` 지시어와 유사한 방식입니다.
+
+### 기본 구문
+
+```
+<%@include file="경로"%>
+```
+
+TypeScript에서는 구문 오류가 발생하므로, **라인 주석으로 감싸서** 작성합니다.
+주석 처리되어 있어도 서버 런타임에서 `<%...%>` 구문을 인식하여 정상적으로 치환됩니다.
+
+```typescript
+// <%@include file="@COMMON_UTILS"%>
+```
+
+### 경로 규칙
+
+| 표기 방식 | 의미 | 실제 경로 |
+|-----------|------|-----------|
+| `"@파일명"` | 현재 보고서의 서버 스크립트 | `[JS폴더]/[현재보고서코드]/파일명.jsx` |
+| `"상대/경로/파일명.jsx"` | JS 루트 폴더 기준 절대 경로 | `[JS폴더]/상대/경로/파일명.jsx` |
+
+- `@` 접두사를 사용하면 현재 보고서 폴더 내에서 찾고, 확장자 `.jsx`가 자동 추가됩니다.
+- `@` 없이 경로를 직접 지정하면 서버의 JS 루트 폴더 기준으로 탐색합니다.
+
+### 사용 예시
+
+**같은 보고서 내 공통 스크립트 Include:**
+```typescript
+// 현재 보고서의 @AUTHORITY_HISTORY.jsx를 Include
+// <%@include file="@AUTHORITY_HISTORY"%>
+```
+
+**다른 보고서의 스크립트 Include:**
+```typescript
+// 특정 보고서(RPT_COMMON)의 스크립트를 Include
+// <%@include file="RPT_COMMON/SHARED_UTILS.jsx"%>
+```
+
+### 동작 원리
+
+1. 서버가 스크립트를 실행하기 전에 `<%...%>` 블록을 탐색합니다.
+2. `@include file="..."` 지시어를 발견하면 해당 파일의 내용을 읽어 해당 위치에 치환합니다.
+3. Include된 파일 안에 또 다른 `<%@include%>`가 있으면 재귀적으로 처리합니다 (최대 100단계).
+4. 동일 파일은 한 번만 Include됩니다 (중복 방지).
+5. 존재하지 않는 파일은 무시됩니다 (오류 발생 없음).
+6. `..` 경로는 보안상 차단됩니다.
+
+### TypeScript 개발 시 주의사항
+
+- Include되는 코드는 런타임에만 존재하므로, TypeScript의 `import`와 병행하여 사용합니다.
+- `import`는 개발 시 타입 체크용, `<%@include%>`는 런타임 코드 포함용입니다.
+
+```typescript
+// TypeScript 타입 체크용 import
+import { QueryRepository } from "../ServerScript/@DATA_MASTER";
+// 런타임 코드 포함용 include
+// <%@include file="@DATA_MASTER"%>
+```
+
+---
+
 ## 11. 에러 처리 패턴
 
 ```typescript

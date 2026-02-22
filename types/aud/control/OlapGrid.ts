@@ -214,9 +214,25 @@ export interface OlapGrid extends Control{
   */
   AddHierarchyGroupInfo(name: string, caption: string, childrens: string[]): OlapField;
 
-  /** 
+  /**
    * 필드를 추가하고 추가된 필드를 반환합니다.
    *
+   * @example 계산 필드 추가 (판매수량 비율)
+   * ```
+   * var olap = Matrix.getObject("OlapGrid1");
+   * olap.BeginFieldUpdate();
+   *
+   * var fld = olap.AppendField("RATE_FIELD");
+   * fld.Caption = "판매비율(%)";
+   * fld.Category = 2;      // enCategory.Measure
+   * fld.Area = 4;          // enArea.Data
+   * fld.SummaryType = 9;   // enSummaryType.Calculate
+   * fld.Format = "#,##0.00";
+   * fld.Formula = '[판매수량] / ForAll("[COMPANY]", [판매수량]) * 100';
+   *
+   * olap.EndFieldUpdate();
+   * olap.Refresh();
+   * ```
   * @param name 필드 이름
   */
   AppendField(name: string): OlapField;
@@ -229,7 +245,8 @@ export interface OlapGrid extends Control{
 
   /** 
    * 현재 뷰에서 변경된 내용을 다시 계산하고 화면을 다시 그립니다.
-   *
+   * 필드의 너비나 셀의 높이 등 화면에서 계산 가능한 옵션만 적용되며
+   * 필드가 추가되거나, 위치 이동 등 서버의 계산이 필요한 경우는 Refresh를 사용해야 합니다.
   */
   Calculate(): void;
 

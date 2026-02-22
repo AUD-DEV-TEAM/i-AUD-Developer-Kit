@@ -29,7 +29,6 @@ const VN_INP_SAFE: NumberBox = Matrix.getObject("VN_INP_SAFE") as NumberBox;
 
 let popup: any = null;
 
-
 Matrix.OnDocumentLoadComplete = function(s, e) {
 	VS_KEYWORD.UsePlaceholder = true;
 	VS_KEYWORD.SetPlaceholder(' 제품명으로 검색');
@@ -59,12 +58,15 @@ Matrix.OnDataBindEnd = function(s, e) {
 
 		(Matrix.getObject('LBL_TOTAL_VAL_3') as Label).Style.Font.Color.SetColor(setColor);
 		(Matrix.getObject('LBL_TOTAL_VAL_3') as Label).Update();
+	
 	}
 };
 
 /******** Button Click Event ********/
 // 등록
 BTN_ADD.OnClick = function(s, e) {
+	Matrix.doRefresh('VS_INP_PRODUCT');
+
 	setInputValue(null);
 	Matrix.SetGlobalParams('INV_ID', '');
 	BTN_SAV.Text = '추가';

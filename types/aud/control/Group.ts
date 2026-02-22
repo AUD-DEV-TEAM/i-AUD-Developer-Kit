@@ -9,7 +9,7 @@ export interface Group extends Control{
    * Group의 자식 컨트롤을 가지고 있는 NamedDictionary
    * @hidden
   */
-  Controls: NamedDictionary;
+  Controls: NamedDictionary<Control>;
 
   /**
    * 그룹에 컨트롤을 추가합니다.
@@ -24,7 +24,7 @@ export interface Group extends Control{
   * @param controls 컨트롤 목록
    * @hidden
   */
-  AddControls(controls?: NamedDictionary): boolean;
+  AddControls(controls?: NamedDictionary<Control>): boolean;
 
   /**
    * 지정한 이름의 컨트롤을 그룹에서 제거합니다.

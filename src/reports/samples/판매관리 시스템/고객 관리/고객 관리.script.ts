@@ -79,7 +79,7 @@ BTN_DEL.OnClick = function(s, e) {
 
 	Matrix.Confirm('선택한 항목을 삭제하시겠습니까?', '안내', function(ok) {
 		if (ok) {
-			Matrix.RunScript('GRD_CUSTOMER', 'GRD_DELETE', function(p) {
+			Matrix.RunScript('GRD_CUSTOMER', 'GRD_CRUD', function(p) {
 				if (p.Success == false) {
 					Matrix.Alert(p.Message);
 					return;
@@ -120,7 +120,7 @@ BTN_SAV.OnClick = function(s, e) {
 		});
 
 	}else if(LBL_TTL_3.Text.includes('수정')){
-		Matrix.RunScript('', 'GRD_UPDATE', function(p) {
+		Matrix.RunScript('GRD_CUSTOMER', 'GRD_CRUD', function(p) {
 			if (p.Success == false) {
 				Matrix.Alert(p.Message);
 				return;
@@ -133,6 +133,7 @@ BTN_SAV.OnClick = function(s, e) {
 
 // 추가
 BTN_ADD.OnClick = function(s, e) {
+	GRD_CUSTOMER.ClearSelect();
 	Matrix.SetGlobalParams('VS_CUST_ID', '');
 	initInputValue();
 
@@ -147,6 +148,7 @@ VS_KEYWORD.OnTextKeydown = function(s, e) {
 };
 
 GRD_CUSTOMER.OnDataBindEnd = function(s, e) {
+	GRD_CUSTOMER.ClearSelect();
 	Matrix.SetGlobalParams('VS_CUST_ID', '');
 	initInputValue();
 
@@ -166,6 +168,10 @@ Matrix.OnViewerSizeChanged = function(s, e) {
 };
 
 GRD_CUSTOMER.OnCellClick = function(s, e) {
+	GRD_CUSTOMER.ClearRowState(false);
+	GRD_CUSTOMER.ChangeRowState(e.Row,'U');
+	GRD_CUSTOMER.ReDraw();
+
 	Matrix.SetGlobalParams('VS_CUST_ID', e.Row.GetValue('CUST_ID'));
 	LBL_TTL_3.Text = '   고객 정보 수정';
 };
