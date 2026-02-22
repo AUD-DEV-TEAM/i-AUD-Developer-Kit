@@ -199,8 +199,11 @@ MX-GRID(엑셀 기반 그리드) 보고서는 `MX_GRID/` 하위 폴더에 3파�
 질문: "MX-GRID 서버 스크립트에서 셀 값을 어떻게 변경하나요?" / "MX-GRID 예약어 사용법 알려줘"
 → /iaud-mxgrid-guide 스킬 참조
 
-질문: "보고서 화면을 처음부터 만들고 싶어요" / "MTSD에 Element 추가하려면?"
-→ /iaud-mtsd-create 스킬 참조
+질문: "보고서 화면을 처음부터 만들고 싶어요" / "새 MTSD 문서를 만들어줘"
+→ /iaud-mtsd-create 스킬 참조 (build_mtsd 사용)
+
+질문: "기존 MTSD에 버튼을 추가하려면?" / "DataSource를 하나 추가해줘"
+→ /iaud-mtsd-create 스킬 참조 (개별 MCP 도구 사용)
 
 질문: "기존 JavaScript 스크립트를 TypeScript로 변환하려면?" / "var를 let/const로 바꾸려면?"
 → /iaud-ts-conversion 스킬 참조
@@ -265,11 +268,18 @@ AUD: Pull Report
 
 ## 주요 규칙 및 컨벤션
 
+### MTSD 신규 생성 시 build_mtsd 우선 사용
+
+> 신규 MTSD 문서를 처음부터 만들 때는 **`build_mtsd`**(MtsdBuilder 스크립트)를 1순위로 사용합니다.
+> MtsdBuilder는 ID 자동 생성, 스키마 자동 준수, Group/InGroup 자동 처리, DataGrid 컬럼 인라인 빌드 등을 지원합니다.
+> 기존 MTSD에 Element/DataSource를 추가할 때는 `generate_element`, `generate_datasource` 등 개별 MCP 도구를 사용합니다.
+> 상세 가이드는 `/iaud-mtsd-create` Skill 참조.
+
 ### MTSD / SC 파일 수정 후 필수 작업
 
 > `.mtsd` 또는 `.sc` 확장자를 가진 AUD 보고서 파일의 내용을 수정한 경우, **반드시** 아래 두 단계를 순서대로 실행해야 합니다.
 
-1. **`fix_mtsd`** (자동 보정) — DataSource Name→Id 참조 보정, OlapGrid Fields 자동 생성, Enum/Range 값 범위 보정 등을 수행
+1. **`fix_mtsd`** (자동 보정) — DataSource Name→Id 참조 보정, OlapGrid Fields 자동 생성, Enum/Range 값 범위 보정, Style.Type 자동 보정 등을 수행
 2. **`validate_mtsd`** 또는 **`validate_part`** (스키마 검증) — 수정된 문서가 MTSD 스키마를 준수하는지 확인
 
 ```
@@ -665,18 +675,35 @@ npx @bimatrix-aud-platform/aud_mcp_server@latest
 
 | 도구 | 설명 |
 |------|------|
+| **`build_mtsd`** | **MtsdBuilder 스크립트를 실행하여 완전한 MTSD 문서 생성. 신규 보고서 생성 시 1순위 도구** |
 | `validate_mtsd` | MTSD 문서 전체 스키마 검증 |
 | `validate_part` | MTSD 문서의 특정 부분만 검증 (Form, Element, DataSource 등) |
 | `validate_module` | 모듈 JSON (.module.json) 스키마 검증 |
 | `get_schema_info` | 특정 타입의 스키마 정보 조회 (필수/선택 속성, 설명) |
 | `get_element_types` | 사용 가능한 Element 타입 목록 |
 | `get_root_structure` | MTSD 루트 구조 조회 |
-| `generate_element` | 간소화 입력으로 Element JSON 생성 |
+| `generate_element` | 간소화 입력으로 Element JSON 생성 (기존 문서에 추가할 때) |
 | `generate_grid_column` | 간소화 입력으로 GridColumn 배열 생성 |
-| `generate_datasource` | 간소화 입력으로 DataSource JSON 생성 (SQL에서 파라미터 자동 추출) |
+| `generate_datasource` | 간소화 입력으로 DataSource JSON 생성 (기존 문서에 추가할 때) |
 | `fix_mtsd` | MTSD 파일 자동 보정 (Name→Id 참조, Params, Columns 등) |
 | `get_control_info` | MTSD 파일에서 컨트롤 Name↔Type 매핑 추출 |
 | `generate_uuid` | i-AUD 보고서용 UUID 생성 (prefix + 32자리 HEX). 단일/다수/일괄 생성 지원 |
+
+```
+# build_mtsd 사용 흐름 (신규 MTSD 생성)
+1. AI가 MtsdBuilder API를 사용하는 JS 스크립트 작성
+2. build_mtsd { script: "const doc = new MtsdBuilder('보고서명'); ... return doc.build();" }
+3. 반환된 MTSD JSON을 .mtsd 파일로 Write
+4. fix_mtsd → validate_part로 보정 및 검증
+5. save_report → run_designer로 결과 확인
+
+# MtsdBuilder의 이점
+- ID 자동 생성 (ReportCode, DataSource Id, Element Id, Form Id)
+- Group/InGroup 자동 설정, DataGrid 컬럼 인라인 빌드
+- Position, Style, Border, Font, Color 등 스키마 복잡성 내부 처리
+- SQL 파라미터 자동 추출
+- 36개 전체 Element 타입 지원
+```
 
 #### OLAP 도구
 

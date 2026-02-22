@@ -1,6 +1,6 @@
 ---
 name: iaud-mtsd-create
-description: i-AUD MTSD 문서 생성 가이드. 새 보고서의 .mtsd 파일을 처음부터 만들 때 사용합니다. MCP 생성 도구(generate_element, generate_grid_column, generate_datasource)의 활용법과 MTSD 루트 구조 템플릿, Element 타입별 패턴, Docking 레이아웃, DataGrid 컬럼 패턴을 포함합니다. "MTSD 만들기", "보고서 생성", "화면 만들기", "새 프로그램", "Element 추가" 등을 요청할 때 사용하세요.
+description: i-AUD MTSD 문서 생성 가이드. 새 보고서의 .mtsd 파일을 처음부터 만들 때 사용합니다. build_mtsd(MtsdBuilder 스크립트)를 사용한 신규 문서 생성과 MCP 개별 도구를 사용한 기존 문서 수정을 포함합니다. "MTSD 만들기", "보고서 생성", "화면 만들기", "새 프로그램", "Element 추가" 등을 요청할 때 사용하세요.
 ---
 
 # i-AUD MTSD 문서 생성 가이드
@@ -9,138 +9,271 @@ description: i-AUD MTSD 문서 생성 가이드. 새 보고서의 .mtsd 파일�
 
 MTSD (.mtsd) 파일은 i-AUD 보고서의 화면 UI 배치, 데이터소스, 서비스를 정의하는 JSON 문서입니다.
 
-### MCP 생성 도구 활용
+### MTSD 생성 방식 선택
 
-`aud_mcp_server` MCP 서버의 생성 도구를 사용하면 복잡한 JSON 구조를 간소화된 입력으로 빠르게 만들 수 있습니다.
+| 방식 | 도구 | 용도 | 권장 상황 |
+|------|------|------|-----------|
+| **빌더 스크립트** (1순위) | `build_mtsd` | JS 스크립트 1회 호출로 완전한 MTSD 생성 | **신규 보고서 생성** |
+| **개별 MCP 도구** (2순위) | `generate_element` 등 | Element/DataSource를 하나씩 생성 | **기존 MTSD 부분 수정/추가** |
+
+> **신규 문서는 `build_mtsd`를 우선 사용합니다.** 스크립트 1회 호출로 ID 자동 생성, 스키마 자동 준수, Group/DataGrid 중첩 처리가 모두 해결됩니다.
+
+### MCP 도구 목록
 
 | MCP 도구 | 용도 |
 |----------|------|
-| `generate_element` | Element 1개 생성 (Label, Button, DataGrid, Group 등) |
+| **`build_mtsd`** | **MtsdBuilder 스크립트를 실행하여 완전한 MTSD 문서 생성 (신규 보고서 1순위)** |
+| `generate_element` | Element 1개 생성 (기존 문서에 추가할 때) |
 | `generate_grid_column` | DataGrid의 GridColumn 배열 생성 |
-| `generate_datasource` | DataSource 1개 생성 (SQL 파라미터 자동 추출) |
-| `generate_uuid` | i-AUD 보고서용 UUID 생성 (prefix + 32자리 HEX). 단일/다수/일괄 생성 지원 |
+| `generate_datasource` | DataSource 1개 생성 (기존 문서에 추가할 때) |
+| `generate_uuid` | i-AUD 보고서용 UUID 생성 (prefix + 32자리 HEX) |
 | `get_boxstyle_list` | BoxStyle 목록 조회 (Style.Type=1 사용 시 Name 키 확인) |
-| `save_boxstyle` | BoxStyle 저장/수정 (단일 객체 또는 배열로 여러 개 한 번에 저장 가능) |
+| `save_boxstyle` | BoxStyle 저장/수정 |
 | `validate_mtsd` | 완성된 MTSD 문서 전체 검증 |
 | `validate_part` | 부분 검증 (Element, DataSource 등 개별 검증) |
 | `fix_mtsd` | MTSD 파일 자동 보정 (파일 경로 입력 → 읽고 수정 후 덮어쓰기) |
 
-### ID 생성 규칙 (UUID 형식)
+---
 
-MTSD 문서에서 사용하는 모든 **Id** 값은 **접두사 + 32자리 대문자 HEX** (UUID without dashes) 형식을 따릅니다.
+## 2. 신규 문서 생성 — build_mtsd (MtsdBuilder 스크립트)
 
-| 항목 | 접두사 | 예시 |
-|------|--------|------|
-| ReportCode | `REP` | `REP2EDC58234142492D8829411E8C0FD90B` |
-| DataSource Id | `DS` | `DS902D12727EFC4373A2BCA30935FC6109` |
-| Form Id | `Form` | `FormD64B8652095A4B9798E93B38EDBCCCD4` |
-| Element Id | `{타입명}` | `Group2B4BD0E69A92CDBCD029B105CA49D457` |
-|  |  | `DataGridF080EDCACB22D1D56A21D1B1E3AE9017` |
-|  |  | `LabelA9693D8ACAE63C7AEDBE7AA0D37A9CEB` |
-|  |  | `Button31C6D3784F6E49F90EE81B75752BC500` |
-|  |  | `TextBoxDA3777D9E0B17780BCB31B58D859EA40` |
-|  |  | `ComboBox974223E5E3F8F649965F6D538A2B02D5` |
+### 2.1 아키텍처
 
-> **Id vs Name 구분**:
-> - **Id**: 시스템 내부 식별자 → 반드시 `접두사 + UUID(32 HEX)` 형식
-> - **Name**: 사람이 읽는 이름 → `GRP_HEADER`, `GRD_SALES`, `BTN_SEARCH` 등 의미 있는 이름 사용
-
-> **중요**: `REPSALESPERF0001...`, `REPMYREPORT...` 같은 의미 있는 문자열을 Id에 사용하지 마세요. 반드시 랜덤 UUID를 생성합니다.
-
-**UUID HEX 생성 방법** — `generate_uuid` MCP 도구 사용 (권장):
 ```
-# 단일 생성
-generate_uuid { prefix: "Label" }
-→ "LabelA6A9E2BF710D371D8220ACE36504B240"
-
-# 같은 prefix로 여러 개 생성
-generate_uuid { prefix: "DS", count: 3 }
-→ ["DS...", "DS...", "DS..."]
-
-# 여러 prefix 일괄 생성 (보고서 생성 시 유용)
-generate_uuid { items: [
-  { prefix: "REP", count: 1 },
-  { prefix: "Form", count: 1 },
-  { prefix: "DS", count: 2 },
-  { prefix: "Group", count: 1 },
-  { prefix: "Label", count: 3 },
-  { prefix: "Button", count: 2 },
-  { prefix: "DataGrid", count: 1 }
-]}
+AI → JS 스크립트 작성 (MtsdBuilder API 사용) → build_mtsd MCP 도구가 실행 → MTSD JSON 반환
 ```
 
-JavaScript 방식 (대안):
-```javascript
-crypto.randomUUID().replace(/-/g, '').toUpperCase()
-// 결과: "2EDC58234142492D8829411E8C0FD90B"
+- ID(ReportCode, DataSource Id, Element Id, Form Id) 모두 **자동 생성**
+- Position, Style, Border, Font, Color 등 복잡한 스키마 객체 **내부 자동 처리**
+- Group 내 Element의 `InGroup`/`ChildElements` **자동 설정**
+- DataGrid 컬럼 **인라인 빌드** (addColumn 체이닝)
+- SQL 파라미터 **자동 추출** (`@:PARAM`, `:PARAM`, `%:PARAM`)
+
+### 2.2 기본 스크립트 예시
+
+```js
+const doc = new MtsdBuilder("판매실적 조회");
+
+// DataSource
+doc.addDataSource("DS_GRID", "AUD_SAMPLE_DB",
+  "SELECT * FROM V_SALES WHERE YMD >= @:VS_YMD_FROM AND YMD <= @:VS_YMD_TO");
+
+// 헤더 그룹
+const header = doc.addGroup("GRP_HEADER", {
+  dock: "left+right", height: 50, bg: "#F8F9FA",
+  border: { thickness: "0,0,1,0", color: "#E0E0E0" }
+});
+header.addLabel("LBL_TITLE", "판매실적 조회", {
+  left: 15, top: 10, width: 200, height: 30,
+  font: { size: 16, bold: true, color: "#333333" }
+});
+header.addButton("BTN_SEARCH", "조회", {
+  dock: "right", holdSize: true, width: 80, height: 30, top: 10,
+  style: { type: 1, boxStyle: "BTN_DEFAULT" }
+});
+
+// 검색 조건 그룹
+const search = doc.addGroup("GRP_SEARCH", {
+  dock: "left+right", top: 50, height: 45
+});
+search.addLabel("LBL_FROM", "기간", { left: 15, top: 10, width: 40, height: 25 });
+search.addCalendar("CAL_FROM", { left: 60, top: 10, width: 130, height: 25 });
+search.addLabel("LBL_DASH", "~", { left: 195, top: 10, width: 20, height: 25, font: { align: "center" } });
+search.addCalendar("CAL_TO", { left: 220, top: 10, width: 130, height: 25 });
+
+// 그리드 (헤더+검색 아래 = top: 95)
+const grid = doc.addDataGrid("GRD_MAIN", {
+  dock: "left+right+bottom", top: 95, dataSource: "DS_GRID"
+});
+grid.addColumn("YMD", { header: "일자", width: 100, align: "center" });
+grid.addColumn("PRODUCT_NAME", { header: "상품명", width: 150 });
+grid.addColumn("QTY", { header: "수량", width: 80, format: "#,##0", align: "right" });
+grid.addColumn("AMT", { header: "금액", width: 120, format: "#,##0", align: "right" });
+
+return doc.build();
+```
+
+### 2.3 MtsdBuilder API 레퍼런스
+
+#### MtsdBuilder (문서 레벨)
+
+```
+new MtsdBuilder(보고서명, opts?)
+  ├── addDataSource(name, connection, sql, opts?)  → this
+  ├── addVariable(name, value?, type?)             → this
+  ├── setScript(text)                              → this
+  ├── getReportCode()                              → string
+  │
+  │  ── Element 추가 메서드 (공통) ──
+  ├── addGroup(name, opts?)        → GroupBuilder   (중첩 가능 컨테이너)
+  ├── addDataGrid(name, opts?)     → DataGridBuilder (컬럼 체이닝)
+  ├── addTreeGrid(name, opts?)     → DataGridBuilder
+  ├── addCompactDataGrid(name, opts?) → DataGridBuilder
+  ├── addLabel(name, text, opts?)  → this
+  ├── addButton(name, text, opts?) → this
+  ├── addTextBox(name, opts?)      → this
+  ├── addNumberBox(name, opts?)    → this
+  ├── addComboBox(name, opts?)     → this
+  ├── addMultiComboBox(name, opts?) → this
+  ├── addCheckBox(name, text, opts?) → this
+  ├── addRadioButton(name, text, opts?) → this
+  ├── addCalendar(name, opts?)     → this
+  ├── addCalendarYear(name, opts?) → this
+  ├── addCalendarYM(name, opts?)   → this
+  ├── addChart(name, opts?)        → this
+  ├── addPieChart(name, opts?)     → this
+  ├── addScatterChart(name, opts?) → this
+  ├── addPolygonChart(name, opts?) → this
+  ├── addOlapGrid(name, opts?)     → this
+  ├── addIGrid(name, opts?)        → this
+  ├── addImage(name, opts?)        → this
+  ├── addMaskTextBox(name, opts?)  → this
+  ├── addRichTextBox(name, opts?)  → this
+  ├── addPickList(name, opts?)     → this
+  ├── addTree(name, opts?)         → this
+  ├── addColorSelector(name, opts?) → this
+  ├── addSlider(name, opts?)       → this
+  ├── addFileUploadButton(name, text?, opts?) → this
+  ├── addTab(name, opts?)          → this
+  ├── addTableLayout(name, opts?)  → this
+  ├── addUserComponent(name, opts?) → this
+  ├── addWebContainer(name, opts?) → this
+  ├── addDiagramControl(name, opts?) → this
+  ├── addSlicer(name, opts?)       → this
+  ├── addAddIn(name, opts?)        → this
+  ├── addTreeView(name, opts?)     → this
+  ├── addElement(type, name, opts?) → this   (범용)
+  │
+  ├── build()  → 완전한 MTSD JSON
+  └── toJSON() → build() alias
+```
+
+#### GroupBuilder (그룹 컨테이너)
+
+```
+// addGroup()이 반환하는 빌더
+GroupBuilder
+  ├── addLabel / addButton / ... (MtsdBuilder와 동일한 Element 메서드)
+  ├── addGroup(name, opts?) → GroupBuilder (중첩 그룹)
+  ├── addDataGrid(name, opts?) → DataGridBuilder
+  └── end() → 부모 반환 (체이닝 계속)
+```
+
+- 내부적으로 자식 Element에 `InGroup: 그룹ID` 자동 설정
+- 그룹의 `ChildElements[]`에 자동 추가
+
+#### DataGridBuilder (그리드 컬럼 빌더)
+
+```
+// addDataGrid() / addTreeGrid() / addCompactDataGrid()가 반환하는 빌더
+DataGridBuilder
+  ├── addColumn(name, opts?) → this
+  └── end() → 부모 반환
+```
+
+**addColumn 옵션:**
+| 옵션 | 설명 | 예시 |
+|------|------|------|
+| `header` | 표시명 (생략 시 name) | `"판매ID"` |
+| `width` | 너비 (기본 100) | `150` |
+| `type` | 컬럼 타입 | `"text"`, `"checkbox"`, `"combo"` |
+| `align` | 텍스트 정렬 | `"left"`, `"center"`, `"right"` |
+| `format` | 숫자 포맷 | `"#,##0"` |
+| `editable` | 편집 가능 | `true` |
+| `visible` | 표시 여부 | `false` |
+
+### 2.4 공통 옵션 (모든 Element에 적용)
+
+| 옵션 | 설명 | 예시 |
+|------|------|------|
+| `left, top, width, height` | 위치/크기 | `{ left: 10, top: 5, width: 200, height: 30 }` |
+| `dock` | Docking 단축 표기 | `"left+right"`, `"fill"`, `"left+right+bottom"` |
+| `margin` | Docking Margin | `"0,0,15,0"` |
+| `holdSize` | HoldSize | `true` |
+| `bg` | 배경색 (자동으로 Style.Type=2) | `"#F8F9FA"` |
+| `border` | 테두리 | `{ thickness: "0,0,1,0", color: "#E0E0E0", radius: "4,4,4,4" }` |
+| `font` | 폰트 | `{ size: 14, bold: true, color: "#333", align: "center" }` |
+| `color` | 텍스트 색상 (font.color 단축) | `"#333333"` |
+| `visible` | 표시 여부 | `false` |
+| `style` | Style 직접 지정 | `{ type: 1, boxStyle: "BTN_DEFAULT" }` |
+| `dataSource` | DataSource Name 바인딩 | `"DS_GRID"` |
+
+> **스타일 자동 처리**: `bg`, `border`, `font`, `color` 중 하나라도 지정하면 자동으로 `Style.Type=2`(Custom)로 설정됩니다. `style: { type: 1, boxStyle: "..." }` 지정 시 BoxStyle 참조로 설정됩니다.
+
+### 2.5 build_mtsd 호출 후 워크플로우
+
+```
+1. build_mtsd 호출 → MTSD JSON 반환
+2. 반환된 JSON을 .mtsd 파일로 Write
+3. fix_mtsd 실행 (자동 보정)
+4. validate_part 또는 validate_mtsd로 검증
+5. save_report → run_designer로 결과 확인
+```
+
+### 2.6 다양한 레이아웃 예시
+
+#### 좌우 분할 레이아웃 (트리 + 그리드)
+
+```js
+const doc = new MtsdBuilder("조직별 실적 조회");
+
+doc.addDataSource("DS_TREE", "AUD_SAMPLE_DB",
+  "SELECT ORG_CODE, ORG_NAME, PARENT_CODE FROM CM_ORG");
+doc.addDataSource("DS_GRID", "AUD_SAMPLE_DB",
+  "SELECT * FROM V_PERFORMANCE WHERE ORG_CODE = @:VS_ORG_CODE");
+
+// 좌측 트리 (고정 너비 250px)
+doc.addTreeView("TRV_ORG", {
+  dock: "left+right+bottom", width: 250, dataSource: "DS_TREE",
+  margin: "0,0,0,0"
+});
+
+// 우측 그리드 (나머지 영역)
+const grid = doc.addDataGrid("GRD_PERF", {
+  dock: "left+right+bottom", dataSource: "DS_GRID",
+  margin: "255,0,0,0"  // 좌측 트리 영역 피해서 배치
+});
+grid.addColumn("EMP_NAME", { header: "직원명", width: 100 });
+grid.addColumn("SALES_AMT", { header: "매출액", format: "#,##0", align: "right" });
+
+return doc.build();
+```
+
+#### 차트 + 그리드 대시보드
+
+```js
+const doc = new MtsdBuilder("매출 대시보드");
+
+doc.addDataSource("DS_CHART", "AUD_SAMPLE_DB",
+  "SELECT YM, SUM(AMT) AS TOTAL_AMT FROM V_SALES GROUP BY YM ORDER BY YM");
+doc.addDataSource("DS_DETAIL", "AUD_SAMPLE_DB",
+  "SELECT * FROM V_SALES WHERE YM = @:VS_YM");
+
+// 상단 차트 영역
+doc.addChart("CHT_TREND", {
+  dock: "left+right", height: 300, dataSource: "DS_CHART"
+});
+
+// 하단 상세 그리드
+const grid = doc.addDataGrid("GRD_DETAIL", {
+  dock: "left+right+bottom", top: 305, dataSource: "DS_DETAIL"
+});
+grid.addColumn("YMD", { header: "일자", width: 100, align: "center" });
+grid.addColumn("PRODUCT", { header: "상품", width: 150 });
+grid.addColumn("AMT", { header: "금액", format: "#,##0", align: "right" });
+
+return doc.build();
 ```
 
 ---
 
-## 2. MTSD 루트 구조 템플릿
+## 3. 기존 문서 부분 수정 — 개별 MCP 도구
 
-새 MTSD 문서를 만들 때 이 구조에서 시작합니다:
-
-```json
-{
-  "ReportInfo": {
-    "ReportCode": "{보고서코드}",
-    "FolderCode": "{폴더코드}",
-    "SavePath": "{폴더코드}/{보고서코드}.mtsd",
-    "ReportName": "{보고서명}",
-    "Writer": "",
-    "WriteDate": "",
-    "Editor": "",
-    "EditDate": "",
-    "TabPosition": 0,
-    "UsePersonalConditions": false,
-    "DocumentVersion": "3.0.0.0",
-    "RefreshType": 0
-  },
-  "DataSources": {
-    "Datas": []
-  },
-  "ScriptText": "",
-  "ServerScriptText": [],
-  "Forms": [
-    {
-      "Id": "Form{32자HEX}",
-      "Name": "Form1",
-      "Activated": true,
-      "Visible": true,
-      "LanguageCode": "",
-      "Style": {
-        "Type": 0,
-        "BoxStyle": "",
-        "Border": { "CornerRadius": "0,0,0,0", "LineType": "none", "Thickness": "0,0,0,0" },
-        "Background": {}
-      },
-      "Elements": []
-    }
-  ],
-  "MetaDataSources": {
-    "TemplateMeta": { "TemplateName": "" },
-    "MetaDataSources": []
-  }, 
-  "EXECUTION_PLANS": [],
-  "Variables": [],
-  "Modules": [],
-  "ResponsiveLayout": [],
-  "Langs": [],
-  "WorkFlowModules": [],
-  "WorkFlowInfo": ""
-}
-```
-
----
-
-## 3. MCP 생성 도구 사용법
+기존 MTSD 파일에 Element나 DataSource를 추가할 때는 개별 MCP 도구를 사용합니다.
 
 ### 3.1 generate_element — Element 생성
 
 간소화된 입력으로 스키마 준수 Element JSON을 생성합니다.
-
-**단축 표기:**
 
 | 입력 | 설명 | 예시 |
 |------|------|------|
@@ -155,7 +288,6 @@ crypto.randomUUID().replace(/-/g, '').toUpperCase()
 | `color` | 텍스트 색상 | `"#333333"` |
 
 **사용 예시:**
-
 ```
 generate_element({
   type: "Label",
@@ -180,15 +312,6 @@ generate_grid_column({
 })
 ```
 
-**컬럼 타입 매핑:**
-
-| type | ColumnType | 자동 설정 |
-|------|-----------|----------|
-| `"text"` | 0 | 기본값 |
-| `"checkbox"` | 1 | Editable: true |
-| `"combo"` | 2 | DefinedItems 설정 가능 |
-| (format 지정) | — | DataType: 1(Number), TextPosition: "right" |
-
 ### 3.3 generate_datasource — DataSource 생성
 
 ```
@@ -205,7 +328,21 @@ generate_datasource({
 
 - `params` 생략 시 SQL에서 `@:PARAM`, `:PARAM`, `%:PARAM` 패턴 자동 추출
 - Id는 `DS` + 32자리 HEX로 자동 생성
-- 기본값: `UseMeta:  false`, `UseCache: false`, `Encrypted: false`, `DSType: 0`
+
+### 3.3.1 ID 생성 규칙 (개별 도구 사용 시)
+
+개별 MCP 도구로 Element를 추가할 때 ID는 `{타입접두사} + 32자리 대문자 HEX` 형식입니다. `generate_uuid` 도구를 사용하세요.
+
+```
+# 여러 prefix 일괄 생성
+generate_uuid { items: [
+  { prefix: "DS", count: 2 },
+  { prefix: "Label", count: 3 },
+  { prefix: "Button", count: 1 }
+]}
+```
+
+> **build_mtsd 사용 시에는 ID가 자동 생성**되므로 generate_uuid가 필요 없습니다.
 
 ---
 
@@ -357,7 +494,7 @@ HoldSize: true — 위치만 이동
   },
   "Style": { "Type": 0, "BoxStyle": "", "Background": {}, "Border": { "CornerRadius": "0,0,0,0", "LineType": "none", "Thickness": "0,0,0,0" } },
   "LanguageCode": "", "Text": "제목", "Cursor": "default", "Formula": "",
-  "UseTextOverflow": false, "UseAutoLineBreak": false, "LineSpacing": 0, "HasLineSpacing": false,
+  "UseTextOverflow": false, "UseAutoLineBreak": false, "LineSpacing": 1.2, "HasLineSpacing": true,
   "MxBinding": "", "MxBindingUseStyle": false
 }
 ```
@@ -371,7 +508,7 @@ HoldSize: true — 위치만 이동
     "Docking": { "Left": false, "Right": false, "Top": false, "Bottom": false, "Margin": "0,0,0,0", "HoldSize": false, "MinWidth": 0, "MinHeight": 0 }
   },
   "Style": { "Type": 0, "BoxStyle": "", "Background": {}, "Border": { "CornerRadius": "0,0,0,0", "LineType": "none", "Thickness": "0,0,0,0" } },
-  "LanguageCode": "", "Value": "조회", "Cursor": "pointer", "HasNewRadius": false
+  "LanguageCode": "", "Value": "조회", "Cursor": "pointer", "HasNewRadius": true
 }
 ```
 
@@ -384,7 +521,10 @@ HoldSize: true — 위치만 이동
     "Docking": { "Left": true, "Right": true, "Top": false, "Bottom": true, "Margin": "0,0,0,0", "HoldSize": false, "MinWidth": 0, "MinHeight": 0 }
   },
   "Style": { "Type": 0, "BoxStyle": "", "Background": {}, "Border": { "CornerRadius": "0,0,0,0", "LineType": "none", "Thickness": "0,0,0,0" } },
-  "CellMargin": "2", "Columns": [], "UsePPTExport": false
+  "CellMargin": "5,5,5,5", "Columns": [],
+  "AutoRefresh": false, "DoRefresh": true, "DoExport": true,
+  "ColumnHeaderHeight": 28, "RowHeight": 24, "ShowHeader": 3, "SelectRule": 2,
+  "FontFamily": "inherit", "FontSize": 12
 }
 ```
 
@@ -410,8 +550,8 @@ HoldSize: true — 위치만 이동
     "Docking": { "Left": false, "Right": false, "Top": false, "Bottom": false, "Margin": "0,0,0,0", "HoldSize": false, "MinWidth": 0, "MinHeight": 0 }
   },
   "Style": { "Type": 0, "BoxStyle": "", "Background": {}, "Border": { "CornerRadius": "0,0,0,0", "LineType": "none", "Thickness": "0,0,0,0" } },
-  "DataSource": "", "Value": "", "Text": "", "InitType": 0, "RefreshType": 0,
-  "IsReadOnly": false, "SortType": 0, "AutoRefresh": false, "AfterRefresh": "",
+  "DataSource": "", "Value": "", "Text": "", "InitType": 0, "RefreshType": 1,
+  "IsReadOnly": false, "SortType": 0, "AutoRefresh": false, "DoRefresh": false, "AfterRefresh": "",
   "UseAllItems": false, "UseAllItemsText": "", "DisplayType": 0,
   "DataSourceInfo": { "LabelField": "", "ValueField": "" }, "InitValue": ""
 }
@@ -423,41 +563,28 @@ HoldSize: true — 위치만 이동
 
 > **필수 규칙**: `.mtsd` 또는 `.sc` 파일을 생성하거나 수정할 때마다 반드시 **`fix_mtsd` → `validate_part`(또는 `validate_mtsd`)** 순서로 실행합니다. 속성 타입 오류(예: array를 string으로 기입)나 필수 속성 누락은 MCP 검증으로만 확인할 수 있습니다.
 
-### Step 1: MTSD 루트 구조 생성
-위 섹션 2의 템플릿을 복사하고 ReportInfo를 채웁니다.
+### 워크플로우 A: 신규 문서 — build_mtsd (권장)
 
-### Step 2: DataSource 생성
 ```
-generate_datasource({ name: "DS이름", connection: "연결코드", sql: "SELECT ..." })
-```
-결과를 `DataSources.Datas[]`에 추가합니다.
-
-### Step 3: Element 생성
-```
-// 헤더 그룹
-generate_element({ type: "Group", id: "GRP_HEADER", docking: "left+right", position: { left: 0, top: 0, width: 800, height: 55 } })
-
-// 제목 라벨
-generate_element({ type: "Label", id: "LBL_TTL", text: "보고서 제목", font: { size: 16, bold: true } })
-
-// 조회 버튼
-generate_element({ type: "Button", id: "BTN_SEARCH", text: "조회" })
-
-// 데이터 그리드 (헤더 아래 배치 시 fill 대신 left+right+bottom 사용)
-generate_element({ type: "DataGrid", id: "GRD_MAIN", docking: "left+right+bottom", position: { left: 0, top: 100, width: 800, height: 400 } })
+Step 1: build_mtsd 호출 (MtsdBuilder 스크립트 전달)
+         → 완전한 MTSD JSON 반환 (ID, 스키마 자동 처리)
+Step 2: 반환된 JSON을 .mtsd 파일로 Write
+Step 3: fix_mtsd 실행 (DataSource Name→Id 참조 보정 등)
+Step 4: validate_part로 파트별 검증 (Forms, DataSources)
+Step 5: save_report → run_designer로 결과 확인
 ```
 
-### Step 4: GridColumn 생성
-```
-generate_grid_column({ columns: [...] })
-```
-결과를 DataGrid의 `Columns`에 설정합니다.
+### 워크플로우 B: 기존 문서 부분 수정 — 개별 MCP 도구
 
-### Step 5: 조합 및 검증
-모든 Element를 `Forms[0].Elements[]`에 배치하고 `validate_mtsd`로 전체 검증합니다.
+```
+Step 1: 기존 .mtsd 파일 Read
+Step 2: generate_element / generate_datasource / generate_grid_column으로 추가할 요소 생성
+Step 3: 기존 JSON에 병합하여 Edit/Write
+Step 4: fix_mtsd 실행 (자동 보정)
+Step 5: validate_part로 파트별 검증 → 오류 발견 시 수정
+```
 
-### Step 6: 자동 보정 (fix_mtsd)
-MTSD 파일을 **Write/Edit로 저장한 후** `fix_mtsd`를 실행하여 자동 보정합니다.
+### fix_mtsd 상세
 
 ```
 fix_mtsd({ path: "D:/reports/sample/REPXXXXXXXX.mtsd" })
@@ -465,16 +592,14 @@ fix_mtsd({ path: "D:/reports/sample/REPXXXXXXXX.mtsd" })
 
 - **입력**: MTSD 파일의 **전체 경로** (디스크에 저장된 파일 대상)
 - **동작**: 파일을 읽어 보정 규칙을 적용한 뒤 **파일을 덮어씁니다**
-- **현재 보정 규칙**:
-  - DataSource Name→Id 참조 보정 (Element의 `DataSource`가 Name으로 참조된 경우 Id로 자동 변환)
+- **보정 규칙**:
+  - DataSource Name→Id 참조 보정
+  - OlapGrid DataSource 기반 Fields 자동 생성
+  - Enum/Range 값 범위 초과 보정
+  - Style.Type 자동 보정 (커스텀 색상인데 Type=0이면 Type=2로 변경)
 - **반환값**: `{ fixed: boolean, fixCount: number, fixes: string[], errors: string[] }`
 
-> **중요**: `fix_mtsd`는 파일을 직접 수정하므로 반드시 Write/Edit 이후에 실행하세요. 새 MTSD 생성 시, 수정 시 모두 사용합니다.
-
-### Step 7: 수정 시 재보정 + 재검증 (필수)
-`.mtsd` 또는 `.sc` 파일을 수정(Edit/Write)할 때마다 **반드시** 아래 순서를 따릅니다:
-1. `fix_mtsd`로 자동 보정 실행 → 보정 결과 확인
-2. `validate_part`로 파트별 검증 (Forms, DataSources 등) → 오류 발견 시 수정
+> **중요**: `fix_mtsd`는 파일을 직접 수정하므로 반드시 Write/Edit 이후에 실행하세요.
 
 > **주의**: `validate_mtsd`(전체 검증)는 대용량 문서에서 AJV 성능 이슈로 타임아웃될 수 있습니다. 이 경우 `validate_part`로 파트별 검증을 권장합니다.
 
@@ -623,11 +748,11 @@ save_boxstyle {
 
 ## 9. 주의사항
 
-1. **ID/Name 규칙**: Id는 `{타입접두사}` + 32자리 UUID HEX (예: `LabelA9693D8ACAE63C7AEDBE7AA0D37A9CEB`). Name은 `{타입약어}_{용도}` 형식의 의미 있는 이름 (예: `LBL_TTL`, `BTN_SEARCH`, `GRD_MAIN`). ReportCode는 `REP` + UUID, DataSource Id는 `DS` + UUID, Form Id는 `Form` + UUID. 상세 규칙은 섹션 1의 "ID 생성 규칙" 참조
-2. **Group 내 Element**: Group의 `ChildElements[]`에 넣고, 자식 Element에 `"InGroup": "그룹ID"` 설정
-3. **DataGrid.DataSource**: DataSource의 `Id` 값이 아닌 `Name` 값을 사용
-4. **MCP 검증 + 자동 보정 필수**: MTSD 파일을 **생성 또는 수정할 때마다** `validate_mtsd`로 전체 검증 후 `fix_mtsd`로 자동 보정을 수행합니다. `fix_mtsd`는 파일 경로를 받아 직접 파일을 수정하므로 반드시 Write/Edit 이후에 실행합니다.
-5. **속성 타입 확인**: 속성 타입이 불확실할 때는 `get_schema_info`로 정확한 타입을 확인한 후 값을 설정합니다. (예: `MetaDataSources.MetaDataSources`는 `array` 타입이므로 `""` 가 아닌 `[]`로 설정)
-6. **generate_element 미지원 타입**: 기본 Element 속성만 생성되므로, 반환된 warnings를 확인하고 타입별 필수 속성을 수동 추가
-7. **WriteDate/EditDate 패턴**: `YYYY-MM-DD HH:MM:SS` 형식이어야 하며, 빈 문자열은 허용되지 않음
-8. **Style.Type 필수 확인**: Background/Border/Font 색상을 변경할 때 반드시 `Style.Type`을 `2`(Custom)으로 설정 (섹션 8 참조)
+1. **신규 문서는 build_mtsd 우선**: 신규 MTSD를 처음부터 만들 때는 `build_mtsd`(MtsdBuilder 스크립트)를 1순위로 사용합니다. ID 자동 생성, Group/InGroup 자동 처리, 스키마 자동 준수 등의 이점이 있습니다.
+2. **ID/Name 규칙**: Id는 `{타입접두사}` + 32자리 UUID HEX. Name은 `{타입약어}_{용도}` 형식의 의미 있는 이름 (예: `LBL_TTL`, `BTN_SEARCH`, `GRD_MAIN`). **build_mtsd 사용 시 ID는 자동 생성**됩니다.
+3. **Group 내 Element**: `build_mtsd` 사용 시 GroupBuilder가 `InGroup`/`ChildElements` 자동 처리. 개별 MCP 도구 사용 시에는 수동으로 Group의 `ChildElements[]`에 넣고, 자식 Element에 `"InGroup": "그룹ID"` 설정.
+4. **DataGrid.DataSource**: DataSource의 `Id` 값이 아닌 `Name` 값을 사용
+5. **MCP 검증 + 자동 보정 필수**: MTSD 파일을 **생성 또는 수정할 때마다** `fix_mtsd` → `validate_part`(또는 `validate_mtsd`) 순서로 실행합니다.
+6. **속성 타입 확인**: 속성 타입이 불확실할 때는 `get_schema_info`로 정확한 타입을 확인한 후 값을 설정합니다.
+7. **WriteDate/EditDate 패턴**: `YYYY-MM-DD HH:MM:SS` 형식이어야 하며, 빈 문자열은 허용되지 않음. **build_mtsd는 자동으로 현재 시간을 설정**합니다.
+8. **Style.Type 필수 확인**: Background/Border/Font 색상을 변경할 때 반드시 `Style.Type`을 `2`(Custom)으로 설정 (섹션 8 참조). **build_mtsd에서 `bg`, `border`, `font`, `color` 옵션 사용 시 자동으로 Type=2 설정**됩니다.
