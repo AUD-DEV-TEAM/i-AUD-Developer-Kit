@@ -323,9 +323,10 @@ import { QueryRepository } from "../ServerScript/@DATA_MASTER";
 
 1. **i-AUD Designer**에서 보고서 생성/편집
 2. **VS Code**에서 `AUD: Download Report`로 다운로드
-3. 로컬에서 스크립트 수정 (.ts 파일)
-4. `AUD: Publish Script`로 스크립트만 배포
-5. `AUD: Deploy Report`로 전체 배포 (디자인 포함)
+3. **`pull_report` 실행** (서버 최신 상태 동기화)
+4. 로컬에서 스크립트 수정 (.ts 파일)
+5. `save_report`로 서버에 배포 (또는 `AUD: Publish Script` / `AUD: Deploy Report`)
+6. `run_designer`로 브라우저에서 테스트 (또는 `AUD: Run Designer`)
 
 ---
 
@@ -338,7 +339,7 @@ import { QueryRepository } from "../ServerScript/@DATA_MASTER";
 
 ### 스크립트 파일
 - `DataSource/`, `ServerScript/` 폴더의 파일은 직접 편집 가능
-- `AUD: Publish Script`로 서버에 배포
+- `save_report`로 서버에 배포 (또는 `AUD: Publish Script`)
 
 ### .aud.json
 - VS Code 확장에서 자동 관리

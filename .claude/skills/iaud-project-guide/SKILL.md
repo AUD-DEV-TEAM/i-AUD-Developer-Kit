@@ -135,11 +135,20 @@ tsc --w
 
 1. **i-AUD Designer**에서 새 보고서 생성 및 컴포넌트 배치
 2. **VS Code**에서 `AUD: Download Report`로 다운로드
-3. `.script.js` → `.script.ts`로 확장자 변경
-4. `AUD: Generate Starter Code`로 기본 구조 생성
-5. `tsc --w`로 TypeScript watch 모드 실행
-6. 스크립트 개발 후 `AUD: Publish Script` (Ctrl+Alt+S)로 배포
-7. `AUD: Run Designer` (Ctrl+Alt+D)로 테스트
+3. **`pull_report` 실행** (서버 최신 상태 동기화)
+4. `.script.js` → `.script.ts`로 확장자 변경
+5. `AUD: Generate Starter Code`로 기본 구조 생성
+6. `tsc --w`로 TypeScript watch 모드 실행
+7. 스크립트 개발 후 `save_report`로 서버에 배포 (또는 `AUD: Publish Script` Ctrl+Alt+S)
+8. `run_designer`로 브라우저에서 테스트 (또는 `AUD: Run Designer` Ctrl+Alt+D)
+
+### MCP 도구 (AI 사용)
+
+| VS Code 명령 | MCP 도구 | 설명 |
+|--------------|----------|------|
+| `AUD: Pull Report` | `pull_report` | 서버 → 로컬 동기화 |
+| `AUD: Publish Script` / `AUD: Deploy Report` | `save_report` | 로컬 → 서버 배포 |
+| `AUD: Run Designer` | `run_designer` | 브라우저에서 Designer 실행 |
 
 ---
 

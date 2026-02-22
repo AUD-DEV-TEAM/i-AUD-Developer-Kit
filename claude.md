@@ -213,23 +213,40 @@ MX-GRID(엑셀 기반 그리드) 보고서는 `MX_GRID/` 하위 폴더에 3파�
 
 ## 개발 워크플로우
 
+### ⚠️ 작업 전 반드시 Pull 먼저 실행
+
+> **보고서 작업을 시작하기 전에 반드시 `pull_report`를 실행하여 서버의 최신 상태를 로컬에 동기화해야 합니다.**
+> 다른 개발자나 Designer에서 변경한 내용이 서버에 있을 수 있으므로, Pull 없이 작업하면 서버의 최신 변경 사항을 덮어쓸 위험이 있습니다.
+>
+> - 서버에 해당 보고서가 아직 없는 경우(신규 보고서): `pull_report`가 "서버에 보고서가 없습니다 (새 보고서)" 메시지를 반환하며, 이는 정상입니다. 그대로 작업을 진행하면 됩니다.
+> - 서버에 보고서가 있는 경우: MTSD, DataSource, ServerScript, JScript 등이 최신 상태로 갱신됩니다.
+
+```
+# AI(MCP)를 통한 Pull
+pull_report { reportPath: "<보고서 폴더 경로>" }
+
+# VS Code 명령
+AUD: Pull Report
+```
+
 ### 1. 새 보고서 개발
 
 1. **i-AUD Designer**에서 보고서 생성 및 UI 배치
 2. VS Code에서 `AUD: Download Report` 명령으로 다운로드
-3. 스크립트 파일 확장자를 `.js` → `.ts`로 변경 (TypeScript 사용 시)
-4. `AUD: Generate Starter Code`로 기본 구조 생성
-5. 터미널에서 `tsc --w` 실행 (자동 빌드)
-6. 스크립트 개발
-7. `AUD: Publish Script` (Ctrl+Alt+S)로 배포
-8. `AUD: Run Designer` (Ctrl+Alt+D)로 테스트
+3. **`pull_report` 실행** (서버 최신 상태 동기화)
+4. 스크립트 파일 확장자를 `.js` → `.ts`로 변경 (TypeScript 사용 시)
+5. `AUD: Generate Starter Code`로 기본 구조 생성
+6. 터미널에서 `tsc --w` 실행 (자동 빌드)
+7. 스크립트 개발
+8. `save_report`로 서버에 배포 (또는 `AUD: Publish Script` Ctrl+Alt+S)
+9. `run_designer`로 브라우저에서 테스트 (또는 `AUD: Run Designer` Ctrl+Alt+D)
 
 ### 2. 기존 보고서 수정
 
-1. VS Code에서 `AUD: Pull Report` 명령으로 최신 정보 동기화
+1. **`pull_report` 실행** (서버 최신 상태 동기화 — 필수!)
 2. 스크립트 수정
-3. `AUD: Publish Script`로 배포
-4. `AUD: Run Designer`로 테스트
+3. `save_report`로 서버에 배포 (또는 `AUD: Publish Script`)
+4. `run_designer`로 브라우저에서 테스트 (또는 `AUD: Run Designer`)
 
 ### 3. 주요 VS Code 명령어
 
@@ -603,6 +620,9 @@ tsc --w
 
 - **스크립트만 배포**: `AUD: Publish Script` (Ctrl+Alt+S)
 - **전체 배포 (디자인 포함)**: `AUD: Deploy Report`
+- **MCP를 통한 배포**: `save_report` 도구 사용 (AI가 직접 보고서를 서버에 배포)
+- **MCP를 통한 Pull**: `pull_report` 도구 사용 (AI가 서버에서 최신 보고서를 로컬로 동기화)
+- **MCP를 통한 Designer 실행**: `run_designer` 도구 사용 (AI가 브라우저에서 Designer를 열어 결과 확인)
 
 ---
 
@@ -685,6 +705,67 @@ BoxStyle은 CSS처럼 서버에서 공통으로 관리되는 스타일 세트입
 2. 원하는 BoxStyle이 없으면 save_boxstyle로 새로 생성 (단일 객체 또는 배열)
    - Name은 StyleName 기반의 식별자 (영문, 숫자, _ 조합, 예: BTN_DEFAULT, HEADER_BLUE)
 3. MTSD Element에서 Style.Type=1, Style.BoxStyle="{Name}" 으로 적용
+```
+
+#### 보고서 배포/동기화 도구
+
+| 도구 | 설명 |
+|------|------|
+| `save_report` | 보고서를 i-AUD 서버에 저장(Publish). 로컬 → 서버 방향 |
+| `pull_report` | i-AUD 서버에서 보고서의 최신 내용을 가져옴. 서버 → 로컬 방향 |
+| `run_designer` | i-AUD Designer를 브라우저에서 실행. save_report 후 결과 확인용 |
+
+```
+# save_report 사용 흐름 (로컬 → 서버)
+1. reportPath: .aud.json이 있는 보고서 폴더 경로 지정
+2. build: true로 설정하면 서버 전송 전 tsc 빌드 실행 (선택, 기본 false)
+3. 서버 저장 성공 시 .mtsd 파일이 갱신되고, 새 DataSource/ServerScript 파일이 생성됨
+
+# save_report 파라미터
+- reportPath (필수): 보고서 폴더 경로 (예: "D:/project/src/reports/Work/MY_REPORT")
+- build (선택): TypeScript 빌드 실행 여부 (기본: false)
+
+# save_report 동작 순서
+1. .aud.json에서 ReportCode, ReportName, ModuleCode 읽기
+2. .mtsd 파일에서 ReportModel(화면 UI 정의) 읽기
+3. DataSource/ 폴더에서 .sql/.js/.ts 파일 수집
+4. ServerScript/ 폴더에서 .ts(빌드된 .js)/.js/.json 파일 수집
+5. .script.ts → 빌드된 .script.js 또는 .script.js 에서 클라이언트 스크립트 수집
+6. .out 폴더와 비교하여 삭제된 DataSource/ServerScript 감지
+7. 서버에 전송
+8. 서버 응답으로 .mtsd 파일 갱신 및 새 파일 생성
+```
+
+```
+# pull_report 사용 흐름 (서버 → 로컬)
+1. reportPath: .aud.json이 있는 보고서 폴더 경로 지정
+2. .aud.json에서 ReportCode를 읽어 서버에 요청
+3. 서버 응답으로 로컬 파일 갱신:
+   - .mtsd 파일 갱신 (없으면 생성)
+   - .aud.json 업데이트 (FolderCode, DocumentVersion, Description, ModifyDate, Modifier 포함)
+   - DataSource/ 폴더에 새 .sql 파일 생성 (이미 존재하면 skip)
+   - ServerScript/ 폴더에 새 .js 파일 생성 (이미 존재하면 skip)
+   - .script.ts/.script.js가 없으면 서버의 JScript로 .script.js 생성
+
+# pull_report 파라미터
+- reportPath (필수): 보고서 폴더 경로 (예: "D:/project/src/reports/Work/MY_REPORT")
+```
+
+```
+# run_designer 사용 흐름
+1. reportPath: .aud.json이 있는 보고서 폴더 경로 지정
+2. .aud.json에서 ReportCode를 읽고, 서버 설정에서 ServiceURL을 가져옴
+3. {ServiceURL}/AUD/designer.jsp?id={ReportCode} URL로 브라우저 실행
+4. Chrome 우선 실행, 실패 시 Edge로 fallback
+
+# run_designer 파라미터
+- reportPath (필수): 보고서 폴더 경로 (예: "D:/project/src/reports/Work/MY_REPORT")
+
+# 일반적인 사용 순서
+1. pull_report  → 서버 최신 상태 동기화
+2. (코드 수정)
+3. save_report  → 서버에 저장
+4. run_designer → 브라우저에서 결과 확인
 ```
 
 #### 데이터베이스 쿼리 도구 (i-AUD 서버 프록시)
