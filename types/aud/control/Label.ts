@@ -6,7 +6,7 @@ import { Margin } from "../../aud/control/labels/Margin";
 export interface Label extends Control{
 
   /**
-   * 컨트롤의 마우스 커서 모양을 가져오거나 설정합니다.
+   * 컨트롤의 마우스 커서 모양을 가져오거나 설정합니다. (enPropCursor: `"default"`,`"crosshair"`,`"pointer"`,`"move"`,`"e-resize"`,`"ne-resize"`,`"nw-resize"`,`"n-resize"`,`"se-resize"`,`"sw-resize"`,`"s-resize"`,`"w-resize"`,`"help"`)
   */
   Cursor: string;
 

@@ -48,7 +48,7 @@ export interface Grid extends Control{
   ColumnHeaderHeight: number;
 
   /**
-   * 마우스 커서 타입을 가져오거나 설정합니다. (예: `"pointer"`, `"crosshair"`)
+   * 마우스 커서 타입을 가져오거나 설정합니다. (enPropCursor: `"default"`,`"crosshair"`,`"pointer"`,`"move"`,`"e-resize"`,`"ne-resize"`,`"nw-resize"`,`"n-resize"`,`"se-resize"`,`"sw-resize"`,`"s-resize"`,`"w-resize"`,`"help"`)
   */
   CursorType: string;
 
