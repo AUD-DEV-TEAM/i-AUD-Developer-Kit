@@ -69,6 +69,12 @@ header.addLabel("LBL_TITLE", "판매실적 조회", {
 });
 header.addButton("BTN_SEARCH", "조회", {
   dock: "right", holdSize: true, width: 80, height: 30, top: 10,
+  margin: "0,0,15,0",
+  style: { type: 1, boxStyle: "BTN_DEFAULT" }
+});
+header.addButton("BTN_SAVE", "저장", {
+  dock: "right", holdSize: true, width: 80, height: 30, top: 10,
+  margin: "0,0,100,0",  // 15 + 80 + 5 = 100 (BTN_SEARCH 오른쪽 공간 확보)
   style: { type: 1, boxStyle: "BTN_DEFAULT" }
 });
 
@@ -474,6 +480,47 @@ HoldSize: true — 위치만 이동
 | 우측 고정 패널 | `Right: true, Top: true, Bottom: true, HoldSize: true` | 상세 패널을 우측에 고정 너비로 배치 |
 | 하단 고정 버튼 | `Bottom: true, HoldSize: true` | 버튼을 항상 하단에 배치 (높이 유지) |
 
+#### 우측 버튼 다중 배치 — Margin 누적 계산 (필수)
+
+> **흔한 실수**: 여러 버튼을 `Right: true, HoldSize: true`로 우측 도킹하면 **모두 같은 위치에 겹칩니다.** 각 버튼의 `Margin`에서 Right 값을 누적해야 합니다.
+
+**Margin 계산 공식**: 각 버튼의 Right Margin = `이전 버튼들의 (Width + 간격)의 합 + 기본 여백`
+
+```
+우측 정렬 버튼 3개 배치 예시 (오른쪽→왼쪽 순서):
+
+               [전체 접기]     [전체 펼침]     [조회]
+               90px           90px           80px
+               ├─ gap 5px ──┤├─ gap 5px ──┤├─ 15px ─┤ (우측 여백)
+
+BTN_SEARCH  (80px):  Margin "0,0,15,0"    → 우측 15px 여백
+BTN_EXPAND  (90px):  Margin "0,0,100,0"   → 15 + 80 + 5(gap) = 100
+BTN_COLLAPSE(90px):  Margin "0,0,195,0"   → 100 + 90 + 5(gap) = 195
+```
+
+**build_mtsd 코드 예시:**
+
+```js
+// 우측 버튼 3개 — Margin으로 간격 확보 (오른쪽부터 누적)
+header.addButton("BTN_SEARCH", "조회", {
+  dock: "right", holdSize: true, width: 80, height: 30, top: 10,
+  margin: "0,0,15,0",   // 기본 우측 여백 15px
+  style: { type: 1, boxStyle: "BTN_DEFAULT" }
+});
+header.addButton("BTN_EXPAND", "전체 펼침", {
+  dock: "right", holdSize: true, width: 90, height: 30, top: 10,
+  margin: "0,0,100,0",  // 15 + 80 + 5(간격) = 100
+  style: { type: 1, boxStyle: "BTN_DEFAULT" }
+});
+header.addButton("BTN_COLLAPSE", "전체 접기", {
+  dock: "right", holdSize: true, width: 90, height: 30, top: 10,
+  margin: "0,0,195,0",  // 100 + 90 + 5(간격) = 195
+  style: { type: 1, boxStyle: "BTN_DEFAULT" }
+});
+```
+
+> **MTSD JSON에서도 동일**: `Docking.Margin`의 Right(세 번째) 값을 누적 계산합니다.
+
 #### MinWidth / MinHeight — 최소 크기
 
 - **타입**: `number` (기본값: `0`)
@@ -756,3 +803,4 @@ save_boxstyle {
 6. **속성 타입 확인**: 속성 타입이 불확실할 때는 `get_schema_info`로 정확한 타입을 확인한 후 값을 설정합니다.
 7. **WriteDate/EditDate 패턴**: `YYYY-MM-DD HH:MM:SS` 형식이어야 하며, 빈 문자열은 허용되지 않음. **build_mtsd는 자동으로 현재 시간을 설정**합니다.
 8. **Style.Type 필수 확인**: Background/Border/Font 색상을 변경할 때 반드시 `Style.Type`을 `2`(Custom)으로 설정 (섹션 8 참조). **build_mtsd에서 `bg`, `border`, `font`, `color` 옵션 사용 시 자동으로 Type=2 설정**됩니다.
+9. **우측 버튼 다중 배치 시 Margin 누적 필수**: 여러 버튼을 `Right+HoldSize`로 우측에 배치할 때, 각 버튼의 Margin Right 값을 이전 버튼들의 Width+간격 합으로 누적 계산해야 합니다. 누적하지 않으면 **버튼이 같은 위치에 겹칩니다** (섹션 4.5 참조).

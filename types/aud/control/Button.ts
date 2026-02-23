@@ -140,14 +140,14 @@ import { Control } from "../../aud/control/Control";
 export interface Button extends Control{
 
   /**
-   * 컨트롤의 마우스 커서 모양을 CSS cursor 값으로 지정합니다.
+   * 컨트롤의 마우스 커서 모양을 가져오거나 설정합니다. (enPropCursor: `"default"`,`"crosshair"`,`"pointer"`,`"move"`,`"e-resize"`,`"ne-resize"`,`"nw-resize"`,`"n-resize"`,`"se-resize"`,`"sw-resize"`,`"s-resize"`,`"w-resize"`,`"help"`)
    *
    * @example
    * ```js
    * var btn = Matrix.getObject("btnAction");
    * btn.Cursor = "pointer";   // 손 모양
-   * btn.Cursor = "wait";      // 로딩 모양
-   * btn.Cursor = "not-allowed"; // 사용 불가 표시
+   * btn.Cursor = "default";   // 기본 커서
+   * btn.Cursor = "crosshair"; // 십자 모양
    * ```
    */
   Cursor: string;
