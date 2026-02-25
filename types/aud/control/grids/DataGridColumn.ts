@@ -17,6 +17,16 @@ export interface DataGridColumn{
   Caption: string;
 
   /**
+   * 체크박스 유형일 때 체크 시 값
+   */
+  CheckedValue: string | undefined;
+
+  /**
+   * 체크박스 유형일 때 미체크 시 값
+   */
+  UnCheckedValue: string | undefined;
+
+  /**
    * 컬럼 타입
    */
   ColumnType: enDataColumnType;

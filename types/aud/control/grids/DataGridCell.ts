@@ -56,4 +56,10 @@ export interface DataGridCell{
    */
   Value: string | number | boolean | null;
 
+
+  /**
+   * 셀의 실제 값(Value)이 아닌 화면에 표시되는 텍스트(Display Text)를 반환합니다.
+     */
+    readonly DisplayValue: string;
+
 }

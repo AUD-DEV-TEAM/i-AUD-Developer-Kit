@@ -68,10 +68,37 @@ Matrix는 i-AUD 클라이언트의 핵심 객체로, 모든 컨트롤 접근과 
 ### 3.1 컨트롤 접근
 
 ```typescript
-// 컨트롤 가져오기
+// 일반 컨트롤 가져오기
 let button = Matrix.getObject("Button1") as Button;
 let grid = Matrix.getObject("DataGrid1") as DataGrid;
 let textbox = Matrix.getObject("TextBox1") as TextBox;
+```
+
+### 3.1.1 AddIn 컴포넌트 접근 (BaseControl, GridHtmlView 등)
+
+AddIn 타입 컨트롤(BaseControl, GridHtmlView 등)은 `Matrix.getObject()`가 **AddIn 래퍼**를 반환합니다.
+컴포넌트는 비동기로 로딩되므로, `OnComponentClassLoaded` 이벤트 안에서 `getScriptClass()`를 호출해야 합니다.
+
+```typescript
+// [올바른 패턴] OnComponentClassLoaded 에서 getScriptClass()로 컴포넌트 접근
+let addIn = Matrix.getObject("myCtrl") as AddIn;
+addIn.OnComponentClassLoaded = function(sender, args) {
+    let ctrl = addIn.getScriptClass() as BaseControl;
+    ctrl.addCSS('.card { padding: 10px; }');
+    ctrl.addHTML('<div class="card">내용</div>');
+};
+
+// GridHtmlView도 동일한 패턴
+let addIn2 = Matrix.getObject("myView") as AddIn;
+addIn2.OnComponentClassLoaded = function(sender, args) {
+    let view = addIn2.getScriptClass() as GridHtmlView;
+    view.DataGrid = Matrix.getObject("GRD") as DataGrid;
+    view.HTML = '<div aud-for="ROWS"><span aud-bind="NAME"></span></div>';
+};
+
+// [잘못된 패턴] 직접 캐스팅은 동작하지 않음
+// let ctrl = Matrix.getObject("myCtrl") as BaseControl; // X - AddIn 래퍼가 반환됨
+// let ctrl = addIn.getScriptClass() as BaseControl;     // X - 비동기 로딩 전이면 null
 ```
 
 ### 3.2 메시지 표시
