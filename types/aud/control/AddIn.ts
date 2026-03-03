@@ -67,7 +67,7 @@ export interface AddIn extends Control{
    * };
    * ```
   */
-  getScriptClass(): ListView|GeoMap|ScheduleGrid|BoxStyle|Property|SmartEditor|WebEditor |BaseControl |GridHtmlView | 
+  getScriptClass(clsName?:string): ListView|GeoMap|ScheduleGrid|BoxStyle|Property|SmartEditor|WebEditor |BaseControl |GridHtmlView | 
 CodeEditor| null;
 
   /**

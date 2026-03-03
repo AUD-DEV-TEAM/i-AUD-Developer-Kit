@@ -173,4 +173,10 @@ export interface GridHtmlView {
    */
   Update(opt?: any): void;
 
+
+  /**
+   * Template Html Dom객체를 제거합니다.
+   */
+  Clear():void;
+
 }

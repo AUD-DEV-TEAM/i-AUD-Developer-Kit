@@ -9,11 +9,20 @@ export interface ComboBox extends Control{
 
   /**
    * 초기값 유형을 가져오거나 설정합니다.
+   *
+   * - `enInitType.CurrentValue` (0) — 현재 선택값을 유지 (기본값)
+   * - `enInitType.InitValue` (1) — {@link InitValue} 속성의 값으로 초기화
+   * - `enInitType.None` (2) — 초기값을 설정하지 않음
+   *
+   * **중요**: {@link InitValue}를 사용하려면 반드시 `InitType = 1` (InitValue)로 설정해야 합니다.
   */
   InitType: enInitType;
 
   /**
    * 초기값을 가져오거나 설정합니다.
+   *
+   * 데이터 조회(Refresh) 후 자동으로 선택될 값입니다.
+   * 이 속성이 적용되려면 {@link InitType}이 `enInitType.InitValue` (1)로 설정되어야 합니다.
   */
   InitValue: string;
 
