@@ -204,6 +204,12 @@ var chart = Matrix.getObject(chartName);
 3. **파라미터는 `arguments[n]`** - 0부터 시작, 모두 string 타입
 4. **`Matrix` 객체 사용 가능** - 전역으로 접근 가능
 5. **`EXECUTE_NEXT()` 호출** - WorkFlow에서 다음 단계로 진행 시 호출 (비동기 작업 완료 후)
+   - 원형: `EXECUTE_NEXT(success?: boolean, message?: string)`
+   - 비동기 콜백 내부에서 호출하여 다음 모듈로 제어를 넘김
+   - `success` 생략 또는 `true`: 성공 → 다음 모듈 실행
+   - `success = false`: 실패 → WorkFlow 실패 분기로 이동, `message`에 오류 메시지 전달
+   - 동기 모듈(즉시 완료)에서는 호출하지 않아도 됨 (자동으로 다음 단계 진행)
+   - 비동기 모듈에서 `EXECUTE_NEXT()`를 호출하지 않으면 WorkFlow가 멈추므로 반드시 모든 분기에서 호출 필요
 6. **SCRIPT_TEXT는 한 줄 문자열** - JSON 내에서 줄바꿈은 `\n`, 따옴표는 `\"`, 탭은 `\t`로 이스케이프
 
 ### 4.2 스크립트 구조 패턴
@@ -232,6 +238,26 @@ doSomething();                          // EVENT_YN = "N" 일 때
 // 또는
 grid.OnDataBindEnd = function() { ... }; // EVENT_YN = "Y" 일 때
 ```
+
+### 4.2.1 비동기 모듈 패턴 (EXECUTE_NEXT 사용)
+
+비동기 작업(서버 호출, 실행 계획 등)이 포함된 모듈은 콜백 완료 시 `EXECUTE_NEXT()`를 호출하여 WorkFlow의 다음 단계로 진행합니다.
+
+```javascript
+var planName = arguments[0];
+
+Matrix.ExecutePlan(planName, "", function(p) {
+    if (p.Success == false) {
+        // 실패 시: 오류 메시지와 함께 실패 분기로 이동
+        EXECUTE_NEXT(false, p.Message);
+    } else {
+        // 성공 시: 다음 모듈 실행
+        EXECUTE_NEXT();
+    }
+});
+```
+
+> **주의**: 비동기 모듈에서는 **모든 콜백 분기**(성공/실패)에서 `EXECUTE_NEXT()`를 호출해야 합니다. 누락하면 WorkFlow가 멈춥니다.
 
 ### 4.3 이벤트 등록 모듈 패턴 (EVENT_YN = "Y")
 

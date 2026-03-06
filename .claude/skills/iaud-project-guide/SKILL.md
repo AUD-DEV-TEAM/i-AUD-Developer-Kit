@@ -59,8 +59,8 @@ i-AUD-Developer-Kit/
 
 ```
 [보고서명]/
-├── .aud.json                   # 프로그램 메타 정보 (ReportCode, FolderCode 등)
-├── [보고서명].mtsd             # 화면 UI 배치, 데이터소스, 서비스 정의 (JSON)
+├── .design.json                # 개발용 화면 정의 (스크립트/SQL은 파일 경로 참조) ★ AI는 이 파일 사용
+├── [보고서명].mtsd             # 화면 UI 정의 - 서버 원본 (인라인 콘텐츠 포함)
 ├── [보고서명].script.ts        # 클라이언트 스크립트 (TypeScript)
 ├── [보고서명].script.js        # 클라이언트 스크립트 (JavaScript)
 ├── DataSource/                 # 데이터 조회 SQL 파일들
@@ -74,8 +74,8 @@ i-AUD-Developer-Kit/
 
 | 파일 | 설명 |
 |------|------|
-| `.aud.json` | 프로그램 상세 저장 정보 (ReportCode, ReportName, FolderCode 등) |
-| `*.mtsd` | 화면 UI 배치, 데이터 소스, 서비스가 포함된 JSON 문서 (최종 output) |
+| `.design.json` | 개발용 화면 정의 — .mtsd와 동일 구조이나 스크립트/SQL이 파일 경로 참조로 대체됨 |
+| `*.mtsd` | 화면 UI 배치, 데이터 소스, 서비스가 포함된 JSON 문서 — 서버 원본 (인라인 콘텐츠) |
 | `*.script.ts` | 클라이언트 스크립트 소스 (.ts 우선 탐색) |
 | `DataSource/*.sql` | DB 조회용 SQL 파일들 |
 | `ServerScript/*.ts` | 서버 스크립트 (개별 파일이 서비스가 됨) |

@@ -616,7 +616,7 @@ export interface Matrix{
   * 
    * @hidden
   */
-  DrillToDetail(sender: OlapGrid, xml: string, DataGridName: string, KeepOlapGridLayout: boolean): void;
+  DrillToDetail(sender: OlapGrid, xml: string, DataGridName: string, KeepOlapGridLayout?: boolean): void;
 
   /** 
    * {@link BeginUpdate}로 시작한 일괄 업데이트 작업을 종료하고, 변경 사항을 화면에 반영합니다.
@@ -1637,7 +1637,7 @@ export interface Matrix{
    *     "toolbar=no,scrollbars=yes,resizable=yes,top=50,left=50,width=1024,height=768");
    * ```
    */
-  PrintPDF(folderName: string, fileName: string, isDel: boolean, option: string): void;
+  PrintPDF(folderName: string, fileName: string, isDel?: boolean, option?: string): void;
 
   /**
    * `ShowReportDialog`로 열린 팝업 보고서에서, 닫히기 직전에 실행될 콜백 함수를 등록합니다.
@@ -2385,8 +2385,8 @@ export interface Matrix{
   XLSExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
 
   /** 
-   * 지정한 컨트롤의 데이터를 다시 조회합니다.
-   *
+   * 지정한 컨트롤의 데이터를 조회합니다.
+   * 조회가 요청된 컨트롤 목록을 반환 합니다.
    * @example
    * ```js
    * // 1. 콤마 구분 문자열
@@ -2405,7 +2405,7 @@ export interface Matrix{
   * @param names 대상 컨트롤 이름. 콤마 구분 문자열 또는 배열
   * 
   */
-  doRefresh(names: string|string[]): void;
+  doRefresh(names: string|string[]): Control[];
 
   /** 
    * 현재 보고서의 전체 컨트롤 목록을 반환합니다.

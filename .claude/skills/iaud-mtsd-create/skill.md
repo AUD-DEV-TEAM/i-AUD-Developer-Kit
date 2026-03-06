@@ -1,13 +1,16 @@
 ---
 name: iaud-mtsd-create
-description: i-AUD MTSD 문서 생성 가이드. 새 보고서의 .mtsd 파일을 처음부터 만들 때 사용합니다. build_mtsd(MtsdBuilder 스크립트)를 사용한 신규 문서 생성과 MCP 개별 도구를 사용한 기존 문서 수정을 포함합니다. "MTSD 만들기", "보고서 생성", "화면 만들기", "새 프로그램", "Element 추가" 등을 요청할 때 사용하세요.
+description: i-AUD MTSD 문서(화면 UI 디자인) 생성 가이드. 새 보고서의 .design.json 파일을 처음부터 만들 때 사용합니다. build_mtsd(MtsdBuilder 스크립트)를 사용한 신규 문서 생성과 MCP 개별 도구를 사용한 기존 문서 수정을 포함합니다. "MTSD 만들기", "보고서 생성", "화면 만들기", "새 프로그램", "Element 추가", "디자인 파일" 등을 요청할 때 사용하세요.
 ---
 
-# i-AUD MTSD 문서 생성 가이드
+# i-AUD MTSD 문서(화면 UI 디자인) 생성 가이드
 
 ## 1. 개요
 
-MTSD (.mtsd) 파일은 i-AUD 보고서의 화면 UI 배치, 데이터소스, 서비스를 정의하는 JSON 문서입니다.
+MTSD는 i-AUD 보고서의 화면 UI 배치, 데이터소스, 서비스를 정의하는 JSON 문서 포맷입니다.
+개발 환경에서는 `.design.json` 파일로 관리하며(스크립트/SQL이 파일 경로 참조로 대체됨), `.mtsd`는 서버 원본(인라인 콘텐츠)을 유지합니다.
+
+> **`.design.json`이 없는 기존 보고서**: `save_report` 또는 `pull_report`를 한 번 실행하면 `.design.json`이 자동 생성됩니다.
 
 ### MTSD 생성 방식 선택
 
@@ -626,14 +629,15 @@ header.addButton("BTN_COLLAPSE", "전체 접기", {
 
 ## 6. 전체 생성 워크플로우
 
-> **필수 규칙**: `.mtsd` 또는 `.sc` 파일을 생성하거나 수정할 때마다 반드시 **`fix_mtsd` → `validate_part`(또는 `validate_mtsd`)** 순서로 실행합니다. 속성 타입 오류(예: array를 string으로 기입)나 필수 속성 누락은 MCP 검증으로만 확인할 수 있습니다.
+> **필수 규칙**: `.design.json`, `.mtsd` 또는 `.sc` 파일을 생성하거나 수정할 때마다 반드시 **`fix_mtsd` → `validate_part`(또는 `validate_mtsd`)** 순서로 실행합니다. 속성 타입 오류(예: array를 string으로 기입)나 필수 속성 누락은 MCP 검증으로만 확인할 수 있습니다.
+> **참고**: `.design.json`은 `.mtsd`와 동일한 JSON 구조이지만, 스크립트/SQL이 파일 경로 참조로 대체된 개발용 파일입니다. AI는 `.design.json`을 우선 사용합니다.
 
 ### 워크플로우 A: 신규 문서 — build_mtsd (권장)
 
 ```
 Step 1: build_mtsd 호출 (MtsdBuilder 스크립트 전달)
          → 완전한 MTSD JSON 반환 (ID, 스키마 자동 처리)
-Step 2: 반환된 JSON을 .mtsd 파일로 Write
+Step 2: 반환된 JSON을 .design.json 파일로 Write (없으면 .mtsd)
 Step 3: fix_mtsd 실행 (DataSource Name→Id 참조 보정 등)
 Step 4: validate_part로 파트별 검증 (Forms, DataSources)
 Step 5: save_report → run_designer로 결과 확인
@@ -642,7 +646,7 @@ Step 5: save_report → run_designer로 결과 확인
 ### 워크플로우 B: 기존 문서 부분 수정 — 개별 MCP 도구
 
 ```
-Step 1: 기존 .mtsd 파일 Read
+Step 1: 기존 .design.json 파일 Read (없으면 .mtsd/.sc)
 Step 2: generate_element / generate_datasource / generate_grid_column으로 추가할 요소 생성
 Step 3: 기존 JSON에 병합하여 Edit/Write
 Step 4: fix_mtsd 실행 (자동 보정)
