@@ -28,6 +28,8 @@ callback을 지원하는 함수를 사용하시기 바랍니다.
    *          });
    * ```
   * @param key 데이터 소스 명 or 아이디
+  * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 대용량 데이터 시 메모리 문제 발생. callback 버전인 ExecuteReportDataSource(key, callbackRow)를 사용하세요.
   */
   ExecuteReportDataSource(key: string): ScriptDataTable;
 

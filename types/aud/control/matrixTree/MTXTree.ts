@@ -6,8 +6,7 @@ import { MTXTreeNode } from "../../../aud/control/matrixTree/MTXTreeNode";
 export interface MTXTree{
 
   /**
-   * MTXTree Nodes
-   * @hidden
+   * MTXTree Nodes 
   */
   Nodes: Map<string, MTXTreeNode>;
 

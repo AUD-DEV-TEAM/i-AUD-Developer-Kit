@@ -27,6 +27,7 @@ export interface IWorkBook{
   /**
    * MX-GRID 내부 엑셀 제어 모델을 반환 합니다.
    * @hidden 내부 사용 목적. 직접 사용을 권장하지 않음
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   * @returns 내부 엑셀 제어 모델 객체
   */
   getWorkBook(): any;

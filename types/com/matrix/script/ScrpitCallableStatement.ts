@@ -117,6 +117,8 @@ export interface ScrpitCallableStatement extends ScriptPreparedStatement{
    * 지정된 REFERENCE CURSOR 파라미터 값을 ScriptDataTable 형식으로 불러옵니다.
    *
   * @param paramName 파라미터 명
+  * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 대용량 데이터 시 메모리 문제 발생. callback 버전인 getDataTable(paramName, callbackRow)를 사용하세요.
   */
   getDataTable(paramName: string): ScriptDataTable;
 
@@ -141,6 +143,8 @@ export interface ScrpitCallableStatement extends ScriptPreparedStatement{
    * 지정된 REFERENCE CURSOR 파라미터 값을 ScriptDataTable 형식으로 불러옵니다.
    *
   * @param idx 파라미터 인덱스
+  * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 대용량 데이터 시 메모리 문제 발생. callback 버전인 getDataTable(idx, callbackRow)를 사용하세요.
   */
   getDataTable(idx: number): ScriptDataTable;
 

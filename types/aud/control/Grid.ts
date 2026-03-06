@@ -33,6 +33,7 @@ export interface Grid extends Control{
   /**
    * 배경색(deprecated)
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. Style API를 사용하세요.
   */
   Background: SolidColorBrush;
 
@@ -44,6 +45,7 @@ export interface Grid extends Control{
   /**
    * Column 높이(deprecated)
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. Style API를 사용하세요.
   */
   ColumnHeaderHeight: number;
 
@@ -101,30 +103,35 @@ export interface Grid extends Control{
   /**
    * 글자 스타일 굵기 여부(deprecated)
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. Style API를 사용하세요.
   */
   FontBold: boolean;
 
   /**
    * 글자 유형(deprecated)
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. Style API를 사용하세요.
   */
   FontFamily: string;
 
   /**
    * 글자 스타일 기울임 여부(deprecated)
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. Style API를 사용하세요.
   */
   FontItalic: boolean;
 
   /**
    * 글자 크기. 레코드 높이보다 작은 크기만 설정 가능합니다.(deprecated)
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. Style API를 사용하세요.
   */
   FontSize: number;
 
   /**
    * Font Color(deprecated)
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. Style API를 사용하세요.
   */
   Foreground: SolidColorBrush;
 
@@ -151,18 +158,21 @@ export interface Grid extends Control{
   /**
    * 반복행 배경색(deprecated)
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. Style API를 사용하세요.
   */
   OddRowBackground: SolidColorBrush;
 
   /**
    * Row 헤더 너비(deprecated)
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. Style API를 사용하세요.
   */
   RowHeaderWidth: number;
 
   /**
    * Row 높이(deprecated)
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. Style API를 사용하세요.
   */
   RowHeight: number;
 
@@ -184,6 +194,7 @@ export interface Grid extends Control{
   /**
    * 헤더 보기
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   ShowHeader: enHeaderType;
 
@@ -812,6 +823,7 @@ export interface Grid extends Control{
   * @param ignoreRowState Row 상태 무시 여부
   * @param checkInputSetting 유효성 검사 체크 여부
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. ValidateEx를 사용하세요.
   */
   Validate(ignoreRowState?: boolean, checkInputSetting?: boolean): boolean;
 

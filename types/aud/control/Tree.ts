@@ -43,6 +43,7 @@ export interface Tree extends Control {
   /**
    * 부모 자식 자동 생성용 키 필드를 가져오거나 설정합니다.
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   KeyField: string;
 
@@ -54,6 +55,7 @@ export interface Tree extends Control {
   /**
    * Matrix Tree 객체를 가져옵니다.
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   MtxTree: MTXTree;
 
@@ -65,6 +67,7 @@ export interface Tree extends Control {
   /**
    * 부모 자식 자동 생성용 부모 키 필드를 가져오거나 설정합니다.
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   ParentKeyField: string;
 
@@ -76,6 +79,7 @@ export interface Tree extends Control {
   /**
    * 툴팁 필드를 가져오거나 설정합니다.
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   ToolTipField: string;
 

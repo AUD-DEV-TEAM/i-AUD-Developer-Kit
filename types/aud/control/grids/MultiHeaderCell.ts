@@ -35,6 +35,7 @@ export interface MultiHeaderCell{
   /**
    * 셀 유형
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   Type: enCellType;
 
@@ -50,6 +51,7 @@ export interface MultiHeaderCell{
    * @param container 컨테이너
    * @param name 이름
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   CreateInnerControl(grid: Grid, container: HTMLElement, name: string): void;
 

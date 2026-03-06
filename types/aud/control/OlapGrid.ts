@@ -432,6 +432,7 @@ export interface OlapGrid extends Control{
    *
   * @param callbackFunc 내보내기가 완료되었을 때 호출할 콜백 함수
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. ExportCSV()를 사용하세요.
   */
   ExportCSV(callbackFunc: Function): Function;
 

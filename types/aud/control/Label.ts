@@ -54,6 +54,7 @@ export interface Label extends Control{
    * 라벨의 툴팁을 설정합니다.
    *
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   SetTooltip(): void;
 

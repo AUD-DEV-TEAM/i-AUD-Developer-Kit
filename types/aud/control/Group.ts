@@ -8,6 +8,7 @@ export interface Group extends Control{
   /**
    * Group의 자식 컨트롤을 가지고 있는 NamedDictionary
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   Controls: NamedDictionary<Control>;
 
@@ -23,6 +24,7 @@ export interface Group extends Control{
    *
   * @param controls 컨트롤 목록
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. AddControl(control)을 사용하세요.
   */
   AddControls(controls?: NamedDictionary<Control>): boolean;
 

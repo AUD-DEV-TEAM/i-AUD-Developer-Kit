@@ -212,6 +212,7 @@ export interface Matrix{
   * @param methodName 호출할 메서드 이름
   * @param paramValue 메서드에 전달할 파라미터
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   CallExtentionFunc(methodName: string, paramValue: any): void;
 
@@ -229,6 +230,7 @@ export interface Matrix{
    * 화면상의 모든 대화상자를 닫습니다.
    * 
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. {@link CloseAllMessageBox}를 사용하세요.
   */
   Clear(): void;
 
@@ -354,6 +356,7 @@ export interface Matrix{
    *
   * @param style Style 객체
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   ConvertToBackColor(style?: Style): any;
 
@@ -390,6 +393,7 @@ export interface Matrix{
   * @param callback CodeMirror 인스턴스 생성 완료 후 호출되는 콜백 함수
   * @param mode 에디터 모드. 문자열(`"javascript"`, `"sql"`) 또는 CodeMirror 옵션 객체
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   CreateCodeMirror(richTextBoxName: string, callback: Function, mode: string | object): void;
 
@@ -518,6 +522,7 @@ export interface Matrix{
   * @param splitterControlNames 스플리터로 사용할 컨트롤 이름 (문자열 또는 배열)
   * @param option 옵션
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   CreateSplitter(direction: string, firstControlName: string, secondControlName: string, splitterControlNames: string | Array<string>, option?: object): Splitter;
 
@@ -547,6 +552,7 @@ export interface Matrix{
   * @param splitterControl 스플리터로 사용할 컨트롤 이름
   * @param option 옵션
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   CreateSplitterEx(splitterType: string, leftControls: string[], rightControls: string[], splitterControl: string, option?: object): Splitter;
 
@@ -615,6 +621,7 @@ export interface Matrix{
   * OlapGrid의 Layout을 유지할지 여부
   * 
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   DrillToDetail(sender: OlapGrid, xml: string, DataGridName: string, KeepOlapGridLayout?: boolean): void;
 
@@ -648,6 +655,7 @@ export interface Matrix{
   * 구분자(tag)
   * 
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 콜백을 받는 {@link ExcelExportServiceCall} 오버로드를 사용하세요.
   */
   ExcelExportServiceCall(json: object, params: Array<{"Key":string,"Value":string}>, tag: any): void;
 
@@ -716,6 +724,7 @@ export interface Matrix{
   * @param tag 사용자 지정 구분자
   * 
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 콜백을 받는 {@link Execute} 오버로드를 사용하세요.
   */
   Execute(dataSourceName: string, tag: string): void;
 
@@ -802,6 +811,7 @@ export interface Matrix{
   * @param option 서버 파라미터 배열
   * @param tag 사용자 지정 구분자
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 콜백을 받는 {@link ExecutePlan} 오버로드를 사용하세요.
   */
   ExecutePlan(planName: string, option: Array<{"Key":string,"Value":string}>, tag: any): void;
 
@@ -865,6 +875,7 @@ export interface Matrix{
    *
   * @param key Base64 키
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   GetAUDBase64ImageData(key?: string): string;
 
@@ -929,6 +940,7 @@ export interface Matrix{
    *
   * @param gridNames 데이터 전송 대상 그리드 이름. 콤마 구분 문자열 또는 배열
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   GetDataSetMafPacket(gridNames: string|string[]): object;
 
@@ -1160,6 +1172,7 @@ export interface Matrix{
    * 
    *
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   GetMetaDesignerEnum(): any;
 
@@ -1193,6 +1206,7 @@ export interface Matrix{
    * @param excludeConstCondition prompt 조회 조건 외의 조건 불포함 여부 (true: prompt 조건만 포함)\
    * 
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    *
    */
   GetMetaTemplateConditions(excludeConstCondition: boolean): Array<{Label: string, Controls: string[]} | {Name: string, Operator: string, Value: string[]}>;
@@ -1201,6 +1215,7 @@ export interface Matrix{
    * TableLayout이 없는 메타 템플릿의 layout 위치를 반환합니다.
    * 
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   GetMetaTemplateLayoutTopValue(): number;
 
@@ -1238,6 +1253,7 @@ export interface Matrix{
    *
   * @param control 컨트롤 객체
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   GetParamValue(control: Control): Array<any>;
 
@@ -1270,6 +1286,7 @@ export interface Matrix{
    *
   * @param isCondition 스케줄 예약 실행 여부 (`true`: 예약 실행)
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   GetScheduleCondition(isCondition: boolean): any;
 
@@ -1280,6 +1297,7 @@ export interface Matrix{
   * @param workbook 엑셀 내보내기 레이아웃
   * @param isCondition 스케줄 예약 실행 여부 (`true`: 예약 실행)
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   GetScheduleParam(workbook: any, isCondition: boolean): any;
 
@@ -1287,6 +1305,7 @@ export interface Matrix{
    * 메타 템플릿 사용을 위해 메타 데이터소스 매니저의 TemplateMetaData를 반환합니다.
    * 
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    *
   */
   GetTemplateMetaData(): MetaDataSource;
@@ -1548,6 +1567,7 @@ export interface Matrix{
    *
   * @param options 그룹 사용 여부, 조회 조건 컨트롤의 시작 위치, 라벨 스타일 등
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   MakeMetaFilterControls(options: any): void;
 
@@ -1751,6 +1771,7 @@ export interface Matrix{
   * @param tag 사용자 지정 구분자
   * @param type 내보낼 파일 형식
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 콜백을 받는 {@link ReportExport} 오버로드를 사용하세요.
   */
   ReportExport(json: object, params: Array<{"Key":string,"Value":string}> | null, tag: any, type: enExportType): void;
 
@@ -1780,6 +1801,7 @@ export interface Matrix{
   * @param scriptName 서버 스크립트 이름
   * @param tag 사용자 지정 구분자
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 콜백을 받는 {@link RunScript} 오버로드를 사용하세요.
   */
   RunScript(gridNames: string|string[], scriptName: string, tag: any): void;
 
@@ -1889,6 +1911,7 @@ export interface Matrix{
   * @param params 서버 조회 파라미터 배열
   * @param tag 사용자 지정 구분자
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 콜백을 받는 {@link ServiceCall} 오버로드를 사용하세요.
   */
   ServiceCall(gridNames: string|string[], className: string, params: Array<{"Key":string,"Value":string}>, tag: any): void;
 
@@ -1962,6 +1985,7 @@ export interface Matrix{
    *
   * @param method 스케줄 정보 반환 메서드
   * @hidden
+  * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   SetScheduleParam(method: Function): void;
 
@@ -2104,6 +2128,7 @@ export interface Matrix{
    * 스케줄 옵션 보고서를 팝업으로 표시합니다.
    * 
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    *
   */
   ShowScheduleOptionDialog(): DialogBox;
@@ -2148,6 +2173,7 @@ export interface Matrix{
   * 라벨 컨트롤
   * 
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   StyleVerticalText(labelControl: Label): void;
 
@@ -2169,6 +2195,7 @@ export interface Matrix{
   * i18n 옵션
   * 
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   Trans(key: string, options?: any): string;
 
@@ -2194,6 +2221,7 @@ export interface Matrix{
   * @param filter 파일 필터 (예: `".jpg,.png"`, `"*.*"`)
   * @param tag 사용자 태그
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 콜백을 받는 {@link UploadLocalFile} 오버로드를 사용하세요.
   */
   UploadLocalFile(folderName: string, filter: string, tag: any): void;
 
@@ -2227,6 +2255,7 @@ export interface Matrix{
   * @param limitsize 업로드 제한 크기 (bytes)
   * @param tag 사용자 태그
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 콜백을 받는 {@link UploadLocalFile} 오버로드를 사용하세요.
   */
   UploadLocalFile(folderName: string, saveName: string, filter: string, limitsize: number, tag: any): void;
 
@@ -2238,6 +2267,7 @@ export interface Matrix{
   * @param filter 파일 필터 (예: `".jpg,.png"`, `"*.*"`)
   * @param tag 사용자 태그
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 콜백을 받는 {@link UploadLocalFile} 오버로드를 사용하세요.
   */
   UploadLocalFile(folderName: string, saveName: string, filter: string, tag: any): void;
 
@@ -2574,6 +2604,7 @@ export interface Matrix{
    * 
    *
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   getViewer(): any;
 
@@ -3526,6 +3557,7 @@ export interface Matrix{
    *
    * Target : {@link Matrix}
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   OnColumnLineDragEnd : (sender : Matrix
   , args : { 
@@ -3564,6 +3596,7 @@ export interface Matrix{
    *
    * Target : {@link Matrix}
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   OnColumnLineDragStart : (sender : Matrix
   , args : { 
@@ -3607,6 +3640,7 @@ export interface Matrix{
    *
    * Target : {@link Matrix}
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   OnColumnLineMouseOver : (sender : Matrix
   , args : { 
@@ -4804,6 +4838,7 @@ export interface Matrix{
    *
    * Target : {@link Matrix}
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   OnImageEditCompleted : (sender : Matrix
   , args : { 
@@ -6127,6 +6162,7 @@ export interface Matrix{
    *
    * Target : {@link Matrix}
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   OnRowLineDragEnd : (sender : Matrix
   , args : { 
@@ -6165,6 +6201,7 @@ export interface Matrix{
    *
    * Target : {@link Matrix}
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   OnRowLineDragStart : (sender : Matrix
   , args : { 
@@ -6208,6 +6245,7 @@ export interface Matrix{
    *
    * Target : {@link Matrix}
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   OnRowLineMouseOver : (sender : Matrix
   , args : { 

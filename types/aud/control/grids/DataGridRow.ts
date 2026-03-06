@@ -14,6 +14,7 @@ export interface DataGridRow{
   /**
    * 레코드 순서
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   RowIndex: number;
 
