@@ -25,6 +25,7 @@ export interface Control{
    * 컨트롤의 ROOT DOM 객체를 반환 합니다.
 대부분의 객체는 DIV 객체 입니다.
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
    readonly Element: HTMLDivElement;
 
@@ -98,7 +99,7 @@ export interface Control{
    *
   * @param option 애니메이션 옵션
    * @hidden
-  */
+     */
   Animation(option: string | object): void;
 
   /**

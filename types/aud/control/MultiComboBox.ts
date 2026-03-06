@@ -33,6 +33,7 @@ export interface MultiComboBox extends Control{
   /**
    * 데이터소스를 가져오거나 설정합니다.
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. SetDataSourceName()을 사용하세요.
   */
   DataSource: string;
 
@@ -128,6 +129,7 @@ export interface MultiComboBox extends Control{
   /**
    * 팝업 컨테이너 객체를 가져오거나 설정합니다.
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   PopUpCtl: any;
 
@@ -167,6 +169,7 @@ export interface MultiComboBox extends Control{
    * @param result 데이터소스 모델 객체
    * @param tmpType 확장 타입
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. SetDataSet()을 사용하세요.
    */
   ApplyDataSource(result?: object, tmpType?: string): void;
 
@@ -278,6 +281,7 @@ export interface MultiComboBox extends Control{
   * @param width 너비
   * @param height 높이
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. SetDialogSize()를 사용하세요.
   */
   createPopUpCtl(width?: number, height?: number): void;
 

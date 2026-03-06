@@ -33,12 +33,14 @@ export interface ScriptConnection{
   */
   DisConnect(): void;
 
-  /** 
+  /**
    * 쿼리의 결과를 데이터 테이블 유형으로 반환합니다.
-대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
-callback을 지원하는 함수를 사용하시기 바랍니다.
+   * 대용량의 데이터를 실행하면 서버에서 메모리 점유 문제가 발생할 수 있으니
+   * callback을 지원하는 함수를 사용하시기 바랍니다.
    *
-  * @param sql 실행 쿼리
+   * @param sql 실행 쿼리
+   * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 대용량 데이터 시 메모리 문제 발생. callback 버전인 ExecuteDataTable(sql, callbackRow) 또는 ExecuteRecordSet(sql)을 사용하세요.
   */
   ExecuteDataTable(sql: string): ScriptDataTable;
 

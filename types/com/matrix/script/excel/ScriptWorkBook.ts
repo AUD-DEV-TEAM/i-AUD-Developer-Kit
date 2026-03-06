@@ -335,22 +335,22 @@ export interface ScriptWorkBook{
   */
   SaveRangeToCSV(outPath: string, range: string): void;
 
-  /** 
-   * @Deprecated
-엑셀 파일을 생성합니다.(.xls파일 생성)
+  /**
+   * 엑셀 파일을 생성합니다.(.xls파일 생성)
    *
-  * @param path 저장 경로(reports 아래 경로만 사용)
+   * @param path 저장 경로(reports 아래 경로만 사용)
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. .xls 형식은 더 이상 지원하지 않습니다. Save(path) 또는 Save(path, targetSheets)를 사용하여 .xlsx로 저장하세요.
   */
   SaveXLS(path: string): void;
 
-  /** 
-   * @Deprecated
-엑셀 파일을 생성합니다.(.xls파일 생성)
+  /**
+   * 엑셀 파일을 생성합니다.(.xls파일 생성)
    *
-  * @param path 저장 경로(reports 아래 경로만 사용)
-  * @param targetSheets 출력 대상 시트명 (,로 분리 입력)
+   * @param path 저장 경로(reports 아래 경로만 사용)
+   * @param targetSheets 출력 대상 시트명 (,로 분리 입력)
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. .xls 형식은 더 이상 지원하지 않습니다. Save(path, targetSheets)를 사용하여 .xlsx로 저장하세요.
   */
   SaveXLS(path: string, targetSheets: string): void;
 

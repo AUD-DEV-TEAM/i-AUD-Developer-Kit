@@ -32,6 +32,7 @@ export interface Tab extends Control {
    *
    * @param name 탭 아이템 이름
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   AddTabItem(name: string): TabItem;
 
@@ -40,6 +41,7 @@ export interface Tab extends Control {
    *
    * @param name 탭 아이템 이름
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   DeleteTabItem(name: string): void;
 
@@ -48,6 +50,7 @@ export interface Tab extends Control {
    *
    * @param tabItem 탭 아이템 객체
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   DeleteTabItem(tabItem: TabItem): void;
 
@@ -79,6 +82,7 @@ export interface Tab extends Control {
    *
    * @param tabItem 탭 아이템 객체
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   UpdateTabItem(tabItem: TabItem): void;
 
@@ -87,6 +91,7 @@ export interface Tab extends Control {
    *
    * @param name 탭 아이템 이름
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   UpdateTabItem(name: string): void;
 

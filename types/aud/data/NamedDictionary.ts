@@ -6,8 +6,7 @@ export interface NamedDictionary<T = any>{
   /**
    * 항목을 추가합니다.
    *
-  * @param item 아이템
-   * @hidden
+  * @param item 아이템 
   */
   Add(item: T): void;
 
@@ -33,8 +32,7 @@ export interface NamedDictionary<T = any>{
   /**
    * 항목을 반복합니다.
    *
-  * @param enumFunc Enum 함수
-   * @hidden
+  * @param enumFunc Enum 함수 
   */
   ForEach(enumFunc?: (idx: number, item: T) => boolean | void): void;
 

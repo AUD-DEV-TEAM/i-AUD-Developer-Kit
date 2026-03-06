@@ -17,6 +17,7 @@ export interface TreeView extends Control {
   /**
    * 컨텍스트 메뉴 객체를 가져옵니다.
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   ContextMenu: ContextMenu;
 
@@ -28,18 +29,21 @@ export interface TreeView extends Control {
   /**
    * 트리 옵션을 가져옵니다.
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   Option: object;
 
   /**
    * 최상위 노드를 가져옵니다.
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   RootNode: TreeViewNode;
 
   /**
    * 행 목록을 가져옵니다.
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   Rows: TreeViewNode[];
 
@@ -51,6 +55,7 @@ export interface TreeView extends Control {
   /**
    * 전체 행 목록을 가져옵니다.
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   TotalRows: TreeViewNode[];
 
@@ -73,6 +78,7 @@ export interface TreeView extends Control {
    * 데이터셋을 초기화합니다.
    *
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   ClearDataSet(): void;
 
@@ -80,6 +86,7 @@ export interface TreeView extends Control {
    * 포커스를 초기화합니다.
    *
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   ClearFocus(): void;
 
@@ -103,6 +110,7 @@ export interface TreeView extends Control {
    * @param targetNode 대상 노드
    * @param draggingRows 드래그 중인 Row들
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   DragAndDrop(dropType: enMetaItemDropType, targetNode: TreeViewNode, draggingRows: TreeViewNode[]): void;
 
@@ -111,6 +119,7 @@ export interface TreeView extends Control {
    *
    * @param node 선택한 노드
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   Expand(node: TreeViewNode): void;
 
@@ -118,6 +127,7 @@ export interface TreeView extends Control {
    * 전체 노드를 확장합니다.
    *
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   ExpandAll(): void;
 
@@ -132,6 +142,7 @@ export interface TreeView extends Control {
    * 지정된 데이터셋을 반환합니다.
    *
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. DataSet 속성을 사용하세요.
    */
   GetDataSet(): DataSet;
 
@@ -154,6 +165,7 @@ export interface TreeView extends Control {
    *
    * @param idx 행 번호
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   SelectRow(idx: number): void;
 
@@ -161,6 +173,7 @@ export interface TreeView extends Control {
    * 전체 Row의 Bound를 계산하는 메서드입니다.
    *
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   SetBound(): void;
 
@@ -169,6 +182,7 @@ export interface TreeView extends Control {
    *
    * @param dataSet 지정하려는 데이터셋
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. DataSet 속성을 사용하세요.
    */
   SetDataSet(dataSet: DataSet): void;
 
@@ -177,6 +191,7 @@ export interface TreeView extends Control {
    *
    * @param node 노드의 키나 노드를 받아서 Selection으로 지정합니다.
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
    */
   SetSelection(node: string | TreeViewNode): void;
 

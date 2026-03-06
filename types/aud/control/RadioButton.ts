@@ -29,6 +29,7 @@ export interface RadioButton extends Control{
   /**
    * Radio 버튼 Element
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   ElementRadio: HTMLDivElement;
 
@@ -61,6 +62,7 @@ export interface RadioButton extends Control{
    * 툴팁을 지정합니다.
    *
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. 내부 API입니다.
   */
   SetTooltip(): void;
 

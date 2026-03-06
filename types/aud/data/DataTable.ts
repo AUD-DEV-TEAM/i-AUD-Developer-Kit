@@ -12,6 +12,7 @@ export interface DataTable{
   /**
    * Columns 정보
    * @hidden
+   * @deprecated 신규 코드에서 사용 금지. GetColumn(), GetColumnNames()를 사용하세요.
   */
   Columns: NamedDictionary<DataColumn>;
 

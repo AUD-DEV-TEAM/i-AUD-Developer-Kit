@@ -43,10 +43,9 @@ export interface Dock{
   */
   Top: boolean;
 
-  /** 
+  /**
    * 메소드를 통해 왼쪽, 위, 오른쪽, 아래 여백 값을 조회합니다.
    *
-   * @hidden
   */
   GetMargin(): Array<any>;
 
