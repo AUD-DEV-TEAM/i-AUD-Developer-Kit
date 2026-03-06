@@ -97,6 +97,12 @@ export interface Slicer extends Control{
    *
   */
   GetValue(): string[];
+  
+  /**
+   * 현재 선택된(필터링된) 아이템(셀)의 값을 설정합니다.
+   *
+  */
+  SetValue(vals:Array<string>);void;
 
   /**
    * 데이터를 조회합니다.

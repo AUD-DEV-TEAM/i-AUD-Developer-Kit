@@ -190,6 +190,18 @@ export interface Calendar extends Control{
 
   /**
    * 초기 선택 날짜를 가져오거나 설정합니다.
+   *
+   * 날짜 문자열 외에 함수 표현식을 사용할 수 있습니다:
+   * - `"NOW()"` — 오늘 날짜
+   * - `"DATE(Year, Month, Day)"` — 상대 오프셋 또는 `F`(First) / `L`(Last)
+   *
+   * @example
+   * ```js
+   * cal.InitDate = "NOW()";           // 오늘
+   * cal.InitDate = "DATE(0, 0, 0)";   // 오늘
+   * cal.InitDate = "DATE(0, 0, F)";   // 이번 달 1일
+   * cal.InitDate = "DATE(0, -1, 0)";  // 1개월 전
+   * ```
    */
   InitDate: string;
 
@@ -200,11 +212,29 @@ export interface Calendar extends Control{
 
   /**
    * 최대 선택 가능 날짜를 가져오거나 설정합니다.
+   *
+   * `"NOW()"`, `"DATE(Year, Month, Day)"` 함수 표현식 사용 가능.
+   *
+   * @example
+   * ```js
+   * cal.MaxDate = "DATE(1, 0, 0)";    // 1년 후
+   * cal.MaxDate = "DATE(0, L, L)";    // 올해 12월 31일
+   * cal.MaxDate = "DATE(L, L, L)";    // 최대 (2999-12-31)
+   * ```
    */
   MaxDate: string;
 
   /**
    * 최소 선택 가능 날짜를 가져오거나 설정합니다.
+   *
+   * `"NOW()"`, `"DATE(Year, Month, Day)"` 함수 표현식 사용 가능.
+   *
+   * @example
+   * ```js
+   * cal.MinDate = "DATE(0, -6, 0)";   // 6개월 전
+   * cal.MinDate = "DATE(0, F, F)";    // 올해 1월 1일
+   * cal.MinDate = "DATE(F, F, F)";    // 최소 (1900-01-01)
+   * ```
    */
   MinDate: string;
 

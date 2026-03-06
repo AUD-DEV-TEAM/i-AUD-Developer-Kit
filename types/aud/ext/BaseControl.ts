@@ -3,27 +3,37 @@ import { ContextMenu } from "../../aud/control/ContextMenu";
 /**
  * Base 컨트롤 - HTML과 CSS로 제작 가능한 사용자 정의 컨트롤입니다.
  *
- * MTSD에서 BaseControl 타입으로 정의된 컨트롤의 인스턴스이며,
+ * MTSD에서 BaseControl 타입으로 정의된 AddIn 컨트롤의 내부 컴포넌트이며,
  * HTML/CSS를 직접 주입하여 자유로운 UI를 구현할 수 있습니다.
+ *
+ * **주의**: `Matrix.getObject()`는 AddIn 래퍼를 반환합니다.
+ * AddIn 컴포넌트는 비동기로 로딩되므로, `OnComponentClassLoaded` 이벤트 안에서
+ * `getScriptClass()`를 호출하여 BaseControl에 접근하세요.
  *
  * @example
  * ```ts
- * // 클라이언트 스크립트에서 BaseControl 가져오기
- * let ctrl = Matrix.getObject("myCtrl") as BaseControl;
+ * import { AddIn } from "@AUD_CLIENT/control/AddIn";
+ * import { BaseControl } from "@AUD_CLIENT/ext/BaseControl";
  *
- * // CSS 추가
- * ctrl.addCSS(`
- *   .my-card { border: 1px solid #ccc; padding: 10px; border-radius: 4px; }
- *   .my-card h3 { margin: 0 0 8px 0; }
- * `);
+ * // AddIn 래퍼에서 OnComponentClassLoaded로 BaseControl 접근
+ * let addIn = Matrix.getObject("myCtrl") as AddIn;
+ * addIn.OnComponentClassLoaded = function(sender, args) {
+ *     let ctrl = addIn.getScriptClass() as BaseControl;
  *
- * // HTML 추가
- * ctrl.addHTML(`
- *   <div class="my-card">
- *     <h3>제목</h3>
- *     <p>내용</p>
- *   </div>
- * `);
+ *     // CSS 추가
+ *     ctrl.addCSS(`
+ *       .my-card { border: 1px solid #ccc; padding: 10px; border-radius: 4px; }
+ *       .my-card h3 { margin: 0 0 8px 0; }
+ *     `);
+ *
+ *     // HTML 추가
+ *     ctrl.addHTML(`
+ *       <div class="my-card">
+ *         <h3>제목</h3>
+ *         <p>내용</p>
+ *       </div>
+ *     `);
+ * };
  * ```
  */
 export interface BaseControl {
@@ -37,7 +47,7 @@ export interface BaseControl {
    *
    * @example
    * ```ts
-   * let ctrl = Matrix.getObject("myCtrl") as BaseControl;
+   * let ctrl = (Matrix.getObject("myCtrl") as AddIn).getScriptClass() as BaseControl;
    * ctrl.OnResize = function(sender, args) {
    *     console.log("크기 변경:", args.Width, args.Height);
    * };
@@ -50,7 +60,7 @@ export interface BaseControl {
    *
    * @example
    * ```ts
-   * let ctrl = Matrix.getObject("myCtrl") as BaseControl;
+   * let ctrl = (Matrix.getObject("myCtrl") as AddIn).getScriptClass() as BaseControl;
    * ctrl.OnUpdate = function(sender, args) {
    *     // 데이터 갱신 처리
    * };
@@ -63,7 +73,7 @@ export interface BaseControl {
    *
    * @example
    * ```ts
-   * let ctrl = Matrix.getObject("myCtrl") as BaseControl;
+   * let ctrl = (Matrix.getObject("myCtrl") as AddIn).getScriptClass() as BaseControl;
    * ctrl.OnBuildProperteis = function(sender, args) {
    *     args.Properties.push({ Name: "옵션1", Value: "값1" });
    * };
@@ -76,7 +86,7 @@ export interface BaseControl {
    *
    * @example
    * ```ts
-   * let ctrl = Matrix.getObject("myCtrl") as BaseControl;
+   * let ctrl = (Matrix.getObject("myCtrl") as AddIn).getScriptClass() as BaseControl;
    * ctrl.OnContextMenuOpening = function(sender, args) {
    *     args.Menu.Clear();
    *     args.Menu.AddMenu("새로고침", function() {

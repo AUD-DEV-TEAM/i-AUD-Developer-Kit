@@ -62,10 +62,6 @@ export interface Grid extends Control{
   */
   DataLimit: number;
 
-  /**
-   * 데이터셋을 가져오거나 설정합니다.
-  */
-  DataSet: DataSet;
 
   /**
    * 데이터소스 키 값을 가져오거나 설정합니다.
@@ -1356,7 +1352,7 @@ export interface Grid extends Control{
 
 
   /**
-   * @event 
+   * @event
    *
    * 그리드의 행이 키입력으로 인하여 삭제될 때 발생합니다.
    *

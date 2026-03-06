@@ -68,10 +68,37 @@ Matrix는 i-AUD 클라이언트의 핵심 객체로, 모든 컨트롤 접근과 
 ### 3.1 컨트롤 접근
 
 ```typescript
-// 컨트롤 가져오기
+// 일반 컨트롤 가져오기
 let button = Matrix.getObject("Button1") as Button;
 let grid = Matrix.getObject("DataGrid1") as DataGrid;
 let textbox = Matrix.getObject("TextBox1") as TextBox;
+```
+
+### 3.1.1 AddIn 컴포넌트 접근 (BaseControl, GridHtmlView 등)
+
+AddIn 타입 컨트롤(BaseControl, GridHtmlView 등)은 `Matrix.getObject()`가 **AddIn 래퍼**를 반환합니다.
+컴포넌트는 비동기로 로딩되므로, `OnComponentClassLoaded` 이벤트 안에서 `getScriptClass()`를 호출해야 합니다.
+
+```typescript
+// [올바른 패턴] OnComponentClassLoaded 에서 getScriptClass()로 컴포넌트 접근
+let addIn = Matrix.getObject("myCtrl") as AddIn;
+addIn.OnComponentClassLoaded = function(sender, args) {
+    let ctrl = addIn.getScriptClass() as BaseControl;
+    ctrl.addCSS('.card { padding: 10px; }');
+    ctrl.addHTML('<div class="card">내용</div>');
+};
+
+// GridHtmlView도 동일한 패턴
+let addIn2 = Matrix.getObject("myView") as AddIn;
+addIn2.OnComponentClassLoaded = function(sender, args) {
+    let view = addIn2.getScriptClass() as GridHtmlView;
+    view.DataGrid = Matrix.getObject("GRD") as DataGrid;
+    view.HTML = '<div aud-for="ROWS"><span aud-bind="NAME"></span></div>';
+};
+
+// [잘못된 패턴] 직접 캐스팅은 동작하지 않음
+// let ctrl = Matrix.getObject("myCtrl") as BaseControl; // X - AddIn 래퍼가 반환됨
+// let ctrl = addIn.getScriptClass() as BaseControl;     // X - 비동기 로딩 전이면 null
 ```
 
 ### 3.2 메시지 표시
@@ -154,7 +181,7 @@ txt.OnTextChange = function(sender : TextBox, args : {Id: string, Text: string})
 };
 ```
 
-### 4.3 ComboBox (콤보박스)
+### 4.3 ComboBox / MultiComboBox (콤보박스)
 
 ```typescript
 let combo = Matrix.getObject("ComboBox1") as ComboBox;
@@ -170,7 +197,82 @@ combo.OnValueChanged = function(sender : ComboBox, args : {Id: string,Value: str
 };
 ```
 
-### 4.4 DataGrid (데이터 그리드)
+#### InitType / InitValue (초기값 설정)
+
+콤보박스의 초기 선택값을 지정하려면 **InitType과 InitValue를 함께 설정**해야 합니다.
+`InitValue`만 설정하면 적용되지 않습니다.
+
+| InitType 값 | 숫자 | 동작 |
+|-------------|------|------|
+| `CurrentValue` | 0 | 현재 선택값을 유지 (기본값) |
+| `InitValue` | 1 | `InitValue` 속성의 값으로 초기화 |
+| `None` | 2 | 초기값을 설정하지 않음 |
+
+```typescript
+// ComboBox 초기값 설정
+let combo = Matrix.getObject("cboStatus") as ComboBox;
+combo.InitType = 1;           // enInitType.InitValue (반드시 설정!)
+combo.InitValue = "Y";        // 데이터 조회 후 "Y" 항목이 자동 선택됨
+
+// MultiComboBox 초기값 설정
+let mcb = Matrix.getObject("mcbDept") as MultiComboBox;
+mcb.InitType = 1;             // enInitType.InitValue (반드시 설정!)
+mcb.InitValue = "001,002";    // 데이터 조회 후 "001", "002" 항목이 자동 선택됨
+```
+
+> **주의**: MTSD 디자이너에서도 동일하게 `[InitType]`을 `InitValue`로 변경해야 `[InitValue]` 속성이 반영됩니다.
+
+### 4.4 Calendar (달력)
+
+```typescript
+let cal = Matrix.getObject("Calendar1") as Calendar;
+
+// 속성
+let value = cal.Value;           // DataFormat 형식 값 (예: "20240115")
+let text = cal.Text;             // ViewFormat 형식 값 (예: "2024-01-15")
+let date = cal.Date;             // Date 객체
+cal.DataFormat = "yyyyMMdd";     // 데이터 저장용 포맷
+cal.ViewFormat = "yyyy-MM-dd";   // 화면 표시용 포맷
+cal.IsReadOnly = true;           // 읽기 전용
+
+// 이벤트
+cal.OnValueChanged = function(sender : Calendar, args : {Id: string, Text: string, Date: Date}) {
+    console.log("선택 날짜:", args.Text, args.Date);
+};
+```
+
+#### 날짜 함수 표현식 (InitDate / MinDate / MaxDate)
+
+`InitDate`, `MinDate`, `MaxDate` 속성에 **함수 형식 문자열**을 사용할 수 있습니다.
+MTSD 디자이너 속성 또는 스크립트에서 동일하게 사용 가능합니다.
+
+| 함수 | 설명 | 예시 결과 (오늘 2024-07-15 기준) |
+|------|------|------|
+| `NOW()` | 현재 날짜 | 2024-07-15 |
+| `DATE(0, 0, 0)` | 오늘 | 2024-07-15 |
+| `DATE(-1, 0, 0)` | 1년 전 | 2023-07-15 |
+| `DATE(0, -3, 0)` | 3개월 전 | 2024-04-15 |
+| `DATE(0, 0, -7)` | 7일 전 | 2024-07-08 |
+| `DATE(0, 0, F)` | 이번 달 1일 | 2024-07-01 |
+| `DATE(0, 0, L)` | 이번 달 말일 | 2024-07-31 |
+| `DATE(0, F, F)` | 올해 1월 1일 | 2024-01-01 |
+| `DATE(0, L, L)` | 올해 12월 31일 | 2024-12-31 |
+| `DATE(F, F, F)` | 최소 날짜 (1900-01-01) | 1900-01-01 |
+| `DATE(L, L, L)` | 최대 날짜 (2999-12-31) | 2999-12-31 |
+
+**파라미터 규칙**: `DATE(Year, Month, Day)`
+- **정수**: 현재 기준 상대 오프셋 (0=현재, -1=이전, +1=다음)
+- **`F`**: First — 년도(1900), 월(1월), 일(1일)
+- **`L`**: Last — 년도(2999), 월(12월), 일(해당 월 말일)
+
+```typescript
+// 스크립트에서 사용
+cal.InitDate = "NOW()";             // 초기값: 오늘
+cal.MinDate = "DATE(0, -6, 0)";    // 최소: 6개월 전
+cal.MaxDate = "DATE(1, 0, 0)";     // 최대: 1년 후
+```
+
+### 4.5 DataGrid (데이터 그리드)
 
 ```typescript
 let dataGrid = Matrix.getObject("DataGrid1") as DataGrid;
@@ -198,7 +300,7 @@ dataGrid.OnCellClick = function(sender : DataGrid, args : { Id: string,Row: Data
 };
 ```
 
-### 4.5 iGrid (Excel 형식 그리드)
+### 4.6 iGrid (Excel 형식 그리드)
 
 ```typescript
 let igrid = Matrix.getObject("iGrid1") as iGrid;
@@ -214,7 +316,7 @@ igrid.ExportServiceCall(enExportType.Excel,
 } ); 
 ```
 
-### 4.6 Chart (차트)
+### 4.7 Chart (차트)
 
 ```typescript
 let chart = Matrix.getObject("Chart1") as Chart;
@@ -226,7 +328,7 @@ let options = chart.ChartOptions;
 chart.Update();
 ```
 
-### 4.7 OlapGrid (OLAP 그리드)
+### 4.8 OlapGrid (OLAP 그리드)
 
 ```typescript
 let olap = Matrix.getObject("OlapGrid1") as OlapGrid;
@@ -397,7 +499,68 @@ grid.OnEndEdit = function(sender, args) {
 
 ---
 
-## 10. API 인터페이스 위치
+## 10. JavaScript 호환성 주의사항
+
+클라이언트 스크립트는 ES5/ES6 환경에서 실행되므로, **ES2017+ 메서드는 사용할 수 없습니다**.
+
+### 사용 불가 메서드 및 대체 패턴
+
+| 사용 불가 (ES2017+) | 대체 방법 |
+|---------------------|-----------|
+| `String.padStart()` | `lpad()` 헬퍼 함수 사용 |
+| `String.padEnd()` | `rpad()` 헬퍼 함수 사용 |
+| `Object.entries()` | `Object.keys()` + 인덱스 접근 |
+| `Object.values()` | `Object.keys()` + map |
+| `Array.includes()` | `Array.indexOf() >= 0` |
+| `async/await` | 콜백 또는 Promise.then() |
+
+### 헬퍼 함수 예시
+
+```typescript
+// padStart 대체
+function lpad(val: number | string, len: number, ch?: string): string {
+    let s = String(val);
+    let pad = ch || '0';
+    while (s.length < len) s = pad + s;
+    return s;
+}
+
+// padEnd 대체
+function rpad(val: number | string, len: number, ch?: string): string {
+    let s = String(val);
+    let pad = ch || ' ';
+    while (s.length < len) s = s + pad;
+    return s;
+}
+
+// 사용 예
+lpad(5, 3);          // "005"
+lpad(12, 4);         // "0012"
+lpad("AB", 5, '_');  // "___AB"
+```
+
+---
+
+## 11. enum 사용 시 주의사항
+
+클라이언트 스크립트에서 `types/aud/enums/` 의 enum을 **import하면 안 됩니다**.
+`import` 구문으로 타입 파일을 참조하면 런타임에 모듈을 찾을 수 없어 오류가 발생합니다.
+
+enum 값이 필요하면 **스크립트 파일 안에 직접 복사**하여 사용하세요.
+
+```typescript
+// ✗ 잘못된 패턴 — import 금지
+import { enDataType } from "@AUD_CLIENT/enums/comm/enDataType";
+
+// ✓ 올바른 패턴 — 스크립트 내에 직접 선언
+enum enDataType { Numeric = 0, String = 1, DateTime8 = 2, DateTimeNow = 3, UserCode = 4 }
+```
+
+> `types/aud/enums/` 파일을 열어 값을 확인한 뒤, 필요한 항목만 복사하세요.
+
+---
+
+## 12. API 인터페이스 위치
 
 상세 API 정의는 `types/aud/` 폴더를 참조하세요:
 

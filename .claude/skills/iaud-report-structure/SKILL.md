@@ -1,6 +1,6 @@
 ---
 name: iaud-report-structure
-description: i-AUD 보고서(프로그램) 구조 가이드. .aud.json, .mtsd 파일 구조와 프로그램 구성 요소를 설명합니다. "보고서 구조", "프로그램 구성", ".aud.json", ".mtsd", "폴더 구조", "데이터소스", "서비스" 등을 물어볼 때 사용하세요.
+description: i-AUD 보고서(프로그램) 구조 가이드. .design.json, .mtsd 파일 구조와 프로그램 구성 요소를 설명합니다. "보고서 구조", "프로그램 구성", ".mtsd", ".design.json", "폴더 구조", "데이터소스", "서비스" 등을 물어볼 때 사용하세요.
 ---
 
 # i-AUD 보고서(프로그램) 구조 가이드
@@ -15,8 +15,8 @@ i-AUD의 보고서(프로그램)는 하나의 폴더로 구성되며, UI 배치,
 
 ```
 [보고서명]/
-├── .aud.json                        # 프로그램 메타 정보
-├── [ReportCode].mtsd                # 화면 정의 (JSON)
+├── .design.json                     # 개발용 화면 정의 (스크립트/SQL은 파일 경로 참조) ★ AI는 이 파일 사용
+├── [ReportCode].mtsd                # 화면 정의 - 서버 원본 (인라인 콘텐츠 포함)
 ├── [보고서명].script.ts             # 클라이언트 스크립트 (TypeScript)
 ├── [보고서명].script.js             # 클라이언트 스크립트 (JavaScript)
 ├── DataSource/                      # 데이터 조회 SQL
@@ -30,37 +30,14 @@ i-AUD의 보고서(프로그램)는 하나의 폴더로 구성되며, UI 배치,
 
 ---
 
-## 3. .aud.json 파일
-
-프로그램의 메타 정보를 저장하는 파일입니다.
-
-```json
-{
-  "ReportCode": "DYNAMIC_SQL",
-  "ReportName": "DYNAMIC_SQL 샘플",
-  "FolderCode": "FLD72470E8B43AE41C796541322C57190D2",
-  "ModuleCode": "SD",
-  "DocumentVersion": "3.0.0.0",
-  "ModifyDate": "2025-06-12 17:10:04",
-  "Modifier": "yglee"
-}
-```
-
-| 필드 | 설명 |
-|------|------|
-| `ReportCode` | 프로그램 고유 코드 |
-| `ReportName` | 프로그램 표시명 |
-| `FolderCode` | 서버상 폴더 코드 |
-| `ModuleCode` | 모듈 코드 |
-| `DocumentVersion` | 문서 버전 |
-| `ModifyDate` | 최종 수정일시 |
-| `Modifier` | 최종 수정자 |
-
 ---
 
-## 4. .mtsd 파일 구조
+## 4. .design.json / .mtsd 파일 구조
 
 화면 UI 배치, 데이터소스, 서비스가 정의된 JSON 문서입니다.
+- **`.design.json`**: 개발용 — ScriptText/SQL이 파일 경로 참조(예: `"./ServerScript/@XX.ts"`)로 대체됨. AI는 이 파일을 우선 사용합니다.
+- **`.mtsd`**: 서버 원본 — 인라인 콘텐츠 포함. 직접 수정하지 않습니다.
+- `.design.json`이 없는 기존 보고서는 `save_report` 또는 `pull_report` 실행 시 자동 생성됩니다.
 
 ### 4.1 전체 구조
 
@@ -286,7 +263,7 @@ import { QueryRepository } from "../ServerScript/@DATA_MASTER";
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                      .mtsd (메인 문서)                       │
+│               .design.json / .mtsd (메인 문서)                 │
 │  ┌─────────────────┐  ┌─────────────────┐                   │
 │  │   DataSources   │  │ ServerScriptText │                  │
 │  │   (데이터소스)   │  │   (서버스크립트)  │                  │
@@ -312,9 +289,6 @@ import { QueryRepository } from "../ServerScript/@DATA_MASTER";
 │  └─────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────┘
 
-┌─────────────────┐
-│   .aud.json     │ ◄─── 메타 정보 (서버 동기화용)
-└─────────────────┘
 ```
 
 ---
@@ -332,18 +306,15 @@ import { QueryRepository } from "../ServerScript/@DATA_MASTER";
 
 ## 11. 주의사항
 
-### .mtsd 파일
-- 직접 수정하지 말고 i-AUD Designer 사용
-- SQL, 스크립트는 암호화되어 저장됨
-- 버전 관리 시 충돌 주의
+### .design.json / .mtsd 파일
+- AI는 `.design.json`을 우선 사용 (스크립트/SQL이 파일 경로 참조로 대체되어 가독성 높음)
+- `.mtsd`는 서버 원본(인라인 콘텐츠, 암호화됨) — 직접 수정하지 않음
+- `.design.json`이 없으면 `save_report` 또는 `pull_report` 실행 시 자동 생성
 
 ### 스크립트 파일
 - `DataSource/`, `ServerScript/` 폴더의 파일은 직접 편집 가능
 - `save_report`로 서버에 배포 (또는 `AUD: Publish Script`)
 
-### .aud.json
-- VS Code 확장에서 자동 관리
-- 직접 수정 불필요
 
 ---
 

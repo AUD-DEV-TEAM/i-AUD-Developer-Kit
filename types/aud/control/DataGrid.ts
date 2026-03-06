@@ -129,4 +129,42 @@ export interface DataGrid extends Grid{
   */
   MovePrevPage(): void;
 
+  /**
+   * @event
+   *
+   * 데이터그리드의 데이터 모델이 변경된 후 발생합니다.
+   * ApplyDataSource(데이터 조회하여 데이터 바인딩 후), SetDataSet(스크립트 데이터 설정),
+   * Calculate(레코드 수정 후 강제 업데이트) 완료 시 발생합니다.
+   *
+   * @param sender 이벤트가 발생한 데이터그리드 컨트롤
+   * @param args 이벤트 인자
+   *
+   * Target : {@link DataGrid}
+   *
+   * @example
+   * ```js
+   * var grid = Matrix.getObject("DataGrid");
+   * grid.OnDataChanged = function(sender, args) {
+   *     // 데이터 변경 원인에 따라 분기 처리
+   *     console.log("변경 원인: " + args.Source + ", 행 수: " + args.RecordCount);
+   * };
+   * ```
+  */
+  OnDataChanged : (sender : DataGrid
+  , args : {
+    /**
+     * 컨트롤 이름
+    */
+    Id: string
+    /**
+     * 데이터셋의 레코드 수량
+    */
+    RecordCount: number
+    /**
+     * 데이터 변경 원인 ("ApplyDataSource" | "SetDataSet" | "Calculate")
+    */
+    Source: string
+  }
+  ) => void;
+
 }

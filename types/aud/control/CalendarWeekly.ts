@@ -198,6 +198,8 @@ export interface CalendarWeekly extends Control{
 
   /**
    * 초기 선택 날짜를 가져오거나 설정합니다.
+   *
+   * `"NOW()"`, `"DATE(Year, Month, Day)"` 함수 표현식 사용 가능. {@link Calendar.InitDate} 참조.
    */
   InitDate: string;
 
@@ -208,11 +210,15 @@ export interface CalendarWeekly extends Control{
 
   /**
    * 최대 선택 가능 날짜를 가져오거나 설정합니다.
+   *
+   * `"NOW()"`, `"DATE(Year, Month, Day)"` 함수 표현식 사용 가능. {@link Calendar.MaxDate} 참조.
    */
   MaxDate: string;
 
   /**
    * 최소 선택 가능 날짜를 가져오거나 설정합니다.
+   *
+   * `"NOW()"`, `"DATE(Year, Month, Day)"` 함수 표현식 사용 가능. {@link Calendar.MinDate} 참조.
    */
   MinDate: string;
 
