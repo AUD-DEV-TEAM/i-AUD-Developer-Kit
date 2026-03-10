@@ -272,7 +272,58 @@ cal.MinDate = "DATE(0, -6, 0)";    // 최소: 6개월 전
 cal.MaxDate = "DATE(1, 0, 0)";     // 최대: 1년 후
 ```
 
-### 4.5 DataGrid (데이터 그리드)
+### 4.5 CalendarFromTo (기간 선택 달력)
+
+단일 날짜가 아닌 **시작일~종료일 기간**을 선택하는 컨트롤입니다. 유사 변형으로 `CalendarYMFromTo`(연월 기간), `CalendarYearFromTo`(연도 기간), `CalendarWeeklyFromTo`(주간 기간)가 있습니다.
+
+```typescript
+import { CalendarFromTo } from "@AUD_CLIENT/control/CalendarFromTo";
+
+let calPeriod = Matrix.getObject("CAL_FROM") as CalendarFromTo;
+
+// 속성
+let fromValue = calPeriod.Value;       // From 날짜 (DataFormat, 예: "20240101")
+let toValue = calPeriod.Value2;        // To 날짜 (DataFormat, 예: "20241231")
+let fromText = calPeriod.FromText;     // From 날짜 (ViewFormat, 예: "2024-01-01")
+let toText = calPeriod.ToText;         // To 날짜 (ViewFormat, 예: "2024-12-31")
+let fromDate = calPeriod.FromDate;     // From Date 객체
+let toDate = calPeriod.ToDate;         // To Date 객체
+calPeriod.DataFormat = "yyyyMMdd";
+calPeriod.ViewFormat = "yyyy-MM-dd";
+calPeriod.IsReadOnly = true;
+
+// 기간 설정
+calPeriod.FromDate = new Date(2024, 0, 1);   // 2024-01-01
+calPeriod.ToDate = new Date(2024, 11, 31);   // 2024-12-31
+
+// To 달력 최대 선택 가능일 동적 제어
+calPeriod.SetToCalendarMaxDate("90D", fromDate);  // From 기준 90일 후까지
+
+// 이벤트
+calPeriod.OnValueChanged = function(sender, args) {
+    // From 또는 To 변경 시
+    let from = args.Text;   // ViewFormat 형식 From
+    let to = args.Text2;    // ViewFormat 형식 To
+};
+
+calPeriod.OnFromValueChanged = function(sender, args) {
+    // From만 변경 시
+    let fromDate = args.Date;
+};
+```
+
+> **MTSD Type 매핑**: 기간 선택 컨트롤의 MTSD `Type` 값은 클라이언트 타입명과 동일합니다.
+
+| 단일 선택 (Type) | 기간 선택 (Type) | 설명 |
+|-----------------|-----------------|------|
+| `Calendar` | `CalendarFromTo` | 날짜 (yyyy-MM-dd) |
+| `CalendarYM` | `CalendarYMFromTo` | 연월 (yyyy-MM) |
+| `CalendarYear` | `CalendarYearFromTo` | 연도 (yyyy) |
+| `CalendarWeekly` | `CalendarWeeklyFromTo` | 주간 |
+
+> **FromTo MTSD 주요 속성**: `Name`(From 이름), `Name2`(To 이름), `InitDate`(세미콜론 구분 From;To 초기값, 예: `"DATE(0,F,F);DATE(0,L,L)"`), `DataFormat`, `ViewFormat`
+
+### 4.6 DataGrid (데이터 그리드)
 
 ```typescript
 let dataGrid = Matrix.getObject("DataGrid1") as DataGrid;

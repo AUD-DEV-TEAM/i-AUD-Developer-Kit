@@ -206,7 +206,54 @@ DataGridBuilder
 | `editable` | 편집 가능 | `true` |
 | `visible` | 표시 여부 | `false` |
 
-### 2.4 공통 옵션 (모든 Element에 적용)
+### 2.4 기간 선택 달력 컨트롤 (CalendarFromTo 계열)
+
+단일 날짜가 아닌 **시작~종료 기간**을 선택할 때는 FromTo 계열 컨트롤을 사용합니다.
+`generate_element`에서 지원하지 않으므로, `.design.json`에 직접 JSON을 작성합니다.
+
+| 단일 선택 (Type) | 기간 선택 (Type) | 설명 |
+|-----------------|-----------------|------|
+| `Calendar` | `CalendarFromTo` | 날짜 (yyyy-MM-dd) |
+| `CalendarYM` | `CalendarYMFromTo` | 연월 (yyyy-MM) |
+| `CalendarYear` | `CalendarYearFromTo` | 연도 (yyyy) |
+| `CalendarWeekly` | `CalendarWeeklyFromTo` | 주간 |
+
+#### .design.json 최소 패턴
+
+```json
+{
+  "Type": "CalendarFromTo",
+  "Id": "CalendarFromTo{32자리HEX}",
+  "Name": "CAL_FROM",
+  "Name2": "CAL_TO",
+  "Position": { "Left": 100, "Top": 15, "Width": 230, "Height": 25 },
+  "InitDate": "DATE(0,F,F);DATE(0,L,L)",
+  "DataFormat": "yyyyMMdd",
+  "ViewFormat": "yyyy-MM-dd"
+}
+```
+
+#### 주요 속성
+
+| 속성 | 설명 | 예시 |
+|------|------|------|
+| `Name` | From 캘린더 이름 | `"CAL_FROM"`, `"VS_YMD_FROM"` |
+| `Name2` | To 캘린더 이름 | `"CAL_TO"`, `"VS_YMD_TO"` |
+| `InitDate` | 초기값 (From;To **세미콜론 구분**) | `"DATE(0,F,F);DATE(0,L,L)"` (금년 1/1~12/31) |
+| `DataFormat` | 데이터 저장 포맷 | `"yyyyMMdd"` |
+| `ViewFormat` | 화면 표시 포맷 | `"yyyy-MM-dd"` |
+
+#### InitDate 세미콜론 구분 규칙
+
+CalendarFromTo 계열의 `InitDate`는 **세미콜론(`;`)으로 From과 To 값을 구분**합니다:
+- `"DATE(0,F,F);DATE(0,L,L)"` → From: 금년 1월 1일, To: 금년 12월 31일
+- `"DATE(0,0,F);DATE(0,0,L)"` → From: 이번 달 1일, To: 이번 달 말일
+- `"DATE(0,-3,0);NOW()"` → From: 3개월 전, To: 오늘
+- `"NOW();NOW()"` → From/To 모두 오늘
+
+> 단일 Calendar의 `InitDate`는 세미콜론 없이 단일 값만 사용합니다 (예: `"NOW()"`, `"DATE(0,F,F)"`).
+
+### 2.5 공통 옵션 (모든 Element에 적용)
 
 | 옵션 | 설명 | 예시 |
 |------|------|------|
