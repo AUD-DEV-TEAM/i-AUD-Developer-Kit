@@ -287,12 +287,47 @@ AUD: Pull Report
 
 ### .design.json vs .mtsd
 
-> **`.design.json`**은 `.mtsd`와 동일한 JSON 구조이지만, ScriptText/ServerScriptText/DataSource.SQL이 파일 경로 참조(예: `"./ServerScript/@XX.ts"`)로 대체된 개발용 파일입니다.
-> AI가 보고서 구조를 읽거나 수정할 때는 **`.design.json`을 우선** 사용합니다.
-> `.mtsd`는 서버 원본(인라인 콘텐츠)을 그대로 유지하며, 직접 수정하지 않습니다.
+> **`.design.json`**은 **간소화된(compact)** 보고서 디자인 파일입니다.
+> `.mtsd`와 동일한 JSON 구조를 기반으로 하지만, 다음 두 가지 최적화가 적용됩니다:
 >
-> **`.design.json`이 없는 기존 보고서**: `save_report` 또는 `pull_report`를 한 번 실행하면 `.design.json`이 자동 생성됩니다.
+> 1. **기본값 생략**: 각 컨트롤 타입의 기본값과 동일한 속성은 제거됩니다 (예: `Visible: true`, `Enabled: true`, 기본 폰트/색상 등)
+> 2. **파일 경로 참조**: ScriptText/ServerScriptText/DataSource.SQL이 인라인 콘텐츠 대신 파일 경로(예: `"./ServerScript/@XX.ts"`, `"./DataSource/DS1.sql"`)로 대체됩니다
+>
+> **AI가 `.design.json`을 읽거나 수정할 때는 간소화된 형태를 유지합니다.**
+> 기본값과 동일한 속성은 생략해도 서버에서 자동으로 복원(`expandDesignJson`)합니다.
+> 즉, AI는 변경된 속성만 명시하면 되므로 파일이 훨씬 작고 가독성이 높습니다.
+>
+> `.mtsd`는 서버 원본(모든 기본값 + 인라인 콘텐츠 포함)을 그대로 유지하며, 직접 수정하지 않습니다.
+>
+> **`.design.json`이 없는 기존 보고서**: `save_report` 또는 `pull_report`를 한 번 실행하면 간소화된 `.design.json`이 자동 생성됩니다.
 > 보고서 디자인 작업(UI 배치, 컨트롤 추가 등)이 필요한데 `.design.json`이 없으면, 먼저 `save_report` 또는 `pull_report` 실행을 안내하세요.
+>
+> **간소화/복원 흐름**:
+> ```
+> [서버 .mtsd (완전한 모델)]
+>   ↓ compactDesignJson() — 기본값 제거
+> [.design.json (간소화 + 파일 경로 참조)] ← AI가 읽고 수정하는 파일
+>   ↓ expandDesignJson() — 기본값 복원
+> [서버 .mtsd (완전한 모델)] — save_report 시 서버에서 자동 복원
+> ```
+
+### .design.json 수정 시 간소화 규칙
+
+> `.design.json`을 수정할 때는 **간소화된 형태를 유지**합니다:
+>
+> - **기본값과 동일한 속성은 생략** — `Visible: true`, `Enabled: true`, `TabStop: true`, 기본 폰트(`"맑은 고딕"`, 9pt), 기본 색상(`"#000000"`) 등은 쓰지 않아도 됩니다
+> - **변경된 속성만 명시** — 예를 들어 버튼의 배경색을 파란색으로 변경하면 `Style.Background.Color`만 작성
+> - **서버가 기본값을 자동 복원** — `save_report` 시 서버의 `expandDesignJson()`이 누락된 기본값을 자동으로 채움
+> - **파일 경로 참조 유지** — ScriptText, SQL, ServerScriptText는 인라인 콘텐츠 대신 파일 경로(`"./DataSource/DS1.sql"`) 사용
+>
+> ```jsonc
+> // ✗ 불필요한 기본값 포함 (비효율적)
+> { "Type": "Button", "Name": "btn1", "Visible": true, "Enabled": true, "TabStop": true,
+>   "Style": { "Font": { "Name": "맑은 고딕", "Size": 9, "Bold": false }, "Background": { "Color": "#1a73e8" } } }
+>
+> // ✓ 간소화 (기본값 생략, 변경된 것만 명시)
+> { "Type": "Button", "Name": "btn1", "Style": { "Background": { "Color": "#1a73e8" } } }
+> ```
 
 ### MTSD / SC / design.json 파일 수정 후 필수 작업
 
@@ -306,6 +341,10 @@ AUD: Pull Report
 1. fix_mtsd     { path: "<파일경로>" }
 2. validate_part { partName: "Forms", data: <Forms 배열> }   ← Forms 파트 검증
    validate_part { partName: "DataSources", data: <DataSources> }  ← DataSources 검증
+
+# .design.json 파일 검증 시 format: "design" 사용
+1. fix_mtsd     { path: "<.design.json 경로>" }
+2. validate_part { partName: "Forms", data: <Forms 배열>, format: "design" }
 ```
 
 > **주의**: `validate_mtsd`(전체 검증)는 대용량 문서에서 AJV 성능 이슈로 타임아웃될 수 있습니다. 이 경우 `validate_part`로 파트별 검증을 권장합니다.
@@ -727,15 +766,15 @@ npx @bimatrix-aud-platform/aud_mcp_server@latest
 | 도구 | 설명 |
 |------|------|
 | **`build_mtsd`** | **MtsdBuilder 스크립트를 실행하여 완전한 MTSD 문서 생성. 신규 보고서 생성 시 1순위 도구** |
-| `validate_mtsd` | MTSD 문서 전체 스키마 검증 |
-| `validate_part` | MTSD 문서의 특정 부분만 검증 (Form, Element, DataSource 등) |
+| `validate_mtsd` | MTSD 또는 .design.json 문서 전체 스키마 검증. `format: "design"` 지정 시 간소화 스키마(기본값 생략 허용)로 검증 |
+| `validate_part` | MTSD 또는 .design.json 문서의 특정 부분만 검증. `format: "design"` 지정 시 간소화 스키마로 검증 |
 | `validate_module` | 모듈 JSON (.module.json) 스키마 검증 |
 | `get_schema_info` | 특정 타입의 스키마 정보 조회 (필수/선택 속성, 설명) |
 | `get_element_types` | 사용 가능한 Element 타입 목록 |
 | `get_root_structure` | MTSD 루트 구조 조회 |
-| `generate_element` | 간소화 입력으로 Element JSON 생성 (기존 문서에 추가할 때) |
-| `generate_grid_column` | 간소화 입력으로 GridColumn 배열 생성 |
-| `generate_datasource` | 간소화 입력으로 DataSource JSON 생성 (기존 문서에 추가할 때) |
+| `generate_element` | 간소화 입력으로 Element JSON 생성. `compact: true`로 .design.json용 간소화 출력 |
+| `generate_grid_column` | 간소화 입력으로 GridColumn 배열 생성. `compact: true`로 .design.json용 간소화 출력 |
+| `generate_datasource` | 간소화 입력으로 DataSource JSON 생성. `compact: true`로 .design.json용 간소화 출력 |
 | `fix_mtsd` | MTSD 파일 자동 보정 (Name→Id 참조, Params, Columns 등) |
 | `get_control_info` | MTSD 파일에서 컨트롤 Name↔Type 매핑 추출 |
 | `generate_uuid` | i-AUD 보고서용 UUID 생성 (prefix + 32자리 HEX). 단일/다수/일괄 생성 지원 |
@@ -760,7 +799,7 @@ npx @bimatrix-aud-platform/aud_mcp_server@latest
 
 | 도구 | 설명 |
 |------|------|
-| `generate_olap_fields` | OlapGrid의 iOLAPView.Fields 배열 생성. 컬럼 정의를 입력하면 Dimension/Measure 자동 분류, Area 자동 배치, SummaryType 설정 완료된 OlapField 배열 반환 |
+| `generate_olap_fields` | OlapGrid의 iOLAPView.Fields 배열 생성. 컬럼 정의를 입력하면 Dimension/Measure 자동 분류, Area 자동 배치, SummaryType 설정 완료된 OlapField 배열 반환. `compact: true`로 간소화 출력 |
 
 #### MX-GRID 검증 도구
 
