@@ -123,18 +123,16 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴6: 마우스 오버/다운 스타일 적용
  * //----------------------------------------------
- * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     var btnAction = Matrix.getObject("btnAction");
+ * var btnAction = Matrix.getObject("btnAction");
  *
- *     // 마우스 오버 시 스타일
- *     btnAction.SetMouseOverBoxStyle("PRIMARY_BTN_Hover");
+ * // 마우스 오버 시 스타일
+ * btnAction.SetMouseOverBoxStyle("PRIMARY_BTN_Hover");
  *
- *     // 마우스 다운 시 스타일
- *     btnAction.SetMouseDownBoxStyle("PRIMARY_BTN_Pressed");
+ * // 마우스 다운 시 스타일
+ * btnAction.SetMouseDownBoxStyle("PRIMARY_BTN_Pressed");
  *
- *     // 커서 모양 변경
- *     btnAction.Cursor = "pointer";
- * };
+ * // 커서 모양 변경
+ * btnAction.Cursor = "pointer";
  * ```
  */
 export interface Button extends Control{

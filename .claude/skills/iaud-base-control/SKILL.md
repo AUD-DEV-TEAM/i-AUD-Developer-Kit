@@ -640,6 +640,7 @@ grid.OnDataBindEnd = function() {
 5. **이벤트 정리**: `document.addEventListener`로 등록한 전역 이벤트는 별도로 제거해야 합니다. BaseControl은 자신의 Element에 등록한 이벤트만 자동 정리합니다.
 6. **XSS 주의**: 사용자 입력 데이터를 `addHTML()`에 직접 넣지 마세요. `textContent`를 사용하거나 이스케이프 처리하세요.
 7. **GridHtmlView와 선택**: DataGrid 데이터 표현이 목적이면 `GridHtmlView`를 사용하세요. 순수 커스텀 UI가 목적이면 `BaseControl`을 사용하세요.
+8. **input/textarea 키보드 이벤트**: `addHTML()`로 추가한 `<input>`, `<textarea>`에서 Backspace, Delete 등이 동작하지 않을 수 있습니다. i-AUD 프레임워크가 keydown을 전역으로 가로채기 때문입니다. 입력 요소에 `e.stopPropagation()`을 등록하세요: `input.addEventListener('keydown', function(e) { e.stopPropagation(); });`
 
 ---
 

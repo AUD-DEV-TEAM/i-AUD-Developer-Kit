@@ -32,22 +32,17 @@ let btnSearch: Button;
 let grdData: DataGrid;
 let txtKeyword: TextBox;
 
-/**
- * 문서 로드 완료 시 초기화 (권장)
- * - 모든 컨트롤이 로드된 후 실행됨
- */
-Matrix.OnDocumentLoadComplete = function(sender, args){   
-    // 컨트롤 바인딩
-    btnSearch = Matrix.getObject("btnSearch") as Button;
-    grdData = Matrix.getObject("grdData") as DataGrid;
-    txtKeyword = Matrix.getObject("txtKeyword") as TextBox;
+// 컨트롤 바인딩
+btnSearch = Matrix.getObject("btnSearch") as Button;
+grdData = Matrix.getObject("grdData") as DataGrid;
+txtKeyword = Matrix.getObject("txtKeyword") as TextBox;
 
-    // 이벤트 등록
-    btnSearch.OnClick = btnSearchOnClick;
-}; 
+// 이벤트 등록
+btnSearch.OnClick = btnSearchOnClick;
+
 // 버튼 클릭 이벤트
 const btnSearchOnClick = function(sender, args){
-    
+
 };
 ```
 
@@ -57,7 +52,7 @@ const btnSearchOnClick = function(sender, args){
 
 | 이벤트 | 설명 | 용도 |
 |--------|------|------|
-| `OnDocumentLoadComplete` | 문서 로드 완료 후 발생 (권장) | 컨트롤 초기화, 이벤트 등록 |
+| `OnDocumentLoadComplete` | 문서 로드 완료 후 발생. 스크립트 최상위와 실행 시점 동일하므로 별도 사용 불필요 | - |
 | `OnLoadComplete` | 모든 데이터 실행 완료 후 발생 | 일반 초기화 |
 ---
 
@@ -272,58 +267,7 @@ cal.MinDate = "DATE(0, -6, 0)";    // 최소: 6개월 전
 cal.MaxDate = "DATE(1, 0, 0)";     // 최대: 1년 후
 ```
 
-### 4.5 CalendarFromTo (기간 선택 달력)
-
-단일 날짜가 아닌 **시작일~종료일 기간**을 선택하는 컨트롤입니다. 유사 변형으로 `CalendarYMFromTo`(연월 기간), `CalendarYearFromTo`(연도 기간), `CalendarWeeklyFromTo`(주간 기간)가 있습니다.
-
-```typescript
-import { CalendarFromTo } from "@AUD_CLIENT/control/CalendarFromTo";
-
-let calPeriod = Matrix.getObject("CAL_FROM") as CalendarFromTo;
-
-// 속성
-let fromValue = calPeriod.Value;       // From 날짜 (DataFormat, 예: "20240101")
-let toValue = calPeriod.Value2;        // To 날짜 (DataFormat, 예: "20241231")
-let fromText = calPeriod.FromText;     // From 날짜 (ViewFormat, 예: "2024-01-01")
-let toText = calPeriod.ToText;         // To 날짜 (ViewFormat, 예: "2024-12-31")
-let fromDate = calPeriod.FromDate;     // From Date 객체
-let toDate = calPeriod.ToDate;         // To Date 객체
-calPeriod.DataFormat = "yyyyMMdd";
-calPeriod.ViewFormat = "yyyy-MM-dd";
-calPeriod.IsReadOnly = true;
-
-// 기간 설정
-calPeriod.FromDate = new Date(2024, 0, 1);   // 2024-01-01
-calPeriod.ToDate = new Date(2024, 11, 31);   // 2024-12-31
-
-// To 달력 최대 선택 가능일 동적 제어
-calPeriod.SetToCalendarMaxDate("90D", fromDate);  // From 기준 90일 후까지
-
-// 이벤트
-calPeriod.OnValueChanged = function(sender, args) {
-    // From 또는 To 변경 시
-    let from = args.Text;   // ViewFormat 형식 From
-    let to = args.Text2;    // ViewFormat 형식 To
-};
-
-calPeriod.OnFromValueChanged = function(sender, args) {
-    // From만 변경 시
-    let fromDate = args.Date;
-};
-```
-
-> **MTSD Type 매핑**: 기간 선택 컨트롤의 MTSD `Type` 값은 클라이언트 타입명과 동일합니다.
-
-| 단일 선택 (Type) | 기간 선택 (Type) | 설명 |
-|-----------------|-----------------|------|
-| `Calendar` | `CalendarFromTo` | 날짜 (yyyy-MM-dd) |
-| `CalendarYM` | `CalendarYMFromTo` | 연월 (yyyy-MM) |
-| `CalendarYear` | `CalendarYearFromTo` | 연도 (yyyy) |
-| `CalendarWeekly` | `CalendarWeeklyFromTo` | 주간 |
-
-> **FromTo MTSD 주요 속성**: `Name`(From 이름), `Name2`(To 이름), `InitDate`(세미콜론 구분 From;To 초기값, 예: `"DATE(0,F,F);DATE(0,L,L)"`), `DataFormat`, `ViewFormat`
-
-### 4.6 DataGrid (데이터 그리드)
+### 4.5 DataGrid (데이터 그리드)
 
 ```typescript
 let dataGrid = Matrix.getObject("DataGrid1") as DataGrid;
@@ -592,7 +536,29 @@ lpad("AB", 5, '_');  // "___AB"
 
 ---
 
-## 11. enum 사용 시 주의사항
+## 11. 키보드 이벤트 주의사항 (input/textarea)
+
+i-AUD 프레임워크는 **keydown 이벤트를 전역으로 가로챕니다** (단축키 처리, 셀 이동 등). 이로 인해 HTML `<input>`, `<textarea>` 요소에서 **Backspace, Delete, 방향키** 등이 동작하지 않을 수 있습니다.
+
+**특히 영향받는 경우:**
+- AddIn 컴포넌트(GridHtmlView, BaseControl) 내부의 `<input>` / `<textarea>`
+- Shadow DOM 내부의 입력 요소
+- `addHTML()`로 동적 생성한 입력 요소
+
+**해결:** 입력 요소에 `keydown` 이벤트의 `stopPropagation()`을 등록하여 프레임워크로의 이벤트 전파를 차단합니다.
+
+```typescript
+let input = element.querySelector("input") as HTMLInputElement;
+input.addEventListener('keydown', function(e) {
+    e.stopPropagation();  // i-AUD 프레임워크의 키 가로채기 방지
+});
+```
+
+> **주의**: `preventDefault()`는 사용하지 마세요 — 입력 자체가 차단됩니다. `stopPropagation()`만 사용합니다.
+
+---
+
+## 12. enum 사용 시 주의사항
 
 클라이언트 스크립트에서 `types/aud/enums/` 의 enum을 **import하면 안 됩니다**.
 `import` 구문으로 타입 파일을 참조하면 런타임에 모듈을 찾을 수 없어 오류가 발생합니다.
@@ -611,7 +577,7 @@ enum enDataType { Numeric = 0, String = 1, DateTime8 = 2, DateTimeNow = 3, UserC
 
 ---
 
-## 12. API 인터페이스 위치
+## 13. API 인터페이스 위치
 
 상세 API 정의는 `types/aud/` 폴더를 참조하세요:
 

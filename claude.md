@@ -319,6 +319,8 @@ AUD: Pull Report
 > - **변경된 속성만 명시** — 예를 들어 버튼의 배경색을 파란색으로 변경하면 `Style.Background.Color`만 작성
 > - **서버가 기본값을 자동 복원** — `save_report` 시 서버의 `expandDesignJson()`이 누락된 기본값을 자동으로 채움
 > - **파일 경로 참조 유지** — ScriptText, SQL, ServerScriptText는 인라인 콘텐츠 대신 파일 경로(`"./DataSource/DS1.sql"`) 사용
+> - **GridHtmlView HTML/CSS는 `string[]`** — AddIn(GridHtmlView)의 `ComponentElement.HTML`과 `ComponentElement.CSS`는 줄 단위 배열(`string[]`)로 저장됩니다. 서버 저장 시 `expandDesignJson()`이 자동으로 단일 string으로 복원합니다. AI가 HTML/CSS를 수정할 때는 배열 형태를 유지합니다
+> - **RichTextBox Value는 `string[]`** — RichTextBox의 `Value` 속성이 멀티라인 문자열인 경우 줄 단위 배열(`string[]`)로 저장됩니다. 서버 저장 시 `expandDesignJson()`이 자동으로 단일 string으로 복원합니다
 >
 > ```jsonc
 > // ✗ 불필요한 기본값 포함 (비효율적)
@@ -383,6 +385,7 @@ files.sort();
 **사용 불가한 ES2015+ 문법**: Rhino는 ES5 수준이므로 아래 문법은 서버 스크립트에서 사용하면 안 됩니다 (tsc가 ES5로 변환해주는 것만 안전):
 - `Array.from()`, `Array.of()`, `Object.assign()`, `Object.entries()`
 - `Map`, `Set`, `WeakMap`, `WeakSet`, `Symbol`, `Promise`
+- `'key' in obj` — `obj.key !== undefined` 또는 `obj.hasOwnProperty('key')` 사용
 - Template literal (tsc가 변환), Arrow function (tsc가 변환) → 이 두 가지는 tsc 변환으로 안전
 
 ### MTSD Docking 주의사항
@@ -417,14 +420,11 @@ import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
 // 필수 변수
 let Matrix: Matrix;
 
-// 초기화 이벤트 (권장)
-Matrix.OnDocumentLoadComplete = function(sender, args) {
-    // 컨트롤 바인딩
-    let btn = Matrix.getObject("btnSearch") as Button;
+// 컨트롤 바인딩
+let btn = Matrix.getObject("btnSearch") as Button;
 
-    // 이벤트 등록
-    btn.OnClick = btnSearchOnClick;
-};
+// 이벤트 등록
+btn.OnClick = btnSearchOnClick;
 
 const btnSearchOnClick = function(sender, args) {
     // 버튼 클릭 로직
@@ -458,6 +458,71 @@ const btnSearchOnClick = function(sender, args) {
 >
 > // ✓ 올바른 코드 — 부모 document에 이벤트 등록
 > parent.document.addEventListener('mousemove', handler);
+> ```
+
+> **AddIn/ExternalComponent 컴포넌트는 비동기 로딩 — 반드시 `OnComponentClassLoaded` 안에서 접근**
+> AddIn(BaseControl, GridHtmlView)과 ExternalComponent는 비동기로 로딩됩니다.
+> `getScriptClass()`, `SetValue()`, `GetValue()` 등 컴포넌트 내부 객체는 반드시 `OnComponentClassLoaded` 이벤트 안에서 접근해야 합니다.
+> 이벤트 밖에서 호출하면 컴포넌트가 아직 로딩되지 않아 null이거나 동작하지 않습니다.
+>
+> ```typescript
+> // ✗ 잘못된 코드 — 로딩 전 접근, null 반환
+> let addIn = Matrix.getObject("myCtrl") as AddIn;
+> let ctrl = addIn.getScriptClass() as BaseControl;  // null!
+> ctrl.addHTML('<div>내용</div>');  // 오류
+>
+> // ✓ 올바른 코드 — OnComponentClassLoaded 안에서 접근
+> let addIn = Matrix.getObject("myCtrl") as AddIn;
+> addIn.OnComponentClassLoaded = function(sender, args) {
+>     let ctrl = addIn.getScriptClass() as BaseControl;
+>     ctrl.addCSS('.card { padding: 10px; }');
+>     ctrl.addHTML('<div class="card">내용</div>');
+> };
+>
+> // ExternalComponent도 동일 패턴
+> let ec = Matrix.getObject("ecEditor") as any;  // ExternalComponent 타입 정의 없음, any 허용
+> ec.OnComponentClassLoaded = function(sender, args) {
+>     ec.SetValue(["코드 내용"]);
+> };
+> ```
+
+> **API 타입 정의를 반드시 확인한 후 코드 작성 — `as any` 사용 금지**
+> 클라이언트 스크립트에서 `Matrix.getObject()`로 가져온 컨트롤은 반드시 **구체적 타입으로 캐스트**합니다.
+> 코드 작성 전에 `types/aud/control/` 또는 `types/aud/ext/`에서 해당 컨트롤의 인터페이스를 읽어 사용 가능한 속성/메서드를 확인합니다.
+> `as any`는 타입 오류를 감지 못하게 만들므로 금지합니다. 타입 정의가 없는 경우(ExternalComponent 등)에만 예외적으로 허용합니다.
+>
+> ```typescript
+> // ✗ 잘못된 코드 — any 타입, 존재하지 않는 메서드 호출해도 tsc가 잡지 못함
+> let grid = Matrix.getObject("GRD") as any;
+> grid.doSomethingWrong();  // 컴파일 통과하지만 런타임 오류
+>
+> // ✓ 올바른 코드 — 구체적 타입 캐스트, API 자동완성 + 오류 감지
+> import { DataGrid } from "@AUD_CLIENT/control/DataGrid";
+> let grid = Matrix.getObject("GRD") as DataGrid;
+> grid.Refresh();  // 타입 검증됨
+> ```
+
+> **기간(날짜 범위) 선택 시 CalendarFromTo 계열 컨트롤 사용 — Calendar 2개 배치 금지**
+> 시작일~종료일 기간을 선택해야 하는 경우 전용 기간 달력 컨트롤을 사용합니다.
+> Calendar 2개 + Label("~")을 배치하는 패턴은 사용하지 않습니다.
+>
+> | 용도 | 컨트롤 타입 | Builder 메서드 |
+> |------|------------|---------------|
+> | 일별 기간 | CalendarFromTo | `addCalendarFromTo()` |
+> | 월별 기간 | CalendarYMFromTo | (MCP 개별 도구 사용) |
+> | 주간 기간 | CalendarWeeklyFromTo | `addCalendarWeeklyFromTo()` |
+> | 연도 기간 | CalendarYearFromTo | (MCP 개별 도구 사용) |
+>
+> ```typescript
+> // ✗ 잘못된 패턴 — Calendar 2개 + Label 배치
+> search.addLabel("LBL_FROM", "기간", { left: 15, top: 10, width: 40, height: 25 });
+> search.addCalendar("CAL_FROM", { left: 60, top: 10, width: 130, height: 25 });
+> search.addLabel("LBL_DASH", "~", { left: 195, top: 10, width: 20, height: 25 });
+> search.addCalendar("CAL_TO", { left: 220, top: 10, width: 130, height: 25 });
+>
+> // ✓ 올바른 패턴 — CalendarFromTo 1개 사용
+> search.addLabel("LBL_PERIOD", "기간", { left: 15, top: 10, width: 40, height: 25 });
+> search.addCalendarFromTo("CAL_PERIOD", { left: 60, top: 10, width: 280, height: 25 });
 > ```
 
 #### 서버 스크립트
@@ -627,11 +692,9 @@ TypeScript 인터페이스 정의: `types/com/`
 #### 버튼 클릭 이벤트 처리
 ```typescript
 // 클라이언트 스크립트
-Matrix.OnDocumentLoadComplete = function(sender, args) {
-    let btn = Matrix.getObject("btnSearch") as Button;
-    btn.OnClick = function(sender, args) {
-        // 버튼 클릭 로직
-    };
+let btn = Matrix.getObject("btnSearch") as Button;
+btn.OnClick = function(sender, args) {
+    // 버튼 클릭 로직
 };
 ```
 

@@ -26,23 +26,21 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴2: 초기 기간 설정 (당월 1일~말일)
  * //----------------------------------------------
- * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     var calMonth = Matrix.getObject("calMonth");
+ * var calMonth = Matrix.getObject("calMonth");
  *
- *     // 포맷 설정
- *     calMonth.DataFormat = "yyyyMMdd";
- *     calMonth.ViewFormat = "yyyy-MM-dd";
+ * // 포맷 설정
+ * calMonth.DataFormat = "yyyyMMdd";
+ * calMonth.ViewFormat = "yyyy-MM-dd";
  *
- *     // 당월 1일
- *     var today = new Date();
- *     var firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+ * // 당월 1일
+ * var today = new Date();
+ * var firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
  *
- *     // 당월 말일
- *     var lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+ * // 당월 말일
+ * var lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
  *
- *     calMonth.FromDate = firstDay;
- *     calMonth.ToDate = lastDay;
- * };
+ * calMonth.FromDate = firstDay;
+ * calMonth.ToDate = lastDay;
  *
  * //----------------------------------------------
  * // 패턴3: 기간 검색 조건으로 사용
@@ -156,22 +154,20 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴8: 선택 가능 범위 제한
  * //----------------------------------------------
- * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     var calRestrict = Matrix.getObject("calRestrict");
+ * var calRestrict = Matrix.getObject("calRestrict");
  *
- *     // 전년도 1월 1일부터 오늘까지만 선택 가능
- *     var today = new Date();
- *     var lastYear = new Date(today.getFullYear() - 1, 0, 1);
+ * // 전년도 1월 1일부터 오늘까지만 선택 가능
+ * var today = new Date();
+ * var lastYear = new Date(today.getFullYear() - 1, 0, 1);
  *
- *     calRestrict.MinDate = formatDate(lastYear);  // "20230101"
- *     calRestrict.MaxDate = formatDate(today);     // "20240115"
+ * calRestrict.MinDate = formatDate(lastYear);  // "20230101"
+ * calRestrict.MaxDate = formatDate(today);     // "20240115"
  *
- *     // 주말 강조
- *     calRestrict.HighlightWeekend = true;
+ * // 주말 강조
+ * calRestrict.HighlightWeekend = true;
  *
- *     // 주차 표시
- *     calRestrict.UseWeekNumber = true;
- * };
+ * // 주차 표시
+ * calRestrict.UseWeekNumber = true;
  *
  * function formatDate(date) {
  *     var year = date.getFullYear();

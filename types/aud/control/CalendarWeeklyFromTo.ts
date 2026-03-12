@@ -29,26 +29,24 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴2: 최근 4주 기간으로 초기화
  * //----------------------------------------------
- * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     var calFourWeeks = Matrix.getObject("calFourWeeks");
+ * var calFourWeeks = Matrix.getObject("calFourWeeks");
  *
- *     // 포맷 설정
- *     calFourWeeks.DataFormat = "yyyyMMdd";
- *     calFourWeeks.ViewFormat = "yyyy-MM-dd";
+ * // 포맷 설정
+ * calFourWeeks.DataFormat = "yyyyMMdd";
+ * calFourWeeks.ViewFormat = "yyyy-MM-dd";
  *
- *     // 이번 주 월요일
- *     var today = new Date();
- *     var dayOfWeek = today.getDay();
- *     var thisMonday = new Date(today);
- *     thisMonday.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+ * // 이번 주 월요일
+ * var today = new Date();
+ * var dayOfWeek = today.getDay();
+ * var thisMonday = new Date(today);
+ * thisMonday.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
  *
- *     // 3주 전 월요일
- *     var threeWeeksAgo = new Date(thisMonday);
- *     threeWeeksAgo.setDate(thisMonday.getDate() - 21);
+ * // 3주 전 월요일
+ * var threeWeeksAgo = new Date(thisMonday);
+ * threeWeeksAgo.setDate(thisMonday.getDate() - 21);
  *
- *     calFourWeeks.FromDate = threeWeeksAgo;  // 시작 주
- *     calFourWeeks.ToDate = thisMonday;       // 종료 주 (이번 주)
- * };
+ * calFourWeeks.FromDate = threeWeeksAgo;  // 시작 주
+ * calFourWeeks.ToDate = thisMonday;       // 종료 주 (이번 주)
  *
  * //----------------------------------------------
  * // 패턴3: 주간 보고서 범위 조회

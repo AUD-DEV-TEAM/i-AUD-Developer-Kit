@@ -33,21 +33,19 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴2: 이번 주로 초기화
  * //----------------------------------------------
- * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     var calThisWeek = Matrix.getObject("calThisWeek");
+ * var calThisWeek = Matrix.getObject("calThisWeek");
  *
- *     // 포맷 설정
- *     calThisWeek.DataFormat = "yyyyMMdd";
- *     calThisWeek.ViewFormat = "yyyy-MM-dd";
+ * // 포맷 설정
+ * calThisWeek.DataFormat = "yyyyMMdd";
+ * calThisWeek.ViewFormat = "yyyy-MM-dd";
  *
- *     // 이번 주 월요일로 설정
- *     var today = new Date();
- *     var dayOfWeek = today.getDay();  // 0(일) ~ 6(토)
- *     var monday = new Date(today);
- *     monday.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+ * // 이번 주 월요일로 설정
+ * var today = new Date();
+ * var dayOfWeek = today.getDay();  // 0(일) ~ 6(토)
+ * var monday = new Date(today);
+ * monday.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
  *
- *     calThisWeek.Date = monday;
- * };
+ * calThisWeek.Date = monday;
  *
  * //----------------------------------------------
  * // 패턴3: 주간 보고서 조회
@@ -132,17 +130,15 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴6: 선택 가능한 주 제한 (최근 12주)
  * //----------------------------------------------
- * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     var calRecent = Matrix.getObject("calRecent");
+ * var calRecent = Matrix.getObject("calRecent");
  *
- *     // 오늘부터 12주 전까지만 선택 가능
- *     var today = new Date();
- *     var twelveWeeksAgo = new Date(today);
- *     twelveWeeksAgo.setDate(today.getDate() - (12 * 7));
+ * // 오늘부터 12주 전까지만 선택 가능
+ * var today = new Date();
+ * var twelveWeeksAgo = new Date(today);
+ * twelveWeeksAgo.setDate(today.getDate() - (12 * 7));
  *
- *     calRecent.MinDate = formatDateToString(twelveWeeksAgo);
- *     calRecent.MaxDate = formatDateToString(today);
- * };
+ * calRecent.MinDate = formatDateToString(twelveWeeksAgo);
+ * calRecent.MaxDate = formatDateToString(today);
  *
  * function formatDateToString(date) {
  *     var year = date.getFullYear();
