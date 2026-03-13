@@ -1,0 +1,119 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REP01200A4182D7458795EE1FCA5A92C237",
+    "FolderCode": "FLD0E85F0CAD2C54D98B524BDB389775E91",
+    "SavePath": "FLD0E85F0CAD2C54D98B524BDB389775E91/REP01200A4182D7458795EE1FCA5A92C237.mtsd",
+    "ReportName": "MXGrid_005",
+    "Writer": "sblim1417",
+    "WriteDate": "2026-01-21 13:33:57",
+    "Editor": "sblim1417",
+    "EditDate": "2026-01-21 13:33:57",
+    "Description": "예약어 _AUTO_SIZE_"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS0276CE465AA1495EB890BA1A42547D10",
+        "Name": "VS_ORD_STS",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/VS_ORD_STS.sql",
+        "Columns": [
+          {
+            "Name": "ORDER_STATUS",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "",
+  "Forms": [
+    {
+      "Id": "Form9ABEEFD85D775617F784F6E458656642",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Group",
+          "Id": "GroupF48E450533B7EF09DE707540C0D50B86",
+          "Name": "HEADER",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1609,
+            "Height": 50,
+            "ZIndex": 5,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "HoldSize": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": "#cccccc",
+              "Thickness": "0,0,0,1"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LabelD848DF0B8D4F2EFCC1D846772C42717A",
+              "Name": "LBL_TTL_1",
+              "Position": {
+                "Left": 15,
+                "Top": 12,
+                "Width": 129,
+                "Height": 23,
+                "ZIndex": 7,
+                "Docking": {
+                  "Top": true,
+                  "Margin": "0,12,0,0"
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Font": {
+                  "Size": 16
+                }
+              },
+              "Text": "MXGrid_005",
+              "InGroup": "HEADER"
+            }
+          ]
+        },
+        {
+          "Type": "iGrid",
+          "Id": "iGrid1768890993027",
+          "Name": "MX",
+          "Position": {
+            "Left": 20,
+            "Top": 70,
+            "Width": 1569,
+            "Height": 810,
+            "ZIndex": 171,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": true,
+              "Bottom": true,
+              "Margin": "20,70,20,20",
+              "HoldSize": true
+            }
+          },
+          "Style": {
+            "Type": 2
+          },
+          "TemplateCode": "A5D0CF993F664F429397FBE6D36E80C5"
+        }
+      ]
+    }
+  ]
+}

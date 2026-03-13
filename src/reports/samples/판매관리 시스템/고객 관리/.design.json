@@ -1,0 +1,2195 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REP2EDC58234142492D8829411E8C0FD90B",
+    "FolderCode": "FLDC7BAD63B598D40C69738638A26DE0C36",
+    "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REP2EDC58234142492D8829411E8C0FD90B.mtsd",
+    "ReportName": "고객 관리",
+    "Writer": "kimje1342",
+    "WriteDate": "2026-02-19 09:11:51",
+    "Editor": "kimje1342",
+    "EditDate": "2026-02-19 09:11:51",
+    "UseLayout": false,
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS902D12727EFC4373A2BCA30935FC6109",
+        "Name": "GRD_CUSTOMER",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "DSType": 2,
+        "SQL": "./DataSource/GRD_CUSTOMER.sql",
+        "Params": [
+          {
+            "Name": ":VS_TYPE",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_GRADE",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_KEYWORD",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "CUST_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "CUST_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "BIZ_REG_NO",
+            "Type": "String"
+          },
+          {
+            "Name": "CUST_TYPE",
+            "Type": "String"
+          },
+          {
+            "Name": "CUST_GRADE",
+            "Type": "String"
+          },
+          {
+            "Name": "CREDIT_LIMIT",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "PHONE",
+            "Type": "String"
+          },
+          {
+            "Name": "EMAIL",
+            "Type": "String"
+          },
+          {
+            "Name": "ADDR_MAIN",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATED_AT",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATED_BY",
+            "Type": "String"
+          },
+          {
+            "Name": "UPDATED_AT",
+            "Type": "String"
+          },
+          {
+            "Name": "UPDATED_BY",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS6DCCFC7995CD465AA604209AD2120509",
+        "Name": "VS_GRADE",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "DSType": 2,
+        "SQL": "./DataSource/VS_GRADE.sql",
+        "Columns": [
+          {
+            "Name": "GRADE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "GRADE_NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS3F97928C13CD495FA0D7C10DFFC76138",
+        "Name": "VS_TYPE",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "DSType": 2,
+        "SQL": "./DataSource/VS_TYPE.sql",
+        "Columns": [
+          {
+            "Name": "GRADE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "GRADE_NAME",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./고객 관리.script.ts",
+  "ServerScriptText": [
+    {
+      "Name": "GRD_CRUD",
+      "Key": "BIZ7C708D93A0864522A5EB7C830B563DE4",
+      "Encrypted": true,
+      "ScriptText": "./ServerScript/GRD_CRUD.ts"
+    },
+    {
+      "Name": "GRD_INSERT",
+      "Key": "BIZ137C644C9CE94E1A9C614D103D0BBF04",
+      "Encrypted": true,
+      "ScriptText": "./ServerScript/GRD_INSERT.ts"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "FormD64B8652095A4B9798E93B38EDBCCCD4",
+      "Name": "고객 관리",
+      "Style": {
+        "Type": 2,
+        "Border": {
+          "LineType": "none"
+        },
+        "Background": {
+          "ColorR": 241,
+          "ColorG": 245,
+          "ColorB": 249
+        }
+      },
+      "Elements": [
+        {
+          "Type": "Group",
+          "Id": "Group2B4BD0E69A92CDBCD029B105CA49D457",
+          "Name": "GRP_HEADER",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1611,
+            "Height": 55,
+            "ZIndex": 5,
+            "Docking": {
+              "Left": true,
+              "Right": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "LineType": "none"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Button",
+              "Id": "Button03F25945654711D45D8BFB54ED6AF0EC",
+              "Name": "BTN_ADD",
+              "Position": {
+                "Left": 1501,
+                "Top": 10,
+                "Width": 90,
+                "Height": 35,
+                "ZIndex": 34,
+                "Docking": {
+                  "Right": true,
+                  "Margin": "0,0,20,0",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 1,
+                "BoxStyle": "BX49877C338AD340E2BDFD611C0A13402A",
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": "#2563eb"
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "LineType": "none",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  },
+                  "Size": 13,
+                  "Bold": true,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
+                }
+              },
+              "Value": "+ 고객 등록",
+              "InGroup": "GRP_HEADER"
+            }
+          ]
+        },
+        {
+          "Type": "Group",
+          "Id": "Group650B76B70FEFE8B6E214A83389266EF0",
+          "Name": "GRP_BODY",
+          "Position": {
+            "Left": 20,
+            "Top": 75,
+            "Width": 1380,
+            "Height": 778,
+            "ZIndex": 9,
+            "Docking": {
+              "Left": true,
+              "Bottom": true,
+              "Margin": "20,0,20,20"
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "LineType": "none",
+              "CornerRadius": "10,10,10,10"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "DataGrid",
+              "Id": "DataGridF080EDCACB22D1D56A21D1B1E3AE9017",
+              "Name": "GRD_CUSTOMER",
+              "Position": {
+                "Left": 0,
+                "Top": 55,
+                "Width": 1380,
+                "Height": 723,
+                "Docking": {
+                  "Left": true,
+                  "Right": true,
+                  "Bottom": true
+                }
+              },
+              "Style": {
+                "Border": {
+                  "Type": 0,
+                  "Color": "#e2e8f0",
+                  "Thickness": "0,0,0,1"
+                },
+                "VerticalBorder": {
+                  "Type": 0,
+                  "Color": {
+                    "R": 204,
+                    "G": 204,
+                    "B": 204,
+                    "A": 1
+                  },
+                  "Thickness": "0"
+                },
+                "HorizontalBorder": {
+                  "Type": 0,
+                  "Color": {
+                    "R": 226,
+                    "G": 232,
+                    "B": 240,
+                    "A": 1
+                  }
+                },
+                "Type": 2
+              },
+              "DataSource": "DS902D12727EFC4373A2BCA30935FC6109",
+              "AutoRefresh": true,
+              "ShowHeader": 2,
+              "ColumnHeaderHeight": 45,
+              "RowHeight": 45,
+              "UseMultiHeader": true,
+              "Editable": true,
+              "FontSize": 14,
+              "MouseSelectBrush": {
+                "Type": 0,
+                "Color": {
+                  "R": 220,
+                  "G": 230,
+                  "B": 240,
+                  "A": 0.2
+                }
+              },
+              "SelectRecordBrush": {
+                "Type": 0,
+                "Color": {
+                  "R": 220,
+                  "G": 230,
+                  "B": 240,
+                  "A": 0.2
+                }
+              },
+              "OddRowBackground": {
+                "Type": 0,
+                "Color": {
+                  "R": 255,
+                  "G": 255,
+                  "B": 255,
+                  "A": 0
+                }
+              },
+              "Foreground": {
+                "Type": 0,
+                "Color": {
+                  "R": 30,
+                  "G": 41,
+                  "B": 59,
+                  "A": 1
+                }
+              },
+              "Columns": [
+                {
+                  "Name": "CHK",
+                  "Caption": "",
+                  "Width": 45,
+                  "ColumnType": 2,
+                  "TextPosition": "center",
+                  "CheckedValue": "Y",
+                  "UnCheckedValue": "N",
+                  "CalcSubTotalType": "None"
+                },
+                {
+                  "Name": "CUST_ID",
+                  "Caption": "고객ID",
+                  "Width": 70,
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "KeyType": 3,
+                  "TextPosition": "center"
+                },
+                {
+                  "Name": "CUST_NAME",
+                  "Caption": "고객명",
+                  "Width": 70,
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "KeyType": 2,
+                  "TextPosition": "center"
+                },
+                {
+                  "Name": "CUST_TYPE",
+                  "Caption": "유형",
+                  "Width": 70,
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "KeyType": 2,
+                  "TextPosition": "center"
+                },
+                {
+                  "Name": "CUST_GRADE",
+                  "Caption": "등급",
+                  "Width": 70,
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "KeyType": 2,
+                  "TextPosition": "center"
+                },
+                {
+                  "Name": "BIZ_REG_NO",
+                  "Caption": "사업자번호",
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "KeyType": 2,
+                  "TextPosition": "center"
+                },
+                {
+                  "Name": "PHONE",
+                  "Caption": "연락처",
+                  "GridColumnWidthType": 1,
+                  "Editable": false,
+                  "KeyType": 2,
+                  "TextPosition": "center"
+                },
+                {
+                  "Name": "TYPE_CODE",
+                  "Visible": false
+                },
+                {
+                  "Name": "GRADE_CODE",
+                  "Visible": false
+                },
+                {
+                  "Name": "CREDIT_LIMIT",
+                  "Visible": false,
+                  "ColumnType": 3,
+                  "KeyType": 2,
+                  "DataType": 0,
+                  "CalcSubTotalType": "None"
+                },
+                {
+                  "Name": "EMAIL",
+                  "Visible": false,
+                  "KeyType": 2,
+                  "CalcSubTotalType": "None"
+                },
+                {
+                  "Name": "ADDR_MAIN",
+                  "Caption": "MAIN",
+                  "Visible": false,
+                  "KeyType": 2,
+                  "CalcSubTotalType": "None"
+                }
+              ],
+              "MultiHeader": {
+                "MaxRow": 1,
+                "MaxColumn": 12,
+                "Cells": [
+                  {
+                    "Value": "",
+                    "Elements": [
+                      {
+                        "Type": "CheckBox",
+                        "Id": "CheckBox479C2A3E296FB3D25C4CEB3A60F131D9",
+                        "Name": "CHK",
+                        "Position": {
+                          "Left": 5,
+                          "Top": 5,
+                          "Width": 35,
+                          "Height": 35
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
+                            "Color": {
+                              "__type__": "istudio.drawing.style.Color"
+                            }
+                          },
+                          "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
+                            "Color": "#cccccc",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [
+                                "Background",
+                                "Border"
+                              ],
+                              "DefaultStyle": "CheckBox"
+                            }
+                          },
+                          "Font": {
+                            "Type": "FontInfo",
+                            "Color": "#64748b",
+                            "Size": 13,
+                            "HorizontalAlignment": "center",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [
+                                "Background",
+                                "Border"
+                              ],
+                              "DefaultStyle": "CheckBox"
+                            }
+                          }
+                        },
+                        "Text": ""
+                      }
+                    ],
+                    "HeaderPosition": "start",
+                    "Margin": "5,5,5,5",
+                    "Type": 3,
+                    "Tooltip": "",
+                    "CellStyle": {
+                      "Type": 0,
+                      "Color": {
+                        "R": 248,
+                        "G": 250,
+                        "B": 252,
+                        "A": 1
+                      }
+                    }
+                  },
+                  {
+                    "Value": "고객ID",
+                    "Elements": [
+                      {
+                        "Type": "Label",
+                        "Id": "Label99A81604993E46E3CFB9EC47ABDA6B02",
+                        "Name": "CUST_ID",
+                        "Position": {
+                          "Left": 45,
+                          "Top": 0,
+                          "Width": 194,
+                          "Height": 45
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
+                            "Color": "#f8fafc"
+                          },
+                          "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
+                            "Color": "#e2e8f0",
+                            "LineType": "solid",
+                            "Thickness": "0,0,0,0",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          },
+                          "Font": {
+                            "Type": "FontInfo",
+                            "Color": "#64748b",
+                            "Size": 13,
+                            "HorizontalAlignment": "center",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          }
+                        },
+                        "Text": "고객ID",
+                        "HasLineSpacing": false
+                      }
+                    ],
+                    "Col": 1,
+                    "HeaderPosition": "start",
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "고객명",
+                    "Elements": [
+                      {
+                        "Type": "Label",
+                        "Id": "LabelCD33E6EE606555F9044500BDC23ABAA0",
+                        "Name": "CUST_NAME",
+                        "Position": {
+                          "Left": 239,
+                          "Top": 0,
+                          "Width": 194,
+                          "Height": 45
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
+                            "Color": "#f8fafc"
+                          },
+                          "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
+                            "Color": "#e2e8f0",
+                            "LineType": "solid",
+                            "Thickness": "0,0,0,0",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          },
+                          "Font": {
+                            "Type": "FontInfo",
+                            "Color": "#64748b",
+                            "Size": 13,
+                            "HorizontalAlignment": "center",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          }
+                        },
+                        "Text": "고객명",
+                        "HasLineSpacing": false
+                      }
+                    ],
+                    "Col": 2,
+                    "HeaderPosition": "start",
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "유형",
+                    "Elements": [
+                      {
+                        "Type": "Label",
+                        "Id": "Label19A66E76FF277E8DC638D6AFF178A0CC",
+                        "Name": "CUST_TYPE",
+                        "Position": {
+                          "Left": 433,
+                          "Top": 0,
+                          "Width": 194,
+                          "Height": 45
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
+                            "Color": "#f8fafc"
+                          },
+                          "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
+                            "Color": "#e2e8f0",
+                            "LineType": "solid",
+                            "Thickness": "0,0,0,0",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          },
+                          "Font": {
+                            "Type": "FontInfo",
+                            "Color": "#64748b",
+                            "Size": 13,
+                            "HorizontalAlignment": "center",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          }
+                        },
+                        "Text": "유형",
+                        "HasLineSpacing": false
+                      }
+                    ],
+                    "Col": 3,
+                    "HeaderPosition": "start",
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "등급",
+                    "Elements": [
+                      {
+                        "Type": "Label",
+                        "Id": "LabelDC2A2A1137C2ABE656181EFD4B26486B",
+                        "Name": "CUST_GRADE",
+                        "Position": {
+                          "Left": 627,
+                          "Top": 0,
+                          "Width": 194,
+                          "Height": 45
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
+                            "Color": "#f8fafc"
+                          },
+                          "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
+                            "Color": "#e2e8f0",
+                            "LineType": "solid",
+                            "Thickness": "0,0,0,0",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          },
+                          "Font": {
+                            "Type": "FontInfo",
+                            "Color": "#64748b",
+                            "Size": 13,
+                            "HorizontalAlignment": "center",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          }
+                        },
+                        "Text": "등급",
+                        "HasLineSpacing": false
+                      }
+                    ],
+                    "Col": 4,
+                    "HeaderPosition": "start",
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "사업자번호",
+                    "Elements": [
+                      {
+                        "Type": "Label",
+                        "Id": "Label24C63DA6BDFB7C102E3297859F274844",
+                        "Name": "BIZ_REG_NO",
+                        "Position": {
+                          "Left": 821,
+                          "Top": 0,
+                          "Width": 278,
+                          "Height": 45
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
+                            "Color": "#f8fafc"
+                          },
+                          "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
+                            "Color": {
+                              "__type__": "istudio.drawing.style.Color"
+                            },
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          },
+                          "Font": {
+                            "Type": "FontInfo",
+                            "Color": "#64748b",
+                            "Size": 13,
+                            "HorizontalAlignment": "center",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          }
+                        },
+                        "Text": "사업자번호"
+                      }
+                    ],
+                    "Col": 5,
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "연락처",
+                    "Elements": [
+                      {
+                        "Type": "Label",
+                        "Id": "LabelCCD7E105B491A6AD24C1CC2D6E91618F",
+                        "Name": "PHONE",
+                        "Position": {
+                          "Left": 1099,
+                          "Top": 0,
+                          "Width": 281,
+                          "Height": 45
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
+                            "Color": "#f8fafc"
+                          },
+                          "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
+                            "Color": "#e2e8f0",
+                            "LineType": "solid",
+                            "Thickness": "0,0,0,0",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          },
+                          "Font": {
+                            "Type": "FontInfo",
+                            "Color": "#64748b",
+                            "Size": 13,
+                            "HorizontalAlignment": "center",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          }
+                        },
+                        "Text": "연락처",
+                        "HasLineSpacing": false
+                      }
+                    ],
+                    "Col": 6,
+                    "HeaderPosition": "start",
+                    "Margin": "0,0,0,0",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "TYPE_CODE",
+                    "Elements": [
+                      {
+                        "Type": "Label",
+                        "Id": "Label07252AA37A17BEC414CD37C30E99E8D5",
+                        "Name": "TYPE_CODE",
+                        "Position": {
+                          "Left": 369,
+                          "Top": 5,
+                          "Width": 90,
+                          "Height": 20
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
+                            "Color": {
+                              "__type__": "istudio.drawing.style.Color"
+                            }
+                          },
+                          "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
+                            "Color": {
+                              "__type__": "istudio.drawing.style.Color"
+                            },
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          },
+                          "Font": {
+                            "Type": "FontInfo",
+                            "Color": "#64748b",
+                            "Size": 13,
+                            "HorizontalAlignment": "center",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          }
+                        },
+                        "Text": "TYPE_CODE",
+                        "HasLineSpacing": false
+                      }
+                    ],
+                    "Col": 7,
+                    "HeaderPosition": "start",
+                    "Margin": "5,5,5,5",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "GRADE_CODE",
+                    "Elements": [
+                      {
+                        "Type": "Label",
+                        "Id": "LabelA9693D8ACAE63C7AEDBE7AA0D37A9CEB",
+                        "Name": "GRADE_CODE",
+                        "Position": {
+                          "Left": 469,
+                          "Top": 5,
+                          "Width": 90,
+                          "Height": 20
+                        },
+                        "Style": {
+                          "Type": 2,
+                          "Background": {
+                            "__type__": "istudio.drawing.style.Brush",
+                            "Color": {
+                              "__type__": "istudio.drawing.style.Color"
+                            }
+                          },
+                          "Border": {
+                            "__type__": "istudio.drawing.style.BorderInfo",
+                            "Color": {
+                              "__type__": "istudio.drawing.style.Color"
+                            },
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          },
+                          "Font": {
+                            "Type": "FontInfo",
+                            "Color": "#64748b",
+                            "Size": 13,
+                            "HorizontalAlignment": "center",
+                            "Option": {
+                              "activate": [],
+                              "Inactivate": [],
+                              "DefaultStyle": "Label"
+                            }
+                          }
+                        },
+                        "Text": "GRADE_CODE",
+                        "HasLineSpacing": false
+                      }
+                    ],
+                    "Col": 8,
+                    "HeaderPosition": "start",
+                    "Margin": "5,5,5,5",
+                    "Type": 1,
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "CREDIT_LIMIT",
+                    "Elements": [],
+                    "Col": 9,
+                    "Margin": "5,5,5,5",
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "EMAIL",
+                    "Elements": [],
+                    "Col": 10,
+                    "Margin": "5,5,5,5",
+                    "Tooltip": ""
+                  },
+                  {
+                    "Value": "MAIN",
+                    "Elements": [],
+                    "Col": 11,
+                    "Margin": "5,5,5,5",
+                    "Tooltip": ""
+                  }
+                ]
+              }
+            },
+            {
+              "Type": "Label",
+              "Id": "Label078658D702A78E338D38906E77ADEA3D",
+              "Name": "LBL_TTL_2",
+              "Position": {
+                "Left": 0,
+                "Top": 0,
+                "Width": 1380,
+                "Height": 55,
+                "Docking": {
+                  "Left": true,
+                  "Right": true
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#e2e8f0",
+                  "LineType": "solid",
+                  "Thickness": "0,0,0,1",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 18,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "   고객 목록",
+              "HasLineSpacing": false,
+              "InGroup": "GRP_BODY"
+            },
+            {
+              "Type": "TextBox",
+              "Id": "TextBoxDA3777D9E0B17780BCB31B58D859EA40",
+              "Name": "VS_KEYWORD",
+              "Position": {
+                "Left": 1015,
+                "Top": 10,
+                "Width": 200,
+                "Height": 35,
+                "ZIndex": 7,
+                "Docking": {
+                  "Right": true,
+                  "Margin": "0,0,165,0",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#e2e8f0",
+                  "CornerRadius": "5,5,5,5",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "TextBox"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 13,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "TextBox"
+                  }
+                }
+              },
+              "InGroup": "GRP_BODY"
+            },
+            {
+              "Type": "Button",
+              "Id": "ButtonBBC40CC53DC674351CEA2590C56133E0",
+              "Name": "BTN_REF",
+              "Position": {
+                "Left": 1235,
+                "Top": 10,
+                "Width": 60,
+                "Height": 35,
+                "ZIndex": 18,
+                "Docking": {
+                  "Right": true,
+                  "Margin": "0,0,85,0",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 1,
+                "BoxStyle": "BX49877C338AD340E2BDFD611C0A13402A",
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": "#2563eb"
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "LineType": "none",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  },
+                  "Size": 13,
+                  "Bold": true,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
+                }
+              },
+              "Value": "검색",
+              "InGroup": "GRP_BODY"
+            },
+            {
+              "Type": "Button",
+              "Id": "Button31C6D3784F6E49F90EE81B75752BC500",
+              "Name": "BTN_DEL",
+              "Position": {
+                "Left": 1300,
+                "Top": 10,
+                "Width": 60,
+                "Height": 35,
+                "ZIndex": 19,
+                "Docking": {
+                  "Right": true,
+                  "Margin": "0,0,20,0",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 1,
+                "BoxStyle": "BX478B581080C34B1EB6F2479F1D161DD2",
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": "#ef4444"
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#e2e8f0",
+                  "LineType": "none",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  },
+                  "Size": 13,
+                  "Bold": true,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
+                }
+              },
+              "Value": "삭제",
+              "InGroup": "GRP_BODY"
+            }
+          ],
+          "Custom": "1:5"
+        },
+        {
+          "Type": "Label",
+          "Id": "LabelBFD9328699E4DAE2DA2A0F920F0245CB",
+          "Name": "LBL_TTL_1",
+          "Position": {
+            "Left": 20,
+            "Top": 10,
+            "Width": 100,
+            "Height": 35,
+            "ZIndex": 7
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": "#1e293b",
+              "Size": 20
+            }
+          },
+          "Text": "고객 관리",
+          "HasLineSpacing": false
+        },
+        {
+          "Type": "Group",
+          "Id": "Group587916D186BAC30F4C4563089CB9F69B",
+          "Name": "GRP_DETAIL",
+          "Position": {
+            "Left": 1131,
+            "Top": 75,
+            "Width": 460,
+            "Height": 778,
+            "ZIndex": 22,
+            "Docking": {
+              "Right": true,
+              "Top": true,
+              "Bottom": true,
+              "Margin": "20,75,20,20",
+              "HoldSize": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": "#e2e8f04d",
+              "Thickness": "0,0,0,1",
+              "CornerRadius": "10,10,10,10"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "Label8418F1A25616143CB2B54E12211D3DD2",
+              "Name": "LBL_INPUT_2",
+              "Position": {
+                "Left": 240,
+                "Top": 75,
+                "Width": 100,
+                "Height": 23,
+                "ZIndex": 7
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  },
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#64748b",
+                  "Size": 12,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "고객유형 *",
+              "HasLineSpacing": false,
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "TextBox",
+              "Id": "TextBox878B7518CD641459CBD3162C15BD618C",
+              "Name": "VS_INP_NAME",
+              "Position": {
+                "Left": 20,
+                "Top": 99,
+                "Width": 200,
+                "Height": 35,
+                "ZIndex": 9,
+                "Docking": {
+                  "Margin": "0,0,20,0"
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#e2e8f0",
+                  "CornerRadius": "5,5,5,5",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "TextBox"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 13,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "TextBox"
+                  }
+                }
+              },
+              "BindingInfo": {
+                "BindingGId": "DataGridF080EDCACB22D1D56A21D1B1E3AE9017",
+                "BindingGName": "GRD_CUSTOMER",
+                "BindingGColumn": "CUST_NAME",
+                "BindingGColumnId": "GRD_CUSTOMER.CUST_NAME",
+                "BindingGColumnCaption": "고객명"
+              },
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelEE1480C27EDEC9B549E0638BB7DF0D92",
+              "Name": "LBL_INPUT_1",
+              "Position": {
+                "Left": 20,
+                "Top": 75,
+                "Width": 100,
+                "Height": 23,
+                "ZIndex": 8
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  },
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#64748b",
+                  "Size": 12,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "고객명 *",
+              "HasLineSpacing": false,
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "ComboBox",
+              "Id": "ComboBox974223E5E3F8F649965F6D538A2B02D5",
+              "Name": "VS_INP_TYPE",
+              "Position": {
+                "Left": 240,
+                "Top": 99,
+                "Width": 200,
+                "Height": 35,
+                "ZIndex": 6,
+                "Docking": {
+                  "Margin": "0,0,20,0"
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#e2e8f0",
+                  "CornerRadius": "5,5,5,5",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "ComboBox"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 13,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "ComboBox"
+                  }
+                }
+              },
+              "DataSource": "DS3F97928C13CD495FA0D7C10DFFC76138",
+              "InitType": "0",
+              "AutoRefresh": true,
+              "UseAllItemsText": "전체",
+              "DataSourceInfo": {
+                "LabelField": "GRADE_NAME",
+                "ValueField": "GRADE_CODE"
+              },
+              "BindingInfo": {
+                "BindingGId": "DataGridF080EDCACB22D1D56A21D1B1E3AE9017",
+                "BindingGName": "GRD_CUSTOMER",
+                "BindingGColumn": "TYPE_CODE",
+                "BindingGColumnId": "GRD_CUSTOMER.TYPE_CODE",
+                "BindingGColumnCaption": "TYPE_CODE"
+              },
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "ComboBox",
+              "Id": "ComboBoxC931D3958D3D859914BC47E83B3C54DC",
+              "Name": "VS_INP_GRADE",
+              "Position": {
+                "Left": 20,
+                "Top": 177,
+                "Width": 200,
+                "Height": 35,
+                "ZIndex": 7,
+                "Docking": {
+                  "Margin": "0,0,20,0"
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#e2e8f0",
+                  "CornerRadius": "5,5,5,5",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "ComboBox"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 13,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "ComboBox"
+                  }
+                }
+              },
+              "DataSource": "DS6DCCFC7995CD465AA604209AD2120509",
+              "InitType": "0",
+              "AutoRefresh": true,
+              "UseAllItemsText": "전체",
+              "DataSourceInfo": {
+                "LabelField": "GRADE_NAME",
+                "ValueField": "GRADE_CODE"
+              },
+              "BindingInfo": {
+                "BindingGId": "DataGridF080EDCACB22D1D56A21D1B1E3AE9017",
+                "BindingGName": "GRD_CUSTOMER",
+                "BindingGColumn": "GRADE_CODE",
+                "BindingGColumnId": "GRD_CUSTOMER.GRADE_CODE",
+                "BindingGColumnCaption": "GRADE_CODE"
+              },
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "Label",
+              "Id": "Label0D3C1F55A15B29FDAB07ED0F90E8C6B0",
+              "Name": "LBL_INPUT_3",
+              "Position": {
+                "Left": 20,
+                "Top": 153,
+                "Width": 100,
+                "Height": 23,
+                "ZIndex": 9
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  },
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#64748b",
+                  "Size": 12,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "고객등급 *",
+              "HasLineSpacing": false,
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "TextBox",
+              "Id": "TextBoxB279D6DA646ABDACC0715C14ED5E550A",
+              "Name": "VS_INP_REG_NO",
+              "Position": {
+                "Left": 20,
+                "Top": 257,
+                "Width": 200,
+                "Height": 35,
+                "ZIndex": 11,
+                "Docking": {
+                  "Margin": "0,0,20,0"
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#e2e8f0",
+                  "CornerRadius": "5,5,5,5",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "TextBox"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 13,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "TextBox"
+                  }
+                }
+              },
+              "BindingInfo": {
+                "BindingGId": "DataGridF080EDCACB22D1D56A21D1B1E3AE9017",
+                "BindingGName": "GRD_CUSTOMER",
+                "BindingGColumn": "REG_NO",
+                "BindingGColumnId": "GRD_CUSTOMER.REG_NO",
+                "BindingGColumnCaption": "사업자번호"
+              },
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "Label",
+              "Id": "Label975300940F4780AA9DDBEF29B7EA4F5A",
+              "Name": "LBL_INPUT_5",
+              "Position": {
+                "Left": 20,
+                "Top": 233,
+                "Width": 100,
+                "Height": 23,
+                "ZIndex": 10
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  },
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#64748b",
+                  "Size": 12,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "사업자번호",
+              "HasLineSpacing": false,
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "Label",
+              "Id": "Label7700C9064A0B34EA6114D2512511FFC2",
+              "Name": "LBL_TTL_3",
+              "Position": {
+                "Left": 0,
+                "Top": 0,
+                "Width": 460,
+                "Height": 55,
+                "ZIndex": 7,
+                "Docking": {
+                  "Top": true,
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#e2e8f0",
+                  "LineType": "solid",
+                  "Thickness": "0,0,0,1",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 18,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "   고객 신규 등록",
+              "HasLineSpacing": false,
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelE71180BD4C9C5B4F8844D3FA52726423",
+              "Name": "LBL_INPUT_",
+              "Position": {
+                "Left": 240,
+                "Top": 232,
+                "Width": 100,
+                "Height": 24,
+                "ZIndex": 11
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  },
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#64748b",
+                  "Size": 12,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "연락처",
+              "HasLineSpacing": false,
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "Label",
+              "Id": "Label82967EFDEC6A1919AAF7E4DA8D6D755E",
+              "Name": "LBL_INPUT_ADRESS",
+              "Position": {
+                "Left": 20,
+                "Top": 388,
+                "Width": 100,
+                "Height": 23,
+                "ZIndex": 12
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  },
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#64748b",
+                  "Size": 12,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "사업장 주소",
+              "HasLineSpacing": false,
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "TextBox",
+              "Id": "TextBoxF7C89F07F2B99275AC19818561AB60AC",
+              "Name": "VS_INP_MAIN",
+              "Position": {
+                "Left": 20,
+                "Top": 412,
+                "Width": 420,
+                "Height": 35,
+                "ZIndex": 13,
+                "Docking": {
+                  "Margin": "0,0,20,0"
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#e2e8f0",
+                  "CornerRadius": "5,5,5,5",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "TextBox"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 13,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "TextBox"
+                  }
+                }
+              },
+              "BindingInfo": {
+                "BindingGId": "DataGridF080EDCACB22D1D56A21D1B1E3AE9017",
+                "BindingGName": "GRD_CUSTOMER",
+                "BindingGColumn": "MAIN",
+                "BindingGColumnId": "GRD_CUSTOMER.MAIN",
+                "BindingGColumnCaption": "MAIN"
+              },
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "Button",
+              "Id": "Button0D9F75DCC7295E3F628FB202953FC9D7",
+              "Name": "BTN_RESET",
+              "Position": {
+                "Left": 305,
+                "Top": 722,
+                "Width": 70,
+                "Height": 35,
+                "ZIndex": 4,
+                "Docking": {
+                  "Right": true,
+                  "Bottom": true,
+                  "Margin": "0,0,85,20",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX4DB6D0154B0D43B0B982A85B2825AA76",
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color",
+                    "R": 255,
+                    "G": 255
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#e2e8f0",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 13,
+                  "Bold": true,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
+                }
+              },
+              "Value": "초기화",
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "Label",
+              "Id": "Label8B54A9FAA6FAF3D97A25E2FA76D6806B",
+              "Name": "LBL_INPUT_51",
+              "Position": {
+                "Left": 240,
+                "Top": 153,
+                "Width": 122,
+                "Height": 23,
+                "ZIndex": 11
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  },
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#64748b",
+                  "Size": 12,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "외상 가능 한도 금액",
+              "HasLineSpacing": false,
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "TextBox",
+              "Id": "TextBoxFC012C1DB42E5EE5876F40D16125AAFE",
+              "Name": "VS_INP_PHONE",
+              "Position": {
+                "Left": 240,
+                "Top": 256,
+                "Width": 200,
+                "Height": 36,
+                "ZIndex": 9,
+                "Docking": {
+                  "Margin": "0,0,20,0"
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#e2e8f0",
+                  "CornerRadius": "5,5,5,5",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "TextBox"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 13,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "TextBox"
+                  }
+                }
+              },
+              "BindingInfo": {
+                "BindingGId": "DataGridF080EDCACB22D1D56A21D1B1E3AE9017",
+                "BindingGName": "GRD_CUSTOMER",
+                "BindingGColumn": "PHONE",
+                "BindingGColumnId": "GRD_CUSTOMER.PHONE",
+                "BindingGColumnCaption": "연락처"
+              },
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "TextBox",
+              "Id": "TextBox6DC52CF03D2152DE84B459F36A052F14",
+              "Name": "VS_INP_EMAIL",
+              "Position": {
+                "Left": 20,
+                "Top": 336,
+                "Width": 420,
+                "Height": 35,
+                "ZIndex": 14,
+                "Docking": {
+                  "Margin": "0,0,20,0"
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#e2e8f0",
+                  "CornerRadius": "5,5,5,5",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "TextBox"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 13,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "TextBox"
+                  }
+                }
+              },
+              "BindingInfo": {
+                "BindingGId": "DataGridF080EDCACB22D1D56A21D1B1E3AE9017",
+                "BindingGName": "GRD_CUSTOMER",
+                "BindingGColumn": "EMAIL",
+                "BindingGColumnId": "GRD_CUSTOMER.EMAIL",
+                "BindingGColumnCaption": "EMAIL"
+              },
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "Label",
+              "Id": "Label62A3F232AEA632458449BB63450F66A5",
+              "Name": "LBL_INPUT_EMAIL",
+              "Position": {
+                "Left": 20,
+                "Top": 312,
+                "Width": 100,
+                "Height": 23,
+                "ZIndex": 13
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  },
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#64748b",
+                  "Size": 12,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "이메일",
+              "HasLineSpacing": false,
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "NumberBox",
+              "Id": "NumberBox6AA66AB340A165C8AE080C3066DCD08B",
+              "Name": "VN_INP_LIMIT",
+              "Position": {
+                "Left": 240,
+                "Top": 177,
+                "Width": 200,
+                "Height": 35,
+                "ZIndex": 12,
+                "Docking": {
+                  "Margin": "0,0,20,0"
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#e2e8f0",
+                  "CornerRadius": "5,5,5,5",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "NumberBox"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 13,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font.VerticalAlignment"
+                    ],
+                    "DefaultStyle": "NumberBox"
+                  }
+                }
+              },
+              "BindingInfo": {
+                "BindingGId": "DataGridF080EDCACB22D1D56A21D1B1E3AE9017",
+                "BindingGName": "GRD_CUSTOMER",
+                "BindingGColumn": "CREDIT_LIMIT",
+                "BindingGColumnId": "GRD_CUSTOMER.CREDIT_LIMIT",
+                "BindingGColumnCaption": "CREDIT_LIMIT"
+              },
+              "InGroup": "GRP_DETAIL"
+            },
+            {
+              "Type": "Button",
+              "Id": "Button45BFEDC23B63AE81C616A908F1134DCE",
+              "Name": "BTN_SAV",
+              "Position": {
+                "Left": 380,
+                "Top": 722,
+                "Width": 60,
+                "Height": 35,
+                "ZIndex": 8,
+                "Docking": {
+                  "Right": true,
+                  "Bottom": true,
+                  "Margin": "0,0,20,20",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 1,
+                "BoxStyle": "BX49877C338AD340E2BDFD611C0A13402A",
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": "#2563eb"
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "LineType": "none",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  },
+                  "Size": 13,
+                  "Bold": true,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
+                }
+              },
+              "Value": "저장",
+              "InGroup": "GRP_DETAIL"
+            }
+          ],
+          "Custom": "1:2"
+        }
+      ]
+    }
+  ],
+  "WORK_FLOW": {
+    "Version": 1,
+    "UseEvent": true,
+    "Nodes": [],
+    "Links": [],
+    "MAP_NODES": {},
+    "MAP_LINKS": {}
+  }
+}

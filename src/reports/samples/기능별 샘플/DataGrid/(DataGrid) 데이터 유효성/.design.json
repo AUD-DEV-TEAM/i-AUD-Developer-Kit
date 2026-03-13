@@ -1,0 +1,295 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPFF1D68EDEEA04CC7A04C018E9CCC1AFC",
+    "FolderCode": "FLDECBB2CAEFB904D2E9C49459291F6E735",
+    "SavePath": "FLDECBB2CAEFB904D2E9C49459291F6E735/REPFF1D68EDEEA04CC7A04C018E9CCC1AFC.mtsd",
+    "ReportName": "데이터 유효성",
+    "Writer": "mkkim",
+    "WriteDate": "2022-8-28-22-9-44",
+    "Editor": "mkkim",
+    "EditDate": "2022-8-28-22-9-44",
+    "UseLayout": false
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_COFFEE_SALE_INFO",
+        "Name": "커피 매출 정보",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 4,
+        "SQL": "./DataSource/커피 매출 정보.sql",
+        "Columns": [
+          {
+            "Name": "년도",
+            "Type": "String"
+          },
+          {
+            "Name": "성별",
+            "Type": "String"
+          },
+          {
+            "Name": "월",
+            "Type": "String"
+          },
+          {
+            "Name": "제품명",
+            "Type": "String"
+          },
+          {
+            "Name": "지점명",
+            "Type": "String"
+          },
+          {
+            "Name": "판매단가",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "판매수량",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DS780AEEC43EFB4E60ABB084BA3D47AB47",
+        "Name": "Data1",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data1.sql",
+        "Columns": [
+          {
+            "Name": "REPORT_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_SEQ",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "REPORT_PATH",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_SIZE",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "MODULE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_DESC",
+            "Type": "String"
+          },
+          {
+            "Name": "ACCESS_CNT",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "ACCESS_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "EXPECT_TIME",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "ATTRIBUTE1",
+            "Type": "String"
+          },
+          {
+            "Name": "ATTRIBUTE2",
+            "Type": "String"
+          },
+          {
+            "Name": "OWNER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_DATE",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "",
+  "Forms": [
+    {
+      "Id": "Form24c79123-b24f-8dd1-48bc-3eb7cf373aa4",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "DataGrid",
+          "Id": "GRID34104d0c-0b79-3ed0-e2bd-7d47f1d353a9",
+          "Name": "DataGrid",
+          "Position": {
+            "Left": 13,
+            "Top": 50,
+            "Width": 1031,
+            "Height": 587,
+            "ZIndex": 2
+          },
+          "Style": {
+            "Border": {
+              "Color": "#c2c2c5",
+              "CornerRadius": "0,0,0,0",
+              "LineType": "solid"
+            },
+            "VerticalBorder": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid"
+            },
+            "HorizontalBorder": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Family": "inherit"
+            },
+            "Type": 2
+          },
+          "DataSource": "DS780AEEC43EFB4E60ABB084BA3D47AB47",
+          "ShowHeader": 2,
+          "Editable": true,
+          "Columns": [
+            {
+              "Name": "CREATE_DATE",
+              "Validator": {
+                "ValidateType": "0",
+                "Value1": ":VS_DATE1",
+                "Value2": "DATE(0,L,L)",
+                "UseGuideMessage": true,
+                "GuideLanguageCode": " {min}보다 크고 {max}보다 작아야 합니다.",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": "{min}보다 크고 {max}보다\n작아야 합니다.",
+                "IMEMode": 0
+              },
+              "Width": 146,
+              "ColumnType": 5,
+              "Format": "{0:yyyy-MM-dd}",
+              "InitValue": "",
+              "KeyType": 2
+            },
+            {
+              "Name": "REPORT_NAME",
+              "Validator": {
+                "ValidateType": "0",
+                "Value1": "20",
+                "Value2": "50",
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": "",
+                "IMEMode": 0
+              },
+              "Width": 329,
+              "InitValue": "",
+              "KeyType": 2
+            },
+            {
+              "Name": "REPORT_SIZE",
+              "Validator": {
+                "ValidateType": "0",
+                "Value1": "VN_VALUE1",
+                "Value2": "VN_VALUE2",
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": "",
+                "IMEMode": 0
+              },
+              "Width": 138,
+              "ColumnType": 3,
+              "InitValue": "",
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "MODULE_CODE",
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": "",
+                "IMEMode": 0
+              },
+              "KeyType": 2
+            },
+            {
+              "Name": "REPORT_DESC",
+              "Validator": {
+                "ValidateType": "0",
+                "Value1": "10",
+                "Value2": "20",
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": "",
+                "IMEMode": 0
+              },
+              "Width": 273,
+              "ColumnType": 9,
+              "InitValue": "",
+              "KeyType": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Variables": [
+    {
+      "Name": "VS_DATE1",
+      "Value": "20220101",
+      "Desc": "",
+      "Formula": ""
+    },
+    {
+      "Name": "VN_VALUE1",
+      "Value": "10000",
+      "Desc": "",
+      "Formula": ""
+    },
+    {
+      "Name": "VN_VALUE2",
+      "Value": "100000",
+      "Desc": "",
+      "Formula": ""
+    }
+  ]
+}

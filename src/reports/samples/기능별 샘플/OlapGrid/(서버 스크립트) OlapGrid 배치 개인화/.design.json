@@ -1,0 +1,871 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPA57EA3E7DDBB4576841598FC91055FE9",
+    "FolderCode": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD",
+    "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REPA57EA3E7DDBB4576841598FC91055FE9.mtsd",
+    "ReportName": "(서버 스크립트) OlapGrid 배치 개인화",
+    "Writer": "yglee",
+    "WriteDate": "2021-10-19 17:52:38",
+    "Editor": "yglee",
+    "EditDate": "2021-10-20 13:29:41",
+    "TabHeight": 28,
+    "UseLayout": false,
+    "DocumentVersion": "2.1.0.0",
+    "Description": ""
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS",
+        "Name": "LAYOUT_SELECT",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "False",
+        "DSType": 2,
+        "SQL": "./DataSource/LAYOUT_SELECT.sql",
+        "Params": [
+          {
+            "Name": ":VS_LAYOUT_REPORT_CODE",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "LAYOUT_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "USER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "USER_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "LAYOUT_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "LAYOUT_INFO",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "DEL_BTN",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./(서버 스크립트) OlapGrid 배치 개인화.script.ts",
+  "ServerScriptText": [
+    {
+      "Name": "@CREATE_TABLE",
+      "Key": "CREATE_TABLE",
+      "Encrypted": false,
+      "ScriptText": "./ServerScript/@CREATE_TABLE.js"
+    },
+    {
+      "Name": "CREATE_TABLE",
+      "Key": "BIZ1",
+      "Encrypted": false,
+      "ScriptText": "./ServerScript/CREATE_TABLE.ts"
+    },
+    {
+      "Name": "SAVE_LAYOUT",
+      "Key": "BIZ2",
+      "Encrypted": false,
+      "ScriptText": "./ServerScript/SAVE_LAYOUT.ts"
+    },
+    {
+      "Name": "DELETE_LAYOUT",
+      "Key": "BIZ3",
+      "Encrypted": false,
+      "ScriptText": "./ServerScript/DELETE_LAYOUT.ts"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "Form2353dbcd-902a-a924-e87a-af77b2b7756e",
+      "Name": "FORM_SELECT",
+      "Elements": [
+        {
+          "Type": "DataGrid",
+          "Id": "GRID0df34e40-16a1-ad02-e214-5d1750f798df",
+          "Name": "GRD_LAYOUT",
+          "Position": {
+            "Left": 1,
+            "Top": 31,
+            "Width": 1207,
+            "Height": 768,
+            "Docking": {
+              "Margin": "1,31,1,30",
+              "MinHeight": "0",
+              "MinWidth": "0",
+              "Left": true,
+              "Top": true,
+              "Right": true,
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Border": {
+              "Color": "#187199211ff",
+              "CornerRadius": "0,0,0,0",
+              "LineType": "solid"
+            },
+            "VerticalBorder": {
+              "Color": {
+                "R": "187",
+                "G": "199",
+                "B": "211",
+                "A": "1"
+              },
+              "LineType": "solid"
+            },
+            "HorizontalBorder": {
+              "Color": {
+                "R": "187",
+                "G": "199",
+                "B": "211",
+                "A": "1"
+              }
+            },
+            "Font": {
+              "Family": "inherit"
+            },
+            "Type": 2
+          },
+          "DataSource": "DS",
+          "ColumnHeaderHeight": 23,
+          "RowHeight": 23,
+          "Columns": [
+            {
+              "Name": "LAYOUT_CODE",
+              "Visible": false,
+              "Filterable": false,
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "USER_CODE",
+              "Visible": false,
+              "Filterable": false,
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "USER_NAME",
+              "Visible": false,
+              "Filterable": false,
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "REPORT_CODE",
+              "Visible": false,
+              "Filterable": false,
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "REPORT_NAME",
+              "Visible": false,
+              "Filterable": false,
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "LAYOUT_NAME",
+              "Caption": "이름",
+              "GridColumnWidthType": 1,
+              "Filterable": false,
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "LAYOUT_INFO",
+              "Visible": false,
+              "Filterable": false,
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "CREATE_DATE",
+              "Caption": "생성일자",
+              "Width": 140,
+              "Filterable": false,
+              "KeyType": 2,
+              "TextPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "DEL_BTN",
+              "Caption": "삭제",
+              "KeyType": 2,
+              "TextPosition": "center",
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "CONTROL_CODE",
+              "Visible": false,
+              "InitValue": "",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            }
+          ]
+        },
+        {
+          "Type": "Button",
+          "Id": "Buttond465e3d6-3ca6-b93d-4213-be8cd7ccc0ea",
+          "Name": "btnLayoutSelectOK",
+          "Position": {
+            "Left": 1069,
+            "Top": 803,
+            "Width": 60,
+            "Height": 23,
+            "Docking": {
+              "Right": true,
+              "Bottom": true,
+              "Margin": "0,0,80,3",
+              "HoldSize": true,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,80,3",
+              "_compileMargin": [
+                0,
+                0,
+                80,
+                3
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": "#74134232ff"
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": "#1256134ff",
+              "CornerRadius": "3",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "3"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Button"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Color": "#255255255ff",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "center",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Button"
+              }
+            }
+          },
+          "UseTooltip": true,
+          "Value": "확인",
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "Buttoncb40a195-e620-6229-789c-3a36d82c8530",
+          "Name": "btnLayoutSelectCancel",
+          "Position": {
+            "Left": 1139,
+            "Top": 803,
+            "Width": 60,
+            "Height": 23,
+            "Docking": {
+              "Right": true,
+              "Bottom": true,
+              "Margin": "0,0,10,3",
+              "HoldSize": true,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,10,3",
+              "_compileMargin": [
+                0,
+                0,
+                10,
+                3
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": "#138175235ff"
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": "#1256134ff",
+              "CornerRadius": "3",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "3"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Button"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Color": "#255255255ff",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "center",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Button"
+              }
+            }
+          },
+          "UseTooltip": true,
+          "Value": "취소",
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "Labele2305e9c-6c5f-0255-7717-38bb1972f332",
+          "Name": "Label",
+          "Position": {
+            "Left": 13,
+            "Top": 5,
+            "Width": 259,
+            "Height": 23,
+            "Docking": {
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": "#255255255ff"
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": "#85142213ff",
+              "mVariable": {
+                "LineType": "none",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Label"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 14,
+              "Color": "#1256134ff",
+              "mVariable": {
+                "Size": 14,
+                "Family": "inherit",
+                "Bold": true,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Label"
+              }
+            }
+          },
+          "UseTooltip": true,
+          "Text": "배치 정보 선택 ",
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          }
+        }
+      ]
+    },
+    {
+      "Id": "Formf5267cce-405b-cf56-7854-d9c54b29b58d",
+      "Name": "FORM_INPUT",
+      "Activated": false,
+      "Elements": [
+        {
+          "Type": "TextBox",
+          "Id": "TextBox22b0c16c-ee22-1722-56f9-e8586bc60c76",
+          "Name": "VS_LAYOUT_NAME",
+          "Position": {
+            "Left": 111,
+            "Top": 109,
+            "Width": 337,
+            "Height": 23,
+            "Docking": {
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0"
+            }
+          },
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "Button0ab9455d-5887-f1cf-4ffd-2cdebd3fcf7d",
+          "Name": "btnSave",
+          "Position": {
+            "Left": 327,
+            "Top": 160,
+            "Width": 60,
+            "Height": 23,
+            "Docking": {
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0"
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": "#74134232ff"
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": "#1256134ff",
+              "CornerRadius": "3",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "3"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Button"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Color": "#255255255ff",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "center",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Button"
+              }
+            }
+          },
+          "UseTooltip": true,
+          "Value": "확인",
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "Button9b1eb187-b25d-674e-490a-05e2f76425a5",
+          "Name": "btnCancel",
+          "Position": {
+            "Left": 392,
+            "Top": 160,
+            "Width": 60,
+            "Height": 23,
+            "Docking": {
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0"
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": "#138175235ff"
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": "#1256134ff",
+              "CornerRadius": "3",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "3"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Button"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Color": "#255255255ff",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "center",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Button"
+              }
+            }
+          },
+          "UseTooltip": true,
+          "Value": "취소",
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "Labeld16e0c6e-b343-8d89-4314-8d551c76bd51",
+          "Name": "Label1",
+          "Position": {
+            "Left": 13,
+            "Top": 8,
+            "Width": 259,
+            "Height": 23,
+            "Docking": {
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0"
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": "#255255255ff"
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": "#85142213ff",
+              "mVariable": {
+                "LineType": "none",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Label"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 14,
+              "Color": "#1256134ff",
+              "mVariable": {
+                "Size": 14,
+                "Family": "inherit",
+                "Bold": true,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Label"
+              }
+            }
+          },
+          "UseTooltip": true,
+          "Text": " 보고서의 배치 정보를 저장 합니다.",
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "Label4a6e1d08-37fd-3275-01b3-83b9dc52b8c9",
+          "Name": "LBL_REPORT_NAME",
+          "Position": {
+            "Left": 49,
+            "Top": 38,
+            "Width": 411,
+            "Height": 23,
+            "Docking": {
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0"
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": "#255255255ff"
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": "#85142213ff",
+              "mVariable": {
+                "LineType": "none",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Label"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Color": "#102102102ff",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": true,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Label"
+              }
+            }
+          },
+          "UseTooltip": true,
+          "Text": "보고서명 : 샘플 보고서",
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "Label2623823f-4a6a-0e95-e4ea-0c6275cc66f6",
+          "Name": "LBL_CONTROL_NAME",
+          "Position": {
+            "Left": 48,
+            "Top": 72,
+            "Width": 413,
+            "Height": 23,
+            "Docking": {
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0"
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": "#255255255ff"
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": "#85142213ff",
+              "mVariable": {
+                "LineType": "none",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Label"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Color": "#102102102ff",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": true,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Label"
+              }
+            }
+          },
+          "UseTooltip": true,
+          "Text": "컨트롤명 :  OLAPGRID",
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "Label0fa8db98-debf-b568-8531-ca24cb002bbd",
+          "Name": "Label3",
+          "Position": {
+            "Left": 48,
+            "Top": 107,
+            "Width": 67,
+            "Height": 23,
+            "Docking": {
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0"
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": "#255255255ff"
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": "#85142213ff",
+              "mVariable": {
+                "LineType": "none",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Label"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Size": 12,
+              "Color": "#102102102ff",
+              "mVariable": {
+                "Size": 12,
+                "Family": "inherit",
+                "Bold": true,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "left",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Label"
+              }
+            }
+          },
+          "UseTooltip": true,
+          "Text": "저장 이름 :",
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          }
+        }
+      ]
+    }
+  ],
+  "WorkFlowInfo": "{}"
+}

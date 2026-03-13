@@ -1,0 +1,460 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REP376FAC6B1AB2413FB2B7430C7F2FF644",
+    "FolderCode": "FLDBEB84E3D54BA4D48A9DC4FE7C97D6A41",
+    "SavePath": "FLDBEB84E3D54BA4D48A9DC4FE7C97D6A41/REP376FAC6B1AB2413FB2B7430C7F2FF644.mtsd",
+    "ReportName": "데이터 그리드 동적 생성 및 다중 쿼리 조회",
+    "Writer": "yglee",
+    "WriteDate": "2021-02-19 18:17:46",
+    "Editor": "yglee",
+    "EditDate": "2021-02-19 18:56:08",
+    "TabHeight": 28,
+    "UseLayout": false,
+    "DocumentVersion": "2.0.0.1",
+    "Description": ""
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS2C09BC8B7BDD4D4EB327AB408B68D49E",
+        "Name": "FOLDER",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/FOLDER.sql",
+        "Columns": [
+          {
+            "Name": "FOLDER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_DEPTH",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "PARENT_FOLDER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_SEQ",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "FOLDER_PATH",
+            "Type": "String"
+          },
+          {
+            "Name": "OWNER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_DESC",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_DATE",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS73B1A409FE3C462B8C7BAB9870AEF76C",
+        "Name": "REPORT",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/REPORT.sql",
+        "Params": [
+          {
+            "Name": ":VS_FOLDERS",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "REPORT_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_SEQ",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "REPORT_PATH",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_SIZE",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "MODULE_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_DESC",
+            "Type": "String"
+          },
+          {
+            "Name": "ACCESS_CNT",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "ACCESS_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "EXPECT_TIME",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "ATTRIBUTE1",
+            "Type": "String"
+          },
+          {
+            "Name": "ATTRIBUTE2",
+            "Type": "String"
+          },
+          {
+            "Name": "OWNER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_DATE",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./서버 스크립트로 다중 쿼리 실행.script.ts",
+  "ServerScriptText": [
+    {
+      "Name": "DataQuery",
+      "Key": "BIZ89DC6778CED1481A8A08FDF5CB947BBC",
+      "Encrypted": true,
+      "ScriptText": "./ServerScript/DataQuery.ts"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "Forma2b18ee7-3560-cd21-45a5-b3725f7249ef",
+      "Name": "Form2",
+      "Elements": [
+        {
+          "Type": "Button",
+          "Id": "Buttona204117e-6b00-2d3c-9b12-d70c499ac3fc",
+          "Name": "Button",
+          "Position": {
+            "Left": 363,
+            "Top": 20,
+            "Width": 60,
+            "Height": 23,
+            "Docking": {
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "UseTooltip": true,
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          }
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "GRIDe9d611f1-c544-e9eb-acba-77b8501a52be",
+          "Name": "DataGrid",
+          "Position": {
+            "Left": 22,
+            "Top": 46,
+            "Width": 400,
+            "Height": 300,
+            "Docking": {
+              "MinHeight": "0",
+              "MinWidth": "0"
+            }
+          },
+          "Style": {
+            "Border": {
+              "Color": "#187199211ff",
+              "CornerRadius": "0,0,0,0",
+              "LineType": "solid"
+            },
+            "VerticalBorder": {
+              "Color": {
+                "R": "187",
+                "G": "199",
+                "B": "211",
+                "A": "1"
+              },
+              "LineType": "solid"
+            },
+            "HorizontalBorder": {
+              "Color": {
+                "R": "187",
+                "G": "199",
+                "B": "211",
+                "A": "1"
+              }
+            },
+            "Font": {
+              "Family": "inherit"
+            },
+            "Type": 2
+          },
+          "DataSource": "FOLDER",
+          "ColumnHeaderHeight": 23,
+          "RowHeight": 23,
+          "Columns": [
+            {
+              "Name": "FOLDER_CODE",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "FOLDER_NAME",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "FOLDER_DEPTH",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "PARENT_FOLDER_CODE",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "FOLDER_SEQ",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "FOLDER_PATH",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "OWNER_CODE",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "FOLDER_DESC",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "CREATE_DATE",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "MODIFY_DATE",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            }
+          ]
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "GRID39c96923-dacd-7e93-d195-cf565f26194c",
+          "Name": "DataGrid1",
+          "Position": {
+            "Left": 21,
+            "Top": 356,
+            "Width": 400,
+            "Height": 300,
+            "Docking": {
+              "MinHeight": "0",
+              "MinWidth": "0"
+            }
+          },
+          "Style": {
+            "Border": {
+              "Color": "#187199211ff",
+              "CornerRadius": "0,0,0,0",
+              "LineType": "solid"
+            },
+            "VerticalBorder": {
+              "Color": {
+                "R": "187",
+                "G": "199",
+                "B": "211",
+                "A": "1"
+              },
+              "LineType": "solid"
+            },
+            "HorizontalBorder": {
+              "Color": {
+                "R": "187",
+                "G": "199",
+                "B": "211",
+                "A": "1"
+              }
+            },
+            "Font": {
+              "Family": "inherit"
+            },
+            "Type": 2
+          },
+          "DataSource": "REPORT",
+          "ColumnHeaderHeight": 23,
+          "RowHeight": 23,
+          "Columns": [
+            {
+              "Name": "REPORT_CODE",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "REPORT_NAME",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "FOLDER_CODE",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "REPORT_SEQ",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "REPORT_PATH",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "REPORT_SIZE",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "MODULE_CODE",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "REPORT_DESC",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "ACCESS_CNT",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "ACCESS_DATE",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "EXPECT_TIME",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "ATTRIBUTE1",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "ATTRIBUTE2",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "OWNER_CODE",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "MODIFY_CODE",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "CREATE_DATE",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            },
+            {
+              "Name": "MODIFY_DATE",
+              "KeyType": 2,
+              "CalcSubTotalType": "Text"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "WorkFlowInfo": "{}"
+}

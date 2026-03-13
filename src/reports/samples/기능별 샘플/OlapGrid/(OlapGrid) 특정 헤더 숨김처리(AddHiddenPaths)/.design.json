@@ -1,0 +1,310 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REP3699D43C0F224D239FD597B74995A034",
+    "FolderCode": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD",
+    "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REP3699D43C0F224D239FD597B74995A034.mtsd",
+    "ReportName": "(OlapGrid) 특정 헤더 숨김처리(AddHiddenPaths)",
+    "Writer": "yglee",
+    "WriteDate": "2022-03-16 10:53:29",
+    "Editor": "yglee",
+    "EditDate": "2022-03-16 10:53:29",
+    "TabHeight": 28,
+    "UseLayout": false,
+    "DocumentVersion": "2.1.0.0",
+    "Description": ""
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS",
+        "Name": "Data1",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data1.sql",
+        "Columns": [
+          {
+            "Name": "제품명",
+            "Type": "String"
+          },
+          {
+            "Name": "지점명",
+            "Type": "String"
+          },
+          {
+            "Name": "년도",
+            "Type": "String"
+          },
+          {
+            "Name": "월",
+            "Type": "String"
+          },
+          {
+            "Name": "판매수량",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "판매단가",
+            "Type": "Numeric"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./(OlapGrid) 특정 헤더 숨김처리(AddHiddenPaths).script.ts",
+  "Forms": [
+    {
+      "Id": "Formd02537ca-71b3-15c7-9328-3d6b7709c51c",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "OlapGrid",
+          "Id": "OlapGrid1647394372887",
+          "Name": "OlapGrid",
+          "Position": {
+            "Left": 0,
+            "Top": 120,
+            "Width": 1495,
+            "Height": 694,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Bottom": true,
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "DataSource": "DS",
+          "iOLAPView": {
+            "Options": {
+              "Style": {
+                "LineColor": "rgba(152,183,216,1)",
+                "BackgroundColor": "#fff"
+              }
+            },
+            "Fields": [
+              {
+                "Key": "제품명",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "년도",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 2,
+                "SummaryType": 5,
+                "SortType": 1,
+                "FilterInfo": {
+                  "FilterType": 0,
+                  "FilterKind": 0,
+                  "HasMeasureFilter": false,
+                  "MeasureFilterTypeA": 0,
+                  "MeasureFilterTypeB": 0,
+                  "MeasureAndOrOperator": 2,
+                  "Values": [
+                    "2012",
+                    "2013"
+                  ]
+                }
+              },
+              {
+                "Key": "판매수량",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "Width": 77
+              },
+              {
+                "Key": "월",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 2,
+                "SummaryType": 5,
+                "SortType": 3,
+                "CustomSortList": [
+                  "1월",
+                  "2월",
+                  "3월",
+                  "4월",
+                  "5월",
+                  "6월",
+                  "7월",
+                  "8월",
+                  "9월",
+                  "10월",
+                  "12월",
+                  "11월"
+                ]
+              },
+              {
+                "Key": "지점명",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "판매단가",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "Width": 81
+              },
+              {
+                "Key": "#MEASURES_HEADER#",
+                "Caption": "Measures",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 2,
+                "CreateType": 1,
+                "AllowFilter": false,
+                "AllowData": false
+              }
+            ],
+            "HiddenPaths": [
+              "[판매단가][1월][2012]",
+              "[판매단가][2월][2012]",
+              "[판매단가][3월][2012]",
+              "[판매단가][4월][2012]",
+              "[판매단가][5월][2012]",
+              "[판매단가][6월][2012]",
+              "[판매단가][7월][2012]",
+              "[판매단가][8월][2012]",
+              "[판매단가][9월][2012]",
+              "[판매단가][10월][2012]",
+              "[판매단가][12월][2012]",
+              "[판매단가][11월][2012]"
+            ]
+          },
+          "ExtraOption": {
+            "EtcFormat": true,
+            "EtcProperties": true,
+            "EtcMultiHeader": true
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "Buttonb97f3d7a-3db3-58b5-d6b0-3f0c1e2f3a6d",
+          "Name": "Button",
+          "Position": {
+            "Left": 10,
+            "Top": 10,
+            "Width": 183,
+            "Height": 23,
+            "Docking": {
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "0,0,0,0",
+              "_compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "__type__": "istudio.drawing.style.SolidColorBrush",
+              "Color": "#4687160ff"
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": "#1256134ff",
+              "CornerRadius": "0",
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Button"
+              }
+            },
+            "Font": {
+              "__type__": "istudio.drawing.style.FontInfo",
+              "Color": "#255255255ff",
+              "mVariable": {
+                "Size": "12",
+                "Family": "inherit",
+                "Bold": false,
+                "Italic": false,
+                "UnderLine": false,
+                "HorizontalAlignment": "center",
+                "VerticalAlignment": "middle"
+              },
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Button"
+              }
+            }
+          },
+          "UseTooltip": true,
+          "Value": "특정 경로의 셀들 숨기기 ",
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "Label5acc6bcd-1036-56a3-8b28-3fe816c1bece",
+          "Name": "Label",
+          "Position": {
+            "Left": 10,
+            "Top": 43,
+            "Width": 1475,
+            "Height": 62,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Margin": "10",
+              "MinWidth": "0",
+              "MinHeight": "0",
+              "_compileMarginText": "10",
+              "_compileMargin": [
+                10,
+                10,
+                10,
+                10
+              ]
+            }
+          },
+          "UseTooltip": true,
+          "Text": " 특정 경로를 가지는 행/열을 숨김 처리 합니다.\n API : AddHiddenPaths(path);",
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          }
+        }
+      ]
+    }
+  ],
+  "WorkFlowInfo": "{}"
+}

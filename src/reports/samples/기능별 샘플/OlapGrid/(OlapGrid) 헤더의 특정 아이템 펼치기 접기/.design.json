@@ -1,0 +1,396 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPF1ACF8A82397436FA3BAC185A50D69F6",
+    "FolderCode": "FLD5390E61749BE4E7FB7CC1146EF15C60B",
+    "SavePath": "FLD5390E61749BE4E7FB7CC1146EF15C60B/REPF1ACF8A82397436FA3BAC185A50D69F6.mtsd",
+    "ReportName": "(OlapGrid) 헤더의 특정 아이템 펼치기 접기",
+    "Writer": "yglee",
+    "WriteDate": "2025-06-16 10:29:03",
+    "Editor": "yglee",
+    "EditDate": "2025-06-16 10:29:03",
+    "UseLayout": false,
+    "UsePersonalConditions": false
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DSA5CB936B417B426F8DDC15DED9B38512",
+        "Name": "Data1",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data1.sql",
+        "Columns": [
+          {
+            "Name": "YYYY",
+            "Type": "String"
+          },
+          {
+            "Name": "MM",
+            "Type": "String"
+          },
+          {
+            "Name": "SEX",
+            "Type": "String"
+          },
+          {
+            "Name": "PRODUCT",
+            "Type": "String"
+          },
+          {
+            "Name": "BRANCH",
+            "Type": "String"
+          },
+          {
+            "Name": "SALE_QTY",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "SALE_PRICE",
+            "Type": "Numeric"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./(OlapGrid) 헤더의 특정 아이템 펼치기 접기.script.ts",
+  "Forms": [
+    {
+      "Id": "Form8e607cea-bc11-1468-f5db-2283a63c1868",
+      "Name": "Form1",
+      "Style": {
+        "Type": 2,
+        "Border": {
+          "ColorR": "204",
+          "ColorG": "204",
+          "ColorB": "204",
+          "ColorA": "1"
+        },
+        "Background": {
+          "ColorR": "255",
+          "ColorG": "255",
+          "ColorB": "255",
+          "ColorA": "1"
+        }
+      },
+      "Elements": [
+        {
+          "Type": "Button",
+          "Id": "Button7c6ee406-c1c3-e00c-b225-b60530698828",
+          "Name": "btnExpandCollapsed",
+          "Position": {
+            "Left": 794,
+            "Top": 50,
+            "Width": 125,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#f9f9fb"
+            },
+            "Border": {
+              "Color": "#7e9bf6"
+            },
+            "Font": {
+              "Color": "#303031",
+              "Size": 12,
+              "Bold": true
+            }
+          },
+          "Value": "전체 확장/축소",
+          "UseTooltip": true,
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          },
+          "HasNewRadius": false
+        },
+        {
+          "Type": "Label",
+          "Id": "Label06c24279-faa8-6e82-dc23-1cb70c567c5c",
+          "Name": "Label",
+          "Position": {
+            "Left": 6,
+            "Top": 51,
+            "Width": 78,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 1,
+            "BoxStyle": "BX039DCA38014A485696C7A70A50AEFB68",
+            "Background": {
+              "Color": "#cfe2f3"
+            },
+            "Border": {
+              "Color": "#6d9eeb",
+              "LineType": "solid"
+            },
+            "Font": {
+              "Color": "#000000",
+              "Size": 12,
+              "Bold": false,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "필드명 ",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "TextBox",
+          "Id": "TextBoxe1d0a01e-4de0-26c9-883e-4d4b82c5b9c2",
+          "Name": "tbxItems",
+          "Position": {
+            "Left": 408,
+            "Top": 51,
+            "Width": 248,
+            "Height": 23
+          },
+          "Text": "강남점",
+          "Value": "강남점",
+          "InputType": "0"
+        },
+        {
+          "Type": "Label",
+          "Id": "Labelc4330dee-e93d-d9ed-f09a-ab51b5ecf8ce",
+          "Name": "Label1",
+          "Position": {
+            "Left": 207,
+            "Top": 51,
+            "Width": 195,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 1,
+            "BoxStyle": "BX039DCA38014A485696C7A70A50AEFB68",
+            "Background": {
+              "Color": "#cfe2f3"
+            },
+            "Border": {
+              "Color": "#6d9eeb",
+              "LineType": "solid"
+            },
+            "Font": {
+              "Color": "#000000",
+              "Size": 12,
+              "Bold": false,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "대상(,로 분리 입력, * : 모든 아이템)",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "Label5ab9e071-7785-aea8-430d-53874dc442cf",
+          "Name": "Label2",
+          "Position": {
+            "Left": 3,
+            "Top": 3,
+            "Width": 2020,
+            "Height": 41,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": true,
+              "Margin": "3"
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": "#666666",
+              "LineType": "solid"
+            },
+            "Font": {
+              "Color": "#434343",
+              "Size": 12,
+              "Bold": false
+            }
+          },
+          "Text": "   OlapGrid 특정 항목 펼치기/접기 기능 샘플 (** 데이터 조회 시 자동 확장/축소 옵션 적용 됨 **)",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "RadioButton",
+          "Id": "RadioButton0ccbe958-ca04-0c77-e529-ffda8f6c9a7a",
+          "Name": "rdoExpand",
+          "Position": {
+            "Left": 670,
+            "Top": 50,
+            "Width": 64,
+            "Height": 23
+          },
+          "Text": "확장",
+          "GroupName": "EXPAND"
+        },
+        {
+          "Type": "RadioButton",
+          "Id": "RadioButtone275fc9d-6d6d-98a1-d2a2-9c0801a697f6",
+          "Name": "rdoCollapsed",
+          "Position": {
+            "Left": 737,
+            "Top": 50,
+            "Width": 59,
+            "Height": 23
+          },
+          "Text": "축소",
+          "GroupName": "EXPAND",
+          "Checked": true
+        },
+        {
+          "Type": "OlapGrid",
+          "Id": "OlapGrid1609383273417",
+          "Name": "OlapGrid",
+          "Position": {
+            "Left": 3,
+            "Top": 94,
+            "Width": 2020,
+            "Height": 917,
+            "ZIndex": 2,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Bottom": true,
+              "Margin": "3"
+            }
+          },
+          "DataSource": "DSA5CB936B417B426F8DDC15DED9B38512",
+          "iOLAPView": {
+            "Options": {
+              "RowTotalLocation": 1,
+              "ColumnTotalLocation": 1,
+              "RowGrandTotalLocation": 1,
+              "ColumnGrandTotalLocation": 1,
+              "Style": {
+                "LineColor": "rgba(152,183,216,1)"
+              },
+              "CacheOption": {
+                "UseHybrid": false
+              }
+            },
+            "Fields": [
+              {
+                "Key": "BRANCH",
+                "Caption": "지점명",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "YYYY",
+                "Caption": "판매년도",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 2,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "SALE_PRICE",
+                "Caption": "판매금액",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}"
+              },
+              {
+                "Key": "PRODUCT",
+                "Caption": "상품명",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "MM",
+                "Caption": "판매월",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 2,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "SALE_QTY",
+                "Caption": "판매수량",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}"
+              },
+              {
+                "Key": "SEX",
+                "Caption": "성별",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "#MEASURES_HEADER#",
+                "Caption": "Measures",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 2,
+                "CreateType": 1,
+                "AllowFilter": false,
+                "AllowData": false
+              }
+            ]
+          },
+          "ExtraOption": {
+            "CurrentPageSize": 100,
+            "EtcFormat": true,
+            "EtcProperties": true,
+            "EtcMultiHeader": true
+          }
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "ComboBox111777a6-90f1-ce7b-b127-c9f654af4cf5",
+          "Name": "cboFields",
+          "Position": {
+            "Left": 84,
+            "Top": 48,
+            "Width": 120,
+            "Height": 23
+          },
+          "Value": "BRANCH",
+          "Text": "지점명",
+          "UseAllItemsText": "전체",
+          "InitValue": "BRANCH"
+        }
+      ]
+    }
+  ],
+  "WorkFlowInfo": "{}"
+}

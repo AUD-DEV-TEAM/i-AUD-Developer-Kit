@@ -1,0 +1,535 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPAC5CAB2C32374520B8283A5DEE56235C",
+    "FolderCode": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD",
+    "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REPAC5CAB2C32374520B8283A5DEE56235C.mtsd",
+    "ReportName": "(OlapGrid) 필터 제어하기 (Measure)",
+    "Writer": "yglee",
+    "WriteDate": "2025-06-16 10:36:45",
+    "Editor": "yglee",
+    "EditDate": "2025-06-16 10:36:45",
+    "UseLayout": false,
+    "UsePersonalConditions": false
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DSA1B4E38A3211484093CC21DAA7C7E8B2",
+        "Name": "Data1",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data1.sql",
+        "Columns": [
+          {
+            "Name": "YYYY",
+            "Type": "String"
+          },
+          {
+            "Name": "MM",
+            "Type": "String"
+          },
+          {
+            "Name": "SEX",
+            "Type": "String"
+          },
+          {
+            "Name": "PRODUCT",
+            "Type": "String"
+          },
+          {
+            "Name": "BRANCH",
+            "Type": "String"
+          },
+          {
+            "Name": "SALE_QTY",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "SALE_PRICE",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DS",
+        "Name": "Operators",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Operators.sql",
+        "Columns": [
+          {
+            "Name": "NAME",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DS1",
+        "Name": "AndOrNoen",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/AndOrNoen.sql",
+        "Columns": [
+          {
+            "Name": "NAME",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./(OlapGrid) 필터 제어하기 (Measure).script.ts",
+  "Forms": [
+    {
+      "Id": "Formcc1ad9b7-4468-c137-0b09-a03b784cfaf3",
+      "Name": "Form1",
+      "Style": {
+        "Type": 2,
+        "Border": {
+          "ColorR": "204",
+          "ColorG": "204",
+          "ColorB": "204",
+          "ColorA": "1"
+        },
+        "Background": {
+          "ColorR": "255",
+          "ColorG": "255",
+          "ColorB": "255",
+          "ColorA": "1"
+        }
+      },
+      "Elements": [
+        {
+          "Type": "RichTextBox",
+          "Id": "RichTextBox526981ea-4744-7938-fe46-7ff7f63b7075",
+          "Name": "tbxDebug",
+          "Position": {
+            "Left": 3,
+            "Top": 74,
+            "Width": 2004,
+            "Height": 100,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Margin": "3"
+            }
+          },
+          "Value": "OlapGrid.setMeasureFilter('판매단가', '&gt;=',10000 ,'&lt;=',30000,true);",
+          "Text": "OlapGrid.setMeasureFilter('판매단가', '&gt;=',10000 ,'&lt;=',30000,true);"
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "ComboBoxf45bb343-e273-1034-713c-3dd382ab8204",
+          "Name": "cboOperatorA",
+          "Position": {
+            "Left": 287,
+            "Top": 48,
+            "Width": 64,
+            "Height": 23
+          },
+          "DataSource": "DS",
+          "Value": ">=",
+          "Text": ">=",
+          "AutoRefresh": true,
+          "UseAllItemsText": "전체",
+          "InitValue": ">="
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "ComboBox111777a6-90f1-ce7b-b127-c9f654af4cf5",
+          "Name": "cboFields",
+          "Position": {
+            "Left": 84,
+            "Top": 48,
+            "Width": 120,
+            "Height": 23
+          },
+          "Value": "SALE_PRICE",
+          "Text": "SALE_PRICE",
+          "UseAllItemsText": "전체",
+          "InitValue": "SALE_PRICE"
+        },
+        {
+          "Type": "Label",
+          "Id": "Label06c24279-faa8-6e82-dc23-1cb70c567c5c",
+          "Name": "Label",
+          "Position": {
+            "Left": 5,
+            "Top": 48,
+            "Width": 78,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 1,
+            "BoxStyle": "BX039DCA38014A485696C7A70A50AEFB68",
+            "Background": {
+              "Color": "#cfe2f3"
+            },
+            "Border": {
+              "Color": "#6d9eeb",
+              "LineType": "solid"
+            },
+            "Font": {
+              "Color": "#000000",
+              "Size": 12,
+              "Bold": false,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "필드명 ",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "Label43fb5a94-14c7-ffbe-3b86-1ce399854b9e",
+          "Name": "Label2",
+          "Position": {
+            "Left": 207,
+            "Top": 48,
+            "Width": 79,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 1,
+            "BoxStyle": "BX039DCA38014A485696C7A70A50AEFB68",
+            "Background": {
+              "Color": "#cfe2f3"
+            },
+            "Border": {
+              "Color": "#6d9eeb",
+              "LineType": "solid"
+            },
+            "Font": {
+              "Color": "#000000",
+              "Size": 12,
+              "Bold": false,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "Value",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "Button7c6ee406-c1c3-e00c-b225-b60530698828",
+          "Name": "btnExecute",
+          "Position": {
+            "Left": 903,
+            "Top": 48,
+            "Width": 60,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 1,
+            "BoxStyle": "BX93B1206F99B040F1BEEC4EBED0CFFE75",
+            "Background": {
+              "Color": "#4a86e8"
+            },
+            "Border": {
+              "Color": {
+                "G": 56,
+                "B": 134
+              },
+              "LineType": "dashed",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Size": 12,
+              "Bold": true
+            }
+          },
+          "Value": "실행",
+          "UseTooltip": true,
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          },
+          "HasNewRadius": false
+        },
+        {
+          "Type": "Label",
+          "Id": "Label5ab9e071-7785-aea8-430d-53874dc442cf",
+          "Name": "Label3",
+          "Position": {
+            "Left": 3,
+            "Top": 3,
+            "Width": 2004,
+            "Height": 41,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": true,
+              "Margin": "3"
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": "#666666",
+              "LineType": "solid"
+            },
+            "Font": {
+              "Color": "#434343",
+              "Size": 12,
+              "Bold": false
+            }
+          },
+          "Text": "   OlapGrid 의 필터 정보에 대한 접근 샘플",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "NumberBox",
+          "Id": "NumberBoxf5cb9fea-36ba-e81c-0d32-b5d1541bc78e",
+          "Name": "tbxValueA",
+          "Position": {
+            "Left": 352,
+            "Top": 48,
+            "Width": 90,
+            "Height": 23
+          },
+          "Format": "#,##0.####"
+        },
+        {
+          "Type": "NumberBox",
+          "Id": "NumberBox83c3d449-de49-d681-5049-ec621b85f8a0",
+          "Name": "tbxValueB",
+          "Position": {
+            "Left": 656,
+            "Top": 48,
+            "Width": 90,
+            "Height": 23
+          },
+          "Format": "#,##0.####"
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "ComboBox7512b747-29f9-8978-5266-936e77176d26",
+          "Name": "cboOperatorB",
+          "Position": {
+            "Left": 591,
+            "Top": 48,
+            "Width": 64,
+            "Height": 23
+          },
+          "DataSource": "DS",
+          "Value": "<=",
+          "Text": "<=",
+          "AutoRefresh": true,
+          "UseAllItemsText": "전체",
+          "InitValue": "<="
+        },
+        {
+          "Type": "Label",
+          "Id": "Labelc49e5a87-97f2-737f-3da2-612c3cbd025a",
+          "Name": "Label1",
+          "Position": {
+            "Left": 511,
+            "Top": 48,
+            "Width": 79,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 1,
+            "BoxStyle": "BX039DCA38014A485696C7A70A50AEFB68",
+            "Background": {
+              "Color": "#cfe2f3"
+            },
+            "Border": {
+              "Color": "#6d9eeb",
+              "LineType": "solid"
+            },
+            "Font": {
+              "Color": "#000000",
+              "Size": 12,
+              "Bold": false,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "Value",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "ComboBox7a93ef18-add3-2f2c-6937-e3f7d03e65f0",
+          "Name": "cboAndOrOperator",
+          "Position": {
+            "Left": 449,
+            "Top": 48,
+            "Width": 57,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#cfe2f3"
+            },
+            "Border": {
+              "Color": "#000000"
+            },
+            "Font": {
+              "Color": "#000000",
+              "Size": 12
+            }
+          },
+          "DataSource": "DS1",
+          "Value": "AND",
+          "Text": "AND",
+          "AutoRefresh": true,
+          "UseAllItemsText": "전체",
+          "InitValue": "AND"
+        },
+        {
+          "Type": "OlapGrid",
+          "Id": "OlapGrid1609383273417",
+          "Name": "OlapGrid",
+          "Position": {
+            "Left": 3,
+            "Top": 203,
+            "Width": 2004,
+            "Height": 822,
+            "ZIndex": 4,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Bottom": true,
+              "Margin": "3"
+            }
+          },
+          "DataSource": "DSA1B4E38A3211484093CC21DAA7C7E8B2",
+          "AutoRefresh": true,
+          "iOLAPView": {
+            "Options": {
+              "RowTotalLocation": 1,
+              "ColumnTotalLocation": 1,
+              "RowGrandTotalLocation": 1,
+              "ColumnGrandTotalLocation": 1,
+              "Style": {
+                "LineColor": "rgba(152,183,216,1)"
+              },
+              "CacheOption": {
+                "UseHybrid": false
+              }
+            },
+            "Fields": [
+              {
+                "Key": "BRANCH",
+                "Caption": "지점명",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "YYYY",
+                "Caption": "판매년도",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 2,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "SALE_PRICE",
+                "Caption": "판매금액",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}"
+              },
+              {
+                "Key": "PRODUCT",
+                "Caption": "상품명",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "MM",
+                "Caption": "판매월",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 2,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "SALE_QTY",
+                "Caption": "판매수량",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}"
+              },
+              {
+                "Key": "SEX",
+                "Caption": "성별",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "#MEASURES_HEADER#",
+                "Caption": "Measures",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 2,
+                "CreateType": 1,
+                "AllowFilter": false,
+                "AllowData": false
+              }
+            ]
+          },
+          "ExtraOption": {
+            "CurrentPageSize": 100,
+            "EtcFormat": true,
+            "EtcProperties": true,
+            "EtcMultiHeader": true
+          }
+        }
+      ]
+    }
+  ],
+  "WorkFlowInfo": "{}"
+}

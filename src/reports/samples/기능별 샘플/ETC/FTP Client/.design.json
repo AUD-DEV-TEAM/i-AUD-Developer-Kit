@@ -1,0 +1,470 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REP2645EBF9A371494586A663E0ABD36EC0",
+    "FolderCode": "FLDBEB84E3D54BA4D48A9DC4FE7C97D6A41",
+    "SavePath": "FLDBEB84E3D54BA4D48A9DC4FE7C97D6A41/REP2645EBF9A371494586A663E0ABD36EC0.mtsd",
+    "ReportName": "FTP Client",
+    "Writer": "yglee",
+    "WriteDate": "2025-06-13 17:54:59",
+    "Editor": "yglee",
+    "EditDate": "2025-06-13 17:54:59",
+    "UseLayout": false,
+    "UsePersonalConditions": false
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DSF2D4BB91DA8443ADB6E395C513838A8D",
+        "Name": "Data1",
+        "ConnectionCode": "FILE_DATA_BASE",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data1.sql",
+        "Columns": [
+          {
+            "Name": "CODE",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./FTP Client.script.ts",
+  "ServerScriptText": [
+    {
+      "Name": "FTP_LIST",
+      "Key": "BIZB345F6D475F34159B026D0D85DA87597",
+      "Encrypted": true,
+      "ScriptText": "./ServerScript/FTP_LIST.ts"
+    },
+    {
+      "Name": "DOWNLOAD",
+      "Key": "BIZ7D256174B7664F34B03F619CE7605512",
+      "Encrypted": true,
+      "ScriptText": "./ServerScript/DOWNLOAD.ts"
+    },
+    {
+      "Name": "UPLOAD",
+      "Key": "BIZ7D8ACC041D934790AB71638B84D781E7",
+      "Encrypted": true,
+      "ScriptText": "./ServerScript/UPLOAD.ts"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "Form3dda140f-2b5e-7afe-d2d7-267722c3c511",
+      "Name": "Form1",
+      "Style": {
+        "Type": 2
+      },
+      "Elements": [
+        {
+          "Type": "DataGrid",
+          "Id": "GRID6c200fd2-c52e-0e3c-ffdc-0c848c765004",
+          "Name": "DataGrid",
+          "Position": {
+            "Left": 28,
+            "Top": 158,
+            "Width": 652,
+            "Height": 381
+          },
+          "Style": {
+            "Border": {
+              "Type": 0,
+              "Color": "#bbc7d3"
+            },
+            "VerticalBorder": {
+              "Type": 0,
+              "Color": {
+                "R": 187,
+                "G": 199,
+                "B": 211,
+                "A": 1
+              }
+            },
+            "HorizontalBorder": {
+              "Type": 0,
+              "Color": {
+                "R": 187,
+                "G": 199,
+                "B": 211,
+                "A": 1
+              }
+            },
+            "Type": 2
+          },
+          "ColumnHeaderHeight": 23,
+          "RowHeight": 23,
+          "ExportCount": 0,
+          "Columns": [
+            {
+              "Name": "IMG",
+              "Caption": " ",
+              "Width": 33,
+              "ColumnType": 8,
+              "InitValue": "",
+              "KeyType": 2,
+              "TextPosition": "center",
+              "ImageWidth": 16,
+              "ImageHeight": 16
+            },
+            {
+              "Name": "NAME",
+              "Caption": "Name",
+              "Width": 236,
+              "GridColumnWidthType": 1,
+              "KeyType": 2
+            },
+            {
+              "Name": "TYPE",
+              "Visible": false,
+              "KeyType": 2
+            },
+            {
+              "Name": "SIZE",
+              "Caption": "Size",
+              "ColumnType": 3,
+              "Format": "{0:N0}",
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "DATE",
+              "Caption": "Modify",
+              "Width": 147,
+              "KeyType": 2,
+              "TextPosition": "center"
+            }
+          ]
+        },
+        {
+          "Type": "Label",
+          "Id": "Labelffe797c5-3fe2-61ce-9d76-83a72bdb79c2",
+          "Name": "Label",
+          "Position": {
+            "Left": 28,
+            "Top": 14,
+            "Width": 100,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#cfe2f3"
+            },
+            "Border": {
+              "LineType": "solid"
+            },
+            "Font": {
+              "Color": "#0c3886",
+              "Size": 12,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "FTP 서버 주소",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "TextBox",
+          "Id": "TextBox1c268ffd-c2da-aa4a-8901-90d87ad29c5b",
+          "Name": "VS_FTP_SERVER",
+          "Position": {
+            "Left": 129,
+            "Top": 14,
+            "Width": 212,
+            "Height": 23
+          },
+          "Text": "127.0.0.1",
+          "Value": "127.0.0.1"
+        },
+        {
+          "Type": "TextBox",
+          "Id": "TextBox7141ee5c-356f-d403-23d8-e91b24e14201",
+          "Name": "VS_USER_CODE",
+          "Position": {
+            "Left": 129,
+            "Top": 38,
+            "Width": 341,
+            "Height": 23
+          },
+          "Text": "userID",
+          "Value": "userID"
+        },
+        {
+          "Type": "Label",
+          "Id": "Labela0129745-ea10-c254-92cf-00459c6f6d02",
+          "Name": "Label1",
+          "Position": {
+            "Left": 28,
+            "Top": 38,
+            "Width": 100,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#cfe2f3"
+            },
+            "Border": {
+              "LineType": "solid"
+            },
+            "Font": {
+              "Color": "#0c3886",
+              "Size": 12,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "사용자 계정",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "Labelab2415ad-86d0-4b8e-1e6e-898aa7e81adb",
+          "Name": "Label2",
+          "Position": {
+            "Left": 28,
+            "Top": 62,
+            "Width": 100,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#cfe2f3"
+            },
+            "Border": {
+              "LineType": "solid"
+            },
+            "Font": {
+              "Color": "#0c3886",
+              "Size": 12,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "비밀번호",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "TextBox",
+          "Id": "TextBox6b1fab71-7069-3e71-48d2-86eccbdfef60",
+          "Name": "VS_USER_PWD",
+          "Position": {
+            "Left": 129,
+            "Top": 62,
+            "Width": 341,
+            "Height": 23
+          },
+          "Text": "password",
+          "Value": "password",
+          "InputType": "1"
+        },
+        {
+          "Type": "TextBox",
+          "Id": "TextBox3b6a7712-3cb6-fe3d-6e4f-4476b71c34f1",
+          "Name": "VS_WORK_FOLDER",
+          "Position": {
+            "Left": 129,
+            "Top": 133,
+            "Width": 477,
+            "Height": 23
+          },
+          "Text": "/home",
+          "Value": "/home",
+          "InputType": "0"
+        },
+        {
+          "Type": "Label",
+          "Id": "Label5406abb4-f19c-8254-05bf-dc4915a49ecd",
+          "Name": "Label3",
+          "Position": {
+            "Left": 28,
+            "Top": 133,
+            "Width": 100,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#cfe2f3"
+            },
+            "Border": {
+              "LineType": "solid"
+            },
+            "Font": {
+              "Color": "#0c3886",
+              "Size": 12,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "작업경로",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "Label8593187e-1566-c674-d584-20896fae7a70",
+          "Name": "Label4",
+          "Position": {
+            "Left": 28,
+            "Top": 86,
+            "Width": 100,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#cfe2f3"
+            },
+            "Border": {
+              "LineType": "solid"
+            },
+            "Font": {
+              "Color": "#0c3886",
+              "Size": 12,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "프로토콜",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "ComboBox4c8f7c46-d5a2-f882-b244-080df9973d0a",
+          "Name": "VS_PROTOCOL",
+          "Position": {
+            "Left": 129,
+            "Top": 86,
+            "Width": 342,
+            "Height": 23
+          },
+          "DataSource": "DSF2D4BB91DA8443ADB6E395C513838A8D",
+          "Value": "S-FTP",
+          "Text": "S-FTP",
+          "AutoRefresh": true,
+          "UseAllItemsText": "All",
+          "InitValue": "S-FTP"
+        },
+        {
+          "Type": "Button",
+          "Id": "Button70cc6295-c95e-f0e8-9c50-faf179bc9a0a",
+          "Name": "btnConnect",
+          "Position": {
+            "Left": 475,
+            "Top": 85,
+            "Width": 60,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#2e57a0"
+            },
+            "Border": {
+              "Color": {
+                "G": 56,
+                "B": 134
+              },
+              "CornerRadius": "0"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "Value": "Connect",
+          "UseTooltip": true,
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          },
+          "HasNewRadius": false
+        },
+        {
+          "Type": "TextBox",
+          "Id": "TextBoxea30cda9-70eb-104e-27e3-64fb5011df47",
+          "Name": "VN_PORT",
+          "Position": {
+            "Left": 342,
+            "Top": 14,
+            "Width": 128,
+            "Height": 23
+          },
+          "Text": "22",
+          "Value": "22"
+        },
+        {
+          "Type": "Button",
+          "Id": "Button43b06a54-f64a-3b54-bcb9-41b271bb3174",
+          "Name": "btnUpload",
+          "Position": {
+            "Left": 620,
+            "Top": 133,
+            "Width": 60,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#2e57a0"
+            },
+            "Border": {
+              "Color": {
+                "G": 56,
+                "B": 134
+              },
+              "CornerRadius": "0"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "Value": "Upload",
+          "UseTooltip": true,
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          },
+          "HasNewRadius": false
+        }
+      ]
+    }
+  ],
+  "WorkFlowInfo": "{}"
+}

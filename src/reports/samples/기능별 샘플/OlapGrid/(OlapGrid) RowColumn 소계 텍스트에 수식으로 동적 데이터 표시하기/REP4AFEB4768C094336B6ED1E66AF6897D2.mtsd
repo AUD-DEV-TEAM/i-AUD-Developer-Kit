@@ -4,127 +4,92 @@
     "FolderCode": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD",
     "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REP4AFEB4768C094336B6ED1E66AF6897D2.mtsd",
     "ReportName": "(OlapGrid) RowColumn 소계 텍스트에 수식으로 동적 데이터 표시하기",
-    "Writer": "sblim1417",
-    "WriteDate": "2026-01-14 13:38:52",
-    "Editor": "sblim1417",
-    "EditDate": "2026-01-14 13:38:52",
+    "Writer": "yglee",
+    "WriteDate": "2026-02-13 14:53:21",
+    "Editor": "yglee",
+    "EditDate": "2026-02-13 14:53:21",
     "TabPosition": 0,
+    "UsePersonalConditions": false,
     "DocumentVersion": "3.0.0.0",
     "RefreshType": 0,
+    "TabFocusMode": 1,
     "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
     "Datas": [
       {
-        "Id": "DS9789CE99691D437FB79DC9805D499502",
-        "Name": "Data1",
-        "UseMeta": "False",
-        "UseCache": "False",
+        "Id": "DSD8E1C08B094A4419AFA0C3C5C65ED6BC",
+        "Name": "Data0",
+        "UseMeta": false,
+        "UseCache": false,
         "ConnectionCode": "MTXRPTY",
         "Encrypted": "True",
         "DSType": 2,
-        "SQL": "TJ+FGSq5+1MjYZxKaKutkkUN/F4DM1C1ck/sJvyFKks=",
+        "SQL": "LXcspNMdNlaZZoNH7xrLvO1owUkDOp5kxHKZ48utHcA=",
         "Params": [],
-        "Columns": [
-          {
-            "Name": "YYYY",
-            "Type": "String"
-          },
-          {
-            "Name": "HALF",
-            "Type": "String"
-          },
-          {
-            "Name": "QUATER",
-            "Type": "String"
-          },
-          {
-            "Name": "LOCALE",
-            "Type": "String"
-          },
-          {
-            "Name": "PRODUCT",
-            "Type": "String"
-          },
-          {
-            "Name": "CUSTOMER",
-            "Type": "String"
-          },
-          {
-            "Name": "Y_VAL",
-            "Type": "Numeric"
-          },
-          {
-            "Name": "H_VAL",
-            "Type": "Numeric"
-          },
-          {
-            "Name": "Q_VAL",
-            "Type": "Numeric"
-          },
-          {
-            "Name": "ROW_ID",
-            "Type": "Numeric"
-          },
-          {
-            "Name": "BIG_DOUBLE",
-            "Type": "Numeric"
-          }
-        ]
+        "Columns": []
       },
       {
-        "Id": "DS9789CE99691D437FB79DC9805D499502",
+        "Id": "DSFE654E032FED4F29B11F8057AC7E0627",
         "Name": "Data1",
-        "UseMeta": "False",
-        "UseCache": "False",
+        "UseMeta": false,
+        "UseCache": false,
         "ConnectionCode": "MTXRPTY",
         "Encrypted": "True",
         "DSType": 2,
         "SQL": "TJ+FGSq5+1MjYZxKaKutkkUN/F4DM1C1ck/sJvyFKks=",
         "Params": [],
+        "Columns": []
+      },
+      {
+        "Id": "DS_OLAP_PLAN_VS_ACTUAL",
+        "Name": "OLAP_PLAN_VS_ACTUAL",
+        "UseMeta": false,
+        "UseCache": false,
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": false,
+        "DSType": 0,
+        "SQL": "SELECT P.PLAN_YEAR\n     , P.PLAN_MONTH\n     , D.DEPT_NAME\n     , E.EMP_NAME\n     , CC.CODE_NAME                                              AS PROD_CATEGORY\n     , PR.PROD_NAME\n     , COALESCE(P.TARGET_QTY, 0)                                AS TARGET_QTY\n     , COALESCE(P.TARGET_AMT, 0)                                AS TARGET_AMT\n     , COALESCE(S.ACTUAL_QTY, 0)                                AS ACTUAL_QTY\n     , COALESCE(S.ACTUAL_AMT, 0)                                AS ACTUAL_AMT\n  FROM SM_SALES_PLAN P\n  LEFT JOIN (\n       SELECT TO_CHAR(SP.SALES_DATE, 'YYYY') AS S_YEAR\n            , TO_CHAR(SP.SALES_DATE, 'MM')   AS S_MONTH\n            , SP.EMP_ID\n            , SP.PROD_ID\n            , SUM(SP.QTY)                    AS ACTUAL_QTY\n            , SUM(SP.NET_AMOUNT)             AS ACTUAL_AMT\n         FROM SM_SALES_PERFORMANCE SP\n        WHERE SP.SALES_STATUS = 'COMPLETED'\n        GROUP BY TO_CHAR(SP.SALES_DATE, 'YYYY')\n               , TO_CHAR(SP.SALES_DATE, 'MM')\n               , SP.EMP_ID\n               , SP.PROD_ID\n  ) S\n    ON P.PLAN_YEAR  = S.S_YEAR\n   AND P.PLAN_MONTH = S.S_MONTH\n   AND P.EMP_ID     = S.EMP_ID\n   AND P.PROD_ID    = S.PROD_ID\n  LEFT JOIN SM_EMPLOYEE E\n    ON P.EMP_ID = E.EMP_ID\n  LEFT JOIN SM_DEPARTMENT D\n    ON E.DEPT_ID = D.DEPT_ID\n  LEFT JOIN SM_PRODUCT PR\n    ON P.PROD_ID = PR.PROD_ID\n  LEFT JOIN SM_COMMON_CODE CC\n    ON CC.GROUP_CD = 'PROD_CATEGORY'\n   AND CC.CODE     = PR.CATEGORY\n WHERE P.PLAN_STATUS = 'CONFIRMED'\n ORDER BY P.PLAN_YEAR, P.PLAN_MONTH, D.DEPT_NAME, E.EMP_NAME\n",
+        "Params": [],
         "Columns": [
           {
-            "Name": "YYYY",
+            "Name": "PLAN_YEAR",
             "Type": "String"
           },
           {
-            "Name": "HALF",
+            "Name": "PLAN_MONTH",
             "Type": "String"
           },
           {
-            "Name": "QUATER",
+            "Name": "DEPT_NAME",
             "Type": "String"
           },
           {
-            "Name": "LOCALE",
+            "Name": "EMP_NAME",
             "Type": "String"
           },
           {
-            "Name": "PRODUCT",
+            "Name": "PROD_CATEGORY",
             "Type": "String"
           },
           {
-            "Name": "CUSTOMER",
+            "Name": "PROD_NAME",
             "Type": "String"
           },
           {
-            "Name": "Y_VAL",
+            "Name": "TARGET_QTY",
             "Type": "Numeric"
           },
           {
-            "Name": "H_VAL",
+            "Name": "TARGET_AMT",
             "Type": "Numeric"
           },
           {
-            "Name": "Q_VAL",
+            "Name": "ACTUAL_QTY",
             "Type": "Numeric"
           },
           {
-            "Name": "ROW_ID",
-            "Type": "Numeric"
-          },
-          {
-            "Name": "BIG_DOUBLE",
+            "Name": "ACTUAL_AMT",
             "Type": "Numeric"
           }
         ]
@@ -190,7 +155,7 @@
           "SelectionMode": 0,
           "Controls": [
             {
-              "DataSource": "DS9789CE99691D437FB79DC9805D499502",
+              "DataSource": "DS_OLAP_PLAN_VS_ACTUAL",
               "AutoRefresh": true,
               "DoRefresh": true,
               "DoExport": true,
@@ -205,8 +170,8 @@
                   "ErrorCellText": "NG",
                   "RowGrandTotalText": "Grand Total",
                   "ColumnGrandTotalText": "Grand Total",
-                  "RowTotalText": "=수식으로 [VALUE] 합계",
-                  "ColumnTotalText": "=합계",
+                  "RowTotalText": "=[VALUE] 소계",
+                  "ColumnTotalText": "=소계",
                   "RowTotalLocation": 1,
                   "ColumnTotalLocation": 1,
                   "RowGrandTotalLocation": 1,
@@ -217,8 +182,8 @@
                   "HideEmptyMeasureRows": false,
                   "HideEmptyMeasureColumns": false,
                   "DisplayRowSubTotal": true,
-                  "DisplayColumnGrandTotal": false,
-                  "DisplayRowGrandTotal": false,
+                  "DisplayColumnGrandTotal": true,
+                  "DisplayRowGrandTotal": true,
                   "ShowFilterArea": true,
                   "ShowColumnrArea": true,
                   "ShowRowArea": true,
@@ -284,12 +249,122 @@
                 "PreFilters": [],
                 "Fields": [
                   {
-                    "Key": "YYYY",
-                    "Caption": "YYYY",
+                    "Key": "DEPT_NAME",
+                    "Caption": "부서",
                     "ToolTipField": "",
                     "ToolTipText": "",
                     "Category": 1,
                     "Area": 1,
+                    "SummaryType": 5,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 100,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 1,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 0,
+                    "DataType": 1,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "EMP_NAME",
+                    "Caption": "담당자",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 1,
+                    "Area": 1,
+                    "SummaryType": 5,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 100,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 1,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 0,
+                    "DataType": 1,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "PLAN_YEAR",
+                    "Caption": "연도",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 1,
+                    "Area": 2,
                     "SummaryType": 5,
                     "TotalSummaryType": 0,
                     "SummaryVariation": 0,
@@ -334,18 +409,13 @@
                       "HasMeasureFilter": false,
                       "MeasureFilterTypeA": 0,
                       "MeasureFilterTypeB": 0,
-                      "MeasureAndOrOperator": 2,
-                      "Values": [
-                        "Y2000",
-                        "Y2001",
-                        "Y2002"
-                      ]
+                      "MeasureAndOrOperator": 2
                     },
                     "RelationFields": []
                   },
                   {
-                    "Key": "PRODUCT",
-                    "Caption": "PRODUCT",
+                    "Key": "PLAN_MONTH",
+                    "Caption": "월",
                     "ToolTipField": "",
                     "ToolTipText": "",
                     "Category": 1,
@@ -358,403 +428,7 @@
                     "Formula": "",
                     "Formula2": "",
                     "RefFormula": "",
-                    "Width": 100,
-                    "Unit": 1,
-                    "CreateType": 0,
-                    "SortType": 1,
-                    "MeasureSortField": "",
-                    "SortBaseField": "",
-                    "MoveAble": true,
-                    "SortAble": true,
-                    "FilterAble": true,
-                    "AllowFilter": true,
-                    "AllowRow": true,
-                    "AllowColumn": true,
-                    "AllowData": true,
-                    "KeyType": 0,
-                    "DataType": 1,
-                    "SaveMode": 0,
-                    "LanguageCode": "",
-                    "UseChartSource": true,
-                    "VisibleSubTotal": true,
-                    "SummaryBaseFieldKey": "",
-                    "TextAlignment": 1,
-                    "HeaderAlignment": 0,
-                    "InDimensions": "",
-                    "Visible": true,
-                    "Expanded": true,
-                    "MetaItemCode": "",
-                    "MetaItemName": "",
-                    "MetaRollupType": 0,
-                    "MetaCalculatorField": false,
-                    "MetaSummaryTypeIsDistinct": false,
-                    "FilterInfo": {
-                      "FilterType": 0,
-                      "FilterKind": 0,
-                      "HasMeasureFilter": false,
-                      "MeasureFilterTypeA": 0,
-                      "MeasureFilterTypeB": 0,
-                      "MeasureAndOrOperator": 2,
-                      "Values": [
-                        "BW1000",
-                        "BW890",
-                        "DMH2000",
-                        "JAC1100",
-                        "S10"
-                      ]
-                    },
-                    "RelationFields": []
-                  },
-                  {
-                    "Key": "CUSTOMER",
-                    "Caption": "CUSTOMER",
-                    "ToolTipField": "",
-                    "ToolTipText": "",
-                    "Category": 1,
-                    "Area": 3,
-                    "SummaryType": 5,
-                    "TotalSummaryType": 0,
-                    "SummaryVariation": 0,
-                    "GroupByType": 0,
-                    "Format": "",
-                    "Formula": "",
-                    "Formula2": "",
-                    "RefFormula": "",
-                    "Width": 100,
-                    "Unit": 1,
-                    "CreateType": 0,
-                    "SortType": 1,
-                    "MeasureSortField": "",
-                    "SortBaseField": "",
-                    "MoveAble": true,
-                    "SortAble": true,
-                    "FilterAble": true,
-                    "AllowFilter": true,
-                    "AllowRow": true,
-                    "AllowColumn": true,
-                    "AllowData": true,
-                    "KeyType": 0,
-                    "DataType": 1,
-                    "SaveMode": 0,
-                    "LanguageCode": "",
-                    "UseChartSource": true,
-                    "VisibleSubTotal": true,
-                    "SummaryBaseFieldKey": "",
-                    "TextAlignment": 1,
-                    "HeaderAlignment": 0,
-                    "InDimensions": "",
-                    "Visible": true,
-                    "Expanded": true,
-                    "MetaItemCode": "",
-                    "MetaItemName": "",
-                    "MetaRollupType": 0,
-                    "MetaCalculatorField": false,
-                    "MetaSummaryTypeIsDistinct": false,
-                    "FilterInfo": {
-                      "FilterType": 0,
-                      "FilterKind": 0,
-                      "HasMeasureFilter": false,
-                      "MeasureFilterTypeA": 0,
-                      "MeasureFilterTypeB": 0,
-                      "MeasureAndOrOperator": 2
-                    },
-                    "RelationFields": []
-                  },
-                  {
-                    "Key": "Y_VAL",
-                    "Caption": "Y_VAL",
-                    "ToolTipField": "",
-                    "ToolTipText": "",
-                    "Category": 2,
-                    "Area": 4,
-                    "SummaryType": 1,
-                    "TotalSummaryType": 0,
-                    "SummaryVariation": 0,
-                    "GroupByType": 0,
-                    "Format": "{0:N0}",
-                    "Formula": "",
-                    "Formula2": "",
-                    "RefFormula": "",
-                    "Width": 74,
-                    "Unit": 1,
-                    "CreateType": 0,
-                    "SortType": 0,
-                    "MeasureSortField": "",
-                    "SortBaseField": "",
-                    "MoveAble": true,
-                    "SortAble": true,
-                    "FilterAble": true,
-                    "AllowFilter": true,
-                    "AllowRow": true,
-                    "AllowColumn": true,
-                    "AllowData": true,
-                    "KeyType": 0,
-                    "DataType": 0,
-                    "SaveMode": 0,
-                    "LanguageCode": "",
-                    "UseChartSource": true,
-                    "VisibleSubTotal": true,
-                    "SummaryBaseFieldKey": "",
-                    "TextAlignment": 1,
-                    "HeaderAlignment": 0,
-                    "InDimensions": "",
-                    "Visible": true,
-                    "Expanded": true,
-                    "MetaItemCode": "",
-                    "MetaItemName": "",
-                    "MetaRollupType": 0,
-                    "MetaCalculatorField": false,
-                    "MetaSummaryTypeIsDistinct": false,
-                    "FilterInfo": {
-                      "FilterType": 0,
-                      "FilterKind": 0,
-                      "HasMeasureFilter": false,
-                      "MeasureFilterTypeA": 0,
-                      "MeasureFilterTypeB": 0,
-                      "MeasureAndOrOperator": 2
-                    },
-                    "RelationFields": []
-                  },
-                  {
-                    "Key": "HALF",
-                    "Caption": "HALF",
-                    "ToolTipField": "",
-                    "ToolTipText": "",
-                    "Category": 1,
-                    "Area": 1,
-                    "SummaryType": 5,
-                    "TotalSummaryType": 0,
-                    "SummaryVariation": 0,
-                    "GroupByType": 0,
-                    "Format": "",
-                    "Formula": "",
-                    "Formula2": "",
-                    "RefFormula": "",
-                    "Width": 65,
-                    "Unit": 1,
-                    "CreateType": 0,
-                    "SortType": 1,
-                    "MeasureSortField": "",
-                    "SortBaseField": "",
-                    "MoveAble": true,
-                    "SortAble": true,
-                    "FilterAble": true,
-                    "AllowFilter": true,
-                    "AllowRow": true,
-                    "AllowColumn": true,
-                    "AllowData": true,
-                    "KeyType": 0,
-                    "DataType": 1,
-                    "SaveMode": 0,
-                    "LanguageCode": "",
-                    "UseChartSource": true,
-                    "VisibleSubTotal": true,
-                    "SummaryBaseFieldKey": "",
-                    "TextAlignment": 1,
-                    "HeaderAlignment": 0,
-                    "InDimensions": "",
-                    "Visible": true,
-                    "Expanded": true,
-                    "MetaItemCode": "",
-                    "MetaItemName": "",
-                    "MetaRollupType": 0,
-                    "MetaCalculatorField": false,
-                    "MetaSummaryTypeIsDistinct": false,
-                    "FilterInfo": {
-                      "FilterType": 0,
-                      "FilterKind": 0,
-                      "HasMeasureFilter": false,
-                      "MeasureFilterTypeA": 0,
-                      "MeasureFilterTypeB": 0,
-                      "MeasureAndOrOperator": 2
-                    },
-                    "RelationFields": []
-                  },
-                  {
-                    "Key": "LOCALE",
-                    "Caption": "LOCALE",
-                    "ToolTipField": "",
-                    "ToolTipText": "",
-                    "Category": 1,
-                    "Area": 2,
-                    "SummaryType": 5,
-                    "TotalSummaryType": 0,
-                    "SummaryVariation": 0,
-                    "GroupByType": 0,
-                    "Format": "",
-                    "Formula": "",
-                    "Formula2": "",
-                    "RefFormula": "",
-                    "Width": 100,
-                    "Unit": 1,
-                    "CreateType": 0,
-                    "SortType": 1,
-                    "MeasureSortField": "",
-                    "SortBaseField": "",
-                    "MoveAble": true,
-                    "SortAble": true,
-                    "FilterAble": true,
-                    "AllowFilter": true,
-                    "AllowRow": true,
-                    "AllowColumn": true,
-                    "AllowData": true,
-                    "KeyType": 0,
-                    "DataType": 1,
-                    "SaveMode": 0,
-                    "LanguageCode": "",
-                    "UseChartSource": true,
-                    "VisibleSubTotal": true,
-                    "SummaryBaseFieldKey": "",
-                    "TextAlignment": 1,
-                    "HeaderAlignment": 0,
-                    "InDimensions": "",
-                    "Visible": true,
-                    "Expanded": true,
-                    "MetaItemCode": "",
-                    "MetaItemName": "",
-                    "MetaRollupType": 0,
-                    "MetaCalculatorField": false,
-                    "MetaSummaryTypeIsDistinct": false,
-                    "FilterInfo": {
-                      "FilterType": 0,
-                      "FilterKind": 0,
-                      "HasMeasureFilter": false,
-                      "MeasureFilterTypeA": 0,
-                      "MeasureFilterTypeB": 0,
-                      "MeasureAndOrOperator": 2,
-                      "Values": [
-                        "Europe",
-                        "Japan"
-                      ]
-                    },
-                    "RelationFields": []
-                  },
-                  {
-                    "Key": "ROW_ID",
-                    "Caption": "ROW_ID",
-                    "ToolTipField": "",
-                    "ToolTipText": "",
-                    "Category": 2,
-                    "Area": 3,
-                    "SummaryType": 1,
-                    "TotalSummaryType": 0,
-                    "SummaryVariation": 0,
-                    "GroupByType": 0,
-                    "Format": "{0:N0}",
-                    "Formula": "",
-                    "Formula2": "",
-                    "RefFormula": "",
-                    "Width": 100,
-                    "Unit": 1,
-                    "CreateType": 0,
-                    "SortType": 0,
-                    "MeasureSortField": "",
-                    "SortBaseField": "",
-                    "MoveAble": true,
-                    "SortAble": true,
-                    "FilterAble": true,
-                    "AllowFilter": true,
-                    "AllowRow": true,
-                    "AllowColumn": true,
-                    "AllowData": true,
-                    "KeyType": 0,
-                    "DataType": 0,
-                    "SaveMode": 0,
-                    "LanguageCode": "",
-                    "UseChartSource": true,
-                    "VisibleSubTotal": true,
-                    "SummaryBaseFieldKey": "",
-                    "TextAlignment": 1,
-                    "HeaderAlignment": 0,
-                    "InDimensions": "",
-                    "Visible": true,
-                    "Expanded": true,
-                    "MetaItemCode": "",
-                    "MetaItemName": "",
-                    "MetaRollupType": 0,
-                    "MetaCalculatorField": false,
-                    "MetaSummaryTypeIsDistinct": false,
-                    "FilterInfo": {
-                      "FilterType": 0,
-                      "FilterKind": 0,
-                      "HasMeasureFilter": false,
-                      "MeasureFilterTypeA": 0,
-                      "MeasureFilterTypeB": 0,
-                      "MeasureAndOrOperator": 2
-                    },
-                    "RelationFields": []
-                  },
-                  {
-                    "Key": "H_VAL",
-                    "Caption": "H_VAL",
-                    "ToolTipField": "",
-                    "ToolTipText": "",
-                    "Category": 2,
-                    "Area": 4,
-                    "SummaryType": 1,
-                    "TotalSummaryType": 0,
-                    "SummaryVariation": 0,
-                    "GroupByType": 0,
-                    "Format": "{0:N0}",
-                    "Formula": "",
-                    "Formula2": "",
-                    "RefFormula": "",
-                    "Width": 64,
-                    "Unit": 1,
-                    "CreateType": 0,
-                    "SortType": 0,
-                    "MeasureSortField": "",
-                    "SortBaseField": "",
-                    "MoveAble": true,
-                    "SortAble": true,
-                    "FilterAble": true,
-                    "AllowFilter": true,
-                    "AllowRow": true,
-                    "AllowColumn": true,
-                    "AllowData": true,
-                    "KeyType": 0,
-                    "DataType": 0,
-                    "SaveMode": 0,
-                    "LanguageCode": "",
-                    "UseChartSource": true,
-                    "VisibleSubTotal": true,
-                    "SummaryBaseFieldKey": "",
-                    "TextAlignment": 1,
-                    "HeaderAlignment": 0,
-                    "InDimensions": "",
-                    "Visible": true,
-                    "Expanded": true,
-                    "MetaItemCode": "",
-                    "MetaItemName": "",
-                    "MetaRollupType": 0,
-                    "MetaCalculatorField": false,
-                    "MetaSummaryTypeIsDistinct": false,
-                    "FilterInfo": {
-                      "FilterType": 0,
-                      "FilterKind": 0,
-                      "HasMeasureFilter": false,
-                      "MeasureFilterTypeA": 0,
-                      "MeasureFilterTypeB": 0,
-                      "MeasureAndOrOperator": 2
-                    },
-                    "RelationFields": []
-                  },
-                  {
-                    "Key": "QUATER",
-                    "Caption": "QUATER",
-                    "ToolTipField": "",
-                    "ToolTipText": "",
-                    "Category": 1,
-                    "Area": 1,
-                    "SummaryType": 5,
-                    "TotalSummaryType": 0,
-                    "SummaryVariation": 0,
-                    "GroupByType": 0,
-                    "Format": "",
-                    "Formula": "",
-                    "Formula2": "",
-                    "RefFormula": "",
-                    "Width": 100,
+                    "Width": 50,
                     "Unit": 1,
                     "CreateType": 0,
                     "SortType": 1,
@@ -796,7 +470,7 @@
                   },
                   {
                     "Key": "#MEASURES_HEADER#",
-                    "Caption": "Measures",
+                    "Caption": "측정값",
                     "ToolTipField": "",
                     "ToolTipText": "",
                     "Category": 2,
@@ -850,12 +524,12 @@
                     "RelationFields": []
                   },
                   {
-                    "Key": "BIG_DOUBLE",
-                    "Caption": "BIG_DOUBLE",
+                    "Key": "TARGET_QTY",
+                    "Caption": "목표수량",
                     "ToolTipField": "",
                     "ToolTipText": "",
                     "Category": 2,
-                    "Area": 3,
+                    "Area": 4,
                     "SummaryType": 1,
                     "TotalSummaryType": 0,
                     "SummaryVariation": 0,
@@ -864,7 +538,7 @@
                     "Formula": "",
                     "Formula2": "",
                     "RefFormula": "",
-                    "Width": 100,
+                    "Width": 80,
                     "Unit": 1,
                     "CreateType": 0,
                     "SortType": 0,
@@ -905,12 +579,12 @@
                     "RelationFields": []
                   },
                   {
-                    "Key": "Q_VAL",
-                    "Caption": "Q_VAL",
+                    "Key": "TARGET_AMT",
+                    "Caption": "목표금액",
                     "ToolTipField": "",
                     "ToolTipText": "",
                     "Category": 2,
-                    "Area": 3,
+                    "Area": 4,
                     "SummaryType": 1,
                     "TotalSummaryType": 0,
                     "SummaryVariation": 0,
@@ -919,7 +593,7 @@
                     "Formula": "",
                     "Formula2": "",
                     "RefFormula": "",
-                    "Width": 100,
+                    "Width": 90,
                     "Unit": 1,
                     "CreateType": 0,
                     "SortType": 0,
@@ -934,6 +608,226 @@
                     "AllowData": true,
                     "KeyType": 0,
                     "DataType": 0,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "ACTUAL_QTY",
+                    "Caption": "실적수량",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 2,
+                    "Area": 4,
+                    "SummaryType": 1,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "{0:N0}",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 80,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 0,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 0,
+                    "DataType": 0,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "ACTUAL_AMT",
+                    "Caption": "실적금액",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 2,
+                    "Area": 4,
+                    "SummaryType": 1,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "{0:N0}",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 90,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 0,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 0,
+                    "DataType": 0,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "PROD_CATEGORY",
+                    "Caption": "제품카테고리",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 1,
+                    "Area": 3,
+                    "SummaryType": 5,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 100,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 1,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 0,
+                    "DataType": 1,
+                    "SaveMode": 0,
+                    "LanguageCode": "",
+                    "UseChartSource": true,
+                    "VisibleSubTotal": true,
+                    "SummaryBaseFieldKey": "",
+                    "TextAlignment": 1,
+                    "HeaderAlignment": 0,
+                    "InDimensions": "",
+                    "Visible": true,
+                    "Expanded": true,
+                    "MetaItemCode": "",
+                    "MetaItemName": "",
+                    "MetaRollupType": 0,
+                    "MetaCalculatorField": false,
+                    "MetaSummaryTypeIsDistinct": false,
+                    "FilterInfo": {
+                      "FilterType": 0,
+                      "FilterKind": 0,
+                      "HasMeasureFilter": false,
+                      "MeasureFilterTypeA": 0,
+                      "MeasureFilterTypeB": 0,
+                      "MeasureAndOrOperator": 2
+                    },
+                    "RelationFields": []
+                  },
+                  {
+                    "Key": "PROD_NAME",
+                    "Caption": "제품명",
+                    "ToolTipField": "",
+                    "ToolTipText": "",
+                    "Category": 1,
+                    "Area": 3,
+                    "SummaryType": 5,
+                    "TotalSummaryType": 0,
+                    "SummaryVariation": 0,
+                    "GroupByType": 0,
+                    "Format": "",
+                    "Formula": "",
+                    "Formula2": "",
+                    "RefFormula": "",
+                    "Width": 100,
+                    "Unit": 1,
+                    "CreateType": 0,
+                    "SortType": 1,
+                    "MeasureSortField": "",
+                    "SortBaseField": "",
+                    "MoveAble": true,
+                    "SortAble": true,
+                    "FilterAble": true,
+                    "AllowFilter": true,
+                    "AllowRow": true,
+                    "AllowColumn": true,
+                    "AllowData": true,
+                    "KeyType": 0,
+                    "DataType": 1,
                     "SaveMode": 0,
                     "LanguageCode": "",
                     "UseChartSource": true,
@@ -999,10 +893,10 @@
               "Id": "OlapGrid1673947415553",
               "Name": "OlapGrid",
               "Position": {
-                "Left": 11,
-                "Top": 293,
-                "Width": 890,
-                "Height": 599,
+                "Left": 10,
+                "Top": 292,
+                "Width": 616,
+                "Height": 430,
                 "ZIndex": 2,
                 "TabIndex": 0,
                 "Docking": {
@@ -1020,7 +914,9 @@
                 "Type": 0,
                 "BoxStyle": "",
                 "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -1028,7 +924,9 @@
                   }
                 },
                 "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 204,
                     "G": 204,
                     "B": 204,
@@ -1036,10 +934,22 @@
                   },
                   "LineType": "solid",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0"
+                  "CornerRadius": "0,0,0,0",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Border",
+                      "Font",
+                      "StyleType",
+                      "BoxStyle",
+                      "Background"
+                    ]
+                  }
                 },
                 "Font": {
+                  "Type": "FontInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 0,
                     "G": 0,
                     "B": 0,
@@ -1052,6 +962,16 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "left",
                   "VerticalAlignment": "top",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Border",
+                      "Font",
+                      "StyleType",
+                      "BoxStyle",
+                      "Background"
+                    ]
+                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -1063,6 +983,8 @@
                   "Text": "■ Row/Column 소계 텍스트 수식으로 적용하기\n",
                   "Cursor": "default",
                   "Formula": "",
+                  "LineSpacing": 1.2,
+                  "HasLineSpacing": false,
                   "MxBinding": "",
                   "MxBindingUseStyle": false,
                   "Margin": {
@@ -1098,7 +1020,9 @@
                     "Type": 2,
                     "BoxStyle": "",
                     "Background": {
+                      "__type__": "istudio.drawing.style.Brush",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 255,
                         "G": 255,
                         "B": 255,
@@ -1106,7 +1030,9 @@
                       }
                     },
                     "Border": {
+                      "__type__": "istudio.drawing.style.BorderInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 85,
                         "G": 142,
                         "B": 213,
@@ -1114,10 +1040,17 @@
                       },
                       "LineType": "none",
                       "Thickness": "1,1,1,1",
-                      "CornerRadius": "0,0,0,0"
+                      "CornerRadius": "0,0,0,0",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [],
+                        "DefaultStyle": "Label"
+                      }
                     },
                     "Font": {
+                      "Type": "FontInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 48,
                         "G": 48,
                         "B": 49,
@@ -1130,6 +1063,11 @@
                       "UnderLine": false,
                       "HorizontalAlignment": "left",
                       "VerticalAlignment": "top",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [],
+                        "DefaultStyle": "Label"
+                      },
                       "TempFontFamily": "맑은 고딕"
                     }
                   }
@@ -1139,6 +1077,8 @@
                   "Text": "OlapGrid 마우스우클릭 [디자인] > [설정] 탭 > 좌측 [합계 값] 메뉴 > [Column/Row 소계 텍스트] 속성을 수식으로 설정할 수 있습니다.\n\n□ 적용 규칙\n1. Row/ColumnTotalText 속성 값의 시작이 '=' 으로 시작할 경우 수식으로 인식합니다.\n '=' 으로 시작하지 않을 경우 기존과 동일하게 표시합니다.\n2. '=' 시작하면서 '[VALUE]' 가 존재할 경우 예약어로 적용되어 현재 표시하고자 하는 필드의 아이템을 값으로 치환됩니다.\n 예약어 [VALUE] 의 경우 대소문자를 구분하지 않습니다. [VALUE] 또는[value] 둘다 허용\n3. '=' 시작하면서 예약어([VALUE]) 외의 텍스트는 고정값으로 인식하여 그래도 표시합니다.\n\n□ 적용 예\nRow 영역 [YYYY],[HALF],[QUATER] 필드를 배치함.\n[YYYY] 필드의 데이터는 Y2000/Y2001/Y2002 임.\n[YYYY] 의 소계 표시할 때 아래와 같이 구분되어 표시되어야 합니다.\n  Row 소계 텍스트(RowTotalText) 기존과 같이 단순히 ' Total' 일 경우 : Y2000 Total/Y2001 Total/Y2002 Total  \n  Row 소계 텍스트(RowTotalText) 수식으로 '=수식으로 [VALUE] 합계' 일 경우 : 수식으로 Y2000 합계/수식으로 Y2001 합계/수식으로 Y2002 합계  \n",
                   "Cursor": "default",
                   "Formula": "",
+                  "LineSpacing": 1.2,
+                  "HasLineSpacing": false,
                   "MxBinding": "",
                   "MxBindingUseStyle": false,
                   "Margin": {
@@ -1174,7 +1114,9 @@
                     "Type": 2,
                     "BoxStyle": "",
                     "Background": {
+                      "__type__": "istudio.drawing.style.Brush",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 255,
                         "G": 255,
                         "B": 255,
@@ -1182,7 +1124,9 @@
                       }
                     },
                     "Border": {
+                      "__type__": "istudio.drawing.style.BorderInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 85,
                         "G": 142,
                         "B": 213,
@@ -1190,10 +1134,17 @@
                       },
                       "LineType": "none",
                       "Thickness": "1,1,1,1",
-                      "CornerRadius": "0,0,0,0"
+                      "CornerRadius": "0,0,0,0",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [],
+                        "DefaultStyle": "Label"
+                      }
                     },
                     "Font": {
+                      "Type": "FontInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 48,
                         "G": 48,
                         "B": 49,
@@ -1206,6 +1157,11 @@
                       "UnderLine": false,
                       "HorizontalAlignment": "left",
                       "VerticalAlignment": "top",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [],
+                        "DefaultStyle": "Label"
+                      },
                       "TempFontFamily": "맑은 고딕"
                     }
                   }
@@ -1215,6 +1171,8 @@
                   "Text": "■ 버전 정보\n: 해당 기능을 사용하기 위해서는 아래 최소 버전 이상이여야 합니다.\n\ni-AUD app ver. : 7.3.400.0-202301171524\ni-OLAP 서버(OLAP.maf) : 7.0.400.6",
                   "Cursor": "default",
                   "Formula": "",
+                  "LineSpacing": 1.2,
+                  "HasLineSpacing": false,
                   "MxBinding": "",
                   "MxBindingUseStyle": false,
                   "Margin": {
@@ -1250,7 +1208,9 @@
                     "Type": 2,
                     "BoxStyle": "",
                     "Background": {
+                      "__type__": "istudio.drawing.style.Brush",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 255,
                         "G": 255,
                         "B": 255,
@@ -1258,7 +1218,9 @@
                       }
                     },
                     "Border": {
+                      "__type__": "istudio.drawing.style.BorderInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 85,
                         "G": 142,
                         "B": 213,
@@ -1266,10 +1228,17 @@
                       },
                       "LineType": "none",
                       "Thickness": "1,1,1,1",
-                      "CornerRadius": "0,0,0,0"
+                      "CornerRadius": "0,0,0,0",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [],
+                        "DefaultStyle": "Label"
+                      }
                     },
                     "Font": {
+                      "Type": "FontInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 91,
                         "G": 15,
                         "B": 0,
@@ -1282,6 +1251,11 @@
                       "UnderLine": false,
                       "HorizontalAlignment": "left",
                       "VerticalAlignment": "middle",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [],
+                        "DefaultStyle": "Label"
+                      },
                       "TempFontFamily": "맑은 고딕"
                     }
                   }
@@ -1291,9 +1265,9 @@
               "Id": "Group1673948266586",
               "Name": "GRP_TITLE_DESC",
               "Position": {
-                "Left": 6,
-                "Top": 6,
-                "Width": 1888,
+                "Left": 5,
+                "Top": 5,
+                "Width": 1317,
                 "Height": 270,
                 "ZIndex": 2,
                 "TabIndex": 0,
@@ -1312,7 +1286,9 @@
                 "Type": 2,
                 "BoxStyle": "",
                 "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -1320,7 +1296,9 @@
                   }
                 },
                 "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 103,
                     "G": 144,
                     "B": 190,
@@ -1328,10 +1306,19 @@
                   },
                   "LineType": "none",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0"
+                  "CornerRadius": "0,0,0,0",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font"
+                    ],
+                    "DefaultStyle": "Group"
+                  }
                 },
                 "Font": {
+                  "Type": "FontInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 0,
                     "G": 0,
                     "B": 0,
@@ -1344,6 +1331,13 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "left",
                   "VerticalAlignment": "top",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font"
+                    ],
+                    "DefaultStyle": "Group"
+                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -1355,6 +1349,8 @@
                   "Text": "■ [디자인] 팝업창에서 Row/Column 소계텍스트 수식 적용 예",
                   "Cursor": "default",
                   "Formula": "",
+                  "LineSpacing": 1.2,
+                  "HasLineSpacing": false,
                   "MxBinding": "",
                   "MxBindingUseStyle": false,
                   "Margin": {
@@ -1390,7 +1386,9 @@
                     "Type": 2,
                     "BoxStyle": "",
                     "Background": {
+                      "__type__": "istudio.drawing.style.Brush",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 255,
                         "G": 255,
                         "B": 255,
@@ -1398,7 +1396,9 @@
                       }
                     },
                     "Border": {
+                      "__type__": "istudio.drawing.style.BorderInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 85,
                         "G": 142,
                         "B": 213,
@@ -1406,10 +1406,17 @@
                       },
                       "LineType": "none",
                       "Thickness": "1,1,1,1",
-                      "CornerRadius": "0,0,0,0"
+                      "CornerRadius": "0,0,0,0",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [],
+                        "DefaultStyle": "Label"
+                      }
                     },
                     "Font": {
+                      "Type": "FontInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 48,
                         "G": 48,
                         "B": 49,
@@ -1422,6 +1429,11 @@
                       "UnderLine": false,
                       "HorizontalAlignment": "left",
                       "VerticalAlignment": "middle",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [],
+                        "DefaultStyle": "Label"
+                      },
                       "TempFontFamily": "맑은 고딕"
                     }
                   }
@@ -1463,7 +1475,9 @@
                     "Type": 0,
                     "BoxStyle": "",
                     "Background": {
+                      "__type__": "istudio.drawing.style.Brush",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 255,
                         "G": 255,
                         "B": 255,
@@ -1471,7 +1485,9 @@
                       }
                     },
                     "Border": {
+                      "__type__": "istudio.drawing.style.BorderInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 204,
                         "G": 204,
                         "B": 204,
@@ -1479,10 +1495,20 @@
                       },
                       "LineType": "solid",
                       "Thickness": "1,1,1,1",
-                      "CornerRadius": "0,0,0,0"
+                      "CornerRadius": "0,0,0,0",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [
+                          "Background",
+                          "Border",
+                          "Font"
+                        ]
+                      }
                     },
                     "Font": {
+                      "Type": "FontInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 0,
                         "G": 0,
                         "B": 0,
@@ -1495,6 +1521,14 @@
                       "UnderLine": false,
                       "HorizontalAlignment": "left",
                       "VerticalAlignment": "top",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [
+                          "Background",
+                          "Border",
+                          "Font"
+                        ]
+                      },
                       "TempFontFamily": "맑은 고딕"
                     }
                   }
@@ -1536,7 +1570,9 @@
                     "Type": 0,
                     "BoxStyle": "",
                     "Background": {
+                      "__type__": "istudio.drawing.style.Brush",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 255,
                         "G": 255,
                         "B": 255,
@@ -1544,7 +1580,9 @@
                       }
                     },
                     "Border": {
+                      "__type__": "istudio.drawing.style.BorderInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 204,
                         "G": 204,
                         "B": 204,
@@ -1552,10 +1590,20 @@
                       },
                       "LineType": "solid",
                       "Thickness": "1,1,1,1",
-                      "CornerRadius": "0,0,0,0"
+                      "CornerRadius": "0,0,0,0",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [
+                          "Background",
+                          "Border",
+                          "Font"
+                        ]
+                      }
                     },
                     "Font": {
+                      "Type": "FontInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 0,
                         "G": 0,
                         "B": 0,
@@ -1568,6 +1616,14 @@
                       "UnderLine": false,
                       "HorizontalAlignment": "left",
                       "VerticalAlignment": "top",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [
+                          "Background",
+                          "Border",
+                          "Font"
+                        ]
+                      },
                       "TempFontFamily": "맑은 고딕"
                     }
                   }
@@ -1609,7 +1665,9 @@
                     "Type": 0,
                     "BoxStyle": "",
                     "Background": {
+                      "__type__": "istudio.drawing.style.Brush",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 255,
                         "G": 255,
                         "B": 255,
@@ -1617,7 +1675,9 @@
                       }
                     },
                     "Border": {
+                      "__type__": "istudio.drawing.style.BorderInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 204,
                         "G": 204,
                         "B": 204,
@@ -1625,10 +1685,20 @@
                       },
                       "LineType": "solid",
                       "Thickness": "1,1,1,1",
-                      "CornerRadius": "0,0,0,0"
+                      "CornerRadius": "0,0,0,0",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [
+                          "Background",
+                          "Border",
+                          "Font"
+                        ]
+                      }
                     },
                     "Font": {
+                      "Type": "FontInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 0,
                         "G": 0,
                         "B": 0,
@@ -1641,6 +1711,14 @@
                       "UnderLine": false,
                       "HorizontalAlignment": "left",
                       "VerticalAlignment": "top",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [
+                          "Background",
+                          "Border",
+                          "Font"
+                        ]
+                      },
                       "TempFontFamily": "맑은 고딕"
                     }
                   }
@@ -1650,6 +1728,8 @@
                   "Text": ": 수식 적용되어 조회된 Header Total 셀의 값과 동일하게 Excel 파일의 Cell 에 출력되어야 합니다.",
                   "Cursor": "default",
                   "Formula": "",
+                  "LineSpacing": 1.2,
+                  "HasLineSpacing": false,
                   "MxBinding": "",
                   "MxBindingUseStyle": false,
                   "Margin": {
@@ -1685,7 +1765,9 @@
                     "Type": 2,
                     "BoxStyle": "",
                     "Background": {
+                      "__type__": "istudio.drawing.style.Brush",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 255,
                         "G": 255,
                         "B": 255,
@@ -1693,7 +1775,9 @@
                       }
                     },
                     "Border": {
+                      "__type__": "istudio.drawing.style.BorderInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 85,
                         "G": 142,
                         "B": 213,
@@ -1701,10 +1785,17 @@
                       },
                       "LineType": "none",
                       "Thickness": "1,1,1,1",
-                      "CornerRadius": "0,0,0,0"
+                      "CornerRadius": "0,0,0,0",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [],
+                        "DefaultStyle": "Label"
+                      }
                     },
                     "Font": {
+                      "Type": "FontInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 48,
                         "G": 48,
                         "B": 49,
@@ -1717,6 +1808,11 @@
                       "UnderLine": false,
                       "HorizontalAlignment": "left",
                       "VerticalAlignment": "middle",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [],
+                        "DefaultStyle": "Label"
+                      },
                       "TempFontFamily": "맑은 고딕"
                     }
                   }
@@ -1726,6 +1822,8 @@
                   "Text": "■ Row/Column 소계텍스트 수식 적용  후 Excel 내보내기 적용 예",
                   "Cursor": "default",
                   "Formula": "",
+                  "LineSpacing": 1.2,
+                  "HasLineSpacing": false,
                   "MxBinding": "",
                   "MxBindingUseStyle": false,
                   "Margin": {
@@ -1761,7 +1859,9 @@
                     "Type": 2,
                     "BoxStyle": "",
                     "Background": {
+                      "__type__": "istudio.drawing.style.Brush",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 255,
                         "G": 255,
                         "B": 255,
@@ -1769,7 +1869,9 @@
                       }
                     },
                     "Border": {
+                      "__type__": "istudio.drawing.style.BorderInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 85,
                         "G": 142,
                         "B": 213,
@@ -1777,10 +1879,17 @@
                       },
                       "LineType": "none",
                       "Thickness": "1,1,1,1",
-                      "CornerRadius": "0,0,0,0"
+                      "CornerRadius": "0,0,0,0",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [],
+                        "DefaultStyle": "Label"
+                      }
                     },
                     "Font": {
+                      "Type": "FontInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 48,
                         "G": 48,
                         "B": 49,
@@ -1793,6 +1902,11 @@
                       "UnderLine": false,
                       "HorizontalAlignment": "left",
                       "VerticalAlignment": "middle",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [],
+                        "DefaultStyle": "Label"
+                      },
                       "TempFontFamily": "맑은 고딕"
                     }
                   }
@@ -1802,6 +1916,8 @@
                   "Text": "■ Row/Column 소계텍스트 수식 적용 데이터 조회된 예",
                   "Cursor": "default",
                   "Formula": "",
+                  "LineSpacing": 1.2,
+                  "HasLineSpacing": false,
                   "MxBinding": "",
                   "MxBindingUseStyle": false,
                   "Margin": {
@@ -1837,7 +1953,9 @@
                     "Type": 2,
                     "BoxStyle": "",
                     "Background": {
+                      "__type__": "istudio.drawing.style.Brush",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 255,
                         "G": 255,
                         "B": 255,
@@ -1845,7 +1963,9 @@
                       }
                     },
                     "Border": {
+                      "__type__": "istudio.drawing.style.BorderInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 85,
                         "G": 142,
                         "B": 213,
@@ -1853,10 +1973,17 @@
                       },
                       "LineType": "none",
                       "Thickness": "1,1,1,1",
-                      "CornerRadius": "0,0,0,0"
+                      "CornerRadius": "0,0,0,0",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [],
+                        "DefaultStyle": "Label"
+                      }
                     },
                     "Font": {
+                      "Type": "FontInfo",
                       "Color": {
+                        "__type__": "istudio.drawing.style.Color",
                         "R": 48,
                         "G": 48,
                         "B": 49,
@@ -1869,6 +1996,11 @@
                       "UnderLine": false,
                       "HorizontalAlignment": "left",
                       "VerticalAlignment": "middle",
+                      "Option": {
+                        "activate": [],
+                        "Inactivate": [],
+                        "DefaultStyle": "Label"
+                      },
                       "TempFontFamily": "맑은 고딕"
                     }
                   }
@@ -1878,10 +2010,10 @@
               "Id": "Group1673948296746",
               "Name": "GRP_DESC",
               "Position": {
-                "Left": 918,
-                "Top": 288,
-                "Width": 976,
-                "Height": 609,
+                "Left": 643,
+                "Top": 287,
+                "Width": 679,
+                "Height": 440,
                 "ZIndex": 3,
                 "TabIndex": 0,
                 "Docking": {
@@ -1899,7 +2031,9 @@
                 "Type": 2,
                 "BoxStyle": "",
                 "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 255,
                     "G": 255,
                     "B": 255,
@@ -1907,7 +2041,9 @@
                   }
                 },
                 "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 103,
                     "G": 144,
                     "B": 190,
@@ -1915,10 +2051,19 @@
                   },
                   "LineType": "none",
                   "Thickness": "1,1,1,1",
-                  "CornerRadius": "0,0,0,0"
+                  "CornerRadius": "0,0,0,0",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font"
+                    ],
+                    "DefaultStyle": "Group"
+                  }
                 },
                 "Font": {
+                  "Type": "FontInfo",
                   "Color": {
+                    "__type__": "istudio.drawing.style.Color",
                     "R": 0,
                     "G": 0,
                     "B": 0,
@@ -1931,6 +2076,13 @@
                   "UnderLine": false,
                   "HorizontalAlignment": "left",
                   "VerticalAlignment": "top",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [
+                      "Font"
+                    ],
+                    "DefaultStyle": "Group"
+                  },
                   "TempFontFamily": "맑은 고딕"
                 }
               }
@@ -1948,8 +2100,8 @@
           "Position": {
             "Left": 0,
             "Top": 0,
-            "Width": 1898,
-            "Height": 901,
+            "Width": 1327,
+            "Height": 732,
             "ZIndex": 0,
             "TabIndex": 0,
             "Docking": {

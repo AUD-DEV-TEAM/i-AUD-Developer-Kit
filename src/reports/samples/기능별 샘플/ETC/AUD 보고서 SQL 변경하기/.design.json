@@ -1,0 +1,470 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPF09BEF418219456D993C7B8F6362C0D0",
+    "FolderCode": "FLD529700487588439380E5CCBE9AAF54FB",
+    "SavePath": "FLD529700487588439380E5CCBE9AAF54FB/REPF09BEF418219456D993C7B8F6362C0D0.mtsd",
+    "ReportName": "AUD 보고서 SQL 변경하기",
+    "Writer": "yglee",
+    "WriteDate": "2025-07-08 15:47:04",
+    "Editor": "yglee",
+    "EditDate": "2025-07-08 15:47:04",
+    "UseLayout": false,
+    "UsePersonalConditions": false
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS7600C2675C284C21B1A96244EE28D85D",
+        "Name": "FOLDER_INFO",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/FOLDER_INFO.sql",
+        "Columns": [
+          {
+            "Name": "CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "PCODE",
+            "Type": "String"
+          },
+          {
+            "Name": "IMG",
+            "Type": "String"
+          },
+          {
+            "Name": "CHILD",
+            "Type": "String"
+          },
+          {
+            "Name": "TOOLTIP",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSA8321CB4C8854ED2B388975C7DED876A",
+        "Name": "GET_REPORT",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/GET_REPORT.sql",
+        "Params": [
+          {
+            "Name": ":VS_FOLDER_CODE",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "REPORT_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "FOLDER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "REPORT_PATH",
+            "Type": "String"
+          },
+          {
+            "Name": "OWNER_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "CREATE_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "MODIFY_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "UPDATE_STATUS",
+            "Type": "String"
+          }
+        ]
+      },
+      {
+        "Id": "DSBEAB450DA392434D966E0F2E4409C1FC",
+        "Name": "GET_BACKUP_REPORT",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/GET_BACKUP_REPORT.sql"
+      },
+      {
+        "Id": "DSF5DF9404D5394ED9AA0426B5C68EA72B",
+        "Name": "REPORT_PATH",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/REPORT_PATH.sql"
+      }
+    ]
+  },
+  "ScriptText": "./AUD 보고서 SQL 변경하기.script.ts",
+  "ServerScriptText": [
+    {
+      "Name": "READ_SOURCE",
+      "Key": "BIZ2B6B28D9D1C84EE1BE5FA46625A5C417",
+      "Encrypted": true,
+      "ScriptText": "./ServerScript/READ_SOURCE.ts"
+    },
+    {
+      "Name": "UPDATE_SQL",
+      "Key": "BIZFCD1910771104BA1AAC773CAC65507DF",
+      "Encrypted": true,
+      "ScriptText": "./ServerScript/UPDATE_SQL.ts"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "Form84862855-a613-01b8-4b36-ba6fb76f2a1d",
+      "Name": "Form1",
+      "Style": {
+        "Type": 2,
+        "Border": {
+          "LineType": "none"
+        }
+      },
+      "Elements": [
+        {
+          "Type": "Tree",
+          "Id": "Treef8395a92-e1c3-f206-9560-e2235bc3e0a3",
+          "Name": "Tree",
+          "Position": {
+            "Left": 2,
+            "Top": 53,
+            "Width": 377,
+            "Height": 930,
+            "ZIndex": 2,
+            "Docking": {
+              "Margin": "10,60,0,10"
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": "#cccccc"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "DataSource": "DS7600C2675C284C21B1A96244EE28D85D",
+          "DataSourceInfo": {
+            "LabelField": "NAME",
+            "ValueField": "CODE",
+            "HasChildField": "CHILD",
+            "ImageField": "IMG",
+            "OnImageField": "IMG",
+            "KeyField": "CODE",
+            "ParentKeyField": "PCODE"
+          },
+          "HoverBackgroundColor": {
+            "__type__": "istudio.drawing.style.Color"
+          },
+          "HoverFontColor": {
+            "__type__": "istudio.drawing.style.Color"
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "Labelf31c6af7-81d7-9151-4f35-d9a957b0b3bc",
+          "Name": "LBL_TITLE",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1338,
+            "Height": 50,
+            "ZIndex": 4,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "BoxStyle": "BXDE549298837943D79F81D950BF074E02",
+            "Background": {
+              "Color": "#dfeffc"
+            },
+            "Border": {
+              "Color": "#cccccc"
+            },
+            "Font": {
+              "Color": "#0b214c",
+              "Size": 19
+            }
+          },
+          "Text": " AUD 보고서 SQL 내 문자열 일괄 변경하기",
+          "MxBindingUseStyle": false,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "GRID139bc16b-fb66-1deb-9780-172e8ccb9d43",
+          "Name": "MAIN",
+          "Position": {
+            "Left": 379,
+            "Top": 211,
+            "Width": 959,
+            "Height": 511,
+            "ZIndex": 69,
+            "Docking": {
+              "Margin": "0",
+              "Right": true
+            }
+          },
+          "Style": {
+            "Type": 2
+          },
+          "DataSource": "DSA8321CB4C8854ED2B388975C7DED876A",
+          "DoRefresh": false,
+          "Editable": true,
+          "ExportCount": 0,
+          "UseCSVExport": false,
+          "UseTextExport": false,
+          "Columns": [
+            {
+              "Name": "CHK_STATUS",
+              "Caption": "",
+              "Width": 50,
+              "Filterable": false,
+              "ColumnType": 2,
+              "KeyType": 2,
+              "TextPosition": "center",
+              "CheckedValue": "Y",
+              "UnCheckedValue": "N",
+              "VisibleCheckAllBox": true,
+              "CalcSubTotalType": "None"
+            },
+            {
+              "Name": "REPORT_NAME",
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "GridColumnWidthType": 1,
+              "Editable": false,
+              "KeyType": 2
+            },
+            {
+              "Name": "REPORT_CODE",
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "GridColumnWidthType": 1,
+              "Editable": false,
+              "Filterable": false,
+              "KeyType": 3
+            },
+            {
+              "Name": "OWNER_CODE",
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Width": 104,
+              "Editable": false,
+              "Filterable": false,
+              "KeyType": 2,
+              "TextPosition": "center",
+              "CalcSubTotalType": "None"
+            },
+            {
+              "Name": "CREATE_DATE",
+              "KeyType": 2,
+              "CalcSubTotalType": "None"
+            },
+            {
+              "Name": "MODIFY_DATE",
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Width": 50,
+              "GridColumnWidthType": 1,
+              "Editable": false,
+              "Filterable": false,
+              "KeyType": 2,
+              "TextPosition": "center",
+              "CalcSubTotalType": "None"
+            },
+            {
+              "Name": "UPDATE_STATUS",
+              "KeyType": 2,
+              "CalcSubTotalType": "None"
+            },
+            {
+              "Name": "FOLDER_CODE",
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Visible": false,
+              "Filterable": false,
+              "KeyType": 2
+            },
+            {
+              "Name": "REPORT_PATH",
+              "Validator": {
+                "ValidateType": 0,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              },
+              "Filterable": false,
+              "KeyType": 2
+            }
+          ]
+        },
+        {
+          "Type": "Button",
+          "Id": "Button08DA28F27D1E99CF8F9A1A8941B79FA7",
+          "Name": "btnExecute",
+          "Position": {
+            "Left": 1240,
+            "Top": 17,
+            "Width": 66,
+            "Height": 26,
+            "ZIndex": 69,
+            "Docking": {
+              "Right": true,
+              "Margin": "0,0,32,0",
+              "HoldSize": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#f9f9fb"
+            },
+            "Border": {
+              "Color": "#7e9bf6"
+            },
+            "Font": {
+              "Color": "#303031",
+              "Size": 12,
+              "Bold": true
+            }
+          },
+          "Value": "실행"
+        },
+        {
+          "Type": "Label",
+          "Id": "Label0E829E6A2D9CD64DC60A673D09BE7A38",
+          "Name": "Label",
+          "Position": {
+            "Left": 379,
+            "Top": 53,
+            "Width": 240,
+            "Height": 147,
+            "ZIndex": 70
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "A": 0
+              }
+            },
+            "Font": {
+              "Size": 12,
+              "VerticalAlignment": "top"
+            }
+          },
+          "Text": "<변경 내용>\nJSON 객체로 여러개 입력합니다.\n{ \n  \"변경전코드\":\"변경후 코드\"\n  ,\"T02\":\"TX002\"\n  ,\"T03\":\"TX003\"\n}\n"
+        },
+        {
+          "Type": "RichTextBox",
+          "Id": "RichTextBox451276F85909A14C3F651732AC9A201A",
+          "Name": "VS_REPLACE_LIST",
+          "Position": {
+            "Left": 652,
+            "Top": 53,
+            "Width": 300,
+            "Height": 150,
+            "ZIndex": 74
+          },
+          "Value": [
+            "{ ",
+            "  \"OLD_TABLE_NAME\":\"NEW_TABLE_NAME\"",
+            "  ,\"MTX_OPTION\":\"mtx_option\"",
+            "  ,\"T03\":\"TX003\"",
+            "}",
+            ""
+          ],
+          "Text": "{ \n  \"OLD_TABLE_NAME\":\"NEW_TABLE_NAME\"\n  ,\"MTX_OPTION\":\"mtx_option\"\n  ,\"T03\":\"TX003\"\n}\n"
+        }
+      ]
+    }
+  ],
+  "Variables": [
+    {
+      "Name": "VS_FOLDER_CODE",
+      "Value": "FLD9E076610129F4D1990C3AEA6B76F63C3",
+      "Desc": "",
+      "Formula": ""
+    },
+    {
+      "Name": "REPORT_CODE",
+      "Value": "REP8200EABC719F438D89CCCCE739D5D3A2",
+      "Desc": "",
+      "Formula": ""
+    },
+    {
+      "Name": "VS_REPORT_CODE",
+      "Value": "REPBAD6708D35C0451488F96B11A64AF8A2",
+      "Desc": "",
+      "Formula": ""
+    },
+    {
+      "Name": "FAIL_INFO",
+      "Value": null,
+      "Desc": "",
+      "Formula": ""
+    }
+  ]
+}

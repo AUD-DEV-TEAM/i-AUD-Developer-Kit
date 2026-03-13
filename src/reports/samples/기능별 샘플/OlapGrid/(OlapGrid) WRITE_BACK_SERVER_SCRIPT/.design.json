@@ -1,0 +1,644 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REP4A3E270A08B9473899EE86D8DC477E15",
+    "FolderCode": "FLD9E076610129F4D1990C3AEA6B76F63C3",
+    "SavePath": "FLD9E076610129F4D1990C3AEA6B76F63C3/REP4A3E270A08B9473899EE86D8DC477E15.mtsd",
+    "ReportName": "(OlapGrid) Write-Back-ServerScript",
+    "Writer": "yglee",
+    "WriteDate": "2025-06-12 17:19:17",
+    "Editor": "yglee",
+    "EditDate": "2025-06-12 17:19:17",
+    "TabPosition": 1,
+    "UseLayout": false,
+    "UsePersonalConditions": false
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS",
+        "Name": "Data1",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data1.sql",
+        "Columns": [
+          {
+            "Name": "P1",
+            "Type": "String"
+          },
+          {
+            "Name": "D1",
+            "Type": "String"
+          },
+          {
+            "Name": "D2",
+            "Type": "String"
+          },
+          {
+            "Name": "D3",
+            "Type": "String"
+          },
+          {
+            "Name": "D4",
+            "Type": "String"
+          },
+          {
+            "Name": "D5",
+            "Type": "String"
+          },
+          {
+            "Name": "D6",
+            "Type": "String"
+          },
+          {
+            "Name": "D7",
+            "Type": "String"
+          },
+          {
+            "Name": "D8",
+            "Type": "String"
+          },
+          {
+            "Name": "M1",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "M2",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "M3",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DS1",
+        "Name": "Data2",
+        "ConnectionCode": "FILE_DATA_BASE",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data2.sql",
+        "Columns": [
+          {
+            "Name": "CODE",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "TEXT",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./OLAP_WRITE_BACK_SERVER_SCRIPT.script.ts",
+  "ServerScriptText": [
+    {
+      "Name": "Service1",
+      "Key": "BIZ",
+      "Encrypted": true,
+      "ScriptText": "./ServerScript/Service1.ts"
+    },
+    {
+      "Name": "OLAP_WRITE_BACK",
+      "Key": "BIZ96A72586850C4566A03AFD60B4C192E0",
+      "Encrypted": true,
+      "ScriptText": "./ServerScript/OLAP_WRITE_BACK.ts"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "Formc911a14a-e832-bcd8-df27-ace611f66cb1",
+      "Name": "Smaple",
+      "Style": {
+        "Type": 2
+      },
+      "Elements": [
+        {
+          "Type": "CheckBox",
+          "Id": "CheckBoxe16c811f-ea63-7f4f-88c9-cf44e107c08b",
+          "Name": "chkManualUpdate",
+          "Position": {
+            "Left": 288,
+            "Top": 9,
+            "Width": 100,
+            "Height": 23
+          },
+          "Text": "수동 업데이트"
+        },
+        {
+          "Type": "CheckBox",
+          "Id": "CheckBox9d134046-ae6d-ebef-a3f2-e7cd8f6fb291",
+          "Name": "chkEnableCreateRecord",
+          "Position": {
+            "Left": 401,
+            "Top": 10,
+            "Width": 148,
+            "Height": 23
+          },
+          "Text": "빈셀 데이터 자동 생성"
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "ComboBox5e72f37a-e4a3-65c1-bf2d-9f8f6a15b212",
+          "Name": "VN_BAEBUN_TYPE",
+          "Position": {
+            "Left": 86,
+            "Top": 6,
+            "Width": 154,
+            "Height": 23
+          },
+          "DataSource": "DS1",
+          "Value": "3",
+          "Text": "가중치 배분(force)",
+          "AutoRefresh": true,
+          "UseAllItemsText": "전체",
+          "InitValue": "3",
+          "UseTooltip": true
+        },
+        {
+          "Type": "Label",
+          "Id": "Label75c3a4d1-9c96-2c7c-b19d-88a445adc3c5",
+          "Name": "Label1",
+          "Position": {
+            "Left": 14,
+            "Top": 4,
+            "Width": 69,
+            "Height": 23,
+            "ZIndex": 5
+          },
+          "Text": " 배분 방식",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "Buttonb7166246-3e8e-ad6f-17e3-048d19c03416",
+          "Name": "btnUpate",
+          "Position": {
+            "Left": 638,
+            "Top": 6,
+            "Width": 60,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#2e57a0"
+            },
+            "Border": {
+              "Color": {
+                "G": 56,
+                "B": 134
+              },
+              "CornerRadius": "1"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "Value": "저장",
+          "UseTooltip": true,
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          },
+          "HasNewRadius": false
+        },
+        {
+          "Type": "Button",
+          "Id": "Button9b0e582f-8ab1-2314-9386-809ab2958498",
+          "Name": "btnCalculate",
+          "Position": {
+            "Left": 567,
+            "Top": 6,
+            "Width": 60,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#2e57a0"
+            },
+            "Border": {
+              "Color": {
+                "G": 56,
+                "B": 134
+              },
+              "CornerRadius": "1"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "Value": "계산하기",
+          "UseTooltip": true,
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          },
+          "HasNewRadius": false
+        },
+        {
+          "Type": "RichTextBox",
+          "Id": "RichTextBox1cb4d93d-f006-30a3-6352-263bacc521d4",
+          "Name": "tbxLockCellFormula",
+          "Position": {
+            "Left": 85,
+            "Top": 34,
+            "Width": 269,
+            "Height": 47,
+            "ZIndex": 5
+          },
+          "Value": "[D8] = \"입고\"",
+          "Text": "[D8] = \"입고\""
+        },
+        {
+          "Type": "Label",
+          "Id": "Label31174719-778c-6d16-c726-cdb4bbf02ce1",
+          "Name": "Label2",
+          "Position": {
+            "Left": 15,
+            "Top": 35,
+            "Width": 69,
+            "Height": 23,
+            "ZIndex": 5
+          },
+          "Text": "셀 잠금 수식",
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "OlapGrid",
+          "Id": "OlapGrid1643090455349",
+          "Name": "OlapGrid",
+          "Position": {
+            "Left": 5,
+            "Top": 92,
+            "Width": 2720,
+            "Height": 847,
+            "ZIndex": 2,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Bottom": true,
+              "Margin": "5"
+            }
+          },
+          "DataSource": "DS",
+          "ServerScript": "OLAP_WRITE_BACK",
+          "iOLAPView": {
+            "Options": {
+              "RowTotalLocation": 1,
+              "RowGrandTotalLocation": 1,
+              "DisplayColumnSubTotal": false,
+              "HideTotalChildIsOneColumn": true,
+              "HideTotalChildIsOneRow": true,
+              "EnableWriteBack": true,
+              "EnableCreateRecord": false,
+              "ManualUpdate": false,
+              "PagerInfo": {
+                "UsePaging": false
+              },
+              "Style": {
+                "LineColor": "rgba(152,183,216,1)"
+              },
+              "CacheOption": {
+                "UseHybrid": false
+              }
+            },
+            "Fields": [
+              {
+                "Key": "D5",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "Width": 200,
+                "SortType": 1
+              },
+              {
+                "Key": "#MEASURES_HEADER#",
+                "Caption": "Measures",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 2,
+                "CreateType": 1,
+                "AllowFilter": false,
+                "AllowData": false
+              },
+              {
+                "Key": "P1",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 3,
+                "SummaryType": 5,
+                "SortType": 1,
+                "KeyType": 3
+              },
+              {
+                "Key": "M1",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "Width": 159,
+                "KeyType": 2,
+                "EditMethod": 3,
+                "EditPrecision": 0
+              },
+              {
+                "Key": "D6",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "Width": 254,
+                "SortType": 1
+              },
+              {
+                "Key": "M3",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 3,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "KeyType": 2,
+                "EditMethod": 3,
+                "EditPrecision": 0
+              },
+              {
+                "Key": "M2",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "KeyType": 2,
+                "EditMethod": 3,
+                "EditPrecision": 0
+              },
+              {
+                "Key": "D7",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "Width": 209,
+                "SortType": 1
+              },
+              {
+                "Key": "D8",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 3,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "D4",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 3,
+                "SummaryType": 5,
+                "Width": 273,
+                "SortType": 1,
+                "VisibleSubTotal": false
+              },
+              {
+                "Key": "D3",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 3,
+                "SummaryType": 5,
+                "Width": 164,
+                "SortType": 1,
+                "VisibleSubTotal": false
+              },
+              {
+                "Key": "D2",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 3,
+                "SummaryType": 5,
+                "SortType": 1,
+                "VisibleSubTotal": false
+              },
+              {
+                "Key": "D1",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 3,
+                "SummaryType": 5,
+                "Width": 77,
+                "SortType": 1,
+                "VisibleSubTotal": false
+              }
+            ]
+          },
+          "ExtraOption": {
+            "CurrentPageSize": 100,
+            "EtcFormat": true,
+            "EtcProperties": true,
+            "EtcMultiHeader": true
+          }
+        }
+      ]
+    },
+    {
+      "Id": "Form3daf703d-9a1e-d517-cb87-020a7c9e7286",
+      "Name": "Write-Back 가이드",
+      "Activated": false,
+      "Style": {
+        "Type": 2
+      },
+      "Elements": [
+        {
+          "Type": "iGrid",
+          "Id": "iGrid1643118662708",
+          "Name": "MXGrid1",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 2730,
+            "Height": 944,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": true,
+              "Bottom": true
+            }
+          },
+          "DoRefresh": false,
+          "TemplateCode": "3DA83891F15444B38AED2BBE3F2F29DD"
+        }
+      ]
+    }
+  ],
+  "WorkFlowInfo": "{\"Document\":{\"Name\":\"Report\",\"Events\":[{\"Name\":\"OnDocumentLoadComplete\",\"Flow\":{\"Actions\":[{\"Name\":\"Module\",\"Parameters\":[\"Splitter 상/하 (MX-Grid 사용)\",\"{\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"MODULE_SUBJECT\\\":\\\"Splitter 상/하 (MX-Grid 사용)\\\",\\\"MODULE_PARAMS\\\":[{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"1\\\",\\\"PARAM_DESCRIPTION\\\":\\\"Splitter로 사용할 MX-Grid 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"MXGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"2\\\",\\\"PARAM_DESCRIPTION\\\":\\\"상단에 배치할 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"OlapGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"3\\\",\\\"PARAM_DESCRIPTION\\\":\\\"하단에 배치할 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"Group\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA673ED75A2354FDB9F82AF23B78BA50F\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"Y\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP001\\\",\\\"PARAM_SEQ\\\":\\\"4\\\",\\\"PARAM_DESCRIPTION\\\":\\\"Splitter의 색상을 입력해 주세요.(eg.#efefef) \\\\n입력하지 않을 경우 기본값이 적용됩니다.\\\",\\\"Value\\\":\\\"\\\"}],\\\"MODULE_TYPE\\\":\\\"\\\"}\"]},{\"Name\":\"Module\",\"Parameters\":[\"OlapGrid Drill To Detail \",\"{\\\"MODULE_CODE\\\":\\\"MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8\\\",\\\"MODULE_SUBJECT\\\":\\\"OlapGrid Drill To Detail \\\",\\\"MODULE_PARAMS\\\":[{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"1\\\",\\\"PARAM_DESCRIPTION\\\":\\\"OlapGrid 컨트롤을 선택해 주세요.\\\",\\\"Value\\\":\\\"OlapGrid\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP004\\\",\\\"PARAM_SEQ\\\":\\\"2\\\",\\\"PARAM_DESCRIPTION\\\":\\\"상세 데이터를 출력할 데이터 그리드를 선택해 주세요.\\\",\\\"Value\\\":\\\"DataGrid\\\"}],\\\"MODULE_TYPE\\\":\\\"\\\"}\"]}],\"IsChecked\":true,\"SourceXML\":\"<Activity x:Class=\\\"Report(Open)_OnDocumentLoadComplete\\\" sap:VirtualizedContainerService.HintSize=\\\"276,342\\\" mva:VisualBasic.Settings=\\\"Assembly references and imported namespaces for internal implementation\\\" xmlns=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities\\\" xmlns:mva=\\\"clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities\\\" xmlns:sads=\\\"http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger\\\" xmlns:sap=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation\\\" xmlns:scg=\\\"clr-namespace:System.Collections.Generic;assembly=mscorlib\\\" xmlns:wa=\\\"clr-namespace:WorkFlow.Activities;assembly=WorkFlow\\\" xmlns:x=\\\"http://schemas.microsoft.com/winfx/2006/xaml\\\">\\r\\n  <Sequence DisplayName=\\\"Report(Open)_OnDocumentLoadComplete\\\" sap:VirtualizedContainerService.HintSize=\\\"236,302\\\">\\r\\n    <sap:WorkflowViewStateService.ViewState>\\r\\n      <scg:Dictionary x:TypeArguments=\\\"x:String, x:Object\\\">\\r\\n        <x:Boolean x:Key=\\\"IsExpanded\\\">True</x:Boolean>\\r\\n      </scg:Dictionary>\\r\\n    </sap:WorkflowViewStateService.ViewState>\\r\\n    <wa:Module ConditionExpression=\\\"{x:Null}\\\" ConditionToolTipText=\\\"\\\" DiagramText=\\\"Module\\\" DisplayName=\\\"Module\\\" Expand=\\\"False\\\" FunctionName=\\\"_AUD_Module\\\" sap:VirtualizedContainerService.HintSize=\\\"214,69\\\" ModuleJson=\\\"{}{&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;MODULE_SUBJECT&quot;:&quot;Splitter 상/하 (MX-Grid 사용)&quot;,&quot;MODULE_PARAMS&quot;:[{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;1&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;Splitter로 사용할 MX-Grid 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;MXGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;2&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;상단에 배치할 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;OlapGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;3&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;하단에 배치할 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;Group&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA673ED75A2354FDB9F82AF23B78BA50F&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;Y&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP001&quot;,&quot;PARAM_SEQ&quot;:&quot;4&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;Splitter의 색상을 입력해 주세요.(eg.#efefef) \\\\n입력하지 않을 경우 기본값이 적용됩니다.&quot;,&quot;Value&quot;:&quot;&quot;}],&quot;MODULE_TYPE&quot;:&quot;&quot;}\\\" ModuleName=\\\"Splitter 상/하 (MX-Grid 사용)\\\" Result=\\\"{x:Null}\\\">\\r\\n      <wa:Module.ElseBody>\\r\\n        <Sequence DisplayName=\\\"Else 동작\\\" />\\r\\n      </wa:Module.ElseBody>\\r\\n      <wa:Module.TrueBody>\\r\\n        <Sequence DisplayName=\\\"True 동작\\\" />\\r\\n      </wa:Module.TrueBody>\\r\\n    </wa:Module>\\r\\n    <wa:Module ConditionExpression=\\\"{x:Null}\\\" ConditionToolTipText=\\\"\\\" DiagramText=\\\"Module\\\" DisplayName=\\\"Module\\\" Expand=\\\"False\\\" FunctionName=\\\"_AUD_Module\\\" sap:VirtualizedContainerService.HintSize=\\\"214,69\\\" ModuleJson=\\\"{}{&quot;MODULE_CODE&quot;:&quot;MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8&quot;,&quot;MODULE_SUBJECT&quot;:&quot;OlapGrid Drill To Detail &quot;,&quot;MODULE_PARAMS&quot;:[{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;1&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;OlapGrid 컨트롤을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;OlapGrid&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP004&quot;,&quot;PARAM_SEQ&quot;:&quot;2&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;상세 데이터를 출력할 데이터 그리드를 선택해 주세요.&quot;,&quot;Value&quot;:&quot;DataGrid&quot;}],&quot;MODULE_TYPE&quot;:&quot;&quot;}\\\" ModuleName=\\\"OlapGrid Drill To Detail \\\" Result=\\\"{x:Null}\\\">\\r\\n      <wa:Module.ElseBody>\\r\\n        <Sequence DisplayName=\\\"Else 동작\\\" />\\r\\n      </wa:Module.ElseBody>\\r\\n      <wa:Module.TrueBody>\\r\\n        <Sequence DisplayName=\\\"True 동작\\\" />\\r\\n      </wa:Module.TrueBody>\\r\\n    </wa:Module>\\r\\n  </Sequence>\\r\\n</Activity>\"}}]},\"Object\":{\"Name\":\"Object\"}}",
+  "WORK_FLOW": {
+    "Version": 1,
+    "UseEvent": true,
+    "Nodes": [
+      {
+        "ID": "MIG_1",
+        "Type": "Report",
+        "ModuleCode": "",
+        "Name": "Report",
+        "Description": "",
+        "Left": 10,
+        "Top": 10,
+        "Width": 200,
+        "Height": 207,
+        "ControlType": "Report",
+        "Collapsed": true,
+        "Parameters": [
+          {
+            "ID": "OnDocumentLoadComplete",
+            "Name": "OnDocumentLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnLoadComplete",
+            "Name": "OnLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnExecuteStart",
+            "Name": "OnExecuteStart",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnRefreshComplete",
+            "Name": "OnRefreshComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnActiveSheetChange",
+            "Name": "OnActiveSheetChange",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnDestroy",
+            "Name": "OnDestroy",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnViewerSizeChange",
+            "Name": "OnViewerSizeChange",
+            "Value": null,
+            "Description": ""
+          }
+        ]
+      },
+      {
+        "ID": "MIG_2",
+        "Type": "Module",
+        "ModuleCode": "MODA673ED75A2354FDB9F82AF23B78BA50F",
+        "Name": "Splitter 상/하 (MX-Grid 사용)",
+        "Description": "",
+        "Left": 260,
+        "Top": 10,
+        "Width": 200,
+        "Height": 200,
+        "ControlType": "",
+        "Collapsed": false,
+        "Parameters": [
+          {
+            "ID": "P1",
+            "Name": "Splitter로 사용할 MX-Grid 컨트롤을 선택해 주세요.",
+            "Value": "MXGrid",
+            "Description": "Splitter로 사용할 MX-Grid 컨트롤을 선택해 주세요."
+          },
+          {
+            "ID": "P2",
+            "Name": "상단에 배치할 컨트롤을 선택해 주세요.",
+            "Value": "OlapGrid",
+            "Description": "상단에 배치할 컨트롤을 선택해 주세요."
+          },
+          {
+            "ID": "P3",
+            "Name": "하단에 배치할 컨트롤을 선택해 주세요.",
+            "Value": "Group",
+            "Description": "하단에 배치할 컨트롤을 선택해 주세요."
+          },
+          {
+            "ID": "P4",
+            "Name": "Splitter의 색상을 입력해 주세요.(eg.#efefef) \n입력하지 않을 경우 기본값이 적용됩니다.",
+            "Value": "",
+            "Description": "Splitter의 색상을 입력해 주세요.(eg.#efefef) \n입력하지 않을 경우 기본값이 적용됩니다."
+          }
+        ]
+      },
+      {
+        "ID": "MIG_3",
+        "Type": "Module",
+        "ModuleCode": "MOD00E5FFCD9D6249C9AC92D4EF73A6DFB8",
+        "Name": "OlapGrid Drill To Detail ",
+        "Description": "",
+        "Left": 510,
+        "Top": 10,
+        "Width": 200,
+        "Height": 200,
+        "ControlType": "",
+        "Collapsed": false,
+        "Parameters": [
+          {
+            "ID": "P1",
+            "Name": "OlapGrid 컨트롤을 선택해 주세요.",
+            "Value": "OlapGrid",
+            "Description": "OlapGrid 컨트롤을 선택해 주세요."
+          },
+          {
+            "ID": "P2",
+            "Name": "상세 데이터를 출력할 데이터 그리드를 선택해 주세요.",
+            "Value": "DataGrid",
+            "Description": "상세 데이터를 출력할 데이터 그리드를 선택해 주세요."
+          }
+        ]
+      }
+    ],
+    "Links": [
+      {
+        "ID": "MIG_1.OnDocumentLoadComplete~MIG_2",
+        "From": "MIG_1",
+        "To": "MIG_2",
+        "FromParam": "OnDocumentLoadComplete",
+        "Type": 0
+      },
+      {
+        "ID": "MIG_2~MIG_3",
+        "From": "MIG_2",
+        "To": "MIG_3",
+        "FromParam": null,
+        "Type": 0
+      }
+    ]
+  }
+}

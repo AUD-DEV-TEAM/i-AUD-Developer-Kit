@@ -1,0 +1,514 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REP52173F8C64D34B7788F880B92B94F622",
+    "FolderCode": "FLDFC7BCE785E224828AB82003936C9758E",
+    "SavePath": "FLDFC7BCE785E224828AB82003936C9758E/REP52173F8C64D34B7788F880B92B94F622.mtsd",
+    "ReportName": "TreeGrid_002",
+    "Writer": "kimje1342",
+    "WriteDate": "2026-01-21 13:14:55",
+    "Editor": "kimje1342",
+    "EditDate": "2026-01-21 13:14:55",
+    "Description": "TreeGrid 다운로드"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DSE2C3DFF51B244F6385BE87C88AC9D450",
+        "Name": "TREE_EXPORT",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/TREE_EXPORT.sql",
+        "Columns": [
+          {
+            "Name": "CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "PCODE",
+            "Type": "String"
+          },
+          {
+            "Name": "IMG",
+            "Type": "String"
+          },
+          {
+            "Name": "SEQ1",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "SEQ2",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "LEVEL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "PATH",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./TreeGrid_002.script.ts",
+  "Forms": [
+    {
+      "Id": "Form855C7346DC127BE8A0EDBF3377ED8E2D",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "TreeGrid",
+          "Id": "GRID97546ED8268F91156BCB1CF193054951",
+          "Name": "TREE_EXPORT",
+          "Position": {
+            "Left": 20,
+            "Top": 70,
+            "Width": 320,
+            "Height": 794,
+            "Docking": {
+              "Margin": "0,0,0,20",
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2
+          },
+          "DataSource": "DSE2C3DFF51B244F6385BE87C88AC9D450",
+          "AutoRefresh": true,
+          "ShowHeader": 0,
+          "RowHeight": 30,
+          "ExportCount": 0,
+          "SelectRecordBrush": {
+            "Type": 0,
+            "Color": {
+              "R": 66,
+              "G": 107,
+              "B": 242,
+              "A": 0.1
+            }
+          },
+          "OddRowBackground": {
+            "Type": 0,
+            "Color": {
+              "R": 255,
+              "G": 255,
+              "B": 255,
+              "A": 1
+            }
+          },
+          "Columns": [
+            {
+              "Name": "NAME",
+              "GridColumnWidthType": 1
+            },
+            {
+              "Name": "CODE",
+              "Width": 250,
+              "Visible": false,
+              "KeyType": 2
+            },
+            {
+              "Name": "PCODE",
+              "Width": 250,
+              "Visible": false,
+              "UseExport": false,
+              "KeyType": 2
+            },
+            {
+              "Name": "LEVEL",
+              "Visible": false,
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "PATH",
+              "Visible": false
+            },
+            {
+              "Name": "IMG",
+              "Visible": false,
+              "UseExport": false,
+              "KeyType": 2
+            },
+            {
+              "Name": "SEQ1",
+              "Visible": false,
+              "UseExport": false,
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "SEQ2",
+              "Visible": false,
+              "UseExport": false,
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            }
+          ],
+          "AutoExpandLevel": 0,
+          "ParentField": "PCODE",
+          "ChildField": "CODE",
+          "CheckField": "CODE",
+          "ImageField": "IMG"
+        },
+        {
+          "Type": "Group",
+          "Id": "GroupF48E450533B7EF09DE707540C0D50B86",
+          "Name": "HEADER",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1589,
+            "Height": 50,
+            "ZIndex": 8,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "HoldSize": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Thickness": "0,0,0,1"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Button",
+              "Id": "Button2C58E7C67566706DDCC45E5791D9B597",
+              "Name": "BTN_EXP_HTM",
+              "Position": {
+                "Left": 1184,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 155,
+                "Docking": {
+                  "Right": true,
+                  "Margin": "0,0,345,0",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "G": 56,
+                    "B": 134
+                  },
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": "#0c3886",
+                  "Size": 12,
+                  "Bold": true
+                }
+              },
+              "Value": "htm",
+              "InGroup": "HEADER"
+            },
+            {
+              "Type": "Button",
+              "Id": "Button7A52A3D08B8AF8766F2614D3C4AEE751",
+              "Name": "BTN_EXP_DOCX",
+              "Position": {
+                "Left": 1249,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 153,
+                "Docking": {
+                  "Right": true,
+                  "Margin": "0,0,280,0",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "G": 56,
+                    "B": 134
+                  },
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": "#0c3886",
+                  "Size": 12,
+                  "Bold": true
+                }
+              },
+              "Value": "docx",
+              "InGroup": "HEADER"
+            },
+            {
+              "Type": "Button",
+              "Id": "Button5A7EDAC6C624171C07A27F6D5FDCE22C",
+              "Name": "BTN_EXP_HWP",
+              "Position": {
+                "Left": 1314,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "Docking": {
+                  "Right": true,
+                  "Margin": "0,0,215,0",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "G": 56,
+                    "B": 134
+                  },
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": "#0c3886",
+                  "Size": 12,
+                  "Bold": true
+                }
+              },
+              "Value": "hwp",
+              "InGroup": "HEADER"
+            },
+            {
+              "Type": "Button",
+              "Id": "Button3C8029C5C28462434B0EFA5957761443",
+              "Name": "BTN_EXP_XLSX",
+              "Position": {
+                "Left": 1119,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 154,
+                "Docking": {
+                  "Right": true,
+                  "Margin": "0,0,410,0",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "G": 56,
+                    "B": 134
+                  },
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": "#0c3886",
+                  "Size": 12,
+                  "Bold": true
+                }
+              },
+              "Value": "xlsx",
+              "InGroup": "HEADER"
+            },
+            {
+              "Type": "Button",
+              "Id": "ButtonE9763651CFEC6661CBA1CAA35A8A09F0",
+              "Name": "BTN_EXP_PDF",
+              "Position": {
+                "Left": 1379,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 156,
+                "Docking": {
+                  "Right": true,
+                  "Margin": "0,0,150,0",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "G": 56,
+                    "B": 134
+                  },
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": "#0c3886",
+                  "Size": 12,
+                  "Bold": true
+                }
+              },
+              "Value": "pdf",
+              "InGroup": "HEADER"
+            },
+            {
+              "Type": "Button",
+              "Id": "ButtonE00663DC8B03A8D8907F84AF4EEE29FA",
+              "Name": "BTN_EXP_CSV",
+              "Position": {
+                "Left": 1444,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 157,
+                "Docking": {
+                  "Right": true,
+                  "Margin": "0,0,85,0",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "G": 56,
+                    "B": 134
+                  },
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": "#0c3886",
+                  "Size": 12,
+                  "Bold": true
+                }
+              },
+              "Value": "csv",
+              "InGroup": "HEADER"
+            },
+            {
+              "Type": "Button",
+              "Id": "Button117A7BFF4A19AC6175BDFA00EB719EB1",
+              "Name": "BTN_EXP_TXT",
+              "Position": {
+                "Left": 1509,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 158,
+                "Docking": {
+                  "Right": true,
+                  "Margin": "0,0,20,0",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "G": 56,
+                    "B": 134
+                  },
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": "#0c3886",
+                  "Size": 12,
+                  "Bold": true
+                }
+              },
+              "Value": "txt",
+              "InGroup": "HEADER"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelD848DF0B8D4F2EFCC1D846772C42717A",
+              "Name": "LBL_TTL",
+              "Position": {
+                "Left": 20,
+                "Top": 12,
+                "Width": 355,
+                "Height": 26,
+                "ZIndex": 10,
+                "Docking": {
+                  "Left": true,
+                  "Margin": "20,0,0,0"
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Font": {
+                  "Size": 16
+                }
+              },
+              "Text": "TreeGrid 다운로드",
+              "InGroup": "HEADER"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

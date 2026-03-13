@@ -1,0 +1,479 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPB9BD24AFB95C4C2D8547F61B7C0D3034",
+    "FolderCode": "FLDBEB84E3D54BA4D48A9DC4FE7C97D6A41",
+    "SavePath": "FLDBEB84E3D54BA4D48A9DC4FE7C97D6A41/REPB9BD24AFB95C4C2D8547F61B7C0D3034.mtsd",
+    "ReportName": "다중 그리드를 한개의 파일로 내보내기(Server Script)",
+    "Writer": "yglee",
+    "WriteDate": "2025-06-16 09:41:17",
+    "Editor": "yglee",
+    "EditDate": "2025-06-16 09:41:17",
+    "UseLayout": false,
+    "UsePersonalConditions": false
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DSA7F25BC317374628A6FF886D8028D0FE",
+        "Name": "Data1",
+        "ConnectionCode": "FILE_DATA_BASE",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data1.sql",
+        "Columns": [
+          {
+            "Name": "제품명",
+            "Type": "String"
+          },
+          {
+            "Name": "강남점",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "교대점",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "삼성점",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "선릉점",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "역삼점",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DSB931CDE43BE9443B9B56F03A0296199B",
+        "Name": "Data2",
+        "ConnectionCode": "FILE_DATA_BASE",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data2.sql",
+        "Columns": [
+          {
+            "Name": "제품명",
+            "Type": "String"
+          },
+          {
+            "Name": "강남점",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "교대점",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "삼성점",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "선릉점",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "역삼점",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DS",
+        "Name": "Data3",
+        "ConnectionCode": "FILE_DATA_BASE",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data3.sql",
+        "Columns": [
+          {
+            "Name": "CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "NAME",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./파일 내보내기(템플릿 활용).script.ts",
+  "ServerScriptText": [
+    {
+      "Name": "EXPORT",
+      "Key": "BIZF6B9BBC255564E2D923B61CD611F433F",
+      "Encrypted": true,
+      "ScriptText": "./ServerScript/EXPORT.ts"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "Form1795b728-4e0a-fde7-628c-d128c0eb7f25",
+      "Name": "Form1",
+      "Style": {
+        "Type": 2
+      },
+      "Elements": [
+        {
+          "Type": "DataGrid",
+          "Id": "GRID63a41134-4a7d-6672-2d5c-a6f31cc895d1",
+          "Name": "DataGrid1",
+          "Position": {
+            "Left": 2,
+            "Top": 269,
+            "Width": 666,
+            "Height": 401,
+            "Docking": {
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Border": {
+              "Type": 0,
+              "Color": "#bbc7d3"
+            },
+            "VerticalBorder": {
+              "Type": 0,
+              "Color": {
+                "R": 187,
+                "G": 199,
+                "B": 211,
+                "A": 1
+              }
+            },
+            "HorizontalBorder": {
+              "Type": 0,
+              "Color": {
+                "R": 187,
+                "G": 199,
+                "B": 211,
+                "A": 1
+              }
+            },
+            "Type": 2
+          },
+          "DataSource": "DSB931CDE43BE9443B9B56F03A0296199B",
+          "AutoRefresh": true,
+          "ColumnHeaderHeight": 23,
+          "RowHeight": 23,
+          "ExportCount": 0,
+          "UseExportServerRetrieve": false,
+          "Columns": [
+            {
+              "Name": "제품명",
+              "KeyType": 2
+            },
+            {
+              "Name": "강남점",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "교대점",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "삼성점",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "선릉점",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "역삼점",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            }
+          ]
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "GRIDc0643478-b368-5a07-3f42-7ec20ca2eb44",
+          "Name": "DataGrid",
+          "Position": {
+            "Left": 3,
+            "Top": 37,
+            "Width": 661,
+            "Height": 228
+          },
+          "Style": {
+            "Border": {
+              "Type": 0,
+              "Color": "#bbc7d3"
+            },
+            "VerticalBorder": {
+              "Type": 0,
+              "Color": {
+                "R": 187,
+                "G": 199,
+                "B": 211,
+                "A": 1
+              }
+            },
+            "HorizontalBorder": {
+              "Type": 0,
+              "Color": {
+                "R": 187,
+                "G": 199,
+                "B": 211,
+                "A": 1
+              }
+            },
+            "Type": 2
+          },
+          "DataSource": "DSA7F25BC317374628A6FF886D8028D0FE",
+          "AutoRefresh": true,
+          "ColumnHeaderHeight": 23,
+          "RowHeight": 23,
+          "ExportCount": 0,
+          "UseExportServerRetrieve": false,
+          "Columns": [
+            {
+              "Name": "제품명",
+              "KeyType": 2
+            },
+            {
+              "Name": "강남점",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "교대점",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "삼성점",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "선릉점",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "역삼점",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            }
+          ]
+        },
+        {
+          "Type": "Button",
+          "Id": "Button4591df87-a146-eb94-1ad2-48a2a6436fd3",
+          "Name": "btnRUN",
+          "Position": {
+            "Left": 163,
+            "Top": 7,
+            "Width": 111,
+            "Height": 23
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#2e57a0"
+            },
+            "Border": {
+              "Color": {
+                "G": 56,
+                "B": 134
+              },
+              "CornerRadius": "4"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "Value": "내보내기",
+          "UseTooltip": true,
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          },
+          "HasNewRadius": false
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "ComboBoxf1a29392-f90b-269b-ccd9-164b7d0db3ff",
+          "Name": "VS_EXT_TYPE",
+          "Position": {
+            "Left": 5,
+            "Top": 7,
+            "Width": 157,
+            "Height": 23,
+            "ZIndex": 2
+          },
+          "DataSource": "DS",
+          "Value": "docx",
+          "Text": "MS-WORD",
+          "AutoRefresh": true,
+          "UseAllItemsText": "전체",
+          "InitValue": "docx"
+        }
+      ]
+    }
+  ],
+  "WorkFlowInfo": "{\"Document\":{\"Name\":\"Report\",\"Events\":[{\"Name\":\"OnDocumentLoadComplete\",\"Flow\":{\"Actions\":[{\"Name\":\"Module\",\"Parameters\":[\"탭 컨트롤 생성하기\",\"{\\\"MODULE_CODE\\\":\\\"MODA1CAB101F4BB4C9185415E316DED6289\\\",\\\"MODULE_SUBJECT\\\":\\\"탭 컨트롤 생성하기\\\",\\\"MODULE_PARAMS\\\":[{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA1CAB101F4BB4C9185415E316DED6289\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP005\\\",\\\"PARAM_SEQ\\\":\\\"1\\\",\\\"PARAM_DESCRIPTION\\\":\\\"탭 헤더로 사용할 라벨 또는 버튼 컨트롤들을 선택해 주세요.\\\",\\\"Value\\\":\\\"Label,Label1,Label2\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA1CAB101F4BB4C9185415E316DED6289\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"N\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP005\\\",\\\"PARAM_SEQ\\\":\\\"2\\\",\\\"PARAM_DESCRIPTION\\\":\\\"탭의 Contents 영역으로 선택할 컨트롤들을 선택해 주세요\\\",\\\"Value\\\":\\\"Group,RichTextBox,RichTextBox1\\\"},{\\\"DEFAULT_VALUE\\\":\\\"\\\",\\\"MODULE_CODE\\\":\\\"MODA1CAB101F4BB4C9185415E316DED6289\\\",\\\"ATTR3\\\":\\\"\\\",\\\"NULLABLE\\\":\\\"Y\\\",\\\"ATTR2\\\":\\\"\\\",\\\"ATTR1\\\":\\\"\\\",\\\"PARAM_TYPE\\\":\\\"INP008\\\",\\\"PARAM_SEQ\\\":\\\"3\\\",\\\"PARAM_DESCRIPTION\\\":\\\"첫 번째 탭 항목으로 다른 탭들을 위치 및 사이즈를 동기화 하시겠습니까?\\\",\\\"Value\\\":\\\"Y\\\"}],\\\"MODULE_TYPE\\\":\\\"\\\"}\"]}],\"IsChecked\":true,\"SourceXML\":\"<Activity x:Class=\\\"Report(Open)_OnDocumentLoadComplete\\\" sap:VirtualizedContainerService.HintSize=\\\"262,233\\\" mva:VisualBasic.Settings=\\\"Assembly references and imported namespaces for internal implementation\\\" xmlns=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities\\\" xmlns:mva=\\\"clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities\\\" xmlns:sads=\\\"http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger\\\" xmlns:sap=\\\"http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation\\\" xmlns:scg=\\\"clr-namespace:System.Collections.Generic;assembly=mscorlib\\\" xmlns:wa=\\\"clr-namespace:WorkFlow.Activities;assembly=WorkFlow\\\" xmlns:x=\\\"http://schemas.microsoft.com/winfx/2006/xaml\\\">\\r\\n  <Sequence DisplayName=\\\"Report(Open)_OnDocumentLoadComplete\\\" sap:VirtualizedContainerService.HintSize=\\\"222,193\\\">\\r\\n    <sap:WorkflowViewStateService.ViewState>\\r\\n      <scg:Dictionary x:TypeArguments=\\\"x:String, x:Object\\\">\\r\\n        <x:Boolean x:Key=\\\"IsExpanded\\\">True</x:Boolean>\\r\\n      </scg:Dictionary>\\r\\n    </sap:WorkflowViewStateService.ViewState>\\r\\n    <wa:Module ConditionExpression=\\\"{x:Null}\\\" ConditionToolTipText=\\\"\\\" DiagramText=\\\"Module\\\" DisplayName=\\\"Module\\\" Expand=\\\"False\\\" FunctionName=\\\"_AUD_Module\\\" sap:VirtualizedContainerService.HintSize=\\\"200,69\\\" ModuleJson=\\\"{}{&quot;MODULE_CODE&quot;:&quot;MODA1CAB101F4BB4C9185415E316DED6289&quot;,&quot;MODULE_SUBJECT&quot;:&quot;탭 컨트롤 생성하기&quot;,&quot;MODULE_PARAMS&quot;:[{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA1CAB101F4BB4C9185415E316DED6289&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP005&quot;,&quot;PARAM_SEQ&quot;:&quot;1&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;탭 헤더로 사용할 라벨 또는 버튼 컨트롤들을 선택해 주세요.&quot;,&quot;Value&quot;:&quot;Label,Label1,Label2&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA1CAB101F4BB4C9185415E316DED6289&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;N&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP005&quot;,&quot;PARAM_SEQ&quot;:&quot;2&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;탭의 Contents 영역으로 선택할 컨트롤들을 선택해 주세요&quot;,&quot;Value&quot;:&quot;Group,RichTextBox,RichTextBox1&quot;},{&quot;DEFAULT_VALUE&quot;:&quot;&quot;,&quot;MODULE_CODE&quot;:&quot;MODA1CAB101F4BB4C9185415E316DED6289&quot;,&quot;ATTR3&quot;:&quot;&quot;,&quot;NULLABLE&quot;:&quot;Y&quot;,&quot;ATTR2&quot;:&quot;&quot;,&quot;ATTR1&quot;:&quot;&quot;,&quot;PARAM_TYPE&quot;:&quot;INP008&quot;,&quot;PARAM_SEQ&quot;:&quot;3&quot;,&quot;PARAM_DESCRIPTION&quot;:&quot;첫 번째 탭 항목으로 다른 탭들을 위치 및 사이즈를 동기화 하시겠습니까?&quot;,&quot;Value&quot;:&quot;Y&quot;}],&quot;MODULE_TYPE&quot;:&quot;&quot;}\\\" ModuleName=\\\"탭 컨트롤 생성하기\\\" Result=\\\"{x:Null}\\\">\\r\\n      <wa:Module.ElseBody>\\r\\n        <Sequence DisplayName=\\\"Else 동작\\\" />\\r\\n      </wa:Module.ElseBody>\\r\\n      <wa:Module.TrueBody>\\r\\n        <Sequence DisplayName=\\\"True 동작\\\" />\\r\\n      </wa:Module.TrueBody>\\r\\n    </wa:Module>\\r\\n  </Sequence>\\r\\n</Activity>\"}}]},\"Object\":{\"Name\":\"Object\"}}",
+  "WORK_FLOW": {
+    "Version": 1,
+    "UseEvent": true,
+    "Nodes": [
+      {
+        "ID": "MIG_1",
+        "Type": "Report",
+        "ModuleCode": "",
+        "Name": "Report",
+        "Description": "",
+        "Left": 10,
+        "Top": 10,
+        "Width": 200,
+        "Height": 207,
+        "ControlType": "Report",
+        "Collapsed": true,
+        "Parameters": [
+          {
+            "ID": "OnDocumentLoadComplete",
+            "Name": "OnDocumentLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnLoadComplete",
+            "Name": "OnLoadComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnExecuteStart",
+            "Name": "OnExecuteStart",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnRefreshComplete",
+            "Name": "OnRefreshComplete",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnActiveSheetChange",
+            "Name": "OnActiveSheetChange",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnDestroy",
+            "Name": "OnDestroy",
+            "Value": null,
+            "Description": ""
+          },
+          {
+            "ID": "OnViewerSizeChange",
+            "Name": "OnViewerSizeChange",
+            "Value": null,
+            "Description": ""
+          }
+        ]
+      },
+      {
+        "ID": "MIG_2",
+        "Type": "Module",
+        "ModuleCode": "MODA1CAB101F4BB4C9185415E316DED6289",
+        "Name": "탭 컨트롤 생성하기",
+        "Description": "",
+        "Left": 260,
+        "Top": 10,
+        "Width": 200,
+        "Height": 200,
+        "ControlType": "",
+        "Collapsed": false,
+        "Parameters": [
+          {
+            "ID": "P1",
+            "Name": "탭 헤더로 사용할 라벨 또는 버튼 컨트롤들을 선택해 주세요.",
+            "Value": "Label,Label1,Label2",
+            "Description": "탭 헤더로 사용할 라벨 또는 버튼 컨트롤들을 선택해 주세요."
+          },
+          {
+            "ID": "P2",
+            "Name": "탭의 Contents 영역으로 선택할 컨트롤들을 선택해 주세요",
+            "Value": "Group,RichTextBox,RichTextBox1",
+            "Description": "탭의 Contents 영역으로 선택할 컨트롤들을 선택해 주세요"
+          },
+          {
+            "ID": "P3",
+            "Name": "첫 번째 탭 항목으로 다른 탭들을 위치 및 사이즈를 동기화 하시겠습니까?",
+            "Value": "Y",
+            "Description": "첫 번째 탭 항목으로 다른 탭들을 위치 및 사이즈를 동기화 하시겠습니까?"
+          }
+        ]
+      }
+    ],
+    "Links": [
+      {
+        "ID": "MIG_1.OnDocumentLoadComplete~MIG_2",
+        "From": "MIG_1",
+        "To": "MIG_2",
+        "FromParam": "OnDocumentLoadComplete",
+        "Type": 0
+      }
+    ]
+  }
+}

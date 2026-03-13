@@ -1,0 +1,77 @@
+{
+  "ReportInfo": {
+    "ReportCode": "DYNAMIC_SQL",
+    "FolderCode": "FLD72470E8B43AE41C796541322C57190D2",
+    "SavePath": "FLD72470E8B43AE41C796541322C57190D2/DYNAMIC_SQL.mtsd",
+    "ReportName": "DYNAMIC_SQL 샘플",
+    "Writer": "yglee",
+    "WriteDate": "2025-06-12 17:10:04",
+    "Editor": "yglee",
+    "EditDate": "2025-06-12 17:10:04",
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS6CBDBEC3A3D74BC587F53426065035EF",
+        "Name": "SAMPLE",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/SAMPLE.ts"
+      },
+      {
+        "Id": "DS6CBDBEC3A3D74BC587F53426065035EF",
+        "Name": "SAMPLE",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/SAMPLE.ts"
+      }
+    ]
+  },
+  "ScriptText": "./AUD_Dynamic-SQL.script.ts",
+  "ServerScriptText": [
+    {
+      "Name": "@DATA_MASTER",
+      "Key": "DATA_MASTER",
+      "Encrypted": true,
+      "ScriptText": "./ServerScript/@DATA_MASTER.ts"
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "FormC0C2A82A6DBFD5A92D650788A672B3BA",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "DataGrid",
+          "Id": "DataGridF116CE7C4A9D3F1E3ED369B80D0F7D69",
+          "Name": "DataGrid",
+          "Position": {
+            "Left": 10,
+            "Top": 10,
+            "Width": 2421,
+            "Height": 924,
+            "Docking": {
+              "Margin": "10",
+              "Left": true,
+              "Top": true,
+              "Right": true,
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2
+          },
+          "DataSource": "DS6CBDBEC3A3D74BC587F53426065035EF",
+          "AutoRefresh": true
+        }
+      ]
+    }
+  ]
+}

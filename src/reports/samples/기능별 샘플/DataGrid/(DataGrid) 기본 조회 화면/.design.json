@@ -1,0 +1,423 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPD5ADBA02331640C8835B24CB22AF45FD",
+    "FolderCode": "FLDAE67F7BE64C64D8BB577AE503A160C0D",
+    "SavePath": "FLDAE67F7BE64C64D8BB577AE503A160C0D/REPD5ADBA02331640C8835B24CB22AF45FD.mtsd",
+    "ReportName": "DataGrid_001",
+    "Writer": "sblim1417",
+    "WriteDate": "2026-01-21 16:24:39",
+    "Editor": "sblim1417",
+    "EditDate": "2026-01-21 16:24:39",
+    "Description": "기본 조회 화면 (DataGrid, Chart)",
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS701D10379C60454D8587951A5F91B656",
+        "Name": "CHT_ITEM_SALES_TOP5",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/CHT_ITEM_SALES_TOP5.sql",
+        "Params": [
+          {
+            "Name": ":VS_YMD_FROM",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_YMD_TO",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "상품 번호",
+            "Type": "String"
+          },
+          {
+            "Name": "매출",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DS923C2AE1D65D45D0B3125B81B2865D3B",
+        "Name": "GRD_ITEM_SALES",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/GRD_ITEM_SALES.sql",
+        "Params": [
+          {
+            "Name": ":VS_YMD_FROM",
+            "ParamType": "String"
+          },
+          {
+            "Name": ":VS_YMD_TO",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "상품 번호",
+            "Type": "String"
+          },
+          {
+            "Name": "주문 번호",
+            "Type": "String"
+          },
+          {
+            "Name": "주문 상태",
+            "Type": "String"
+          },
+          {
+            "Name": "결제 수단",
+            "Type": "String"
+          },
+          {
+            "Name": "할부 개월 수",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "결제 금액",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "결제 시각",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./DataGrid_001.script.ts",
+  "Forms": [
+    {
+      "Id": "Form9ABEEFD85D775617F784F6E458656642",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Group",
+          "Id": "GroupF48E450533B7EF09DE707540C0D50B86",
+          "Name": "HEADER",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1609,
+            "Height": 50,
+            "ZIndex": 5,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "HoldSize": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Thickness": "0,0,0,1"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Button",
+              "Id": "Button3C8029C5C28462434B0EFA5957761443",
+              "Name": "BTN_REF",
+              "Position": {
+                "Left": 1529,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 154,
+                "Docking": {
+                  "Right": true,
+                  "Top": true,
+                  "Margin": "0,12,20,0",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "G": 56,
+                    "B": 134
+                  },
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": "#0c3886",
+                  "Size": 12,
+                  "Bold": true
+                }
+              },
+              "Value": "조회\n",
+              "Shadow": {
+                "ColorR": 255,
+                "ColorG": 255,
+                "ColorB": 255
+              },
+              "InGroup": "HEADER"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelD848DF0B8D4F2EFCC1D846772C42717A",
+              "Name": "LBL_TTL_1",
+              "Position": {
+                "Left": 15,
+                "Top": 12,
+                "Width": 129,
+                "Height": 23,
+                "ZIndex": 7,
+                "Docking": {
+                  "Top": true,
+                  "Margin": "0,12,0,0"
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Font": {
+                  "Size": 16
+                }
+              },
+              "Text": "DataGrid_001",
+              "InGroup": "HEADER"
+            },
+            {
+              "Type": "CalendarFromTo",
+              "Id": "CalendarFromTo7E7F47794D2FB9A35AFFC4E7D995D292",
+              "Name": "VS_YMD_FROM",
+              "Position": {
+                "Left": 1279,
+                "Top": 12,
+                "Width": 230,
+                "Height": 26,
+                "ZIndex": 160,
+                "Docking": {
+                  "Right": true,
+                  "Top": true,
+                  "Margin": "0,12,100,0",
+                  "HoldSize": true
+                }
+              },
+              "Name2": "VS_YMD_TO",
+              "FromText": "2018-06-01",
+              "ToText": "2028-12-31",
+              "UseWeekNumberDefined": false,
+              "HighlightWeekendDefined": false,
+              "DisplayStartDayOfWeekDefined": false,
+              "FromDate": 1527778800000,
+              "ToDate": 1861801200000,
+              "InGroup": "HEADER"
+            },
+            {
+              "Type": "Label",
+              "Id": "Label14182FFA8522FEB95127C0E51F28DE94",
+              "Name": "LBL_COND_1",
+              "Position": {
+                "Left": 1210,
+                "Top": 12,
+                "Width": 59,
+                "Height": 26,
+                "ZIndex": 161,
+                "Docking": {
+                  "Right": true,
+                  "Top": true,
+                  "Margin": "0,12,340,0",
+                  "HoldSize": true
+                }
+              },
+              "Text": "조회 일자",
+              "InGroup": "HEADER"
+            }
+          ]
+        },
+        {
+          "Type": "Chart",
+          "Id": "Chart208BB0971FE06FF4A2BF1E267C495E87",
+          "Name": "CHT",
+          "Position": {
+            "Left": 903,
+            "Top": 70,
+            "Width": 674,
+            "Height": 781,
+            "ZIndex": 155,
+            "Docking": {
+              "Top": true,
+              "Bottom": true,
+              "Margin": "20,70,6,20",
+              "HoldSize": true
+            }
+          },
+          "DataSource": "DS701D10379C60454D8587951A5F91B656",
+          "AutoRefresh": true,
+          "Chart": {
+            "UseDesignMenu": true
+          },
+          "Axis": {
+            "XAxis": {
+              "Name": "상품 번호",
+              "Categories": [
+                "e7cc48a9daff5436f63d3aad9426f28b",
+                "bb50f2e236e5eea0100680137654686c",
+                null,
+                "19936fa4f614ee0590d3b77ac83fd648",
+                "19c91ef95d509ea33eda93495c4d3481"
+              ],
+              "Caption": "상품 번호"
+            },
+            "Y2Axis": {
+              "UseMinorTickInterval": true,
+              "AutoMinorTickInterval": false
+            }
+          },
+          "Legend": {
+            "Align": "right",
+            "VerticalAlign": "top"
+          },
+          "SeriesSet": [
+            {
+              "Name": "상품 번호",
+              "Label": "상품 번호",
+              "Type": 100,
+              "BackgroundColor": "",
+              "Axis": 1,
+              "ValueField": "상품 번호",
+              "DataType": 1,
+              "UsedNumberSeries": false,
+              "CreateType": 0,
+              "Format": "{0:N0}",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "Unit": 0,
+              "X": 0,
+              "Y": -6,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
+              "X2Axis": false,
+              "Sequence": 0,
+              "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
+              "LineWidth": 2
+            },
+            {
+              "Name": "매출",
+              "Label": "매출",
+              "Type": 100,
+              "BackgroundColor": "",
+              "Axis": 1,
+              "ValueField": "매출",
+              "DataType": 0,
+              "UsedNumberSeries": true,
+              "CreateType": 0,
+              "Format": "{0:N0}",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "Unit": 0,
+              "X": 0,
+              "Y": -6,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
+              "X2Axis": false,
+              "Sequence": 0,
+              "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
+              "LineWidth": 2
+            }
+          ]
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "DataGrid255AEFF39F599CD79E1F31027A20540D",
+          "Name": "GRD",
+          "Position": {
+            "Left": 20,
+            "Top": 70,
+            "Width": 851,
+            "Height": 778,
+            "ZIndex": 157,
+            "Docking": {
+              "Margin": "20,70,15,23",
+              "Left": true,
+              "Top": true,
+              "Bottom": true,
+              "HoldSize": true
+            }
+          },
+          "Style": {
+            "Type": 2
+          },
+          "DataSource": "DS923C2AE1D65D45D0B3125B81B2865D3B",
+          "AutoRefresh": true,
+          "Columns": [
+            {
+              "Name": "상품 번호",
+              "Width": 25,
+              "GridColumnWidthType": 1,
+              "KeyType": 2
+            },
+            {
+              "Name": "주문 상태",
+              "Width": 15,
+              "GridColumnWidthType": 1,
+              "KeyType": 2,
+              "TextPosition": "center"
+            },
+            {
+              "Name": "결제 수단",
+              "Width": 15,
+              "GridColumnWidthType": 1,
+              "KeyType": 2,
+              "TextPosition": "center"
+            },
+            {
+              "Name": "할부 개월 수",
+              "Width": 10,
+              "GridColumnWidthType": 1,
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "결제 금액",
+              "Width": 15,
+              "GridColumnWidthType": 1,
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "결제 시각",
+              "Width": 20,
+              "GridColumnWidthType": 1,
+              "KeyType": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

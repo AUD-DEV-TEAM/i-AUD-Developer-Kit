@@ -1,0 +1,514 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPABBB1FB6126F4122ADC8531E583BE31B",
+    "FolderCode": "FLD3A0EB0AA207A45DA98FAB4D0BA96EAAD",
+    "SavePath": "FLD3A0EB0AA207A45DA98FAB4D0BA96EAAD/REPABBB1FB6126F4122ADC8531E583BE31B.mtsd",
+    "ReportName": "OlapGrid_001",
+    "Writer": "sblim1417",
+    "WriteDate": "2026-01-21 15:17:16",
+    "Editor": "sblim1417",
+    "EditDate": "2026-01-21 15:17:16",
+    "Description": "바인딩 및 Slicer",
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS0DC61AD7926F4F5F8900B31B97D22317",
+        "Name": "OLAP_PAYMENT",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/OLAP_PAYMENT.sql",
+        "Columns": [
+          {
+            "Name": "ORDER_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "PAYMENT_SEQUENTIAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "PAYMENT_TYPE",
+            "Type": "String"
+          },
+          {
+            "Name": "PAYMENT_INSTALLMENTS",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "PAYMENT_VALUE",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DS0DC61AD7926F4F5F8900B31B97D22317",
+        "Name": "OLAP_PAYMENT",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/OLAP_PAYMENT.sql",
+        "Columns": [
+          {
+            "Name": "ORDER_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "PAYMENT_SEQUENTIAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "PAYMENT_TYPE",
+            "Type": "String"
+          },
+          {
+            "Name": "PAYMENT_INSTALLMENTS",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "PAYMENT_VALUE",
+            "Type": "Numeric"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./OlapGrid_001.script.ts",
+  "Forms": [
+    {
+      "Id": "Form9ABEEFD85D775617F784F6E458656642",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Group",
+          "Id": "GroupF48E450533B7EF09DE707540C0D50B86",
+          "Name": "HEADER",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1609,
+            "Height": 50,
+            "ZIndex": 5,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "HoldSize": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Thickness": "0,0,0,1"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Button",
+              "Id": "Button3C8029C5C28462434B0EFA5957761443",
+              "Name": "BTN_REF",
+              "Position": {
+                "Left": 1529,
+                "Top": 12,
+                "Width": 60,
+                "Height": 26,
+                "ZIndex": 154,
+                "Docking": {
+                  "Right": true,
+                  "Top": true,
+                  "Margin": "0,12,20,0",
+                  "HoldSize": true
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "BoxStyle": "BX30A0156DDE5143389139A6C346943525",
+                "Background": {
+                  "Color": {
+                    "R": 255,
+                    "G": 255
+                  }
+                },
+                "Border": {
+                  "Color": {
+                    "G": 56,
+                    "B": 134
+                  },
+                  "CornerRadius": "0,0,0,0"
+                },
+                "Font": {
+                  "Color": "#0c3886",
+                  "Size": 12,
+                  "Bold": true
+                }
+              },
+              "Value": "조회\n",
+              "Shadow": {
+                "ColorR": 255,
+                "ColorG": 255,
+                "ColorB": 255
+              },
+              "InGroup": "HEADER"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelD848DF0B8D4F2EFCC1D846772C42717A",
+              "Name": "LBL_TTL_1",
+              "Position": {
+                "Left": 15,
+                "Top": 12,
+                "Width": 129,
+                "Height": 23,
+                "ZIndex": 7,
+                "Docking": {
+                  "Top": true,
+                  "Margin": "0,12,0,0"
+                }
+              },
+              "Style": {
+                "Type": 2,
+                "Font": {
+                  "Size": 16
+                }
+              },
+              "Text": "OlapGrid_001",
+              "InGroup": "HEADER"
+            }
+          ]
+        },
+        {
+          "Type": "OlapGrid",
+          "Id": "OlapGrid1768890258177",
+          "Name": "OLAP",
+          "Position": {
+            "Left": 20,
+            "Top": 70,
+            "Width": 830,
+            "Height": 775,
+            "ZIndex": 168,
+            "Docking": {
+              "Left": true,
+              "Top": true,
+              "Bottom": true,
+              "Margin": "20,70,0,26",
+              "HoldSize": true
+            }
+          },
+          "DataSource": "DS0DC61AD7926F4F5F8900B31B97D22317",
+          "AutoRefresh": true,
+          "iOLAPView": {
+            "Options": {
+              "AutoSelection": true,
+              "AutoSelectionRangeRight": 10,
+              "AutoSelectionRangeBottom": 10,
+              "CacheOption": {
+                "UseHybrid": false
+              }
+            },
+            "Fields": [
+              {
+                "Key": "ORDER_ID",
+                "Category": 1,
+                "DataType": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "PAYMENT_TYPE",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "#MEASURES_HEADER#",
+                "Caption": "Measures",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 2,
+                "CreateType": 1,
+                "AllowFilter": false,
+                "AllowData": false
+              },
+              {
+                "Key": "PAYMENT_SEQUENTIAL",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}"
+              },
+              {
+                "Key": "PAYMENT_INSTALLMENTS",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}"
+              },
+              {
+                "Key": "PAYMENT_VALUE",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}"
+              }
+            ]
+          },
+          "ExtraOption": {
+            "CurrentPageSize": 100,
+            "EtcFormat": true,
+            "EtcProperties": true,
+            "EtcMultiHeader": true
+          }
+        },
+        {
+          "Type": "Slicer",
+          "Id": "Slicer1768890345736",
+          "Name": "Slicer",
+          "Position": {
+            "Left": 1389,
+            "Top": 73,
+            "Width": 200,
+            "Height": 320,
+            "ZIndex": 169,
+            "Docking": {
+              "Right": true,
+              "Top": true,
+              "Margin": "0,73,20,0",
+              "HoldSize": true
+            }
+          },
+          "SortType": "ASC",
+          "CellHeight": 23,
+          "ColumnCount": 1,
+          "ButtonMargin": 3,
+          "UseMultiSelect": false,
+          "Text": "PAYMENT_TYPE",
+          "HeaderHeight": 30,
+          "HeaderColor": "rgba(243,243,247,1)",
+          "AutoRefresh": true,
+          "SelectedColor": "#D2DEFF",
+          "SelectedBorderColor": "#7E9BF6",
+          "ItemColor": "#F9F9FB",
+          "ItemBorderColor": "#c5c5c5",
+          "ManualUpdate": false,
+          "Binding": {
+            "OlapGrid": {
+              "OlapGridID": "OlapGrid1768890258177",
+              "OlapGridName": "OlapGrid",
+              "OlapGridColumn": "PAYMENT_TYPE",
+              "OlapGridColumnID": "OlapGrid.PAYMENT_TYPE",
+              "OlapGridColumnCaption": "PAYMENT_TYPE"
+            }
+          }
+        },
+        {
+          "Type": "Chart",
+          "Id": "ChartC2F801AEF076AC92ABEB5ED012DED78B",
+          "Name": "CHT",
+          "Position": {
+            "Left": 860,
+            "Top": 70,
+            "Width": 522,
+            "Height": 781,
+            "ZIndex": 171,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": true,
+              "Bottom": true,
+              "Margin": "860,70,227,20",
+              "HoldSize": true
+            }
+          },
+          "AutoRefresh": true,
+          "PivotGrid": "OlapGrid1768890258177",
+          "Chart": {
+            "UseDesignMenu": true
+          },
+          "Axis": {
+            "XAxis": {
+              "Name": "Legend",
+              "Categories": [
+                "PAYMENT_SEQUENTIAL",
+                "PAYMENT_INSTALLMENTS",
+                "PAYMENT_VALUE"
+              ],
+              "Caption": "Legend"
+            },
+            "Y2Axis": {
+              "UseMinorTickInterval": true,
+              "AutoMinorTickInterval": false
+            }
+          },
+          "Legend": {
+            "VerticalAlign": "top"
+          },
+          "SeriesSet": [
+            {
+              "Name": "Legend",
+              "Label": "Legend",
+              "Type": 100,
+              "BackgroundColor": "",
+              "Axis": 1,
+              "ValueField": "Legend",
+              "DataType": 1,
+              "UsedNumberSeries": true,
+              "CreateType": 0,
+              "Format": "{0:N0}",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "Unit": 0,
+              "X": 0,
+              "Y": -6,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
+              "X2Axis": false,
+              "Sequence": 0,
+              "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
+              "LineWidth": 2
+            },
+            {
+              "Name": "boleto",
+              "Label": "boleto",
+              "Type": 100,
+              "BackgroundColor": "",
+              "Axis": 1,
+              "ValueField": "boleto",
+              "DataType": 0,
+              "UsedNumberSeries": true,
+              "CreateType": 0,
+              "Format": "{0:N0}",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "Unit": 0,
+              "X": 0,
+              "Y": -6,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
+              "X2Axis": false,
+              "Sequence": 1,
+              "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
+              "LineWidth": 2
+            },
+            {
+              "Name": "credit_card",
+              "Label": "credit_card",
+              "Type": 100,
+              "BackgroundColor": "",
+              "Axis": 1,
+              "ValueField": "credit_card",
+              "DataType": 0,
+              "UsedNumberSeries": true,
+              "CreateType": 0,
+              "Format": "{0:N0}",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "Unit": 0,
+              "X": 0,
+              "Y": -6,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
+              "X2Axis": false,
+              "Sequence": 2,
+              "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
+              "LineWidth": 2
+            },
+            {
+              "Name": "debit_card",
+              "Label": "debit_card",
+              "Type": 100,
+              "BackgroundColor": "",
+              "Axis": 1,
+              "ValueField": "debit_card",
+              "DataType": 0,
+              "UsedNumberSeries": true,
+              "CreateType": 0,
+              "Format": "{0:N0}",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "Unit": 0,
+              "X": 0,
+              "Y": -6,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
+              "X2Axis": false,
+              "Sequence": 3,
+              "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
+              "LineWidth": 2
+            },
+            {
+              "Name": "not_defined",
+              "Label": "not_defined",
+              "Type": 100,
+              "BackgroundColor": "",
+              "Axis": 1,
+              "ValueField": "not_defined",
+              "DataType": 0,
+              "UsedNumberSeries": true,
+              "CreateType": 0,
+              "Format": "{0:N0}",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "Unit": 0,
+              "X": 0,
+              "Y": -6,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
+              "X2Axis": false,
+              "Sequence": 4,
+              "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
+              "LineWidth": 2
+            },
+            {
+              "Name": "voucher",
+              "Label": "voucher",
+              "Type": 100,
+              "BackgroundColor": "",
+              "Axis": 1,
+              "ValueField": "voucher",
+              "DataType": 0,
+              "UsedNumberSeries": true,
+              "CreateType": 0,
+              "Format": "{0:N0}",
+              "BorderWidth": "",
+              "BorderColor": "",
+              "Unit": 0,
+              "X": 0,
+              "Y": -6,
+              "UsePointer": false,
+              "ShowInLegend": true,
+              "ColorByPoint": false,
+              "X2Axis": false,
+              "Sequence": 5,
+              "DataLabelsVisible": true,
+              "DataLabelsColorBySeries": false,
+              "LineWidth": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REP7E0738A9B7844876971A328688F708D0",
+    "FolderCode": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD",
+    "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REP7E0738A9B7844876971A328688F708D0.mtsd",
+    "ReportName": "(OlapGrid) 참조 수식 활용하기",
+    "Writer": "yglee",
+    "WriteDate": "2022-7-1-10-24-32",
+    "Editor": "yglee",
+    "EditDate": "2022-7-1-10-24-32",
+    "UseLayout": false
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DSC0ADF70713A9F9A4D3DDA09D1CC1B4A6",
+        "Name": "수불리스트",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "True",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 1,
+        "SQL": "./DataSource/수불리스트.sql"
+      },
+      {
+        "Id": "DS5CC256DF94E54B3BAC8541DC9DDE6DFA",
+        "Name": "Data1",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data1.sql",
+        "Columns": [
+          {
+            "Name": "CEEB4576F",
+            "Type": "String"
+          },
+          {
+            "Name": "CC42C1FFA",
+            "Type": "String"
+          },
+          {
+            "Name": "CB9B03EAE",
+            "Type": "String"
+          },
+          {
+            "Name": "C1482C520",
+            "Type": "String"
+          },
+          {
+            "Name": "C7108A778",
+            "Type": "Numeric"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./(OlapGrid) 참조 수식 활용하기.script.ts",
+  "Forms": [
+    {
+      "Id": "Formaad6ff00-3b82-d0ac-6ab7-c9c2b4bcb382",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "OlapGrid",
+          "Id": "OlapGrid1652839598112",
+          "Name": "OlapGrid",
+          "Position": {
+            "Left": 15,
+            "Top": 56,
+            "Width": 1011,
+            "Height": 401,
+            "Docking": {
+              "compileMarginText": "0,0,0,0",
+              "compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "DataSource": "DS5CC256DF94E54B3BAC8541DC9DDE6DFA",
+          "AutoRefresh": true,
+          "iOLAPView": {
+            "Options": {
+              "Style": {
+                "LineColor": "rgba(152,183,216,1)",
+                "BackgroundColor": "#fff"
+              }
+            },
+            "Fields": [
+              {
+                "Key": "CEEB4576F",
+                "Caption": "품목코드",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 3,
+                "SortType": 1,
+                "LanguageCode": "pms.BRANCH.MEX_USER_FILE_DATA.D2",
+                "MetaItemCode": "pms.BRANCH.MEX_USER_FILE_DATA.D2",
+                "MetaItemName": "품목코드"
+              },
+              {
+                "Key": "CB9B03EAE",
+                "Caption": "품명",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "RefFormula": "getRecordValue([CEEB4576F])",
+                "Width": 275,
+                "SortType": 1,
+                "LanguageCode": "pms.BRANCH.MEX_USER_FILE_DATA.D3",
+                "MetaItemCode": "pms.BRANCH.MEX_USER_FILE_DATA.D3",
+                "MetaItemName": "품명"
+              },
+              {
+                "Key": "C1482C520",
+                "Caption": "창고이름",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 2,
+                "RefFormula": "getRecordValue([CC42C1FFA])",
+                "SortType": 1,
+                "LanguageCode": "pms.BRANCH.MEX_USER_FILE_DATA.D7",
+                "MetaItemCode": "pms.BRANCH.MEX_USER_FILE_DATA.D7",
+                "MetaItemName": "창고이름"
+              },
+              {
+                "Key": "C7108A778",
+                "Caption": "수불수량",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "GroupByType": 1,
+                "Format": "{0:N0}",
+                "SortType": 1,
+                "LanguageCode": "pms.BRANCH.MEX_USER_FILE_DATA.M2",
+                "MetaItemCode": "pms.BRANCH.MEX_USER_FILE_DATA.M2",
+                "MetaItemName": "수불수량"
+              },
+              {
+                "Key": "CC42C1FFA",
+                "Caption": "창고코드",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 3,
+                "SortType": 1,
+                "LanguageCode": "pms.BRANCH.MEX_USER_FILE_DATA.D6",
+                "MetaItemCode": "pms.BRANCH.MEX_USER_FILE_DATA.D6",
+                "MetaItemName": "창고코드"
+              }
+            ]
+          },
+          "ExtraOption": {
+            "EtcFormat": true,
+            "EtcProperties": true,
+            "EtcMultiHeader": true
+          }
+        },
+        {
+          "Type": "RichTextBox",
+          "Id": "RichTextBox8adc7d79-385c-b42a-eb4e-11d8f8fde943",
+          "Name": "RichTextBox",
+          "Position": {
+            "Left": 1029,
+            "Top": 55,
+            "Width": 449,
+            "Height": 404,
+            "Docking": {
+              "compileMarginText": "0,0,0,0",
+              "compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "Value": [
+            "품목코드:4ZZ000000002,창고코드:SC07",
+            "품목코드:334000008600,창고코드:SC06",
+            "품목코드:334000006900,창고코드:SC06",
+            "품목코드:334000004400,창고코드:SC07",
+            "품목코드:334000008100,창고코드: ZIF RightAngle SMT",
+            "품목코드:334000002400,창고코드: 1.29A",
+            ""
+          ],
+          "Text": "품목코드:4ZZ000000002,창고코드:SC07\n품목코드:334000008600,창고코드:SC06\n품목코드:334000006900,창고코드:SC06\n품목코드:334000004400,창고코드:SC07\n품목코드:334000008100,창고코드: ZIF RightAngle SMT\n품목코드:334000002400,창고코드: 1.29A\n"
+        },
+        {
+          "Type": "Label",
+          "Id": "Label0fa62dad-11ec-f566-3e82-d1393c43b136",
+          "Name": "Label",
+          "Position": {
+            "Left": 22,
+            "Top": 8,
+            "Width": 546,
+            "Height": 49,
+            "Docking": {
+              "compileMarginText": "0,0,0,0",
+              "compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "UseTooltip": true,
+          "Text": "참조 수식을 사용하시면, 행/열에  배치되지 않은 항목의 값에 대해 접근이 가능합니다.\n데이터 셀을 더블클릭해 보시기 바랍니다.",
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          }
+        }
+      ]
+    }
+  ],
+  "MetaDataSources": {
+    "MetaDataSources": [
+      {
+        "LayoutXML": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><MetaViewLayout><MetaItemLayoutInfo sourceCode=\"RPTAC6A247392B94F928900F811D1AE1F5C\" sourceName=\"수불리스트\" AutoSynchronizeMeta=\"1\" SelectType=\"1\" HavingOperator=\"\" DefaultSQLHint=\"\" DistinctRecord=\"0\" UseHybrid=\"true\" ViewerVersion=\"6.2.200.20220426-21\" LOVCacheExpireDate=\"0\" DBType=\"1\" IncludeAttribute=\"False\" metaConnectionCode=\"MTXRPTY\"><SelectedItemInfo><SelectedItems controlType=\"1\"><MetaItemProperty GroupFunction=\"0\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Name=\"품목코드\" DataType=\"typeNchar\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" Category=\"0\" Description=\"품목코드\" OriginDescrption=\"품목코드\" SummaryType=\"Count\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"D2\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"품목코드\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"@\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/><MetaItemProperty GroupFunction=\"0\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D6\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D6\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D6\" Name=\"창고코드\" DataType=\"typeNchar\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D6\" RollupType=\"0\" ItemType=\"1\" Category=\"0\" Description=\"창고코드\" OriginDescrption=\"창고코드\" SummaryType=\"Count\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"D6\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"창고코드\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"@\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D6\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/></SelectedItems><SelectedItems controlType=\"2\"><MetaItemProperty GroupFunction=\"0\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D7\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D7\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D7\" Name=\"창고이름\" DataType=\"typeNchar\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D7\" RollupType=\"0\" ItemType=\"1\" Category=\"0\" Description=\"창고이름\" OriginDescrption=\"창고이름\" SummaryType=\"Count\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"D7\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"창고이름\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"@\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D7\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/></SelectedItems><SelectedItems controlType=\"3\"><MetaItemProperty GroupFunction=\"0\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Name=\"품명\" DataType=\"typeNchar\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" Category=\"0\" Description=\"품명\" OriginDescrption=\"품명\" SummaryType=\"Count\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"D3\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"품명\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"@\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/></SelectedItems><SelectedItems controlType=\"4\"><MetaItemProperty GroupFunction=\"1\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Code=\"ITMB2F024E599024455B34C14B64B3AEFC9\" Name=\"수불수량\" DataType=\"typeNumber\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" Category=\"1\" Description=\"수불수량\" OriginDescrption=\"수불수량\" SummaryType=\"Sum\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"M2\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"수불수량\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/></SelectedItems><SelectedItems controlType=\"7\"/><SelectedItems controlType=\"8\"><MetaItemProperty GroupFunction=\"0\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Name=\"품목코드\" DataType=\"typeNchar\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" Category=\"0\" Description=\"품목코드\" OriginDescrption=\"품목코드\" SummaryType=\"Count\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"D2\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"품목코드\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"@\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/><MetaItemProperty GroupFunction=\"0\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D6\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D6\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D6\" Name=\"창고코드\" DataType=\"typeNchar\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D6\" RollupType=\"0\" ItemType=\"1\" Category=\"0\" Description=\"창고코드\" OriginDescrption=\"창고코드\" SummaryType=\"Count\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"D6\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"창고코드\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"@\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D6\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/><MetaItemProperty GroupFunction=\"0\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Name=\"품명\" DataType=\"typeNchar\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" Category=\"0\" Description=\"품명\" OriginDescrption=\"품명\" SummaryType=\"Count\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"D3\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"품명\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"@\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/><MetaItemProperty GroupFunction=\"0\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D7\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D7\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D7\" Name=\"창고이름\" DataType=\"typeNchar\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D7\" RollupType=\"0\" ItemType=\"1\" Category=\"0\" Description=\"창고이름\" OriginDescrption=\"창고이름\" SummaryType=\"Count\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"D7\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"창고이름\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"@\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D7\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/><MetaItemProperty GroupFunction=\"1\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Code=\"ITMB2F024E599024455B34C14B64B3AEFC9\" Name=\"수불수량\" DataType=\"typeNumber\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" Category=\"1\" Description=\"수불수량\" OriginDescrption=\"수불수량\" SummaryType=\"Sum\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"M2\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"수불수량\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/></SelectedItems><SelectedItems controlType=\"9\"><MetaItemProperty GroupFunction=\"0\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" Name=\"품목코드\" DataType=\"typeNchar\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D2\" RollupType=\"0\" ItemType=\"1\" Category=\"0\" Description=\"품목코드\" OriginDescrption=\"품목코드\" SummaryType=\"Count\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"D2\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"품목코드\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"@\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D2\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/><MetaItemProperty GroupFunction=\"0\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D6\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D6\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D6\" Name=\"창고코드\" DataType=\"typeNchar\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D6\" RollupType=\"0\" ItemType=\"1\" Category=\"0\" Description=\"창고코드\" OriginDescrption=\"창고코드\" SummaryType=\"Count\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"D6\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"창고코드\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"@\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D6\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/><MetaItemProperty GroupFunction=\"0\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" Name=\"품명\" DataType=\"typeNchar\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D3\" RollupType=\"0\" ItemType=\"1\" Category=\"0\" Description=\"품명\" OriginDescrption=\"품명\" SummaryType=\"Count\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"D3\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"품명\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"@\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D3\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/><MetaItemProperty GroupFunction=\"0\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D7\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D7\" Code=\"pms.BRANCH.MEX_USER_FILE_DATA.D7\" Name=\"창고이름\" DataType=\"typeNchar\" Formula=\"BRANCH.MEX_USER_FILE_DATA.D7\" RollupType=\"0\" ItemType=\"1\" Category=\"0\" Description=\"창고이름\" OriginDescrption=\"창고이름\" SummaryType=\"Count\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"D7\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"창고이름\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"@\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.D7\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/><MetaItemProperty GroupFunction=\"1\" Having=\"\" SortOrder=\"0\" SortDirection=\"sortAscending\" Selected=\"true\" OriginMetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" MetaItemCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" Code=\"ITMB2F024E599024455B34C14B64B3AEFC9\" Name=\"수불수량\" DataType=\"typeNumber\" Formula=\"BRANCH.MEX_USER_FILE_DATA.M2\" RollupType=\"0\" ItemType=\"1\" Category=\"1\" Description=\"수불수량\" OriginDescrption=\"수불수량\" SummaryType=\"Sum\" GroupOrder=\"0\" AfterRollUpType=\"0\" PeriodRollUpType=\"None\" PeriodConvertType=\"null\" TooltipText=\"\" TableName=\"MEX_USER_FILE_DATA\" TableDesc=\"\" ColumnName=\"M2\" ColumnDesc=\"\" PeriodConvertCommand=\"\" FilterMask=\"\" BaseSummaryField=\"\" Encryped=\"false\" DataMaskRule=\"\" LabelField=\"\" LOV_SQL=\"\" Hidden=\"false\" FormulaEx=\"\" CaptionDesc=\"수불수량\" LanguageCode=\"\" LOVDisabled=\"false\" SortField=\"\" IsFieldHidden=\"false\" UserDefineItemFormula=\"\" RefFormula=\"\" DefaultFormat=\"\" ParentCode=\"\" SourceCode=\"pms.BRANCH.MEX_USER_FILE_DATA.M2\" IsDisableTrim=\"false\" IsUseFilter=\"true\" IsEnableLOV=\"true\" IsUserMode=\"false\" Operator=\"0\" PhysicalCode=\"\"/></SelectedItems><SelectedItems controlType=\"10\"/><SelectedItems controlType=\"6\"/></SelectedItemInfo><FilteredItems/><UserDefineItems/><GridProperties DisplayRowTotal=\"True\" DisplayRowGrandTotal=\"True\" DisplayColumnTotal=\"True\" DisplayColumnGrandTotal=\"True\" ColumnTotalLocation=\"Right\" RowTotalLocation=\"Bottom\"/><OutputDocumentXML/></MetaItemLayoutInfo></MetaViewLayout>",
+        "Code": "DSC0ADF70713A9F9A4D3DDA09D1CC1B4A6",
+        "ConnectionCode": "MTXRPTY",
+        "ReportCode": "TEMPLATE_SD_ANAL",
+        "MetaName": "수불리스트",
+        "MetaCodes": "RPTAC6A247392B94F928900F811D1AE1F5C",
+        "HasRequiredCondition": false,
+        "SQLText": "pVxiYW+gb8uyu8SUiCHiDCdyovHqJKAe3zIWX5ii6AbdCUyS1zV+hdgS5D94iWSyr/Vc5qeYFyHmbUTMX1HgBtvFBfGya9Lkw2yhTMhWKWdtza6kYRkPaiw9Q0hqxcUa6IC8hCZ/lcByH+K7+tPwwjAE1fdUtlLimFSCk8vl5tXUFWQA+79SO52DU5ytlDEn7qUOAXNfNUsSZO2oHdr1GYVGsz1yMEuw8eHivTEj2qtgIsSuXAK8xNLFbl+rKbC5r4dVLfQ3YJecyKvT9feUF0iwG+qVzXzVAUqanE/WRxzT0KGyb7xi0h+rsrBQKA6H48PKzJrDHKm0wuMMobl8So5fpTB2AEFvkKdBZm+Sz8Su/gnlgLJrKmg8bD5c0ITyscnowpqgoQUh7imQSfac5+CPxbUm8pCBLDOynlq825/v8Xqzc60Y2cWVjQHcg8HHm0bxjHSFIuCTwfmPDJyw6ILs9m4jHDZaycStIyUkBgyl5l1DN7WQq5HMzLm1geUg",
+        "FilterInfo": [],
+        "Conditions": [],
+        "MetaFields": [
+          {
+            "Id": "CB9B03EAE",
+            "Name": "품명",
+            "Area": 1,
+            "Category": 0,
+            "SummaryType": 0,
+            "SummaryVariation": 0,
+            "SortType": 0,
+            "Formula": "",
+            "Format": "",
+            "ToolTipText": "",
+            "MetaItemCode": "pms.BRANCH.MEX_USER_FILE_DATA.D3",
+            "MetaRollupType": 0,
+            "GroupFunction": 0,
+            "AfterRollUpType": 0,
+            "Caption": "품명",
+            "LanguageCode": "pms.BRANCH.MEX_USER_FILE_DATA.D3",
+            "IsMetaField": true
+          },
+          {
+            "Id": "C1482C520",
+            "Name": "창고이름",
+            "Area": 2,
+            "Category": 0,
+            "SummaryType": 0,
+            "SummaryVariation": 0,
+            "SortType": 0,
+            "Formula": "",
+            "Format": "",
+            "ToolTipText": "",
+            "MetaItemCode": "pms.BRANCH.MEX_USER_FILE_DATA.D7",
+            "MetaRollupType": 0,
+            "GroupFunction": 0,
+            "AfterRollUpType": 0,
+            "Caption": "창고이름",
+            "LanguageCode": "pms.BRANCH.MEX_USER_FILE_DATA.D7",
+            "IsMetaField": true
+          },
+          {
+            "Id": "CEEB4576F",
+            "Name": "품목코드",
+            "Area": 3,
+            "Category": 0,
+            "SummaryType": 0,
+            "SummaryVariation": 0,
+            "SortType": 0,
+            "Formula": "",
+            "Format": "",
+            "ToolTipText": "",
+            "MetaItemCode": "pms.BRANCH.MEX_USER_FILE_DATA.D2",
+            "MetaRollupType": 0,
+            "GroupFunction": 0,
+            "AfterRollUpType": 0,
+            "Caption": "품목코드",
+            "LanguageCode": "pms.BRANCH.MEX_USER_FILE_DATA.D2",
+            "IsMetaField": true
+          },
+          {
+            "Id": "CC42C1FFA",
+            "Name": "창고코드",
+            "Area": 3,
+            "Category": 0,
+            "SummaryType": 0,
+            "SummaryVariation": 0,
+            "SortType": 0,
+            "Formula": "",
+            "Format": "",
+            "ToolTipText": "",
+            "MetaItemCode": "pms.BRANCH.MEX_USER_FILE_DATA.D6",
+            "MetaRollupType": 0,
+            "GroupFunction": 0,
+            "AfterRollUpType": 0,
+            "Caption": "창고코드",
+            "LanguageCode": "pms.BRANCH.MEX_USER_FILE_DATA.D6",
+            "IsMetaField": true
+          },
+          {
+            "Id": "C7108A778",
+            "Name": "수불수량",
+            "Area": 4,
+            "Category": 1,
+            "SummaryType": 1,
+            "SummaryVariation": 0,
+            "SortType": 0,
+            "Formula": "",
+            "Format": "",
+            "ToolTipText": "",
+            "MetaItemCode": "pms.BRANCH.MEX_USER_FILE_DATA.M2",
+            "MetaRollupType": 0,
+            "GroupFunction": 1,
+            "AfterRollUpType": 0,
+            "Caption": "수불수량",
+            "LanguageCode": "pms.BRANCH.MEX_USER_FILE_DATA.M2",
+            "IsMetaField": true
+          }
+        ]
+      }
+    ]
+  },
+  "WorkFlowInfo": "{}"
+}

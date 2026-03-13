@@ -1,0 +1,185 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REP4C3CCBCFC9F040E796E1C39460C5D64D",
+    "FolderCode": "FLDC7BAD63B598D40C69738638A26DE0C36",
+    "SavePath": "FLDC7BAD63B598D40C69738638A26DE0C36/REP4C3CCBCFC9F040E796E1C39460C5D64D.mtsd",
+    "ReportName": "영업 관리 시스템",
+    "Writer": "kimje1342",
+    "WriteDate": "2026-02-02 12:18:01",
+    "Editor": "kimje1342",
+    "EditDate": "2026-02-02 12:18:01",
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS149136F665734F409E8172B4DE918219",
+        "Name": "GRD_TREE",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/GRD_TREE.sql",
+        "Columns": [
+          {
+            "Name": "NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "CODE",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./영업 관리 시스템.script.ts",
+  "Forms": [
+    {
+      "Id": "FormD64B8652095A4B9798E93B38EDBCCCD4",
+      "Name": "Form1",
+      "Style": {
+        "Type": 2,
+        "Border": {
+          "LineType": "none"
+        }
+      },
+      "Elements": [
+        {
+          "Type": "DataGrid",
+          "Id": "DataGrid6F6A400A57D15740C1D3B6868972F238",
+          "Name": "GRD_TREE",
+          "Position": {
+            "Left": 0,
+            "Top": 55,
+            "Width": 210,
+            "Height": 869,
+            "ZIndex": 5,
+            "Docking": {
+              "Left": true,
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Border": {
+              "Thickness": "0"
+            },
+            "VerticalBorder": {
+              "Thickness": "0"
+            },
+            "HorizontalBorder": {
+              "Thickness": "0"
+            },
+            "Type": 2
+          },
+          "DataSource": "DS149136F665734F409E8172B4DE918219",
+          "AutoRefresh": true,
+          "ShowHeader": 0,
+          "SelectRule": 3,
+          "RowHeight": 50,
+          "FontBold": true,
+          "FontSize": 14,
+          "UseExcelExport": false,
+          "UseCSVExport": false,
+          "UseTextExport": false,
+          "UseFilterInit": false,
+          "UseAnalysisItemSetting": false,
+          "OddRowBackground": {
+            "Type": 0,
+            "Color": {
+              "R": 249,
+              "G": 249,
+              "B": 251,
+              "A": 0
+            }
+          },
+          "Foreground": {
+            "Type": 0,
+            "Color": {
+              "R": 226,
+              "G": 232,
+              "B": 240,
+              "A": 1
+            }
+          },
+          "Background": {
+            "Type": 0,
+            "Color": {
+              "R": 30,
+              "G": 41,
+              "B": 59,
+              "A": 1
+            }
+          },
+          "Columns": [
+            {
+              "Name": "NAME",
+              "GridColumnWidthType": 1,
+              "CursorType": "pointer",
+              "KeyType": 2
+            },
+            {
+              "Name": "CODE",
+              "Visible": false,
+              "KeyType": 2
+            }
+          ]
+        },
+        {
+          "Type": "WebContainer",
+          "Id": "WebContainer17F746DDDE2AA57E61BC31D66A96598C",
+          "Name": "WEB",
+          "Position": {
+            "Left": 210,
+            "Top": 0,
+            "Width": 1690,
+            "Height": 924,
+            "ZIndex": 6,
+            "Docking": {
+              "Right": true,
+              "Top": true,
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": "#c2c2c5",
+              "LineType": "none"
+            }
+          },
+          "TargetURL": "https://rnd.bimatrix.co.kr/aud7//AUD/main.jsp?id=REP76AE7715F1E24BD6B7D44AD020636FE7"
+        },
+        {
+          "Type": "Label",
+          "Id": "Label0F1BB5777CD1FE21BC05B21A809FD8F4",
+          "Name": "Label",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 210,
+            "Height": 55,
+            "ZIndex": 4
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#1e293b"
+            },
+            "Border": {
+              "Color": "#1e293bac",
+              "LineType": "solid",
+              "Thickness": "0,0,0,1"
+            },
+            "Font": {
+              "Color": "#ffffff",
+              "Size": 18
+            }
+          },
+          "Text": "   영업 관리 시스템"
+        }
+      ]
+    }
+  ]
+}

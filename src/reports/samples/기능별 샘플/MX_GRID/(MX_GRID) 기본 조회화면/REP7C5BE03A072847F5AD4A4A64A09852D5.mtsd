@@ -11,10 +11,28 @@
     "TabPosition": 0,
     "DocumentVersion": "3.0.0.0",
     "Description": "기본 조회 화면",
-    "RefreshType": 0
+    "RefreshType": 0,
+    "CreateBy": "i-AUD Developer Kit"
   },
   "DataSources": {
     "Datas": [
+      {
+        "Id": "DS0276CE465AA1495EB890BA1A42547D10",
+        "Name": "VS_ORD_STS",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "Encrypted": true,
+        "DSType": 2,
+        "SQL": "Yr0wUOa/MrT9yEX3Q4QnjW2ednX07jpoUH1EkI9gd60UpYfPlCfwaqk1x6qK9m+d",
+        "Params": [],
+        "Columns": [
+          {
+            "Name": "ORDER_STATUS",
+            "Type": "String"
+          }
+        ]
+      },
       {
         "Id": "DS0276CE465AA1495EB890BA1A42547D10",
         "Name": "VS_ORD_STS",
@@ -34,7 +52,7 @@
       }
     ]
   },
-  "ScriptText": "/* Button */\t\r\nvar BTN_REF = Matrix.getObject(\"BTN_REF\");\t\t\t// '조회' 버튼\r\n\r\n/* Grid */\r\nvar MX = Matrix.getObject(\"MX\");\t\t  \t\t\t// MXGrid\r\n\r\n/* ComboBox */\r\nvar VS_ORD_STS = Matrix.getObject(\"VS_ORD_STS\"); \t// ComboBox\r\n\r\n\r\n/**************************************\r\n * 문서가 로드되고 AutoRefresh가 완료되는 시점에 발생합니다.\r\n * * arguments :  \r\n *\t\t boolean\tSuccess (Readonly:False) : 성공여부 \r\n *\t\t string\tMessage (Readonly:False) : 에러 메시지 \r\n**************************************/\r\n var OnLoadComplete  = function(sender, args){\r\n \tVS_ORD_STS.InitValue = \"delivered\";\r\n\tMatrix.doRefresh(\"MX\");\t\r\n };\r\n \r\n \r\n/**************************************\r\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\r\n * * arguments :  \r\n *\t\t string\tId (Readonly:False) : 컨트롤이름 \r\n *\t\t string\tText (Readonly:False) : 라벨 값 \r\n**************************************/\r\n var OnButtonClick  = function(sender, args){\r\n \tif(args.Id == \"BTN_REF\"){\t\t\t// '조회' 버튼 클릭 시\r\n\t\tMatrix.doRefresh(\"MX\");\t\t\t// MXGrid 조회\r\n\t}\r\n };\r\n \r\n",
+  "ScriptText": "var VS_ORD_STS = Matrix.getObject(\"VS_ORD_STS\");\n/**************************************\n * 문서가 로드되고 AutoRefresh가 완료되는 시점에 발생합니다.\n * * arguments :\n *\t\t boolean\tSuccess (Readonly:False) : 성공여부\n *\t\t string\tMessage (Readonly:False) : 에러 메시지\n **************************************/\nvar OnLoadComplete = function (sender, args) {\n    VS_ORD_STS.InitValue = \"delivered\";\n    Matrix.doRefresh(\"MX\");\n};\n/**************************************\n * 버튼 컨트롤이 클릭되는 시점에 발생합니다.\n * * arguments :\n *\t\t string\tId (Readonly:False) : 컨트롤이름\n *\t\t string\tText (Readonly:False) : 라벨 값\n **************************************/\nvar OnButtonClick = function (sender, args) {\n    if (args.Id == \"BTN_REF\") {\n        // '조회' 버튼 클릭 시\n        Matrix.doRefresh(\"MX\"); // MXGrid 조회\n    }\n};\n",
   "ServerScriptText": [],
   "Forms": [
     {

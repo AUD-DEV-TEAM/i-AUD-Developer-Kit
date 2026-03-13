@@ -1,0 +1,351 @@
+{
+  "ReportInfo": {
+    "ReportCode": "HTML_TEMPLATE_VIEWER",
+    "FolderCode": "FLD529700487588439380E5CCBE9AAF54FB",
+    "SavePath": "FLD529700487588439380E5CCBE9AAF54FB/HTML_TEMPLATE_VIEWER.sc",
+    "ReportName": "HTML TEMPLATE VIEWER",
+    "Writer": "yglee",
+    "WriteDate": "2025-07-31 15:10:04",
+    "Editor": "yglee",
+    "EditDate": "2025-07-31 15:10:04",
+    "UseLayout": false
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS58F5D3831652419C8B35CF8DCC7AF8BA",
+        "Name": "Data1",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data1.sql",
+        "Columns": [
+          {
+            "Name": "ID",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "품명",
+            "Type": "String"
+          },
+          {
+            "Name": "평형",
+            "Type": "String"
+          },
+          {
+            "Name": "구분",
+            "Type": "String"
+          },
+          {
+            "Name": "제조사",
+            "Type": "String"
+          },
+          {
+            "Name": "최소판매가",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "최대판매가",
+            "Type": "Numeric"
+          }
+        ]
+      },
+      {
+        "Id": "DS1CA3D056F0F94B38A07DEDC852FE9570",
+        "Name": "Data2",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data2.sql",
+        "Columns": [
+          {
+            "Name": "OPTION_CODE",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./HTML TEMPLATE VIEWER.script.ts",
+  "Forms": [
+    {
+      "Id": "Form298ACB9612E4D7779D4298536B3EC18A",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "RichTextBox",
+          "Id": "RichTextBoxE0B7068DE34D5B689207A27BFEB94987",
+          "Name": "tbxCSS",
+          "Position": {
+            "Left": 7,
+            "Top": 489,
+            "Width": 334,
+            "Height": 525,
+            "ZIndex": 4,
+            "Docking": {
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 13
+            }
+          },
+          "Value": [
+            " body {",
+            "      font-family: 'Segoe UI', sans-serif;",
+            "      margin: 0px;",
+            "    }",
+            "",
+            "    .table-wrapper {",
+            "      height: 300px; /* 고정 높이 설정 */",
+            "      overflow-y: auto;",
+            "    }",
+            "",
+            "    table.pretty-table {",
+            "      width: 100%;",
+            "      border-collapse: collapse;",
+            "      background-color: white;",
+            "      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);",
+            "    }",
+            "",
+            "    table.pretty-table thead {",
+            "      background-color: #2f80ed;",
+            "      color: white;",
+            "      position: sticky;",
+            "      top: 0;",
+            "      z-index: 1;",
+            "    }",
+            "",
+            "    table.pretty-table th,",
+            "    table.pretty-table td {",
+            "      padding: 5px 5px;",
+            "      text-align: left;",
+            "    }",
+            "",
+            "    table.pretty-table tbody tr {",
+            "      border-bottom: 1px solid #e0e0e0;",
+            "    }",
+            "",
+            "    table.pretty-table tbody tr:hover {",
+            "      background-color: #f1f9ff;",
+            "    }",
+            "",
+            "    table.pretty-table th {",
+            "      font-weight: 600;",
+            "    }",
+            "",
+            "    table.pretty-table td {",
+            "      color: #333;",
+            "    }",
+            "",
+            "    @media (max-width: 768px) {",
+            "      table.pretty-table th,",
+            "      table.pretty-table td {",
+            "        padding: 5px 5px;",
+            "      }",
+            "    }"
+          ],
+          "Text": " body {\n      font-family: 'Segoe UI', sans-serif;\n      margin: 0px;\n    }\n\n    .table-wrapper {\n      height: 300px; /* 고정 높이 설정 */\n      overflow-y: auto;\n    }\n\n    table.pretty-table {\n      width: 100%;\n      border-collapse: collapse;\n      background-color: white;\n      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n    }\n\n    table.pretty-table thead {\n      background-color: #2f80ed;\n      color: white;\n      position: sticky;\n      top: 0;\n      z-index: 1;\n    }\n\n    table.pretty-table th,\n    table.pretty-table td {\n      padding: 5px 5px;\n      text-align: left;\n    }\n\n    table.pretty-table tbody tr {\n      border-bottom: 1px solid #e0e0e0;\n    }\n\n    table.pretty-table tbody tr:hover {\n      background-color: #f1f9ff;\n    }\n\n    table.pretty-table th {\n      font-weight: 600;\n    }\n\n    table.pretty-table td {\n      color: #333;\n    }\n\n    @media (max-width: 768px) {\n      table.pretty-table th,\n      table.pretty-table td {\n        padding: 5px 5px;\n      }\n    }"
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "DataGridDFA7B0DE54721F7293CE85CA344D5E1B",
+          "Name": "dataView",
+          "Position": {
+            "Left": 1067,
+            "Top": 48,
+            "Width": 500,
+            "Height": 333,
+            "ZIndex": 5
+          },
+          "Style": {
+            "Type": 2
+          },
+          "DataSource": "DS58F5D3831652419C8B35CF8DCC7AF8BA",
+          "Columns": [
+            {
+              "Name": "ID",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "품명",
+              "KeyType": 2
+            },
+            {
+              "Name": "평형",
+              "KeyType": 2
+            },
+            {
+              "Name": "구분",
+              "KeyType": 2
+            },
+            {
+              "Name": "제조사",
+              "KeyType": 2
+            },
+            {
+              "Name": "최소판매가",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "최대판매가",
+              "ColumnType": 3,
+              "KeyType": 2,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            }
+          ]
+        },
+        {
+          "Type": "RichTextBox",
+          "Id": "RichTextBoxC09B9876D796D0F8727D8E4A9570857C",
+          "Name": "tbxHTML",
+          "Position": {
+            "Left": 348,
+            "Top": 489,
+            "Width": 406,
+            "Height": 525,
+            "ZIndex": 5,
+            "Docking": {
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 13
+            }
+          },
+          "Value": [
+            "&lt;div style=\"width:100%;\"&gt;",
+            "  &lt;table class=\"pretty-table\"&gt;",
+            "    &lt;thead&gt;",
+            "      &lt;tr&gt;",
+            "        &lt;th Binding=\"Columns\"&gt;{=.}&lt;/th&gt;",
+            "      &lt;/tr&gt;",
+            "    &lt;/thead&gt;",
+            "    &lt;tbody&gt;\t\t",
+            "\t\t&lt;tr Binding=\"Rows\" onclick=\"alert('{=품명}');\"&gt;\t\t\t                        ",
+            "\t\t\t&lt;td Binding=\".\"&gt;{=.} &lt;/td&gt;\t\t\t",
+            "\t\t&lt;/tr&gt;\t\t",
+            "    &lt;/tbody&gt;",
+            "  &lt;/table&gt; ",
+            "&lt;/div&gt;"
+          ],
+          "Text": "&lt;div style=\"width:100%;\"&gt;\n  &lt;table class=\"pretty-table\"&gt;\n    &lt;thead&gt;\n      &lt;tr&gt;\n        &lt;th Binding=\"Columns\"&gt;{=.}&lt;/th&gt;\n      &lt;/tr&gt;\n    &lt;/thead&gt;\n    &lt;tbody&gt;\t\t\n\t\t&lt;tr Binding=\"Rows\" onclick=\"alert('{=품명}');\"&gt;\t\t\t                        \n\t\t\t&lt;td Binding=\".\"&gt;{=.} &lt;/td&gt;\t\t\t\n\t\t&lt;/tr&gt;\t\t\n    &lt;/tbody&gt;\n  &lt;/table&gt; \n&lt;/div&gt;"
+        },
+        {
+          "Type": "MultiComboBox",
+          "Id": "MultiComboBoxE415DBA5DBE13E7C23F97FBD2DE33ABC",
+          "Name": "VS_option_code",
+          "Position": {
+            "Left": 1071,
+            "Top": 10,
+            "Width": 120,
+            "Height": 23,
+            "ZIndex": 5
+          },
+          "DataSource": "DS1CA3D056F0F94B38A07DEDC852FE9570",
+          "EditValue": "SCHEMATYPE,DOUBLEARCH,NAMERULE,CONNECTPRIV,CHECK_AUTH,UPPERCASE,OLAP_DAEMON,AUTHGROUP,CREATEDT,IBIGVERSION,IBIGURL,ISTREAMURL,SQLEXEC,DISABLE_TRACE_LOG,REPORT_CATALOG_VERSION,MTX_JCM_URL,LOGIN_LIMIT_CNT,CERT_CLASS_NAME,MX_GRID_LIMIT_OF_SHEETS,MX_GRID_LIMIT_OF_COLUMNS,MX_GRID_LIMIT_OF_ROWS,HWP_EXPORT_COLUMN_LIMIT,HWP_EXPORT_ROW_LIMIT,DOCX_EXPORT_COLUMN_LIMIT,DOCX_EXPORT_ROW_LIMIT,XLSX_EXPORT_COLUMN_LIMIT,XLSX_EXPORT_ROW_LIMIT,DRM_DECRYPT_URL,FILE_UPLOAD_MAX,QUERYJOB_MONITOR,USE_MOBILE_LAYOUT,DEPLOYE_AUTH_IP,DEPLOYE_AUTH_USER,DEPLOYE_OPTION,DEPLOYE_URL,DIALOG_LANG_PROCESS_TYPE,BAK_VERSION,SCHEDULE_ADD_REPORT_CODE,SCHEDULE_MAIL_REPORT_CODE,SCHEDULE_MAIL_SERVER_SCRIPT_NAME,METACUBEURL,VALIDKEY,META_TEST_URL,TEMP_PATH,FILE_DIALOG_URL,REPORTPATH,PERMIT_ALL_SHARE_PATHS,LOGSET,USE_PRIVATE_AUTH_KEY,SCRIPT_ACCES_FOLDERS",
+          "CaptionText": "(+)SCHEMATYPE",
+          "AutoRefresh": true,
+          "AfterRefresh": "DataGrid",
+          "AutoChildSelect": false,
+          "DataSourceInfo": {
+            "CaptionField": "OPTION_CODE",
+            "ValueField": "OPTION_CODE"
+          }
+        },
+        {
+          "Type": "WebContainer",
+          "Id": "WebContainerBBCD69846E6CDCE7F514060D5D6B93AB",
+          "Name": "webView",
+          "Position": {
+            "Left": 12,
+            "Top": 28,
+            "Width": 1036,
+            "Height": 424,
+            "ZIndex": 5
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": "#c2c2c5",
+              "LineType": "none"
+            }
+          }
+        },
+        {
+          "Type": "RichTextBox",
+          "Id": "RichTextBox329A06820113C1C1C8296BF541105AD7",
+          "Name": "tbxModel",
+          "Position": {
+            "Left": 762,
+            "Top": 491,
+            "Width": 1264,
+            "Height": 523,
+            "ZIndex": 6,
+            "Docking": {
+              "Right": true,
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 13
+            }
+          },
+          "Value": [
+            "&lt;div style=\"width:100%;\"&gt;",
+            "  &lt;table class=\"pretty-table\"&gt;",
+            "    &lt;thead&gt;",
+            "      &lt;tr&gt;",
+            "        &lt;th Binding=\"Columns\"&gt;{=.}&lt;/th&gt;",
+            "      &lt;/tr&gt;",
+            "    &lt;/thead&gt;",
+            "    &lt;tbody&gt;\t\t",
+            "\t\t&lt;tr Binding=\"Rows\" onclick=\"alert('{=품명}');\"&gt;\t\t\t                        ",
+            "\t\t\t&lt;td Binding=\".\"&gt;{=.} &lt;/td&gt;\t\t\t",
+            "\t\t&lt;/tr&gt;\t\t",
+            "    &lt;/tbody&gt;",
+            "  &lt;/table&gt; ",
+            "&lt;/div&gt;"
+          ],
+          "Text": "&lt;div style=\"width:100%;\"&gt;\n  &lt;table class=\"pretty-table\"&gt;\n    &lt;thead&gt;\n      &lt;tr&gt;\n        &lt;th Binding=\"Columns\"&gt;{=.}&lt;/th&gt;\n      &lt;/tr&gt;\n    &lt;/thead&gt;\n    &lt;tbody&gt;\t\t\n\t\t&lt;tr Binding=\"Rows\" onclick=\"alert('{=품명}');\"&gt;\t\t\t                        \n\t\t\t&lt;td Binding=\".\"&gt;{=.} &lt;/td&gt;\t\t\t\n\t\t&lt;/tr&gt;\t\t\n    &lt;/tbody&gt;\n  &lt;/table&gt; \n&lt;/div&gt;"
+        },
+        {
+          "Type": "Button",
+          "Id": "Button5631340BB28CC491847D4855C403B131",
+          "Name": "btnExecute",
+          "Position": {
+            "Left": 1096,
+            "Top": 466,
+            "Width": 60,
+            "Height": 23,
+            "ZIndex": 6
+          },
+          "Value": "실행"
+        }
+      ]
+    }
+  ]
+}

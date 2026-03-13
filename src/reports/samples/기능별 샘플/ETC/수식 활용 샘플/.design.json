@@ -1,0 +1,3198 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPFORMULASAMPLE00000000000000001",
+    "FolderCode": "MYDOCUMENT.yglee",
+    "SavePath": "MYDOCUMENT.yglee/REPFORMULASAMPLE00000000000000001.mtsd",
+    "ReportName": "수식 활용 샘플",
+    "Writer": "yglee",
+    "WriteDate": "2026-02-03 14:57:19",
+    "Editor": "yglee",
+    "EditDate": "2026-02-03 14:57:19",
+    "UsePersonalConditions": false,
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS3F57996B97004C1ABE4918C3E01CDD4D",
+        "Name": "GRD_SALES",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/GRD_SALES.sql",
+        "Params": [
+          {
+            "Name": ":VS_YEAR",
+            "ParamType": "String"
+          }
+        ],
+        "Columns": [
+          {
+            "Name": "SALES_ID",
+            "Type": "String"
+          },
+          {
+            "Name": "SALES_DATE",
+            "Type": "String"
+          },
+          {
+            "Name": "EMP_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "CUST_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "PROD_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "CATEGORY_NAME",
+            "Type": "String"
+          },
+          {
+            "Name": "QTY",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "UNIT_PRICE",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "COST_AMOUNT",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "NET_AMOUNT",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "STATUS_CODE",
+            "Type": "String"
+          },
+          {
+            "Name": "SALES_STATUS",
+            "Type": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./수식 활용 샘플.script.ts",
+  "Forms": [
+    {
+      "Id": "FormFORMULA_SAMPLE_MAIN",
+      "Name": "수식 활용 샘플",
+      "Style": {
+        "Type": 2,
+        "Border": {
+          "LineType": "none"
+        },
+        "Background": {
+          "ColorR": 241,
+          "ColorG": 245,
+          "ColorB": 249
+        }
+      },
+      "Elements": [
+        {
+          "Type": "Group",
+          "Id": "GroupFORMULA_HEADER",
+          "Name": "GRP_HEADER",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1600,
+            "Height": 55
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#1e293b"
+            },
+            "Border": {
+              "Color": "#1e293b"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_TITLE",
+              "Name": "LBL_TITLE",
+              "Position": {
+                "Left": 20,
+                "Top": 10,
+                "Width": 400,
+                "Height": 35
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color",
+                    "A": 0
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#ffffff",
+                  "Size": 18,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "수식 활용 샘플",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_HEADER"
+            },
+            {
+              "Type": "Button",
+              "Id": "ButtonFORMULA_REF",
+              "Name": "BTN_REF",
+              "Position": {
+                "Left": 1490,
+                "Top": 10,
+                "Width": 90,
+                "Height": 35,
+                "ZIndex": 2,
+                "TabIndex": 1
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": "#2563eb"
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#2563eb",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  },
+                  "Size": 13,
+                  "Family": "Pretendard",
+                  "Bold": true,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Button"
+                  }
+                }
+              },
+              "Value": "조회",
+              "InGroup": "GRP_HEADER"
+            }
+          ]
+        },
+        {
+          "Type": "Label",
+          "Id": "LabelFORMULA_SEC1TTL",
+          "Name": "LBL_SEC1_TTL",
+          "Position": {
+            "Left": 20,
+            "Top": 65,
+            "Width": 400,
+            "Height": 25,
+            "ZIndex": 3
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": "#cccccc"
+            },
+            "Font": {
+              "Color": "#1e293b",
+              "Size": 14,
+              "Family": "Pretendard"
+            }
+          },
+          "Text": "집계 수식 (Aggregate Formulas)",
+          "HasLineSpacing": false,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "Group",
+          "Id": "GroupFORMULA_AGG1",
+          "Name": "GRP_AGG_1",
+          "Position": {
+            "Left": 20,
+            "Top": 95,
+            "Width": 375,
+            "Height": 85,
+            "ZIndex": 10
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#f8fafc"
+            },
+            "Border": {
+              "Color": "#e2e8f0",
+              "CornerRadius": "8,8,8,8"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_AGGT1",
+              "Name": "LBL_AGG_T1",
+              "Position": {
+                "Left": 15,
+                "Top": 8,
+                "Width": 345,
+                "Height": 22,
+                "ZIndex": 11
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#64748b",
+                  "Size": 11,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "매출 합계 (SUMIF)",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_1"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_SUM",
+              "Name": "LBL_SUM",
+              "Position": {
+                "Left": 15,
+                "Top": 35,
+                "Width": 345,
+                "Height": 40,
+                "ZIndex": 12
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 22,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "",
+              "Formula": "TOSTRING(SUMIF(:GRD_SALES, \"NET_AMOUNT\"), \"{0:N0}\")",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_1"
+            }
+          ]
+        },
+        {
+          "Type": "Group",
+          "Id": "GroupFORMULA_AGG2",
+          "Name": "GRP_AGG_2",
+          "Position": {
+            "Left": 415,
+            "Top": 95,
+            "Width": 375,
+            "Height": 85,
+            "ZIndex": 13
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#f8fafc"
+            },
+            "Border": {
+              "Color": "#e2e8f0",
+              "CornerRadius": "8,8,8,8"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_AGGT2",
+              "Name": "LBL_AGG_T2",
+              "Position": {
+                "Left": 15,
+                "Top": 8,
+                "Width": 345,
+                "Height": 22,
+                "ZIndex": 14
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#64748b",
+                  "Size": 11,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "건수 (COUNTIF)",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_2"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_CNT",
+              "Name": "LBL_CNT",
+              "Position": {
+                "Left": 15,
+                "Top": 35,
+                "Width": 345,
+                "Height": 40,
+                "ZIndex": 15
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 22,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "0",
+              "Formula": "COUNTIF(:GRD_SALES, \"SALES_ID\")",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_2"
+            }
+          ]
+        },
+        {
+          "Type": "Group",
+          "Id": "GroupFORMULA_AGG3",
+          "Name": "GRP_AGG_3",
+          "Position": {
+            "Left": 810,
+            "Top": 95,
+            "Width": 375,
+            "Height": 85,
+            "ZIndex": 16
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#f8fafc"
+            },
+            "Border": {
+              "Color": "#e2e8f0",
+              "CornerRadius": "8,8,8,8"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_AGGT3",
+              "Name": "LBL_AGG_T3",
+              "Position": {
+                "Left": 15,
+                "Top": 8,
+                "Width": 345,
+                "Height": 22,
+                "ZIndex": 17
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#64748b",
+                  "Size": 11,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "평균 단가 (AVERAGEIF)",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_3"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_AVG",
+              "Name": "LBL_AVG",
+              "Position": {
+                "Left": 15,
+                "Top": 35,
+                "Width": 345,
+                "Height": 40,
+                "ZIndex": 18
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 22,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "",
+              "Formula": "TOSTRING(AVERAGEIF(:GRD_SALES, \"UNIT_PRICE\"), \"{0:N0}\")",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_3"
+            }
+          ]
+        },
+        {
+          "Type": "Group",
+          "Id": "GroupFORMULA_AGG4",
+          "Name": "GRP_AGG_4",
+          "Position": {
+            "Left": 1205,
+            "Top": 95,
+            "Width": 375,
+            "Height": 85,
+            "ZIndex": 19
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#f8fafc"
+            },
+            "Border": {
+              "Color": "#e2e8f0",
+              "CornerRadius": "8,8,8,8"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_AGGT4",
+              "Name": "LBL_AGG_T4",
+              "Position": {
+                "Left": 15,
+                "Top": 8,
+                "Width": 345,
+                "Height": 22,
+                "ZIndex": 20
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#64748b",
+                  "Size": 11,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "고유 고객수 (DISTINCTCOUNT)",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_4"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_DIST",
+              "Name": "LBL_DIST",
+              "Position": {
+                "Left": 15,
+                "Top": 35,
+                "Width": 345,
+                "Height": 40,
+                "ZIndex": 21
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 22,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "",
+              "Formula": "DISTINCTCOUNT(:GRD_SALES, \"CUST_NAME\")",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_4"
+            }
+          ]
+        },
+        {
+          "Type": "Group",
+          "Id": "GroupFORMULA_AGG5",
+          "Name": "GRP_AGG_5",
+          "Position": {
+            "Left": 20,
+            "Top": 190,
+            "Width": 375,
+            "Height": 85,
+            "ZIndex": 22
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#f8fafc"
+            },
+            "Border": {
+              "Color": "#e2e8f0",
+              "CornerRadius": "8,8,8,8"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_AGGT5",
+              "Name": "LBL_AGG_T5",
+              "Position": {
+                "Left": 15,
+                "Top": 8,
+                "Width": 345,
+                "Height": 22,
+                "ZIndex": 23
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#64748b",
+                  "Size": 11,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "최대 매출 (MAXIF)",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_5"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_MAX",
+              "Name": "LBL_MAX",
+              "Position": {
+                "Left": 15,
+                "Top": 35,
+                "Width": 345,
+                "Height": 40,
+                "ZIndex": 24
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 22,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "",
+              "Formula": "TOSTRING(MAXIF(:GRD_SALES, \"NET_AMOUNT\"), \"{0:N0}\")",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_5"
+            }
+          ]
+        },
+        {
+          "Type": "Group",
+          "Id": "GroupFORMULA_AGG6",
+          "Name": "GRP_AGG_6",
+          "Position": {
+            "Left": 415,
+            "Top": 190,
+            "Width": 375,
+            "Height": 85,
+            "ZIndex": 25
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#f8fafc"
+            },
+            "Border": {
+              "Color": "#e2e8f0",
+              "CornerRadius": "8,8,8,8"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_AGGT6",
+              "Name": "LBL_AGG_T6",
+              "Position": {
+                "Left": 15,
+                "Top": 8,
+                "Width": 345,
+                "Height": 22,
+                "ZIndex": 26
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#64748b",
+                  "Size": 11,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "최소 매출 (MINIF)",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_6"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_MIN",
+              "Name": "LBL_MIN",
+              "Position": {
+                "Left": 15,
+                "Top": 35,
+                "Width": 345,
+                "Height": 40,
+                "ZIndex": 27
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 22,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "",
+              "Formula": "TOSTRING(MINIF(:GRD_SALES, \"NET_AMOUNT\"), \"{0:N0}\")",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_6"
+            }
+          ]
+        },
+        {
+          "Type": "Group",
+          "Id": "GroupFORMULA_AGG7",
+          "Name": "GRP_AGG_7",
+          "Position": {
+            "Left": 810,
+            "Top": 190,
+            "Width": 375,
+            "Height": 85,
+            "ZIndex": 28
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 239,
+                "G": 246
+              }
+            },
+            "Border": {
+              "Color": "#bfdbfe",
+              "CornerRadius": "8,8,8,8"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_AGGT7",
+              "Name": "LBL_AGG_T7",
+              "Position": {
+                "Left": 15,
+                "Top": 8,
+                "Width": 345,
+                "Height": 22,
+                "ZIndex": 29
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#3b82f6",
+                  "Size": 11,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "완료 매출합계 (조건부 SUMIF)",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_7"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_SUM_COMP",
+              "Name": "LBL_SUM_COMP",
+              "Position": {
+                "Left": 15,
+                "Top": 35,
+                "Width": 345,
+                "Height": 40,
+                "ZIndex": 30
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#2563eb",
+                  "Size": 22,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "",
+              "Formula": "TOSTRING(SUMIF(:GRD_SALES, \"NET_AMOUNT\", \"[STATUS_CODE] = 'COMPLETED'\"), \"{0:N0}\")",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_7"
+            }
+          ]
+        },
+        {
+          "Type": "Group",
+          "Id": "GroupFORMULA_AGG8",
+          "Name": "GRP_AGG_8",
+          "Position": {
+            "Left": 1205,
+            "Top": 190,
+            "Width": 375,
+            "Height": 85,
+            "ZIndex": 31
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 239,
+                "G": 246
+              }
+            },
+            "Border": {
+              "Color": "#bfdbfe",
+              "CornerRadius": "8,8,8,8"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_AGGT8",
+              "Name": "LBL_AGG_T8",
+              "Position": {
+                "Left": 15,
+                "Top": 8,
+                "Width": 345,
+                "Height": 22,
+                "ZIndex": 32
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#3b82f6",
+                  "Size": 11,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "완료 건수 (조건부 COUNTIF)",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_8"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_CNT_COMP",
+              "Name": "LBL_CNT_COMP",
+              "Position": {
+                "Left": 15,
+                "Top": 35,
+                "Width": 345,
+                "Height": 40,
+                "ZIndex": 33
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#2563eb",
+                  "Size": 22,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "0",
+              "Formula": "COUNTIF(:GRD_SALES, \"SALES_ID\", \"[STATUS_CODE] = 'COMPLETED'\")",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_AGG_8"
+            }
+          ]
+        },
+        {
+          "Type": "Label",
+          "Id": "LabelFORMULA_GRDTTL",
+          "Name": "LBL_GRD_TITLE",
+          "Position": {
+            "Left": 20,
+            "Top": 290,
+            "Width": 400,
+            "Height": 25,
+            "ZIndex": 34
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": "#cccccc"
+            },
+            "Font": {
+              "Color": "#1e293b",
+              "Size": 14,
+              "Family": "Pretendard"
+            }
+          },
+          "Text": "  매출 실적 데이터 (63건)",
+          "HasLineSpacing": false,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "DataGridFORMULA_SALES",
+          "Name": "GRD_SALES",
+          "Position": {
+            "Left": 20,
+            "Top": 320,
+            "Width": 1560,
+            "Height": 300,
+            "ZIndex": 35,
+            "TabIndex": 2
+          },
+          "Style": {
+            "Border": {
+              "Type": 0,
+              "Color": "#e2e8f0"
+            },
+            "Type": 2
+          },
+          "DataSource": "DS3F57996B97004C1ABE4918C3E01CDD4D",
+          "CellMargin": "4,2,4,2",
+          "AutoRefresh": true,
+          "ExportCount": 0,
+          "UseDesign": true,
+          "UseFormatSetting": true,
+          "UseMultiHeaderMenu": true,
+          "Columns": [
+            {
+              "Name": "SALES_ID",
+              "Caption": "실적ID",
+              "Validator": {},
+              "Width": 90,
+              "HeaderPosition": "Center"
+            },
+            {
+              "Name": "SALES_DATE",
+              "Caption": "매출일자",
+              "Validator": {},
+              "HeaderPosition": "Center"
+            },
+            {
+              "Name": "EMP_NAME",
+              "Caption": "담당자",
+              "Validator": {},
+              "Width": 90,
+              "HeaderPosition": "Center"
+            },
+            {
+              "Name": "CUST_NAME",
+              "Caption": "고객명",
+              "Validator": {},
+              "Width": 120,
+              "HeaderPosition": "Center"
+            },
+            {
+              "Name": "PROD_NAME",
+              "Caption": "제품명",
+              "Validator": {},
+              "Width": 120,
+              "HeaderPosition": "Center"
+            },
+            {
+              "Name": "CATEGORY_NAME",
+              "Caption": "카테고리",
+              "Validator": {},
+              "HeaderPosition": "Center"
+            },
+            {
+              "Name": "QTY",
+              "Caption": "수량",
+              "Validator": {},
+              "Width": 70,
+              "HeaderPosition": "Center",
+              "TextPosition": "CenterRight"
+            },
+            {
+              "Name": "UNIT_PRICE",
+              "Caption": "단가",
+              "Validator": {},
+              "HeaderPosition": "Center",
+              "TextPosition": "CenterRight"
+            },
+            {
+              "Name": "COST_AMOUNT",
+              "Caption": "원가",
+              "Validator": {},
+              "HeaderPosition": "Center",
+              "TextPosition": "CenterRight"
+            },
+            {
+              "Name": "NET_AMOUNT",
+              "Caption": "매출액",
+              "Validator": {},
+              "Width": 120,
+              "HeaderPosition": "Center",
+              "TextPosition": "CenterRight"
+            },
+            {
+              "Name": "SALES_STATUS",
+              "Caption": "상태",
+              "Validator": {},
+              "Width": 80,
+              "HeaderPosition": "Center"
+            },
+            {
+              "Name": "STATUS_CODE",
+              "Caption": "상태코드",
+              "Validator": {},
+              "Width": 80,
+              "Visible": false,
+              "HeaderPosition": "Center"
+            }
+          ]
+        },
+        {
+          "Type": "Label",
+          "Id": "LabelFORMULA_S3T1",
+          "Name": "LBL_SEC3_TTL1",
+          "Position": {
+            "Left": 20,
+            "Top": 635,
+            "Width": 350,
+            "Height": 25,
+            "ZIndex": 40
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": "#cccccc"
+            },
+            "Font": {
+              "Color": "#1e293b",
+              "Size": 14,
+              "Family": "Pretendard"
+            }
+          },
+          "Text": "문자열 / 날짜 함수",
+          "HasLineSpacing": false,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "Group",
+          "Id": "GroupFORMULA_STRDATE",
+          "Name": "GRP_STR_DATE",
+          "Position": {
+            "Left": 20,
+            "Top": 665,
+            "Width": 770,
+            "Height": 230,
+            "ZIndex": 41
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#f8fafc"
+            },
+            "Border": {
+              "Color": "#e2e8f0",
+              "CornerRadius": "8,8,8,8"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_TODAYD",
+              "Name": "LBL_TODAY_D",
+              "Position": {
+                "Left": 15,
+                "Top": 10,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 42
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#475569",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "TODATE(TODAY(), \"{0:yyyy-MM-dd}\") :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_STR_DATE"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_TODAYV",
+              "Name": "LBL_TODAY",
+              "Position": {
+                "Left": 370,
+                "Top": 10,
+                "Width": 380,
+                "Height": 25,
+                "ZIndex": 43
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "2026-02-03",
+              "Formula": "TODATE(TODAY(), \"{0:yyyy-MM-dd}\")",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_STR_DATE"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_NOWD",
+              "Name": "LBL_NOW_D",
+              "Position": {
+                "Left": 15,
+                "Top": 40,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 44
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#475569",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "NOW() :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_STR_DATE"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_NOWV",
+              "Name": "LBL_NOW",
+              "Position": {
+                "Left": 370,
+                "Top": 40,
+                "Width": 380,
+                "Height": 25,
+                "ZIndex": 45
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "20260203145701990",
+              "Formula": "NOW()",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_STR_DATE"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_YEARD",
+              "Name": "LBL_YEAR_D",
+              "Position": {
+                "Left": 15,
+                "Top": 70,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 46
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#475569",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "YEAR(TODAY()) :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_STR_DATE"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_YEARV",
+              "Name": "LBL_YEAR",
+              "Position": {
+                "Left": 370,
+                "Top": 70,
+                "Width": 380,
+                "Height": 25,
+                "ZIndex": 47
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "2026",
+              "Formula": "YEAR(TODAY())",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_STR_DATE"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_MONTHD",
+              "Name": "LBL_MONTH_D",
+              "Position": {
+                "Left": 15,
+                "Top": 100,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 48
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#475569",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "MONTH(TODAY()) :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_STR_DATE"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_MONTHV",
+              "Name": "LBL_MONTH",
+              "Position": {
+                "Left": 370,
+                "Top": 100,
+                "Width": 380,
+                "Height": 25,
+                "ZIndex": 49
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "2",
+              "Formula": "MONTH(TODAY())",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_STR_DATE"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_DDIFFD",
+              "Name": "LBL_DATEDIFF_D",
+              "Position": {
+                "Left": 15,
+                "Top": 130,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 50
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#475569",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "DATEDIFF(5, 올해연1월1일, TODAY()) :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_STR_DATE"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_DDIFFV",
+              "Name": "LBL_DATEDIFF",
+              "Position": {
+                "Left": 370,
+                "Top": 130,
+                "Width": 380,
+                "Height": 25,
+                "ZIndex": 51
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "33",
+              "Formula": "DATEDIFF(5, TOSTRING(YEAR(TODAY())) + \"0101\", TODAY())",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_STR_DATE"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_LEFTD",
+              "Name": "LBL_LEFT_D",
+              "Position": {
+                "Left": 15,
+                "Top": 160,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 52
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#475569",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "LEFT(TODAY(), 4) :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_STR_DATE"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_LEFTV",
+              "Name": "LBL_LEFT",
+              "Position": {
+                "Left": 370,
+                "Top": 160,
+                "Width": 380,
+                "Height": 25,
+                "ZIndex": 53
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "2026",
+              "Formula": "LEFT(TODAY(), 4)",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_STR_DATE"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_MIDD",
+              "Name": "LBL_MID_D",
+              "Position": {
+                "Left": 15,
+                "Top": 190,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 54
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#475569",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "MID(TODAY(), 4, 2) + \"월\" :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_STR_DATE"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_MIDV",
+              "Name": "LBL_MID",
+              "Position": {
+                "Left": 370,
+                "Top": 190,
+                "Width": 380,
+                "Height": 25,
+                "ZIndex": 55
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "02월",
+              "Formula": "MID(TODAY(), 4, 2) + \"월\"",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_STR_DATE"
+            }
+          ]
+        },
+        {
+          "Type": "Label",
+          "Id": "LabelFORMULA_S3T2",
+          "Name": "LBL_SEC3_TTL2",
+          "Position": {
+            "Left": 810,
+            "Top": 635,
+            "Width": 350,
+            "Height": 25,
+            "ZIndex": 56
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": "#cccccc"
+            },
+            "Font": {
+              "Color": "#1e293b",
+              "Size": 14,
+              "Family": "Pretendard"
+            }
+          },
+          "Text": "수학 / 변환 / 조건 함수",
+          "HasLineSpacing": false,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "Group",
+          "Id": "GroupFORMULA_MATHCONV",
+          "Name": "GRP_MATH_CONV",
+          "Position": {
+            "Left": 810,
+            "Top": 665,
+            "Width": 770,
+            "Height": 230,
+            "ZIndex": 57
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#f8fafc"
+            },
+            "Border": {
+              "Color": "#e2e8f0",
+              "CornerRadius": "8,8,8,8"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_ROUNDD",
+              "Name": "LBL_ROUND_D",
+              "Position": {
+                "Left": 15,
+                "Top": 10,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 58
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#475569",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "ROUND(AVERAGEIF(...), 2) :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_MATH_CONV"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_ROUNDV",
+              "Name": "LBL_ROUND",
+              "Position": {
+                "Left": 370,
+                "Top": 10,
+                "Width": 380,
+                "Height": 25,
+                "ZIndex": 59
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "0",
+              "Formula": "ROUND(AVERAGEIF(:GRD_SALES, \"NET_AMOUNT\"), 2)",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_MATH_CONV"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_ABSD",
+              "Name": "LBL_ABS_D",
+              "Position": {
+                "Left": 15,
+                "Top": 40,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 60
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#475569",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "ABS(-12345) :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_MATH_CONV"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_ABSV",
+              "Name": "LBL_ABS",
+              "Position": {
+                "Left": 370,
+                "Top": 40,
+                "Width": 380,
+                "Height": 25,
+                "ZIndex": 61
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "12345",
+              "Formula": "ABS(-12345)",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_MATH_CONV"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_CEILD",
+              "Name": "LBL_CEIL_D",
+              "Position": {
+                "Left": 15,
+                "Top": 70,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 62
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#475569",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "CEIL(3.14) :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_MATH_CONV"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_CEILV",
+              "Name": "LBL_CEIL",
+              "Position": {
+                "Left": 370,
+                "Top": 70,
+                "Width": 380,
+                "Height": 25,
+                "ZIndex": 63
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "4",
+              "Formula": "CEIL(3.14)",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_MATH_CONV"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_FLOORD",
+              "Name": "LBL_FLOOR_D",
+              "Position": {
+                "Left": 15,
+                "Top": 100,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 64
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#475569",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "FLOOR(9.87) :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_MATH_CONV"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_FLOORV",
+              "Name": "LBL_FLOOR",
+              "Position": {
+                "Left": 370,
+                "Top": 100,
+                "Width": 380,
+                "Height": 25,
+                "ZIndex": 65
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "9",
+              "Formula": "FLOOR(9.87)",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_MATH_CONV"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_TOSTRD",
+              "Name": "LBL_TOSTR_D",
+              "Position": {
+                "Left": 15,
+                "Top": 130,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 66
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#475569",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "TOSTRING(12345, \"{0:N2}\") :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_MATH_CONV"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_TOSTRV",
+              "Name": "LBL_TOSTR",
+              "Position": {
+                "Left": 370,
+                "Top": 130,
+                "Width": 380,
+                "Height": 25,
+                "ZIndex": 67
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "12,345.00",
+              "Formula": "TOSTRING(12345, \"{0:N2}\")",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_MATH_CONV"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_TONUMD",
+              "Name": "LBL_TONUM_D",
+              "Position": {
+                "Left": 15,
+                "Top": 160,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 68
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#475569",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "TONUMBER(\"abc\", -1) :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_MATH_CONV"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_TONUMV",
+              "Name": "LBL_TONUM",
+              "Position": {
+                "Left": 370,
+                "Top": 160,
+                "Width": 380,
+                "Height": 25,
+                "ZIndex": 69
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "-1",
+              "Formula": "TONUMBER(\"abc\", -1)",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_MATH_CONV"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_IIFD",
+              "Name": "LBL_IIF_D",
+              "Position": {
+                "Left": 15,
+                "Top": 190,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 70
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#475569",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "IIF(매출합계>100000, 달성, 미달) :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_MATH_CONV"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_IIFV",
+              "Name": "LBL_IIF",
+              "Position": {
+                "Left": 370,
+                "Top": 190,
+                "Width": 380,
+                "Height": 25,
+                "ZIndex": 71
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#1e293b",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "목표 미달",
+              "Formula": "IIF(SUMIF(:GRD_SALES, \"NET_AMOUNT\") > 100000, \"목표 달성\", \"목표 미달\")",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_MATH_CONV"
+            }
+          ]
+        },
+        {
+          "Type": "Label",
+          "Id": "LabelFORMULA_S4TTL",
+          "Name": "LBL_SEC4_TTL",
+          "Position": {
+            "Left": 20,
+            "Top": 910,
+            "Width": 400,
+            "Height": 25,
+            "ZIndex": 72
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": "#cccccc"
+            },
+            "Font": {
+              "Color": "#1e293b",
+              "Size": 14,
+              "Family": "Pretendard"
+            }
+          },
+          "Text": "JavaScript 모드 & CASE 수식",
+          "HasLineSpacing": false,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "Group",
+          "Id": "GroupFORMULA_ADV",
+          "Name": "GRP_ADVANCED",
+          "Position": {
+            "Left": 20,
+            "Top": 940,
+            "Width": 1560,
+            "Height": 70,
+            "ZIndex": 73
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#fefce8"
+            },
+            "Border": {
+              "Color": "#fde68a",
+              "CornerRadius": "8,8,8,8"
+            },
+            "Font": {
+              "Size": 12
+            }
+          },
+          "ChildElements": [
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_JSD",
+              "Name": "LBL_JS_D",
+              "Position": {
+                "Left": 15,
+                "Top": 10,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 74
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#92400e",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "JS모드 (완료율 계산) :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_ADVANCED"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_JSV",
+              "Name": "LBL_JS",
+              "Position": {
+                "Left": 370,
+                "Top": 10,
+                "Width": 400,
+                "Height": 25,
+                "ZIndex": 75
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#92400e",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "0%",
+              "Formula": "var total = COUNTIF(:GRD_SALES, \"SALES_ID\"); var completed = COUNTIF(:GRD_SALES, \"SALES_ID\", \"[STATUS_CODE] = 'COMPLETED'\"); if(total > 0) { return ROUND(completed / total * 100, 1) + \"%\"; } else { return \"0%\"; }",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_ADVANCED"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_CASED",
+              "Name": "LBL_CASE_D",
+              "Position": {
+                "Left": 15,
+                "Top": 40,
+                "Width": 340,
+                "Height": 25,
+                "ZIndex": 76
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#92400e",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Bold": false,
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "CASE (완료율 등급) :",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_ADVANCED"
+            },
+            {
+              "Type": "Label",
+              "Id": "LabelFORMULA_CASEV",
+              "Name": "LBL_CASE",
+              "Position": {
+                "Left": 370,
+                "Top": 40,
+                "Width": 400,
+                "Height": 25,
+                "ZIndex": 77
+              },
+              "Style": {
+                "Type": 2,
+                "Background": {
+                  "__type__": "istudio.drawing.style.Brush",
+                  "Color": {
+                    "__type__": "istudio.drawing.style.Color"
+                  }
+                },
+                "Border": {
+                  "__type__": "istudio.drawing.style.BorderInfo",
+                  "Color": "#cccccc",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                },
+                "Font": {
+                  "Type": "FontInfo",
+                  "Color": "#92400e",
+                  "Size": 12,
+                  "Family": "Pretendard",
+                  "Option": {
+                    "activate": [],
+                    "Inactivate": [],
+                    "DefaultStyle": "Label"
+                  }
+                }
+              },
+              "Text": "데이터 없음",
+              "Formula": "CASE(COUNTIF(:GRD_SALES, \"SALES_ID\") = 0, \"데이터 없음\", COUNTIF(:GRD_SALES, \"SALES_ID\", \"[STATUS_CODE] = 'COMPLETED'\") / COUNTIF(:GRD_SALES, \"SALES_ID\") >= 0.8, \"A등급\", COUNTIF(:GRD_SALES, \"SALES_ID\", \"[STATUS_CODE] = 'COMPLETED'\") / COUNTIF(:GRD_SALES, \"SALES_ID\") >= 0.5, \"B등급\", \"C등급\")",
+              "HasLineSpacing": false,
+              "Margin": {
+                "Left": 0,
+                "Right": 0,
+                "Text": "0,0,0,0"
+              },
+              "InGroup": "GRP_ADVANCED"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Variables": [
+    {
+      "Name": "VS_YEAR",
+      "Value": "2026",
+      "Desc": "조회 연도",
+      "Formula": "LEFT(TODAY(), 4)"
+    }
+  ]
+}
