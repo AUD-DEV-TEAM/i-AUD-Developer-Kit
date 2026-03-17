@@ -1,0 +1,1037 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_GAUGE_COMPONENT",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "MYDOCUMENT.yglee/EXT_GAUGE_COMPONENT.mtsd",
+    "ReportName": "Gauge Component",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-16 15:01:10",
+    "Editor": "yglee",
+    "EditDate": "2026-03-16 15:01:10",
+    "CreateBy": "i-AUD Developer Kit",
+    "TabPosition": 0,
+    "UsePersonalConditions": true,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "TabFocusMode": 1
+  },
+  "ScriptText": "Matrix.OnDocumentLoadComplete = function (sender, args) {\r\n    var lblTitle = Matrix.getObject(\"lblTitle\");\r\n    var lblStatus = Matrix.getObject(\"lblStatus\");\r\n    var btnSetValue = Matrix.getObject(\"btnSetValue\");\r\n    var btnRandom = Matrix.getObject(\"btnRandom\");\r\n    var btnReset = Matrix.getObject(\"btnReset\");\r\n    var nbValue = Matrix.getObject(\"nbValue\");\r\n    var cmbScheme = Matrix.getObject(\"cmbScheme\");\r\n    var ecGauge1 = Matrix.getObject(\"ecGauge1\");\r\n    var ecGauge2 = Matrix.getObject(\"ecGauge2\");\r\n    var ecGauge3 = Matrix.getObject(\"ecGauge3\");\r\n    lblTitle.Value = \"Gauge Component Demo\";\r\n    btnSetValue.Text = \"Set Value\";\r\n    btnRandom.Text = \"Random\";\r\n    btnReset.Text = \"Reset\";\r\n    cmbScheme.AddItem(\"green-red\", \"Green → Red\");\r\n    cmbScheme.AddItem(\"blue\", \"Blue\");\r\n    cmbScheme.AddItem(\"rainbow\", \"Rainbow\");\r\n    cmbScheme.AddItem(\"monochrome\", \"Monochrome\");\r\n    cmbScheme.Value = \"green-red\";\r\n    btnSetValue.OnClick = function () {\r\n        var val = Number(nbValue.Value);\r\n        if (isNaN(val)) {\r\n            lblStatus.Value = \"  Please enter a valid number\";\r\n            return;\r\n        }\r\n        setAllGauges(val);\r\n        lblStatus.Value = \"  Value set to \" + val;\r\n    };\r\n    btnRandom.OnClick = function () {\r\n        var v1 = Math.round(Math.random() * 100);\r\n        var v2 = Math.round(Math.random() * 100);\r\n        var v3 = Math.round(Math.random() * 100);\r\n        setGaugeValue(ecGauge1, v1);\r\n        setGaugeValue(ecGauge2, v2);\r\n        setGaugeValue(ecGauge3, v3);\r\n        lblStatus.Value = \"  Random: \" + v1 + \", \" + v2 + \", \" + v3;\r\n    };\r\n    btnReset.OnClick = function () {\r\n        setAllGauges(0);\r\n        lblStatus.Value = \"  Gauges reset to 0\";\r\n    };\r\n    cmbScheme.OnValueChanged = function () {\r\n        var scheme = cmbScheme.Value;\r\n        applyScheme(ecGauge1, scheme);\r\n        applyScheme(ecGauge2, scheme);\r\n        applyScheme(ecGauge3, scheme);\r\n        lblStatus.Value = \"  Color scheme: \" + scheme;\r\n    };\r\n    function setGaugeValue(ec, val) {\r\n        var model = ec.getModel();\r\n        if (model) {\r\n            model.SetData({ value: val });\r\n        }\r\n    }\r\n    function setAllGauges(val) {\r\n        setGaugeValue(ecGauge1, val);\r\n        setGaugeValue(ecGauge2, val);\r\n        setGaugeValue(ecGauge3, val);\r\n    }\r\n    function applyScheme(ec, scheme) {\r\n        var model = ec.getModel();\r\n        if (model) {\r\n            model.setColorScheme(scheme);\r\n        }\r\n    }\r\n    var loadedCount = 0;\r\n    function onGaugeLoaded() {\r\n        loadedCount++;\r\n        if (loadedCount === 3) {\r\n            lblStatus.Value = \"  3 gauges loaded | Enter a value and click Set Value\";\r\n        }\r\n    }\r\n    ecGauge1.OnComponentReady = function () {\r\n        var model = ecGauge1.getModel();\r\n        model.setTitle(\"CPU Usage\");\r\n        model.SetData({ value: 65 });\r\n        onGaugeLoaded();\r\n    };\r\n    ecGauge2.OnComponentReady = function () {\r\n        var model = ecGauge2.getModel();\r\n        model.setTitle(\"Memory\");\r\n        model.setColorScheme(\"blue\");\r\n        model.SetData({ value: 42 });\r\n        onGaugeLoaded();\r\n    };\r\n    ecGauge3.OnComponentReady = function () {\r\n        var model = ecGauge3.getModel();\r\n        model.setTitle(\"Disk I/O\");\r\n        model.setColorScheme(\"rainbow\");\r\n        model.SetData({ value: 88 });\r\n        onGaugeLoaded();\r\n    };\r\n};\r\n",
+  "Forms": [
+    {
+      "Id": "FM_GAUGE_COMP_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_GAUGE_COMP_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 954,
+            "Height": 40,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 245,
+                "G": 124,
+                "B": 0,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Size": 14,
+              "HorizontalAlignment": "center",
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Text": "Label",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "NumberBox",
+          "Id": "EL_GAUGE_COMP_NB001",
+          "Name": "nbValue",
+          "Position": {
+            "Left": 10,
+            "Top": 50,
+            "Width": 100,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Value": 75,
+          "Text": "75",
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Position": 1,
+                "Margin": "0,0",
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "right",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "Format": "#,##0",
+          "Formula": "",
+          "IsReadOnly": false,
+          "Maximum": "",
+          "Minimum": "",
+          "MxBinding": "",
+          "NotNull": "true"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_GAUGE_COMP_BTN001",
+          "Name": "btnSetValue",
+          "Position": {
+            "Left": 120,
+            "Top": 50,
+            "Width": 100,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 245,
+                "G": 124,
+                "B": 0,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 230,
+                "G": 110,
+                "B": 0,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Value": "button",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_GAUGE_COMP_BTN002",
+          "Name": "btnRandom",
+          "Position": {
+            "Left": 230,
+            "Top": 50,
+            "Width": 100,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 25,
+                "G": 118,
+                "B": 210,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 21,
+                "G": 101,
+                "B": 192,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Value": "button",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_GAUGE_COMP_BTN003",
+          "Name": "btnReset",
+          "Position": {
+            "Left": 340,
+            "Top": 50,
+            "Width": 80,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 117,
+                "G": 117,
+                "B": 117,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 97,
+                "G": 97,
+                "B": 97,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Value": "button",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "EL_GAUGE_COMP_CMB001",
+          "Name": "cmbScheme",
+          "Position": {
+            "Left": 430,
+            "Top": 50,
+            "Width": 150,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Position": 1,
+                "Margin": "0,0",
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "DataSource": "",
+          "Value": "",
+          "Text": "",
+          "InitType": 0,
+          "RefreshType": 1,
+          "IsReadOnly": false,
+          "SortType": 0,
+          "AutoRefresh": false,
+          "AfterRefresh": "",
+          "UseAllItems": false,
+          "DisplayType": 1,
+          "DataSourceInfo": {
+            "LabelField": "",
+            "ValueField": ""
+          },
+          "InitValue": ""
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_GAUGE_COMP_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 590,
+            "Top": 50,
+            "Width": 400,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": {
+                "R": 102,
+                "G": 102,
+                "B": 102,
+                "A": 1
+              },
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Text": "Label",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_GAUGE_COMP_EC001",
+          "Name": "ecGauge1",
+          "Position": {
+            "Left": 10,
+            "Top": 90,
+            "Width": 380,
+            "Height": 350,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": "2",
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "gaugeComponent",
+            "ClassName": "GaugeComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "gaugeComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "gaugeComponent.css"
+              }
+            ],
+            "Options": {
+              "MinValue": 0,
+              "MaxValue": 100,
+              "Title": "CPU Usage",
+              "Unit": "%",
+              "ShowValue": true,
+              "ColorScheme": "green-red",
+              "AnimationDuration": 800
+            },
+            "ComponentData": {
+              "currentValue": 0
+            }
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false,
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_GAUGE_COMP_EC002",
+          "Name": "ecGauge2",
+          "Position": {
+            "Left": 400,
+            "Top": 90,
+            "Width": 380,
+            "Height": 350,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": "2",
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "gaugeComponent",
+            "ClassName": "GaugeComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "gaugeComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "gaugeComponent.css"
+              }
+            ],
+            "Options": {
+              "MinValue": 0,
+              "MaxValue": 100,
+              "Title": "Memory",
+              "Unit": "%",
+              "ShowValue": true,
+              "ColorScheme": "blue",
+              "AnimationDuration": 800
+            },
+            "ComponentData": {
+              "currentValue": 0
+            }
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false,
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_GAUGE_COMP_EC003",
+          "Name": "ecGauge3",
+          "Position": {
+            "Left": 790,
+            "Top": 90,
+            "Width": 380,
+            "Height": 350,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": "2",
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 204,
+                "G": 204,
+                "B": 204,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "gaugeComponent",
+            "ClassName": "GaugeComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "gaugeComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "gaugeComponent.css"
+              }
+            ],
+            "Options": {
+              "MinValue": 0,
+              "MaxValue": 100,
+              "Title": "Disk I/O",
+              "Unit": "%",
+              "ShowValue": true,
+              "ColorScheme": "rainbow",
+              "AnimationDuration": 800
+            },
+            "ComponentData": {
+              "currentValue": 0
+            }
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false,
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        }
+      ],
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      }
+    }
+  ],
+  "DataSources": {
+    "Datas": []
+  },
+  "ServerScriptText": [],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {},
+  "PersonalConditions": {
+    "list": [],
+    "useAll": true
+  }
+}

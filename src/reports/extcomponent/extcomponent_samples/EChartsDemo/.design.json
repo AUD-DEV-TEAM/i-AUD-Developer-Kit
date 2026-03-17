@@ -1,0 +1,413 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_ECHARTS_DEMO",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "MYDOCUMENT.yglee/EXT_ECHARTS_DEMO.mtsd",
+    "ReportName": "ECharts Demo",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-16 18:06:22",
+    "Editor": "yglee",
+    "EditDate": "2026-03-16 18:06:22",
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_ECHARTS_DEMO_01",
+        "Name": "DS_SALES",
+        "ConnectionCode": "MATRIX_FILE_DB",
+        "SQL": "./DataSource/DS_SALES.sql"
+      }
+    ]
+  },
+  "ScriptText": "./EChartsDemo.script.ts",
+  "Forms": [
+    {
+      "Id": "FM_ECHARTS_DEMO_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_ECHARTS_DEMO_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1840,
+            "Height": 40,
+            "Docking": {
+              "Left": true,
+              "Right": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#e53935"
+            },
+            "Font": {
+              "Color": "#ffffff",
+              "Size": 14,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "ECharts Component - Sales Dashboard"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_ECHARTS_DEMO_BTN001",
+          "Name": "btnLoadData",
+          "Position": {
+            "Left": 10,
+            "Top": 47,
+            "Width": 100,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#e53935"
+            },
+            "Border": {
+              "Color": "#c62828"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Load Data"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_ECHARTS_DEMO_BTN002",
+          "Name": "btnExport",
+          "Position": {
+            "Left": 115,
+            "Top": 47,
+            "Width": 100,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#1976d2"
+            },
+            "Border": {
+              "Color": "#1565c0"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Export PNG"
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_ECHARTS_DEMO_LBL_CT",
+          "Name": "lblChartType",
+          "Position": {
+            "Left": 225,
+            "Top": 47,
+            "Width": 35,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 11,
+              "HorizontalAlignment": "right"
+            }
+          },
+          "Text": "Type"
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "EL_ECHARTS_DEMO_CMB001",
+          "Name": "cmbChartType",
+          "Position": {
+            "Left": 265,
+            "Top": 47,
+            "Width": 110,
+            "Height": 26
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_ECHARTS_DEMO_LBL_TH",
+          "Name": "lblTheme",
+          "Position": {
+            "Left": 385,
+            "Top": 47,
+            "Width": 45,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 11,
+              "HorizontalAlignment": "right"
+            }
+          },
+          "Text": "Theme"
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "EL_ECHARTS_DEMO_CMB_TH",
+          "Name": "cmbTheme",
+          "Position": {
+            "Left": 435,
+            "Top": 47,
+            "Width": 110,
+            "Height": 26
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_ECHARTS_DEMO_LBL_PL",
+          "Name": "lblPalette",
+          "Position": {
+            "Left": 555,
+            "Top": 47,
+            "Width": 45,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 11,
+              "HorizontalAlignment": "right"
+            }
+          },
+          "Text": "Color"
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "EL_ECHARTS_DEMO_CMB002",
+          "Name": "cmbPalette",
+          "Position": {
+            "Left": 605,
+            "Top": 47,
+            "Width": 110,
+            "Height": 26
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_ECHARTS_DEMO_LBL_LB",
+          "Name": "lblLabel",
+          "Position": {
+            "Left": 725,
+            "Top": 47,
+            "Width": 40,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 11,
+              "HorizontalAlignment": "right"
+            }
+          }
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "EL_ECHARTS_DEMO_CMB_LB",
+          "Name": "cmbLabel",
+          "Position": {
+            "Left": 770,
+            "Top": 47,
+            "Width": 100,
+            "Height": 26
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_ECHARTS_DEMO_LBL_LG",
+          "Name": "lblLegend",
+          "Position": {
+            "Left": 880,
+            "Top": 47,
+            "Width": 50,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 11,
+              "HorizontalAlignment": "right"
+            }
+          },
+          "Text": "Legend"
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "EL_ECHARTS_DEMO_CMB_LG",
+          "Name": "cmbLegend",
+          "Position": {
+            "Left": 935,
+            "Top": 47,
+            "Width": 90,
+            "Height": 26
+          }
+        },
+        {
+          "Type": "CheckBox",
+          "Id": "EL_ECHARTS_DEMO_CHK002",
+          "Name": "chkTooltip",
+          "Position": {
+            "Left": 1035,
+            "Top": 47,
+            "Width": 75,
+            "Height": 26
+          },
+          "Text": "Tooltip",
+          "Checked": true
+        },
+        {
+          "Type": "CheckBox",
+          "Id": "EL_ECHARTS_DEMO_CHK003",
+          "Name": "chkToolbox",
+          "Position": {
+            "Left": 1115,
+            "Top": 47,
+            "Width": 80,
+            "Height": 26
+          },
+          "Text": "Toolbox",
+          "Checked": true
+        },
+        {
+          "Type": "CheckBox",
+          "Id": "EL_ECHARTS_DEMO_CHK004",
+          "Name": "chkDataZoom",
+          "Position": {
+            "Left": 1200,
+            "Top": 47,
+            "Width": 90,
+            "Height": 26
+          },
+          "Text": "DataZoom"
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_ECHARTS_DEMO_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 1300,
+            "Top": 47,
+            "Width": 600,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": "#666666",
+              "Size": 11
+            }
+          },
+          "Text": "  Chart ready | Change options above"
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_ECHARTS_DEMO_EC001",
+          "Name": "ecChart",
+          "Position": {
+            "Left": 0,
+            "Top": 80,
+            "Width": 1100,
+            "Height": 837,
+            "Docking": {
+              "Left": true,
+              "Bottom": true
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "echartsComponent",
+            "ClassName": "EChartsComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "lib/echarts.min.js",
+                "order": 1
+              },
+              {
+                "type": "js",
+                "url": "echartsComponent.js",
+                "order": 2
+              },
+              {
+                "type": "css",
+                "url": "echartsComponent.css"
+              }
+            ],
+            "Options": {
+              "ChartType": "bar",
+              "Theme": "default",
+              "ShowLegend": true,
+              "LegendPosition": "bottom",
+              "ShowTooltip": true,
+              "ShowToolbox": true,
+              "EnableDataZoom": false,
+              "AnimationDuration": 800,
+              "LabelPosition": "none",
+              "ColorPalette": "vivid",
+              "BackgroundColor": "#ffffff"
+            },
+            "ComponentData": {}
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "EL_ECHARTS_DEMO_GRD001",
+          "Name": "grdSales",
+          "Position": {
+            "Left": 1105,
+            "Top": 80,
+            "Width": 735,
+            "Height": 837,
+            "Docking": {
+              "Right": true,
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2
+          },
+          "DataSource": "DS_ECHARTS_DEMO_01",
+          "AutoRefresh": true,
+          "Columns": [
+            {
+              "Name": "MONTH"
+            },
+            {
+              "Name": "REVENUE",
+              "ColumnType": 3,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "COST",
+              "ColumnType": 3,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            },
+            {
+              "Name": "PROFIT",
+              "ColumnType": 3,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -20,6 +20,35 @@ interface IComponentBridge {
     // 선택 — 직렬화
     Serialize?(target: any): void;
     Deserialize?(source: any): void;
+
+    // 선택 — DataGrid 바인딩 (컴포넌트 공통 패턴)
+    setGrid?(grid: any): void;
+    setConfig?(overrides: any): void;
+    getConfig?(): any;
+    Update?(): void;
+
+    // 선택 — 이벤트
+    OnCardMoving?: ((args: any) => void) | null;
+    OnCardMoved?: ((args: any) => void) | null;
+    OnNodeClick?: ((args: any) => void) | null;
+    OnLinkClick?: ((args: any) => void) | null;
+
+    // 선택 — 기타
+    getCards?(): any[];
+    getNodes?(): any[];
+    clearCards?(): void;
+    expandAll?(): void;
+    collapseAll?(): void;
+    collapseNode?(nodeId: string): void;
+    expandNode?(nodeId: string): void;
+    setChartType?(type: string): void;
+    exportImage?(): string;
+    getEChartsInstance?(): any;
+    setMarkdown?(md: string): void;
+    getMarkdown?(): string;
+
+    // 인덱스 시그니처 — 컴포넌트 고유 메서드 허용
+    [key: string]: any;
 }
 
 /** AUD 글로벌 네임스페이스 */

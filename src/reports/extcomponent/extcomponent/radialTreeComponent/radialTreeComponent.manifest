@@ -1,0 +1,63 @@
+{
+    "name": "Radial Tree",
+    "icon": [
+        "<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='#2e7d32' stroke-width='2'>",
+        "<circle cx='12' cy='12' r='3'/>",
+        "<circle cx='5' cy='5' r='2'/>",
+        "<circle cx='19' cy='5' r='2'/>",
+        "<circle cx='5' cy='19' r='2'/>",
+        "<circle cx='19' cy='19' r='2'/>",
+        "<line x1='10' y1='10' x2='6.5' y2='6.5'/>",
+        "<line x1='14' y1='10' x2='17.5' y2='6.5'/>",
+        "<line x1='10' y1='14' x2='6.5' y2='17.5'/>",
+        "<line x1='14' y1='14' x2='17.5' y2='17.5'/>",
+        "</svg>"
+    ],
+    "version": 1,
+    "category": "Chart",
+    "description": "방사형 트리(Radial Tree) 차트 컴포넌트. ECharts 기반. setGrid()로 DataGrid를 연결하면 ID/PARENT_ID 계층 구조를 방사형 또는 직교 트리로 자동 렌더링합니다.",
+    "className": "RadialTreeComponent",
+
+    "files": [
+        { "type": "js",  "url": "lib/echarts.min.js",         "order": 1 },
+        { "type": "js",  "url": "radialTreeComponent.js",     "order": 2 },
+        { "type": "css", "url": "radialTreeComponent.css" }
+    ],
+
+    "options": [
+        { "name": "IdField", "type": "Text", "group": "Data", "default": "ID", "description": "노드 ID 필드명" },
+        { "name": "ParentIdField", "type": "Text", "group": "Data", "default": "PARENT_ID", "description": "부모 노드 ID 필드명" },
+        { "name": "NameField", "type": "Text", "group": "Data", "default": "NAME", "description": "노드 이름 필드명" },
+        { "name": "Layout", "type": "ComboBox", "group": "Layout", "default": "radial", "items": ["radial","orthogonal"], "description": "레이아웃 (radial: 방사형, orthogonal: 직교)" },
+        { "name": "RootName", "type": "Text", "group": "Data", "default": "Root", "description": "루트가 여러 개일 때 가상 루트 이름" },
+        { "name": "InitialDepth", "type": "Number", "group": "Display", "default": -1, "description": "초기 펼침 깊이 (-1: 전체)" },
+        { "name": "SymbolSize", "type": "Number", "group": "Style", "default": 10, "description": "노드 크기(px)" },
+        { "name": "LineColor", "type": "Color", "group": "Style", "default": "#ccc", "description": "연결선 색상" },
+        { "name": "ShowLabel", "type": "Boolean", "group": "Display", "default": true, "description": "라벨 표시 여부" },
+        { "name": "FontSize", "type": "Number", "group": "Style", "default": 11, "description": "라벨 글꼴 크기(px)" },
+        { "name": "Title", "type": "Text", "group": "Display", "default": "", "description": "차트 제목" }
+    ],
+
+    "sample": [
+        "// DataGrid 바인딩 (권장)",
+        "let grd = Matrix.getObject(\"DataGrid1\") as DataGrid;",
+        "let ec = Matrix.getObject(\"ExternalComponent1\") as any;",
+        "ec.OnComponentReady = function() {",
+        "    let model = ec.getModel();",
+        "    model.setConfig({",
+        "        IdField: 'ID',",
+        "        ParentIdField: 'PARENT_ID',",
+        "        NameField: 'NAME'",
+        "    });",
+        "    model.setGrid(grd);  // OnDataChanged 자동 연동",
+        "",
+        "    model.OnNodeClick = function(args) {",
+        "        // args.name, args.id, args.parentId, args.row",
+        "    };",
+        "};",
+        "",
+        "// 레이아웃 변경",
+        "// model.setConfig({ Layout: 'orthogonal' });",
+        "// model.Update();"
+    ]
+}

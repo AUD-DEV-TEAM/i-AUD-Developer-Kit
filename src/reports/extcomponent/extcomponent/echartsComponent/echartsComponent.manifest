@@ -1,0 +1,53 @@
+{
+    "name": "ECharts 차트",
+    "icon": [
+        "<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='#e53935' stroke-width='2'>",
+        "<rect x='3' y='12' width='4' height='9' rx='1'/>",
+        "<rect x='10' y='6' width='4' height='15' rx='1'/>",
+        "<rect x='17' y='2' width='4' height='19' rx='1'/>",
+        "</svg>"
+    ],
+    "version": 1,
+    "category": "Chart",
+    "description": "Apache ECharts 기반 차트 컴포넌트. bar, line, pie, scatter, radar, heatmap 등 다양한 차트 유형을 지원합니다. 데이터 패킷(MafPacket)을 전달하면 자동으로 시리즈를 구성합니다.",
+    "className": "EChartsComponent",
+
+    "files": [
+        { "type": "js",  "url": "lib/echarts.min.js",  "order": 1 },
+        { "type": "js",  "url": "echartsComponent.js",  "order": 2 },
+        { "type": "css", "url": "echartsComponent.css" }
+    ],
+
+    "options": [
+        { "name": "ChartType", "type": "ComboBox", "group": "Chart", "default": "bar", "items": ["bar","line","area","pie","scatter","radar","funnel","horizontalBar","stackedBar","stackedLine","stackedArea","heatmap","treemap"], "description": "차트 유형" },
+        { "name": "Theme", "type": "ComboBox", "group": "Chart", "default": "default", "items": ["default","dark","vintage","macarons","roma","shine"], "description": "차트 테마" },
+        { "name": "ShowLegend", "type": "Boolean", "group": "Chart", "default": true, "description": "범례 표시 여부" },
+        { "name": "LegendPosition", "type": "ComboBox", "group": "Chart", "default": "bottom", "items": ["top","bottom","left","right"], "description": "범례 위치" },
+        { "name": "ShowTooltip", "type": "Boolean", "group": "Chart", "default": true, "description": "툴팁 표시 여부" },
+        { "name": "ShowToolbox", "type": "Boolean", "group": "Toolbar", "default": false, "description": "도구 모음(저장, 줌 등) 표시" },
+        { "name": "EnableDataZoom", "type": "Boolean", "group": "Toolbar", "default": false, "description": "데이터 줌(드래그 범위 선택) 활성화" },
+        { "name": "AnimationDuration", "type": "Number", "group": "Animation", "default": 800, "description": "애니메이션 지속 시간(ms)" },
+        { "name": "LabelPosition", "type": "ComboBox", "group": "Label", "default": "none", "items": ["none","top","inside","outside","left","right"], "description": "데이터 라벨 위치" },
+        { "name": "ColorPalette", "type": "ComboBox", "group": "Style", "default": "default", "items": ["default","pastel","vivid","monochrome","warm","cool"], "description": "색상 팔레트" },
+        { "name": "BackgroundColor", "type": "Color", "group": "Style", "default": "#ffffff", "description": "차트 배경색" }
+    ],
+
+    "sample": [
+        "// DataGrid 바인딩 (권장)",
+        "let grd = Matrix.getObject(\"DataGrid1\") as DataGrid;",
+        "let ec = Matrix.getObject(\"ExternalComponent1\") as any;",
+        "ec.OnComponentReady = function() {",
+        "    let model = ec.getModel();",
+        "    model.setGrid(grd);  // OnDataChanged 자동 연동",
+        "};",
+        "",
+        "// 차트 유형 변경 + 다시 렌더링",
+        "// model.setChartType('line');",
+        "",
+        "// 이미지로 내보내기",
+        "// let dataUrl = model.exportImage();",
+        "",
+        "// 직접 ECharts 옵션 설정 (고급)",
+        "// model.setEChartsOption({ title: { text: '제목' } });"
+    ]
+}

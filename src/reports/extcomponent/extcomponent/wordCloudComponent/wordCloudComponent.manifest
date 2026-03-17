@@ -1,0 +1,59 @@
+{
+    "name": "워드 클라우드",
+    "icon": [
+        "<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='#e65100' stroke-width='2'>",
+        "<text x='2' y='10' font-size='7' fill='#e74c3c' stroke='none'>A</text>",
+        "<text x='9' y='16' font-size='10' fill='#3498db' stroke='none'>B</text>",
+        "<text x='16' y='8' font-size='5' fill='#2ecc71' stroke='none'>C</text>",
+        "<text x='5' y='20' font-size='6' fill='#f39c12' stroke='none'>D</text>",
+        "<text x='17' y='20' font-size='8' fill='#9b59b6' stroke='none'>E</text>",
+        "</svg>"
+    ],
+    "version": 1,
+    "category": "Chart",
+    "description": "워드 클라우드 컴포넌트. ECharts + echarts-wordcloud 플러그인 기반. setGrid()로 DataGrid를 연결하면 WORD/COUNT 기반 워드 클라우드를 자동 렌더링합니다.",
+    "className": "WordCloudComponent",
+
+    "files": [
+        { "type": "js",  "url": "lib/echarts.min.js",           "order": 1 },
+        { "type": "js",  "url": "lib/echarts-wordcloud.min.js", "order": 2 },
+        { "type": "js",  "url": "wordCloudComponent.js",        "order": 3 },
+        { "type": "css", "url": "wordCloudComponent.css" }
+    ],
+
+    "options": [
+        { "name": "WordField",    "type": "Text",     "group": "Data",      "default": "WORD",       "description": "단어 필드명" },
+        { "name": "CountField",   "type": "Text",     "group": "Data",      "default": "COUNT",      "description": "빈도수 필드명" },
+        { "name": "Shape",        "type": "ComboBox", "group": "Layout",    "default": "circle",     "items": ["circle","cardioid","diamond","triangle","star"], "description": "워드 클라우드 모양" },
+        { "name": "GridSize",     "type": "Number",   "group": "Layout",    "default": 8,            "description": "단어 간 격자 크기(px)" },
+        { "name": "MinFontSize",  "type": "Number",   "group": "Style",     "default": 14,           "description": "최소 글꼴 크기(px)" },
+        { "name": "MaxFontSize",  "type": "Number",   "group": "Style",     "default": 80,           "description": "최대 글꼴 크기(px)" },
+        { "name": "MinRotation",  "type": "Number",   "group": "Style",     "default": -45,          "description": "최소 회전 각도" },
+        { "name": "MaxRotation",  "type": "Number",   "group": "Style",     "default": 45,           "description": "최대 회전 각도" },
+        { "name": "FontFamily",   "type": "Text",     "group": "Style",     "default": "sans-serif", "description": "글꼴" },
+        { "name": "Title",        "type": "Text",     "group": "Display",   "default": "",           "description": "차트 제목" }
+    ],
+
+    "sample": [
+        "// DataGrid 바인딩 (권장)",
+        "let grd = Matrix.getObject(\"DataGrid1\") as DataGrid;",
+        "let ec = Matrix.getObject(\"ExternalComponent1\") as ExternalComponent;",
+        "ec.OnComponentReady = function() {",
+        "    let model = ec.getModel();",
+        "    model.setConfig({",
+        "        WordField: 'WORD',",
+        "        CountField: 'COUNT',",
+        "        Shape: 'circle'",
+        "    });",
+        "    model.setGrid(grd);  // OnDataChanged 자동 연동",
+        "",
+        "    model.OnWordClick = function(args) {",
+        "        // args.word, args.count",
+        "    };",
+        "};",
+        "",
+        "// 모양 변경",
+        "// model.setConfig({ Shape: 'star' });",
+        "// model.Update();"
+    ]
+}

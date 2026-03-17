@@ -1,0 +1,188 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_WORDCLOUD_DEMO",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "FLD13F431FE9E574EC982EAAC28A0931164/EXT_WORDCLOUD_DEMO.mtsd",
+    "ReportName": "Word Cloud Demo",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-17 10:00:00",
+    "Editor": "yglee",
+    "EditDate": "2026-03-17 13:04:49",
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_WORDCLOUD_DEMO_01",
+        "Name": "DS_WORDCLOUD",
+        "ConnectionCode": "MATRIX_FILE_DB",
+        "SQL": "./DataSource/DS_WORDCLOUD.sql"
+      }
+    ]
+  },
+  "ScriptText": "./WordCloudDemo.script.ts",
+  "Forms": [
+    {
+      "Id": "FM_WORDCLOUD_DEMO_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_WORDCLOUD_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1551,
+            "Height": 35,
+            "Docking": {
+              "Left": true,
+              "Right": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#e65100"
+            },
+            "Font": {
+              "Color": "#ffffff",
+              "Size": 13,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "Word Cloud - Technology Keyword Trends"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_WORDCLOUD_BTN001",
+          "Name": "btnLoad",
+          "Position": {
+            "Left": 10,
+            "Top": 42,
+            "Width": 100,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#e65100"
+            },
+            "Border": {
+              "Color": "#bf360c"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Load Data"
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_WORDCLOUD_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 120,
+            "Top": 42,
+            "Width": 500,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": "#666666",
+              "Size": 11
+            }
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_WORDCLOUD_EC001",
+          "Name": "ecWordCloud",
+          "Position": {
+            "Left": 0,
+            "Top": 75,
+            "Width": 1200,
+            "Height": 812,
+            "Docking": {
+              "Bottom": true
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "wordCloudComponent",
+            "ClassName": "WordCloudComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "lib/echarts.min.js",
+                "order": 1
+              },
+              {
+                "type": "js",
+                "url": "lib/echarts-wordcloud.min.js",
+                "order": 2
+              },
+              {
+                "type": "js",
+                "url": "wordCloudComponent.js",
+                "order": 3
+              },
+              {
+                "type": "css",
+                "url": "wordCloudComponent.css"
+              }
+            ],
+            "Options": {
+              "WordField": "WORD",
+              "CountField": "COUNT",
+              "Shape": "circle",
+              "GridSize": 8,
+              "MinFontSize": 14,
+              "MaxFontSize": 80,
+              "MinRotation": -45,
+              "MaxRotation": 45,
+              "FontFamily": "sans-serif",
+              "Title": "Technology Keyword Trends"
+            },
+            "ComponentData": {}
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "EL_WORDCLOUD_GRD001",
+          "Name": "grdWordCloud",
+          "Position": {
+            "Left": 1205,
+            "Top": 75,
+            "Width": 346,
+            "Height": 812,
+            "Docking": {
+              "Right": true,
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2
+          },
+          "DataSource": "DS_WORDCLOUD_DEMO_01",
+          "AutoRefresh": true,
+          "Columns": [
+            {
+              "Name": "WORD"
+            },
+            {
+              "Name": "COUNT",
+              "ColumnType": 3,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

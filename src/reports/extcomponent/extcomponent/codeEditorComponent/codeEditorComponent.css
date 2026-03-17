@@ -1,0 +1,140 @@
+/* ═══════════════════════════════════════════════════
+   CodeEditorComponent Styles
+   Shadow DOM 내부에 주입되므로 전역 CSS와 격리됩니다.
+   ═══════════════════════════════════════════════════ */
+
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.code-editor-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #333;
+    text-align: left;
+}
+
+/* ── 줄 번호 ── */
+.code-line-numbers {
+    flex-shrink: 0;
+    width: 48px;
+    padding: 12px 8px 12px 0;
+    text-align: right;
+    overflow: hidden;
+    line-height: 1.5;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, "Courier New", monospace;
+    user-select: none;
+    white-space: pre;
+}
+
+/* ── 편집 영역 ── */
+.code-edit-area {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.code-textarea,
+.code-highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    margin: 0;
+    border: none;
+    outline: none;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, "Courier New", monospace;
+    font-size: inherit;
+    line-height: 1.5;
+    tab-size: 4;
+    white-space: pre;
+    overflow: auto;
+    box-sizing: border-box;
+    word-wrap: normal;
+}
+
+.code-textarea {
+    color: transparent;
+    caret-color: #fff;
+    background: transparent;
+    z-index: 2;
+    resize: none;
+    -webkit-text-fill-color: transparent;
+}
+
+.code-highlight {
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ── Dark 테마 ── */
+.code-theme-dark {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    border-color: #333;
+}
+
+.code-theme-dark .code-line-numbers {
+    background: #1e1e1e;
+    color: #858585;
+    border-right: 1px solid #333;
+}
+
+.code-theme-dark .code-textarea {
+    caret-color: #fff;
+}
+
+.code-theme-dark .hl-keyword { color: #569cd6; }
+.code-theme-dark .hl-string { color: #ce9178; }
+.code-theme-dark .hl-comment { color: #6a9955; font-style: italic; }
+.code-theme-dark .hl-number { color: #b5cea8; }
+
+/* ── Light 테마 ── */
+.code-theme-light {
+    background: #fafafa;
+    color: #333;
+    border-color: #ddd;
+}
+
+.code-theme-light .code-line-numbers {
+    background: #f5f5f5;
+    color: #999;
+    border-right: 1px solid #e0e0e0;
+}
+
+.code-theme-light .code-textarea {
+    caret-color: #333;
+}
+
+.code-theme-light .hl-keyword { color: #0000ff; }
+.code-theme-light .hl-string { color: #a31515; }
+.code-theme-light .hl-comment { color: #008000; font-style: italic; }
+.code-theme-light .hl-number { color: #098658; }
+
+/* ── 스크롤바 커스텀 ── */
+.code-textarea::-webkit-scrollbar,
+.code-highlight::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.code-theme-dark .code-textarea::-webkit-scrollbar-thumb,
+.code-theme-dark .code-highlight::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+.code-theme-light .code-textarea::-webkit-scrollbar-thumb,
+.code-theme-light .code-highlight::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}

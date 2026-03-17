@@ -1,0 +1,888 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_KANBAN_BOARD",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "MYDOCUMENT.yglee/EXT_KANBAN_BOARD.mtsd",
+    "ReportName": "Kanban Board",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-16 15:47:11",
+    "Editor": "yglee",
+    "EditDate": "2026-03-16 15:47:11",
+    "CreateBy": "i-AUD Developer Kit",
+    "TabPosition": 0,
+    "UsePersonalConditions": true,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "TabFocusMode": 1
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_KANBAN_BOARD_01",
+        "Name": "DS_KANBAN",
+        "ConnectionCode": "MATRIX_FILE_DB",
+        "SQL": "++k6kLkt1OVPlUkr9PrO2VR9vBA/GD49MP3myIeTZqVV+3WF6wKGElgywIt0TgANqgDQdshfFfJwW+pot4J72LLX/GNEB0u6++KmElkXaz+ndDLXZXIpwm/CcTvwdo/x6EDJcjlWTF822Mb0tIKQJKNs6u5xIkIKhSZOJXz6MwTNJoxAvdXDfO97/nPx2Rm/6bikwI5gA/z/RMlJEljjuhchjrFRwdtESaULase/Gc/ivnQ5XXFyRhWMYPeu5pyFKGER2uf4GN0gKbFp++wIYCVDiIrL+qIB/lVemLVOzdIAe+beMBllKKzWSFrYdpvkAnd3GyjzD5qQCQmVlYBtzoR0EZrS3bLZhQEDuvjMvqKtBhQO1nsZIQ8j4FQ40fMxggi7DEsBSwwzwrNJpKLxsb08Nq8qLsDl6KPKf5TCvRXEXRV3VbnSY3Eq5lHTPuckdBB8ZcCy6jZfdNhX1o1CoO+aHM/TDCJUiL9qkrtFm0l4IibMmaO321nd15KBQrYii3tSNY9ApOSvNPq7VSkxiQzXqiHSgaoqKKrGpQt1Y6Cz+ByHKy17mO8hB3L86sh91MG+d8ea50oGVdzqkB4eZoR5/bIrFexDb6NzQzLox8U0GO1df3Y7EP41cdjA91n8rtue5pRnteaqlJVBsGFGoxmoPwTP516KUtTr2XLIuf2f2ZtId2y4YbMjUvha6CGKF1gvSQLUK8jZIMfBREIp1uxlT6MMOqAqA/k8CxBZ2T6VO3OTQyQCT6LNmRjMV+0tCocnuUWqUH+htGDsxk7DQD5ClV9x990maqla7a1OkLfzFPZsvcxk7DD1TUhsA0mculsgqLEplRAlsbgz0LT921UqG01l9fCPVRI5HZqBnrwJ8yMJbweqfDZ6mRgmVykUVNPmsvDBYZxM+tN1Lm9ufTrhhcF0LZBmBGwkGtM3tEG8wsT1IhNLPNWZdWAA3yU5H2Wj7w/LR/vszGjLbeb+e+kAPfL7JqdTMVnf23PmZ8Iu5EMYfJWSRjtIIMHA98R1QmL9Q3yzThmXn5cZL9jGT9A6fz4VYa8TQpr3fUWf4rIpeA8L+PrCYuTuwlBH6eoKbPdSmrv9rW1QFHUEz/bRplS67U3ox3iwgSjjUSUm18hMx+e6H7z2hpE42IQtWzVAolOh1h8v44JTtm8DwgolUT4MV+4+YF4/f9FDlGbA0Taitw1vj3wT3rpEwcHsaH95dX3NemgnrtXD/8Pr+nXTYsDhgcEK2RTg4Z5sxY19akjyDHWRA76XNUx1o8YyfSMtYtsOEYOyNonwD8SnkfSxWAZdcQjqwE8pXT7FLkoAt+t8sKGGSyloVCuagtC9Nx5Gm4+XCmPQKG8ksJqP5Hp2+Q5zNpCVnS07Az6GQo1w9yU=",
+        "DSType": 0,
+        "UseMeta": false,
+        "UseCache": false,
+        "Encrypted": true,
+        "Params": [],
+        "Columns": []
+      }
+    ]
+  },
+  "ScriptText": "Matrix.OnDocumentLoadComplete = function (sender, args) {\r\n    var lblTitle = Matrix.getObject(\"lblTitle\");\r\n    var lblStatus = Matrix.getObject(\"lblStatus\");\r\n    var btnLoadSample = Matrix.getObject(\"btnLoadSample\");\r\n    var btnAddCard = Matrix.getObject(\"btnAddCard\");\r\n    var btnClear = Matrix.getObject(\"btnClear\");\r\n    var btnSave = Matrix.getObject(\"btnSave\");\r\n    var grdKanban = Matrix.getObject(\"grdKanban\");\r\n    var ecKanban = Matrix.getObject(\"ecKanban\");\r\n    lblTitle.Value = \"Kanban Board - Project Task Management\";\r\n    btnLoadSample.Text = \"Load Data\";\r\n    btnAddCard.Text = \"Add Card\";\r\n    btnClear.Text = \"Clear\";\r\n    btnSave.Text = \"Save\";\r\n    var cardCounter = 0;\r\n    var changeCount = 0;\r\n    btnLoadSample.OnClick = function () {\r\n        Matrix.doRefresh(\"grdKanban\");\r\n    };\r\n    btnAddCard.OnClick = function () {\r\n        cardCounter++;\r\n        var newRow = grdKanban.AppendRow();\r\n        newRow.SetValue('TITLE', 'New Task #' + cardCounter);\r\n        newRow.SetValue('STATUS', 'Backlog');\r\n        newRow.SetValue('DESCRIPTION', 'Added at ' + new Date().toLocaleTimeString());\r\n        newRow.SetValue('COLOR', '#ff9800');\r\n        grdKanban.ReDraw();\r\n        var model = ecKanban.getModel();\r\n        if (model) {\r\n            model.Update();\r\n        }\r\n    };\r\n    btnClear.OnClick = function () {\r\n        grdKanban.ClearRows();\r\n        grdKanban.ReDraw();\r\n        var model = ecKanban.getModel();\r\n        if (model) {\r\n            model.Update();\r\n        }\r\n        changeCount = 0;\r\n        lblStatus.Value = \"  All cards cleared\";\r\n    };\r\n    btnSave.OnClick = function () {\r\n        var ds = grdKanban.GetDataSet();\r\n        if (!ds) {\r\n            Matrix.Alert(\"저장할 데이터가 없습니다.\");\r\n            return;\r\n        }\r\n        var dt = ds.GetTable(0);\r\n        var changes = dt.GetChanges('U');\r\n        var modifiedCount = changes.GetRowCount();\r\n        if (modifiedCount === 0) {\r\n            Matrix.Alert(\"변경된 항목이 없습니다.\");\r\n            return;\r\n        }\r\n        var msg = \"변경된 항목 \" + modifiedCount + \"건:\\n\\n\";\r\n        for (var i = 0; i < modifiedCount; i++) {\r\n            msg += \"  - \" + changes.getData(i, 'TITLE') + \" → \" + changes.getData(i, 'STATUS') + \"\\n\";\r\n        }\r\n        Matrix.Alert(msg);\r\n    };\r\n    ecKanban.OnComponentReady = function () {\r\n        var model = ecKanban.getModel();\r\n        if (!model)\r\n            return;\r\n        model.setConfig({\r\n            CardTitleField: 'TITLE',\r\n            CardStatusField: 'STATUS',\r\n            CardDescField: 'DESCRIPTION',\r\n            CardColorField: 'COLOR'\r\n        });\r\n        model.setGrid(grdKanban);\r\n        model.OnCardMoving = function (args) {\r\n            if (args.fromStatus === 'Done' && args.toStatus === 'Backlog') {\r\n                Matrix.Alert(\"완료된 작업은 Backlog로 되돌릴 수 없습니다.\");\r\n                args.cancel = true;\r\n                return;\r\n            }\r\n        };\r\n        model.OnCardMoved = function (args) {\r\n            changeCount++;\r\n            lblStatus.Value = \"  [\" + args.title + \"] \" + args.fromStatus + \" → \" + args.toStatus\r\n                + \"  (변경 \" + changeCount + \"건)\";\r\n        };\r\n    };\r\n};\r\n",
+  "Forms": [
+    {
+      "Id": "FM_KANBAN_BOARD_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_KANBAN_BOARD_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1551,
+            "Height": 40,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 123,
+                "G": 31,
+                "B": 162,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Size": 14,
+              "HorizontalAlignment": "center",
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "Kanban Board - Project Task Management",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_KANBAN_BOARD_BTN001",
+          "Name": "btnLoadSample",
+          "Position": {
+            "Left": 10,
+            "Top": 47,
+            "Width": 120,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 123,
+                "G": 31,
+                "B": 162,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 106,
+                "G": 27,
+                "B": 154,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "Load Data",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_KANBAN_BOARD_BTN002",
+          "Name": "btnAddCard",
+          "Position": {
+            "Left": 140,
+            "Top": 47,
+            "Width": 120,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 25,
+                "G": 118,
+                "B": 210,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 21,
+                "G": 101,
+                "B": 192,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "Add Card",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_KANBAN_BOARD_BTN003",
+          "Name": "btnClear",
+          "Position": {
+            "Left": 270,
+            "Top": 47,
+            "Width": 100,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 117,
+                "G": 117,
+                "B": 117,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 97,
+                "G": 97,
+                "B": 97,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "Clear",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_KANBAN_BOARD_BTN004",
+          "Name": "btnSave",
+          "Position": {
+            "Left": 380,
+            "Top": 47,
+            "Width": 100,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 56,
+                "G": 142,
+                "B": 60,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 46,
+                "G": 125,
+                "B": 50,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "Save",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_KANBAN_BOARD_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 490,
+            "Top": 47,
+            "Width": 700,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": {
+                "R": 102,
+                "G": 102,
+                "B": 102,
+                "A": 1
+              },
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "  [단위 테스트 작성] Review → In Progress  (변경 1건)",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_KANBAN_BOARD_EC001",
+          "Name": "ecKanban",
+          "Position": {
+            "Left": 0,
+            "Top": 80,
+            "Width": 850,
+            "Height": 807,
+            "Docking": {
+              "Left": true,
+              "Bottom": true,
+              "Right": false,
+              "Top": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "ComponentSetting": {
+            "ComponentId": "kanbanComponent",
+            "ClassName": "KanbanComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "kanbanComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "kanbanComponent.css"
+              }
+            ],
+            "Options": {
+              "Columns": "Backlog,To Do,In Progress,Review,Done",
+              "CardTitleField": "TITLE",
+              "CardStatusField": "STATUS",
+              "CardDescField": "DESCRIPTION",
+              "CardColorField": "COLOR",
+              "EnableDragDrop": true,
+              "HeaderColor": "#7b1fa2"
+            },
+            "ComponentData": {}
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false,
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "EL_KANBAN_BOARD_GRD001",
+          "Name": "grdKanban",
+          "Position": {
+            "Left": 855,
+            "Top": 80,
+            "Width": 696,
+            "Height": 807,
+            "Docking": {
+              "Right": true,
+              "Bottom": true,
+              "Margin": "0,0,0,0",
+              "MinHeight": 0,
+              "MinWidth": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Thickness": "1,1,1,1"
+            },
+            "VerticalBorder": {
+              "Thickness": 1
+            },
+            "HorizontalBorder": {
+              "Thickness": 1
+            },
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "top"
+            }
+          },
+          "DataSource": "DS_KANBAN_BOARD_01",
+          "AutoRefresh": true,
+          "RowDeletable": true,
+          "Columns": [
+            {
+              "Name": "TITLE",
+              "KeyType": 1,
+              "Caption": "TITLE",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "STATUS",
+              "KeyType": 1,
+              "Caption": "STATUS",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "DESCRIPTION",
+              "KeyType": 1,
+              "Caption": "DESCRIPTION",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "COLOR",
+              "KeyType": 1,
+              "Caption": "COLOR",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            }
+          ],
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "CellMargin": "5,5,5,5",
+          "SelectRule": 2,
+          "NaNCellText": "-",
+          "ColumnHeaderHeight": 28,
+          "RowHeight": 24,
+          "ExportCount": 1000000,
+          "FontFamily": "inherit",
+          "FontSize": 12,
+          "UsePPTExport": false,
+          "UseDesign": false,
+          "UseFormatSetting": false,
+          "UseMultiHeader": false,
+          "UseMultiHeaderMenu": false,
+          "FrozenLineBrush": {
+            "Type": 0,
+            "Color": {
+              "R": 127,
+              "G": 127,
+              "B": 127,
+              "A": 1
+            }
+          },
+          "UsePaging": true
+        }
+      ],
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      }
+    }
+  ],
+  "ServerScriptText": [],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {},
+  "PersonalConditions": {
+    "list": [],
+    "useAll": true
+  }
+}

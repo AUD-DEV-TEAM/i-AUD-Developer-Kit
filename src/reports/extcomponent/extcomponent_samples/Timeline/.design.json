@@ -1,0 +1,232 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_TIMELINE_DEMO",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "MYDOCUMENT.yglee/EXT_TIMELINE_DEMO.mtsd",
+    "ReportName": "Timeline Demo",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-16 17:30:00",
+    "Editor": "yglee",
+    "EditDate": "2026-03-16 17:13:49",
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_TIMELINE_DEMO_01",
+        "Name": "DS_TIMELINE",
+        "ConnectionCode": "MATRIX_FILE_DB",
+        "SQL": "./DataSource/DS_TIMELINE.sql"
+      }
+    ]
+  },
+  "ScriptText": "./Timeline.script.ts",
+  "Forms": [
+    {
+      "Id": "FM_TIMELINE_DEMO_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_TIMELINE_DEMO_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1840,
+            "Height": 40,
+            "Docking": {
+              "Left": true,
+              "Right": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#1565c0"
+            },
+            "Font": {
+              "Color": "#ffffff",
+              "Size": 14,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "Timeline Component - Project Milestones"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_TIMELINE_DEMO_BTN001",
+          "Name": "btnLoadData",
+          "Position": {
+            "Left": 10,
+            "Top": 47,
+            "Width": 120,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#1565c0"
+            },
+            "Border": {
+              "Color": "#0d47a1"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Load Data"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_TIMELINE_DEMO_BTN002",
+          "Name": "btnAddEvent",
+          "Position": {
+            "Left": 140,
+            "Top": 47,
+            "Width": 120,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#2e7d32"
+            },
+            "Border": {
+              "Color": "#1b5e20"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Add Event"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_TIMELINE_DEMO_BTN003",
+          "Name": "btnClear",
+          "Position": {
+            "Left": 270,
+            "Top": 47,
+            "Width": 100,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#757575"
+            },
+            "Border": {
+              "Color": "#616161"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Clear"
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_TIMELINE_DEMO_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 380,
+            "Top": 47,
+            "Width": 600,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": "#666666",
+              "Size": 11
+            }
+          },
+          "Text": "  Click 'Load Data' to start"
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_TIMELINE_DEMO_EC001",
+          "Name": "ecTimeline",
+          "Position": {
+            "Left": 0,
+            "Top": 80,
+            "Width": 700,
+            "Height": 837,
+            "Docking": {
+              "Left": true,
+              "Bottom": true
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "timelineComponent",
+            "ClassName": "TimelineComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "timelineComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "timelineComponent.css"
+              }
+            ],
+            "Options": {
+              "DateField": "DATE",
+              "TitleField": "TITLE",
+              "DescriptionField": "DESCRIPTION",
+              "ColorField": "COLOR",
+              "IconField": "ICON",
+              "Layout": "alternate",
+              "LineColor": "#1565c0",
+              "ShowDate": true
+            },
+            "ComponentData": {}
+          }
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "EL_TIMELINE_DEMO_GRD001",
+          "Name": "grdTimeline",
+          "Position": {
+            "Left": 705,
+            "Top": 80,
+            "Width": 1135,
+            "Height": 837,
+            "Docking": {
+              "Right": true,
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2
+          },
+          "DataSource": "DS_TIMELINE_DEMO_01",
+          "AutoRefresh": true,
+          "Columns": [
+            {
+              "Name": "DATE"
+            },
+            {
+              "Name": "TITLE",
+              "Width": 150
+            },
+            {
+              "Name": "DESCRIPTION",
+              "Width": 250
+            },
+            {
+              "Name": "COLOR",
+              "Width": 80
+            },
+            {
+              "Name": "ICON",
+              "Width": 50
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

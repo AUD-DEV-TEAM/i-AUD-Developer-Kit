@@ -1,0 +1,349 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_CODE_EDITOR_GALLERY",
+    "SavePath": "MYDOCUMENT.yglee/EXT_CODE_EDITOR_GALLERY.mtsd",
+    "ReportName": "Code Editor Gallery",
+    "CreateBy": "i-AUD Developer Kit",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "WriteDate": "2026-03-12 14:34:41",
+    "Writer": "yglee",
+    "EditDate": "2026-03-12 14:34:41",
+    "Editor": "yglee"
+  },
+  "ScriptText": "./CodeEditorGallery.script.ts",
+  "Forms": [
+    {
+      "Id": "FM_CODEEDITOR_GALLERY_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_CODEEDITOR_GALLERY_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 10,
+            "Top": 5,
+            "Width": 1180,
+            "Height": 35,
+            "Docking": {
+              "Left": true,
+              "Right": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 14,
+              "Color": "#d4d4d4",
+              "HorizontalAlignment": "center"
+            },
+            "Background": {
+              "Color": "#1e1e1e"
+            }
+          },
+          "Value": "Code Editor Gallery - Syntax Highlighting Languages"
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_CODEEDITOR_GALLERY_LB_JS1",
+          "Name": "lblJavaScript",
+          "Position": {
+            "Left": 10,
+            "Top": 48,
+            "Width": 385,
+            "Height": 25
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#2d2d2d"
+            },
+            "Font": {
+              "Size": 10,
+              "Color": "#569cd6"
+            },
+            "Border": {
+              "Thickness": "0,0,0,2",
+              "Color": "#569cd6"
+            }
+          },
+          "Value": "  JavaScript / TypeScript"
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_CODEEDITOR_GALLERY_EC_JS1",
+          "Name": "ecJavaScript",
+          "Position": {
+            "Left": 10,
+            "Top": 73,
+            "Width": 385,
+            "Height": 310
+          },
+          "ComponentSetting": {
+            "ComponentId": "codeEditorComponent",
+            "ClassName": "CodeEditorComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "codeEditorComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "codeEditorComponent.css"
+              }
+            ],
+            "Options": {
+              "Language": "javascript",
+              "Theme": "dark",
+              "ReadOnly": false,
+              "ShowLineNumbers": true,
+              "FontSize": 12
+            },
+            "ComponentData": {}
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_CODEEDITOR_GALLERY_LB_SQ1",
+          "Name": "lblSQL",
+          "Position": {
+            "Left": 405,
+            "Top": 48,
+            "Width": 385,
+            "Height": 25
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#2d2d2d"
+            },
+            "Font": {
+              "Size": 10,
+              "Color": "#ce9178"
+            },
+            "Border": {
+              "Thickness": "0,0,0,2",
+              "Color": "#ce9178"
+            }
+          },
+          "Value": "  SQL"
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_CODEEDITOR_GALLERY_EC_SQ1",
+          "Name": "ecSQL",
+          "Position": {
+            "Left": 405,
+            "Top": 73,
+            "Width": 385,
+            "Height": 310
+          },
+          "ComponentSetting": {
+            "ComponentId": "codeEditorComponent",
+            "ClassName": "CodeEditorComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "codeEditorComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "codeEditorComponent.css"
+              }
+            ],
+            "Options": {
+              "Language": "sql",
+              "Theme": "dark",
+              "ReadOnly": false,
+              "ShowLineNumbers": true,
+              "FontSize": 12
+            },
+            "ComponentData": {}
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_CODEEDITOR_GALLERY_LB_JN1",
+          "Name": "lblJSON",
+          "Position": {
+            "Left": 800,
+            "Top": 48,
+            "Width": 385,
+            "Height": 25
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#2d2d2d"
+            },
+            "Font": {
+              "Size": 10,
+              "Color": "#b5cea8"
+            },
+            "Border": {
+              "Thickness": "0,0,0,2",
+              "Color": "#b5cea8"
+            }
+          },
+          "Value": "  JSON"
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_CODEEDITOR_GALLERY_EC_JN1",
+          "Name": "ecJSON",
+          "Position": {
+            "Left": 800,
+            "Top": 73,
+            "Width": 385,
+            "Height": 310
+          },
+          "ComponentSetting": {
+            "ComponentId": "codeEditorComponent",
+            "ClassName": "CodeEditorComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "codeEditorComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "codeEditorComponent.css"
+              }
+            ],
+            "Options": {
+              "Language": "json",
+              "Theme": "dark",
+              "ReadOnly": false,
+              "ShowLineNumbers": true,
+              "FontSize": 12
+            },
+            "ComponentData": {}
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_CODEEDITOR_GALLERY_LB_PY1",
+          "Name": "lblPython",
+          "Position": {
+            "Left": 10,
+            "Top": 398,
+            "Width": 385,
+            "Height": 25
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#2d2d2d"
+            },
+            "Font": {
+              "Size": 10,
+              "Color": "#6a9955"
+            },
+            "Border": {
+              "Thickness": "0,0,0,2",
+              "Color": "#6a9955"
+            }
+          },
+          "Value": "  Python"
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_CODEEDITOR_GALLERY_EC_PY1",
+          "Name": "ecPython",
+          "Position": {
+            "Left": 10,
+            "Top": 423,
+            "Width": 385,
+            "Height": 310
+          },
+          "ComponentSetting": {
+            "ComponentId": "codeEditorComponent",
+            "ClassName": "CodeEditorComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "codeEditorComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "codeEditorComponent.css"
+              }
+            ],
+            "Options": {
+              "Language": "python",
+              "Theme": "dark",
+              "ReadOnly": false,
+              "ShowLineNumbers": true,
+              "FontSize": 12
+            },
+            "ComponentData": {}
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_CODEEDITOR_GALLERY_LB_TX1",
+          "Name": "lblText",
+          "Position": {
+            "Left": 405,
+            "Top": 398,
+            "Width": 385,
+            "Height": 25
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#2d2d2d"
+            },
+            "Font": {
+              "Size": 10,
+              "Color": "#858585"
+            },
+            "Border": {
+              "Thickness": "0,0,0,2",
+              "Color": "#858585"
+            }
+          },
+          "Value": "  Plain Text"
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_CODEEDITOR_GALLERY_EC_TX1",
+          "Name": "ecText",
+          "Position": {
+            "Left": 405,
+            "Top": 423,
+            "Width": 385,
+            "Height": 310
+          },
+          "ComponentSetting": {
+            "ComponentId": "codeEditorComponent",
+            "ClassName": "CodeEditorComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "codeEditorComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "codeEditorComponent.css"
+              }
+            ],
+            "Options": {
+              "Language": "text",
+              "Theme": "light",
+              "ReadOnly": false,
+              "ShowLineNumbers": true,
+              "FontSize": 12
+            },
+            "ComponentData": {}
+          }
+        }
+      ]
+    }
+  ]
+}

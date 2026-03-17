@@ -1,0 +1,15 @@
+@@CSV
+SOURCE,TARGET,VALUE
+개발팀,프론트엔드,5
+개발팀,백엔드,8
+개발팀,DevOps,3
+프론트엔드,React,4
+프론트엔드,Vue,3
+백엔드,Java,6
+백엔드,Node.js,4
+DevOps,Docker,5
+DevOps,K8s,3
+React,TypeScript,3
+Vue,TypeScript,2
+Java,Spring,5
+Node.js,Express,3

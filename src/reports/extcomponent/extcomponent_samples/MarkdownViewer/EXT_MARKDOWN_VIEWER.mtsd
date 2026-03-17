@@ -1,0 +1,629 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_MARKDOWN_VIEWER",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "MYDOCUMENT.yglee/EXT_MARKDOWN_VIEWER.mtsd",
+    "ReportName": "Markdown Viewer",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-16 17:02:28",
+    "Editor": "yglee",
+    "EditDate": "2026-03-16 17:02:28",
+    "CreateBy": "i-AUD Developer Kit",
+    "TabPosition": 0,
+    "UsePersonalConditions": true,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "TabFocusMode": 1
+  },
+  "ScriptText": "Matrix.OnDocumentLoadComplete = function (sender, args) {\r\n    var lblTitle = Matrix.getObject(\"lblTitle\");\r\n    lblTitle.Value = \"Markdown Viewer - Light / Dark / GitHub Theme\";\r\n    var sampleMd = [\r\n        '# Markdown Viewer',\r\n        '',\r\n        '## Features',\r\n        '',\r\n        '- **GFM** (GitHub Flavored Markdown) 지원',\r\n        '- 3가지 테마: Light, Dark, GitHub',\r\n        '- XSS 방지 (HTML Sanitize)',\r\n        '- `marked.js` 기반 렌더링',\r\n        '',\r\n        '## 코드 블록',\r\n        '',\r\n        '```javascript',\r\n        'function greet(name) {',\r\n        '    return \"Hello, \" + name + \"!\";',\r\n        '}',\r\n        'console.log(greet(\"World\"));',\r\n        '```',\r\n        '',\r\n        '## 테이블',\r\n        '',\r\n        '| 기능 | 설명 | 상태 |',\r\n        '|------|------|------|',\r\n        '| Light Theme | 밝은 배경 기본 테마 | ✅ |',\r\n        '| Dark Theme | 어두운 배경 테마 | ✅ |',\r\n        '| GitHub Theme | GitHub 스타일 | ✅ |',\r\n        '',\r\n        '## 인용문',\r\n        '',\r\n        '> Markdown은 텍스트 기반의 마크업 언어로,',\r\n        '> 쉽게 읽고 쓸 수 있으며 HTML로 변환이 가능합니다.',\r\n        '',\r\n        '## 체크리스트',\r\n        '',\r\n        '- [x] 마크다운 파싱',\r\n        '- [x] 테마 지원',\r\n        '- [x] 코드 하이라이팅',\r\n        '- [ ] PDF 내보내기',\r\n        '',\r\n        '## 링크 & 이미지',\r\n        '',\r\n        '[i-AUD Platform](https://www.bimatrix.co.kr) 에서 제공하는 컴포넌트입니다.',\r\n        '',\r\n        '---',\r\n        '',\r\n        '*이 문서는 MarkdownComponent 샘플입니다.*'\r\n    ].join('\\n');\r\n    var ecLight = Matrix.getObject(\"ecLight\");\r\n    var ecDark = Matrix.getObject(\"ecDark\");\r\n    var ecGitHub = Matrix.getObject(\"ecGitHub\");\r\n    ecLight.OnComponentReady = function () {\r\n        ecLight.SetValue([sampleMd]);\r\n    };\r\n    ecDark.OnComponentReady = function () {\r\n        ecDark.SetValue([sampleMd]);\r\n    };\r\n    ecGitHub.OnComponentReady = function () {\r\n        ecGitHub.SetValue([sampleMd]);\r\n    };\r\n};\r\n",
+  "Forms": [
+    {
+      "Id": "FM_MARKDOWN_VIEWER_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_MARKDOWN_VIEWER_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1840,
+            "Height": 35,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 69,
+                "G": 90,
+                "B": 100,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Size": 13,
+              "HorizontalAlignment": "center",
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "Markdown Viewer - Light / Dark / GitHub Theme",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_MARKDOWN_VIEWER_LBL_L1",
+          "Name": "lblLight",
+          "Position": {
+            "Left": 10,
+            "Top": 42,
+            "Width": 390,
+            "Height": 22,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": {
+                "R": 69,
+                "G": 90,
+                "B": 100,
+                "A": 1
+              },
+              "Thickness": "0,0,0,2",
+              "LineType": "none",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 69,
+                "G": 90,
+                "B": 100,
+                "A": 1
+              },
+              "Size": 10,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            }
+          },
+          "Text": "Light",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_MARKDOWN_VIEWER_EC_L1",
+          "Name": "ecLight",
+          "Position": {
+            "Left": 10,
+            "Top": 64,
+            "Width": 390,
+            "Height": 853,
+            "Docking": {
+              "Bottom": true,
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "ComponentSetting": {
+            "ComponentId": "markdownComponent",
+            "ClassName": "MarkdownComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "lib/marked.umd.js",
+                "order": 1
+              },
+              {
+                "type": "js",
+                "url": "markdownComponent.js",
+                "order": 2
+              },
+              {
+                "type": "css",
+                "url": "markdownComponent.css"
+              }
+            ],
+            "Options": {
+              "Theme": "light",
+              "Padding": 16,
+              "FontSize": 14,
+              "EnableGFM": true,
+              "EnableBreaks": false,
+              "SanitizeHTML": true
+            },
+            "ComponentData": {
+              "rawMarkdown": "# Markdown Viewer\n\n## Features\n\n- **GFM** (GitHub Flavored Markdown) 지원\n- 3가지 테마: Light, Dark, GitHub\n- XSS 방지 (HTML Sanitize)\n- `marked.js` 기반 렌더링\n\n## 코드 블록\n\n```javascript\nfunction greet(name) {\n    return \"Hello, \" + name + \"!\";\n}\nconsole.log(greet(\"World\"));\n```\n\n## 테이블\n\n| 기능 | 설명 | 상태 |\n|------|------|------|\n| Light Theme | 밝은 배경 기본 테마 | ✅ |\n| Dark Theme | 어두운 배경 테마 | ✅ |\n| GitHub Theme | GitHub 스타일 | ✅ |\n\n## 인용문\n\n> Markdown은 텍스트 기반의 마크업 언어로,\n> 쉽게 읽고 쓸 수 있으며 HTML로 변환이 가능합니다.\n\n## 체크리스트\n\n- [x] 마크다운 파싱\n- [x] 테마 지원\n- [x] 코드 하이라이팅\n- [ ] PDF 내보내기\n\n## 링크 & 이미지\n\n[i-AUD Platform](https://www.bimatrix.co.kr) 에서 제공하는 컴포넌트입니다.\n\n---\n\n*이 문서는 MarkdownComponent 샘플입니다.*"
+            }
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false,
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_MARKDOWN_VIEWER_LBL_D1",
+          "Name": "lblDark",
+          "Position": {
+            "Left": 410,
+            "Top": 42,
+            "Width": 390,
+            "Height": 22,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 38,
+                "G": 50,
+                "B": 56,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 176,
+                "G": 190,
+                "B": 197,
+                "A": 1
+              },
+              "Thickness": "0,0,0,2",
+              "LineType": "none",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 176,
+                "G": 190,
+                "B": 197,
+                "A": 1
+              },
+              "Size": 10,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Text": "Dark",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_MARKDOWN_VIEWER_EC_D1",
+          "Name": "ecDark",
+          "Position": {
+            "Left": 410,
+            "Top": 64,
+            "Width": 390,
+            "Height": 853,
+            "Docking": {
+              "Bottom": true,
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "ComponentSetting": {
+            "ComponentId": "markdownComponent",
+            "ClassName": "MarkdownComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "lib/marked.umd.js",
+                "order": 1
+              },
+              {
+                "type": "js",
+                "url": "markdownComponent.js",
+                "order": 2
+              },
+              {
+                "type": "css",
+                "url": "markdownComponent.css"
+              }
+            ],
+            "Options": {
+              "Theme": "dark",
+              "Padding": 16,
+              "FontSize": 14,
+              "EnableGFM": true,
+              "EnableBreaks": false,
+              "SanitizeHTML": true
+            },
+            "ComponentData": {
+              "rawMarkdown": "# Markdown Viewer\n\n## Features\n\n- **GFM** (GitHub Flavored Markdown) 지원\n- 3가지 테마: Light, Dark, GitHub\n- XSS 방지 (HTML Sanitize)\n- `marked.js` 기반 렌더링\n\n## 코드 블록\n\n```javascript\nfunction greet(name) {\n    return \"Hello, \" + name + \"!\";\n}\nconsole.log(greet(\"World\"));\n```\n\n## 테이블\n\n| 기능 | 설명 | 상태 |\n|------|------|------|\n| Light Theme | 밝은 배경 기본 테마 | ✅ |\n| Dark Theme | 어두운 배경 테마 | ✅ |\n| GitHub Theme | GitHub 스타일 | ✅ |\n\n## 인용문\n\n> Markdown은 텍스트 기반의 마크업 언어로,\n> 쉽게 읽고 쓸 수 있으며 HTML로 변환이 가능합니다.\n\n## 체크리스트\n\n- [x] 마크다운 파싱\n- [x] 테마 지원\n- [x] 코드 하이라이팅\n- [ ] PDF 내보내기\n\n## 링크 & 이미지\n\n[i-AUD Platform](https://www.bimatrix.co.kr) 에서 제공하는 컴포넌트입니다.\n\n---\n\n*이 문서는 MarkdownComponent 샘플입니다.*"
+            }
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false,
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_MARKDOWN_VIEWER_LBL_G1",
+          "Name": "lblGitHub",
+          "Position": {
+            "Left": 810,
+            "Top": 42,
+            "Width": 390,
+            "Height": 22,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": {
+                "R": 3,
+                "G": 102,
+                "B": 214,
+                "A": 1
+              },
+              "Thickness": "0,0,0,2",
+              "LineType": "none",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": {
+                "R": 36,
+                "G": 41,
+                "B": 46,
+                "A": 1
+              },
+              "Size": 10,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            }
+          },
+          "Text": "GitHub",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_MARKDOWN_VIEWER_EC_G1",
+          "Name": "ecGitHub",
+          "Position": {
+            "Left": 810,
+            "Top": 64,
+            "Width": 390,
+            "Height": 853,
+            "Docking": {
+              "Bottom": true,
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "ComponentSetting": {
+            "ComponentId": "markdownComponent",
+            "ClassName": "MarkdownComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "lib/marked.umd.js",
+                "order": 1
+              },
+              {
+                "type": "js",
+                "url": "markdownComponent.js",
+                "order": 2
+              },
+              {
+                "type": "css",
+                "url": "markdownComponent.css"
+              }
+            ],
+            "Options": {
+              "Theme": "github",
+              "Padding": 16,
+              "FontSize": 14,
+              "EnableGFM": true,
+              "EnableBreaks": false,
+              "SanitizeHTML": true
+            },
+            "ComponentData": {
+              "rawMarkdown": "# Markdown Viewer\n\n## Features\n\n- **GFM** (GitHub Flavored Markdown) 지원\n- 3가지 테마: Light, Dark, GitHub\n- XSS 방지 (HTML Sanitize)\n- `marked.js` 기반 렌더링\n\n## 코드 블록\n\n```javascript\nfunction greet(name) {\n    return \"Hello, \" + name + \"!\";\n}\nconsole.log(greet(\"World\"));\n```\n\n## 테이블\n\n| 기능 | 설명 | 상태 |\n|------|------|------|\n| Light Theme | 밝은 배경 기본 테마 | ✅ |\n| Dark Theme | 어두운 배경 테마 | ✅ |\n| GitHub Theme | GitHub 스타일 | ✅ |\n\n## 인용문\n\n> Markdown은 텍스트 기반의 마크업 언어로,\n> 쉽게 읽고 쓸 수 있으며 HTML로 변환이 가능합니다.\n\n## 체크리스트\n\n- [x] 마크다운 파싱\n- [x] 테마 지원\n- [x] 코드 하이라이팅\n- [ ] PDF 내보내기\n\n## 링크 & 이미지\n\n[i-AUD Platform](https://www.bimatrix.co.kr) 에서 제공하는 컴포넌트입니다.\n\n---\n\n*이 문서는 MarkdownComponent 샘플입니다.*"
+            }
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false,
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        }
+      ],
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      }
+    }
+  ],
+  "DataSources": {
+    "Datas": []
+  },
+  "ServerScriptText": [],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {},
+  "PersonalConditions": {
+    "list": [],
+    "useAll": true
+  }
+}

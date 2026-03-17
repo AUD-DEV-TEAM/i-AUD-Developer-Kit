@@ -1,0 +1,68 @@
+{
+    "name": "네트워크 그래프",
+    "icon": [
+        "<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='#6a1b9a' stroke-width='2'>",
+        "<circle cx='6' cy='6' r='3'/>",
+        "<circle cx='18' cy='6' r='3'/>",
+        "<circle cx='12' cy='18' r='3'/>",
+        "<circle cx='6' cy='16' r='2'/>",
+        "<line x1='8.5' y1='7' x2='15.5' y2='7'/>",
+        "<line x1='7' y1='8.5' x2='11' y2='16'/>",
+        "<line x1='17' y1='8.5' x2='13' y2='16'/>",
+        "<line x1='7.5' y1='14.5' x2='10.5' y2='16.5'/>",
+        "</svg>"
+    ],
+    "version": 1,
+    "category": "Chart",
+    "description": "ECharts 기반 네트워크 그래프. force/circular 레이아웃을 지원합니다. setGrid()로 DataGrid를 연결하면 SOURCE/TARGET/VALUE 컬럼 기반으로 자동 렌더링합니다.",
+    "className": "GraphComponent",
+
+    "files": [
+        { "type": "js",  "url": "lib/echarts.min.js",     "order": 1 },
+        { "type": "js",  "url": "graphComponent.js",      "order": 2 },
+        { "type": "css", "url": "graphComponent.css" }
+    ],
+
+    "options": [
+        { "name": "SourceField", "type": "Text", "group": "Data", "default": "SOURCE", "description": "출발 노드 필드명" },
+        { "name": "TargetField", "type": "Text", "group": "Data", "default": "TARGET", "description": "도착 노드 필드명" },
+        { "name": "ValueField", "type": "Text", "group": "Data", "default": "VALUE", "description": "값(가중치) 필드명" },
+        { "name": "Layout", "type": "ComboBox", "group": "Layout", "default": "force", "items": ["force","circular"], "description": "그래프 레이아웃" },
+        { "name": "SymbolSize", "type": "Number", "group": "Style", "default": 30, "description": "노드 기본 크기(px)" },
+        { "name": "LineWidth", "type": "Number", "group": "Style", "default": 2, "description": "링크 선 두께(px)" },
+        { "name": "ShowLabel", "type": "Boolean", "group": "Display", "default": true, "description": "라벨 표시 여부" },
+        { "name": "FontSize", "type": "Number", "group": "Style", "default": 12, "description": "라벨 글꼴 크기(px)" },
+        { "name": "Repulsion", "type": "Number", "group": "Layout", "default": 200, "description": "노드 간 반발력" },
+        { "name": "Title", "type": "Text", "group": "Display", "default": "", "description": "차트 제목" },
+        { "name": "BackgroundColor", "type": "Color", "group": "Style", "default": "#ffffff", "description": "배경색" },
+        { "name": "AnimationDuration", "type": "Number", "group": "Animation", "default": 800, "description": "애니메이션 시간(ms)" }
+    ],
+
+    "sample": [
+        "// DataGrid 바인딩 (권장)",
+        "let grd = Matrix.getObject(\"DataGrid1\") as DataGrid;",
+        "let ec = Matrix.getObject(\"ExternalComponent1\") as ExternalComponent;",
+        "ec.OnComponentReady = function() {",
+        "    let model = ec.getModel();",
+        "    model.setConfig({",
+        "        SourceField: 'SOURCE',",
+        "        TargetField: 'TARGET',",
+        "        ValueField: 'VALUE',",
+        "        Layout: 'force',",
+        "        Repulsion: 200",
+        "    });",
+        "    model.setGrid(grd);  // OnDataChanged 자동 연동",
+        "",
+        "    model.OnNodeClick = function(args) {",
+        "        // args.name",
+        "    };",
+        "    model.OnLinkClick = function(args) {",
+        "        // args.source, args.target, args.value",
+        "    };",
+        "};",
+        "",
+        "// 레이아웃 변경",
+        "// model.setConfig({ Layout: 'circular' });",
+        "// model.Update();"
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "name": "Heatmap Chart",
+    "icon": [
+        "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>",
+        "<rect x='2' y='2' width='5' height='5' rx='1' fill='#e3f2fd'/>",
+        "<rect x='9' y='2' width='5' height='5' rx='1' fill='#90caf9'/>",
+        "<rect x='16' y='2' width='5' height='5' rx='1' fill='#1565c0'/>",
+        "<rect x='2' y='9' width='5' height='5' rx='1' fill='#64b5f6'/>",
+        "<rect x='9' y='9' width='5' height='5' rx='1' fill='#1e88e5'/>",
+        "<rect x='16' y='9' width='5' height='5' rx='1' fill='#42a5f5'/>",
+        "<rect x='2' y='16' width='5' height='5' rx='1' fill='#1565c0'/>",
+        "<rect x='9' y='16' width='5' height='5' rx='1' fill='#bbdefb'/>",
+        "<rect x='16' y='16' width='5' height='5' rx='1' fill='#e3f2fd'/>",
+        "</svg>"
+    ],
+    "version": 1,
+    "category": "Chart",
+    "description": "Heatmap chart with color-coded cells. Data: ROW_NAME, COL_NAME, VALUE columns.",
+    "className": "HeatmapComponent",
+    "files": [
+        { "type": "js", "url": "lib/echarts.min.js", "order": 1 },
+        { "type": "js", "url": "heatmapComponent.js", "order": 2 },
+        { "type": "css", "url": "heatmapComponent.css" }
+    ],
+    "options": [
+        { "name": "RowField", "type": "Text", "group": "Data", "default": "ROW_NAME", "description": "Row category field name" },
+        { "name": "ColField", "type": "Text", "group": "Data", "default": "COL_NAME", "description": "Column category field name" },
+        { "name": "ValueField", "type": "Text", "group": "Data", "default": "VALUE", "description": "Numeric value field name" },
+        { "name": "MinColor", "type": "Text", "group": "Style", "default": "#ffffff", "description": "Color for minimum value" },
+        { "name": "MaxColor", "type": "Text", "group": "Style", "default": "#304ffe", "description": "Color for maximum value" },
+        { "name": "ShowLabel", "type": "ComboBox", "group": "Style", "default": "true", "items": ["true", "false"], "description": "Show value labels in cells" },
+        { "name": "FontSize", "type": "Text", "group": "Style", "default": "12", "description": "Label font size" },
+        { "name": "BorderWidth", "type": "Text", "group": "Style", "default": "1", "description": "Cell border width" },
+        { "name": "BorderColor", "type": "Text", "group": "Style", "default": "#ffffff", "description": "Cell border color" },
+        { "name": "Title", "type": "Text", "group": "General", "default": "", "description": "Chart title" }
+    ],
+    "sample": [
+        "// OnComponentReady",
+        "ecHeatmap.OnComponentReady = function () {",
+        "    let model = ecHeatmap.getModel();",
+        "    model.setConfig({ MinColor: '#e3f2fd', MaxColor: '#0d47a1' });",
+        "    model.setGrid(grdHeatmap);",
+        "    model.OnCellClick = function (args) {",
+        "        console.log(args.row, args.col, args.value);",
+        "    };",
+        "};"
+    ]
+}

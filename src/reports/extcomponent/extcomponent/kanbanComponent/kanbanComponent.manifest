@@ -1,0 +1,55 @@
+{
+    "name": "칸반 보드",
+    "icon": [
+        "<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='#7b1fa2' stroke-width='2'>",
+        "<rect x='2' y='3' width='6' height='18' rx='1'/>",
+        "<rect x='9' y='3' width='6' height='12' rx='1'/>",
+        "<rect x='16' y='3' width='6' height='15' rx='1'/>",
+        "</svg>"
+    ],
+    "version": 1,
+    "category": "Widget",
+    "description": "드래그 앤 드롭 칸반 보드 컴포넌트. 작업 상태를 컬럼 단위로 관리합니다. setGrid()로 DataGrid를 연결하면 OnDataChanged 시 자동 렌더링됩니다.",
+    "className": "KanbanComponent",
+
+    "files": [
+        { "type": "js",  "url": "kanbanComponent.js",  "order": 1 },
+        { "type": "css", "url": "kanbanComponent.css" }
+    ],
+
+    "options": [
+        { "name": "Columns", "type": "Text", "group": "Data", "default": "To Do,In Progress,Done", "description": "컬럼(상태) 목록 (쉼표 구분)" },
+        { "name": "CardTitleField", "type": "Text", "group": "Data", "default": "TITLE", "description": "카드 제목 컬럼 필드명" },
+        { "name": "CardStatusField", "type": "Text", "group": "Data", "default": "STATUS", "description": "카드 상태 컬럼 필드명" },
+        { "name": "CardDescField", "type": "Text", "group": "Data", "default": "DESCRIPTION", "description": "카드 설명 컬럼 필드명" },
+        { "name": "CardColorField", "type": "Text", "group": "Data", "default": "COLOR", "description": "카드 색상 컬럼 필드명" },
+        { "name": "EnableDragDrop", "type": "Boolean", "group": "Interaction", "default": true, "description": "드래그 앤 드롭 활성화" },
+        { "name": "HeaderColor", "type": "Color", "group": "Style", "default": "#f1f5f9", "description": "컬럼 헤더 배경색" }
+    ],
+
+    "sample": [
+        "// DataGrid 바인딩 (권장)",
+        "let grd = Matrix.getObject(\"DataGrid1\") as DataGrid;",
+        "let ec = Matrix.getObject(\"ExternalComponent1\") as any;",
+        "ec.OnComponentReady = function() {",
+        "    let model = ec.getModel();",
+        "    model.setConfig({",
+        "        CardTitleField: 'TITLE',",
+        "        CardStatusField: 'STATUS',",
+        "        CardDescField: 'DESCRIPTION',",
+        "        CardColorField: 'COLOR'",
+        "    });",
+        "    model.setGrid(grd);  // OnDataChanged 자동 연동",
+        "",
+        "    // 이동 전 검증 (cancel로 차단 가능)",
+        "    model.OnCardMoving = function(args) {",
+        "        // args.row, args.fromStatus, args.toStatus, args.cancel",
+        "    };",
+        "",
+        "    // 이동 후 통지 (grid.ReDraw는 내부 자동 처리)",
+        "    model.OnCardMoved = function(args) {",
+        "        // args.row.GetValue('TITLE') 등 DataGridRow 접근",
+        "    };",
+        "};"
+    ]
+}

@@ -1,0 +1,262 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_MARKDOWN_VIEWER",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "MYDOCUMENT.yglee/EXT_MARKDOWN_VIEWER.mtsd",
+    "ReportName": "Markdown Viewer",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-16 17:02:28",
+    "Editor": "yglee",
+    "EditDate": "2026-03-16 17:02:28",
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "ScriptText": "./MarkdownViewer.script.ts",
+  "Forms": [
+    {
+      "Id": "FM_MARKDOWN_VIEWER_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_MARKDOWN_VIEWER_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1840,
+            "Height": 35,
+            "Docking": {
+              "Left": true,
+              "Right": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#455a64"
+            },
+            "Font": {
+              "Color": "#ffffff",
+              "Size": 13,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "Markdown Viewer - Light / Dark / GitHub Theme"
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_MARKDOWN_VIEWER_LBL_L1",
+          "Name": "lblLight",
+          "Position": {
+            "Left": 10,
+            "Top": 42,
+            "Width": 390,
+            "Height": 22
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": "#455a64",
+              "Thickness": "0,0,0,2"
+            },
+            "Font": {
+              "Color": "#455a64",
+              "Size": 10
+            }
+          },
+          "Text": "Light"
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_MARKDOWN_VIEWER_EC_L1",
+          "Name": "ecLight",
+          "Position": {
+            "Left": 10,
+            "Top": 64,
+            "Width": 390,
+            "Height": 853,
+            "Docking": {
+              "Bottom": true
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "markdownComponent",
+            "ClassName": "MarkdownComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "lib/marked.umd.js",
+                "order": 1
+              },
+              {
+                "type": "js",
+                "url": "markdownComponent.js",
+                "order": 2
+              },
+              {
+                "type": "css",
+                "url": "markdownComponent.css"
+              }
+            ],
+            "Options": {
+              "Theme": "light",
+              "Padding": 16,
+              "FontSize": 14,
+              "EnableGFM": true,
+              "EnableBreaks": false,
+              "SanitizeHTML": true
+            },
+            "ComponentData": {
+              "rawMarkdown": "# Markdown Viewer\n\n## Features\n\n- **GFM** (GitHub Flavored Markdown) 지원\n- 3가지 테마: Light, Dark, GitHub\n- XSS 방지 (HTML Sanitize)\n- `marked.js` 기반 렌더링\n\n## 코드 블록\n\n```javascript\nfunction greet(name) {\n    return \"Hello, \" + name + \"!\";\n}\nconsole.log(greet(\"World\"));\n```\n\n## 테이블\n\n| 기능 | 설명 | 상태 |\n|------|------|------|\n| Light Theme | 밝은 배경 기본 테마 | ✅ |\n| Dark Theme | 어두운 배경 테마 | ✅ |\n| GitHub Theme | GitHub 스타일 | ✅ |\n\n## 인용문\n\n> Markdown은 텍스트 기반의 마크업 언어로,\n> 쉽게 읽고 쓸 수 있으며 HTML로 변환이 가능합니다.\n\n## 체크리스트\n\n- [x] 마크다운 파싱\n- [x] 테마 지원\n- [x] 코드 하이라이팅\n- [ ] PDF 내보내기\n\n## 링크 & 이미지\n\n[i-AUD Platform](https://www.bimatrix.co.kr) 에서 제공하는 컴포넌트입니다.\n\n---\n\n*이 문서는 MarkdownComponent 샘플입니다.*"
+            }
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_MARKDOWN_VIEWER_LBL_D1",
+          "Name": "lblDark",
+          "Position": {
+            "Left": 410,
+            "Top": 42,
+            "Width": 390,
+            "Height": 22
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#263238"
+            },
+            "Border": {
+              "Color": "#b0bec5",
+              "Thickness": "0,0,0,2"
+            },
+            "Font": {
+              "Color": "#b0bec5",
+              "Size": 10
+            }
+          },
+          "Text": "Dark"
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_MARKDOWN_VIEWER_EC_D1",
+          "Name": "ecDark",
+          "Position": {
+            "Left": 410,
+            "Top": 64,
+            "Width": 390,
+            "Height": 853,
+            "Docking": {
+              "Bottom": true
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "markdownComponent",
+            "ClassName": "MarkdownComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "lib/marked.umd.js",
+                "order": 1
+              },
+              {
+                "type": "js",
+                "url": "markdownComponent.js",
+                "order": 2
+              },
+              {
+                "type": "css",
+                "url": "markdownComponent.css"
+              }
+            ],
+            "Options": {
+              "Theme": "dark",
+              "Padding": 16,
+              "FontSize": 14,
+              "EnableGFM": true,
+              "EnableBreaks": false,
+              "SanitizeHTML": true
+            },
+            "ComponentData": {
+              "rawMarkdown": "# Markdown Viewer\n\n## Features\n\n- **GFM** (GitHub Flavored Markdown) 지원\n- 3가지 테마: Light, Dark, GitHub\n- XSS 방지 (HTML Sanitize)\n- `marked.js` 기반 렌더링\n\n## 코드 블록\n\n```javascript\nfunction greet(name) {\n    return \"Hello, \" + name + \"!\";\n}\nconsole.log(greet(\"World\"));\n```\n\n## 테이블\n\n| 기능 | 설명 | 상태 |\n|------|------|------|\n| Light Theme | 밝은 배경 기본 테마 | ✅ |\n| Dark Theme | 어두운 배경 테마 | ✅ |\n| GitHub Theme | GitHub 스타일 | ✅ |\n\n## 인용문\n\n> Markdown은 텍스트 기반의 마크업 언어로,\n> 쉽게 읽고 쓸 수 있으며 HTML로 변환이 가능합니다.\n\n## 체크리스트\n\n- [x] 마크다운 파싱\n- [x] 테마 지원\n- [x] 코드 하이라이팅\n- [ ] PDF 내보내기\n\n## 링크 & 이미지\n\n[i-AUD Platform](https://www.bimatrix.co.kr) 에서 제공하는 컴포넌트입니다.\n\n---\n\n*이 문서는 MarkdownComponent 샘플입니다.*"
+            }
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_MARKDOWN_VIEWER_LBL_G1",
+          "Name": "lblGitHub",
+          "Position": {
+            "Left": 810,
+            "Top": 42,
+            "Width": 390,
+            "Height": 22
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Color": "#0366d6",
+              "Thickness": "0,0,0,2"
+            },
+            "Font": {
+              "Color": "#24292e",
+              "Size": 10
+            }
+          },
+          "Text": "GitHub"
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_MARKDOWN_VIEWER_EC_G1",
+          "Name": "ecGitHub",
+          "Position": {
+            "Left": 810,
+            "Top": 64,
+            "Width": 390,
+            "Height": 853,
+            "Docking": {
+              "Bottom": true
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "markdownComponent",
+            "ClassName": "MarkdownComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "lib/marked.umd.js",
+                "order": 1
+              },
+              {
+                "type": "js",
+                "url": "markdownComponent.js",
+                "order": 2
+              },
+              {
+                "type": "css",
+                "url": "markdownComponent.css"
+              }
+            ],
+            "Options": {
+              "Theme": "github",
+              "Padding": 16,
+              "FontSize": 14,
+              "EnableGFM": true,
+              "EnableBreaks": false,
+              "SanitizeHTML": true
+            },
+            "ComponentData": {
+              "rawMarkdown": "# Markdown Viewer\n\n## Features\n\n- **GFM** (GitHub Flavored Markdown) 지원\n- 3가지 테마: Light, Dark, GitHub\n- XSS 방지 (HTML Sanitize)\n- `marked.js` 기반 렌더링\n\n## 코드 블록\n\n```javascript\nfunction greet(name) {\n    return \"Hello, \" + name + \"!\";\n}\nconsole.log(greet(\"World\"));\n```\n\n## 테이블\n\n| 기능 | 설명 | 상태 |\n|------|------|------|\n| Light Theme | 밝은 배경 기본 테마 | ✅ |\n| Dark Theme | 어두운 배경 테마 | ✅ |\n| GitHub Theme | GitHub 스타일 | ✅ |\n\n## 인용문\n\n> Markdown은 텍스트 기반의 마크업 언어로,\n> 쉽게 읽고 쓸 수 있으며 HTML로 변환이 가능합니다.\n\n## 체크리스트\n\n- [x] 마크다운 파싱\n- [x] 테마 지원\n- [x] 코드 하이라이팅\n- [ ] PDF 내보내기\n\n## 링크 & 이미지\n\n[i-AUD Platform](https://www.bimatrix.co.kr) 에서 제공하는 컴포넌트입니다.\n\n---\n\n*이 문서는 MarkdownComponent 샘플입니다.*"
+            }
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false
+        }
+      ]
+    }
+  ]
+}

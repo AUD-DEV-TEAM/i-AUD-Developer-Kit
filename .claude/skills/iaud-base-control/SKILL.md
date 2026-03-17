@@ -110,7 +110,7 @@ function initUI(bc: BaseControl) {
 
 ### 3.3 핵심 메소드
 
-#### addCSS(css: string) — CSS 스타일 추가
+#### addCSS(css: string[]|string) — CSS 스타일 추가
 
 `<style>` 태그를 생성하여 `<head>`에 삽입합니다. 컴포넌트 Dispose 시 자동 제거됩니다.
 
@@ -124,7 +124,7 @@ baseCtrl.addCSS(`
 
 > **주의**: CSS는 Shadow DOM이 아닌 `<head>`에 삽입되므로 **전역 범위**입니다. 클래스명 충돌을 방지하기 위해 고유한 접두사를 사용하세요. (예: `myctrl-header`, `epa-tab` 등)
 
-#### addHTML(text: string, pNode?: HTMLElement) — HTML 추가
+#### addHTML(text: string[]|string, pNode?: HTMLElement) — HTML 추가
 
 HTML 문자열을 DOMParser로 파싱하여 DOM에 삽입합니다.
 
