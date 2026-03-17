@@ -1,0 +1,24 @@
+@@CSV
+WORD,COUNT
+JavaScript,100
+TypeScript,85
+React,72
+Vue,55
+Node.js,65
+Python,78
+Java,60
+Docker,45
+Kubernetes,38
+GraphQL,42
+REST API,50
+MongoDB,35
+PostgreSQL,40
+Redis,30
+Git,55
+CI/CD,28
+Agile,32
+Scrum,25
+DevOps,48
+AWS,52
+Azure,35
+GCP,30

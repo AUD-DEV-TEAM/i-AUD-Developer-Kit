@@ -1,0 +1,44 @@
+{
+    "name": "Markdown 뷰어",
+    "icon": [
+        "<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='#455a64' stroke-width='2'>",
+        "<rect x='2' y='3' width='20' height='18' rx='2'/>",
+        "<path d='M6 15V9l3 3 3-3v6'/>",
+        "<path d='M18 13l-2-2-2 2' stroke-linecap='round' stroke-linejoin='round'/>",
+        "<line x1='16' y1='11' x2='16' y2='15'/>",
+        "</svg>"
+    ],
+    "version": 1,
+    "category": "Viewer",
+    "description": "Markdown 텍스트를 HTML로 렌더링하는 뷰어 컴포넌트. marked.js 라이브러리 기반. SetData 또는 SetValue로 마크다운 텍스트를 전달합니다.",
+    "className": "MarkdownComponent",
+
+    "files": [
+        { "type": "js",  "url": "lib/marked.umd.js",       "order": 1 },
+        { "type": "js",  "url": "markdownComponent.js",    "order": 2 },
+        { "type": "css", "url": "markdownComponent.css" }
+    ],
+
+
+    "options": [
+        { "name": "Theme", "type": "ComboBox", "group": "Style", "default": "light", "items": ["light","dark","github"], "description": "렌더링 테마" },
+        { "name": "Padding", "type": "Number", "group": "Style", "default": 16, "description": "내부 여백(px)" },
+        { "name": "FontSize", "type": "Number", "group": "Style", "default": 14, "description": "기본 글꼴 크기(px)" },
+        { "name": "EnableGFM", "type": "Boolean", "group": "Parsing", "default": true, "description": "GitHub Flavored Markdown 활성화" },
+        { "name": "EnableBreaks", "type": "Boolean", "group": "Parsing", "default": false, "description": "줄바꿈을 <br>로 변환" },
+        { "name": "SanitizeHTML", "type": "Boolean", "group": "Security", "default": true, "description": "HTML 태그 삭제(XSS 방지)" }
+    ],
+
+    "sample": [
+        "// 마크다운 텍스트 설정",
+        "let ec = Matrix.getObject(\"ExternalComponent1\") as any;",
+        "let model = ec.getModel();",
+        "model.setMarkdown('# 제목\\n\\n- 항목 1\\n- 항목 2\\n\\n**굵은 텍스트**');",
+        "",
+        "// SetValue로도 설정 가능",
+        "ec.SetValue(['# Hello World']);",
+        "",
+        "// 현재 마크다운 가져오기",
+        "let md = model.getMarkdown();"
+    ]
+}

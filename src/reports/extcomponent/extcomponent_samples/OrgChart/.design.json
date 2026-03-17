@@ -1,0 +1,256 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_ORG_CHART",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "MYDOCUMENT.yglee/EXT_ORG_CHART.mtsd",
+    "ReportName": "Org Chart",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-16 17:45:09",
+    "Editor": "yglee",
+    "EditDate": "2026-03-16 17:45:09",
+    "UseLayout": false,
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_ORG_CHART_01",
+        "Name": "DS_ORG",
+        "ConnectionCode": "MATRIX_FILE_DB",
+        "SQL": "./DataSource/DS_ORG.sql"
+      }
+    ]
+  },
+  "ScriptText": "./OrgChart.script.ts",
+  "Forms": [
+    {
+      "Id": "FM_ORG_CHART_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_ORG_CHART_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1840,
+            "Height": 35,
+            "Docking": {
+              "Left": true,
+              "Right": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#6a1b9a"
+            },
+            "Font": {
+              "Color": "#ffffff",
+              "Size": 13,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "Organization Chart"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_ORG_CHART_BTN001",
+          "Name": "btnLoad",
+          "Position": {
+            "Left": 10,
+            "Top": 42,
+            "Width": 100,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#6a1b9a"
+            },
+            "Border": {
+              "Color": "#4a148c"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Load"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_ORG_CHART_BTN002",
+          "Name": "btnExpandAll",
+          "Position": {
+            "Left": 120,
+            "Top": 42,
+            "Width": 100,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#1976d2"
+            },
+            "Border": {
+              "Color": "#1565c0"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Expand All"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_ORG_CHART_BTN003",
+          "Name": "btnCollapseAll",
+          "Position": {
+            "Left": 230,
+            "Top": 42,
+            "Width": 100,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#757575"
+            },
+            "Border": {
+              "Color": "#616161"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Collapse All"
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_ORG_CHART_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 545,
+            "Top": 42,
+            "Width": 400,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": "#666666",
+              "Size": 11
+            }
+          },
+          "Text": "  All nodes expanded"
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "EL_ORG_CHART_GRD001",
+          "Name": "grdOrg",
+          "Position": {
+            "Left": 0,
+            "Top": 75,
+            "Width": 350,
+            "Height": 842,
+            "Docking": {
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2
+          },
+          "DataSource": "DS_ORG_CHART_01",
+          "Columns": [
+            {
+              "Name": "ID"
+            },
+            {
+              "Name": "PARENT_ID"
+            },
+            {
+              "Name": "NAME"
+            },
+            {
+              "Name": "TITLE"
+            }
+          ]
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_ORG_CHART_EC001",
+          "Name": "ecOrgChart",
+          "Position": {
+            "Left": 355,
+            "Top": 75,
+            "Width": 1485,
+            "Height": 842,
+            "Docking": {
+              "Right": true,
+              "Bottom": true
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "orgChartComponent",
+            "ClassName": "OrgChartComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "orgChartComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "orgChartComponent.css"
+              }
+            ],
+            "Options": {
+              "IdField": "ID",
+              "ParentIdField": "PARENT_ID",
+              "NameField": "NAME",
+              "TitleField": "TITLE",
+              "Direction": "left-to-right",
+              "NodeColor": "#6a1b9a",
+              "NodeWidth": 140,
+              "NodeHeight": 60,
+              "EnableCollapse": true
+            },
+            "ComponentData": {}
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false
+        },
+        {
+          "Type": "RadioButton",
+          "Id": "RadioButtonCDEC7EED1EDEB80EC2A6D38DB3D8EB2E",
+          "Name": "rdoVertical",
+          "Position": {
+            "Left": 341,
+            "Top": 40,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 9
+          },
+          "Text": "Vertical",
+          "GroupName": "ORIENTATION"
+        },
+        {
+          "Type": "RadioButton",
+          "Id": "RadioButton4B0CFE73B1A35B425212CF9A514760A2",
+          "Name": "rdoHorizontal",
+          "Position": {
+            "Left": 442,
+            "Top": 40,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 10
+          },
+          "Text": "Horizontal",
+          "GroupName": "ORIENTATION",
+          "Checked": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,562 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_WORDCLOUD_DEMO",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "FLD13F431FE9E574EC982EAAC28A0931164/EXT_WORDCLOUD_DEMO.mtsd",
+    "ReportName": "Word Cloud Demo",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-17 10:00:00",
+    "Editor": "yglee",
+    "EditDate": "2026-03-17 13:04:49",
+    "CreateBy": "i-AUD Developer Kit",
+    "TabPosition": 0,
+    "UsePersonalConditions": true,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "TabFocusMode": 1
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_WORDCLOUD_DEMO_01",
+        "Name": "DS_WORDCLOUD",
+        "ConnectionCode": "MATRIX_FILE_DB",
+        "SQL": "p31qDVx1fxTed7qyQPWI04jgnsvhMFnVdFWdAS6LynURBf2rKOKl+jhfDcpJYCvbxv+1/oetuqGRB1Ha7+TgjdbtLZfdqVefA58y4oKCUowRMLFw3fGIRLVl6Z5NcQuWWKMy6zr4ovNIG5uHDS40Us8zAlkNYheVlXHgZPBE128aeNr2PizsyfMPlJPyca13A5XyoyFDcN4RP+ae4YkcWxe2p7YpGeOywf5b6BQtq0gorWxGdoT2h5kJmhP2yoZ3Ve+l37xjzYNXFEWp1fUUMzfXh4AX8aShT+DfvkBLEsCClf2DdeNpz2SeRJ5rsTMuelWDdug+PwGf6XA6hEZ02yeF72vot7V81AOpm5OsRyk=",
+        "DSType": 0,
+        "UseMeta": false,
+        "UseCache": false,
+        "Encrypted": true,
+        "Params": [],
+        "Columns": []
+      }
+    ]
+  },
+  "ScriptText": "Matrix.OnDocumentLoadComplete = function (sender, args) {\r\n    var lblTitle = Matrix.getObject(\"lblTitle\");\r\n    var lblStatus = Matrix.getObject(\"lblStatus\");\r\n    var btnLoad = Matrix.getObject(\"btnLoad\");\r\n    var grdWordCloud = Matrix.getObject(\"grdWordCloud\");\r\n    var ecWordCloud = Matrix.getObject(\"ecWordCloud\");\r\n    lblTitle.Value = \"Word Cloud - Technology Keyword Trends\";\r\n    btnLoad.Text = \"Load Data\";\r\n    btnLoad.OnClick = function () {\r\n        Matrix.doRefresh(\"grdWordCloud\");\r\n    };\r\n    ecWordCloud.OnComponentReady = function () {\r\n        var model = ecWordCloud.getModel();\r\n        if (!model)\r\n            return;\r\n        model.setConfig({\r\n            WordField: 'WORD',\r\n            CountField: 'COUNT',\r\n            Shape: 'circle',\r\n            Title: 'Technology Keyword Trends'\r\n        });\r\n        model.setGrid(grdWordCloud);\r\n        model.OnWordClick = function (args) {\r\n            lblStatus.Value = \"  Clicked: \" + args.word + \" (\" + args.count + \")\";\r\n        };\r\n    };\r\n};\r\n",
+  "Forms": [
+    {
+      "Id": "FM_WORDCLOUD_DEMO_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_WORDCLOUD_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1551,
+            "Height": 35,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 230,
+                "G": 81,
+                "B": 0,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Size": 13,
+              "HorizontalAlignment": "center",
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "Word Cloud - Technology Keyword Trends",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_WORDCLOUD_BTN001",
+          "Name": "btnLoad",
+          "Position": {
+            "Left": 10,
+            "Top": 42,
+            "Width": 100,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 230,
+                "G": 81,
+                "B": 0,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 191,
+                "G": 54,
+                "B": 12,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "Load Data",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_WORDCLOUD_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 120,
+            "Top": 42,
+            "Width": 500,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": {
+                "R": 102,
+                "G": 102,
+                "B": 102,
+                "A": 1
+              },
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Text": "Label",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_WORDCLOUD_EC001",
+          "Name": "ecWordCloud",
+          "Position": {
+            "Left": 0,
+            "Top": 75,
+            "Width": 1200,
+            "Height": 812,
+            "Docking": {
+              "Bottom": true,
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "ComponentSetting": {
+            "ComponentId": "wordCloudComponent",
+            "ClassName": "WordCloudComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "lib/echarts.min.js",
+                "order": 1
+              },
+              {
+                "type": "js",
+                "url": "lib/echarts-wordcloud.min.js",
+                "order": 2
+              },
+              {
+                "type": "js",
+                "url": "wordCloudComponent.js",
+                "order": 3
+              },
+              {
+                "type": "css",
+                "url": "wordCloudComponent.css"
+              }
+            ],
+            "Options": {
+              "WordField": "WORD",
+              "CountField": "COUNT",
+              "Shape": "circle",
+              "GridSize": 8,
+              "MinFontSize": 14,
+              "MaxFontSize": 80,
+              "MinRotation": -45,
+              "MaxRotation": 45,
+              "FontFamily": "sans-serif",
+              "Title": "Technology Keyword Trends"
+            },
+            "ComponentData": {}
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false,
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "EL_WORDCLOUD_GRD001",
+          "Name": "grdWordCloud",
+          "Position": {
+            "Left": 1205,
+            "Top": 75,
+            "Width": 346,
+            "Height": 812,
+            "Docking": {
+              "Right": true,
+              "Bottom": true,
+              "Margin": "0,0,0,0",
+              "MinHeight": 0,
+              "MinWidth": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Thickness": "1,1,1,1"
+            },
+            "VerticalBorder": {
+              "Thickness": 1
+            },
+            "HorizontalBorder": {
+              "Thickness": 1
+            },
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "top"
+            }
+          },
+          "DataSource": "DS_WORDCLOUD_DEMO_01",
+          "AutoRefresh": true,
+          "Columns": [
+            {
+              "Name": "WORD",
+              "Caption": "WORD",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "COUNT",
+              "ColumnType": 3,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum",
+              "Caption": "COUNT",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            }
+          ],
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "CellMargin": "5,5,5,5",
+          "SelectRule": 2,
+          "NaNCellText": "-",
+          "ColumnHeaderHeight": 28,
+          "RowHeight": 24,
+          "ExportCount": 1000000,
+          "FontFamily": "inherit",
+          "FontSize": 12,
+          "UsePPTExport": false,
+          "UseDesign": false,
+          "UseFormatSetting": false,
+          "UseMultiHeader": false,
+          "UseMultiHeaderMenu": false,
+          "FrozenLineBrush": {
+            "Type": 0,
+            "Color": {
+              "R": 127,
+              "G": 127,
+              "B": 127,
+              "A": 1
+            }
+          },
+          "UsePaging": true
+        }
+      ],
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      }
+    }
+  ],
+  "ServerScriptText": [],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {},
+  "PersonalConditions": {
+    "list": [],
+    "useAll": true
+  }
+}

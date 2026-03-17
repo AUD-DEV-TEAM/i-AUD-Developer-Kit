@@ -150,7 +150,7 @@ export interface BaseControl {
    * ```
    * @param css CSS 문자열
    */
-  addCSS(css: string): void;
+  addCSS(css: string[]|string): void;
 
   /**
    * 컨트롤에 HTML을 추가합니다.
@@ -168,7 +168,7 @@ export interface BaseControl {
    * @param text HTML 문자열
    * @param pNode HTML을 삽입할 대상 노드. 생략 시 루트 Element에 삽입합니다.
    */
-  addHTML(text: string, pNode?: HTMLElement): void;
+  addHTML(text: string[]|string, pNode?: HTMLElement): void;
 
  
 }

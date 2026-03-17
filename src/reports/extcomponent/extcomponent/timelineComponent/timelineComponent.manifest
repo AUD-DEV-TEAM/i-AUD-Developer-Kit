@@ -1,0 +1,60 @@
+{
+    "name": "타임라인",
+    "icon": [
+        "<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='#1565c0' stroke-width='2'>",
+        "<line x1='6' y1='3' x2='6' y2='21'/>",
+        "<circle cx='6' cy='6' r='2' fill='#1565c0'/>",
+        "<circle cx='6' cy='14' r='2' fill='#1565c0'/>",
+        "<line x1='10' y1='5' x2='20' y2='5'/>",
+        "<line x1='10' y1='7' x2='17' y2='7'/>",
+        "<line x1='10' y1='13' x2='20' y2='13'/>",
+        "<line x1='10' y1='15' x2='17' y2='15'/>",
+        "</svg>"
+    ],
+    "version": 1,
+    "category": "Widget",
+    "description": "세로 타임라인 컴포넌트. 시간순 이벤트를 시각적으로 표시합니다. setGrid()로 DataGrid를 연결하면 OnDataChanged 이벤트를 통해 자동으로 데이터를 갱신합니다. SetData()로 직접 데이터를 전달할 수도 있습니다.",
+    "className": "TimelineComponent",
+
+    "files": [
+        { "type": "js",  "url": "timelineComponent.js",  "order": 1 },
+        { "type": "css", "url": "timelineComponent.css" }
+    ],
+
+    "options": [
+        { "name": "DateField", "type": "Text", "group": "Data", "default": "DATE", "description": "날짜 컬럼 필드명" },
+        { "name": "TitleField", "type": "Text", "group": "Data", "default": "TITLE", "description": "제목 컬럼 필드명" },
+        { "name": "DescriptionField", "type": "Text", "group": "Data", "default": "DESCRIPTION", "description": "설명 컬럼 필드명" },
+        { "name": "ColorField", "type": "Text", "group": "Data", "default": "COLOR", "description": "색상 컬럼 필드명" },
+        { "name": "IconField", "type": "Text", "group": "Data", "default": "ICON", "description": "아이콘 컬럼 필드명" },
+        { "name": "Layout", "type": "ComboBox", "group": "Layout", "default": "left", "items": ["left","alternate","right"], "description": "타임라인 레이아웃" },
+        { "name": "LineColor", "type": "Color", "group": "Style", "default": "#1565c0", "description": "타임라인 선 색상" },
+        { "name": "ShowDate", "type": "Boolean", "group": "Display", "default": true, "description": "날짜 표시 여부" }
+    ],
+
+    "sample": [
+        "// DataGrid 바인딩 (권장)",
+        "let grd = Matrix.getObject(\"DataGrid1\") as DataGrid;",
+        "let ec = Matrix.getObject(\"ExternalComponent1\") as any;",
+        "ec.OnComponentReady = function() {",
+        "    let model = ec.getModel();",
+        "    model.setConfig({",
+        "        DateField: 'DATE',",
+        "        TitleField: 'TITLE',",
+        "        DescriptionField: 'DESCRIPTION',",
+        "        ColorField: 'COLOR',",
+        "        IconField: 'ICON'",
+        "    });",
+        "    model.setGrid(grd);  // OnDataChanged 자동 연동",
+        "};",
+        "",
+        "// 직접 데이터 전달 방식",
+        "// model.SetData({",
+        "//     columns: [{Name:'DATE'},{Name:'TITLE'},{Name:'DESCRIPTION'}],",
+        "//     rows: [['2024-01-15','프로젝트 시작','킥오프 미팅']]",
+        "// });",
+        "",
+        "// 이벤트 개별 추가",
+        "// model.addEvent('2024-04-01','배포','운영 서버 배포 완료','#e91e63');"
+    ]
+}

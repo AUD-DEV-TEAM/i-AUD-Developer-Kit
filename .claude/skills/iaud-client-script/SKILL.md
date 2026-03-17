@@ -32,22 +32,17 @@ let btnSearch: Button;
 let grdData: DataGrid;
 let txtKeyword: TextBox;
 
-/**
- * 문서 로드 완료 시 초기화 (권장)
- * - 모든 컨트롤이 로드된 후 실행됨
- */
-Matrix.OnDocumentLoadComplete = function(sender, args){   
-    // 컨트롤 바인딩
-    btnSearch = Matrix.getObject("btnSearch") as Button;
-    grdData = Matrix.getObject("grdData") as DataGrid;
-    txtKeyword = Matrix.getObject("txtKeyword") as TextBox;
+// 컨트롤 바인딩
+btnSearch = Matrix.getObject("btnSearch") as Button;
+grdData = Matrix.getObject("grdData") as DataGrid;
+txtKeyword = Matrix.getObject("txtKeyword") as TextBox;
 
-    // 이벤트 등록
-    btnSearch.OnClick = btnSearchOnClick;
-}; 
+// 이벤트 등록
+btnSearch.OnClick = btnSearchOnClick;
+
 // 버튼 클릭 이벤트
 const btnSearchOnClick = function(sender, args){
-    
+
 };
 ```
 
@@ -57,7 +52,7 @@ const btnSearchOnClick = function(sender, args){
 
 | 이벤트 | 설명 | 용도 |
 |--------|------|------|
-| `OnDocumentLoadComplete` | 문서 로드 완료 후 발생 (권장) | 컨트롤 초기화, 이벤트 등록 |
+| `OnDocumentLoadComplete` | 문서 로드 완료 후 발생. 스크립트 최상위와 실행 시점 동일하므로 별도 사용 불필요 | - |
 | `OnLoadComplete` | 모든 데이터 실행 완료 후 발생 | 일반 초기화 |
 ---
 
@@ -541,7 +536,29 @@ lpad("AB", 5, '_');  // "___AB"
 
 ---
 
-## 11. enum 사용 시 주의사항
+## 11. 키보드 이벤트 주의사항 (input/textarea)
+
+i-AUD 프레임워크는 **keydown 이벤트를 전역으로 가로챕니다** (단축키 처리, 셀 이동 등). 이로 인해 HTML `<input>`, `<textarea>` 요소에서 **Backspace, Delete, 방향키** 등이 동작하지 않을 수 있습니다.
+
+**특히 영향받는 경우:**
+- AddIn 컴포넌트(GridHtmlView, BaseControl) 내부의 `<input>` / `<textarea>`
+- Shadow DOM 내부의 입력 요소
+- `addHTML()`로 동적 생성한 입력 요소
+
+**해결:** 입력 요소에 `keydown` 이벤트의 `stopPropagation()`을 등록하여 프레임워크로의 이벤트 전파를 차단합니다.
+
+```typescript
+let input = element.querySelector("input") as HTMLInputElement;
+input.addEventListener('keydown', function(e) {
+    e.stopPropagation();  // i-AUD 프레임워크의 키 가로채기 방지
+});
+```
+
+> **주의**: `preventDefault()`는 사용하지 마세요 — 입력 자체가 차단됩니다. `stopPropagation()`만 사용합니다.
+
+---
+
+## 12. enum 사용 시 주의사항
 
 클라이언트 스크립트에서 `types/aud/enums/` 의 enum을 **import하면 안 됩니다**.
 `import` 구문으로 타입 파일을 참조하면 런타임에 모듈을 찾을 수 없어 오류가 발생합니다.
@@ -560,7 +577,7 @@ enum enDataType { Numeric = 0, String = 1, DateTime8 = 2, DateTimeNow = 3, UserC
 
 ---
 
-## 12. API 인터페이스 위치
+## 13. API 인터페이스 위치
 
 상세 API 정의는 `types/aud/` 폴더를 참조하세요:
 

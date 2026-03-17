@@ -1,0 +1,954 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_ORG_CHART",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "MYDOCUMENT.yglee/EXT_ORG_CHART.mtsd",
+    "ReportName": "Org Chart",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-16 17:45:09",
+    "Editor": "yglee",
+    "EditDate": "2026-03-16 17:45:09",
+    "UseLayout": false,
+    "CreateBy": "i-AUD Developer Kit",
+    "TabPosition": 0,
+    "UsePersonalConditions": true,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "TabFocusMode": 1
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_ORG_CHART_01",
+        "Name": "DS_ORG",
+        "ConnectionCode": "MATRIX_FILE_DB",
+        "SQL": "1fyMmv82YH7YdLstnMP9ROTQGSOJitvXBgvYfCDHiaO9eZsVK+KmbMK0Okl7Hkmm/3uSWirlbjpvDyBYCFFC87eGzhFgbQWenvZV/IhF6I2cFHtn0B/37RvVd4+S48CzF/bmbCya1hOxTY2/QrAsn6SE+NE0IXn4UlPCD+cJDIce+b5OO2yg/6YkB+Wg2qHziPX4n8CdhpEn9rND6DXb36Tp9hbdFl2oti3h83SUq7qVLiDKxfBpUm19SoBmoa+AQUls9lQjSRB50NIwQUugdKvMIJYQw2q6kIWcJuAtaY47TgC8ml4HZ+cV1DWJF4/QR/NuKkN01fPMZsTTY8qUTa+cOvhhh84aH+b9AlD426pBfDv7TAltmqEJGr29adxLkDa0W5pZQmBCmOqAWeIzzVq6L0iSfuGkzaBXPkt7lnJ+bmUly9X2r9eWAfJY25LnDeLbRluflt0ZfW/3b1B1xLnhHqPoTo4Wf5WWrvRYze1yi5QqHJG+8e5G2A8xTquMiqx9gYNTFU2g0Ot35OYPzNcbfQPlZ8VawRCRqsMmjAK8ePgrCq1kMLbd4OBUun6R/U/pwJCBTduz5zTasC3I5EF5IgtrYZ0z8skb8PlUo3bCaWtr2+ofDAhSL8QdMAEKxk2MPGaANbhApTGislHou7+iu8z5oxvls9N+M+0gY1Hm4gGhTQhN63BfrvQAoixi1hcDAK3vGGfZqLZzgSyu/mooeDXLO/hdpvFffXjAeRbq9Hij9olMa+xecE4rFeqzJps5wIGO2bGncHZYnEXQHPCEb3rLHOGNPhrx1tPf13mqzvItkn8PeEmuVyBFaSByULiCN1mrYDW24OTv3DT48vpj4e26DK09bKtY6yQP7v/N5NgaluGdikNvip6Mn7AVjc3MHgZ82Uxf63RUnqj3JKZ/6OCcyBkj4PjJ00jOGcA=",
+        "DSType": 0,
+        "UseMeta": false,
+        "UseCache": false,
+        "Encrypted": true,
+        "Params": [],
+        "Columns": []
+      }
+    ]
+  },
+  "ScriptText": "Matrix.OnDocumentLoadComplete = function (sender, args) {\r\n    var lblTitle = Matrix.getObject(\"lblTitle\");\r\n    var lblStatus = Matrix.getObject(\"lblStatus\");\r\n    var btnLoad = Matrix.getObject(\"btnLoad\");\r\n    var btnExpandAll = Matrix.getObject(\"btnExpandAll\");\r\n    var btnCollapseAll = Matrix.getObject(\"btnCollapseAll\");\r\n    var rdoVertical = Matrix.getObject(\"rdoVertical\");\r\n    var rdoHorizontal = Matrix.getObject(\"rdoHorizontal\");\r\n    var grdOrg = Matrix.getObject(\"grdOrg\");\r\n    var ecOrgChart = Matrix.getObject(\"ecOrgChart\");\r\n    lblTitle.Value = \"Organization Chart\";\r\n    btnLoad.Text = \"Load\";\r\n    btnExpandAll.Text = \"Expand All\";\r\n    btnCollapseAll.Text = \"Collapse All\";\r\n    btnLoad.OnClick = function () {\r\n        Matrix.doRefresh(\"grdOrg\");\r\n    };\r\n    btnExpandAll.OnClick = function () {\r\n        var model = ecOrgChart.getModel();\r\n        if (model) {\r\n            model.expandAll();\r\n            lblStatus.Value = \"  All nodes expanded\";\r\n        }\r\n    };\r\n    btnCollapseAll.OnClick = function () {\r\n        var model = ecOrgChart.getModel();\r\n        if (model) {\r\n            model.collapseAll();\r\n            lblStatus.Value = \"  All nodes collapsed\";\r\n        }\r\n    };\r\n    rdoVertical.OnValueChange = function (sender, args) {\r\n        if (args.IsChecked) {\r\n            var model = ecOrgChart.getModel();\r\n            if (model) {\r\n                model.setConfig({ Direction: 'top-to-bottom' });\r\n                model.Update();\r\n            }\r\n        }\r\n    };\r\n    rdoHorizontal.OnValueChange = function (sender, args) {\r\n        if (args.IsChecked) {\r\n            var model = ecOrgChart.getModel();\r\n            if (model) {\r\n                model.setConfig({ Direction: 'left-to-right' });\r\n                model.Update();\r\n            }\r\n        }\r\n    };\r\n    ecOrgChart.OnComponentReady = function () {\r\n        var model = ecOrgChart.getModel();\r\n        if (!model)\r\n            return;\r\n        model.setGrid(grdOrg);\r\n        model.OnNodeClick = function (args) {\r\n            lblStatus.Value = \"  \" + args.name + \" (\" + args.title + \")\";\r\n        };\r\n    };\r\n};\r\n",
+  "Forms": [
+    {
+      "Id": "FM_ORG_CHART_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_ORG_CHART_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1840,
+            "Height": 35,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 106,
+                "G": 27,
+                "B": 154,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Size": 13,
+              "HorizontalAlignment": "center",
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "Organization Chart",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_ORG_CHART_BTN001",
+          "Name": "btnLoad",
+          "Position": {
+            "Left": 10,
+            "Top": 42,
+            "Width": 100,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 106,
+                "G": 27,
+                "B": 154,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 74,
+                "G": 20,
+                "B": 140,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "Load",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_ORG_CHART_BTN002",
+          "Name": "btnExpandAll",
+          "Position": {
+            "Left": 120,
+            "Top": 42,
+            "Width": 100,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 25,
+                "G": 118,
+                "B": 210,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 21,
+                "G": 101,
+                "B": 192,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "Expand All",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_ORG_CHART_BTN003",
+          "Name": "btnCollapseAll",
+          "Position": {
+            "Left": 230,
+            "Top": 42,
+            "Width": 100,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 117,
+                "G": 117,
+                "B": 117,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 97,
+                "G": 97,
+                "B": 97,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "Collapse All",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_ORG_CHART_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 545,
+            "Top": 42,
+            "Width": 400,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": {
+                "R": 102,
+                "G": 102,
+                "B": 102,
+                "A": 1
+              },
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "  All nodes expanded",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "EL_ORG_CHART_GRD001",
+          "Name": "grdOrg",
+          "Position": {
+            "Left": 0,
+            "Top": 75,
+            "Width": 350,
+            "Height": 842,
+            "Docking": {
+              "Bottom": true,
+              "Margin": "0,0,0,0",
+              "MinHeight": 0,
+              "MinWidth": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Thickness": "1,1,1,1"
+            },
+            "VerticalBorder": {
+              "Thickness": 1
+            },
+            "HorizontalBorder": {
+              "Thickness": 1
+            },
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "top"
+            }
+          },
+          "DataSource": "DS_ORG_CHART_01",
+          "Columns": [
+            {
+              "Name": "ID",
+              "Caption": "ID",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "PARENT_ID",
+              "Caption": "PARENT_ID",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "NAME",
+              "Caption": "NAME",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "TITLE",
+              "Caption": "TITLE",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            }
+          ],
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "CellMargin": "5,5,5,5",
+          "SelectRule": 2,
+          "NaNCellText": "-",
+          "ColumnHeaderHeight": 28,
+          "RowHeight": 24,
+          "ExportCount": 1000000,
+          "FontFamily": "inherit",
+          "FontSize": 12,
+          "UsePPTExport": false,
+          "UseDesign": false,
+          "UseFormatSetting": false,
+          "UseMultiHeader": false,
+          "UseMultiHeaderMenu": false,
+          "FrozenLineBrush": {
+            "Type": 0,
+            "Color": {
+              "R": 127,
+              "G": 127,
+              "B": 127,
+              "A": 1
+            }
+          },
+          "UsePaging": true
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_ORG_CHART_EC001",
+          "Name": "ecOrgChart",
+          "Position": {
+            "Left": 355,
+            "Top": 75,
+            "Width": 1485,
+            "Height": 842,
+            "Docking": {
+              "Right": true,
+              "Bottom": true,
+              "Left": false,
+              "Top": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "ComponentSetting": {
+            "ComponentId": "orgChartComponent",
+            "ClassName": "OrgChartComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "orgChartComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "orgChartComponent.css"
+              }
+            ],
+            "Options": {
+              "IdField": "ID",
+              "ParentIdField": "PARENT_ID",
+              "NameField": "NAME",
+              "TitleField": "TITLE",
+              "Direction": "left-to-right",
+              "NodeColor": "#6a1b9a",
+              "NodeWidth": 140,
+              "NodeHeight": 60,
+              "EnableCollapse": true
+            },
+            "ComponentData": {}
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false,
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        },
+        {
+          "Type": "RadioButton",
+          "Id": "RadioButtonCDEC7EED1EDEB80EC2A6D38DB3D8EB2E",
+          "Name": "rdoVertical",
+          "Position": {
+            "Left": 341,
+            "Top": 40,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 9,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Text": "Vertical",
+          "GroupName": "ORIENTATION",
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Position": 1,
+                "Margin": "0,0",
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "TextPosition": "back",
+          "CheckedValue": "",
+          "Checked": false
+        },
+        {
+          "Type": "RadioButton",
+          "Id": "RadioButton4B0CFE73B1A35B425212CF9A514760A2",
+          "Name": "rdoHorizontal",
+          "Position": {
+            "Left": 442,
+            "Top": 40,
+            "Width": 100,
+            "Height": 23,
+            "ZIndex": 10,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Text": "Horizontal",
+          "GroupName": "ORIENTATION",
+          "Checked": true,
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Position": 1,
+                "Margin": "0,0",
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "TextPosition": "back",
+          "CheckedValue": ""
+        }
+      ],
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      }
+    }
+  ],
+  "ServerScriptText": [],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {},
+  "PersonalConditions": {
+    "list": [],
+    "useAll": true
+  }
+}

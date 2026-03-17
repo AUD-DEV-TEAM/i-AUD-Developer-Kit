@@ -1,0 +1,582 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_SUNBURST_DEMO",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "FLD13F431FE9E574EC982EAAC28A0931164/EXT_SUNBURST_DEMO.mtsd",
+    "ReportName": "Sunburst Demo",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-17 10:00:00",
+    "Editor": "yglee",
+    "EditDate": "2026-03-17 12:59:57",
+    "CreateBy": "i-AUD Developer Kit",
+    "TabPosition": 0,
+    "UsePersonalConditions": true,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "TabFocusMode": 1
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_SUNBURST_DEMO_01",
+        "Name": "DS_SUNBURST",
+        "ConnectionCode": "MATRIX_FILE_DB",
+        "SQL": "1fyMmv82YH7YdLstnMP9RBdXa+WG10MkQj7oEJ6s/lhXwOjBbQNlmMgDye64buP37UOxvOhvAf95WEs5vOtR5enFzZSkzlnS5k4TQq20Qp/pCyVbUWIc04C+NyvQEF/cqBf6RPccSBSjy2SjXNgAswIuFXIiGx99JV7DXYcUBlAu2Csu27XkNqNmVKuVmI1ehrMtf5I+Yk9GmvmyWsQ5IoGO4SM+ykCqpNAONWv3Rw8f8gCtk3N/ibfaD3Bd7OnH26ThuA6HdVecpzr4PF1WnK8wtLGXJ0WqhlT1qTAQulzSF+DZpAnCiPCzsG0KoQrQl12940LPSTRuIa/5i49rVpKq63d7v+EbqGW4pLxpGRAaAsDoe5bXgjshRiAlBiqN",
+        "DSType": 0,
+        "UseMeta": false,
+        "UseCache": false,
+        "Encrypted": true,
+        "Params": [],
+        "Columns": []
+      }
+    ]
+  },
+  "ScriptText": "Matrix.OnDocumentLoadComplete = function (sender, args) {\r\n    var lblTitle = Matrix.getObject(\"lblTitle\");\r\n    var lblStatus = Matrix.getObject(\"lblStatus\");\r\n    var btnLoad = Matrix.getObject(\"btnLoad\");\r\n    var grdSunburst = Matrix.getObject(\"grdSunburst\");\r\n    var ecSunburst = Matrix.getObject(\"ecSunburst\");\r\n    lblTitle.Value = \"Sunburst Chart - 조직별 예산\";\r\n    btnLoad.Text = \"Load\";\r\n    btnLoad.OnClick = function () {\r\n        Matrix.doRefresh(\"grdSunburst\");\r\n    };\r\n    ecSunburst.OnComponentReady = function () {\r\n        var model = ecSunburst.getModel();\r\n        if (!model)\r\n            return;\r\n        model.setConfig({\r\n            IdField: 'ID',\r\n            ParentIdField: 'PARENT_ID',\r\n            NameField: 'NAME',\r\n            ValueField: 'VALUE',\r\n            Title: '조직별 예산 현황'\r\n        });\r\n        model.setGrid(grdSunburst);\r\n        model.OnNodeClick = function (args) {\r\n            lblStatus.Value = \"  \" + args.name + \" (value: \" + args.value + \")\" + (args.parentId ? \" parent: \" + args.parentId : \" (root)\");\r\n        };\r\n    };\r\n};\r\n",
+  "Forms": [
+    {
+      "Id": "FM_SUNBURST_DEMO_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_SUNBURST_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1551,
+            "Height": 35,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 0,
+                "G": 131,
+                "B": 143,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Size": 13,
+              "HorizontalAlignment": "center",
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "Sunburst Chart - 조직별 예산",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_SUNBURST_BTN001",
+          "Name": "btnLoad",
+          "Position": {
+            "Left": 10,
+            "Top": 42,
+            "Width": 100,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 0,
+                "G": 131,
+                "B": 143,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 0,
+                "G": 96,
+                "B": 100,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "Load",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_SUNBURST_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 125,
+            "Top": 42,
+            "Width": 500,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": {
+                "R": 102,
+                "G": 102,
+                "B": 102,
+                "A": 1
+              },
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "  Load 버튼을 클릭하세요",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_SUNBURST_EC001",
+          "Name": "ecSunburst",
+          "Position": {
+            "Left": 0,
+            "Top": 75,
+            "Width": 1100,
+            "Height": 812,
+            "Docking": {
+              "Bottom": true,
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "ComponentSetting": {
+            "ComponentId": "sunburstComponent",
+            "ClassName": "SunburstComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "lib/echarts.min.js",
+                "order": 1
+              },
+              {
+                "type": "js",
+                "url": "sunburstComponent.js",
+                "order": 2
+              },
+              {
+                "type": "css",
+                "url": "sunburstComponent.css"
+              }
+            ],
+            "Options": {
+              "IdField": "ID",
+              "ParentIdField": "PARENT_ID",
+              "NameField": "NAME",
+              "ValueField": "VALUE",
+              "Sort": "desc",
+              "ShowLabel": true,
+              "FontSize": 11,
+              "AnimationDuration": 800,
+              "Title": "조직별 예산 현황"
+            },
+            "ComponentData": {}
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false,
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "EL_SUNBURST_GRD001",
+          "Name": "grdSunburst",
+          "Position": {
+            "Left": 1105,
+            "Top": 75,
+            "Width": 446,
+            "Height": 812,
+            "Docking": {
+              "Right": true,
+              "Bottom": true,
+              "Margin": "0,0,0,0",
+              "MinHeight": 0,
+              "MinWidth": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Thickness": "1,1,1,1"
+            },
+            "VerticalBorder": {
+              "Thickness": 1
+            },
+            "HorizontalBorder": {
+              "Thickness": 1
+            },
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "top"
+            }
+          },
+          "DataSource": "DS_SUNBURST_DEMO_01",
+          "AutoRefresh": true,
+          "Columns": [
+            {
+              "Name": "ID",
+              "Caption": "ID",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "PARENT_ID",
+              "Caption": "PARENT_ID",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "NAME",
+              "Caption": "NAME",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "VALUE",
+              "Caption": "VALUE",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            }
+          ],
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "CellMargin": "5,5,5,5",
+          "SelectRule": 2,
+          "NaNCellText": "-",
+          "ColumnHeaderHeight": 28,
+          "RowHeight": 24,
+          "ExportCount": 1000000,
+          "FontFamily": "inherit",
+          "FontSize": 12,
+          "UsePPTExport": false,
+          "UseDesign": false,
+          "UseFormatSetting": false,
+          "UseMultiHeader": false,
+          "UseMultiHeaderMenu": false,
+          "FrozenLineBrush": {
+            "Type": 0,
+            "Color": {
+              "R": 127,
+              "G": 127,
+              "B": 127,
+              "A": 1
+            }
+          },
+          "UsePaging": true
+        }
+      ],
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      }
+    }
+  ],
+  "ServerScriptText": [],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {},
+  "PersonalConditions": {
+    "list": [],
+    "useAll": true
+  }
+}

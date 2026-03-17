@@ -1,0 +1,53 @@
+{
+    "name": "선버스트 차트",
+    "icon": [
+        "<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='#e65100' stroke-width='2'>",
+        "<circle cx='12' cy='12' r='3'/>",
+        "<path d='M12 2a10 10 0 0 1 0 20'/>",
+        "<path d='M12 5a7 7 0 0 1 0 14'/>",
+        "<path d='M12 8a4 4 0 0 1 0 8'/>",
+        "</svg>"
+    ],
+    "version": 1,
+    "category": "Chart",
+    "description": "선버스트(Sunburst) 차트 컴포넌트. ECharts 기반. setGrid()로 DataGrid를 연결하면 ID/PARENT_ID/NAME/VALUE 계층 구조를 선버스트 차트로 자동 렌더링합니다.",
+    "className": "SunburstComponent",
+
+    "files": [
+        { "type": "js",  "url": "lib/echarts.min.js",         "order": 1 },
+        { "type": "js",  "url": "sunburstComponent.js",       "order": 2 },
+        { "type": "css", "url": "sunburstComponent.css" }
+    ],
+
+    "options": [
+        { "name": "IdField", "type": "Text", "group": "Data", "default": "ID", "description": "노드 ID 필드명" },
+        { "name": "ParentIdField", "type": "Text", "group": "Data", "default": "PARENT_ID", "description": "부모 노드 ID 필드명" },
+        { "name": "NameField", "type": "Text", "group": "Data", "default": "NAME", "description": "노드 이름 필드명" },
+        { "name": "ValueField", "type": "Text", "group": "Data", "default": "VALUE", "description": "값 필드명" },
+        { "name": "Sort", "type": "ComboBox", "group": "Display", "default": "desc", "items": ["desc","asc","null"], "description": "정렬 (desc: 내림차순, asc: 오름차순, null: 정렬 없음)" },
+        { "name": "ShowLabel", "type": "Boolean", "group": "Display", "default": true, "description": "라벨 표시 여부" },
+        { "name": "FontSize", "type": "Number", "group": "Style", "default": 11, "description": "라벨 글꼴 크기(px)" },
+        { "name": "AnimationDuration", "type": "Number", "group": "Style", "default": 800, "description": "애니메이션 시간(ms)" },
+        { "name": "Title", "type": "Text", "group": "Display", "default": "", "description": "차트 제목" }
+    ],
+
+    "sample": [
+        "// DataGrid 바인딩 (권장)",
+        "let grd = Matrix.getObject(\"DataGrid1\") as DataGrid;",
+        "let ec = Matrix.getObject(\"ExternalComponent1\") as ExternalComponent;",
+        "ec.OnComponentReady = function() {",
+        "    let model = ec.getModel();",
+        "    model.setConfig({",
+        "        IdField: 'ID',",
+        "        ParentIdField: 'PARENT_ID',",
+        "        NameField: 'NAME',",
+        "        ValueField: 'VALUE'",
+        "    });",
+        "    model.setGrid(grd);  // OnDataChanged 자동 연동",
+        "",
+        "    model.OnNodeClick = function(args) {",
+        "        // args.name, args.id, args.parentId, args.value, args.row",
+        "    };",
+        "};"
+    ]
+}

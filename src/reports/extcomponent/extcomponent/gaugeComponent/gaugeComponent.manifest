@@ -1,0 +1,41 @@
+{
+    "name": "Gauge 미터",
+    "icon": [
+        "<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='#f57c00' stroke-width='2'>",
+        "<path d='M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z'/>",
+        "<path d='M12 12l-3-5' stroke-linecap='round'/>",
+        "<circle cx='12' cy='12' r='1.5' fill='#f57c00'/>",
+        "</svg>"
+    ],
+    "version": 1,
+    "category": "Widget",
+    "description": "SVG 기반 Gauge 미터 컴포넌트. 백분율 또는 수치를 시각적으로 표시합니다. SetData로 값을 전달하면 게이지가 애니메이션과 함께 갱신됩니다.",
+    "className": "GaugeComponent",
+
+    "files": [
+        { "type": "js",  "url": "gaugeComponent.js",  "order": 1 },
+        { "type": "css", "url": "gaugeComponent.css" }
+    ],
+
+    "options": [
+        { "name": "MinValue", "type": "Number", "group": "Range", "default": 0, "description": "최소값" },
+        { "name": "MaxValue", "type": "Number", "group": "Range", "default": 100, "description": "최대값" },
+        { "name": "Title", "type": "Text", "group": "Display", "default": "", "description": "게이지 제목" },
+        { "name": "Unit", "type": "Text", "group": "Display", "default": "%", "description": "단위 텍스트" },
+        { "name": "ShowValue", "type": "Boolean", "group": "Display", "default": true, "description": "현재 값 표시" },
+        { "name": "ColorScheme", "type": "ComboBox", "group": "Style", "default": "default", "items": ["default","blue","green","red","orange","gradient"], "description": "색상 테마" },
+        { "name": "StartAngle", "type": "Number", "group": "Angle", "default": 220, "description": "시작 각도" },
+        { "name": "EndAngle", "type": "Number", "group": "Angle", "default": -40, "description": "끝 각도" },
+        { "name": "AnimationDuration", "type": "Number", "group": "Animation", "default": 600, "description": "애니메이션 시간(ms)" }
+    ],
+
+    "sample": [
+        "// 데이터 설정",
+        "let ec = Matrix.getObject(\"ExternalComponent1\") as any;",
+        "let model = ec.getModel();",
+        "// 동적 변경",
+        "model.setValue(85);",
+        "model.setTitle('CPU 사용률');",
+        "model.setColorScheme('blue');"
+    ]
+}

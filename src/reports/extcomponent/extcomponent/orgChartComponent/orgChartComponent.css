@@ -1,0 +1,231 @@
+/* ═══════════════════════════════════════════════════
+   OrgChartComponent Styles
+   Shadow DOM 내부에 주입되므로 전역 CSS와 격리됩니다.
+   ═══════════════════════════════════════════════════ */
+
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Malgun Gothic", sans-serif;
+    font-size: 13px;
+    color: #333;
+}
+
+.orgchart-scroll {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.orgchart-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    min-width: 100%;
+}
+
+/* ── 그룹 (노드 + 자식) ── */
+.orgchart-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ── 자식 컨테이너 ── */
+.orgchart-children {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 20px;
+    position: relative;
+}
+
+/* 부모에서 수평바까지 내려오는 세로선 */
+.orgchart-children::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 20px;
+    border-left: 2px solid #bbb;
+}
+
+/* 각 자식 그룹: 수평선 세그먼트(::before) + 자식으로 내려가는 세로선(::after) */
+.orgchart-children > .orgchart-group {
+    position: relative;
+    padding: 20px 12px 0 12px;
+}
+
+/* 수평선 세그먼트 — 각 자식의 전체 너비를 커버 */
+.orgchart-children > .orgchart-group::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-top: 2px solid #bbb;
+}
+
+/* 수평바에서 자식 노드로 내려가는 세로선 */
+.orgchart-children > .orgchart-group::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 20px;
+    border-left: 2px solid #bbb;
+}
+
+/* 첫 번째 자식: 왼쪽 수평선 제거 */
+.orgchart-children > .orgchart-group:first-child::before {
+    left: 50%;
+}
+
+/* 마지막 자식: 오른쪽 수평선 제거 */
+.orgchart-children > .orgchart-group:last-child::before {
+    right: 50%;
+}
+
+/* 자식이 1개뿐이면 수평선 불필요 */
+.orgchart-children > .orgchart-group:only-child::before {
+    display: none;
+}
+
+/* ── 노드 카드 ── */
+.orgchart-node {
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: visible;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+    background: #fff;
+}
+
+.orgchart-node:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.orgchart-node-header {
+    padding: 8px 12px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 6px 6px 0 0;
+}
+
+.orgchart-node-body {
+    padding: 6px 12px;
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+    border-top: 1px solid #f0f0f0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ── 접기/펼치기 버튼 ── */
+.orgchart-toggle {
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #bbb;
+    background: #fff;
+    color: #666;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    padding: 0;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.orgchart-toggle:hover {
+    background: #f5f5f5;
+    border-color: #999;
+}
+
+/* ── 수평 방향 (left-to-right) ── */
+.orgchart-dir-left-to-right {
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.orgchart-dir-left-to-right .orgchart-group {
+    flex-direction: row;
+    align-items: center;
+}
+
+.orgchart-dir-left-to-right .orgchart-children {
+    flex-direction: column;
+    padding-top: 0;
+    padding-left: 20px;
+}
+
+.orgchart-dir-left-to-right .orgchart-children::before {
+    top: 50%;
+    left: 0;
+    width: 20px;
+    height: 0;
+    border-left: none;
+    border-top: 2px solid #bbb;
+}
+
+.orgchart-dir-left-to-right .orgchart-children > .orgchart-group {
+    padding-top: 0;
+    padding-left: 20px;
+}
+
+.orgchart-dir-left-to-right .orgchart-children > .orgchart-group::before {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    border-top: none;
+    border-left: 2px solid #bbb;
+}
+
+.orgchart-dir-left-to-right .orgchart-children > .orgchart-group::after {
+    top: 50%;
+    left: 0;
+    width: 20px;
+    height: 0;
+    border-left: none;
+    border-top: 2px solid #bbb;
+}
+
+.orgchart-dir-left-to-right .orgchart-children > .orgchart-group:first-child::before {
+    left: 0;
+    top: 50%;
+}
+
+.orgchart-dir-left-to-right .orgchart-children > .orgchart-group:last-child::before {
+    bottom: 50%;
+}
+
+.orgchart-dir-left-to-right .orgchart-children > .orgchart-group:only-child::before {
+    display: none;
+}
+
+.orgchart-dir-left-to-right .orgchart-toggle {
+    bottom: auto;
+    left: auto;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+}

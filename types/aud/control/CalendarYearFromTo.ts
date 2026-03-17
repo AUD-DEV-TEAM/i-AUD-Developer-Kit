@@ -30,23 +30,21 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴2: 최근 3개월 기간으로 초기화
  * //----------------------------------------------
- * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     var calThreeMonths = Matrix.getObject("calThreeMonths");
+ * var calThreeMonths = Matrix.getObject("calThreeMonths");
  *
- *     // 포맷 설정
- *     calThreeMonths.DataFormat = "yyyyMM";
- *     calThreeMonths.ViewFormat = "yyyy-MM";
+ * // 포맷 설정
+ * calThreeMonths.DataFormat = "yyyyMM";
+ * calThreeMonths.ViewFormat = "yyyy-MM";
  *
- *     // 이번 달
- *     var today = new Date();
- *     var thisMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+ * // 이번 달
+ * var today = new Date();
+ * var thisMonth = new Date(today.getFullYear(), today.getMonth(), 1);
  *
- *     // 2개월 전
- *     var twoMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 2, 1);
+ * // 2개월 전
+ * var twoMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 2, 1);
  *
- *     calThreeMonths.FromDate = twoMonthsAgo;  // 시작 월
- *     calThreeMonths.ToDate = thisMonth;       // 종료 월 (이번 달)
- * };
+ * calThreeMonths.FromDate = twoMonthsAgo;  // 시작 월
+ * calThreeMonths.ToDate = thisMonth;       // 종료 월 (이번 달)
  *
  * //----------------------------------------------
  * // 패턴3: 월별 기간 조회

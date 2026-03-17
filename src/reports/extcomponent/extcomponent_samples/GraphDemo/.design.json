@@ -1,0 +1,214 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_GRAPH_DEMO",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "MYDOCUMENT.yglee/EXT_GRAPH_DEMO.mtsd",
+    "ReportName": "Graph Demo",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-17 10:00:00",
+    "Editor": "yglee",
+    "EditDate": "2026-03-17 12:33:57",
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_GRAPH_DEMO_01",
+        "Name": "DS_GRAPH",
+        "ConnectionCode": "MATRIX_FILE_DB",
+        "SQL": "./DataSource/DS_GRAPH.sql"
+      }
+    ]
+  },
+  "ScriptText": "./GraphDemo.script.ts",
+  "Forms": [
+    {
+      "Id": "FM_GRAPH_DEMO_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_GRAPH_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1551,
+            "Height": 35,
+            "Docking": {
+              "Left": true,
+              "Right": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#6a1b9a"
+            },
+            "Font": {
+              "Color": "#ffffff",
+              "Size": 13,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "Network Graph - Tech Organization"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_GRAPH_BTN001",
+          "Name": "btnLoad",
+          "Position": {
+            "Left": 10,
+            "Top": 42,
+            "Width": 100,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#6a1b9a"
+            },
+            "Border": {
+              "Color": "#4a148c"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Load Data"
+        },
+        {
+          "Type": "RadioButton",
+          "Id": "RadioButton_GRAPH_RDO001",
+          "Name": "rdoForce",
+          "Position": {
+            "Left": 125,
+            "Top": 44,
+            "Width": 70,
+            "Height": 22
+          },
+          "Text": "Force",
+          "GroupName": "LAYOUT",
+          "Checked": true
+        },
+        {
+          "Type": "RadioButton",
+          "Id": "RadioButton_GRAPH_RDO002",
+          "Name": "rdoCircular",
+          "Position": {
+            "Left": 200,
+            "Top": 44,
+            "Width": 80,
+            "Height": 22
+          },
+          "Text": "Circular",
+          "GroupName": "LAYOUT"
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_GRAPH_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 295,
+            "Top": 42,
+            "Width": 500,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": "#666666",
+              "Size": 11
+            }
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_GRAPH_EC001",
+          "Name": "ecGraph",
+          "Position": {
+            "Left": 0,
+            "Top": 75,
+            "Width": 1100,
+            "Height": 812,
+            "Docking": {
+              "Left": true,
+              "Bottom": true
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "graphComponent",
+            "ClassName": "GraphComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "lib/echarts.min.js",
+                "order": 1
+              },
+              {
+                "type": "js",
+                "url": "graphComponent.js",
+                "order": 2
+              },
+              {
+                "type": "css",
+                "url": "graphComponent.css"
+              }
+            ],
+            "Options": {
+              "SourceField": "SOURCE",
+              "TargetField": "TARGET",
+              "ValueField": "VALUE",
+              "Layout": "force",
+              "SymbolSize": 30,
+              "LineWidth": 2,
+              "ShowLabel": true,
+              "FontSize": 12,
+              "Repulsion": 200,
+              "Title": "Tech Organization Network"
+            },
+            "ComponentData": {}
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "EL_GRAPH_GRD001",
+          "Name": "grdGraph",
+          "Position": {
+            "Left": 1105,
+            "Top": 75,
+            "Width": 446,
+            "Height": 812,
+            "Docking": {
+              "Right": true,
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2
+          },
+          "DataSource": "DS_GRAPH_DEMO_01",
+          "AutoRefresh": true,
+          "Columns": [
+            {
+              "Name": "SOURCE"
+            },
+            {
+              "Name": "TARGET"
+            },
+            {
+              "Name": "VALUE",
+              "ColumnType": 3,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

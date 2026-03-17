@@ -1852,7 +1852,7 @@ export interface Matrix{
    * });
    * ```
    */
-  RunScript(gridNames: string|string[], scriptName: string, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
+  RunScript(gridNames: string|string[], scriptName: string, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet|any}) => void): void;
 
   /** 
    * 서버 측 js Business 서비스를 호출합니다.
@@ -1883,7 +1883,7 @@ export interface Matrix{
   * @param params 서버로 전달할 파라미터 객체 (예: `{VS_CODE:'100', VS_NAME:'PC'}`)
   * @param callBack 실행 완료 후 호출되는 콜백 함수 (인자: `{Success, Message, DataSet}`)
   */
-  RunScriptEx(gridNames: string|string[], scriptName: string, params: {[key:string]:any}, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet}) => void): void;
+  RunScriptEx(gridNames: string|string[], scriptName: string, params: {[key:string]:any}, callBack: (p: {"Success":boolean, "Message":string, "DataSet":DataSet|any}) => void): void;
 
   /** 
    * 뷰어의 Excel Export 대화 상자를 표시합니다.
@@ -3942,8 +3942,8 @@ export interface Matrix{
   /**
    * @event 
    *
-   * 문서 로드 된 후 AutoRefresh 수행 전에 발생합니다.
-   * 
+   * 문서 로드 완료 후 AutoRefresh 수행 전에 발생합니다.
+   * ClientScript는 `<body><script>` 안에서 실행되므로, 이 이벤트 안에서 실행하든 이벤트 밖(스크립트 최상위)에서 실행하든 실행 시점은 동일합니다.
    *
    * @param sender 이벤트가 발생한 Matrix 객체
    * @param args 이벤트 인자

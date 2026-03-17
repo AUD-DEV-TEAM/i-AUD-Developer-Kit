@@ -495,19 +495,17 @@ save_boxstyle {
 ### 7.1 버튼 그룹 일괄 스타일 적용
 
 ```js
-// 문서 로드 시 버튼 그룹에 일관된 스타일 적용
-Matrix.OnDocumentLoadComplete = function(sender, args) {
-    var buttons = ["btnSearch", "btnSave", "btnDelete", "btnExport"];
+// 버튼 그룹에 일관된 스타일 적용
+var buttons = ["btnSearch", "btnSave", "btnDelete", "btnExport"];
 
-    for (var i = 0; i < buttons.length; i++) {
-        var btn = Matrix.getObject(buttons[i]);
-        btn.Style.SetBoxStyleName("Button Default");
-        btn.SetMouseOverBoxStyle("Button Hover");
-        btn.SetMouseDownBoxStyle("Button Pressed");
-        btn.Cursor = "pointer";
-        btn.Update();
-    }
-};
+for (var i = 0; i < buttons.length; i++) {
+    var btn = Matrix.getObject(buttons[i]);
+    btn.Style.SetBoxStyleName("Button Default");
+    btn.SetMouseOverBoxStyle("Button Hover");
+    btn.SetMouseDownBoxStyle("Button Pressed");
+    btn.Cursor = "pointer";
+    btn.Update();
+}
 ```
 
 ### 7.2 조건별 동적 스타일 변경

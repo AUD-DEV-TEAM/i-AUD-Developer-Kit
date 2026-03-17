@@ -1,0 +1,255 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_KANBAN_BOARD",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "MYDOCUMENT.yglee/EXT_KANBAN_BOARD.mtsd",
+    "ReportName": "Kanban Board",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-16 15:47:11",
+    "Editor": "yglee",
+    "EditDate": "2026-03-16 15:47:11",
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_KANBAN_BOARD_01",
+        "Name": "DS_KANBAN",
+        "ConnectionCode": "MATRIX_FILE_DB",
+        "SQL": "./DataSource/DS_KANBAN.sql"
+      }
+    ]
+  },
+  "ScriptText": "./KanbanBoard.script.ts",
+  "Forms": [
+    {
+      "Id": "FM_KANBAN_BOARD_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_KANBAN_BOARD_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1551,
+            "Height": 40,
+            "Docking": {
+              "Left": true,
+              "Right": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#7b1fa2"
+            },
+            "Font": {
+              "Color": "#ffffff",
+              "Size": 14,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "Kanban Board - Project Task Management"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_KANBAN_BOARD_BTN001",
+          "Name": "btnLoadSample",
+          "Position": {
+            "Left": 10,
+            "Top": 47,
+            "Width": 120,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#7b1fa2"
+            },
+            "Border": {
+              "Color": "#6a1b9a"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Load Data"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_KANBAN_BOARD_BTN002",
+          "Name": "btnAddCard",
+          "Position": {
+            "Left": 140,
+            "Top": 47,
+            "Width": 120,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#1976d2"
+            },
+            "Border": {
+              "Color": "#1565c0"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Add Card"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_KANBAN_BOARD_BTN003",
+          "Name": "btnClear",
+          "Position": {
+            "Left": 270,
+            "Top": 47,
+            "Width": 100,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#757575"
+            },
+            "Border": {
+              "Color": "#616161"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Clear"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_KANBAN_BOARD_BTN004",
+          "Name": "btnSave",
+          "Position": {
+            "Left": 380,
+            "Top": 47,
+            "Width": 100,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#388e3c"
+            },
+            "Border": {
+              "Color": "#2e7d32"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Save"
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_KANBAN_BOARD_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 490,
+            "Top": 47,
+            "Width": 700,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": "#666666",
+              "Size": 11
+            }
+          },
+          "Text": "  [단위 테스트 작성] Review → In Progress  (변경 1건)"
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_KANBAN_BOARD_EC001",
+          "Name": "ecKanban",
+          "Position": {
+            "Left": 0,
+            "Top": 80,
+            "Width": 850,
+            "Height": 807,
+            "Docking": {
+              "Left": true,
+              "Bottom": true
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "kanbanComponent",
+            "ClassName": "KanbanComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "kanbanComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "kanbanComponent.css"
+              }
+            ],
+            "Options": {
+              "Columns": "Backlog,To Do,In Progress,Review,Done",
+              "CardTitleField": "TITLE",
+              "CardStatusField": "STATUS",
+              "CardDescField": "DESCRIPTION",
+              "CardColorField": "COLOR",
+              "EnableDragDrop": true,
+              "HeaderColor": "#7b1fa2"
+            },
+            "ComponentData": {}
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "EL_KANBAN_BOARD_GRD001",
+          "Name": "grdKanban",
+          "Position": {
+            "Left": 855,
+            "Top": 80,
+            "Width": 696,
+            "Height": 807,
+            "Docking": {
+              "Right": true,
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2
+          },
+          "DataSource": "DS_KANBAN_BOARD_01",
+          "AutoRefresh": true,
+          "RowDeletable": true,
+          "Columns": [
+            {
+              "Name": "TITLE",
+              "KeyType": 1
+            },
+            {
+              "Name": "STATUS",
+              "KeyType": 1
+            },
+            {
+              "Name": "DESCRIPTION",
+              "KeyType": 1
+            },
+            {
+              "Name": "COLOR",
+              "KeyType": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -26,17 +26,15 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴2: 올해로 초기화
  * //----------------------------------------------
- * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     var calThisYear = Matrix.getObject("calThisYear");
+ * var calThisYear = Matrix.getObject("calThisYear");
  *
- *     // 포맷 설정
- *     calThisYear.DataFormat = "yyyy";
- *     calThisYear.ViewFormat = "yyyy";
+ * // 포맷 설정
+ * calThisYear.DataFormat = "yyyy";
+ * calThisYear.ViewFormat = "yyyy";
  *
- *     // 올해로 설정
- *     var today = new Date();
- *     calThisYear.Date = today;
- * };
+ * // 올해로 설정
+ * var today = new Date();
+ * calThisYear.Date = today;
  *
  * //----------------------------------------------
  * // 패턴3: 연도별 보고서 조회
@@ -128,16 +126,14 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴6: 선택 가능 연도 제한 (최근 5년)
  * //----------------------------------------------
- * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     var calRecent = Matrix.getObject("calRecent");
+ * var calRecent = Matrix.getObject("calRecent");
  *
- *     // 올해부터 5년 전까지만 선택 가능
- *     var today = new Date();
- *     var fiveYearsAgo = new Date(today.getFullYear() - 5, 0, 1);
+ * // 올해부터 5년 전까지만 선택 가능
+ * var today = new Date();
+ * var fiveYearsAgo = new Date(today.getFullYear() - 5, 0, 1);
  *
- *     calRecent.MinDate = fiveYearsAgo.getFullYear().toString();  // "2019"
- *     calRecent.MaxDate = today.getFullYear().toString();         // "2024"
- * };
+ * calRecent.MinDate = fiveYearsAgo.getFullYear().toString();  // "2019"
+ * calRecent.MaxDate = today.getFullYear().toString();         // "2024"
  *
  * //----------------------------------------------
  * // 패턴7: 연도별 데이터 입력

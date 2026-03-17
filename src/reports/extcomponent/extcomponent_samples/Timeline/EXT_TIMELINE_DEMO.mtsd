@@ -1,0 +1,797 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_TIMELINE_DEMO",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "MYDOCUMENT.yglee/EXT_TIMELINE_DEMO.mtsd",
+    "ReportName": "Timeline Demo",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-16 17:30:00",
+    "Editor": "yglee",
+    "EditDate": "2026-03-16 17:13:49",
+    "CreateBy": "i-AUD Developer Kit",
+    "TabPosition": 0,
+    "UsePersonalConditions": true,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "TabFocusMode": 1
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_TIMELINE_DEMO_01",
+        "Name": "DS_TIMELINE",
+        "ConnectionCode": "MATRIX_FILE_DB",
+        "SQL": "tHMEBgAlriyAKik/NrSskLqX2jxs2abI94LwfCLWexNWfY4lrcNUi/m+bDcGXLaJCuHfKHPHYR0rq0coh8BpS7z/7HUGm4owyhsaLkocrm/z/+MtcJdi0Y0g0ZQXPGCB5ABUaF63QbIy4+CDraXJmQtwHAyNGTcWCribFKEY4iBvu3NcKKa7iBkVVLxXr2cH4l+ZFJwiLj08fMavXBpBRu5eDgebrezHk+n3Ss7P6gpK4GYGzAUDbmvrrg1mOXBHFF+8bSpvzLaGUDsEwAYZ6dW3DU8zL9QfK3gEgm8K+hO7obQAXP68+SDtGq5uFsG5n0Ahw9qgd5B0bGZtpstKk+1Rs9Bc5M5uKCSPO0Ev/kHpuWBCWLvkG/cFcE8ZFygsOyeg2GZX3CAQmzUjJ4JEIoU+8XOQml8x/EIV7JJIqphkLk1QLkm45pBxCJn2/+GgOpa8KMJgglE/9xhvf8wBrMyXJcfxOuhScfCzAJEFV2w/Xtiv6cn0o77/5+X2wa2Kb1ooReLVx2ZplZMXfevFHlUnBHemDjM2xk+0lnd3C8XwQx4+rh0KeEchvsvx+iNUm5im1S/XhycyTyvAbDNvNrzO+aH2pDwaWq7wyo7ftYZP6lk6znMUSlmEQZdw9l8hs7IjWGvSAGUmPyljclf9s4YAMsqZnhTtlY41NEKNhwy/fK1cySRkBzEFcRXj+gw92ITHWi++kzAUDJMA9+N4LHeOhBSUSAq4W75JewivO8lH/Wfiq9OUlEEAmQ6y8aCNqaTZC53I5Uny5Qq9EB8jyH1pmy6Wh0X44SyQDNQVCJ/VWI7YD3MkBhmHgj3iP7s3EIzBxIyw46Rl/y5IJ+MLVX+8ZZQOwk7rOlagE5t7INbmhnggJCE1vHsD/0Mm7i9auWJ/nLGVk6WDo91VhXC5EYpIk3khFRnY4vZQ594vk6fVxfgwWq96LbVmM+L0wUrxlXs+WHk4eIU3kgZPWQCT0Td5jTBh8vHOhV4JOfN7j5Ao8U7XWvQztfDM3i0248eED0628ZPS4OvbKuTQ4x8Ma3+Esp5yVaeR82M4+mO0W8M=",
+        "DSType": 0,
+        "UseMeta": false,
+        "UseCache": false,
+        "Encrypted": true,
+        "Params": [],
+        "Columns": []
+      }
+    ]
+  },
+  "ScriptText": "Matrix.OnDocumentLoadComplete = function (sender, args) {\r\n    var lblTitle = Matrix.getObject(\"lblTitle\");\r\n    var lblStatus = Matrix.getObject(\"lblStatus\");\r\n    var btnLoadData = Matrix.getObject(\"btnLoadData\");\r\n    var btnAddEvent = Matrix.getObject(\"btnAddEvent\");\r\n    var btnClear = Matrix.getObject(\"btnClear\");\r\n    var grdTimeline = Matrix.getObject(\"grdTimeline\");\r\n    var ecTimeline = Matrix.getObject(\"ecTimeline\");\r\n    lblTitle.Value = \"Timeline Component - Project Milestones\";\r\n    btnLoadData.Text = \"Load Data\";\r\n    btnAddEvent.Text = \"Add Event\";\r\n    btnClear.Text = \"Clear\";\r\n    var addCounter = 0;\r\n    btnLoadData.OnClick = function () {\r\n        Matrix.doRefresh(\"grdTimeline\");\r\n    };\r\n    btnAddEvent.OnClick = function () {\r\n        addCounter++;\r\n        var today = new Date();\r\n        var mm = today.getMonth() + 1;\r\n        var dd = today.getDate();\r\n        var dateStr = today.getFullYear() + '-'\r\n            + (mm < 10 ? '0' + mm : '' + mm) + '-'\r\n            + (dd < 10 ? '0' + dd : '' + dd);\r\n        var newRow = grdTimeline.AppendRow();\r\n        newRow.SetValue('DATE', dateStr);\r\n        newRow.SetValue('TITLE', 'New Event #' + addCounter);\r\n        newRow.SetValue('DESCRIPTION', 'Added at ' + today.toLocaleTimeString());\r\n        newRow.SetValue('COLOR', '#e91e63');\r\n        newRow.SetValue('ICON', '📌');\r\n        grdTimeline.ReDraw();\r\n        var model = ecTimeline.getModel();\r\n        if (model) {\r\n            model.Update();\r\n        }\r\n    };\r\n    btnClear.OnClick = function () {\r\n        grdTimeline.ClearRows();\r\n        grdTimeline.ReDraw();\r\n        var model = ecTimeline.getModel();\r\n        if (model) {\r\n            model.Update();\r\n        }\r\n        lblStatus.Value = \"  Timeline cleared\";\r\n    };\r\n    ecTimeline.OnComponentReady = function () {\r\n        var model = ecTimeline.getModel();\r\n        if (!model)\r\n            return;\r\n        model.setConfig({\r\n            DateField: 'DATE',\r\n            TitleField: 'TITLE',\r\n            DescriptionField: 'DESCRIPTION',\r\n            ColorField: 'COLOR',\r\n            IconField: 'ICON'\r\n        });\r\n        model.setGrid(grdTimeline);\r\n        lblStatus.Value = \"  Timeline ready\";\r\n    };\r\n};\r\n",
+  "Forms": [
+    {
+      "Id": "FM_TIMELINE_DEMO_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_TIMELINE_DEMO_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1840,
+            "Height": 40,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 21,
+                "G": 101,
+                "B": 192,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Size": 14,
+              "HorizontalAlignment": "center",
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "Timeline Component - Project Milestones",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_TIMELINE_DEMO_BTN001",
+          "Name": "btnLoadData",
+          "Position": {
+            "Left": 10,
+            "Top": 47,
+            "Width": 120,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 21,
+                "G": 101,
+                "B": 192,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 13,
+                "G": 71,
+                "B": 161,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "Load Data",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_TIMELINE_DEMO_BTN002",
+          "Name": "btnAddEvent",
+          "Position": {
+            "Left": 140,
+            "Top": 47,
+            "Width": 120,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 46,
+                "G": 125,
+                "B": 50,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 27,
+                "G": 94,
+                "B": 32,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "Add Event",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_TIMELINE_DEMO_BTN003",
+          "Name": "btnClear",
+          "Position": {
+            "Left": 270,
+            "Top": 47,
+            "Width": 100,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 117,
+                "G": 117,
+                "B": 117,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 97,
+                "G": 97,
+                "B": 97,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "Clear",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_TIMELINE_DEMO_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 380,
+            "Top": 47,
+            "Width": 600,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": {
+                "R": 102,
+                "G": 102,
+                "B": 102,
+                "A": 1
+              },
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "  Click 'Load Data' to start",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_TIMELINE_DEMO_EC001",
+          "Name": "ecTimeline",
+          "Position": {
+            "Left": 0,
+            "Top": 80,
+            "Width": 700,
+            "Height": 837,
+            "Docking": {
+              "Left": true,
+              "Bottom": true,
+              "Right": false,
+              "Top": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "ComponentSetting": {
+            "ComponentId": "timelineComponent",
+            "ClassName": "TimelineComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "timelineComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "timelineComponent.css"
+              }
+            ],
+            "Options": {
+              "DateField": "DATE",
+              "TitleField": "TITLE",
+              "DescriptionField": "DESCRIPTION",
+              "ColorField": "COLOR",
+              "IconField": "ICON",
+              "Layout": "alternate",
+              "LineColor": "#1565c0",
+              "ShowDate": true
+            },
+            "ComponentData": {}
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "EL_TIMELINE_DEMO_GRD001",
+          "Name": "grdTimeline",
+          "Position": {
+            "Left": 705,
+            "Top": 80,
+            "Width": 1135,
+            "Height": 837,
+            "Docking": {
+              "Right": true,
+              "Bottom": true,
+              "Margin": "0,0,0,0",
+              "MinHeight": 0,
+              "MinWidth": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Thickness": "1,1,1,1"
+            },
+            "VerticalBorder": {
+              "Thickness": 1
+            },
+            "HorizontalBorder": {
+              "Thickness": 1
+            },
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "top"
+            }
+          },
+          "DataSource": "DS_TIMELINE_DEMO_01",
+          "AutoRefresh": true,
+          "Columns": [
+            {
+              "Name": "DATE",
+              "Caption": "DATE",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "TITLE",
+              "Width": 150,
+              "Caption": "TITLE",
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "DESCRIPTION",
+              "Width": 250,
+              "Caption": "DESCRIPTION",
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "COLOR",
+              "Width": 80,
+              "Caption": "COLOR",
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "ICON",
+              "Width": 50,
+              "Caption": "ICON",
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            }
+          ],
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "CellMargin": "5,5,5,5",
+          "SelectRule": 2,
+          "NaNCellText": "-",
+          "ColumnHeaderHeight": 28,
+          "RowHeight": 24,
+          "ExportCount": 1000000,
+          "FontFamily": "inherit",
+          "FontSize": 12,
+          "UsePPTExport": false,
+          "UseDesign": false,
+          "UseFormatSetting": false,
+          "UseMultiHeader": false,
+          "UseMultiHeaderMenu": false,
+          "FrozenLineBrush": {
+            "Type": 0,
+            "Color": {
+              "R": 127,
+              "G": 127,
+              "B": 127,
+              "A": 1
+            }
+          },
+          "UsePaging": true
+        }
+      ],
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      }
+    }
+  ],
+  "ServerScriptText": [],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {},
+  "PersonalConditions": {
+    "list": [],
+    "useAll": true
+  }
+}

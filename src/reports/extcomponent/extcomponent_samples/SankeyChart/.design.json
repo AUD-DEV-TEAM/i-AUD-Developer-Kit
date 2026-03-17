@@ -1,0 +1,212 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_SANKEY_CHART",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "MYDOCUMENT.yglee/EXT_SANKEY_CHART.mtsd",
+    "ReportName": "Sankey Chart",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-17 08:57:25",
+    "Editor": "yglee",
+    "EditDate": "2026-03-17 08:57:25",
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_SANKEY_CHART_01",
+        "Name": "DS_SANKEY",
+        "ConnectionCode": "MATRIX_FILE_DB",
+        "SQL": "./DataSource/DS_SANKEY.sql"
+      }
+    ]
+  },
+  "ScriptText": "./SankeyChart.script.ts",
+  "Forms": [
+    {
+      "Id": "FM_SANKEY_CHART_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_SANKEY_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1551,
+            "Height": 35,
+            "Docking": {
+              "Left": true,
+              "Right": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#1565c0"
+            },
+            "Font": {
+              "Color": "#ffffff",
+              "Size": 13,
+              "HorizontalAlignment": "center"
+            }
+          },
+          "Text": "Sankey Chart - Customer Journey Flow"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_SANKEY_BTN001",
+          "Name": "btnLoad",
+          "Position": {
+            "Left": 10,
+            "Top": 42,
+            "Width": 100,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#1565c0"
+            },
+            "Border": {
+              "Color": "#0d47a1"
+            },
+            "Font": {
+              "Size": 11
+            }
+          },
+          "Value": "Load"
+        },
+        {
+          "Type": "RadioButton",
+          "Id": "EL_SANKEY_RDO001",
+          "Name": "rdoHorizontal",
+          "Position": {
+            "Left": 125,
+            "Top": 44,
+            "Width": 95,
+            "Height": 22
+          },
+          "Text": "Horizontal",
+          "GroupName": "ORIENT",
+          "Checked": true
+        },
+        {
+          "Type": "RadioButton",
+          "Id": "EL_SANKEY_RDO002",
+          "Name": "rdoVertical",
+          "Position": {
+            "Left": 225,
+            "Top": 44,
+            "Width": 80,
+            "Height": 22
+          },
+          "Text": "Vertical",
+          "GroupName": "ORIENT"
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_SANKEY_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 320,
+            "Top": 42,
+            "Width": 500,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": "#666666",
+              "Size": 11
+            }
+          }
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "EL_SANKEY_GRD001",
+          "Name": "grdSankey",
+          "Position": {
+            "Left": 0,
+            "Top": 75,
+            "Width": 320,
+            "Height": 812,
+            "Docking": {
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2
+          },
+          "DataSource": "DS_SANKEY_CHART_01",
+          "AutoRefresh": true,
+          "Columns": [
+            {
+              "Name": "SOURCE"
+            },
+            {
+              "Name": "TARGET"
+            },
+            {
+              "Name": "VALUE",
+              "ColumnType": 3,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum"
+            }
+          ]
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_SANKEY_EC001",
+          "Name": "ecSankey",
+          "Position": {
+            "Left": 325,
+            "Top": 75,
+            "Width": 1226,
+            "Height": 812,
+            "Docking": {
+              "Right": true,
+              "Bottom": true
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "sankeyComponent",
+            "ClassName": "SankeyComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "lib/echarts.min.js",
+                "order": 1
+              },
+              {
+                "type": "js",
+                "url": "sankeyComponent.js",
+                "order": 2
+              },
+              {
+                "type": "css",
+                "url": "sankeyComponent.css"
+              }
+            ],
+            "Options": {
+              "SourceField": "SOURCE",
+              "TargetField": "TARGET",
+              "ValueField": "VALUE",
+              "Orient": "horizontal",
+              "NodeWidth": 20,
+              "NodeGap": 12,
+              "ShowLabel": true,
+              "FontSize": 12,
+              "Title": "Customer Journey Flow"
+            },
+            "ComponentData": {}
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false
+        }
+      ]
+    }
+  ]
+}

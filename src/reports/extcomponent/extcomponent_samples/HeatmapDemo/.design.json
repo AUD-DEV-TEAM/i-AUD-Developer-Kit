@@ -1,0 +1,210 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_HEATMAP_DEMO",
+    "ReportName": "Heatmap Demo",
+    "Writer": "i-AUD",
+    "SavePath": "MYDOCUMENT.yglee/EXT_HEATMAP_DEMO.mtsd",
+    "FolderCode": "MYDOCUMENT.yglee",
+    "WriteDate": "2026-03-17 14:33:57",
+    "EditDate": "2026-03-17 14:33:57",
+    "Editor": "yglee",
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DSDB3E45A6E8D04A9697F7AEB1C433452D",
+        "Name": "DS_HEATMAP",
+        "ConnectionCode": "MTXRPTY",
+        "DSType": 2,
+        "SQL": "./DataSource/DS_HEATMAP.sql"
+      }
+    ]
+  },
+  "ScriptText": "./HeatmapDemo.script.ts",
+  "Forms": [
+    {
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "lbl_title_001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1600,
+            "Height": 40
+          },
+          "Value": "  Heatmap Demo - Weekly Activity Heatmap"
+        },
+        {
+          "Type": "Button",
+          "Id": "btn_load_001",
+          "Name": "btnLoad",
+          "Position": {
+            "Left": 10,
+            "Top": 50,
+            "Width": 100,
+            "Height": 30
+          },
+          "Value": "Load Data"
+        },
+        {
+          "Type": "Label",
+          "Id": "lbl_mincolor_001",
+          "Name": "lblMinColor",
+          "Position": {
+            "Left": 130,
+            "Top": 50,
+            "Width": 65,
+            "Height": 30
+          },
+          "Value": "Min Color"
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "cmb_mincolor_001",
+          "Name": "cmbMinColor",
+          "Position": {
+            "Left": 200,
+            "Top": 50,
+            "Width": 120,
+            "Height": 30
+          },
+          "Text": "#ffffff"
+        },
+        {
+          "Type": "Label",
+          "Id": "lbl_maxcolor_001",
+          "Name": "lblMaxColor",
+          "Position": {
+            "Left": 335,
+            "Top": 50,
+            "Width": 65,
+            "Height": 30
+          },
+          "Value": "Max Color"
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "cmb_maxcolor_001",
+          "Name": "cmbMaxColor",
+          "Position": {
+            "Left": 405,
+            "Top": 50,
+            "Width": 120,
+            "Height": 30
+          },
+          "Text": "#304ffe"
+        },
+        {
+          "Type": "CheckBox",
+          "Id": "chk_label_001",
+          "Name": "chkLabel",
+          "Position": {
+            "Left": 545,
+            "Top": 50,
+            "Width": 110,
+            "Height": 30
+          },
+          "Text": "Show Label",
+          "Checked": true
+        },
+        {
+          "Type": "Button",
+          "Id": "btn_export_001",
+          "Name": "btnExport",
+          "Position": {
+            "Left": 670,
+            "Top": 50,
+            "Width": 100,
+            "Height": 30
+          },
+          "Value": "Export PNG"
+        },
+        {
+          "Type": "Label",
+          "Id": "lbl_status_001",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 790,
+            "Top": 50,
+            "Width": 400,
+            "Height": 30
+          },
+          "Value": ""
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "ec_heatmap_001",
+          "Name": "ecHeatmap",
+          "Position": {
+            "Left": 10,
+            "Top": 90,
+            "Width": 1100,
+            "Height": 700
+          },
+          "ComponentSetting": {
+            "ComponentId": "heatmapComponent",
+            "ClassName": "HeatmapComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "lib/echarts.min.js",
+                "order": 1
+              },
+              {
+                "type": "js",
+                "url": "heatmapComponent.js",
+                "order": 2
+              },
+              {
+                "type": "css",
+                "url": "heatmapComponent.css"
+              }
+            ],
+            "Options": {
+              "RowField": "ROW_NAME",
+              "ColField": "COL_NAME",
+              "ValueField": "VALUE",
+              "MinColor": "#ffffff",
+              "MaxColor": "#304ffe",
+              "ShowLabel": "true",
+              "Title": "Weekly Activity Heatmap"
+            }
+          }
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "grd_heatmap_001",
+          "Name": "grdHeatmap",
+          "Position": {
+            "Left": 1120,
+            "Top": 90,
+            "Width": 470,
+            "Height": 700
+          },
+          "Style": {
+            "Type": 2
+          },
+          "DataSource": "DS_HEATMAP",
+          "AutoRefresh": true,
+          "Columns": [
+            {
+              "FieldName": "ROW_NAME"
+            },
+            {
+              "FieldName": "COL_NAME",
+              "Width": 80
+            },
+            {
+              "FieldName": "VALUE",
+              "Width": 80
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

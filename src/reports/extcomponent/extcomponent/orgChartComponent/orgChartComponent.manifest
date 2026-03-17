@@ -1,0 +1,65 @@
+{
+    "name": "조직도",
+    "icon": [
+        "<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='#6a1b9a' stroke-width='2'>",
+        "<rect x='8' y='2' width='8' height='4' rx='1'/>",
+        "<rect x='1' y='14' width='7' height='4' rx='1'/>",
+        "<rect x='16' y='14' width='7' height='4' rx='1'/>",
+        "<line x1='12' y1='6' x2='12' y2='10'/>",
+        "<line x1='4.5' y1='14' x2='4.5' y2='10'/>",
+        "<line x1='19.5' y1='14' x2='19.5' y2='10'/>",
+        "<line x1='4.5' y1='10' x2='19.5' y2='10'/>",
+        "</svg>"
+    ],
+    "version": 1,
+    "category": "Chart",
+    "description": "조직도(Org Chart) 컴포넌트. 트리 형태의 계층 구조를 시각적으로 표시합니다. setGrid()로 DataGrid를 연결하면 OnDataChanged 시 자동 렌더링됩니다.",
+    "className": "OrgChartComponent",
+
+    "files": [
+        { "type": "js",  "url": "orgChartComponent.js",  "order": 1 },
+        { "type": "css", "url": "orgChartComponent.css" }
+    ],
+
+    "options": [
+        { "name": "IdField", "type": "Text", "group": "Data", "default": "ID", "description": "노드 ID 컬럼 필드명" },
+        { "name": "ParentIdField", "type": "Text", "group": "Data", "default": "PARENT_ID", "description": "부모 노드 ID 컬럼 필드명" },
+        { "name": "NameField", "type": "Text", "group": "Data", "default": "NAME", "description": "노드 이름 컬럼 필드명" },
+        { "name": "TitleField", "type": "Text", "group": "Data", "default": "TITLE", "description": "노드 직책 컬럼 필드명" },
+        { "name": "Direction", "type": "ComboBox", "group": "Layout", "default": "top-to-bottom", "items": ["top-to-bottom","left-to-right"], "description": "트리 방향" },
+        { "name": "NodeColor", "type": "Color", "group": "Style", "default": "#6a1b9a", "description": "노드 배경색" },
+        { "name": "NodeWidth", "type": "Number", "group": "Style", "default": 140, "description": "노드 너비(px)" },
+        { "name": "NodeHeight", "type": "Number", "group": "Style", "default": 60, "description": "노드 높이(px)" },
+        { "name": "EnableCollapse", "type": "Boolean", "group": "Interaction", "default": true, "description": "노드 접기/펼치기 활성화" }
+    ],
+
+    "sample": [
+        "// DataGrid 연결 (OnDataChanged 시 자동 렌더링)",
+        "let ec = Matrix.getObject(\"ExternalComponent1\") as any;",
+        "let grd = Matrix.getObject(\"DataGrid\") as DataGrid;",
+        "",
+        "ec.OnComponentReady = function() {",
+        "    let model = ec.getModel();",
+        "    model.setConfig({",
+        "        IdField: 'ID',",
+        "        ParentIdField: 'PARENT_ID',",
+        "        NameField: 'NAME',",
+        "        TitleField: 'TITLE'",
+        "    });",
+        "    model.setGrid(grd);",
+        "",
+        "    // 노드 클릭 이벤트",
+        "    model.OnNodeClick = function(args) {",
+        "        // args.row, args.id, args.name, args.title",
+        "    };",
+        "};",
+        "",
+        "// 방향 변경 + 다시 렌더링",
+        "// model.setConfig({ Direction: 'left-to-right' });",
+        "// model.Update();",
+        "",
+        "// 접기/펼치기",
+        "// model.collapseAll();",
+        "// model.expandAll();"
+    ]
+}

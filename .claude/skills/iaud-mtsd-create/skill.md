@@ -91,10 +91,8 @@ header.addButton("BTN_SAVE", "저장", {
 const search = doc.addGroup("GRP_SEARCH", {
   dock: "left+right", top: 50, height: 45
 });
-search.addLabel("LBL_FROM", "기간", { left: 15, top: 10, width: 40, height: 25 });
-search.addCalendar("CAL_FROM", { left: 60, top: 10, width: 130, height: 25 });
-search.addLabel("LBL_DASH", "~", { left: 195, top: 10, width: 20, height: 25, font: { align: "center" } });
-search.addCalendar("CAL_TO", { left: 220, top: 10, width: 130, height: 25 });
+search.addLabel("LBL_PERIOD", "기간", { left: 15, top: 10, width: 40, height: 25 });
+search.addCalendarFromTo("CAL_PERIOD", { left: 60, top: 10, width: 280, height: 25 });
 
 // 그리드 (헤더+검색 아래 = top: 95)
 const grid = doc.addDataGrid("GRD_MAIN", {
@@ -132,9 +130,11 @@ new MtsdBuilder(보고서명, opts?)
   ├── addMultiComboBox(name, opts?) → this
   ├── addCheckBox(name, text, opts?) → this
   ├── addRadioButton(name, text, opts?) → this
-  ├── addCalendar(name, opts?)     → this
-  ├── addCalendarYear(name, opts?) → this
-  ├── addCalendarYM(name, opts?)   → this
+  ├── addCalendar(name, opts?)            → this
+  ├── addCalendarYear(name, opts?)        → this
+  ├── addCalendarYM(name, opts?)          → this
+  ├── addCalendarFromTo(name, opts?)      → this   // 기간(시작~종료) 달력
+  ├── addCalendarWeeklyFromTo(name, opts?)→ this   // 주간 기간 달력
   ├── addChart(name, opts?)        → this
   ├── addPieChart(name, opts?)     → this
   ├── addScatterChart(name, opts?) → this

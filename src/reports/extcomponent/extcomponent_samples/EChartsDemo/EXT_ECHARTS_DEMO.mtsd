@@ -1,0 +1,1916 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_ECHARTS_DEMO",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "MYDOCUMENT.yglee/EXT_ECHARTS_DEMO.mtsd",
+    "ReportName": "ECharts Demo",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-16 18:06:22",
+    "Editor": "yglee",
+    "EditDate": "2026-03-16 18:06:22",
+    "CreateBy": "i-AUD Developer Kit",
+    "TabPosition": 0,
+    "UsePersonalConditions": true,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "TabFocusMode": 1
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_ECHARTS_DEMO_01",
+        "Name": "DS_SALES",
+        "ConnectionCode": "MATRIX_FILE_DB",
+        "SQL": "9spUg63wLpuG1Tw64JaVeVKWhECSloFJCKlh2p5sH7dRfStnCN6NaQkf6XjispuwCeK35Ib484hEEJKDEPW0bXJYLMgeQPIA29W8KhSvlufFyt3qcejfTSyAwdW92yPFHNj5sMeQg153TdIDzcRJSdeK1z4TzZhra8IhSqyQdWOOUoMtXTPQIC3GmpFvIZ98EzN+SqOyNblVSM3ma6Y2zxyY8OipvQlHY7lvDr0Wsgoao0kRTq0EdqXB19qhfFJ9RdXAtJ0RQWkGj2QV0uPFATtlcBB8Oa8IL6LzVZDo0kx8nPw4YkNXWsbLFzEeEod+L666C0lunh16q3v2oV7WDbi6OxCUpN99BUu43Whj+I54GKlUVcfsTsCZ4B7A+a3y",
+        "DSType": 0,
+        "UseMeta": false,
+        "UseCache": false,
+        "Encrypted": true,
+        "Params": [],
+        "Columns": []
+      }
+    ]
+  },
+  "ScriptText": "Matrix.OnDocumentLoadComplete = function (sender, args) {\r\n    var lblTitle = Matrix.getObject(\"lblTitle\");\r\n    var lblStatus = Matrix.getObject(\"lblStatus\");\r\n    var btnLoadData = Matrix.getObject(\"btnLoadData\");\r\n    var btnExport = Matrix.getObject(\"btnExport\");\r\n    var cmbChartType = Matrix.getObject(\"cmbChartType\");\r\n    var cmbTheme = Matrix.getObject(\"cmbTheme\");\r\n    var cmbPalette = Matrix.getObject(\"cmbPalette\");\r\n    var cmbLabel = Matrix.getObject(\"cmbLabel\");\r\n    var cmbLegend = Matrix.getObject(\"cmbLegend\");\r\n    var chkTooltip = Matrix.getObject(\"chkTooltip\");\r\n    var chkToolbox = Matrix.getObject(\"chkToolbox\");\r\n    var chkDataZoom = Matrix.getObject(\"chkDataZoom\");\r\n    var grdSales = Matrix.getObject(\"grdSales\");\r\n    var ecChart = Matrix.getObject(\"ecChart\");\r\n    lblTitle.Value = \"ECharts Component - Sales Dashboard\";\r\n    btnLoadData.Text = \"Load Data\";\r\n    btnExport.Text = \"Export PNG\";\r\n    var chartTypes = ['bar', 'line', 'area', 'pie', 'scatter', 'radar', 'funnel', 'horizontalBar', 'stackedBar', 'stackedLine', 'stackedArea'];\r\n    cmbChartType.ClearDataSet();\r\n    for (var i = 0; i < chartTypes.length; i++) {\r\n        cmbChartType.AddItem(chartTypes[i], chartTypes[i]);\r\n    }\r\n    cmbChartType.Value = 'bar';\r\n    var themes = ['default', 'dark', 'vintage', 'macarons', 'roma', 'shine'];\r\n    cmbTheme.ClearDataSet();\r\n    for (var i = 0; i < themes.length; i++) {\r\n        cmbTheme.AddItem(themes[i], themes[i]);\r\n    }\r\n    cmbTheme.Value = 'default';\r\n    var palettes = ['default', 'pastel', 'vivid', 'monochrome', 'warm', 'cool'];\r\n    cmbPalette.ClearDataSet();\r\n    for (var i = 0; i < palettes.length; i++) {\r\n        cmbPalette.AddItem(palettes[i], palettes[i]);\r\n    }\r\n    cmbPalette.Value = 'vivid';\r\n    var labels = ['none', 'top', 'inside', 'outside', 'left', 'right'];\r\n    cmbLabel.ClearDataSet();\r\n    for (var i = 0; i < labels.length; i++) {\r\n        cmbLabel.AddItem(labels[i], labels[i]);\r\n    }\r\n    cmbLabel.Value = 'none';\r\n    var legendPositions = ['bottom', 'top', 'left', 'right', 'hide'];\r\n    cmbLegend.ClearDataSet();\r\n    for (var i = 0; i < legendPositions.length; i++) {\r\n        cmbLegend.AddItem(legendPositions[i], legendPositions[i]);\r\n    }\r\n    cmbLegend.Value = 'bottom';\r\n    var chartModel = null;\r\n    function applyTitle() {\r\n        if (!chartModel)\r\n            return;\r\n        chartModel.setEChartsOption({\r\n            title: { text: '월별 매출 현황', left: 'center', top: 5, textStyle: { fontSize: 14 } }\r\n        });\r\n    }\r\n    btnLoadData.OnClick = function () {\r\n        Matrix.doRefresh(\"grdSales\");\r\n    };\r\n    btnExport.OnClick = function () {\r\n        if (!chartModel)\r\n            return;\r\n        var dataUrl = chartModel.exportImage();\r\n        if (!dataUrl) {\r\n            Matrix.Alert(\"차트 데이터가 없습니다.\");\r\n            return;\r\n        }\r\n        var win = window.open('', '_blank');\r\n        if (win) {\r\n            win.document.write('<img src=\"' + dataUrl + '\" style=\"max-width:100%\"/>');\r\n            win.document.title = 'ECharts Export';\r\n        }\r\n    };\r\n    cmbChartType.OnValueChanged = function (s, e) {\r\n        var val = e.Value;\r\n        if (!val || !chartModel)\r\n            return;\r\n        chartModel.setChartType(val);\r\n        applyTitle();\r\n        lblStatus.Value = \"  Chart type: \" + val;\r\n    };\r\n    cmbTheme.OnValueChanged = function (s, e) {\r\n        var val = e.Value;\r\n        if (!val || !chartModel)\r\n            return;\r\n        var inst = chartModel.getEChartsInstance();\r\n        if (!inst)\r\n            return;\r\n        var container = inst.getDom();\r\n        var width = container.clientWidth;\r\n        var height = container.clientHeight;\r\n        inst.dispose();\r\n        var ec = chartModel.getECharts();\r\n        var newInst = ec.init(container, val === 'default' ? null : val);\r\n        newInst.resize({ width: width, height: height });\r\n        chartModel.chart = newInst;\r\n        chartModel.Update();\r\n        applyTitle();\r\n        lblStatus.Value = \"  Theme: \" + val;\r\n    };\r\n    cmbPalette.OnValueChanged = function (s, e) {\r\n        var val = e.Value;\r\n        if (!val || !chartModel)\r\n            return;\r\n        chartModel.setConfig({ ColorPalette: val });\r\n        chartModel.Update();\r\n        applyTitle();\r\n        lblStatus.Value = \"  Palette: \" + val;\r\n    };\r\n    cmbLabel.OnValueChanged = function (s, e) {\r\n        var val = e.Value;\r\n        if (!chartModel)\r\n            return;\r\n        chartModel.setConfig({ LabelPosition: val || 'none' });\r\n        chartModel.Update();\r\n        applyTitle();\r\n        lblStatus.Value = \"  Label: \" + (val || 'none');\r\n    };\r\n    cmbLegend.OnValueChanged = function (s, e) {\r\n        var val = e.Value;\r\n        if (!chartModel)\r\n            return;\r\n        if (val === 'hide') {\r\n            chartModel.setConfig({ ShowLegend: false });\r\n        }\r\n        else {\r\n            chartModel.setConfig({ ShowLegend: true, LegendPosition: val });\r\n        }\r\n        chartModel.Update();\r\n        applyTitle();\r\n        lblStatus.Value = \"  Legend: \" + val;\r\n    };\r\n    chkTooltip.OnValueChange = function () {\r\n        if (!chartModel)\r\n            return;\r\n        chartModel.setConfig({ ShowTooltip: chkTooltip.IsChecked });\r\n        chartModel.Update();\r\n        applyTitle();\r\n    };\r\n    chkToolbox.OnValueChange = function () {\r\n        if (!chartModel)\r\n            return;\r\n        chartModel.setConfig({ ShowToolbox: chkToolbox.IsChecked });\r\n        chartModel.Update();\r\n        applyTitle();\r\n    };\r\n    chkDataZoom.OnValueChange = function () {\r\n        if (!chartModel)\r\n            return;\r\n        chartModel.setConfig({ EnableDataZoom: chkDataZoom.IsChecked });\r\n        chartModel.Update();\r\n        applyTitle();\r\n    };\r\n    ecChart.OnComponentReady = function () {\r\n        chartModel = ecChart.getModel();\r\n        if (!chartModel)\r\n            return;\r\n        chartModel.setGrid(grdSales);\r\n        applyTitle();\r\n        lblStatus.Value = \"  Chart ready | Change options above\";\r\n    };\r\n};\r\n",
+  "Forms": [
+    {
+      "Id": "FM_ECHARTS_DEMO_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_ECHARTS_DEMO_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1840,
+            "Height": 40,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 229,
+                "G": 57,
+                "B": 53,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Size": 14,
+              "HorizontalAlignment": "center",
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "ECharts Component - Sales Dashboard",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_ECHARTS_DEMO_BTN001",
+          "Name": "btnLoadData",
+          "Position": {
+            "Left": 10,
+            "Top": 47,
+            "Width": 100,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 229,
+                "G": 57,
+                "B": 53,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 198,
+                "G": 40,
+                "B": 40,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "Load Data",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_ECHARTS_DEMO_BTN002",
+          "Name": "btnExport",
+          "Position": {
+            "Left": 115,
+            "Top": 47,
+            "Width": 100,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 25,
+                "G": 118,
+                "B": 210,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 21,
+                "G": 101,
+                "B": 192,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "4,4,4,4"
+            },
+            "Font": {
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "center",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "Export PNG",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "pointer",
+          "MouseOver": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "MouseDown": {
+            "UseYn": false,
+            "BoxStyle": ""
+          },
+          "Shadow": {
+            "UseYn": false,
+            "ColorR": 0,
+            "ColorG": 0,
+            "ColorB": 0,
+            "ColorA": 1,
+            "HLeng": 10,
+            "VLeng": 10,
+            "BlurRadius": 0,
+            "SpreadRadius": 0,
+            "Inset": false
+          },
+          "HasNewRadius": true,
+          "HasNewDefaultStyle": true
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_ECHARTS_DEMO_LBL_CT",
+          "Name": "lblChartType",
+          "Position": {
+            "Left": 225,
+            "Top": 47,
+            "Width": 35,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 11,
+              "HorizontalAlignment": "right",
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "Type",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "EL_ECHARTS_DEMO_CMB001",
+          "Name": "cmbChartType",
+          "Position": {
+            "Left": 265,
+            "Top": 47,
+            "Width": 110,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Position": 1,
+                "Margin": "0,0",
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "DataSource": "",
+          "Value": "",
+          "Text": "",
+          "InitType": 0,
+          "RefreshType": 1,
+          "IsReadOnly": false,
+          "SortType": 0,
+          "AutoRefresh": false,
+          "AfterRefresh": "",
+          "UseAllItems": false,
+          "DisplayType": 1,
+          "DataSourceInfo": {
+            "LabelField": "",
+            "ValueField": ""
+          },
+          "InitValue": ""
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_ECHARTS_DEMO_LBL_TH",
+          "Name": "lblTheme",
+          "Position": {
+            "Left": 385,
+            "Top": 47,
+            "Width": 45,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 11,
+              "HorizontalAlignment": "right",
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "Theme",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "EL_ECHARTS_DEMO_CMB_TH",
+          "Name": "cmbTheme",
+          "Position": {
+            "Left": 435,
+            "Top": 47,
+            "Width": 110,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Position": 1,
+                "Margin": "0,0",
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "DataSource": "",
+          "Value": "",
+          "Text": "",
+          "InitType": 0,
+          "RefreshType": 1,
+          "IsReadOnly": false,
+          "SortType": 0,
+          "AutoRefresh": false,
+          "AfterRefresh": "",
+          "UseAllItems": false,
+          "DisplayType": 1,
+          "DataSourceInfo": {
+            "LabelField": "",
+            "ValueField": ""
+          },
+          "InitValue": ""
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_ECHARTS_DEMO_LBL_PL",
+          "Name": "lblPalette",
+          "Position": {
+            "Left": 555,
+            "Top": 47,
+            "Width": 45,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 11,
+              "HorizontalAlignment": "right",
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "Color",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "EL_ECHARTS_DEMO_CMB002",
+          "Name": "cmbPalette",
+          "Position": {
+            "Left": 605,
+            "Top": 47,
+            "Width": 110,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Position": 1,
+                "Margin": "0,0",
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "DataSource": "",
+          "Value": "",
+          "Text": "",
+          "InitType": 0,
+          "RefreshType": 1,
+          "IsReadOnly": false,
+          "SortType": 0,
+          "AutoRefresh": false,
+          "AfterRefresh": "",
+          "UseAllItems": false,
+          "DisplayType": 1,
+          "DataSourceInfo": {
+            "LabelField": "",
+            "ValueField": ""
+          },
+          "InitValue": ""
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_ECHARTS_DEMO_LBL_LB",
+          "Name": "lblLabel",
+          "Position": {
+            "Left": 725,
+            "Top": 47,
+            "Width": 40,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 11,
+              "HorizontalAlignment": "right",
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Text": "Label",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "EL_ECHARTS_DEMO_CMB_LB",
+          "Name": "cmbLabel",
+          "Position": {
+            "Left": 770,
+            "Top": 47,
+            "Width": 100,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Position": 1,
+                "Margin": "0,0",
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "DataSource": "",
+          "Value": "",
+          "Text": "",
+          "InitType": 0,
+          "RefreshType": 1,
+          "IsReadOnly": false,
+          "SortType": 0,
+          "AutoRefresh": false,
+          "AfterRefresh": "",
+          "UseAllItems": false,
+          "DisplayType": 1,
+          "DataSourceInfo": {
+            "LabelField": "",
+            "ValueField": ""
+          },
+          "InitValue": ""
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_ECHARTS_DEMO_LBL_LG",
+          "Name": "lblLegend",
+          "Position": {
+            "Left": 880,
+            "Top": 47,
+            "Width": 50,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 11,
+              "HorizontalAlignment": "right",
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "Legend",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "EL_ECHARTS_DEMO_CMB_LG",
+          "Name": "cmbLegend",
+          "Position": {
+            "Left": 935,
+            "Top": 47,
+            "Width": 90,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Position": 1,
+                "Margin": "0,0",
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "DataSource": "",
+          "Value": "",
+          "Text": "",
+          "InitType": 0,
+          "RefreshType": 1,
+          "IsReadOnly": false,
+          "SortType": 0,
+          "AutoRefresh": false,
+          "AfterRefresh": "",
+          "UseAllItems": false,
+          "DisplayType": 1,
+          "DataSourceInfo": {
+            "LabelField": "",
+            "ValueField": ""
+          },
+          "InitValue": ""
+        },
+        {
+          "Type": "CheckBox",
+          "Id": "EL_ECHARTS_DEMO_CHK002",
+          "Name": "chkTooltip",
+          "Position": {
+            "Left": 1035,
+            "Top": 47,
+            "Width": 75,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Text": "Tooltip",
+          "Checked": true,
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Position": 1,
+                "Margin": "0,0",
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "ViewType": 0
+        },
+        {
+          "Type": "CheckBox",
+          "Id": "EL_ECHARTS_DEMO_CHK003",
+          "Name": "chkToolbox",
+          "Position": {
+            "Left": 1115,
+            "Top": 47,
+            "Width": 80,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Text": "Toolbox",
+          "Checked": true,
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Position": 1,
+                "Margin": "0,0",
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "ViewType": 0
+        },
+        {
+          "Type": "CheckBox",
+          "Id": "EL_ECHARTS_DEMO_CHK004",
+          "Name": "chkDataZoom",
+          "Position": {
+            "Left": 1200,
+            "Top": 47,
+            "Width": 90,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Text": "DataZoom",
+          "Style": {
+            "Type": 0,
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 194,
+                "G": 194,
+                "B": 197,
+                "A": 1
+              },
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Position": 1,
+                "Margin": "0,0",
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Color": {
+                "R": 48,
+                "G": 48,
+                "B": 49,
+                "A": 1
+              },
+              "Size": "12",
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "TextPosition": "back",
+          "GroupName": "",
+          "CheckedValue": "",
+          "UnCheckedValue": "",
+          "Checked": false,
+          "ViewType": 0
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_ECHARTS_DEMO_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 1300,
+            "Top": 47,
+            "Width": 600,
+            "Height": 26,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": {
+                "R": 102,
+                "G": 102,
+                "B": 102,
+                "A": 1
+              },
+              "Size": 11,
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "BoxStyle": "",
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Text": "  Chart ready | Change options above",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_ECHARTS_DEMO_EC001",
+          "Name": "ecChart",
+          "Position": {
+            "Left": 0,
+            "Top": 80,
+            "Width": 1100,
+            "Height": 837,
+            "Docking": {
+              "Left": true,
+              "Bottom": true,
+              "Right": false,
+              "Top": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "ComponentSetting": {
+            "ComponentId": "echartsComponent",
+            "ClassName": "EChartsComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "lib/echarts.min.js",
+                "order": 1
+              },
+              {
+                "type": "js",
+                "url": "echartsComponent.js",
+                "order": 2
+              },
+              {
+                "type": "css",
+                "url": "echartsComponent.css"
+              }
+            ],
+            "Options": {
+              "ChartType": "bar",
+              "Theme": "default",
+              "ShowLegend": true,
+              "LegendPosition": "bottom",
+              "ShowTooltip": true,
+              "ShowToolbox": true,
+              "EnableDataZoom": false,
+              "AnimationDuration": 800,
+              "LabelPosition": "none",
+              "ColorPalette": "vivid",
+              "BackgroundColor": "#ffffff"
+            },
+            "ComponentData": {}
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false,
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "EL_ECHARTS_DEMO_GRD001",
+          "Name": "grdSales",
+          "Position": {
+            "Left": 1105,
+            "Top": 80,
+            "Width": 735,
+            "Height": 837,
+            "Docking": {
+              "Right": true,
+              "Bottom": true,
+              "Margin": "0,0,0,0",
+              "MinHeight": 0,
+              "MinWidth": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Border": {
+              "Thickness": "1,1,1,1"
+            },
+            "VerticalBorder": {
+              "Thickness": 1
+            },
+            "HorizontalBorder": {
+              "Thickness": 1
+            },
+            "Background": {
+              "Color": {
+                "R": 255,
+                "G": 255,
+                "B": 255,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Bold": false,
+              "Color": {
+                "R": 0,
+                "G": 0,
+                "B": 0,
+                "A": 1
+              },
+              "Family": "맑은 고딕",
+              "HorizontalAlignment": "left",
+              "Italic": false,
+              "Size": 12,
+              "UnderLine": false,
+              "VerticalAlignment": "top"
+            }
+          },
+          "DataSource": "DS_ECHARTS_DEMO_01",
+          "AutoRefresh": true,
+          "Columns": [
+            {
+              "Name": "MONTH",
+              "Caption": "MONTH",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "ColumnType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "REVENUE",
+              "ColumnType": 3,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum",
+              "Caption": "REVENUE",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "COST",
+              "ColumnType": 3,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum",
+              "Caption": "COST",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            },
+            {
+              "Name": "PROFIT",
+              "ColumnType": 3,
+              "DataType": 0,
+              "TextPosition": "end",
+              "DisplaySubTotalType": "Hidden",
+              "CalcSubTotalType": "Sum",
+              "Caption": "PROFIT",
+              "Width": 100,
+              "HeaderPosition": "center",
+              "KeyType": 0,
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": true,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": true,
+                "ErrorLanguageCode": ""
+              }
+            }
+          ],
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "CellMargin": "5,5,5,5",
+          "SelectRule": 2,
+          "NaNCellText": "-",
+          "ColumnHeaderHeight": 28,
+          "RowHeight": 24,
+          "ExportCount": 1000000,
+          "FontFamily": "inherit",
+          "FontSize": 12,
+          "UsePPTExport": false,
+          "UseDesign": false,
+          "UseFormatSetting": false,
+          "UseMultiHeader": false,
+          "UseMultiHeaderMenu": false,
+          "FrozenLineBrush": {
+            "Type": 0,
+            "Color": {
+              "R": 127,
+              "G": 127,
+              "B": 127,
+              "A": 1
+            }
+          },
+          "UsePaging": true
+        }
+      ],
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      }
+    }
+  ],
+  "ServerScriptText": [],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {},
+  "PersonalConditions": {
+    "list": [],
+    "useAll": true
+  }
+}

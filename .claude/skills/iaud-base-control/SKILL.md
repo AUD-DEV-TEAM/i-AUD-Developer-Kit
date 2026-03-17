@@ -110,7 +110,7 @@ function initUI(bc: BaseControl) {
 
 ### 3.3 핵심 메소드
 
-#### addCSS(css: string) — CSS 스타일 추가
+#### addCSS(css: string[]|string) — CSS 스타일 추가
 
 `<style>` 태그를 생성하여 `<head>`에 삽입합니다. 컴포넌트 Dispose 시 자동 제거됩니다.
 
@@ -124,7 +124,7 @@ baseCtrl.addCSS(`
 
 > **주의**: CSS는 Shadow DOM이 아닌 `<head>`에 삽입되므로 **전역 범위**입니다. 클래스명 충돌을 방지하기 위해 고유한 접두사를 사용하세요. (예: `myctrl-header`, `epa-tab` 등)
 
-#### addHTML(text: string, pNode?: HTMLElement) — HTML 추가
+#### addHTML(text: string[]|string, pNode?: HTMLElement) — HTML 추가
 
 HTML 문자열을 DOMParser로 파싱하여 DOM에 삽입합니다.
 
@@ -640,6 +640,7 @@ grid.OnDataBindEnd = function() {
 5. **이벤트 정리**: `document.addEventListener`로 등록한 전역 이벤트는 별도로 제거해야 합니다. BaseControl은 자신의 Element에 등록한 이벤트만 자동 정리합니다.
 6. **XSS 주의**: 사용자 입력 데이터를 `addHTML()`에 직접 넣지 마세요. `textContent`를 사용하거나 이스케이프 처리하세요.
 7. **GridHtmlView와 선택**: DataGrid 데이터 표현이 목적이면 `GridHtmlView`를 사용하세요. 순수 커스텀 UI가 목적이면 `BaseControl`을 사용하세요.
+8. **input/textarea 키보드 이벤트**: `addHTML()`로 추가한 `<input>`, `<textarea>`에서 Backspace, Delete 등이 동작하지 않을 수 있습니다. i-AUD 프레임워크가 keydown을 전역으로 가로채기 때문입니다. 입력 요소에 `e.stopPropagation()`을 등록하세요: `input.addEventListener('keydown', function(e) { e.stopPropagation(); });`
 
 ---
 

@@ -1,0 +1,351 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_GAUGE_COMPONENT",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "SavePath": "MYDOCUMENT.yglee/EXT_GAUGE_COMPONENT.mtsd",
+    "ReportName": "Gauge Component",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-16 15:01:10",
+    "Editor": "yglee",
+    "EditDate": "2026-03-16 15:01:10",
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "ScriptText": "./GaugeComponent.script.ts",
+  "Forms": [
+    {
+      "Id": "FM_GAUGE_COMP_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_GAUGE_COMP_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 954,
+            "Height": 40,
+            "Docking": {
+              "Left": true,
+              "Right": true
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#f57c00"
+            },
+            "Font": {
+              "Color": "#ffffff",
+              "Size": 14,
+              "HorizontalAlignment": "center"
+            }
+          }
+        },
+        {
+          "Type": "NumberBox",
+          "Id": "EL_GAUGE_COMP_NB001",
+          "Name": "nbValue",
+          "Position": {
+            "Left": 10,
+            "Top": 50,
+            "Width": 100,
+            "Height": 26
+          },
+          "Value": 75,
+          "Text": "75"
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_GAUGE_COMP_BTN001",
+          "Name": "btnSetValue",
+          "Position": {
+            "Left": 120,
+            "Top": 50,
+            "Width": 100,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#f57c00"
+            },
+            "Border": {
+              "Color": "#e66e00"
+            },
+            "Font": {
+              "Size": 11
+            }
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_GAUGE_COMP_BTN002",
+          "Name": "btnRandom",
+          "Position": {
+            "Left": 230,
+            "Top": 50,
+            "Width": 100,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#1976d2"
+            },
+            "Border": {
+              "Color": "#1565c0"
+            },
+            "Font": {
+              "Size": 11
+            }
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "EL_GAUGE_COMP_BTN003",
+          "Name": "btnReset",
+          "Position": {
+            "Left": 340,
+            "Top": 50,
+            "Width": 80,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#757575"
+            },
+            "Border": {
+              "Color": "#616161"
+            },
+            "Font": {
+              "Size": 11
+            }
+          }
+        },
+        {
+          "Type": "ComboBox",
+          "Id": "EL_GAUGE_COMP_CMB001",
+          "Name": "cmbScheme",
+          "Position": {
+            "Left": 430,
+            "Top": 50,
+            "Width": 150,
+            "Height": 26
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_GAUGE_COMP_LBL002",
+          "Name": "lblStatus",
+          "Position": {
+            "Left": 590,
+            "Top": 50,
+            "Width": 400,
+            "Height": 26
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Color": "#666666",
+              "Size": 11
+            }
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_GAUGE_COMP_EC001",
+          "Name": "ecGauge1",
+          "Position": {
+            "Left": 10,
+            "Top": 90,
+            "Width": 380,
+            "Height": 350
+          },
+          "Style": {
+            "Type": "2",
+            "BoxStyle": "",
+            "Background": {
+              "Color": "#ffffff"
+            },
+            "Border": {
+              "Color": "#cccccc",
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": "#000000",
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "gaugeComponent",
+            "ClassName": "GaugeComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "gaugeComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "gaugeComponent.css"
+              }
+            ],
+            "Options": {
+              "MinValue": 0,
+              "MaxValue": 100,
+              "Title": "CPU Usage",
+              "Unit": "%",
+              "ShowValue": true,
+              "ColorScheme": "green-red",
+              "AnimationDuration": 800
+            },
+            "ComponentData": {
+              "currentValue": 0
+            }
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_GAUGE_COMP_EC002",
+          "Name": "ecGauge2",
+          "Position": {
+            "Left": 400,
+            "Top": 90,
+            "Width": 380,
+            "Height": 350
+          },
+          "Style": {
+            "Type": "2",
+            "BoxStyle": "",
+            "Background": {
+              "Color": "#ffffff"
+            },
+            "Border": {
+              "Color": "#cccccc",
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": "#000000",
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "gaugeComponent",
+            "ClassName": "GaugeComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "gaugeComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "gaugeComponent.css"
+              }
+            ],
+            "Options": {
+              "MinValue": 0,
+              "MaxValue": 100,
+              "Title": "Memory",
+              "Unit": "%",
+              "ShowValue": true,
+              "ColorScheme": "blue",
+              "AnimationDuration": 800
+            },
+            "ComponentData": {
+              "currentValue": 0
+            }
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_GAUGE_COMP_EC003",
+          "Name": "ecGauge3",
+          "Position": {
+            "Left": 790,
+            "Top": 90,
+            "Width": 380,
+            "Height": 350
+          },
+          "Style": {
+            "Type": "2",
+            "BoxStyle": "",
+            "Background": {
+              "Color": "#ffffff"
+            },
+            "Border": {
+              "Color": "#cccccc",
+              "LineType": "solid",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            },
+            "Font": {
+              "Color": "#000000",
+              "Size": 12,
+              "Family": "inherit",
+              "Bold": false,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "top",
+              "TempFontFamily": "맑은 고딕"
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "gaugeComponent",
+            "ClassName": "GaugeComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "gaugeComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "gaugeComponent.css"
+              }
+            ],
+            "Options": {
+              "MinValue": 0,
+              "MaxValue": 100,
+              "Title": "Disk I/O",
+              "Unit": "%",
+              "ShowValue": true,
+              "ColorScheme": "rainbow",
+              "AnimationDuration": 800
+            },
+            "ComponentData": {
+              "currentValue": 0
+            }
+          },
+          "AutoRefresh": false,
+          "DoRefresh": false
+        }
+      ]
+    }
+  ]
+}

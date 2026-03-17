@@ -1,0 +1,367 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPB7D4E8F2A1C34D6E9F0A1B2C3D4E5F6A7",
+    "FolderCode": "MYDOCUMENT.yglee",
+    "SavePath": "MYDOCUMENT.yglee/REPB7D4E8F2A1C34D6E9F0A1B2C3D4E5F6A7.mtsd",
+    "ReportName": "판매 계획 대비 실적 분석",
+    "Writer": "yglee",
+    "WriteDate": "2026-03-12 16:28:16",
+    "Editor": "yglee",
+    "EditDate": "2026-03-12 16:28:16",
+    "CreateBy": "i-AUD Developer Kit"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS_OLAP_PLAN_VS_ACTUAL",
+        "Name": "OLAP_PLAN_VS_ACTUAL",
+        "ConnectionCode": "AUD_SAMPLE_DB",
+        "SQL": "./DataSource/OLAP_PLAN_VS_ACTUAL.sql"
+      }
+    ]
+  },
+  "ScriptText": "./판매 계획 대비 실적 분석.script.ts",
+  "Forms": [
+    {
+      "Id": "Form_PlanVsActual_001",
+      "Name": "Form1",
+      "Style": {
+        "Type": 1,
+        "BoxStyle": "BX5C0F0A242691485C8B252E1D558CD3F5",
+        "Border": {
+          "ColorR": 194,
+          "ColorG": 194,
+          "ColorB": 197,
+          "CornerRadius": "4,4,4,4"
+        },
+        "Background": {
+          "ColorR": 238,
+          "ColorG": 238,
+          "ColorB": 243
+        }
+      },
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "Label_Title_001",
+          "Name": "lblReportTitle",
+          "Position": {
+            "Left": 3,
+            "Top": 3,
+            "Width": 1731,
+            "Height": 35,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": true,
+              "Margin": "3"
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": "#dce6f2"
+            },
+            "Border": {
+              "LineType": "solid"
+            },
+            "Font": {
+              "Color": "#333333",
+              "Size": 14
+            }
+          },
+          "Text": "   판매 계획 대비 실적 분석",
+          "HasLineSpacing": false,
+          "MxBindingUseStyle": false,
+          "UseTooltip": true,
+          "Margin": {
+            "Left": 0,
+            "Right": 0,
+            "Text": "0,0,0,0"
+          }
+        },
+        {
+          "Type": "DataGrid",
+          "Id": "OlapGrid_PlanVsActual_001",
+          "Name": "GRD_PLAN_VS_ACTUAL",
+          "Position": {
+            "Left": 3,
+            "Top": 42,
+            "Width": 1731,
+            "Height": 891,
+            "Docking": {
+              "Margin": "3",
+              "Left": true,
+              "Right": true,
+              "Bottom": true
+            }
+          },
+          "Style": {
+            "Type": 2
+          },
+          "DataSource": "DS_OLAP_PLAN_VS_ACTUAL",
+          "AutoRefresh": true,
+          "Columns": [
+            {
+              "Name": "PLAN_YEAR",
+              "Caption": "연도",
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "Width": 70,
+              "TextPosition": "center"
+            },
+            {
+              "Name": "PLAN_MONTH",
+              "Caption": "월",
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "Width": 50,
+              "TextPosition": "center"
+            },
+            {
+              "Name": "DEPT_NAME",
+              "Caption": "부서",
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "Width": 120,
+              "TextPosition": "center"
+            },
+            {
+              "Name": "EMP_NAME",
+              "Caption": "담당자",
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "TextPosition": "center"
+            },
+            {
+              "Name": "PROD_CATEGORY",
+              "Caption": "제품 카테고리",
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "Width": 120,
+              "TextPosition": "center"
+            },
+            {
+              "Name": "PROD_NAME",
+              "Caption": "제품",
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "Width": 150
+            },
+            {
+              "Name": "TARGET_QTY",
+              "Caption": "목표수량",
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "Format": "#,##0",
+              "TextPosition": "right"
+            },
+            {
+              "Name": "TARGET_AMT",
+              "Caption": "목표금액",
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "Width": 120,
+              "Format": "#,##0",
+              "TextPosition": "right"
+            },
+            {
+              "Name": "ACTUAL_QTY",
+              "Caption": "실적수량",
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "Format": "#,##0",
+              "TextPosition": "right"
+            },
+            {
+              "Name": "ACTUAL_AMT",
+              "Caption": "실적금액",
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "Width": 120,
+              "Format": "#,##0",
+              "TextPosition": "right"
+            },
+            {
+              "Name": "DIFF_AMT",
+              "Caption": "차이(금액)",
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "Width": 120,
+              "Format": "#,##0",
+              "TextPosition": "right"
+            },
+            {
+              "Name": "ACHV_RATE",
+              "Caption": "달성률(%)",
+              "Validator": {
+                "ValidateType": 8,
+                "UseGuideMessage": false,
+                "GuideLanguageCode": "",
+                "UseErrorMessage": false,
+                "ErrorLanguageCode": ""
+              },
+              "Format": "#,##0.0",
+              "TextPosition": "right"
+            }
+          ],
+          "PageSize": 10
+        },
+        {
+          "Type": "AddIn",
+          "Id": "AddIn03AB399746E0BAE0424F26934C2348D6",
+          "Name": "GRD_PLAN_VS_ACTUAL_View",
+          "Position": {
+            "Left": 43,
+            "Top": 285,
+            "Width": 1123,
+            "Height": 557,
+            "ZIndex": 3
+          },
+          "ComponentType": "GridHtmlView",
+          "ComponentElement": {
+            "DataGridId": "OlapGrid_PlanVsActual_001",
+            "HTML": [
+              "<div class=\"list-wrap\">",
+              "  <div class=\"table-area\">",
+              "    <table>",
+              "      <thead>",
+              "        <tr>",
+              "          <th style=\"width:60px;\">연도</th>",
+              "          <th style=\"width:40px;\">월</th>",
+              "          <th style=\"width:110px;\">부서</th>",
+              "          <th style=\"width:90px;\">담당자</th>",
+              "          <th style=\"width:110px;\">제품 카테고리</th>",
+              "          <th style=\"width:140px;\">제품</th>",
+              "        </tr>",
+              "        <tr>",
+              "          <th>목표수량</th>",
+              "          <th>목표금액</th>",
+              "          <th>실적수량</th>",
+              "          <th>실적금액</th>",
+              "          <th>차이(금액)</th>",
+              "          <th>달성률(%)</th>",
+              "        </tr>",
+              "      </thead>",
+              "      <tbody AUD-FOR=\"ROWS\">",
+              "        <tr class=\"row1\" AUD-CLASS=\"ACTIVE:active\">",
+              "          <td class=\"center\" AUD-BIND=\"PLAN_YEAR\"></td>",
+              "          <td class=\"center\" AUD-BIND=\"PLAN_MONTH\"></td>",
+              "          <td class=\"center clickable\" AUD-BIND=\"DEPT_NAME\" AUD-ON-CLICK=\"SHOW_DEPT_INFO\"></td>",
+              "          <td class=\"center clickable\" AUD-BIND=\"EMP_NAME\" AUD-ON-CLICK=\"SHOW_EMP_INFO\"></td>",
+              "          <td class=\"center\" AUD-BIND=\"PROD_CATEGORY\"></td>",
+              "          <td AUD-BIND=\"PROD_NAME\"></td>",
+              "        </tr>",
+              "        <tr class=\"row2\" AUD-CLASS=\"ACTIVE:active\">",
+              "          <td class=\"right num\" AUD-BIND=\"TARGET_QTY\"></td>",
+              "          <td class=\"right num\" AUD-BIND=\"TARGET_AMT\"></td>",
+              "          <td class=\"right num\" AUD-BIND=\"ACTUAL_QTY\"></td>",
+              "          <td class=\"right num\" AUD-BIND=\"ACTUAL_AMT\"></td>",
+              "          <td class=\"right num\" AUD-BIND=\"DIFF_AMT\"></td>",
+              "          <td class=\"right num\" AUD-BIND=\"ACHV_RATE\"></td>",
+              "        </tr>",
+              "      </tbody>",
+              "    </table>",
+              "  </div>",
+              "  <div class=\"pager\">",
+              "    <button class=\"pg-btn\" AUD-ACTION=\"FIRST\" AUD-DISABLED=\"prevDisabled\">«</button>",
+              "    <button class=\"pg-btn\" AUD-ACTION=\"PREV\" AUD-DISABLED=\"prevDisabled\">‹</button>",
+              "    <button class=\"pg-num\" AUD-FOR=\"PAGES\" AUD-ACTION=\"PAGE\" AUD-CLASS=\"active:active\" AUD-BIND=\"num\"></button>",
+              "    <button class=\"pg-btn\" AUD-ACTION=\"NEXT\" AUD-DISABLED=\"nextDisabled\">›</button>",
+              "    <button class=\"pg-btn\" AUD-ACTION=\"LAST\" AUD-DISABLED=\"nextDisabled\">»</button>",
+              "    <span class=\"pg-info\"><span AUD-BIND=\"CURRENTPAGE\"></span> / <span AUD-BIND=\"LASTPAGE\"></span></span>",
+              "  </div>",
+              "</div>"
+            ],
+            "CSS": [
+              ":host { display:block; height:100%; font-family:'Segoe UI',sans-serif; }",
+              ".list-wrap { height:100%; display:flex; flex-direction:column; background:#1e1e2e; }",
+              ".table-area { flex:1; overflow:auto; }",
+              "table { width:100%; border-collapse:collapse; font-size:13px; }",
+              "thead { position:sticky; top:0; z-index:1; }",
+              "th { background:#2d2d44; color:#cdd6f4; font-weight:600; font-size:12px;",
+              "     padding:8px 12px; text-align:center; border-bottom:1px solid #45475a; }",
+              "thead tr:last-child th { background:#252540; font-size:11px; border-bottom:2px solid #45475a; }",
+              "td { padding:7px 12px; color:#cdd6f4; }",
+              ".center { text-align:center; }",
+              ".right { text-align:right; }",
+              ".num { font-family:'Consolas','Courier New',monospace; font-size:12px; }",
+              ".row1 td { border-top:1px solid #3b3b55; padding-bottom:3px; }",
+              ".row2 td { background:rgba(255,255,255,.03); padding-top:3px; border-bottom:1px solid #313244; }",
+              "tbody:nth-child(even) .row1 td { background:#262637; }",
+              "tbody:nth-child(even) .row2 td { background:rgba(38,38,55,.85); }",
+              "tbody:hover td { background:#313244 !important; }",
+              ".row1.active td { background:#45475a; color:#fff; font-weight:500; }",
+              ".row1.active td:first-child { border-left:3px solid #89b4fa; }",
+              ".row2.active td { background:#3d3d58; color:#fff; }",
+              ".clickable { cursor:pointer; color:#89b4fa; text-decoration:underline; text-underline-offset:2px; }",
+              ".clickable:hover { color:#b4d0fb; }",
+              ".pager { display:flex; align-items:center; justify-content:center; gap:4px; padding:8px; border-top:1px solid #313244; flex-shrink:0; }",
+              ".pg-btn, .pg-num { border:1px solid #45475a; background:#2d2d44; border-radius:4px; width:28px; height:28px;",
+              "  cursor:pointer; font-size:12px; color:#cdd6f4; display:inline-flex; align-items:center; justify-content:center; }",
+              ".pg-btn:hover:not(:disabled), .pg-num:hover { background:#45475a; }",
+              ".pg-btn:disabled { opacity:.4; cursor:default; }",
+              ".pg-num.active { background:#89b4fa; color:#1e1e2e; border-color:#89b4fa; }",
+              ".pg-info { font-size:11px; color:#6c7086; margin-left:8px; }"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

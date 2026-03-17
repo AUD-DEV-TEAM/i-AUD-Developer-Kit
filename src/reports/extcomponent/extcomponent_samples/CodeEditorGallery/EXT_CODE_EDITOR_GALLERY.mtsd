@@ -1,0 +1,895 @@
+{
+  "ReportInfo": {
+    "ReportCode": "EXT_CODE_EDITOR_GALLERY",
+    "SavePath": "MYDOCUMENT.yglee/EXT_CODE_EDITOR_GALLERY.mtsd",
+    "ReportName": "Code Editor Gallery",
+    "CreateBy": "i-AUD Developer Kit",
+    "FolderCode": "FLD13F431FE9E574EC982EAAC28A0931164",
+    "WriteDate": "2026-03-12 14:34:41",
+    "Writer": "yglee",
+    "EditDate": "2026-03-12 14:34:41",
+    "Editor": "yglee",
+    "TabPosition": 0,
+    "UsePersonalConditions": true,
+    "DocumentVersion": "3.0.0.0",
+    "RefreshType": 0,
+    "TabFocusMode": 1
+  },
+  "ScriptText": "Matrix.OnDocumentLoadComplete = function (sender, args) {\r\n    var lblTitle = Matrix.getObject(\"lblTitle\");\r\n    var lblJS = Matrix.getObject(\"lblJavaScript\");\r\n    var lblSQL = Matrix.getObject(\"lblSQL\");\r\n    var lblJSON = Matrix.getObject(\"lblJSON\");\r\n    var lblPy = Matrix.getObject(\"lblPython\");\r\n    var lblTxt = Matrix.getObject(\"lblText\");\r\n    lblTitle.Value = \"Code Editor Gallery - Syntax Highlighting Languages\";\r\n    lblJS.Value = \"JavaScript / TypeScript\";\r\n    lblSQL.Value = \"SQL\";\r\n    lblJSON.Value = \"JSON\";\r\n    lblPy.Value = \"Python\";\r\n    lblTxt.Value = \"Plain Text\";\r\n    var jsCode = [\r\n        'function fibonacci(n) {',\r\n        '    if (n <= 1) return n;',\r\n        '    let a = 0, b = 1;',\r\n        '    for (let i = 2; i <= n; i++) {',\r\n        '        const temp = a + b;',\r\n        '        a = b;',\r\n        '        b = temp;',\r\n        '    }',\r\n        '    return b;',\r\n        '}',\r\n        '',\r\n        '// 결과 출력',\r\n        'const result = fibonacci(10);',\r\n        'console.log(\"Fibonacci(10) =\", result); // 55',\r\n        '',\r\n        'const items = [\"apple\", \"banana\", \"cherry\"];',\r\n        'items.forEach(function(item, idx) {',\r\n        '    console.log(idx + \": \" + item);',\r\n        '});'\r\n    ].join('\\n');\r\n    var sqlCode = [\r\n        'SELECT',\r\n        '    E.EMP_NAME,',\r\n        '    D.DEPT_NAME,',\r\n        '    E.SALARY,',\r\n        '    E.HIRE_DATE',\r\n        'FROM EMPLOYEES E',\r\n        'INNER JOIN DEPARTMENTS D',\r\n        '    ON E.DEPT_CODE = D.DEPT_CODE',\r\n        'WHERE E.SALARY > 50000',\r\n        '  AND D.DEPT_NAME IS NOT NULL',\r\n        'ORDER BY E.SALARY DESC',\r\n        'LIMIT 100;',\r\n        '',\r\n        '-- 부서별 급여 통계',\r\n        'SELECT',\r\n        '    DEPT_CODE,',\r\n        '    COUNT(*) AS CNT,',\r\n        '    AVG(SALARY) AS AVG_SAL,',\r\n        '    MAX(SALARY) AS MAX_SAL',\r\n        'FROM EMPLOYEES',\r\n        'GROUP BY DEPT_CODE',\r\n        'HAVING COUNT(*) >= 5;'\r\n    ].join('\\n');\r\n    var jsonCode = [\r\n        '{',\r\n        '    \"name\": \"Code Editor Component\",',\r\n        '    \"version\": \"1.0.0\",',\r\n        '    \"description\": \"Syntax highlighting editor\",',\r\n        '    \"options\": {',\r\n        '        \"theme\": \"dark\",',\r\n        '        \"fontSize\": 13,',\r\n        '        \"showLineNumbers\": true,',\r\n        '        \"readOnly\": false',\r\n        '    },',\r\n        '    \"languages\": [',\r\n        '        \"javascript\",',\r\n        '        \"typescript\",',\r\n        '        \"sql\",',\r\n        '        \"json\",',\r\n        '        \"python\"',\r\n        '    ],',\r\n        '    \"stats\": {',\r\n        '        \"downloads\": 1024,',\r\n        '        \"stars\": 256,',\r\n        '        \"active\": true',\r\n        '    }',\r\n        '}'\r\n    ].join('\\n');\r\n    var pyCode = [\r\n        'class DataProcessor:',\r\n        '    \"\"\"데이터 처리 클래스\"\"\"',\r\n        '',\r\n        '    def __init__(self, name):',\r\n        '        self.name = name',\r\n        '        self.data = []',\r\n        '',\r\n        '    def load(self, filepath):',\r\n        '        with open(filepath) as f:',\r\n        '            for line in f:',\r\n        '                self.data.append(line.strip())',\r\n        '        return len(self.data)',\r\n        '',\r\n        '    def transform(self, func):',\r\n        '        self.data = [func(item) for item in self.data]',\r\n        '',\r\n        '# 사용 예시',\r\n        'proc = DataProcessor(\"sample\")',\r\n        'count = proc.load(\"input.csv\")',\r\n        'print(f\"Loaded {count} records\")',\r\n        'proc.transform(lambda x: x.upper())'\r\n    ].join('\\n');\r\n    var textCode = [\r\n        'CodeEditorComponent 사용 가이드',\r\n        '================================',\r\n        '',\r\n        '지원 언어:',\r\n        '  - JavaScript / TypeScript',\r\n        '  - SQL',\r\n        '  - JSON',\r\n        '  - Python',\r\n        '  - Plain Text (구문 강조 없음)',\r\n        '',\r\n        '주요 기능:',\r\n        '  1. 구문 강조 (Syntax Highlighting)',\r\n        '  2. 줄 번호 표시',\r\n        '  3. Dark / Light 테마',\r\n        '  4. 읽기 전용 모드',\r\n        '  5. 자동 줄바꿈',\r\n        '  6. Tab 키 지원 (스페이스 삽입)',\r\n        '',\r\n        '브릿지 메서드:',\r\n        '  SetValue([code])  - 코드 설정',\r\n        '  GetValue()        - 코드 반환',\r\n        '  SetData(data)     - 데이터 바인딩'\r\n    ].join('\\n');\r\n    var ecJS = Matrix.getObject(\"ecJavaScript\");\r\n    var ecSQL = Matrix.getObject(\"ecSQL\");\r\n    var ecJSON = Matrix.getObject(\"ecJSON\");\r\n    var ecPython = Matrix.getObject(\"ecPython\");\r\n    var ecText = Matrix.getObject(\"ecText\");\r\n    ecJS.OnComponentReady = function () { ecJS.SetValue([jsCode]); };\r\n    ecSQL.OnComponentReady = function () { ecSQL.SetValue([sqlCode]); };\r\n    ecJSON.OnComponentReady = function () { ecJSON.SetValue([jsonCode]); };\r\n    ecPython.OnComponentReady = function () { ecPython.SetValue([pyCode]); };\r\n    ecText.OnComponentReady = function () { ecText.SetValue([textCode]); };\r\n};\r\n",
+  "Forms": [
+    {
+      "Id": "FM_CODEEDITOR_GALLERY_FORM001",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "EL_CODEEDITOR_GALLERY_HDR001",
+          "Name": "lblTitle",
+          "Position": {
+            "Left": 10,
+            "Top": 5,
+            "Width": 1180,
+            "Height": 35,
+            "Docking": {
+              "Left": true,
+              "Right": true,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            },
+            "ZIndex": 1,
+            "TabIndex": 0
+          },
+          "Style": {
+            "Type": 2,
+            "Font": {
+              "Size": 14,
+              "Color": {
+                "R": 212,
+                "G": 212,
+                "B": 212,
+                "A": 1
+              },
+              "HorizontalAlignment": "center",
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "Background": {
+              "Color": {
+                "R": 30,
+                "G": 30,
+                "B": 30,
+                "A": 1
+              }
+            },
+            "BoxStyle": "",
+            "Border": {
+              "Color": {
+                "R": 85,
+                "G": 142,
+                "B": 213,
+                "A": 1
+              },
+              "LineType": "none",
+              "Thickness": "1,1,1,1",
+              "CornerRadius": "0,0,0,0"
+            }
+          },
+          "Value": "Code Editor Gallery - Syntax Highlighting Languages",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Text": "Label",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_CODEEDITOR_GALLERY_LB_JS1",
+          "Name": "lblJavaScript",
+          "Position": {
+            "Left": 10,
+            "Top": 48,
+            "Width": 385,
+            "Height": 25,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 45,
+                "G": 45,
+                "B": 45,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Size": 10,
+              "Color": {
+                "R": 86,
+                "G": 156,
+                "B": 214,
+                "A": 1
+              },
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "Border": {
+              "Thickness": "0,0,0,2",
+              "Color": {
+                "R": 86,
+                "G": 156,
+                "B": 214,
+                "A": 1
+              },
+              "LineType": "none",
+              "CornerRadius": "0,0,0,0"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "  JavaScript / TypeScript",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Text": "Label",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_CODEEDITOR_GALLERY_EC_JS1",
+          "Name": "ecJavaScript",
+          "Position": {
+            "Left": 10,
+            "Top": 73,
+            "Width": 385,
+            "Height": 310,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "codeEditorComponent",
+            "ClassName": "CodeEditorComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "codeEditorComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "codeEditorComponent.css"
+              }
+            ],
+            "Options": {
+              "Language": "javascript",
+              "Theme": "dark",
+              "ReadOnly": false,
+              "ShowLineNumbers": true,
+              "FontSize": 12
+            },
+            "ComponentData": {}
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_CODEEDITOR_GALLERY_LB_SQ1",
+          "Name": "lblSQL",
+          "Position": {
+            "Left": 405,
+            "Top": 48,
+            "Width": 385,
+            "Height": 25,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 45,
+                "G": 45,
+                "B": 45,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Size": 10,
+              "Color": {
+                "R": 206,
+                "G": 145,
+                "B": 120,
+                "A": 1
+              },
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "Border": {
+              "Thickness": "0,0,0,2",
+              "Color": {
+                "R": 206,
+                "G": 145,
+                "B": 120,
+                "A": 1
+              },
+              "LineType": "none",
+              "CornerRadius": "0,0,0,0"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "  SQL",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Text": "Label",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_CODEEDITOR_GALLERY_EC_SQ1",
+          "Name": "ecSQL",
+          "Position": {
+            "Left": 405,
+            "Top": 73,
+            "Width": 385,
+            "Height": 310,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "codeEditorComponent",
+            "ClassName": "CodeEditorComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "codeEditorComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "codeEditorComponent.css"
+              }
+            ],
+            "Options": {
+              "Language": "sql",
+              "Theme": "dark",
+              "ReadOnly": false,
+              "ShowLineNumbers": true,
+              "FontSize": 12
+            },
+            "ComponentData": {}
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_CODEEDITOR_GALLERY_LB_JN1",
+          "Name": "lblJSON",
+          "Position": {
+            "Left": 800,
+            "Top": 48,
+            "Width": 385,
+            "Height": 25,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 45,
+                "G": 45,
+                "B": 45,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Size": 10,
+              "Color": {
+                "R": 181,
+                "G": 206,
+                "B": 168,
+                "A": 1
+              },
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "Border": {
+              "Thickness": "0,0,0,2",
+              "Color": {
+                "R": 181,
+                "G": 206,
+                "B": 168,
+                "A": 1
+              },
+              "LineType": "none",
+              "CornerRadius": "0,0,0,0"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "  JSON",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Text": "Label",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_CODEEDITOR_GALLERY_EC_JN1",
+          "Name": "ecJSON",
+          "Position": {
+            "Left": 800,
+            "Top": 73,
+            "Width": 385,
+            "Height": 310,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "codeEditorComponent",
+            "ClassName": "CodeEditorComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "codeEditorComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "codeEditorComponent.css"
+              }
+            ],
+            "Options": {
+              "Language": "json",
+              "Theme": "dark",
+              "ReadOnly": false,
+              "ShowLineNumbers": true,
+              "FontSize": 12
+            },
+            "ComponentData": {}
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_CODEEDITOR_GALLERY_LB_PY1",
+          "Name": "lblPython",
+          "Position": {
+            "Left": 10,
+            "Top": 398,
+            "Width": 385,
+            "Height": 25,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 45,
+                "G": 45,
+                "B": 45,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Size": 10,
+              "Color": {
+                "R": 106,
+                "G": 153,
+                "B": 85,
+                "A": 1
+              },
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "Border": {
+              "Thickness": "0,0,0,2",
+              "Color": {
+                "R": 106,
+                "G": 153,
+                "B": 85,
+                "A": 1
+              },
+              "LineType": "none",
+              "CornerRadius": "0,0,0,0"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "  Python",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Text": "Label",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_CODEEDITOR_GALLERY_EC_PY1",
+          "Name": "ecPython",
+          "Position": {
+            "Left": 10,
+            "Top": 423,
+            "Width": 385,
+            "Height": 310,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "codeEditorComponent",
+            "ClassName": "CodeEditorComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "codeEditorComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "codeEditorComponent.css"
+              }
+            ],
+            "Options": {
+              "Language": "python",
+              "Theme": "dark",
+              "ReadOnly": false,
+              "ShowLineNumbers": true,
+              "FontSize": 12
+            },
+            "ComponentData": {}
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        },
+        {
+          "Type": "Label",
+          "Id": "EL_CODEEDITOR_GALLERY_LB_TX1",
+          "Name": "lblText",
+          "Position": {
+            "Left": 405,
+            "Top": 398,
+            "Width": 385,
+            "Height": 25,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "Color": {
+                "R": 45,
+                "G": 45,
+                "B": 45,
+                "A": 1
+              }
+            },
+            "Font": {
+              "Size": 10,
+              "Color": {
+                "R": 133,
+                "G": 133,
+                "B": 133,
+                "A": 1
+              },
+              "FontIcon": {
+                "Size": 12,
+                "Color": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0,
+                  "A": 1
+                },
+                "Animate": "#",
+                "Margin": "0,0",
+                "Position": 1,
+                "AutoSize": false,
+                "AutoColor": false
+              },
+              "Family": "inherit",
+              "Bold": true,
+              "Italic": false,
+              "UnderLine": false,
+              "HorizontalAlignment": "left",
+              "VerticalAlignment": "middle",
+              "TempFontFamily": "맑은 고딕"
+            },
+            "Border": {
+              "Thickness": "0,0,0,2",
+              "Color": {
+                "R": 133,
+                "G": 133,
+                "B": 133,
+                "A": 1
+              },
+              "LineType": "none",
+              "CornerRadius": "0,0,0,0"
+            },
+            "BoxStyle": ""
+          },
+          "Value": "  Plain Text",
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true,
+          "LanguageCode": "",
+          "Text": "Label",
+          "Cursor": "default",
+          "Formula": "",
+          "UseTextOverflow": false,
+          "UseAutoLineBreak": false,
+          "LineSpacing": 1.2,
+          "HasLineSpacing": true,
+          "MxBinding": "",
+          "MxBindingUseStyle": true,
+          "Margin": {
+            "Left": 3,
+            "Top": 0,
+            "Right": 3,
+            "Bottom": 0,
+            "Text": "3,0,3,0"
+          }
+        },
+        {
+          "Type": "ExternalComponent",
+          "Id": "EL_CODEEDITOR_GALLERY_EC_TX1",
+          "Name": "ecText",
+          "Position": {
+            "Left": 405,
+            "Top": 423,
+            "Width": 385,
+            "Height": 310,
+            "ZIndex": 1,
+            "TabIndex": 0,
+            "Docking": {
+              "Left": false,
+              "Right": false,
+              "Top": false,
+              "Bottom": false,
+              "Margin": "0,0,0,0",
+              "HoldSize": false,
+              "MinWidth": 0,
+              "MinHeight": 0
+            }
+          },
+          "ComponentSetting": {
+            "ComponentId": "codeEditorComponent",
+            "ClassName": "CodeEditorComponent",
+            "Files": [
+              {
+                "type": "js",
+                "url": "codeEditorComponent.js",
+                "order": 1
+              },
+              {
+                "type": "css",
+                "url": "codeEditorComponent.css"
+              }
+            ],
+            "Options": {
+              "Language": "text",
+              "Theme": "light",
+              "ReadOnly": false,
+              "ShowLineNumbers": true,
+              "FontSize": 12
+            },
+            "ComponentData": {}
+          },
+          "Visible": true,
+          "Enabled": true,
+          "TabStop": true
+        }
+      ],
+      "Activated": true,
+      "Visible": true,
+      "LanguageCode": "",
+      "Style": {
+        "Type": 0,
+        "BoxStyle": "",
+        "Border": {
+          "ColorR": 204,
+          "ColorG": 204,
+          "ColorB": 204,
+          "ColorA": 1,
+          "CornerRadius": "0,0,0,0",
+          "LineType": "solid",
+          "Thickness": "1,1,1,1"
+        },
+        "Background": {
+          "ColorR": 255,
+          "ColorG": 255,
+          "ColorB": 255,
+          "ColorA": 1
+        }
+      }
+    }
+  ],
+  "DataSources": {
+    "Datas": []
+  },
+  "ServerScriptText": [],
+  "MetaDataSources": {
+    "MetaDataSources": []
+  },
+  "EXECUTION_PLANS": [],
+  "Variables": [],
+  "Modules": [],
+  "ResponsiveLayout": [],
+  "Langs": [],
+  "WorkFlowModules": [],
+  "WorkFlowInfo": "",
+  "schModel": {},
+  "PersonalConditions": {
+    "list": [],
+    "useAll": true
+  }
+}

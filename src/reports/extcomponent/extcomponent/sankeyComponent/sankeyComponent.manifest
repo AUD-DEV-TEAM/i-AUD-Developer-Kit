@@ -1,0 +1,60 @@
+{
+    "name": "Sankey 차트",
+    "icon": [
+        "<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='#1565c0' stroke-width='2'>",
+        "<path d='M2 6h4c4 0 4 4 8 4h8'/>",
+        "<path d='M2 12h4c4 0 4 4 8 4h8'/>",
+        "<path d='M2 18h4c4 0 4-6 8-6h8'/>",
+        "</svg>"
+    ],
+    "version": 1,
+    "category": "Chart",
+    "description": "Sankey(흐름) 차트 컴포넌트. ECharts 기반. setGrid()로 DataGrid를 연결하면 SOURCE→TARGET→VALUE 기반 흐름도를 자동 렌더링합니다.",
+    "className": "SankeyComponent",
+
+    "files": [
+        { "type": "js",  "url": "lib/echarts.min.js",     "order": 1 },
+        { "type": "js",  "url": "sankeyComponent.js",     "order": 2 },
+        { "type": "css", "url": "sankeyComponent.css" }
+    ],
+
+    "options": [
+        { "name": "SourceField", "type": "Text", "group": "Data", "default": "SOURCE", "description": "출발 노드 필드명" },
+        { "name": "TargetField", "type": "Text", "group": "Data", "default": "TARGET", "description": "도착 노드 필드명" },
+        { "name": "ValueField", "type": "Text", "group": "Data", "default": "VALUE", "description": "값(흐름량) 필드명" },
+        { "name": "Orient", "type": "ComboBox", "group": "Layout", "default": "horizontal", "items": ["horizontal","vertical"], "description": "차트 방향" },
+        { "name": "NodeWidth", "type": "Number", "group": "Style", "default": 20, "description": "노드 너비(px)" },
+        { "name": "NodeGap", "type": "Number", "group": "Style", "default": 10, "description": "노드 간격(px)" },
+        { "name": "ShowLabel", "type": "Boolean", "group": "Display", "default": true, "description": "라벨 표시 여부" },
+        { "name": "FontSize", "type": "Number", "group": "Style", "default": 12, "description": "라벨 글꼴 크기(px)" },
+        { "name": "Title", "type": "Text", "group": "Display", "default": "", "description": "차트 제목" },
+        { "name": "BackgroundColor", "type": "Color", "group": "Style", "default": "#ffffff", "description": "배경색" },
+        { "name": "AnimationDuration", "type": "Number", "group": "Animation", "default": 800, "description": "애니메이션 시간(ms)" }
+    ],
+
+    "sample": [
+        "// DataGrid 바인딩 (권장)",
+        "let grd = Matrix.getObject(\"DataGrid1\") as DataGrid;",
+        "let ec = Matrix.getObject(\"ExternalComponent1\") as any;",
+        "ec.OnComponentReady = function() {",
+        "    let model = ec.getModel();",
+        "    model.setConfig({",
+        "        SourceField: 'SOURCE',",
+        "        TargetField: 'TARGET',",
+        "        ValueField: 'VALUE'",
+        "    });",
+        "    model.setGrid(grd);  // OnDataChanged 자동 연동",
+        "",
+        "    model.OnNodeClick = function(args) {",
+        "        // args.name",
+        "    };",
+        "    model.OnLinkClick = function(args) {",
+        "        // args.source, args.target, args.value",
+        "    };",
+        "};",
+        "",
+        "// 방향 변경",
+        "// model.setConfig({ Orient: 'vertical' });",
+        "// model.Update();"
+    ]
+}

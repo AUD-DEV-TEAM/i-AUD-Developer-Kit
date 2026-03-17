@@ -28,16 +28,29 @@ DataGrid 데이터 → GridHtmlRenderer (템플릿 엔진) → Shadow DOM (HTML 
 
 GridHtmlView는 Add-in 타입 Element로 MTSD에 정의됩니다.
 
+`.design.json`에서는 HTML/CSS가 **줄 단위 `string[]` 배열**로 저장되어 가독성이 높습니다.
+서버 저장 시 `expandDesignJson()`이 자동으로 단일 string으로 복원합니다.
+
 ```json
 {
   "Type": "AddIn",
   "Id": "AddIn12D536A48D93A29DF35BB333274916A4",
-  "Name": "GridViewer", 
+  "Name": "GridViewer",
   "ComponentType": "GridHtmlView",
   "ComponentElement": {
     "DataGridId": "DG_EMP_01",
-    "HTML": "<div class=\"card-grid\">...</div>",
-    "CSS": ".card-grid { display:flex; ... }"
+    "HTML": [
+      "<div class=\"card-grid\">",
+      "  <div class=\"card\" AUD-FOR=\"ROWS\">",
+      "    <div class=\"card-title\" AUD-BIND=\"NAME\"></div>",
+      "  </div>",
+      "</div>"
+    ],
+    "CSS": [
+      ":host { display:block; height:100%; }",
+      ".card-grid { display:flex; flex-wrap:wrap; gap:12px; padding:12px; }",
+      ".card { border:1px solid #e2e8f0; border-radius:8px; padding:16px; }"
+    ]
   },
   "Position": { ... },
   "Style": { ... }
@@ -48,8 +61,8 @@ GridHtmlView는 Add-in 타입 Element로 MTSD에 정의됩니다.
 |------|------|
 | `ComponentType` | `"GridHtmlView"` (고정) |
 | `DataGridId` | 연결할 DataGrid의 Name 또는 Id |
-| `HTML` | HTML 템플릿 문자열 (AUD 디렉티브 포함) |
-| `CSS` | CSS 스타일시트 문자열 |
+| `HTML` | HTML 템플릿 (AUD 디렉티브 포함). `.design.json`에서는 `string[]` (줄 단위 배열) |
+| `CSS` | CSS 스타일시트. `.design.json`에서는 `string[]` (줄 단위 배열) |
 
 > **DataGridId**는 Name 또는 Id 모두 사용 가능합니다. 내부적으로 `findGridByNameOrId()`로 검색합니다.
 
@@ -267,7 +280,57 @@ viewer.addFunction("DELETE_ROW", function(row, rowIndex, event) {
 <button AUD-ACTION="LAST" AUD-DISABLED="NEXTDISABLED">»</button>
 ```
 
-### 4.7 AUD-ON-{event} — 범용 이벤트 바인딩
+### 4.7 AUD-BIND-ATTR-{속성명} — HTML 속성 바인딩
+
+필드 값을 HTML 요소의 **속성(attribute)**에 바인딩합니다. `AUD-BIND`가 `textContent`만 설정하는 반면, `AUD-BIND-ATTR-{속성명}`은 `src`, `href`, `title`, `alt` 등 임의의 HTML 속성에 값을 설정할 수 있습니다.
+
+```html
+<!-- 이미지 src 바인딩 -->
+<img AUD-BIND-ATTR-SRC="ICON" />
+
+<!-- 링크 href 바인딩 -->
+<a AUD-BIND-ATTR-HREF="URL" AUD-BIND="LINK_TEXT"></a>
+
+<!-- 툴팁 title 바인딩 -->
+<div AUD-BIND-ATTR-TITLE="DESCRIPTION" AUD-BIND="NAME"></div>
+
+<!-- alt 텍스트 바인딩 -->
+<img AUD-BIND-ATTR-SRC="PHOTO_URL" AUD-BIND-ATTR-ALT="PHOTO_DESC" />
+
+<!-- data-* 속성 바인딩 -->
+<div AUD-BIND-ATTR-DATA-ID="ROW_ID" AUD-BIND="NAME"></div>
+```
+
+**동작 방식:**
+- `aud-bind-attr-src="ICON"` → `ICON` 필드의 값을 `src` 속성에 설정 (`el.setAttribute("src", value)`)
+- 속성명은 `aud-bind-attr-` 이후의 문자열이 그대로 사용됩니다 (예: `aud-bind-attr-data-id` → `data-id`)
+- 값이 falsy(빈 문자열, null, undefined)이면 속성이 설정되지 않습니다
+- 렌더링 후 `aud-bind-attr-*` 속성은 자동 제거됩니다
+- 하나의 요소에 여러 `aud-bind-attr-*`을 동시에 사용할 수 있습니다
+
+**활용 예시 — SVG 아이콘 이미지 바인딩:**
+
+DataGrid의 ICON 컬럼에 `data:image/svg+xml;utf8,...` 형태의 data URI를 저장하면, `<img AUD-BIND-ATTR-SRC="ICON">` 로 자동 렌더링됩니다.
+
+```typescript
+// 스크립트에서 data URI로 변환하여 그리드에 저장
+function svgToImgSrc(svg: string): string {
+    return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+
+let iconSrc = svgToImgSrc('<svg viewBox="0 0 24 24">...</svg>');
+rows.push([id, name, category, iconSrc]);
+```
+
+```html
+<!-- 템플릿에서 img src로 자동 바인딩 -->
+<div class="card" AUD-FOR="ROWS">
+  <img class="card-icon" AUD-BIND-ATTR-SRC="ICON" />
+  <span AUD-BIND="NAME"></span>
+</div>
+```
+
+### 4.8 AUD-ON-{event} — 범용 이벤트 바인딩
 
 HTML DOM 이벤트를 `addFunction()`으로 등록한 함수와 연결합니다.
 `{event}` 부분에 표준 DOM 이벤트명을 사용합니다.
@@ -292,7 +355,7 @@ HTML DOM 이벤트를 `addFunction()`으로 등록한 함수와 연결합니다.
 - `rowIndex`: 행 인덱스 (0부터)
 - `event`: 원본 DOM 이벤트
 
-### 4.8 AUD-MODEL — 양방향 데이터 바인딩
+### 4.9 AUD-MODEL — 양방향 데이터 바인딩
 
 `input`, `select`, `checkbox` 요소의 값을 DataGrid 셀과 양방향으로 바인딩합니다.
 
@@ -748,8 +811,61 @@ for (let i = 0; i < fields.length; i++) {
 6. **AUD-FOR 중첩**: ROWS 내부에 COLUMNS를 중첩하여 동적 테이블을 만들 수 있습니다.
 7. **페이저는 UsePaging=true일 때만**: DataGrid의 `UsePaging` 속성이 `true`여야 pager 모델이 생성됩니다.
 8. **maxVisiblePages**: 기본값 7. 블록 단위 페이징으로 동작합니다 (예: 1~7, 8~14, ...).
-9. **이벤트 함수는 ROWS/CURRENT_ROW 컨텍스트에서만**: `AUD-ON-{event}`는 행 데이터(row, rowIndex)를 전달하므로 ROWS 또는 CURRENT_ROW 반복문 내에서 사용해야 의미있습니다.
+9. **이벤트 함수는 ROWS/CURRENT_ROW 컨텍스트에서만**: `AUD-ON-{event}`는 행 데이터(row, rowIndex)를 전달하므로 ROWS 또는 CURRENT_ROW 반복문 내에서 사용해야 의미있습니다. 단, `AUD-FOR` 바깥 요소에도 `AUD-ON-{event}` 디렉티브를 사용할 수 있으며, 이 경우 row/rowIndex는 null이고 event 파라미터만 유효합니다.
 10. **ReDraw 호출**: `AUD-MODEL`에서 값 변경 시 자동으로 `grid.ReDraw()`가 호출되어 그리드 UI가 갱신됩니다.
+11. **input/textarea 키보드 이벤트**: Shadow DOM 내부의 `<input>`, `<textarea>`에서 Backspace, Delete 등이 동작하지 않을 수 있습니다. i-AUD 프레임워크가 keydown을 전역으로 가로채기 때문입니다. 템플릿의 input에 `AUD-ON-KEYDOWN="함수명"` 디렉티브를 추가하고 `addFunction`으로 `event.stopPropagation()`을 등록하세요.
+12. **Shadow DOM 직접 접근 금지**: 클라이언트 스크립트에서 `Element.querySelector('.내부클래스명')`이나 `shadowRoot.querySelector()` 등으로 Shadow DOM 내부 요소에 직접 접근하면 안 됩니다. (1) 내부 클래스명은 제품 업데이트 시 변경될 수 있어 영향도 추적이 불가능합니다. (2) GridHtmlView는 데이터 바인딩마다 Shadow DOM을 재생성하므로 수동으로 붙인 이벤트 리스너가 모두 유실됩니다. 반드시 `AUD-ON-{event}` 디렉티브 + `addFunction()` 공개 API를 사용하세요.
+13. **AddIn 컴포넌트 비동기 로딩**: `getScriptClass()`가 null을 반환할 수 있습니다. 먼저 동기적으로 시도하고, null이면 `OnComponentClassLoaded` 이벤트에서 재시도하세요. 카탈로그/데이터 로딩과 컴포넌트 로딩이 비동기로 진행되므로, 두 작업의 완료 순서에 따른 동기화 처리가 필요합니다.
+
+### 8.1 Shadow DOM 이벤트 바인딩 — 올바른 패턴 vs 잘못된 패턴
+
+**잘못된 패턴 (Shadow DOM 직접 접근)**:
+
+```typescript
+// ✗ 금지: 내부 클래스명으로 Shadow DOM 직접 접근
+let container = adiList.Element.querySelector('.aud-addin-container');
+let input = container.shadowRoot.querySelector('.search-input') as HTMLInputElement;
+input.addEventListener('keydown', function(e) { e.stopPropagation(); });
+input.addEventListener('input', function() { filterList(input.value); });
+// 문제점:
+// 1. '.aud-addin-container'는 제품 내부 클래스명 — 변경 시 추적 불가
+// 2. 데이터 바인딩마다 Shadow DOM 재생성 — 이벤트 유실
+```
+
+**올바른 패턴 (템플릿 디렉티브 + addFunction)**:
+
+```html
+<!-- 템플릿 HTML (MTSD ComponentElement.HTML) -->
+<div class="list-container">
+  <input type="text" placeholder="검색..."
+         AUD-ON-INPUT="ON_SEARCH" AUD-ON-KEYDOWN="ON_SEARCH_KEY" />
+  <div AUD-FOR="ROWS" AUD-ON-CLICK="ON_SELECT">
+    <span AUD-BIND="NAME"></span>
+  </div>
+</div>
+```
+
+```typescript
+// ✓ 공개 API만 사용: addFunction으로 이벤트 등록
+// → 데이터 재바인딩 시에도 자동으로 이벤트 재연결
+
+// 키보드 이벤트 가로채기 차단
+view.addFunction("ON_SEARCH_KEY", function(row, rowIndex, event) {
+    event.stopPropagation();
+});
+
+// 검색 필터링 (debounce)
+let timer: any = null;
+view.addFunction("ON_SEARCH", function(row, rowIndex, event) {
+    let input = event.target as HTMLInputElement;
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(function() {
+        filterList(input.value.trim());
+    }, 200);
+});
+```
+
+> `AUD-FOR` 바깥 요소(검색 input 등)에서도 `AUD-ON-{event}` 디렉티브를 사용할 수 있습니다. 이 경우 `row`/`rowIndex`는 null이고, `event` 파라미터를 통해 DOM 이벤트 객체에 접근합니다.
 
 ---
 

@@ -26,17 +26,15 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴2: 당월로 초기화
  * //----------------------------------------------
- * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     var calCurrent = Matrix.getObject("calCurrent");
+ * var calCurrent = Matrix.getObject("calCurrent");
  *
- *     // 포맷 설정
- *     calCurrent.DataFormat = "yyyyMM";
- *     calCurrent.ViewFormat = "yyyy-MM";
+ * // 포맷 설정
+ * calCurrent.DataFormat = "yyyyMM";
+ * calCurrent.ViewFormat = "yyyy-MM";
  *
- *     // 이번 달로 설정
- *     var today = new Date();
- *     calCurrent.Date = today;
- * };
+ * // 이번 달로 설정
+ * var today = new Date();
+ * calCurrent.Date = today;
  *
  * //----------------------------------------------
  * // 패턴3: 월별 보고서 조회
@@ -120,16 +118,14 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴6: 선택 가능 범위 제한 (최근 12개월)
  * //----------------------------------------------
- * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     var calRecent = Matrix.getObject("calRecent");
+ * var calRecent = Matrix.getObject("calRecent");
  *
- *     // 이번 달부터 12개월 전까지만 선택 가능
- *     var today = new Date();
- *     var twelveMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 12, 1);
+ * // 이번 달부터 12개월 전까지만 선택 가능
+ * var today = new Date();
+ * var twelveMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 12, 1);
  *
- *     calRecent.MinDate = formatYearMonth(twelveMonthsAgo);  // "202301"
- *     calRecent.MaxDate = formatYearMonth(today);            // "202412"
- * };
+ * calRecent.MinDate = formatYearMonth(twelveMonthsAgo);  // "202301"
+ * calRecent.MaxDate = formatYearMonth(today);            // "202412"
  *
  * function formatYearMonth(date) {
  *     var year = date.getFullYear();

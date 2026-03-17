@@ -26,22 +26,20 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴2: 날짜 포맷 설정 및 초기값 지정
  * //----------------------------------------------
- * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     var calBirth = Matrix.getObject("calBirth");
+ * var calBirth = Matrix.getObject("calBirth");
  *
- *     // 데이터 저장용 포맷 (DB 저장 시 사용)
- *     calBirth.DataFormat = "yyyyMMdd";  // 20240115
+ * // 데이터 저장용 포맷 (DB 저장 시 사용)
+ * calBirth.DataFormat = "yyyyMMdd";  // 20240115
  *
- *     // 화면 표시용 포맷
- *     calBirth.ViewFormat = "yyyy-MM-dd";  // 2024-01-15
+ * // 화면 표시용 포맷
+ * calBirth.ViewFormat = "yyyy-MM-dd";  // 2024-01-15
  *
- *     // 초기 날짜 설정 (오늘 날짜)
- *     var today = new Date();
- *     calBirth.Date = today;
+ * // 초기 날짜 설정 (오늘 날짜)
+ * var today = new Date();
+ * calBirth.Date = today;
  *
- *     // 또는 문자열로 설정
- *     calBirth.Value = "20240115";  // DataFormat 형식
- * };
+ * // 또는 문자열로 설정
+ * calBirth.Value = "20240115";  // DataFormat 형식
  *
  * //----------------------------------------------
  * // 패턴3: 날짜 범위 제한 (최소/최대 날짜)
@@ -115,21 +113,19 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴6: 주말 강조 및 주차 표시
  * //----------------------------------------------
- * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     var calSchedule = Matrix.getObject("calSchedule");
+ * var calSchedule = Matrix.getObject("calSchedule");
  *
- *     // 토/일 강조 색상 적용
- *     calSchedule.HighlightWeekend = true;
+ * // 토/일 강조 색상 적용
+ * calSchedule.HighlightWeekend = true;
  *
- *     // 주차 번호 표시
- *     calSchedule.UseWeekNumber = true;
+ * // 주차 번호 표시
+ * calSchedule.UseWeekNumber = true;
  *
- *     // 월요일부터 시작 (0: 일요일, 1: 월요일)
- *     calSchedule.DisplayStartDayOfWeek = 1;
+ * // 월요일부터 시작 (0: 일요일, 1: 월요일)
+ * calSchedule.DisplayStartDayOfWeek = 1;
  *
- *     // 읽기 전용 설정 (조회만 가능)
- *     calSchedule.IsReadOnly = false;
- * };
+ * // 읽기 전용 설정 (조회만 가능)
+ * calSchedule.IsReadOnly = false;
  *
  * //----------------------------------------------
  * // 패턴7: 날짜 계산 및 자동 설정

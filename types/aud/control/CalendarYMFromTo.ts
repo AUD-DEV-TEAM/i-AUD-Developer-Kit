@@ -24,23 +24,21 @@ import { Control } from "../../aud/control/Control";
  * //----------------------------------------------
  * // 패턴2: 최근 3년 기간으로 초기화
  * //----------------------------------------------
- * Matrix.OnDocumentLoadComplete = function(sender, args) {
- *     var calThreeYears = Matrix.getObject("calThreeYears");
+ * var calThreeYears = Matrix.getObject("calThreeYears");
  *
- *     // 포맷 설정
- *     calThreeYears.DataFormat = "yyyy";
- *     calThreeYears.ViewFormat = "yyyy";
+ * // 포맷 설정
+ * calThreeYears.DataFormat = "yyyy";
+ * calThreeYears.ViewFormat = "yyyy";
  *
- *     // 올해
- *     var today = new Date();
- *     var thisYear = new Date(today.getFullYear(), 0, 1);
+ * // 올해
+ * var today = new Date();
+ * var thisYear = new Date(today.getFullYear(), 0, 1);
  *
- *     // 2년 전
- *     var twoYearsAgo = new Date(today.getFullYear() - 2, 0, 1);
+ * // 2년 전
+ * var twoYearsAgo = new Date(today.getFullYear() - 2, 0, 1);
  *
- *     calThreeYears.FromDate = twoYearsAgo;  // 시작 연도
- *     calThreeYears.ToDate = thisYear;       // 종료 연도 (올해)
- * };
+ * calThreeYears.FromDate = twoYearsAgo;  // 시작 연도
+ * calThreeYears.ToDate = thisYear;       // 종료 연도 (올해)
  *
  * //----------------------------------------------
  * // 패턴3: 연도별 기간 조회
