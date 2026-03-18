@@ -1,0 +1,606 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPB40CD9FD0E9742D6B8CE51C5A3315488",
+    "FolderCode": "FLD5390E61749BE4E7FB7CC1146EF15C60B",
+    "SavePath": "FLD5390E61749BE4E7FB7CC1146EF15C60B/REPB40CD9FD0E9742D6B8CE51C5A3315488.mtsd",
+    "ReportName": "(OlapGrid) 멀티헤더 제어하기",
+    "Writer": "yglee",
+    "WriteDate": "2022-7-1-10-15-32",
+    "Editor": "yglee",
+    "EditDate": "2022-7-1-10-15-32"
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DSA1B4E38A3211484093CC21DAA7C7E8B2",
+        "Name": "Data1",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data1.sql",
+        "Columns": [
+          {
+            "Name": "품명명",
+            "Type": "String"
+          },
+          {
+            "Name": "비고",
+            "Type": "String"
+          },
+          {
+            "Name": "단위",
+            "Type": "String"
+          },
+          {
+            "Name": "Y2018_11",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2018_12",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2019_01",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2019_02",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2019_03",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2019_04",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2019_05",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2019_06",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2019_07",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2019_08",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2019_09",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2019_10",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2019_11",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2019_12",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2020_01",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2020_02",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2020_03",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2020_04",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2020_05",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2020_06",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2020_07",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2020_08",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2020_09",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Y2020_10",
+            "Type": "Numeric"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": "./(OlapGrid) 멀티헤더 제어하기.script.ts",
+  "Forms": [
+    {
+      "Id": "Formcc1ad9b7-4468-c137-0b09-a03b784cfaf3",
+      "Name": "Form1",
+      "Elements": [
+        {
+          "Type": "Button",
+          "Id": "Button7c93793a-bc29-eb07-fd4f-bde8d66148ea",
+          "Name": "btn02",
+          "Position": {
+            "Left": 112,
+            "Top": 53,
+            "Width": 100,
+            "Height": 23,
+            "Docking": {
+              "compileMarginText": "0,0,0,0",
+              "compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "UseTooltip": true,
+          "Value": "멀티 헤더 수정",
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          }
+        },
+        {
+          "Type": "Button",
+          "Id": "Button672c928d-b5e5-52a3-a473-e5f2d8b41266",
+          "Name": "btn03",
+          "Position": {
+            "Left": 8,
+            "Top": 53,
+            "Width": 100,
+            "Height": 23,
+            "Docking": {
+              "compileMarginText": "0,0,0,0",
+              "compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "UseTooltip": true,
+          "Value": "초기화",
+          "Shadow": {
+            "HLeng": "10",
+            "VLeng": "10",
+            "BlurRadius": "0",
+            "SpreadRadius": "0"
+          }
+        },
+        {
+          "Type": "OlapGrid",
+          "Id": "OlapGrid1609378969609",
+          "Name": "OlapGrid",
+          "Position": {
+            "Left": 3,
+            "Top": 86,
+            "Width": 2512,
+            "Height": 1191,
+            "Docking": {
+              "compileMarginText": "3",
+              "compileMargin": [
+                3,
+                3,
+                3,
+                3
+              ],
+              "Left": true,
+              "Right": true,
+              "Bottom": true,
+              "Margin": "3"
+            }
+          },
+          "DataSource": "DSA1B4E38A3211484093CC21DAA7C7E8B2",
+          "AutoRefresh": true,
+          "iOLAPView": {
+            "Options": {
+              "UseMultiHeader": true,
+              "Style": {
+                "LineColor": "rgba(152,183,216,1)",
+                "BackgroundColor": "#fff"
+              },
+              "CacheOption": {
+                "UseHybrid": false
+              }
+            },
+            "Fields": [
+              {
+                "Key": "Y2018_12",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "DimensionGroupInfo": {
+                  "Items": []
+                }
+              },
+              {
+                "Key": "품명명",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "#MEASURES_HEADER#",
+                "Caption": "Measures",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 2,
+                "CreateType": 1,
+                "AllowFilter": false,
+                "AllowData": false
+              },
+              {
+                "Key": "단위",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 3,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "비고",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "Y2018_11",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "DimensionGroupInfo": {
+                  "Items": []
+                }
+              },
+              {
+                "Key": "Y2019_01",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "DimensionGroupInfo": {
+                  "Items": []
+                }
+              },
+              {
+                "Key": "Y2019_02",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "DimensionGroupInfo": {
+                  "Items": []
+                }
+              },
+              {
+                "Key": "Y2019_03",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "DimensionGroupInfo": {
+                  "Items": []
+                }
+              },
+              {
+                "Key": "Y2019_04",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "DimensionGroupInfo": {
+                  "Items": []
+                }
+              },
+              {
+                "Key": "Y2019_05",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "DimensionGroupInfo": {
+                  "Items": []
+                }
+              },
+              {
+                "Key": "Y2019_06",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "DimensionGroupInfo": {
+                  "Items": []
+                }
+              },
+              {
+                "Key": "Y2019_07",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "DimensionGroupInfo": {
+                  "Items": []
+                }
+              },
+              {
+                "Key": "Y2019_08",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}",
+                "DimensionGroupInfo": {
+                  "Items": []
+                }
+              }
+            ],
+            "MultiHeaderCells": [
+              [
+                {
+                  "Text": "Y2018",
+                  "Align": 2,
+                  "RowSpan": 1,
+                  "ColSpan": 2,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2018_11",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019",
+                  "Align": 2,
+                  "RowSpan": 1,
+                  "ColSpan": 8,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_02",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_03",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_04",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_05",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_06",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_07",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_08",
+                  "Align": 0,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                }
+              ],
+              [
+                {
+                  "Text": "Y2018_12",
+                  "Align": 2,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2018_11",
+                  "Align": 2,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_01",
+                  "Align": 2,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_02",
+                  "Align": 2,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_03",
+                  "Align": 2,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_04",
+                  "Align": 2,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_05",
+                  "Align": 2,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_06",
+                  "Align": 2,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_07",
+                  "Align": 2,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                },
+                {
+                  "Text": "Y2019_08",
+                  "Align": 2,
+                  "RowSpan": 1,
+                  "ColSpan": 1,
+                  "BoxStyleKey": ""
+                }
+              ]
+            ]
+          },
+          "ExtraOption": {
+            "CurrentPageSize": 100,
+            "EtcFormat": true,
+            "EtcProperties": true,
+            "EtcMultiHeader": true
+          }
+        },
+        {
+          "Type": "Label",
+          "Id": "Label5ab9e071-7785-aea8-430d-53874dc442cf",
+          "Name": "Label",
+          "Position": {
+            "Left": 3,
+            "Top": 3,
+            "Width": 2512,
+            "Height": 41,
+            "Docking": {
+              "compileMarginText": "3",
+              "compileMargin": [
+                3,
+                3,
+                3,
+                3
+              ],
+              "Left": true,
+              "Right": true,
+              "Top": true,
+              "Margin": "3"
+            }
+          },
+          "Style": {
+            "Type": 2,
+            "Background": {
+              "__type__": "istudio.drawing.style.Brush",
+              "Color": {
+                "__type__": "istudio.drawing.style.Color"
+              }
+            },
+            "Border": {
+              "__type__": "istudio.drawing.style.BorderInfo",
+              "Color": "#666666",
+              "LineType": "solid",
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Label"
+              },
+              "mVariable": {
+                "LineType": "solid",
+                "Thickness": "1,1,1,1",
+                "CornerRadius": "0,0,0,0"
+              }
+            },
+            "Font": {
+              "Type": "FontInfo",
+              "Color": "#434343",
+              "Size": 12,
+              "Bold": false,
+              "mVariable": {},
+              "Option": {
+                "activate": [],
+                "Inactivate": [],
+                "DefaultStyle": "Label"
+              }
+            }
+          },
+          "UseTooltip": true,
+          "Text": "   OlapGrid 컨트롤의 멀티헤더를 제어 합니다.",
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          }
+        }
+      ]
+    }
+  ],
+  "WorkFlowInfo": "{}"
+}

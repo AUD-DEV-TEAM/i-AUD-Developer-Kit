@@ -1,0 +1,302 @@
+{
+  "ReportInfo": {
+    "ReportCode": "REPA82F93A6A4C54FFCB54C0B549B34AFEE",
+    "FolderCode": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD",
+    "SavePath": "FLD8D82C9AFFB0A4332B40E05E9528FE8BD/REPA82F93A6A4C54FFCB54C0B549B34AFEE.mtsd",
+    "ReportName": "(OlapGrid) 특정 Row 조건부 서식 적용",
+    "Writer": "choehanna",
+    "WriteDate": "2024-04-01 17:43:22",
+    "Editor": "choehanna",
+    "EditDate": "2024-04-01 17:43:22",
+    "TabPosition": 1,
+    "UseLayout": false
+  },
+  "DataSources": {
+    "Datas": [
+      {
+        "Id": "DS8F3BF44D65654466939591DBB4D1835D",
+        "Name": "Data1",
+        "ConnectionCode": "MTXRPTY",
+        "UseMeta": "False",
+        "UseCache": "False",
+        "Encrypted": "True",
+        "DSType": 2,
+        "SQL": "./DataSource/Data1.sql",
+        "Columns": [
+          {
+            "Name": "YYYY",
+            "Type": "String"
+          },
+          {
+            "Name": "HALF",
+            "Type": "String"
+          },
+          {
+            "Name": "QUATER",
+            "Type": "String"
+          },
+          {
+            "Name": "LOCALE",
+            "Type": "String"
+          },
+          {
+            "Name": "PRODUCT",
+            "Type": "String"
+          },
+          {
+            "Name": "CUSTOMER",
+            "Type": "String"
+          },
+          {
+            "Name": "Y_VAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "H_VAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "Q_VAL",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "ROW_ID",
+            "Type": "Numeric"
+          },
+          {
+            "Name": "BIG_DOUBLE",
+            "Type": "Numeric"
+          }
+        ]
+      }
+    ]
+  },
+  "ScriptText": " ",
+  "Forms": [
+    {
+      "Id": "Form21c56c70-94c0-99a3-bf6c-7f1e00194370",
+      "Name": "Main",
+      "Style": {
+        "Type": 2
+      },
+      "Elements": [
+        {
+          "Type": "OlapGrid",
+          "Id": "OlapGrid1627621518715",
+          "Name": "OlapGrid",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1609,
+            "Height": 900,
+            "Docking": {
+              "compileMarginText": "0,0,0,0",
+              "compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "Left": true,
+              "Right": true,
+              "Top": true,
+              "Bottom": true,
+              "checkBoxAreaElement": {},
+              "marginWrapElement": {}
+            }
+          },
+          "DataSource": "DS8F3BF44D65654466939591DBB4D1835D",
+          "AutoRefresh": true,
+          "iOLAPView": {
+            "Options": {
+              "Style": {
+                "LineColor": "rgba(152,183,216,1)"
+              }
+            },
+            "Fields": [
+              {
+                "Key": "YYYY",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "#MEASURES_HEADER#",
+                "Caption": "Measures",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 2,
+                "CreateType": 1,
+                "AllowFilter": false,
+                "AllowData": false
+              },
+              {
+                "Key": "QUATER",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 3,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "Y_VAL",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}"
+              },
+              {
+                "Key": "PRODUCT",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "CUSTOMER",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 3,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "H_VAL",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}"
+              },
+              {
+                "Key": "LOCALE",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 1,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "HALF",
+                "Category": 1,
+                "DataType": 1,
+                "Area": 3,
+                "SummaryType": 5,
+                "SortType": 1
+              },
+              {
+                "Key": "Q_VAL",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 4,
+                "SummaryType": 1,
+                "Format": "{0:N0}"
+              },
+              {
+                "Key": "ROW_ID",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 3,
+                "SummaryType": 1,
+                "Format": "{0:N0}"
+              },
+              {
+                "Key": "BIG_DOUBLE",
+                "Category": 2,
+                "DataType": 0,
+                "Area": 3,
+                "SummaryType": 1,
+                "Format": "{0:N0}"
+              }
+            ],
+            "ConditionalStyle": "/*  스타일은 반환값이 스타일 목록의 Key 나 Name을 값을 반환해야 합니다.  스타일은 스타일 매니저에서 사전 생성하셔야 합니다.*/ \nSwitch(      \t\t\n  OR (IsRowGrandTotal, IsColGrandTotal, IsRowTotal, IsColTotal)         \t\t\n  \t, \"\"            \n  \t,  AND( getRecordValue([LOCALE]) == \"USA\" , FIELD_KEY == \"Y_VAL\" )             \n  \t,   \"BX1dafda38-cdc2-4c8b-b9a5-e7b7fcb5ce88\"\n  \t,  AND( getRecordValue([LOCALE]) == \"USA\" , FIELD_KEY == \"Q_VAL\" )             \n  \t,\t\"BX86892d07-5943-4038-b765-16c551506f28\"  \n  \t,  AND( getRecordValue([LOCALE]) == \"USA\" , FIELD_KEY == \"H_VAL\" )             \n    ,\t\"BX48B3AB41EE5E44AFAFD2F3A3B6F51431\"\n \t, \t\"BX267DC5B5D58C484B9F9E4AD11CA0ED9A\"\n)  "
+          },
+          "ExtraOption": {
+            "CurrentPageSize": 100,
+            "EtcFormat": true,
+            "EtcProperties": true,
+            "EtcMultiHeader": true
+          }
+        }
+      ]
+    },
+    {
+      "Id": "Form52a2cae9-1355-c55c-7bed-8ea64c8a3bf5",
+      "Name": "설명",
+      "Activated": false,
+      "Style": {
+        "Type": 2
+      },
+      "Elements": [
+        {
+          "Type": "Label",
+          "Id": "Label6672afaf-c564-9049-a72e-c4820209cedd",
+          "Name": "Label",
+          "Position": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 1881,
+            "Height": 335,
+            "Docking": {
+              "compileMarginText": "0,0,0,0",
+              "compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "Left": true,
+              "Right": true,
+              "Top": true
+            }
+          },
+          "Text": "1.상수\n    CELL_VALUE : 데이터 셀의 값\n    FIELD_KEY  : 데이터 셀에 계산에 적용된 데이터 필드의 Key값\n    FIELD_LABEL  : 데이터 셀에 계산에 적용된 데이터 필드의 라벨(Caption)\n\n2. 수식\n    스타일은 반환값이 스타일 목록의 Key 값을 반환해야 합니다.\n     (\"BG_RED\", \"BG_BLUE\") 은 사용자가 직접 정의한 스타일 값입니다.\n     스타일은 전역 Resource로 관리되며, 스타일 편집기에서 편집이 가능합니다.\n\n\n// Total은 처리 하지 않음\nSwitch( \n     OR (IsRowGrandTotal, IsColGrandTotal, IsRowTotal, IsColTotal)  \n     , \"\"\n     ,  AND( getRecordValue([LOCALE]) == \"USA\" , FIELD_KEY == \"Y_VAL\" ) \n     ,  \"BXDF231E3AC3EC47BDAA96FEF86DDFFEFD\"\n     ,   AND( getRecordValue([LOCALE]) == \"USA\" , FIELD_KEY == \"Q_VAL\" )  \n     , \"BXDF231E3AC3EC47BDAA96FEF86DDFFEFD\"\n     ,  AND( getRecordValue([LOCALE]) == \"USA\" , FIELD_KEY == \"H_VAL\" ) \n     , \"BXDF231E3AC3EC47BDAA96FEF86DDFFEFD\"\n     , \"BX1E5A4F87980541089F976DA7849308B2\"  //\n)  ",
+          "BindingInfo": {
+            "BindingGId": "",
+            "BindingGName": "",
+            "BindingGColumn": "",
+            "BindingGColumnId": ""
+          },
+          "UseTooltip": true
+        },
+        {
+          "Type": "Image",
+          "Id": "Image6fa2c0dd-34d9-1ec0-0f94-bbbc46073068",
+          "Name": "Image",
+          "Position": {
+            "Left": 7,
+            "Top": 352,
+            "Width": 1245,
+            "Height": 699,
+            "Docking": {
+              "compileMarginText": "0,0,0,0",
+              "compileMargin": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "Cursor": "default",
+          "UseTooltip": true,
+          "Image": {
+            "ImageCode": "da7e2d068ad44e0b9b88f591299d96c2",
+            "ImageName": "olapgrid_조건부서식2.png.png",
+            "FolderCode": "WEB_IMAGES",
+            "SaveName": "olapgrid_조건부서식2.png.png"
+          },
+          "OnImage": {
+            "FolderCode": "WEB_IMAGES",
+            "SaveName": "init_logo.png"
+          }
+        }
+      ]
+    }
+  ],
+  "UsePersonalConditions": true
+}
